@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
  
+  resources :vehicles
   resources :brands
 # The Welcome Page! 
   root 'pages#index'
