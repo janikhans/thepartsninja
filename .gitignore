@@ -15,3 +15,6 @@
 /log/*
 !/log/.keep
 /tmp
+
+#Ignore annoying Mac DS_Store files
+.DS_Store
