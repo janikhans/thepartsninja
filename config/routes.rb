@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+# The Welcome Page! 
   root 'pages#index'
-  get 'pages/help'
-  get 'pages/contact'
+
+  devise_for :users, :path_names => {:sign_in => 'login', :sign_out => 'logout'}
+
+  resources :users, only: [:show]
+
+  
+  get 'help' => 'pages#help'
+  get 'contact' => 'pages#contact'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
