@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+
+# The Welcome Page! 
+  root 'pages#index'
+
+  devise_scope :user do
+    get "login", to: "devise/sessions#new"
+    get "sign_up", to: "devise/registrations#new"
+  end
+
+  devise_for :users
+
+  resources :users, only: [:show]
+
+  
+  get 'help' => 'pages#help'
+  get 'contact' => 'pages#contact'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
