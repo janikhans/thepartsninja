@@ -1,6 +1,6 @@
-class CreateManufacturers < ActiveRecord::Migration
+class CreateBrands < ActiveRecord::Migration
   def change
-    create_table :manufacturers do |t|
+    create_table :brands do |t|
       t.string :name
       t.string :website
 

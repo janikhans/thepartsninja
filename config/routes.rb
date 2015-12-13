@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  resources :manufacturers
+ 
+  resources :brands
 # The Welcome Page! 
   root 'pages#index'
 
@@ -12,7 +13,6 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :users, only: [:show]
-
   
   get 'help' => 'pages#help'
   get 'contact' => 'pages#contact'
