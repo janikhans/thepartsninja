@@ -1,6 +1,17 @@
 class BrandsController < ApplicationController
   before_action :set_brand, only: [:show, :edit, :update, :destroy]
 
+  def autocomplete
+    @brands = Brand.order(:name)
+    @brands = @brands.where("name like ?", "%#{params[:term]}%") if params[:term]
+
+    respond_to do |format|
+      format.html  # index.html.erb
+      format.json  { render json: @brands.map(&:name) }
+    end
+    
+  end
+
   def index
     @brands = Brand.all
   end

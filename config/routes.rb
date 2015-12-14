@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
 
+  concern :autocompletable do
+    get 'autocomplete', on: :collection
+  end
+
  
   resources :vehicles
-  resources :brands
+  resources :brands, concerns: :autocompletable
+
+
 # The Welcome Page! 
   root 'pages#index'
 
