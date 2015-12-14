@@ -1,4 +1,6 @@
 <%= form_for(@vehicle) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
   <div class="field">
     <%= f.label :model %><br>
     <%= f.text_field :model %>
