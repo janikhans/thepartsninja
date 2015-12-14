@@ -6,10 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-janik = User.create! :username => 'Janik', :email => 'janik.knittle@gmail.com', :password => 'password', :password_confirmation => 'password'
+sensei = User.create! username: 'Sensei', email: 'thepartsninja@gmail.com', password: 'adminadmin', password_confirmation: 'adminadmin'
+janik = User.create! username: 'Janik', email: 'janik.knittle@gmail.com', password: 'password', password_confirmation: 'password'
 
 brands = ["Acerbis", "Hinson", "Tusk Racing", "ARC", "Barnett", "Yamaha", "Kawasaki", "KTM", "Beta", "FORD", "Chevrolet", "Husqvarna"]
-yz250 = Vehicle.create(model: "YZ250", year: 2006, brand_id: 6 )
+yz250 = Vehicle.create model: "YZ250", year: 2006, brand_name: "Yamaha" 
 
 brands.each do |name| 
   Brand.create(name: name)
