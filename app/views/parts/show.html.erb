@@ -12,13 +12,15 @@
 
 <p>
   <strong>Brand:</strong>
-  <%= @part.brand %>
+  <%= @part.brand.name %>
 </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @part.user %>
-</p>
+<% if @part.user %>
+  <p>
+    <strong>Submitted By:</strong>
+    <%= @part.user.username %>
+  </p>
+  <% end %>
 
 <%= link_to 'Edit', edit_part_path(@part) %> |
 <%= link_to 'Back', parts_path %>

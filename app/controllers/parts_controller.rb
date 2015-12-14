@@ -9,14 +9,14 @@ class PartsController < ApplicationController
   end
 
   def new
-    @part = Part.new
+    @part = current_user.parts.build
   end
 
   def edit
   end
 
   def create
-    @part = Part.new(part_params)
+    @part = current_user.parts.build(part_params)
 
     respond_to do |format|
       if @part.save
@@ -55,6 +55,6 @@ class PartsController < ApplicationController
     end
 
     def part_params
-      params.require(:part).permit(:name, :description, :brand_id, :user_id)
+      params.require(:part).permit(:name, :description, :brand_name, :user_id)
     end
 end

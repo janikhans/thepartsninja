@@ -1,14 +1,19 @@
-<%= simple_form_for(@part) do |f| %>
-  <%= f.error_notification %>
+<%= form_for(@part) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
 
-  <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :description %>
-    <%= f.association :brand %>
-    <%= f.association :user %>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
   </div>
-<% end %>
+  <div class="field">
+    <%= f.label :brand_name %><br>
+    <%= f.text_field :brand_name, data: {autocomplete_source: autocomplete_brands_path} %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  <% end %>

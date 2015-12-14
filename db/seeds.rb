@@ -10,8 +10,10 @@ sensei = User.create! username: 'Sensei', email: 'thepartsninja@gmail.com', pass
 janik = User.create! username: 'Janik', email: 'janik.knittle@gmail.com', password: 'password', password_confirmation: 'password'
 
 brands = ["Acerbis", "Hinson", "Tusk Racing", "ARC", "Barnett", "Yamaha", "Kawasaki", "KTM", "Beta", "FORD", "Chevrolet", "Husqvarna"]
-yz250 = Vehicle.create model: "YZ250", year: 2006, brand_name: "Yamaha" 
 
 brands.each do |name| 
   Brand.create(name: name)
 end
+
+yz250 = Vehicle.create model: "YZ250", year: 2006, brand_name: "Yamaha" 
+
