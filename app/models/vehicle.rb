@@ -8,13 +8,15 @@ class Vehicle < ActiveRecord::Base
                    inclusion: { in: 1900..Date.today.year+1, message: "needs to be between 1900-#{Date.today.year+1}"}, 
                    uniqueness: {scope: [:brand_id, :model], message: "This model year already exists"}
 
-  #Needs to strip and upcase before searching to be sure
+
   def brand_name
     brand.try(:name)
   end
 
-  #This one too
+  #This works but could create a duplicate in the case of TM Racing and TM racing
   def brand_name=(name)
+    name = name.strip
+    name = name[0].upcase + name[1..-1]
     self.brand = Brand.find_or_create_by(name: name) if name.present?
   end
 
