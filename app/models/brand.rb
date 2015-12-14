@@ -1,6 +1,7 @@
 class Brand < ActiveRecord::Base
 
   has_many :vehicles
+  has_many :parts
   before_validation :strip_and_upcase_name
   validates :name, presence: true, uniqueness: { case_sensitive: false, message: "brand already exists" }
 
