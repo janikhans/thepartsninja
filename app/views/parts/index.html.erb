@@ -6,7 +6,6 @@
   <thead>
     <tr>
       <th>Part number</th>
-      <th>Vehicle</th>
       <th>Part</th>
       <th>User</th>
       <th colspan="3"></th>
@@ -17,8 +16,7 @@
     <% @parts.each do |part| %>
       <tr>
         <td><%= part.part_number %></td>
-        <td><%= part.vehicle.brand.name %></td>
-        <td><%= part.part.brand.name %></td>
+        <td><%= part.product.brand.name %></td>
         <% if part.user %>
           <td><%= part.user.username %></td>
         <% else %>
@@ -34,4 +32,4 @@
 
 <br>
 
-<%= link_to 'New Part', new_part_path %>f
+<%= link_to 'New Part', new_part_path %>
