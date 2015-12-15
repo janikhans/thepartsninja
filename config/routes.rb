@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :parts
+  resources :products
   concern :autocompletable do
     get 'autocomplete', on: :collection
   end

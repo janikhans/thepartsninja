@@ -3,5 +3,5 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 jQuery ->
-  $('#part_brand_name').autocomplete
-    source: $('#part_brand_name').data('autocomplete-source')
+  $('#product_brand_name').autocomplete
+    source: $('#product_brand_name').data('autocomplete-source')

@@ -1,6 +1,6 @@
-class CreateParts < ActiveRecord::Migration
+class CreateProducts < ActiveRecord::Migration
   def change
-    create_table :parts do |t|
+    create_table :products do |t|
       t.string :name
       t.text :description
       t.references :brand, index: true, foreign_key: true

@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20151214201449) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "parts", force: :cascade do |t|
+  create_table "products", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.integer  "brand_id"
@@ -29,8 +29,8 @@ ActiveRecord::Schema.define(version: 20151214201449) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "parts", ["brand_id"], name: "index_parts_on_brand_id"
-  add_index "parts", ["user_id"], name: "index_parts_on_user_id"
+  add_index "products", ["brand_id"], name: "index_products_on_brand_id"
+  add_index "products", ["user_id"], name: "index_products_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

@@ -1,10 +1,10 @@
-class Part < ActiveRecord::Base
+class Product < ActiveRecord::Base
   belongs_to :brand
   belongs_to :user
 
   validates :name, :brand, presence: true
 
-    def brand_name
+  def brand_name
     brand.try(:name)
   end
 
