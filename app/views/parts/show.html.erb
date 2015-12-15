@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+
+<p>
+  <strong>Part:</strong>
+  <strong>Brand:</strong> <%= @part.part.brand.name %> <br>
+  <strong>Name:</strong> <%= @part.part.name %> <br>
+  <strong>Part Number:</strong> <%= @part.part_number %> <br>
+  <% if @part.description %>
+    <strong>Description:</strong><br> <%= @part.description %>
+  <% else %>
+    <strong>Description:</strong><br> <%= @part.part.description %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Vehicle:</strong>
+  <%= @part.vehicle.year %><br>
+  <%= @part.vehicle.brand.name %><br>
+  <%= @part.vehicle.model %><br>
+  <%= link_to "View", @part.vehicle %>
+</p>
+
+<% if @part.user %>
+  <p>
+    <strong>Submitted by:</strong>
+    <%= @part.user.username %>
+  </p>
+<% end %>
+
+
+<%= link_to 'Edit', edit_part_path(@part) %> |
+<%= link_to 'Back', parts_path %>
