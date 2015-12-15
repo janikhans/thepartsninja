@@ -1,0 +1,46 @@
+<!-- Navigation -->
+<div id="navigation">
+  <nav class="navbar navbar-custom" role="navigation">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-4">
+                  <div class="site-logo">
+                      <%= link_to root_path, class:"brand" do %>
+                        <span><i class="fa fa-cogs"></i> Compatible<span>
+                      <% end %>
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
+                          <i class="fa fa-bars"></i>
+                        </button>
+                  </div>
+                  <div class="collapse navbar-collapse" id="menu">
+                      <ul class="nav navbar-nav navbar-right">
+                        <% if user_signed_in? %>
+                          <li><%= link_to "Vehicles", parts_path %></li>
+                          <li><%= link_to "Parts", products_path %></li>
+                          <li><%= link_to "Discoveries", vehicles_path %></li>
+                          <li><%= link_to "New Discovery", new_product_path %></li>
+                          <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= current_user.username %> <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                              <li>Stuff!</li>
+                              <li class="divider"></li>
+                              <li class="dropdown-header">Callin' it quits?</li>
+                              <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+                            </ul>
+                          </li>
+                        <% else %>
+                          <li><%= link_to "Sign Up", new_user_registration_path %></li>
+                          <li><%= link_to "Sign In", new_user_session_path %></li>
+                        <% end %>
+                      </ul>
+                  </div>
+                </div>
+          </div>
+      </div>
+  </nav>
+</div> 
+

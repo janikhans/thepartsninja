@@ -6,15 +6,17 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
 
-<div class="container">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-      
-      
+<body id="page-top" data-spy="scroll" data-target=".navbar-custom">
+  <%= render 'layouts/header' %>
+  <%= render 'layouts/navbar' %>
+  <%= render 'layouts/flash' %>
+
+      <div class="<% unless @home_page %>container<% end %>">
         <%= yield %>
       </div>
-
+      
+  <%= render 'layouts/footer' %>
+      
 </body>
 </html>
