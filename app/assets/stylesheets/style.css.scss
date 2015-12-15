@@ -4,6 +4,10 @@
 /* ==== Google font ==== */
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,300,700,900);
 @import url('http://fonts.googleapis.com/css?family=Ek+Mukta:400,600,700');
+
+$old-main: #3dc9b3;
+$main-color: #7543EF;
+
 *{
   padding:0;
   margin:0;
@@ -420,7 +424,16 @@ hr.bold {
 --- Intro
 ============================ */
 
-.hero { background: url(../img/hero-bg.jpg) no-repeat center center; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; padding: 200px 0 200px 0; height: auto; }
+.hero { 
+  background: image-url('Compatible-bg.png') no-repeat center center; 
+  -webkit-background-size: cover; 
+  -moz-background-size: cover; 
+  -o-background-size: cover; 
+  background-size: cover; 
+  padding: 200px 0 200px 0; 
+  height: auto;
+  background-color: #8D8898; 
+}
 .hero h1 { font-size: 40px; letter-spacing: 12px; margin: 40px 0 10px; font-weight: 900; color: #fff;}
 .hero h1 span { color: #a1a9b0; display: inline-block; }
 .hero p { font-size: 24px; font-weight: 400; color: #fefefe; }
@@ -1054,75 +1067,75 @@ a.btn:focus{
 
 a:hover,
 a:focus {
-    color: #3dc9b3;
+    color: $main-color;
 }
 
 #navigation {
-  border-top: 5px solid #3dc9b3;
+  border-top: 5px solid $main-color;
 }
 
 a,.tp-caption a.btn:hover {
-  color: #3dc9b3;
+  color: $main-color;
 }
 .top-nav-collapse {
-  background: #3dc9b3;
+  background: $main-color;
 }
 
 .carousel-indicators .active {
-    background-color: #3dc9b3;
+    background-color: $main-color;
 }
 
 .header-text h2 span {
-    background-color: #3dc9b3;
+    background-color: $main-color;
 }
 
 
 .navbar-custom ul.nav ul.dropdown-menu li a:hover {
-  color: #3dc9b3;
+  color: $main-color;
 }
 
 .owl-theme .owl-controls .owl-page.active span,
 .owl-theme .owl-controls.clickable .owl-page:hover span {
-    background-color: #3dc9b3;
+    background-color: $main-color;
 }
 
 .widget-avatar .avatar:hover {
-    border: 5px solid #3dc9b3;
+    border: 5px solid $main-color;
 }
 
 .bg-skin {
-  background: #3dc9b3;
+  background: $main-color;
 }
 
 .highlight-color {
-  background-color: #3dc9b3;
+  background-color: $main-color;
 }
 
 .service-box:hover {
-  border-bottom: 2px solid #3dc9b3;
+  border-bottom: 2px solid $main-color;
 }
 
 
 
 form#contact-form input:focus,form#contact-form select:focus,form#contact-form textarea:focus {
-  border-color: #3dc9b3;
+  border-color: $main-color;
 }
 form.search-form input:focus {
-  border-color: #3dc9b3;
+  border-color: $main-color;
 }
 
 /* footer */
 ul.footer-menu li a:hover {
-  color: #3dc9b3;
+  color: $main-color;
 }
 
 footer a.totop:hover {
-  color: #3dc9b3;
+  color: $main-color;
 }
 
 
 .btn-skin {
   color: #fff;
-  background-color: #3dc9b3;
-  border-color: #3dc9b3;
+  background-color: $main-color;
+  border-color: $main-color;
 }

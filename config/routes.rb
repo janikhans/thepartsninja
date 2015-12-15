@@ -6,7 +6,6 @@ Rails.application.routes.draw do
     get 'autocomplete', on: :collection
   end
 
- 
   resources :vehicles
   resources :brands, concerns: :autocompletable
 
