@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui
+//= require jquery-ui/autocomplete
 //= require jquery.sticky
 //= require bootstrap-sprockets
 //= require_tree .
