@@ -1,0 +1,7 @@
+<tr id="<%= part.id %>">
+  <td><%= part.product.brand.name %></td>
+  <td><%= part.product.name %></td>
+  <td><%= part.part_number %></td>
+  <td><%= part.description %></td>
+  <td><%= link_to 'View', part, class: "btn nj-btn btn-thin" %> <%= link_to 'Delete', part, method: :delete, data: {confirm: "Are you sure"}, class: "btn nj-btn btn-thin" %></td>
+</tr>

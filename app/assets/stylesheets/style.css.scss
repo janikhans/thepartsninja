@@ -20,7 +20,7 @@ body {
   font-family: 'Ek Mukta', sans-serif;
   font-weight: 300;
   color: #666;
-  background-color: #fff;
+  background-color: #F5F5F5;
   font-size: 16px;
   line-height: 1.6em;
   font-weight: 400;
@@ -462,122 +462,6 @@ hr.bold {
 }
 
 
-/* Carousel Styles */
-
-.carousel-inner img {
-    width: 100%;
-    max-height: 650px;
-}
-
-.carousel-control {
-    width: 0;
-}
-
-.carousel-control.left,
-.carousel-control.right {
-  opacity: 1;
-  filter: alpha(opacity=100);
-  background-image: none;
-  background-repeat: no-repeat;
-  text-shadow: none;
-}
-
-.carousel-control.left span {
-  padding: 0;
-}
-
-.carousel-control.right span {
-  padding: 0;
-}
-
-.carousel-control .glyphicon-chevron-left, 
-.carousel-control .glyphicon-chevron-right, 
-.carousel-control .icon-prev, 
-.carousel-control .icon-next {
-  position: absolute;
-  top: 45%;
-  z-index: 5;
-  display: inline-block;
-}
-
-.carousel-control .glyphicon-chevron-left,
-.carousel-control .icon-prev {
-  left: 30px;
-}
-
-.carousel-control .glyphicon-chevron-right,
-.carousel-control .icon-next {
-  right: 30px;
-}
-
-
-
-.carousel-control.left span:hover,
-.carousel-control.right span:hover {
-  opacity: .7;
-  filter: alpha(opacity=70);
-}
-
-.carousel-inner > .item {
-  margin-left:0;
-  margin-top:0;
-  margin-bottom:0;
-  padding-left: 0;
-  width: 100%;
-  height: auto;
-}
-.carousel-inner > .item > img,
-.carousel-inner > .item > a > img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  margin-left:0;
-  padding-left: 0;
-}
-
-
-/* Carousel Header Styles */
-.header-text {
-    position: absolute;
-    top: 20%;
-    left: 1.8%;
-    right: auto;
-    width: 96.66666666666666%;
-    color: #fff;
-}
-
-.header-text h2 {
-    font-size: 40px;
-}
-
-.header-text h2 span {
-  padding: 10px;
-  color: #fff;
-  text-transform: uppercase;
-}
-
-.header-text h3 span {
-  color: #fff;
-}
-
-.btn-min-block {
-    min-width: 170px;
-    line-height: 26px;
-}
-
-.btn-theme {
-    color: #fff;
-    background-color: transparent;
-    border: 2px solid #fff;
-    margin-right: 15px;
-}
-
-.btn-theme:hover {
-    color: #000;
-    background-color: #fff;
-    border-color: #fff;
-}
-
 /* ===========================
 --- About
 ============================ */
@@ -700,105 +584,6 @@ form#contact-form input:focus,form#contact-form select:focus,form#contact-form t
   display: block;
   background: #3873ae;
 }
-
-
-/* ==== Sidebar ==== */
-.sidebar .widget h5 {
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 20px;
-  text-transform: uppercase;
-}
-.sidebar .widget {
-  margin-bottom: 50px;
-}
-
-.widget ul {
-  list-style: none;
-  margin-left:0;
-  padding-left:0;
-}
-.sidebar .widget ul li {
-  margin-left:0;
-  padding-left:0;
-  margin-bottom: 10px;
-}
-.sidebar .widget ul li a {
-  color: #666;
-}
-
-
-.widget.widget_categories ul li:before {
-  display: inline-block;
-  font-family: 'Pe-icon-7-stroke';
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  content: "\e684";
-  margin-right: 10px;
-}
-
-
-.widget.widget_recent_post ul li figure {
-  float: left;
-  margin: 0 20px 0 0;
-}
-
-.widget.widget_recent_post ul li {
-  margin-bottom: 25px;
-}
-
-.widget.widget_recent_post ul li:after {
-    content: ".";
-    display: block;
-    height: 0;
-    clear: both;
-    visibility: hidden;
-}
-.widget.widget_recent_post ul li h6 {
-  margin-bottom: 10px;
-}
-.widget.widget_recent_post ul li span {
-  font-size: 14px;
-}
-
-.widget .tagcloud a {
-  padding: 4px 10px;
-  color: #fff;
-  display:inline-block;
-  margin: 0 10px 10px 0;
-  font-size: 14px;
-  border-radius: 2px;
-}
-
-.widget .tagcloud a:hover {
-  color: #fff;
-  background: #333;
-}
-
-/* --- widget --- */
-
-form.search-form input {
-  font-size: 18px;
-  line-height: 1.6em;
-  border: 1px solid #eee;
-  -webkit-box-shadow: none;
-          box-shadow:  none;
-  border-radius: 2px;
-}
-
-form.search-form input:focus {
-  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
-          box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
-}
-
 
 
 /* ===========================
@@ -942,7 +727,7 @@ a.btn:focus{
     border: 1px solid #28c3ab;
     outline: 0;
     color: #000;
-    background-color: #28c3ab;
+    background-color: transparent;
 }
 
 .btn-huge {
@@ -1151,3 +936,4 @@ footer a.totop:hover {
       color: $main-color;
     }
 }
+

@@ -2,17 +2,18 @@
   <%= render 'shared/error_messages', object: f.object %>
 
   <div class="field">
-    <%= f.label :model %><br>
-    <%= f.text_field :model %>
+    <%= f.label :year %><br>
+    <%= f.number_field :year, required: true %>
   </div>
   <div class="field">
-    <%= f.label :year %><br>
-    <%= f.number_field :year %>
-  </div>
   <div class="field">
     <%= f.label :brand_name %><br>
-    <%= f.text_field :brand_name, data: {autocomplete_source: autocomplete_brands_path} %>
+    <%= f.text_field :brand_name, required:true, data: {autocomplete_source: autocomplete_brands_path} %>
   </div>
+    <%= f.label :model %><br>
+    <%= f.text_field :model, required: true %>
+  </div>
+  <br>
   <div class="actions">
     <%= f.submit %>
   </div>

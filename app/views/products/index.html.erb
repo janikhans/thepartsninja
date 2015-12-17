@@ -1,35 +1,24 @@
-<p id="notice"><%= notice %></p>
+<div class="col-md-12">
+  <div id="nj-heading" class="nj-mat">
+    <h1>Products</h1>
+    <p>The Ninja database currently has <%= @products.count %> products.</p>
+  </div>
 
-<h1>Listing Products</h1>
+  <div id="nj-content" class="nj-mat">
+    <table class=" nj-table">
+      <thead>
+        <tr>
+          <th>Brand</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th colspan="2"></th>
+           <th><%= link_to 'New Product', new_product_path, class:"float-right btn nj-btn btn-thin" %></th>
+        </tr>
+      </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Brand</th>
-      <th>Submitted By</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @products.each do |product| %>
-      <tr>
-        <td><%= product.name %></td>
-        <td><%= product.brand.name %></td>
-        <% if product.user %>
-          <td><%= product.user.username %></td>
-        <% else %>
-          <td></td>
-        <% end %>
-        <td><%= link_to 'Show', product %></td>
-        <td><%= link_to 'Edit', edit_product_path(product) %></td>
-        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New product', new_product_path %>
+      <tbody>
+        <%= render @products %>
+      </tbody>
+    </table>
+  </div>
+</div>

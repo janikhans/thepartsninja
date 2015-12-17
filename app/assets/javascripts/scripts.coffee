@@ -17,11 +17,26 @@
 #Make the dropdown automatically drop - looks snazzy!
 $(document).ready ->
   $('.dropdown').hover (->
-    $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true, true).slideDown 'medium'
+    $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true, true).slideDown 'fast'
     $(this).toggleClass 'open'
     return
   ), ->
     $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true, true).slideUp 'fast'
     $(this).toggleClass 'open'
     return
+  return
+
+# Hides the notification flash
+$(document).ready ->
+  setTimeout (->
+    $('#notice-wrapper').fadeOut 'slow', ->
+      $(this).remove()
+      return
+    return
+  ), 4500
+  return
+
+#Initial table search example
+  $(document).ready ->
+  $('#example').DataTable()
   return

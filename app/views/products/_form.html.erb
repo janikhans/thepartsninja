@@ -3,7 +3,7 @@
 
   <div class="field">
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, required: true %>
   </div>
   <div class="field">
     <%= f.label :description %><br>
@@ -11,7 +11,7 @@
   </div>
   <div class="field">
     <%= f.label :brand_name %><br>
-    <%= f.text_field :brand_name, data: {autocomplete_source: autocomplete_brands_path} %>
+    <%= f.text_field :brand_name, required: true, data: {autocomplete_source: autocomplete_brands_path} %>
   </div>
   <div class="actions">
     <%= f.submit %>

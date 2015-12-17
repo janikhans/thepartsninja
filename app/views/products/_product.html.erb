@@ -1,0 +1,6 @@
+<tr id="<%= product.id %>">
+  <td><%= product.brand.name %></td>
+  <td><%= product.name %></td>
+  <td><%= product.description %></td>
+  <td><%= link_to 'View', product, class: "btn nj-btn btn-thin" %> <%= link_to 'Delete', product, method: :delete, data: {confirm: "Are you sure"}, class: "btn nj-btn btn-thin" %></td>
+</tr>
