@@ -18,6 +18,27 @@
   <% end %>
 </p>
 
+<% if @part.vehicles %>
+This Part is known to fit
+  <table>
+    <thead>
+      <th>Year</th>
+      <th>Brand</th>
+      <th>Model</th>
+      <th colspan="3"></th>
+    </thead>
+    <tbody>
+      <% @part.vehicles.each do |f|  %>
+      <tr>
+        <td><%= f.year %> </td>
+        <td><%= f.brand.name %> </td>
+        <td><%= f.model %> </td>
+        <td> <%= link_to "View", f, class:"btn nj-btn btn-thin"  %> </th>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
 
 <% if @part.user %>
   <p>

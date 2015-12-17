@@ -2,9 +2,9 @@
 
 <p>
   <strong>Vehicle:</strong>
-  <%= @fitment.vehicle.brand.name %>
-  <%= @fitment.vehicle.year %>
-  <%= @fitment.vehicle.model %>
+  <%= link_to vehicle_path(@fitment) do %>
+    <%= @fitment.vehicle.brand.name %> <%= @fitment.vehicle.year %> <%= @fitment.vehicle.model %>
+  <% end %>
 </p>
 
 <p>
@@ -16,10 +16,12 @@
   <%= @fitment.part.description %>
 </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @fitment.user.username %>
-</p>
+<% if @fitment.user %>
+  <p>
+    <strong>User:</strong>
+    <%= @fitment.user.username %>
+  </p>
+<% end %>
 
 <p>
   <strong>Oem:</strong>
