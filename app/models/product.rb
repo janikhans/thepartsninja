@@ -1,7 +1,7 @@
 class Product < ActiveRecord::Base
   belongs_to :brand
   belongs_to :user
-  has_many :parts, dependet: :destroy
+  has_many :parts, dependent: :destroy
 
   validates :name, :brand, presence: true
 
