@@ -38,6 +38,14 @@ $main-color: #4F4073;
   }
 }
 
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+}
+
 //Pretty Notice and Flash message
 #notice-wrapper {
     position: absolute;
@@ -124,5 +132,12 @@ thead {
 
 .hidden-btn {
   color: transparent;
+}
+
+.potential-compats {
+  ul {
+    list-style: none;
+    padding-left: 20px;
+  }
 }
 
