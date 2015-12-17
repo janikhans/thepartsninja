@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row change-padding">
 <!-- Main Content -->
   <div class="col-md-9">
       <!-- Basic Info and Picture -->
@@ -8,9 +8,9 @@
         </div>
         <div class="col-md-9">
           <div class="edit-btn"><%= link_to 'Edit', edit_vehicle_path(@vehicle), class:"float-right hidden-btn" %></div>
-          <strong>Model: </strong><%= @vehicle.model %> <br>
           <strong>Year: </strong><%= @vehicle.year %> <br>
           <strong>Brand: </strong><%= @vehicle.brand.name %> <br>
+          <strong>Model: </strong><%= @vehicle.model %> <br>
           <strong>Category: </strong>Cross / motocross <br>
           <strong>Description:</strong> <p>This is the bike that sets the pace in the 250 2-stroke class. Powered by an enormously powerful and responsive motor that benefits from our torque-boosting Yamaha Power Valve System (YPVS), the AMA Supercross-winning YZ250 offers today´s motocross rider the ultimate in two stroke performance.</p> 
         </div>
@@ -19,7 +19,7 @@
       <!-- Specifications -->
       <div class="nj-mat">
         <div data-toggle="collapse" data-target="#specifications" class="mat-heading">
-          <strong>Specifications</strong><i class="float-right fa fa-minus 2x"></i>
+          <strong>Specifications</strong><i class="float-right fa fa-angle-double-down 2x"></i>
         </div>
         <div id="specifications" class="in mat-contents">
               <strong>Engine and transmission</strong> <br>
@@ -63,7 +63,7 @@
       <!-- Parts that Fit -->
       <div class="nj-mat">
         <div data-toggle="collapse" data-target="#parts" class="mat-heading">
-          <strong>Parts</strong><i class="float-right fa fa-minus 2x"></i>
+          <strong>Parts</strong><i class="float-right fa fa-angle-double-down 2x"></i>
         </div>
         <div id="parts" class="in mat-contents">
           <%= render 'tabledata' %>

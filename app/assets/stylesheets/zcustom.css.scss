@@ -1,5 +1,12 @@
 $main-color: #4F4073;
 
+.change-padding {
+  [class*="col-"] {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+  }
+}
+
 //Basic use Classes
 .top-mrg-20 {
   margin-top: 20px;
