@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :fitments
   resources :parts
   resources :products
   concern :autocompletable do

@@ -1,0 +1,7 @@
+<tr id="<%= fitment.id %>">
+  <td><%= fitment.vehicle.year %> <%= fitment.vehicle.brand.name %> <%= fitment.vehicle.model %></td>
+  <td><%= fitment.part.product.brand.name %> <%= fitment.part.product.name %></td>
+  <td><%= fitment.oem %></td>
+  <td><%= fitment.verified %></td>
+  <td><%= link_to 'View', fitment, class: "btn nj-btn btn-thin" %> <%= link_to 'Delete', fitment, method: :delete, data: {confirm: "Are you sure"}, class: "btn nj-btn btn-thin" %></td>
+</tr>

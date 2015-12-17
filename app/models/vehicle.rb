@@ -1,5 +1,7 @@
 class Vehicle < ActiveRecord::Base
   belongs_to :brand
+  has_many :fitments
+  has_many :parts, through: :fitments
 
   before_validation :strip_and_upcase_model
   validates :model, :brand, presence: true

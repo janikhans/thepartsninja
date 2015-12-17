@@ -1,0 +1,14 @@
+<%= simple_form_for(@fitment) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :vehicle, label_method: "#{:model}" %>
+    <%= f.association :part, label_method: "#{:part_number}" %>
+    <%= f.input :oem %>
+    <%= f.input :verified %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

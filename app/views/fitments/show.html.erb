@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Vehicle:</strong>
+  <%= @fitment.vehicle.brand.name %>
+  <%= @fitment.vehicle.year %>
+  <%= @fitment.vehicle.model %>
+</p>
+
+<p>
+  <strong>Part:</strong>
+  <%= @fitment.part.product.brand.name %>
+  <%= @fitment.part.product.name %>
+  <%= @fitment.part.product.description%>
+  <%= @fitment.part.part_number %>
+  <%= @fitment.part.description %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @fitment.user.username %>
+</p>
+
+<p>
+  <strong>Oem:</strong>
+  <%= @fitment.oem %>
+</p>
+
+<p>
+  <strong>Verified:</strong>
+  <%= @fitment.verified %>
+</p>
+
+<%= link_to 'Edit', edit_fitment_path(@fitment) %> |
+<%= link_to 'Back', fitments_path %>

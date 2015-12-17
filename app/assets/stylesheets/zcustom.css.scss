@@ -18,8 +18,13 @@ $main-color: #4F4073;
 
 .page-wrap {
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
+//Table Test
+.table-test {
+  padding: 10px;
+}
 
 //Sidebar
 .sidebar {
@@ -76,6 +81,7 @@ $main-color: #4F4073;
 #nj-heading {
   h1 {
     margin: 0 0 0px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.09);
   }
   p {
     margin: 0px;
