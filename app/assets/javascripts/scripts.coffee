@@ -36,7 +36,8 @@ $(document).ready ->
   ), 4500
   return
 
-#Initial table search example
-  $(document).ready ->
-  $('#example').DataTable()
+#Initial table search 
+$(document).ready ->
+  $('#part-list').DataTable()
   return
+
