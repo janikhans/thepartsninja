@@ -31,7 +31,7 @@ chain_guide = Product.create! name: "Chain Guide v1.0", description: "Plastic 2 
 part1 = front_wheel.parts.build(part_number: "fwyz25006").save
 part2 = front_wheel.parts.build(part_number: "fwyz12505").save
 part3 = front_wheel.parts.build(part_number: "fwwr25009").save
-part4 = chain_guide.parts.build(part_number: "217909", description: "Specific part numbers areBlack: 2179090001
+part4 = chain_guide.parts.build(part_number: "217909", note: "Specific part numbers are Black: 2179090001
 White: 2179090002
 Yellow: 2179090005").save
 

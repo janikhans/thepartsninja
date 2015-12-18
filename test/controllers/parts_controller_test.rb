@@ -18,7 +18,7 @@ class PartsControllerTest < ActionController::TestCase
 
   test "should create part" do
     assert_difference('Part.count') do
-      post :create, part: { description: @part.description, part_number: @part.part_number, product_id: @part.product_id, user_id: @part.user_id }
+      post :create, part: { note: @part.note, part_number: @part.part_number, product_id: @part.product_id, user_id: @part.user_id }
     end
 
     assert_redirected_to part_path(assigns(:part))
@@ -35,7 +35,7 @@ class PartsControllerTest < ActionController::TestCase
   end
 
   test "should update part" do
-    patch :update, id: @part, part: { description: @part.description, part_number: @part.part_number, product_id: @part.product_id, user_id: @part.user_id }
+    patch :update, id: @part, part: { note: @part.note, part_number: @part.part_number, product_id: @part.product_id, user_id: @part.user_id }
     assert_redirected_to part_path(assigns(:part))
   end
 

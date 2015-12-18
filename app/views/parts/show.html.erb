@@ -13,9 +13,9 @@
           <strong>Part Name: </strong><%= @part.product.name %> <br>
           <strong>Part Number: </strong><%= @part.part_number %> <br>
           <strong>Description: </strong><%= @part.product.description %> <br>
-          <% if @part.description %>
+          <% if @part.note %>
             <strong>Additional Notes:</strong>
-            <%= @part.description %>
+            <%= @part.note %>
           <% end %>
         </div>
       </div>
