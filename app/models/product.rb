@@ -12,8 +12,7 @@ class Product < ActiveRecord::Base
   #This works but could create a duplicate in the case of TM Racing and TM racing
   def brand_name=(name)
     name = name.strip
-    name = name[0].upcase + name[1..-1]
-    self.brand = Brand.find_or_create_by(name: name) if name.present?
+    self.brand = Brand.where('lower(name) = ?', name.downcase).first_or_create(name: name)
   end
   
 end

@@ -7,7 +7,7 @@ class BrandsController < ApplicationController
 
     respond_to do |format|
       format.html  # index.html.erb
-      format.json  { render json: @brands.map(&:name) }
+      format.json  { render json: @brands.map(&:name)} #{ render json: @brands.map{|brand| {label: "#{brand.name}", value: brand.id} }} 
     end
     
   end

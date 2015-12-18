@@ -3,7 +3,7 @@ class Vehicle < ActiveRecord::Base
   has_many :fitments
   has_many :parts, through: :fitments
 
-  before_validation :strip_and_upcase_model
+  before_validation :sanitize_model
   validates :model, :brand, presence: true
   validates :year, presence: true, 
                    numericality: true, 
@@ -15,17 +15,16 @@ class Vehicle < ActiveRecord::Base
     brand.try(:name)
   end
 
-  #This works but could create a duplicate in the case of TM Racing and TM racing
+  #This works but could be DRY'd with the same method from each model. Also doesn't allow for 2 companies with the same exact name. 
   def brand_name=(name)
     name = name.strip
-    name = name[0].upcase + name[1..-1]
-    self.brand = Brand.find_or_create_by(name: name) if name.present?
+    self.brand = Brand.where('lower(name) = ?', name.downcase).first_or_create(name: name)
   end
 
 
 private
   #This and the strip_and_upcase_name in brand.rb can be DRY'd up at some point
-    def strip_and_upcase_model
+    def sanitize_model
       self.model = model.strip
       self.model = model[0].upcase + model[1..-1]
     end
