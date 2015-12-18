@@ -14,7 +14,7 @@
           <strong>Part Number: </strong><%= @part.part_number %> <br>
           <strong>Description: </strong><%= @part.product.description %> <br>
           <% if @part.description %>
-            <strong>Additional Notes:</strong><br> 
+            <strong>Additional Notes:</strong>
             <%= @part.description %>
           <% end %>
         </div>
@@ -27,7 +27,7 @@
           <strong>This part fits</strong><i class="float-right fa fa-angle-double-down 2x"></i>
         </div>
         <div id="parts" class="collapse mat-contents table-test">
-        <% if @part.fitments.count > 0 %>
+        <% if @part.fitments.any? %>
           <table id="part-list" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
                 <tr>

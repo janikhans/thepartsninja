@@ -1,26 +1,86 @@
-<p id="notice"><%= notice %></p>
+<div class="row change-padding">
+<!-- Main Content -->
+  <div class="col-md-9">
+      <!-- Basic Info and Picture -->
+      <div class="row  nj-mat">
+        <div class="col-md-3">
+          <%= image_tag("missing-image.png", class:"img-responsive") %>
+        </div>
+        <div class="col-md-9">
+          <div class="edit-btn"><%= link_to 'Edit', edit_product_path(@product), class:"float-right hidden-btn" %></div>
+          <strong>Brand: </strong><%= @product.brand.name %> <br>
+          <strong>Product Name: </strong><%= @product.name %> <br>
+          <strong>Description: </strong><%= @product.description %> <br>
+        </div>
+      </div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @product.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @product.description %>
-</p>
-
-<p>
-  <strong>Brand:</strong>
-  <%= @product.brand.name %>
-</p>
-
-<% if @product.user %>
-  <p>
-    <strong>Submitted By:</strong>
-    <%= @product.user.username %>
-  </p>
-  <% end %>
-
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+      <!-- products that Fit -->
+      <div class="nj-mat">
+        <div data-toggle="collapse" data-target="#products" class="mat-heading">
+          <strong>This product fits</strong><i class="float-right fa fa-angle-double-down 2x"></i>
+        </div>
+        <div id="products" class="collapse mat-contents table-test">
+          <% if @product.parts.any? %>
+            <table id="part-list" class="table table-striped table-bordered" cellspacing="0" width="100%">
+              <thead>
+                  <tr>
+                      <th>Part Number</th>
+                      <th>Year</th>
+                      <th>Make</th>
+                      <th>Model</th>
+                  </tr>
+              </thead>
+              <tfoot>
+                  <tr>
+                      <th>Part Number</th>
+                      <th>Year</th>
+                      <th>Make</th>
+                      <th>Model</th>
+                  </tr>
+              </tfoot>
+              <tbody>
+                <% @product.parts.each do |f|  %>
+                  <tr>
+                    <td><%= link_to f do %> <%= f.part_number %> <% end %> </td>
+                    <td><%= f.vehicles.each do |t| %> 
+                          <%= t.year %> <%= t.brand.name %> <%= t.model %> <br>
+                        <% end %> </td>
+                    <td> </td>
+                    <td> </td>
+                  </tr>
+                <% end %>
+              </tbody>
+          </table>
+        <% else %>
+          This product doesn't have any specific parts yet, would you like to add one? <%= link_to "Yes!", new_part_path  %>
+        <% end %>
+        </div>
+      </div>
+  </div>
+<!-- Sidebar -->
+  <div class="col-md-3">
+    <div class="sidebar nj-mat">
+      <div class="related-models">
+        <h6 class="nj-heading">Potential Compatibilities</h6>
+          <div id="model-id" class="potential-compats">
+            <strong>Yamaha</strong>
+              <ul>
+                <li>2004 YZ250</li>
+                <li>2011 YZ450</li>
+                <li>2009 YZ125</li>
+                <li>2009 YZ250</li>
+                <li>2001 YZ400</li>
+                <li>1999 YZ125</li>
+              </ul>
+          </div>
+          <div id="model-id" class="potential-compats">
+            <strong>Kawasaki</strong>
+              <ul>
+                <li>2000 KX125</li>
+                <li>2007 KX450</li>
+              </ul>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
