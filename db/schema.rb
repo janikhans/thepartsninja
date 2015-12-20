@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151218202528) do
+ActiveRecord::Schema.define(version: 20151220212542) do
 
   create_table "brands", force: :cascade do |t|
     t.string   "name"
@@ -21,15 +21,16 @@ ActiveRecord::Schema.define(version: 20151218202528) do
   end
 
   create_table "fitments", force: :cascade do |t|
-    t.integer  "vehicle_id"
     t.integer  "part_id"
+    t.integer  "vehicle_id"
+    t.integer  "discovery_id"
     t.integer  "user_id"
-    t.boolean  "oem",        default: false
-    t.boolean  "verified",   default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
+  add_index "fitments", ["discovery_id"], name: "index_fitments_on_discovery_id"
+  add_index "fitments", ["part_id", "vehicle_id"], name: "index_fitments_on_part_id_and_vehicle_id", unique: true
   add_index "fitments", ["part_id"], name: "index_fitments_on_part_id"
   add_index "fitments", ["user_id"], name: "index_fitments_on_user_id"
   add_index "fitments", ["vehicle_id"], name: "index_fitments_on_vehicle_id"

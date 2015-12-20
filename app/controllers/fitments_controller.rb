@@ -1,20 +1,28 @@
 class FitmentsController < ApplicationController
   before_action :set_fitment, only: [:show, :edit, :update, :destroy]
 
+  # GET /fitments
+  # GET /fitments.json
   def index
     @fitments = Fitment.all
   end
 
+  # GET /fitments/1
+  # GET /fitments/1.json
   def show
   end
 
+  # GET /fitments/new
   def new
     @fitment = current_user.fitments.build
   end
 
+  # GET /fitments/1/edit
   def edit
   end
 
+  # POST /fitments
+  # POST /fitments.json
   def create
     @fitment = current_user.fitments.build(fitment_params)
 
@@ -29,6 +37,8 @@ class FitmentsController < ApplicationController
     end
   end
 
+  # PATCH/PUT /fitments/1
+  # PATCH/PUT /fitments/1.json
   def update
     respond_to do |format|
       if @fitment.update(fitment_params)
@@ -41,6 +51,8 @@ class FitmentsController < ApplicationController
     end
   end
 
+  # DELETE /fitments/1
+  # DELETE /fitments/1.json
   def destroy
     @fitment.destroy
     respond_to do |format|
@@ -50,11 +62,13 @@ class FitmentsController < ApplicationController
   end
 
   private
+    # Use callbacks to share common setup or constraints between actions.
     def set_fitment
       @fitment = Fitment.find(params[:id])
     end
 
+    # Never trust parameters from the scary internet, only allow the white list through.
     def fitment_params
-      params.require(:fitment).permit(:vehicle_id, :part_id, :user_id, :oem, :verified)
+      params.require(:fitment).permit(:part_id, :vehicle_id, :discovery_id, :user_id)
     end
 end

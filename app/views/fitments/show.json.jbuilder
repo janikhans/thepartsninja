@@ -1,1 +1,1 @@
-json.extract! @fitment, :id, :vehicle_id, :part_id, :user_id, :oem, :verified, :created_at, :updated_at
+json.extract! @fitment, :id, :part_id, :vehicle_id, :discovery_id, :user_id, :created_at, :updated_at

@@ -1,7 +1,7 @@
 class Vehicle < ActiveRecord::Base
   belongs_to :brand
   has_many :fitments
-  has_many :parts, through: :fitments
+  has_many :oem_parts, through: :fitments, source: :part
 
   before_validation :sanitize_model
   validates :model, :brand, presence: true

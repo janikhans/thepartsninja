@@ -35,8 +35,8 @@ part4 = chain_guide.parts.build(part_number: "217909", note: "Specific part numb
 White: 2179090002
 Yellow: 2179090005").save
 
-part1 = Part.first
-fitment1 = part1.fitments.build(vehicle: yz250, oem: true, verified: true).save
-fitment2 = part1.fitments.build(vehicle: yz125, oem: false, verified: true).save
-fitment3 = part1.fitments.build(vehicle: wr450, oem: false, verified: true).save
-fitment4 = part1.fitments.build(vehicle: wr426, oem: false, verified: false).save
+# part1 = Part.first
+# fitment1 = part1.fitments.build(vehicle: yz250, oem: true, verified: true).save
+# fitment2 = part1.fitments.build(vehicle: yz125, oem: false, verified: true).save
+# fitment3 = part1.fitments.build(vehicle: wr450, oem: false, verified: true).save
+# fitment4 = part1.fitments.build(vehicle: wr426, oem: false, verified: false).save

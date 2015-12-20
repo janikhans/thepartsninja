@@ -1,36 +1,23 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Vehicle:</strong>
-  <%= link_to vehicle_path(@fitment) do %>
-    <%= @fitment.vehicle.brand.name %> <%= @fitment.vehicle.year %> <%= @fitment.vehicle.model %>
-  <% end %>
-</p>
-
-<p>
   <strong>Part:</strong>
-  <%= @fitment.part.product.brand.name %>
-  <%= @fitment.part.product.name %>
-  <%= @fitment.part.product.description%>
-  <%= @fitment.part.part_number %>
-  <%= @fitment.part.description %>
-</p>
-
-<% if @fitment.user %>
-  <p>
-    <strong>User:</strong>
-    <%= @fitment.user.username %>
-  </p>
-<% end %>
-
-<p>
-  <strong>Oem:</strong>
-  <%= @fitment.oem %>
+  <%= @fitment.part %>
 </p>
 
 <p>
-  <strong>Verified:</strong>
-  <%= @fitment.verified %>
+  <strong>Vehicle:</strong>
+  <%= @fitment.vehicle %>
+</p>
+
+<p>
+  <strong>Discovery:</strong>
+  <%= @fitment.discovery_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @fitment.user %>
 </p>
 
 <%= link_to 'Edit', edit_fitment_path(@fitment) %> |

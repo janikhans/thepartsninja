@@ -1,15 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  vehicle_id: 
   part_id: 
+  vehicle_id: 
+  discovery_id: 1
   user_id: 
-  oem: false
-  verified: false
 
 two:
-  vehicle_id: 
   part_id: 
+  vehicle_id: 
+  discovery_id: 1
   user_id: 
-  oem: false
-  verified: false

@@ -2,10 +2,8 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.association :vehicle, label_method: "#{:model}" %>
-    <%= f.association :part, label_method: "#{:part_number}" %>
-    <%= f.input :oem %>
-    <%= f.input :verified %>
+    <%= f.association :part, label_method: :part_number, value_method: :id %>
+    <%= f.association :vehicle,label_method: :model, value_method: :id %>
   </div>
 
   <div class="form-actions">

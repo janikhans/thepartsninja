@@ -24,19 +24,16 @@
       <!-- Parts that Fit -->
       <div class="nj-mat">
         <div data-toggle="collapse" data-target="#parts" class="mat-heading">
-          <strong>This part fits</strong><i class="float-right fa fa-angle-double-down 2x"></i>
+          <strong>This part is designed for</strong><i class="float-right fa fa-angle-double-down 2x"></i>
         </div>
         <div id="parts" class="collapse mat-contents table-test">
-        <% if @part.fitments.any? %>
+        <% if @part.oem_vehicles.any? %>
           <table id="part-list" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
                 <tr>
                     <th>Year</th>
                     <th>Make</th>
                     <th>Model</th>
-                    <th>OEM</th>
-                    <th>Verified</th>
-                    <th>Discovery</th>
                 </tr>
             </thead>
             <tfoot>
@@ -44,19 +41,14 @@
                     <th>Year</th>
                     <th>Make</th>
                     <th>Model</th>
-                    <th>OEM</th>
-                    <th>Verified</th>
-                    <th>Discovery</th>
                 </tr>
             </tfoot>
             <tbody>
-              <% @part.fitments.each do |f|  %>
+              <% @part.oem_vehicles.each do |f|  %>
                 <tr>
-                  <td><%= f.vehicle.year %> </td>
-                  <td><%= f.vehicle.brand.name %> </td>
-                  <td><%= f.vehicle.model %> </td>
-                  <td><% if f.oem === true %> <i class="fa fa-check green"></i> <% end %> </td>
-                  <td><% if f.verified === true %> <i class="fa fa-check green"></i> <% end %> </td>
+                  <td><%= f.year %> </td>
+                  <td><%= f.brand.name %> </td>
+                  <td><%= f.model %> </td>
                   <td> </td>
                 </tr>
               <% end %>
@@ -68,6 +60,7 @@
           
         </div>
       </div>
+      
   </div>
 <!-- Sidebar -->
   <div class="col-md-3">

@@ -18,7 +18,7 @@ class FitmentsControllerTest < ActionController::TestCase
 
   test "should create fitment" do
     assert_difference('Fitment.count') do
-      post :create, fitment: { oem: @fitment.oem, part_id: @fitment.part_id, user_id: @fitment.user_id, vehicle_id: @fitment.vehicle_id, verified: @fitment.verified }
+      post :create, fitment: { discovery_id: @fitment.discovery_id, part_id: @fitment.part_id, user_id: @fitment.user_id, vehicle_id: @fitment.vehicle_id }
     end
 
     assert_redirected_to fitment_path(assigns(:fitment))
@@ -35,7 +35,7 @@ class FitmentsControllerTest < ActionController::TestCase
   end
 
   test "should update fitment" do
-    patch :update, id: @fitment, fitment: { oem: @fitment.oem, part_id: @fitment.part_id, user_id: @fitment.user_id, vehicle_id: @fitment.vehicle_id, verified: @fitment.verified }
+    patch :update, id: @fitment, fitment: { discovery_id: @fitment.discovery_id, part_id: @fitment.part_id, user_id: @fitment.user_id, vehicle_id: @fitment.vehicle_id }
     assert_redirected_to fitment_path(assigns(:fitment))
   end
 
