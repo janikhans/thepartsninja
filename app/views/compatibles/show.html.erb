@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Original:</strong>
+  <%= @compatible.original_id %>
+</p>
+
+<p>
+  <strong>Replaces:</strong>
+  <%= @compatible.replaces_id %>
+</p>
+
+<p>
+  <strong>Discovery:</strong>
+  <%= @compatible.discovery_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @compatible.user %>
+</p>
+
+<%= link_to 'Edit', edit_compatible_path(@compatible) %> |
+<%= link_to 'Back', compatibles_path %>

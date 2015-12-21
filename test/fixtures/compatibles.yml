@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  original_id: 1
+  replaces_id: 1
+  discovery_id: 1
+  user_id: 
+
+two:
+  original_id: 1
+  replaces_id: 1
+  discovery_id: 1
+  user_id: 

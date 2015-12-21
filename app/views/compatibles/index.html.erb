@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Compatibles</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Original</th>
+      <th>Replaces</th>
+      <th>Discovery</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @compatibles.each do |compatible| %>
+      <tr>
+        <td><%= compatible.original_id %></td>
+        <td><%= compatible.replaces_id %></td>
+        <td><%= compatible.discovery_id %></td>
+        <td><%= compatible.user %></td>
+        <td><%= link_to 'Show', compatible %></td>
+        <td><%= link_to 'Edit', edit_compatible_path(compatible) %></td>
+        <td><%= link_to 'Destroy', compatible, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Compatible', new_compatible_path %>

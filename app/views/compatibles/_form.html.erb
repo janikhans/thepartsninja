@@ -1,0 +1,12 @@
+<%= simple_form_for(@compatible) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :original_id, :collection => @fitments, :label_method => :id, :value_method => :id, :label => "Fitment" %>
+    <%= f.input :replaces_id, :collection => @fitments, :label_method => :id, :value_method => :id, :label => "Fitment"  %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
