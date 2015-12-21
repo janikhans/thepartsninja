@@ -21,14 +21,18 @@ ActiveRecord::Schema.define(version: 20151220220650) do
   end
 
   create_table "compatibles", force: :cascade do |t|
-    t.integer  "original_id"
-    t.integer  "replaces_id"
+    t.integer  "fitment_id"
+    t.integer  "compatible_fitment_id"
     t.integer  "discovery_id"
+    t.boolean  "verified",              default: false
     t.integer  "user_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
   end
 
+  add_index "compatibles", ["compatible_fitment_id"], name: "index_compatibles_on_compatible_fitment_id"
+  add_index "compatibles", ["discovery_id"], name: "index_compatibles_on_discovery_id"
+  add_index "compatibles", ["fitment_id"], name: "index_compatibles_on_fitment_id"
   add_index "compatibles", ["user_id"], name: "index_compatibles_on_user_id"
 
   create_table "fitments", force: :cascade do |t|

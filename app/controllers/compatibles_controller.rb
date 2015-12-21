@@ -70,6 +70,6 @@ class CompatiblesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def compatible_params
-      params.require(:compatible).permit(:original_id, :replaces_id, :discovery_id, :user_id)
+      params.require(:compatible).permit(:fitment_id, :compatible_fitment_id, :discovery_id, :user_id, :verified)
     end
 end

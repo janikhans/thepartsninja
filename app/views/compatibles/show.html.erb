@@ -2,12 +2,12 @@
 
 <p>
   <strong>Original:</strong>
-  <%= @compatible.original_id %>
+  <%= @compatible.fitment_id %>
 </p>
 
 <p>
   <strong>Replaces:</strong>
-  <%= @compatible.replaces_id %>
+  <%= @compatible.compatible_fitment_id %>
 </p>
 
 <p>
@@ -17,7 +17,7 @@
 
 <p>
   <strong>User:</strong>
-  <%= @compatible.user %>
+  <%= @compatible.user.username %>
 </p>
 
 <%= link_to 'Edit', edit_compatible_path(@compatible) %> |
