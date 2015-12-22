@@ -21,7 +21,7 @@ class Fitment < ActiveRecord::Base
   has_many :potentials, through: :known_compatibles,  source: :fitment
 
   #This one finds those records where this fitment was used as the replacement but we can't be sure it fits. If it's verified to fit, we'll create a new compatible record
-  has_many :knowns, through: :potential_compatibles, source: :compatible_fitment                              
+  has_many :knowns, through: :potential_compatibles, source: :compatible_fitment                            
                      
 end
 

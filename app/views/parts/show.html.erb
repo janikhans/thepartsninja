@@ -21,7 +21,7 @@
       </div>
 
 
-      <!-- Parts that Fit -->
+      <!-- Vehicle it's designed to fit -->
       <div class="nj-mat">
         <div data-toggle="collapse" data-target="#parts" class="mat-heading">
           <strong>This part is designed for</strong><i class="float-right fa fa-angle-double-down 2x"></i>
@@ -60,7 +60,102 @@
           
         </div>
       </div>
-      
+
+            <!-- These are compatible vehicles and the parts that they replace-->
+      <div class="nj-mat">
+        <div data-toggle="collapse" data-target="#compatible_vehicles" class="mat-heading">
+          <strong>This part is compatible with these vehicles</strong><i class="float-right fa fa-angle-double-down 2x"></i>
+        </div>
+        <div id="compatible_vehicles" class="collapse mat-contents table-test">
+        <% if @part.compatible_vehicles.any? %>
+          <table id="part-list" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>Part Name</th>
+                    <th>Brand</th>
+                    <th>Part Number</th>
+                    <th>Year</th>
+                    <th>Make</th>
+                    <th>Model</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Part Name</th>
+                    <th>Brand</th>
+                    <th>Part Number</th>
+                    <th>Year</th>
+                    <th>Make</th>
+                    <th>Model</th>
+                </tr>
+            </tfoot>
+            <tbody>
+              <% @part.compatible_vehicles.each do |f|  %>
+                <tr>
+                  <td><%= f.fitment.part.product.name %> </td>
+                  <td><%= f.fitment.part.product.brand.name %> </td>
+                  <td><%= f.fitment.part.part_number %> </td>
+                  <td><%= f.compatible_fitment.vehicle.year %> </td>
+                  <td><%= f.compatible_fitment.vehicle.brand.name %> </td>
+                  <td><%= f.compatible_fitment.vehicle.model %> </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          </table>
+        <% else %>
+          This vehicle doesn't have any compattible parts yet, would you like to add one? <%= link_to "Yes!", new_fitment_path  %>
+        <% end %>    
+        </div>
+      </div>
+
+      <!-- This is a test to show the Compatible parts and what is being replaced-->
+      <div class="nj-mat">
+        <div data-toggle="collapse" data-target="#potential_vehicles" class="mat-heading">
+          <strong>This part may be compatible with these vehicles</strong><i class="float-right fa fa-angle-double-down 2x"></i>
+        </div>
+        <div id="potential_vehicles" class="collapse mat-contents table-test">
+        <% if @part.potential_vehicles.any? %>
+          <table id="part-list" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>Part Name</th>
+                    <th>Brand</th>
+                    <th>Part Number</th>
+                    <th>Year</th>
+                    <th>Make</th>
+                    <th>Model</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Part Name</th>
+                    <th>Brand</th>
+                    <th>Part Number</th>
+                    <th>Year</th>
+                    <th>Make</th>
+                    <th>Model</th>
+                </tr>
+            </tfoot>
+            <tbody>
+              <% @part.potential_vehicles.each do |f|  %>
+                <tr>
+                  <td><%= f.fitment.part.product.name %> </td>
+                  <td><%= f.fitment.part.product.brand.name %> </td>
+                  <td><%= f.fitment.part.part_number %> </td>
+                  <td><%= f.compatible_fitment.vehicle.year %> </td>
+                  <td><%= f.compatible_fitment.vehicle.brand.name %> </td>
+                  <td><%= f.compatible_fitment.vehicle.model %> </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        <% else %>
+          This part doesn't fit anything yet, would you like to add one? <%= link_to "Yes!", new_fitment_path  %>
+        <% end %>    
+        </div>
+      </div>
+
   </div>
 <!-- Sidebar -->
   <div class="col-md-3">
