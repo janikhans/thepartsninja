@@ -4,6 +4,7 @@
   <div class="form-inputs">
     <%= f.input :fitment_id, :collection => @fitments, :label_method => :id, :value_method => :id, :label => "Fitment" %>
     <%= f.input :compatible_fitment_id, :collection => @fitments, :label_method => :id, :value_method => :id, :label => "Compatible Fitment"  %>
+    <%= f.input :verified,     as: :radio_buttons %>
   </div>
 
   <div class="form-actions">
