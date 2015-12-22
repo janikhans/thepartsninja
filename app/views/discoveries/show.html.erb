@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @discovery.user %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @discovery.comment %>
+</p>
+
+<p>
+  <strong>Modifications:</strong>
+  <%= @discovery.modifications %>
+</p>
+
+<%= link_to 'Edit', edit_discovery_path(@discovery) %> |
+<%= link_to 'Back', discoveries_path %>

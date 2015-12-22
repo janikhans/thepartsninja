@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Discoveries</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Comment</th>
+      <th>Modifications</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @discoveries.each do |discovery| %>
+      <tr>
+        <td><%= discovery.user %></td>
+        <td><%= discovery.comment %></td>
+        <td><%= discovery.modifications %></td>
+        <td><%= link_to 'Show', discovery %></td>
+        <td><%= link_to 'Edit', edit_discovery_path(discovery) %></td>
+        <td><%= link_to 'Destroy', discovery, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Discovery', new_discovery_path %>
