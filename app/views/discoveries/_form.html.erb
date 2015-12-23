@@ -6,9 +6,19 @@
       <%= c.input :fitment_id, :collection => @fitments, :label_method => :id, :value_method => :id, :label => "Fitment" %>
       <%= c.input :compatible_fitment_id, :collection => @fitments, :label_method => :id, :value_method => :id, :label => "Compatible Fitment"  %>
     <% end %>
-    <%= f.association :user %>
     <%= f.input :comment %>
-    <%= f.input :modifications %>
+    <%= f.input :modifications, as: :radio_buttons, label: "Are mods required?" %>
+
+    <h3>Steps </h3>
+    <div id="steps">
+      <%= f.simple_fields_for :steps do |step| %>
+        <%= render 'step_fields', f: step %>
+      <% end %>
+        <div class="links">
+          <%= link_to_add_association 'Add Step', f, :steps %>
+        </div>
+    </div>
+
   </div>
 
   <div class="form-actions">
