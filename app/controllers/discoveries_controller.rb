@@ -14,7 +14,9 @@ class DiscoveriesController < ApplicationController
 
   # GET /discoveries/new
   def new
-    @discovery = Discovery.new
+    @discovery = current_user.discoveries.build
+    @compatible = @discovery.compatibles.build
+    @fitments = Fitment.all
   end
 
   # GET /discoveries/1/edit
@@ -24,7 +26,7 @@ class DiscoveriesController < ApplicationController
   # POST /discoveries
   # POST /discoveries.json
   def create
-    @discovery = Discovery.new(discovery_params)
+    @discovery = current_user.discoveries.build(discovery_params)
 
     respond_to do |format|
       if @discovery.save
@@ -69,6 +71,6 @@ class DiscoveriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def discovery_params
-      params.require(:discovery).permit(:user_id, :comment, :modifications)
+      params.require(:discovery).permit(:user_id, :comment, :modifications, compatibles_attributes: [:id, :fitment_id, :compatible_fitment_id, :_destroy])
     end
 end

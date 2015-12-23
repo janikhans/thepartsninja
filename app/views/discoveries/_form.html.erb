@@ -2,6 +2,10 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
+    <%= f.simple_fields_for :compatibles do |c| %>
+      <%= c.input :fitment_id, :collection => @fitments, :label_method => :id, :value_method => :id, :label => "Fitment" %>
+      <%= c.input :compatible_fitment_id, :collection => @fitments, :label_method => :id, :value_method => :id, :label => "Compatible Fitment"  %>
+    <% end %>
     <%= f.association :user %>
     <%= f.input :comment %>
     <%= f.input :modifications %>
