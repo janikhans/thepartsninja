@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(version: 20151223050733) do
     t.integer  "compatible_fitment_id"
     t.integer  "discovery_id"
     t.boolean  "verified",              default: false
-    t.integer  "user_id"
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
   end
@@ -33,7 +32,6 @@ ActiveRecord::Schema.define(version: 20151223050733) do
   add_index "compatibles", ["compatible_fitment_id"], name: "index_compatibles_on_compatible_fitment_id"
   add_index "compatibles", ["discovery_id"], name: "index_compatibles_on_discovery_id"
   add_index "compatibles", ["fitment_id"], name: "index_compatibles_on_fitment_id"
-  add_index "compatibles", ["user_id"], name: "index_compatibles_on_user_id"
 
   create_table "discoveries", force: :cascade do |t|
     t.integer  "user_id"
