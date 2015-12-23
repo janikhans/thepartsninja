@@ -42,7 +42,7 @@
                 <% @product.parts.each do |f|  %>
                   <tr>
                     <td><%= link_to f do %> <%= f.part_number %> <% end %> </td>
-                    <td><%= f.vehicles.each do |t| %> 
+                    <td><%= f.oem_vehicles.each do |t| %> 
                           <%= t.year %> <%= t.brand.name %> <%= t.model %> <br>
                         <% end %> </td>
                     <td> </td>
