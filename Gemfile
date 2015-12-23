@@ -14,6 +14,7 @@ gem 'simple_form'
 gem 'font-awesome-rails'
 gem 'devise'
 gem 'jquery-datatables-rails', '~> 3.3.0'
+gem 'cocoon'
 
 
 group :development, :test do

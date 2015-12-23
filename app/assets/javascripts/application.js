@@ -17,4 +17,5 @@
 //= require jquery-ui/autocomplete
 //= require jquery.sticky
 //= require bootstrap-sprockets
+//= require cocoon
 //= require_tree .
