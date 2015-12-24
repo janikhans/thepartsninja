@@ -10,16 +10,19 @@
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
   
-  
-  <% if @home_page %><%= render 'layouts/header' %><% end %>
   <%= render 'layouts/navbar' %> 
+  <% if @home_page %>
+    <%= render 'layouts/search_header' %> 
+  <% else %> 
+    <%= render 'layouts/header' %>
+  <% end %>
+  
   <%= render 'layouts/flash' %>
 
       <div class="<% unless @home_page %>container page-wrap<% end %>">
         <%= yield %>
       </div>
-
-  <%= render 'layouts/footer' %>
       
+  <%= render 'layouts/footer' %>   
 </body>
 </html>

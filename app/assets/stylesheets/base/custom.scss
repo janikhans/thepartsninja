@@ -1,0 +1,61 @@
+.hero { 
+  background: image-url('Compatible-bg.png') no-repeat center center; 
+  -webkit-background-size: cover; 
+  -moz-background-size: cover; 
+  -o-background-size: cover; 
+  background-size: cover; 
+  padding: 200px 0 200px 0; 
+  height: auto;
+  background-color: #373342; 
+}
+.hero h1 { font-size: 80px; margin: 30px 0 10px; font-weight: 900; color: #fff;}
+.hero h1 span { color: #a1a9b0; display: inline-block; }
+.hero p { font-size: 24px; font-weight: 400; color: #fefefe; }
+.learn-more-btn { background: rgba(61, 201, 179, 1); padding: 20px 40px; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; -o-border-radius: 5px; color: #fff; text-transform: uppercase; letter-spacing: 1px; display: inline-block; -webkit-box-shadow: 0px 3px 0px 0px #309383; -moz-box-shadow: 0px 3px 0px 0px #309383; box-shadow: 0px 3px 0px 0px #309383; margin: 60px 0 0; font-weight: bold; }
+.learn-more-btn:hover, .learn-more-btn:focus { background: rgba(61, 201, 179, 0.6); color: #fff; }
+
+.page-header-image {
+  padding: 25px 0 25px;
+}
+
+.intro {
+  width:100%;
+  position:relative;
+  padding:0;
+}
+.intro-inner {
+  width:100%;
+  position:relative;
+  padding:120px 0 20px;
+}
+
+.brand-heading {
+    font-size: 40px;
+}
+
+.intro-text {
+    font-size: 18px;
+}
+
+//Pretty Notice and Flash message
+#notice-wrapper {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+    .alert, .notice {
+        padding: 2.5rem 0;
+        text-align: center;
+        margin: 0;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #FFFFFF;
+        letter-spacing: 1px;
+    }
+    .alert {
+        background: rgba(234, 136, 136, 0.9);
+    }
+    .notice {
+        background: rgba(52, 152, 219, 0.9);
+    }
+}

@@ -1,0 +1,44 @@
+// Google Fonts
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&lang=en");
+
+// Bootstrap
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+// Variables, Mixins
+@import "base/variables";
+@import "base/mixins";
+
+// Base Requirements
+@import "base/typography";
+@import "base/navigation";
+@import "base/top_navigation";
+@import "base/buttons";
+@import "base/badgets_labels";
+@import "base/elements";
+@import "base/sidebar";
+@import "base/base";
+@import "base/pages";
+@import "base/metismenu";
+@import "base/spinners";
+
+// Landing page
+@import "base/landing";
+
+// RTL Support
+@import "base/rtl";
+
+// INSPINIA Skins
+@import "base/skins";
+@import "base/md-skin";
+
+// Media query style
+@import "base/media";
+
+// Additional styling to override base attributes
+@import "base/custom";
+@import "searchbox";
+@import "vehicles";
+
+
+
