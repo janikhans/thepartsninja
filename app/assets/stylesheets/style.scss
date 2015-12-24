@@ -7,20 +7,20 @@
 
 // Variables, Mixins
 @import "base/variables";
-@import "base/mixins";
+//@import "base/mixins";
 
 // Base Requirements
 @import "base/typography";
 @import "base/navigation";
-@import "base/top_navigation";
+//@import "base/top_navigation";
 @import "base/buttons";
-@import "base/badgets_labels";
+@import "base/badges_labels";
 @import "base/elements";
-@import "base/sidebar";
+//@import "base/sidebar";
 @import "base/base";
 @import "base/pages";
 @import "base/metismenu";
-@import "base/spinners";
+//@import "base/spinners";
 
 // Landing page
 @import "base/landing";
@@ -29,14 +29,14 @@
 @import "base/rtl";
 
 // INSPINIA Skins
-@import "base/skins";
-@import "base/md-skin";
+//@import "base/skins";
+//@import "base/md-skin";
 
 // Media query style
-@import "base/media";
+//@import "base/media";
 
 // Additional styling to override base attributes
-@import "base/custom";
+@import "custom";
 @import "searchbox";
 @import "vehicles";
 

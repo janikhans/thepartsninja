@@ -1,53 +1,34 @@
-
-    <div class="loginColumns animated fadeInDown">
-        <div class="row">
-            <div class="col-md-6">
-                <h2 class="font-bold">Train with The Parts Ninja</h2>
-                <p>
-                    Perfectly designed and precisely prepared admin theme with over 50 pages with extra new web app views.
-                </p>
-                <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-                </p>
-                <p>
-                    When an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                </p>
-                <p>
-                    <small>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</small>
-                </p>
-            </div>
-            <div class="col-md-6">
-                <div class="ibox-content">
+<div class="text-center loginscreen animated fadeInUp m-t-xl">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4 ibox-content">
+        <h3>Enter the Dojo</h3>
                 <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-                    <div class="form-group"><%= f.input :login, required: true, autofocus: true, label: false, placeholder: 'Email or Username', input_html: { class: 'form-control'  } %></div>
-                    <div class="form-group"><%= f.input :password, required: true, label: false %></div>
-                    <div class="form-group"><%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %></div>
+                <div class="form-group"><%= f.input :login, required: true, autofocus: true, label: false, placeholder: 'Email or Username', input_html: { class: 'form-control'  } %></div>
+                <div class="form-group"><%= f.input :password, required: true, label: false %></div>
+                <div class="form-group"><%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %></div>
 
-                  <div class="form-actions">
-                    <%= f.button :submit, "Log in", class:"btn btn-primary block full-width m-b" %>
-                  </div>
-                <% end %>
-                <small><%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-                  <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
-                      <% end -%>
-                </small>
-                <p class="text-muted text-center">
-                    <small>Don't have an account yet?</small>
-                </p>
-                <%= link_to "Create an account", new_user_registration_path, class:"btn btn-sm btn-white btn-block" %>
-                    <p class="m-t">
-                        <small>All the Parts, All in one place &copy; 2015</small>
-                    </p>
-                </div>
-            </div>
+              <div class="form-actions">
+                <%= f.button :submit, "Log in", class:"btn btn-primary block full-width m-b" %>
+              </div>
+            <% end %>
+            <small><%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+              <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+                  <% end -%>
+            </small>
+            <p class="text-muted text-center">
+                <small>Don't have an account yet?</small>
+            </p>
+            <%= link_to "Create an account", new_user_registration_path, class:"btn btn-sm btn-white btn-block" %>
+    </div>
+  </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            Copyright The Parts Ninja
         </div>
-        <hr />
-        <div class="row">
-            <div class="col-md-6">
-                Copyright The Parts Ninja
-            </div>
-            <div class="col-md-6 text-right">
-                <small>© 2015</small>
-            </div>
+        <div class="col-md-6 text-right">
+            <small>© 2015</small>
         </div>
     </div>
+</div>
+

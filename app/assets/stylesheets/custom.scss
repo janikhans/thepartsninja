@@ -1,3 +1,12 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+
 .hero { 
   background: image-url('Compatible-bg.png') no-repeat center center; 
   -webkit-background-size: cover; 
@@ -6,13 +15,11 @@
   background-size: cover; 
   padding: 200px 0 200px 0; 
   height: auto;
-  background-color: #373342; 
+  background-color: #1E1825; 
 }
 .hero h1 { font-size: 80px; margin: 30px 0 10px; font-weight: 900; color: #fff;}
 .hero h1 span { color: #a1a9b0; display: inline-block; }
 .hero p { font-size: 24px; font-weight: 400; color: #fefefe; }
-.learn-more-btn { background: rgba(61, 201, 179, 1); padding: 20px 40px; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; -o-border-radius: 5px; color: #fff; text-transform: uppercase; letter-spacing: 1px; display: inline-block; -webkit-box-shadow: 0px 3px 0px 0px #309383; -moz-box-shadow: 0px 3px 0px 0px #309383; box-shadow: 0px 3px 0px 0px #309383; margin: 60px 0 0; font-weight: bold; }
-.learn-more-btn:hover, .learn-more-btn:focus { background: rgba(61, 201, 179, 0.6); color: #fff; }
 
 .page-header-image {
   padding: 25px 0 25px;
@@ -37,7 +44,7 @@
     font-size: 18px;
 }
 
-//Pretty Notice and Flash message
+/*Pretty Notice and Flash message*/
 #notice-wrapper {
     position: absolute;
     top: 0;
@@ -57,5 +64,53 @@
     }
     .notice {
         background: rgba(52, 152, 219, 0.9);
+    }
+}
+
+/*Footer */
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #2D2D2D;
+    padding: 20px 20px;
+}
+    /* menu */
+ul.footer-menu {
+  list-style: none;
+}
+
+ul.footer-menu li {
+  float: left;
+  margin: 0 0 0 10px;
+
+}
+
+ul.footer-menu li a {
+  color: #fff;
+  font-size: 16px;
+  padding-left: 9px;
+  line-height: 1.1em;
+  &:hover {
+      color: $navy;
+    }
+}
+
+ul.footer-menu li:first-child a {
+  border-left: none;
+  padding-left: 0;
+}
+
+.social-icons {
+    float:right;
+    display: flex;
+    list-style: none;
+    a {
+      color:white;
+      padding-right: 10px;
+    }
+    a:hover {
+      color: $navy;
     }
 }
