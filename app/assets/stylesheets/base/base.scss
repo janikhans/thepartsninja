@@ -636,6 +636,9 @@ table.table-mail tr td {
 
 .gray-bg {
   background-color: $gray;
+  height: 100%;
+  width: 100%;
+  overflow: visible;
 }
 
 .white-bg {

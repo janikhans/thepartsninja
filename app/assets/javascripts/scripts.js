@@ -1,6 +1,5 @@
 $(function() {
 
-    $('body').addClass('landing-page');
     $('body').attr('id', 'page-top');
 
     $('body').scrollspy({
@@ -118,18 +117,6 @@ $(document).ready(function () {
         height: '100%',
         railOpacity: 0.4,
         wheelStep: 10
-    });
-
-    // Open close small chat
-    $('.open-small-chat').click(function(){
-        $(this).children().toggleClass('fa-comments').toggleClass('fa-remove');
-        $('.small-chat-box').toggleClass('active');
-    });
-
-    // Initialize slimscroll for small chat
-    $('.small-chat-box .content').slimScroll({
-        height: '234px',
-        railOpacity: 0.4
     });
 
     // Small todo handler

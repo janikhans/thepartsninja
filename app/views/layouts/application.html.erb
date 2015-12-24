@@ -1,28 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Thepartsninja</title>
+  <title>The Parts Ninja | Bow Down to the Sensei</title>
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 
-<body id="page-top" data-spy="scroll" data-target=".navbar-custom">
+<body class="<%= @extra_class %> gray-bg ">
   
   <%= render 'layouts/navbar' %> 
-  <% if @home_page %>
-    <%= render 'layouts/search_header' %> 
-  <% else %> 
-    <%= render 'layouts/header' %>
-  <% end %>
-  
+  <% if @home_page %><%= render 'layouts/search_header' %><% else %><%= render 'layouts/header' %> <% end %>
   <%= render 'layouts/flash' %>
 
-      <div class="<% unless @home_page %>container page-wrap<% end %>">
+      <div class="<% unless @home_page %>container<% end %>">
         <%= yield %>
       </div>
-      
-  <%= render 'layouts/footer' %>   
+     
 </body>
 </html>
