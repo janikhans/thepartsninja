@@ -1,24 +1,50 @@
-<p>
-  <strong>Comment:</strong>
-  <%= @discovery.comment %>
-</p>
-
-<p>
-  <strong>Modifications:</strong>
-  <%= @discovery.modifications %>
-</p>
-
-<%= link_to 'Edit', edit_discovery_path(@discovery) %> |
-<%= link_to 'Back', discoveries_path %>
-
 <div class="wrapper wrapper-content animated fadeIn">
   <div class="row">
+      <div class="col-lg-3">
+          <div class="widget-head-color-box navy-bg p-lg text-center">
+            <div class="m-b-md">
+                <h2 class="font-bold no-margins">
+                    <%= @user.username %>
+                </h2>
+                <small>Founder of Groupeq</small>
+            </div>
+            <%= gravatar_for(@user) %>
+            <div>
+                <span>100 Tweets</span> |
+                <span>350 Following</span> |
+                <span>610 Followers</span>
+            </div>
+          </div>
+          <div class="widget-text-box">
+            <div class="text-center">
+              <%= link_to "Message", @user, class:"btn btn-outline btn-primary" %> | <%= link_to "Profile", @user, class:"btn btn-outline btn-primary"  %>
+            </div> 
+          </div>
+      </div>  
       <div class="col-lg-9">
+
+      <div class="row">
+        <div class="col-md-1 col-xs-2">
+
+        <div class="score-box">
+          <div class="vote-actions">
+                <a href="#">
+                    <i class="fa fa-chevron-up fa-3x"> </i>
+                </a>
+                <div>34</div>
+                <a href="#">
+                    <i class="fa fa-chevron-down fa-3x"> </i>
+                </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-11 col-xs-10">
           <div class="ibox float-e-margins">
               <div class="ibox-title">
                   <h5>This Part<small class="m-l-sm">(This was original)</small></h5>
               </div>
               <div class="ibox-content">
+              <div class="margin-left-45">
                 <% @discovery.fitments.each do |f| %>
                   <h2 >
                       <%= f.part.product.brand.name %> <%= f.part.product.name %><br/>
@@ -28,7 +54,11 @@
                   <p>
                 <% end %>
               </div>
+              </div>
           </div>
+        </div>
+        </div>
+          
           <div class="ibox float-e-margins">
               <div class="ibox-title">
                   <h5>Fits These Vehicles</h5>
@@ -61,32 +91,19 @@
                   <h5>Additional Information</h5>
               </div>
               <div class="ibox-content">
-                  <h3>Comment:</h3>
+                  <h3>Comments:</h3>
                   <p><%= @discovery.comment %></p>
-                  <p><strong>Modfifications:</strong> <%= @discovery.modifications %></p>
+                  <p><strong>Modifications:</strong> <%= @discovery.modifications %></p>
+                  <% if @discovery.steps.any? %>
+                    <p><strong>Steps:</strong></p>
+                    <% @discovery.steps.each do |s| %>
+                        <div class="step-outline">
+                          <%= s.content %>
+                        </div>
+                    <% end %>
+                  <% end %>
+                  
               </div>
           </div>
       </div>
-      <div class="col-lg-3">
-          <div class="widget-head-color-box navy-bg p-lg text-center">
-            <div class="m-b-md">
-                <h2 class="font-bold no-margins">
-                    <%= @user.username %>
-                </h2>
-                <small>Founder of Groupeq</small>
-            </div>
-            <%= gravatar_for(@user) %>
-            <div>
-                <span>100 Tweets</span> |
-                <span>350 Following</span> |
-                <span>610 Followers</span>
-            </div>
-        </div>
-        <div class="widget-text-box">
-            <div class="text-center">
-              <%= link_to "Message", @user, class:"btn btn-outline btn-primary" %> | <%= link_to "Profile", @user, class:"btn btn-outline btn-primary"  %>
-            </div> 
-        </div>
-      </div>
-  </div>
 </div>
