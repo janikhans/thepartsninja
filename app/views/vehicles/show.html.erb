@@ -1,28 +1,40 @@
-<div class="row change-padding">
-<!-- Main Content -->
-  <div class="col-md-9">
-      <!-- Basic Info and Picture -->
-      <div class="row  nj-mat">
-        <div class="col-md-3">
+<div class="wrapper wrapper-content">
+  <div class="row m-b-lg m-t-lg  animated fadeInDown">
+    <div class="col-md-5">
+        <div class="">
           <%= image_tag("missing-image.png", class:"img-responsive") %>
-        </div>
-        <div class="col-md-9">
-          <div class="edit-btn"><%= link_to 'Edit', edit_vehicle_path(@vehicle), class:"float-right hidden-btn" %></div>
-          <strong>Year: </strong><%= @vehicle.year %> <br>
-          <strong>Brand: </strong><%= @vehicle.brand.name %> <br>
-          <strong>Model: </strong><%= @vehicle.model %> <br>
-          <strong>Category: </strong>Cross / motocross <br>
-          <strong>Description:</strong> <p>This is the bike that sets the pace in the 250 2-stroke class. Powered by an enormously powerful and responsive motor that benefits from our torque-boosting Yamaha Power Valve System (YPVS), the AMA Supercross-winning YZ250 offers today´s motocross rider the ultimate in two stroke performance.</p> 
-        </div>
+        </div>  
+    </div>
+      <div class="col-md-7">
+      <div class="">
+            <table class="table small m-b-xs">
+              <tbody>
+                <tr>
+                    <td><h3><strong>Year:</strong> <%= @vehicle.year %> </h3></td>
+                    <td><h3><strong>Make:</strong> <%= @vehicle.brand.name %></h3></td>
+                </tr>
+                <tr>
+                    <td><h3><strong>Model:</strong> <%= @vehicle.model %></h3></td>
+                    <td><h3><strong>Category:</strong> Motocross</h3></td>
+                </tr>
+                <tr><td></td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+              <h4>Description</h4>
+              <small>
+                  This is the bike that sets the pace in the 250 2-stroke class. Powered by an enormously powerful and responsive motor that benefits from our torque-boosting Yamaha Power Valve System (YPVS), the AMA Supercross-winning YZ250 offers today´s motocross rider the ultimate in two stroke performance.
+              </small>
+          </div>
       </div>
-
-      <!-- Specifications -->
-      <div class="nj-mat">
-        <div data-toggle="collapse" data-target="#specifications" class="mat-heading">
-          <strong>Specifications</strong><i class="float-right fa fa-angle-double-down 2x"></i>
-        </div>
-        <div id="specifications" class="collapse mat-contents">
-              <strong>Engine and transmission</strong> <br>
+  </div>
+  <div class="row">
+      <div class="col-lg-4  animated fadeInLeft">
+          <div class="ibox">
+              <div class="ibox-content">
+                  <h3>Specifications</h3>
+                  <strong>Engine and transmission</strong> <br>
               Displacement: 249.00 ccm (15.19 cubic inches) <br>
               Engine type:  V2, four-stroke<br>
               Compression:  8.9:1<br>
@@ -34,7 +46,7 @@
               Gearbox:  5-speed<br>
               Transmission type,<br>
               final drive:  Chain<br>
-              Clutch: Wet, multiple-disc<br>
+              Clutch: Wet, multiple-disc<br><br>
               <strong>Chassis, suspension, brakes and wheels</strong><br>
               Front suspension: Telescopic fork<br>
               Front wheel travel: 300 mm (11.8 inches)<br>
@@ -45,7 +57,7 @@
               Front brakes: Single disc<br>
               Front brakes diameter:  250 mm (9.8 inches)<br>
               Rear brakes:  Single disc<br>
-              Rear brakes diameter: 245 mm (9.6 inches)<br>
+              Rear brakes diameter: 245 mm (9.6 inches)<br><br>
               <strong>Physical measures and capacities</strong><br>
               Dry weight: 96.0 kg (211.6 pounds)<br>
               Seat height:  997 mm (39.3 inches) If adjustable, lowest setting.<br>
@@ -54,170 +66,89 @@
               Overall width:  827 mm (32.6 inches)<br>
               Ground clearance: 385 mm (15.2 inches)<br>
               Wheelbase:  1,481 mm (58.3 inches)<br>
-              Fuel capacity:  8.00 litres (2.11 gallons)<br>
+              Fuel capacity:  8.00 litres (2.11 gallons)<br><br>
               <strong>Other specifications</strong><br>
               Starter:  Kick<br>
-        </div>
-      </div>
-
-      <!-- These are all the OEM Compatible Parts show the Compatible parts and what is being replaced-->
-      <div class="nj-mat">
-        <div data-toggle="collapse" data-target="#oem_parts" class="mat-heading">
-          <strong>These parts are designed specifcally for this vehicle</strong><i class="float-right fa fa-angle-double-down 2x"></i>
-        </div>
-        <div id="oem_parts" class="collapse mat-contents table-test">
-        <% if @vehicle.oem_parts.any? %>
-          <table id="part-list" class="table table-striped table-bordered" cellspacing="0" width="100%">
-            <thead>
-                <tr>
-                    <th>Part Number</th>
-                    <th>Part Name</th>
-                    <th>Brand</th>
-                    <th colspan="2"></th>
-                </tr>
-            </thead>
-            <tfoot>
-                <tr>
-                    <th>Part Number</th>
-                    <th>Part Name</th>
-                    <th>Brand</th>
-                    <th colspan="2"></th>
-                </tr>
-            </tfoot>
-            <tbody>
-              <% @vehicle.oem_parts.each do |f|  %>
-                <tr>
-                  <td><%= f.part_number %> </td>
-                  <td><%= f.product.name %> </td>
-                  <td><%= f.product.brand.name %> </td>
-                  <td><%= link_to 'View', f, class: "btn nj-btn btn-thin" %></td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-          </table>
-        <% else %>
-          This vehicle doesn't have any OEM parts anything yet, would you like to add one? <%= link_to "Yes!", new_fitment_path  %>
-        <% end %>    
-        </div>
-      </div>
-
-      <!-- This  show the Compatible parts and what is being replaced-->
-      <div class="nj-mat">
-        <div data-toggle="collapse" data-target="#compatible_parts" class="mat-heading">
-          <strong>These parts are compatible with this vehicle</strong><i class="float-right fa fa-angle-double-down 2x"></i>
-        </div>
-        <div id="compatible_parts" class="collapse mat-contents table-test">
-        <% if @vehicle.known_compatibles.any? %>
-          <table id="part-list" class="table table-striped table-bordered" cellspacing="0" width="100%">
-            <thead>
-                <tr>
-                    <th>Part Name</th>
-                    <th>Brand</th>
-                    <th>Part Number</th>
-                    <th>Year</th>
-                    <th>Make</th>
-                    <th>Model</th>
-                </tr>
-            </thead>
-            <tfoot>
-                <tr>
-                    <th>Part Name</th>
-                    <th>Brand</th>
-                    <th>Part Number</th>
-                    <th>Year</th>
-                    <th>Make</th>
-                    <th>Model</th>
-                </tr>
-            </tfoot>
-            <tbody>
-              <% @vehicle.known_compatibles.each do |f|  %>
-                <tr>
-                  <td><%= f.fitment.part.product.name %> </td>
-                  <td><%= f.fitment.part.product.brand.name %> </td>
-                  <td><%= f.fitment.part.part_number %> </td>
-                  <td><%= f.compatible_fitment.vehicle.year %> </td>
-                  <td><%= f.compatible_fitment.vehicle.brand.name %> </td>
-                  <td><%= f.compatible_fitment.vehicle.model %> </td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-          </table>
-        <% else %>
-          This vehicle doesn't have any compattible parts yet, would you like to add one? <%= link_to "Yes!", new_fitment_path  %>
-        <% end %>    
-        </div>
-      </div>
-
-      <!-- These are potential compatibilities for this vehicle-->
-      <div class="nj-mat">
-        <div data-toggle="collapse" data-target="#potential_parts" class="mat-heading">
-          <strong>These parts are potentially compatible with this vehicle</strong><i class="float-right fa fa-angle-double-down 2x"></i>
-        </div>
-        <div id="potential_parts" class="collapse mat-contents table-test">
-        <% if @vehicle.potential_compatibles.any? %>
-          <table id="part-list" class="table table-striped table-bordered" cellspacing="0" width="100%">
-            <thead>
-                <tr>
-                    <th>Part Name</th>
-                    <th>Brand</th>
-                    <th>Part Number</th>
-                    <th>Year</th>
-                    <th>Make</th>
-                    <th>Model</th>
-                </tr>
-            </thead>
-            <tfoot>
-                <tr>
-                    <th>Part Name</th>
-                    <th>Brand</th>
-                    <th>Part Number</th>
-                    <th>Year</th>
-                    <th>Make</th>
-                    <th>Model</th>
-                </tr>
-            </tfoot>
-            <tbody>
-              <% @vehicle.potential_compatibles.each do |f|  %>
-                <tr>
-                  <td><%= f.fitment.part.product.name %> </td>
-                  <td><%= f.fitment.part.product.brand.name %> </td>
-                  <td><%= f.fitment.part.part_number %> </td>
-                  <td><%= f.compatible_fitment.vehicle.year %> </td>
-                  <td><%= f.compatible_fitment.vehicle.brand.name %> </td>
-                  <td><%= f.compatible_fitment.vehicle.model %> </td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-        <% else %>
-          This part doesn't fit anything yet, would you like to add one? <%= link_to "Yes!", new_fitment_path  %>
-        <% end %>    
-        </div>
-      </div>
-
-  </div>
-<!-- Sidebar -->
-  <div class="col-md-3">
-    <div class="sidebar nj-mat">
-      <div class="related-models">
-        <h6 class="nj-heading">Related Models</h6>
-          <div id="model-id" class="related-model">
-            <strong>Yamaha</strong><strong> YZ250</strong>
-            <%= image_tag("missing-image.png", class:"img-responsive") %>
+              </div>
           </div>
-          <div id="model-id" class="related-model">
-            <strong>Yamaha</strong><strong> YZ450</strong>
-            <%= image_tag("missing-image.png", class:"img-responsive") %>
+      </div>
+      <div class="col-lg-8  animated fadeInRight">  
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5>Compatible Parts</h5>
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content no-padding">
+            <% if @known_compatible %>
+              <%= render partial: 'compatibles/known_compatible', collection: @known_compatibles %>
+            <% else %>
+              <div class="search-box-padding">
+                <h5 class="text-center">Search Comaptible Parts</h5>
+                <form class="search-container text-center" action="/search">
+                  <input id="search-box" type="text" class="search-box" name="q" />
+                  <label for="search-box"><span class="glyphicon glyphicon-search search-icon"></span></label>
+                  <input type="submit" id="search-submit" />
+                </form>
+              </div>
+            <% end %>
+            </div>
+        </div>
+
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5>Potential Parts</h5>
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content no-padding">
+            <% if @potential_compatibles %>
+              <%= render partial: 'compatibles/known_compatible', collection: @potential_compatibles %>
+            <% else %>
+              <div class="search-box-padding">
+                <h5 class="text-center">Search Potential Parts</h5>
+                <form class="search-container text-center" action="/search">
+                  <input id="search-box" type="text" class="search-box" name="q" />
+                  <label for="search-box"><span class="glyphicon glyphicon-search search-icon"></span></label>
+                  <input type="submit" id="search-submit" />
+                </form>
+              </div>
+            <% end %>
           </div>
-          <div id="model-id" class="related-model">
-            <strong>Suzuki</strong><strong> RMZ450</strong>
-            <%= image_tag("missing-image.png", class:"img-responsive") %>
+      </div>
+
+      <div class="ibox">
+          <div class="ibox-title">
+            <h5>OEM Parts</h5>
+              <div class="ibox-tools">
+                <a class="collapse-link">
+                  <i class="fa fa-chevron-up"></i>
+                </a>
+              </div>
+          </div>
+          <div class="ibox-content no-padding">
+          <% if @oem_parts %>
+            <%= render partial: 'parts/oem_part', collection: @oem_parts %>
+          <% else %>
+            <div class="search-box-padding">
+              <h5 class="text-center">Search OEM Parts</h5>
+              <form class="search-container text-center" action="/search">
+                <input id="search-box" type="text" class="search-box" name="q" />
+                <label for="search-box"><span class="glyphicon glyphicon-search search-icon"></span></label>
+                <input type="submit" id="search-submit" />
+              </form>
+            </div>
+          <% end %>
         </div>
       </div>
+
     </div>
   </div>
 </div>
-
 

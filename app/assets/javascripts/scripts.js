@@ -66,7 +66,7 @@ $(document).ready(function () {
         $('body').removeClass('body-small')
     }
 
-    // MetsiMenu
+    // MetisMenu
     $('#side-menu').metisMenu();
 
     // Collapse ibox function
@@ -233,3 +233,6 @@ function SmoothlyMenu() {
         $('#side-menu').removeAttr('style');
     }
 }
+
+//For the expanding search function in the Vehicle Show Page
+document.addEventListener("touchstart", function(){}, true);

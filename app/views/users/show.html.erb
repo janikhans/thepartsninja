@@ -1,291 +1,247 @@
 
 <div class="wrapper wrapper-content">
-<div class="row m-b-lg m-t-lg  animated fadeInDown">
-    <div class="col-md-6">
-
-        <div class="profile-image">
-        <%= gravatar_for @user %>
-        </div>
-        <div class="profile-info">
-            <div class="">
-                <div>
-                    <h2 class="no-margins">
-                        <%= @user.username %>
-                    </h2>
-                    <h4>Padawan</h4>
-                    <small>
-                        There are many variations of passages of Lorem Ipsum available, but the majority
-                        have suffered alteration in some form Ipsum available.
-                    </small>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <table class="table small m-b-xs">
-            <tbody>
-            <tr>
-                <td>
-                    <strong>142</strong> Projects
-                </td>
-                <td>
-                    <strong>22</strong> Followers
-                </td>
-
-            </tr>
-            <tr>
-                <td>
-                    <strong>61</strong> Comments
-                </td>
-                <td>
-                    <strong>54</strong> Articles
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <strong>154</strong> Tags
-                </td>
-                <td>
-                    <strong>32</strong> Friends
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-<div class="row">
-
-    <div class="col-lg-3  animated fadeInLeft">
-
-        <div class="ibox">
-            <div class="ibox-content">
-                <h3>About <%= @user.username %></h3>
-
-                <p class="small">
-                    There are many variations of passages of Lorem Ipsum available, but the majority have
-                    suffered alteration in some form, by injected humour, or randomised words which don't.
-                    <br/>
-                    <br/>
-                    If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't
-                    anything embarrassing
-                </p>
-
-                <p class="small font-bold">
-                    <span><i class="fa fa-circle text-navy"></i> Online status</span>
-                </p>
-
-            </div>
-        </div>
-
-        <div class="ibox">
-            <div class="ibox-content">
-                <h3>Private message</h3>
-
-                <p class="small">
-                    Send private message to <%= @user.username %>
-                </p>
-
-                <div class="form-group">
-                    <label>Subject</label>
-                    <input type="email" class="form-control" placeholder="Message subject">
-                </div>
-                <div class="form-group">
-                    <label>Message</label>
-                    <textarea class="form-control" placeholder="Your message" rows="3"></textarea>
-                </div>
-                <button class="btn btn-primary btn-block">Send</button>
-
-            </div>
-        </div>
-
-    </div>
-
-    <div class="col-lg-9  animated fadeInRight">
-
-        <div class="social-feed-box">
-
-            <div class="pull-right social-action dropdown">
-                <button data-toggle="dropdown" class="dropdown-toggle btn-white">
-                    <i class="fa fa-angle-down"></i>
-                </button>
-                <ul class="dropdown-menu m-t-xs">
-                    <li><a href="#">Config</a></li>
-                </ul>
-            </div>
-            <div class="social-avatar">
-                <a href="" class="pull-left">
-                    <img alt="image" src="<%= image_path('a1.jpg') %>">
-                </a>
-                <div class="media-body">
-                    <a href="#">
-                        Andrew Williams
-                    </a>
-                    <small class="text-muted">Today 4:21 pm - 12.06.2014</small>
-                </div>
-            </div>
-            <div class="social-body">
-                <p>
-                    Many desktop publishing packages and web page editors now use Lorem Ipsum as their
-                    default model text, and a search for 'lorem ipsum' will uncover many web sites still
-                    in their infancy. Packages and web page editors now use Lorem Ipsum as their
-                    default model text.
-                </p>
-
-                <div class="btn-group">
-                    <button class="btn btn-white btn-xs"><i class="fa fa-thumbs-up"></i> Like this!</button>
-                    <button class="btn btn-white btn-xs"><i class="fa fa-comments"></i> Comment</button>
-                    <button class="btn btn-white btn-xs"><i class="fa fa-share"></i> Share</button>
-                </div>
-            </div>
-            <div class="social-footer">
-                <div class="social-comment">
-                    <a href="" class="pull-left">
-                        <img alt="image" src="<%= image_path('a1.jpg') %>">
-                    </a>
-                    <div class="media-body">
-                        <a href="#">
-                            Andrew Williams
-                        </a>
-                        Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words.
-                        <br/>
-                        <a href="#" class="small"><i class="fa fa-thumbs-up"></i> 26 Like this!</a> -
-                        <small class="text-muted">12.06.2014</small>
-                    </div>
-                </div>
-
-                <div class="social-comment">
-                    <a href="" class="pull-left">
-                        <img alt="image" src="<%= image_path('a2.jpg') %>">
-                    </a>
-                    <div class="media-body">
-                        <a href="#">
-                            Andrew Williams
-                        </a>
-                        Making this the first true generator on the Internet. It uses a dictionary of.
-                        <br/>
-                        <a href="#" class="small"><i class="fa fa-thumbs-up"></i> 11 Like this!</a> -
-                        <small class="text-muted">10.07.2014</small>
-                    </div>
-                </div>
-
-                <div class="social-comment">
-                    <a href="" class="pull-left">
-                        <img alt="image" src="<%= image_path('a3.jpg') %>">
-                    </a>
-                    <div class="media-body">
-                        <textarea class="form-control" placeholder="Write comment..."></textarea>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="social-feed-box">
-
-            <div class="pull-right social-action dropdown">
-                <button data-toggle="dropdown" class="dropdown-toggle btn-white">
-                    <i class="fa fa-angle-down"></i>
-                </button>
-                <ul class="dropdown-menu m-t-xs">
-                    <li><a href="#">Config</a></li>
-                </ul>
-            </div>
-            <div class="social-avatar">
-                <a href="" class="pull-left">
-                    <img alt="image" src="<%= image_path('a6.jpg') %>">
-                </a>
-                <div class="media-body">
-                    <a href="#">
-                        Andrew Williams
-                    </a>
-                    <small class="text-muted">Today 4:21 pm - 12.06.2014</small>
-                </div>
-            </div>
-            <div class="social-body">
-                <p>
-                    Many desktop publishing packages and web page editors now use Lorem Ipsum as their
-                    default model text, and a search for 'lorem ipsum' will uncover many web sites still
-                    in their infancy. Packages and web page editors now use Lorem Ipsum as their
-                    default model text.
-                </p>
-                <p>
-                    Lorem Ipsum as their
-                    default model text, and a search for 'lorem ipsum' will uncover many web sites still
-                    in their infancy. Packages and web page editors now use Lorem Ipsum as their
-                    default model text.
-                </p>
-                <img src="<%= image_path('gallery/3.jpg') %>" class="img-responsive">
-                <div class="btn-group">
-                    <button class="btn btn-white btn-xs"><i class="fa fa-thumbs-up"></i> Like this!</button>
-                    <button class="btn btn-white btn-xs"><i class="fa fa-comments"></i> Comment</button>
-                    <button class="btn btn-white btn-xs"><i class="fa fa-share"></i> Share</button>
-                </div>
-            </div>
-            <div class="social-footer">
-                <div class="social-comment">
-                    <a href="" class="pull-left">
-                        <img alt="image" src="<%= image_path('a1.jpg') %>">
-                    </a>
-                    <div class="media-body">
-                        <a href="#">
-                            Andrew Williams
-                        </a>
-                        Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words.
-                        <br/>
-                        <a href="#" class="small"><i class="fa fa-thumbs-up"></i> 26 Like this!</a> -
-                        <small class="text-muted">12.06.2014</small>
-                    </div>
-                </div>
-
-                <div class="social-comment">
-                    <a href="" class="pull-left">
-                        <img alt="image" src="<%= image_path('a2.jpg') %>">
-                    </a>
-                    <div class="media-body">
-                        <a href="#">
-                            Andrew Williams
-                        </a>
-                        Making this the first true generator on the Internet. It uses a dictionary of.
-                        <br/>
-                        <a href="#" class="small"><i class="fa fa-thumbs-up"></i> 11 Like this!</a> -
-                        <small class="text-muted">10.07.2014</small>
-                    </div>
-                </div>
-
-                <div class="social-comment">
-                    <a href="" class="pull-left">
-                        <img alt="image" src="<%= image_path('a8.jpg') %>">
-                    </a>
-                    <div class="media-body">
-                        <a href="#">
-                            Andrew Williams
-                        </a>
-                        Making this the first true generator on the Internet. It uses a dictionary of.
-                        <br/>
-                        <a href="#" class="small"><i class="fa fa-thumbs-up"></i> 11 Like this!</a> -
-                        <small class="text-muted">10.07.2014</small>
-                    </div>
-                </div>
-
-                <div class="social-comment">
-                    <a href="" class="pull-left">
-                        <img alt="image" src="<%= image_path('a3.jpg') %>">
-                    </a>
-                    <div class="media-body">
-                        <textarea class="form-control" placeholder="Write comment..."></textarea>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-
-    </div>
-</div>
-
+  <div class="row m-b-lg m-t-lg  animated fadeInDown">
+      <div class="col-md-6">
+          <div class="profile-image">
+          <%= gravatar_for @user %>
+          </div>
+          <div class="profile-info">
+              <div class="">
+                  <div>
+                      <h2 class="no-margins">
+                          <%= @user.username %>
+                      </h2>
+                      <h4>Padawan</h4>
+                      <small>
+                          There are many variations of passages of Lorem Ipsum available, but the majority
+                          have suffered alteration in some form Ipsum available.
+                      </small>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-6">
+          <table class="table small m-b-xs">
+              <tbody>
+              <tr>
+                  <td><strong>142</strong> Projects</td>
+                  <td><strong>22</strong> Followers</td>
+              </tr>
+              <tr>
+                  <td><strong>61</strong> Comments</td>
+                  <td><strong>54</strong> Articles</td>
+              </tr>
+              <tr>
+                  <td><strong>154</strong> Tags</td>
+                  <td><strong>32</strong> Friends</td>
+              </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-lg-3  animated fadeInLeft">
+          <div class="ibox">
+              <div class="ibox-content">
+                  <h3>About <%= @user.username %></h3>
+                  <p class="small">
+                      There are many variations of passages of Lorem Ipsum available, but the majority have
+                      suffered alteration in some form, by injected humour, or randomised words which don't.
+                      <br/>
+                      <br/>
+                      If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't
+                      anything embarrassing
+                  </p>
+                  <p class="small font-bold">
+                      <span><i class="fa fa-circle text-navy"></i> Online status</span>
+                  </p>
+              </div>
+          </div>
+          <div class="ibox">
+              <div class="ibox-content">
+                  <h3>Private message</h3>
+                  <p class="small">
+                      Send private message to <%= @user.username %>
+                  </p>
+                  <div class="form-group">
+                      <label>Subject</label>
+                      <input type="email" class="form-control" placeholder="Message subject">
+                  </div>
+                  <div class="form-group">
+                      <label>Message</label>
+                      <textarea class="form-control" placeholder="Your message" rows="3"></textarea>
+                  </div>
+                  <button class="btn btn-primary btn-block">Send</button>
+              </div>
+          </div>
+      </div>
+      <div class="col-lg-9  animated fadeInRight">
+          <div class="social-feed-box">
+              <div class="pull-right social-action dropdown">
+                  <button data-toggle="dropdown" class="dropdown-toggle btn-white">
+                      <i class="fa fa-angle-down"></i>
+                  </button>
+                  <ul class="dropdown-menu m-t-xs">
+                      <li><a href="#">Config</a></li>
+                  </ul>
+              </div>
+              <div class="social-avatar">
+                  <a href="" class="pull-left">
+                      <img alt="image" src="<%= image_path('a1.jpg') %>">
+                  </a>
+                  <div class="media-body">
+                      <a href="#">
+                          Andrew Williams
+                      </a>
+                      <small class="text-muted">Today 4:21 pm - 12.06.2014</small>
+                  </div>
+              </div>
+              <div class="social-body">
+                  <p>
+                      Many desktop publishing packages and web page editors now use Lorem Ipsum as their
+                      default model text, and a search for 'lorem ipsum' will uncover many web sites still
+                      in their infancy. Packages and web page editors now use Lorem Ipsum as their
+                      default model text.
+                  </p>
+                  <div class="btn-group">
+                      <button class="btn btn-white btn-xs"><i class="fa fa-thumbs-up"></i> Like this!</button>
+                      <button class="btn btn-white btn-xs"><i class="fa fa-comments"></i> Comment</button>
+                      <button class="btn btn-white btn-xs"><i class="fa fa-share"></i> Share</button>
+                  </div>
+              </div>
+              <div class="social-footer">
+                  <div class="social-comment">
+                      <a href="" class="pull-left">
+                          <img alt="image" src="<%= image_path('a1.jpg') %>">
+                      </a>
+                      <div class="media-body">
+                          <a href="#">
+                              Andrew Williams
+                          </a>
+                          Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words.
+                          <br/>
+                          <a href="#" class="small"><i class="fa fa-thumbs-up"></i> 26 Like this!</a> -
+                          <small class="text-muted">12.06.2014</small>
+                      </div>
+                  </div>
+                  <div class="social-comment">
+                      <a href="" class="pull-left">
+                          <img alt="image" src="<%= image_path('a2.jpg') %>">
+                      </a>
+                      <div class="media-body">
+                          <a href="#">
+                              Andrew Williams
+                          </a>
+                          Making this the first true generator on the Internet. It uses a dictionary of.
+                          <br/>
+                          <a href="#" class="small"><i class="fa fa-thumbs-up"></i> 11 Like this!</a> -
+                          <small class="text-muted">10.07.2014</small>
+                      </div>
+                  </div>
+                  <div class="social-comment">
+                      <a href="" class="pull-left">
+                          <img alt="image" src="<%= image_path('a3.jpg') %>">
+                      </a>
+                      <div class="media-body">
+                          <textarea class="form-control" placeholder="Write comment..."></textarea>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="social-feed-box">
+              <div class="pull-right social-action dropdown">
+                  <button data-toggle="dropdown" class="dropdown-toggle btn-white">
+                      <i class="fa fa-angle-down"></i>
+                  </button>
+                  <ul class="dropdown-menu m-t-xs">
+                      <li><a href="#">Config</a></li>
+                  </ul>
+              </div>
+              <div class="social-avatar">
+                  <a href="" class="pull-left">
+                      <img alt="image" src="<%= image_path('a6.jpg') %>">
+                  </a>
+                  <div class="media-body">
+                      <a href="#">
+                          Andrew Williams
+                      </a>
+                      <small class="text-muted">Today 4:21 pm - 12.06.2014</small>
+                  </div>
+              </div>
+              <div class="social-body">
+                  <p>
+                      Many desktop publishing packages and web page editors now use Lorem Ipsum as their
+                      default model text, and a search for 'lorem ipsum' will uncover many web sites still
+                      in their infancy. Packages and web page editors now use Lorem Ipsum as their
+                      default model text.
+                  </p>
+                  <p>
+                      Lorem Ipsum as their
+                      default model text, and a search for 'lorem ipsum' will uncover many web sites still
+                      in their infancy. Packages and web page editors now use Lorem Ipsum as their
+                      default model text.
+                  </p>
+                  <img src="<%= image_path('gallery/3.jpg') %>" class="img-responsive">
+                  <div class="btn-group">
+                      <button class="btn btn-white btn-xs"><i class="fa fa-thumbs-up"></i> Like this!</button>
+                      <button class="btn btn-white btn-xs"><i class="fa fa-comments"></i> Comment</button>
+                      <button class="btn btn-white btn-xs"><i class="fa fa-share"></i> Share</button>
+                  </div>
+              </div>
+              <div class="social-footer">
+                  <div class="social-comment">
+                      <a href="" class="pull-left">
+                          <img alt="image" src="<%= image_path('a1.jpg') %>">
+                      </a>
+                      <div class="media-body">
+                          <a href="#">
+                              Andrew Williams
+                          </a>
+                          Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words.
+                          <br/>
+                          <a href="#" class="small"><i class="fa fa-thumbs-up"></i> 26 Like this!</a> -
+                          <small class="text-muted">12.06.2014</small>
+                      </div>
+                  </div>
+                  <div class="social-comment">
+                      <a href="" class="pull-left">
+                          <img alt="image" src="<%= image_path('a2.jpg') %>">
+                      </a>
+                      <div class="media-body">
+                          <a href="#">
+                              Andrew Williams
+                          </a>
+                          Making this the first true generator on the Internet. It uses a dictionary of.
+                          <br/>
+                          <a href="#" class="small"><i class="fa fa-thumbs-up"></i> 11 Like this!</a> -
+                          <small class="text-muted">10.07.2014</small>
+                      </div>
+                  </div>
+                  <div class="social-comment">
+                      <a href="" class="pull-left">
+                          <img alt="image" src="<%= image_path('a8.jpg') %>">
+                      </a>
+                      <div class="media-body">
+                          <a href="#">
+                              Andrew Williams
+                          </a>
+                          Making this the first true generator on the Internet. It uses a dictionary of.
+                          <br/>
+                          <a href="#" class="small"><i class="fa fa-thumbs-up"></i> 11 Like this!</a> -
+                          <small class="text-muted">10.07.2014</small>
+                      </div>
+                  </div>
+                  <div class="social-comment">
+                      <a href="" class="pull-left">
+                          <img alt="image" src="<%= image_path('a3.jpg') %>">
+                      </a>
+                      <div class="media-body">
+                          <textarea class="form-control" placeholder="Write comment..."></textarea>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
 </div>
 
