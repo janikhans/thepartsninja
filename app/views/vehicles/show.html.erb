@@ -83,7 +83,7 @@
                 </div>
             </div>
             <div class="ibox-content no-padding">
-            <% if @known_compatible %>
+            <% if @known_compatibles.any? %>
               <%= render partial: 'compatibles/known_compatible', collection: @known_compatibles %>
             <% else %>
               <div class="search-box-padding">
@@ -108,8 +108,8 @@
                 </div>
             </div>
             <div class="ibox-content no-padding">
-            <% if @potential_compatibles %>
-              <%= render partial: 'compatibles/known_compatible', collection: @potential_compatibles %>
+            <% if @potential_compatibles.any? %>
+              <%= render partial: 'compatibles/potential_compatible', collection: @potential_compatibles %>
             <% else %>
               <div class="search-box-padding">
                 <h5 class="text-center">Search Potential Parts</h5>

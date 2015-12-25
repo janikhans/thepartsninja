@@ -11,6 +11,7 @@ class DiscoveriesController < ApplicationController
   # GET /discoveries/1.json
   def show
     @steps = @discovery.steps.all
+    @user = @discovery.user
   end
 
   # GET /discoveries/new
