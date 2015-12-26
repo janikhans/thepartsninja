@@ -1,6 +1,6 @@
 class CompatiblesController < ApplicationController
   before_action :set_compatible, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
 
   # GET /compatibles
   # GET /compatibles.json
