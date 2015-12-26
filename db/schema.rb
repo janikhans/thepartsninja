@@ -36,9 +36,9 @@ ActiveRecord::Schema.define(version: 20151223050733) do
   create_table "discoveries", force: :cascade do |t|
     t.integer  "user_id"
     t.text     "comment"
-    t.boolean  "modifications"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.boolean  "modifications", default: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   add_index "discoveries", ["user_id"], name: "index_discoveries_on_user_id"
