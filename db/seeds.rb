@@ -24,9 +24,9 @@ wr250 = Vehicle.create model: "WR250", year: 2009, brand_name: "Yamaha"
 rmz450 = Vehicle.create model: "RMZ450", year: 2008, brand_name: "Suzuki"
 tm250 = Vehicle.create model: "250MX", year: 2011, brand_name: "TM Racing"
 
-front_wheel = Product.create! name: "Front Wheel", description: "Complete front wheel assembly. Includes the hubs, spokes and bearings", brand_name: "Yamaha"
-rekluse = Product.create! name: "Core3.0", description: "Autoclutch that nearly gets rid of all possibility of stalling", brand_name: "Rekluse"
-chain_guide = Product.create! name: "Chain Guide v1.0", description: "Plastic 2 part chain guide block that replaces the stock unit", brand_name: "Acerbis"
+front_wheel = Product.create name: "Front Wheel", description: "Complete front wheel assembly. Includes the hubs, spokes and bearings", brand_name: "Yamaha"
+rekluse = Product.create name: "Core3.0", description: "Autoclutch that nearly gets rid of all possibility of stalling", brand_name: "Rekluse"
+chain_guide = Product.create name: "Chain Guide v1.0", description: "Plastic 2 part chain guide block that replaces the stock unit", brand_name: "Acerbis"
 
 part1 = front_wheel.parts.build(part_number: "fwyz25006").save
 part2 = front_wheel.parts.build(part_number: "fwyz12505").save
