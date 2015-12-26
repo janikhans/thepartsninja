@@ -83,8 +83,8 @@
                 </div>
             </div>
             <div class="ibox-content no-padding">
-            <% if @known_compatibles.any? %>
-              <%= render partial: 'compatibles/known_compatible', collection: @known_compatibles %>
+            <% if @compatibles.any? %>
+              <%= render partial: 'compatibles/known_compatible', collection: @compatibles %>
             <% else %>
               <div class="search-box-padding">
                 <h5 class="text-center">Search Comaptible Parts</h5>

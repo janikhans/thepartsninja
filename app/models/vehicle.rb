@@ -2,9 +2,14 @@ class Vehicle < ActiveRecord::Base
   belongs_to :brand
   has_many :fitments
   has_many :oem_parts, through: :fitments, source: :part
-  has_many :potential_compatibles, through: :fitments, source: :known_compatibles
-  has_many :known_compatibles, through: :fitments, source: :potential_compatibles
 
+  #These are for the compatibles parts - sure would be nice to clean this up - maybe
+  has_many :known_compatibles, through: :fitments
+  has_many :known_not_backward_compatibles, through: :fitments
+  has_many :backwards_compatibles, through: :fitments
+  has_many :potential_compatibles, through: :fitments
+
+  #Validations - woohoo!
   before_validation :sanitize_model
   validates :model, :brand, presence: true
   validates :year, presence: true, 
@@ -22,6 +27,11 @@ class Vehicle < ActiveRecord::Base
     name = name.strip
     self.brand = Brand.where('lower(name) = ?', name.downcase).first_or_create(name: name)
   end
+
+  #Can this be moved somewhere else?
+  def compats
+      known_compatibles | known_not_backward_compatibles | backwards_compatibles
+  end 
 
 
 private

@@ -15,7 +15,7 @@
   <tbody>
     <% @discoveries.each do |discovery| %>
       <tr>
-        <td><%= discovery.user %></td>
+        <td><%= discovery.user.username %></td>
         <td><%= discovery.comment %></td>
         <td><%= discovery.modifications %></td>
         <td><%= link_to 'Show', discovery %></td>

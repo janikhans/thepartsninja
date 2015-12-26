@@ -6,7 +6,7 @@ class VehiclesController < ApplicationController
   end
 
   def show
-    @known_compatibles = @vehicle.known_compatibles.all
+    @compatibles = @vehicle.compats
     @oem_parts = @vehicle.oem_parts
     @potential_compatibles = @vehicle.potential_compatibles.all
   end

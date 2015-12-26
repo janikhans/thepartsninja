@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20151223050733) do
     t.integer  "fitment_id"
     t.integer  "compatible_fitment_id"
     t.integer  "discovery_id"
-    t.boolean  "verified",              default: false
+    t.boolean  "backwards",             default: false
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
   end

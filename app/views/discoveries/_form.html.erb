@@ -5,6 +5,7 @@
     <%= f.simple_fields_for :compatibles do |c| %>
       <%= c.input :fitment_id, :collection => @fitments, :label_method => :id, :value_method => :id, :label => "Fitment" %>
       <%= c.input :compatible_fitment_id, :collection => @fitments, :label_method => :id, :value_method => :id, :label => "Compatible Fitment"  %>
+      <%= c.input :backwards, as: :radio_buttons, label: "Are they backwards compatible?" %>
     <% end %>
     <%= f.input :comment %>
     <%= f.input :modifications, as: :radio_buttons, label: "Are mods required?" %>
