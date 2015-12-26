@@ -1,6 +1,8 @@
 class PartsController < ApplicationController
+  include Admin
   before_action :set_part, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :admin_only, except: [:show]
 
   def index
     @parts = Part.all
