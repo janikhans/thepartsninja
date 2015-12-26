@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+
   def index
     @home_page = true
     @extra_class = "home"
@@ -9,4 +10,5 @@ class PagesController < ApplicationController
 
   def contact
   end
+
 end
