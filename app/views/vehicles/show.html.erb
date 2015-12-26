@@ -83,7 +83,7 @@
                 </div>
             </div>
             <div class="ibox-content no-padding">
-            <% if @compatibles.any? || @backwards_compatibles %>
+            <% if @compatibles.any? || @backwards_compatibles.any? %>
               <%= render partial: 'compatibles/compatible', collection: @compatibles %>
               <%= render partial: 'compatibles/backwards_compatible', collection: @backwards_compatibles %>
             <% else %>
