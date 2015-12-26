@@ -84,10 +84,10 @@
             </div>
             <div class="ibox-content no-padding">
             <% if @compatibles.any? %>
-              <%= render partial: 'compatibles/known_compatible', collection: @compatibles %>
+              <%= render partial: 'compatibles/compatible', collection: @compatibles %>
             <% else %>
               <div class="search-box-padding">
-                <h5 class="text-center">Search Comaptible Parts</h5>
+                <h5 class="text-center">Search Compatible Parts</h5>
                 <form class="search-container text-center" action="/search">
                   <input id="search-box" type="text" class="search-box" name="q" />
                   <label for="search-box"><span class="glyphicon glyphicon-search search-icon"></span></label>

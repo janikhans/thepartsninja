@@ -5,7 +5,7 @@ class Vehicle < ActiveRecord::Base
 
   #These are for the compatibles parts - sure would be nice to clean this up - maybe
   has_many :known_compatibles, through: :fitments
-  has_many :known_not_backward_compatibles, through: :fitments
+  has_many :known_not_backwards_compatibles, through: :fitments
   has_many :backwards_compatibles, through: :fitments
   has_many :potential_compatibles, through: :fitments
 
@@ -30,7 +30,7 @@ class Vehicle < ActiveRecord::Base
 
   #Can this be moved somewhere else?
   def compats
-      known_compatibles | known_not_backward_compatibles | backwards_compatibles
+      known_compatibles | known_not_backwards_compatibles | backwards_compatibles
   end 
 
 

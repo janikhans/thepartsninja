@@ -50,7 +50,7 @@
                       <%= f.part.product.brand.name %> <%= f.part.product.name %><br/>
                   </h2>
                   <p>
-                     <strong>Part Number: </strong><%= link_to "#{f.part.part_number}", f.part %> <strong>From: </strong> <%= f.vehicle.year %> <%= f.vehicle.brand.name %> <%= f.vehicle.model %></p>
+                     <strong>Part Number: </strong><%= link_to "#{f.part.part_number}", f.part %> <strong>From: </strong> <%= f.vehicle.year %> <%= f.vehicle.brand.name %> <%= f.vehicle.model %> <%= link_to "Vehicle", f.vehicle %></p>
                   <p>
                 <% end %>
               </div>
