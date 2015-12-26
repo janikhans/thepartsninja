@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
+  def redirect_back_or_default(default = root_path, options = {})
+    redirect_to (request.referer.present? ? :back : default), options
+  end
+
   protected
 
   def configure_permitted_parameters

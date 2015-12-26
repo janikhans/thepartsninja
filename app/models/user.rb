@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  enum role: [:user, :admin]
+  after_initialize :set_default_role, if: :new_record?
 
   has_many :products
   has_many :parts
@@ -25,10 +27,16 @@ class User < ActiveRecord::Base
     end
   end
 
-  def validate_username
-    if User.where(email: username).exists?
-      errors.add(:username, :invalid)
+  private
+
+    def validate_username
+      if User.where(email: username).exists?
+        errors.add(:username, :invalid)
+      end
     end
-  end
+
+    def set_default_role
+      self.role ||= :user
+    end
   
 end

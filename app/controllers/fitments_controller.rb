@@ -1,6 +1,8 @@
 class FitmentsController < ApplicationController
+  include Admin
   before_action :set_fitment, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :admin_only
 
   # GET /fitments
   # GET /fitments.json
