@@ -17,7 +17,6 @@ class Vehicle < ActiveRecord::Base
                    inclusion: { in: 1900..Date.today.year+1, message: "needs to be between 1900-#{Date.today.year+1}"}, 
                    uniqueness: {scope: [:brand_id, :model], message: "This model year already exists"}
 
-
   def brand_name
     brand.try(:name)
   end
@@ -30,7 +29,7 @@ class Vehicle < ActiveRecord::Base
 
   #Can this be moved somewhere else?
   def compats
-      known_compatibles | known_not_backwards_compatibles | backwards_compatibles
+      known_compatibles | known_not_backwards_compatibles
   end 
 
 
