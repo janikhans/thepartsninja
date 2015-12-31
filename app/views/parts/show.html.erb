@@ -115,7 +115,7 @@
           <strong>This part may be compatible with these vehicles</strong><i class="float-right fa fa-angle-double-down 2x"></i>
         </div>
         <div id="potential_vehicles" class="collapse mat-contents table-test">
-        <% if @part.potential_vehicles.any? %>
+        <% if @part.potential_compatibles.any? %>
           <table id="part-list" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
                 <tr>

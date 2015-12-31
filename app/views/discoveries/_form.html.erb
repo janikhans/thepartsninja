@@ -1,12 +1,28 @@
+
 <%= simple_form_for(@discovery) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.simple_fields_for :compatibles do |c| %>
-      <%= c.input :fitment_id, :collection => @fitments, :label_method => :id, :value_method => :id, :label => "Fitment" %>
-      <%= c.input :compatible_fitment_id, :collection => @fitments, :label_method => :id, :value_method => :id, :label => "Compatible Fitment"  %>
-      <%= c.input :backwards, as: :radio_buttons, label: "Are they backwards compatible?" %>
-    <% end %>
+
+    <div class="vehicle1">
+      <%= text_field(:og_vehicle, :brand, placeholder: ' Brand') %>
+      <%= number_field(:og_vehicle, :year ) %>
+      <%= text_field(:og_vehicle, :model, placeholder: ' Model') %>
+    </div>
+    <div class="og_part">
+      <%= text_field(:og_part, :brand, placeholder: ' Brand') %>
+      <%= text_field(:og_part, :name, placeholder: ' Part Name' ) %>
+    </div>
+    <div class="vehicle2">
+      <%= text_field(:compat_vehicle, :brand, placeholder: ' Brand') %>
+      <%= number_field(:compat_vehicle, :year ) %>
+      <%= text_field(:compat_vehicle, :model, placeholder: ' Model') %>
+    </div>
+    <div class="compat_part">
+      <%= text_field(:compat_part, :brand, placeholder: ' Brand') %>
+      <%= text_field(:compat_part, :name, placeholder: ' Part Name' ) %>
+    </div>
+
     <%= f.input :comment %>
     <%= f.input :modifications, as: :radio_buttons, label: "Are mods required?" %>
 
@@ -26,3 +42,6 @@
     <%= f.button :submit %>
   </div>
 <% end %>
+
+
+
