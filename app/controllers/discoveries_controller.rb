@@ -65,7 +65,7 @@ class DiscoveriesController < ApplicationController
     @compatible.compatible_fitment = compat_fitment
 
     respond_to do |format|
-      if @discovery.save && @compatible.save
+      if @discovery.save
         format.html { redirect_to @discovery, notice: 'Discovery was successfully created.' }
         format.json { render :show, status: :created, location: @discovery }
       else
