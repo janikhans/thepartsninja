@@ -31,11 +31,22 @@ class DiscoveriesController < ApplicationController
   def create
 
     #find OEM Vehicle
-    og_brand_name = params[:og_vehicle][:brand].strip
-    og_brand = Brand.where('lower(name) = ?', og_brand_name.downcase).first_or_create(name: og_brand_name)
-    og_model = params[:og_vehicle][:model].strip
+    og_brand_name = params[:og_vehicle][:brand]
+    og_model = params[:og_vehicle][:model]
     og_year = params[:og_vehicle][:year]
-    og_vehicle = Vehicle.where(brand: og_brand).where(year: og_year).where('lower(model) = ?', og_model.downcase).first_or_create(brand: og_brand, year: og_year, model: og_model)
+
+    if (og_brand_name.blank? && og_model.blank? && og_year.blank?)
+      og_brand = Brand.new
+      og_brand.name = "N/A"
+      og_brand.save
+      og_vehicle = Vehicle.where(brand: og_brand, year: 1989, model: "N/A").first_or_create(brand: og_brand, year: 1989, model: "N/A")
+    else
+      og_brand_name.strip
+      og_model.strip
+      og_brand = Brand.where('lower(name) = ?', og_brand_name.downcase).first_or_create(name: og_brand_name)
+      og_vehicle = Vehicle.where(brand: og_brand).where(year: og_year).where('lower(model) = ?', og_model.downcase).first_or_create(brand: og_brand, year: og_year, model: og_model)
+    end
+    
 
     og_part_brand_name = params[:og_part][:brand].strip
     og_part_brand = Brand.where('lower(name) = ?', og_part_brand_name.downcase).first_or_create(name: og_part_brand_name)
@@ -53,9 +64,10 @@ class DiscoveriesController < ApplicationController
     compat_part_name = params[:compat_part][:name].strip
     compat_product = Product.where(brand: compat_part_brand).where('lower(name) = ?', compat_part_name.downcase).first_or_create(brand: compat_part_brand, name: compat_part_name) 
 
-
     og_fitment_part = og_vehicle.oem_parts.where(product: og_product).first_or_create(product: og_product)
     og_fitment = og_vehicle.fitments.where(part: og_fitment_part).first
+
+    
     compat_fitment_part = compat_vehicle.oem_parts.where(product: compat_product).first_or_create(product: compat_product)
     compat_fitment = compat_vehicle.fitments.where(part: compat_fitment_part).first
 
@@ -63,6 +75,7 @@ class DiscoveriesController < ApplicationController
     @compatible = @discovery.compatibles.build
     @compatible.fitment = og_fitment
     @compatible.compatible_fitment = compat_fitment
+    @compatible.backwards = params[:backwards]
 
     respond_to do |format|
       if @discovery.save

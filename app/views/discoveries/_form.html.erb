@@ -22,9 +22,9 @@
       <%= text_field(:compat_part, :brand, placeholder: ' Brand') %>
       <%= text_field(:compat_part, :name, placeholder: ' Part Name' ) %>
     </div>
-    <%= f.simple_fields_for :compatibles do |c| %>
-      <%= c.input :backwards, as: :radio_buttons, label: "Are they backwards compatible?" %>
-    <% end %>
+    
+    <%= check_box_tag(:backwards) %>
+    <%= label_tag(:backwards, "Are these backwards compatible?") %>
 
     <%= f.input :comment %>
     <%= f.input :modifications, as: :radio_buttons, label: "Are mods required?" %>
