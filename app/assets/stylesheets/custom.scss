@@ -8,14 +8,17 @@ body {
 }
 
 .hero { 
-  background: image-url('Compatible-bg.png') no-repeat center center; 
+  background: image-url('slide_one.jpg') no-repeat center center; 
   -webkit-background-size: cover; 
   -moz-background-size: cover; 
   -o-background-size: cover; 
   background-size: cover; 
-  padding: 200px 0 200px 0; 
+  padding: 400px 0 600px 0; 
   height: auto;
   background-color: #1E1825; 
+  .white {
+    color: white;
+  }
 }
 .hero h1 { font-size: 80px; margin: 30px 0 10px; font-weight: 900; color: #fff;}
 .hero h1 span { color: #a1a9b0; display: inline-block; }
@@ -189,3 +192,8 @@ $tl: 0.6s; // transition length
 .score-box {
       padding: 30px 15px;
 }
+
+.display-none {
+  display: none;
+}
+

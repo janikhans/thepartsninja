@@ -17,5 +17,7 @@
 //= require jquery-ui/autocomplete
 //= require bootstrap-sprockets
 //= require metisMenu
+//= require jquery.steps
+//= require jquery.validate.min
 //= require cocoon
 //= require_tree .

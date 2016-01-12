@@ -1,50 +1,111 @@
-
-<%= simple_form_for(@discovery) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-
-    <div class="vehicle1">
-      <%= text_field(:og_vehicle, :brand, placeholder: ' Brand') %>
-      <%= number_field(:og_vehicle, :year ) %>
-      <%= text_field(:og_vehicle, :model, placeholder: ' Model') %>
-    </div>
-    <div class="og_part">
-      <%= text_field(:og_part, :brand, placeholder: ' Brand') %>
-      <%= text_field(:og_part, :name, placeholder: ' Part Name' ) %>
-    </div>
-    <div class="vehicle2">
-      <%= text_field(:compat_vehicle, :brand, placeholder: ' Brand') %>
-      <%= number_field(:compat_vehicle, :year ) %>
-      <%= text_field(:compat_vehicle, :model, placeholder: ' Model') %>
-    </div>
-    <div class="compat_part">
-      <%= text_field(:compat_part, :brand, placeholder: ' Brand') %>
-      <%= text_field(:compat_part, :name, placeholder: ' Part Name' ) %>
-    </div>
-    
-    <%= check_box_tag(:backwards) %>
-    <%= label_tag(:backwards, "Are these backwards compatible?") %>
-
-    <%= f.input :comment %>
-    <%= f.input :modifications, as: :radio_buttons, label: "Are mods required?" %>
-
-    <h3>Steps </h3>
-    <div id="steps">
-      <%= f.simple_fields_for :steps do |step| %>
-        <%= render 'step_fields', f: step %>
-      <% end %>
-        <div class="links">
-          <%= link_to_add_association 'Add Step', f, :steps %>
+<%= simple_form_for(@discovery, html: {id: "example-form"}) do |f| %>
+    <div>
+        <h3>Original Part</h3>
+        <section>
+          <h3>Tell us about the original part</h3>
+          <div class="form-inline">
+              <div class="form-group">
+                <%= label(:og_part, "Who's the manufacturer?") %>
+                <%= text_field(:og_part, :brand, placeholder: ' Brand', class:"form-control", required: true) %>
+              </div>
+              <div class="form-group">
+              <%= label(:og_part, "What's the part?") %>
+                <%= text_field(:og_part, :name, placeholder: ' Part Name', class:"form-control", required: true ) %>
+              </div>
+          </div>
+          <br>
+          <h3>Did it come from another Vehicle?</h3>
+          <div class="form-inline">
+            <div class="form-group">
+              <%= label(:og_part, "Who's the manufacturer?") %>
+              <%= text_field(:og_vehicle, :brand, placeholder: ' Brand', class:"form-control") %>
+            </div>
+            <div class="form-group">
+              <%= label(:og_part, "What year is this vehicle?") %>
+              <%= number_field(:og_vehicle, :year, class:"form-control" ) %>
+            </div>
+            <div class="form-group">
+              <%= label(:og_part, "What's the model of this vehicle?") %>
+              <%= text_field(:og_vehicle, :model, placeholder: ' Model', class:"form-control") %>
+            </div>
+          </div>
+        </section>
+        <h3>Compatibilities</h3>
+        <section>
+          <h3>Sweet! Now tell us what it fits</h3>
+          <div class="form-inline">
+            <div class="form-group">
+              <%= label(:compat_vehicle, "Who's the manufacturer?") %>
+              <%= text_field(:compat_vehicle, :brand, placeholder: ' Brand', class:"form-control", required: true) %>
+            </div>
+            <div class="form-group">
+              <%= label(:compat_vehicle, "What year is this vehicle?") %>
+              <%= number_field(:compat_vehicle, :year, class:"form-control", required: true ) %>
+            </div>
+            <div class="form-group">
+              <%= label(:compat_vehicle, "What's the model of this vehicle?") %>
+              <%= text_field(:compat_vehicle, :model, placeholder: ' Model', class:"form-control", required: true) %>
+            </div>
+          </div>
+          <br>
+          <h3>Just to make sure, what part is being replaced?</h3>
+          <div class="form-inline">
+            <div class="form-group">
+              <%= label(:compat_part, "Who's the manufacturer?") %>
+              <%= text_field(:compat_part, :brand, placeholder: ' Brand', class:"form-control", required: true) %>
+            </div>
+            <div class="form-group">
+              <%= label(:compat_part, "What's the part?") %>
+              <%= text_field(:compat_part, :name, placeholder: ' Part Name', class:"form-control", required: true ) %>
+            </div>
+          </div>
+          <div class="form-group">
+              <%= check_box_tag(:backwards) %>
+              <%= label_tag(:backwards, "Are these backwards compatible?") %>
+            </div>
+        </section>
+        <h3>Additional</h3>
+        <section>
+          <%= f.input :comment, label:"Any comments to add? Extra parts? etc" %>
+          <%= f.input :modifications, label: "Are any modifications required?" %>
+          <div id="steps">
+            <h3>Tell us about those modifications. Break them apart into steps.</h3>
+            <%= f.simple_fields_for :steps do |step| %>
+              <%= render 'step_fields', f: step %>
+            <% end %>
+              <div class="links">
+                <%= link_to_add_association 'Add Step', f, :steps %>
+              </div>
+          </div>
+        </section>
+        <h3>Review</h3>
+        <section>
+            <%= f.error_notification %>
+            <h3>Does this look correct? Go back and change if needed.</h3>
+        </section>
+        <div class="form-actions display-none">
+          <%= f.button :submit, id:"disc_submit" %>
         </div>
     </div>
-
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
 <% end %>
 
 
+
+<script type="text/javascript">
+  var form = $("#example-form");
+  form.children("div").steps({
+      headerTag: "h3",
+      bodyTag: "section",
+      transitionEffect: "slideLeft",
+      onStepChanging: function (event, currentIndex, newIndex)
+      {
+          form.validate().settings.ignore = ":disabled,:hidden";
+          return form.valid();
+      },
+      onFinished: function (event, currentIndex)
+      {
+          document.getElementById('disc_submit').click();
+      }
+  });
+</script>
 

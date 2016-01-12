@@ -236,3 +236,4 @@ function SmoothlyMenu() {
 
 //For the expanding search function in the Vehicle Show Page
 document.addEventListener("touchstart", function(){}, true);
+
