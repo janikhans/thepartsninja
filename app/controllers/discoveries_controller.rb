@@ -35,10 +35,8 @@ class DiscoveriesController < ApplicationController
     og_model = params[:og_vehicle][:model]
     og_year = params[:og_vehicle][:year]
 
-    if (og_brand_name.blank? && og_model.blank? && og_year.blank?)
-      og_brand = Brand.new
-      og_brand.name = "N/A"
-      og_brand.save
+    if (og_brand_name.blank? || og_model.blank? || og_year.blank?)
+      og_brand = Brand.where(name: "N/A").first
       og_vehicle = Vehicle.where(brand: og_brand, year: 1989, model: "N/A").first_or_create(brand: og_brand, year: 1989, model: "N/A")
     else
       og_brand_name.strip
