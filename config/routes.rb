@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'search' => 'search#index', as: :search
+
   resources :discoveries
   resources :compatibles
   resources :fitments

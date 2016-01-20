@@ -24,9 +24,9 @@ ActiveRecord::Schema.define(version: 20151226084132) do
     t.integer  "fitment_id"
     t.integer  "compatible_fitment_id"
     t.integer  "discovery_id"
-    t.boolean  "backwards",             default: false
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.boolean  "backwards",     null: false, default: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   add_index "compatibles", ["compatible_fitment_id"], name: "index_compatibles_on_compatible_fitment_id"
@@ -36,9 +36,9 @@ ActiveRecord::Schema.define(version: 20151226084132) do
   create_table "discoveries", force: :cascade do |t|
     t.integer  "user_id"
     t.text     "comment"
-    t.boolean  "modifications", default: false
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.boolean  "modifications",  null: false, default: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   add_index "discoveries", ["user_id"], name: "index_discoveries_on_user_id"

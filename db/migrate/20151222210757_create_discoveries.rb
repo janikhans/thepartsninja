@@ -3,7 +3,7 @@ class CreateDiscoveries < ActiveRecord::Migration
     create_table :discoveries do |t|
       t.references :user, index: true, foreign_key: true
       t.text :comment
-      t.boolean :modifications, default: false
+      t.boolean :modifications, null: false, default: false
 
       t.timestamps null: false
     end

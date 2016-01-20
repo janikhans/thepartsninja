@@ -1,0 +1,21 @@
+
+<h1>Your Search Results For:</h1>
+
+<% if @new_search %>
+  <h1>You need to fill in each search box. Try again? </h1>
+<% else %>
+  <%= @vehicle.year %> <%= @vehicle.brand.name %> <%= @vehicle.model %> <i><%= @part %></i> View <%= link_to "vehicle", @vehicle %><br>
+
+  <h1>Here are the OEM Parts</h1>
+  <p>
+  <% @oem_search_results.each do |p| %>
+   <%= p.product.brand.name %> <%= p.product.name %> <%= p.part_number %> <br>
+  <% end %>
+  </p>
+
+  <h1>Here are the Compatible Parts</h1>
+  <% if @compatible_search_results || @backwards_compatible_search_results %>
+    <%= render partial: 'compatibles/compatible', collection: @compatible_search_results %>
+    <%= render partial: 'compatibles/backwards_compatible', collection: @backwards_compatible_search_results %>
+  <% end %>
+<% end %>

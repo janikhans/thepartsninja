@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  before_filter :set_search, only: [:index]
 
   def index
     @home_page = true
@@ -10,5 +11,10 @@ class PagesController < ApplicationController
 
   def contact
   end
+
+  private
+    def set_search
+      @q = Vehicle.ransack(params[:q])
+    end
 
 end

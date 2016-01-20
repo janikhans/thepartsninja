@@ -29,7 +29,7 @@ class Vehicle < ActiveRecord::Base
 
   #Can this be moved somewhere else?
   def compats
-      known_compatibles | known_not_backwards_compatibles
+      known_compatibles | backwards_compatibles | known_not_backwards_compatibles
   end 
 
 
