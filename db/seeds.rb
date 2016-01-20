@@ -27,6 +27,7 @@ yz250f = Vehicle.create model: "YZ250F", year: 2011, brand_name: "Yamaha"
 wr250 = Vehicle.create model: "WR250", year: 2009, brand_name: "Yamaha"
 rmz450 = Vehicle.create model: "RMZ450", year: 2008, brand_name: "Suzuki"
 tm250 = Vehicle.create model: "250MX", year: 2011, brand_name: "TM Racing"
+yz450f = Vehicle.create model: "YZ450F", year: 2006, brand_name: "Yamaha"
 
 front_wheel = Product.create name: "Front Wheel", description: "Complete front wheel assembly. Includes the hubs, spokes and bearings", brand_name: "Yamaha"
 rekluse = Product.create name: "Core3.0", description: "Autoclutch that nearly gets rid of all possibility of stalling", brand_name: "Rekluse"
@@ -61,6 +62,7 @@ fitment6 = part6.fitments.build(vehicle: wr426).save
 fitment7 = part7.fitments.build(vehicle: yz250f).save
 fitment8 = part8.fitments.build(vehicle: wr250).save
 fitment9 = part9.fitments.build(vehicle: rmz450).save
+fitment10 = part1.fitments.build(vehicle: yz450f).save
 
 fitment1 = Fitment.first
 fitment2 = Fitment.find_by(id: 2)
