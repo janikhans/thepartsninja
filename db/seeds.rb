@@ -10,13 +10,16 @@ sensei = User.create! username: 'Sensei', email: 'thepartsninja@gmail.com', pass
 janik = User.create! username: 'Janik', email: 'janik.knittle@gmail.com', password: 'password', password_confirmation: 'password', role: 'admin'
 tommy = User.create! username: 'Tommy', email: 'tommy@gmail.com', password: 'password', password_confirmation: 'password', role: 'user'
 
+user1 = User.first
 brands = ["Acerbis", "Hinson", "Tusk Racing", "ARC", "Barnett", "Yamaha", "Kawasaki", "KTM", "Beta", "FORD", "Chevrolet", "Husqvarna", "N/A"]
 
 brands.each do |name| 
   Brand.create(name: name)
 end
 
-yz250 = Vehicle.create model: "YZ250", year: 2006, brand_name: "Yamaha" 
+yz250 = Vehicle.create model: "YZ250", year: 2006, brand_name: "Yamaha"
+yz25004 = Vehicle.create model: "YZ250", year: 2004, brand_name: "Yamaha"
+yz25008 = Vehicle.create model: "YZ250", year: 2008, brand_name: "Yamaha"   
 yz125 = Vehicle.create model: "YZ125", year: 2005, brand_name: "Yamaha"
 wr450 = Vehicle.create model: "WR450", year: 2012, brand_name: "Yamaha" 
 wr426 = Vehicle.create model: "WR426", year: 2002, brand_name: "Yamaha"
@@ -30,17 +33,56 @@ rekluse = Product.create name: "Core3.0", description: "Autoclutch that nearly g
 chain_guide = Product.create name: "Chain Guide v1.0", description: "Plastic 2 part chain guide block that replaces the stock unit", brand_name: "Acerbis"
 
 part1 = front_wheel.parts.build(part_number: "fwyz25006").save
-part2 = front_wheel.parts.build(part_number: "fwyz12505").save
-part3 = front_wheel.parts.build(part_number: "fwwr25009").save
-part4 = chain_guide.parts.build(part_number: "217909", note: "Specific part numbers are Black: 2179090001
-White: 2179090002
-Yellow: 2179090005").save
+part2 = front_wheel.parts.build(part_number: "fwyz25004").save
+part3 = front_wheel.parts.build(part_number: "fwyz25008").save
+part4 = front_wheel.parts.build(part_number: "fwyz12505").save
+part5 = front_wheel.parts.build(part_number: "fwwr45012").save
+part6 = front_wheel.parts.build(part_number: "fwwr42602").save
+part7 = front_wheel.parts.build(part_number: "fwyz250F11").save
+part8 = front_wheel.parts.build(part_number: "fwwr25009").save
+part9 = chain_guide.parts.build(part_number: "217909", note: "Specific part numbers are Black: 2179090001 White: 2179090002 Yellow: 2179090005").save
 
 part1 = Part.first
 part2 = Part.find_by(id: 2)
 part3 = Part.find_by(id: 3)
 part4 = Part.find_by(id: 4)
+part5 = Part.find_by(id: 5)
+part6 = Part.find_by(id: 6)
+part7 = Part.find_by(id: 7)
+part8 = Part.find_by(id: 8)
+part9 = Part.find_by(id: 9)
+
 fitment1 = part1.fitments.build(vehicle: yz250).save
-fitment2 = part2.fitments.build(vehicle: yz125).save
-fitment3 = part3.fitments.build(vehicle: wr250).save
-fitment4 = part4.fitments.build(vehicle: rmz450).save
+fitment2 = part2.fitments.build(vehicle: yz25004).save
+fitment3 = part3.fitments.build(vehicle: yz25008).save
+fitment4 = part4.fitments.build(vehicle: yz125).save
+fitment5 = part5.fitments.build(vehicle: wr450).save
+fitment6 = part6.fitments.build(vehicle: wr426).save
+fitment7 = part7.fitments.build(vehicle: yz250f).save
+fitment8 = part8.fitments.build(vehicle: wr250).save
+fitment9 = part9.fitments.build(vehicle: rmz450).save
+
+fitment1 = Fitment.first
+fitment2 = Fitment.find_by(id: 2)
+fitment3 = Fitment.find_by(id: 3)
+fitment4 = Fitment.find_by(id: 4)
+fitment5 = Fitment.find_by(id: 5)
+fitment6 = Fitment.find_by(id: 6)
+fitment7 = Fitment.find_by(id: 7)
+fitment8 = Fitment.find_by(id: 8)
+fitment9 = Fitment.find_by(id: 9)
+
+dis1 = Discovery.create modifications: true, comment: "You'll need the 2008 Wheel Spacers", user: user1
+compat1 = dis1.compatibles.build(fitment: fitment2, compatible_fitment: fitment3, backwards: false).save
+dis2 = Discovery.create modifications: false, comment: "Quick swap across", user: user1
+compat2 = dis2.compatibles.build(fitment: fitment4, compatible_fitment: fitment1, backwards: true).save
+dis3 = Discovery.create modifications: true, comment: "You'll need the 2011 Wheel Spacers", user: user1
+compat3 = dis3.compatibles.build(fitment: fitment6, compatible_fitment: fitment7, backwards: false).save
+dis4 = Discovery.create modifications: false, comment: "Stuff and more stuff", user: user1
+compat4 = dis4.compatibles.build(fitment: fitment4, compatible_fitment: fitment8, backwards: true).save
+dis5 = Discovery.create modifications: false, comment: "Blahhh!!!!", user: user1
+compat5 = dis5.compatibles.build(fitment: fitment6, compatible_fitment: fitment5, backwards: true).save
+dis6 = Discovery.create modifications: false, comment: "Easy Peasy", user: user1
+compat6 = dis6.compatibles.build(fitment: fitment1, compatible_fitment: fitment8, backwards: true).save
+dis7 = Discovery.create modifications: true, comment: "This doesn't work backwards", user: user1
+compat7 = dis7.compatibles.build(fitment: fitment9, compatible_fitment: fitment2, backwards: false).save
