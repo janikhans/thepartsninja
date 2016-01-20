@@ -17,7 +17,7 @@ class CompatiblesController < ApplicationController
 
   # GET /compatibles/new
   def new
-    @compatible = current_user.compatibles.build
+    @compatible = Compatible.new
     @fitments = Fitment.all
   end
 
@@ -28,7 +28,7 @@ class CompatiblesController < ApplicationController
   # POST /compatibles
   # POST /compatibles.json
   def create
-    @compatible = current_user.compatibles.build(compatible_params)
+    @compatible = Compatible.new(compatible_params)
 
     respond_to do |format|
       if @compatible.save

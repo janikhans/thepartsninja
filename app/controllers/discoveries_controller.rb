@@ -73,11 +73,14 @@ class DiscoveriesController < ApplicationController
     compat_fitment_part = compat_vehicle.oem_parts.where(product: compat_product).first_or_create(product: compat_product)
     compat_fitment = compat_vehicle.fitments.where(part: compat_fitment_part).first
 
+    #building the compatible that belongs to the discovery
     @discovery = current_user.discoveries.build(discovery_params)
     @compatible = @discovery.compatibles.build
     @compatible.fitment = og_fitment
     @compatible.compatible_fitment = compat_fitment
-    @compatible.backwards = params[:backwards]
+    if params[:backwards] == true ##Hack fix because it will save Nil if notihng is checked - it overwrites the database default: false 
+      @compatible.backwards = params[:backwards]
+    end
 
     respond_to do |format|
       if @discovery.save
