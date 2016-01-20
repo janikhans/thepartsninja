@@ -1,48 +1,44 @@
-
-<h1>Your Search Results For:</h1>
-
 <% if @new_search %>
   <h1>You need to fill in each search box. Try again? </h1>
 <% else %>
-  <%= @vehicle.year %> <%= @vehicle.brand.name %> <%= @vehicle.model %> <i><%= @part %></i> View <%= link_to "vehicle", @vehicle %><br>
+  <br>
 
-<div class="col-md-12">
-  <div class="tabs-container">
-      <ul class="nav nav-tabs">
-          <li class="active"><a data-toggle="tab" href="#tab-1"> Compatible Parts <span class="badge"> <%= @compatible_search_results.count %></span></a></li>
-          <li class=""><a data-toggle="tab" href="#tab-2">Potential Parts <span class="badge">2</span></a></li>
-          <li class=""><a data-toggle="tab" href="#tab-3">OEM Parts <span class="badge"> <%= @oem_search_results.count %></span></a></li>
-      </ul>
-      <div class="tab-content">
-          <div id="tab-1" class="tab-pane active">
-              <div class="panel-body">
-                  <strong>These are compatiple parts to your search.</strong>
-                  <% if @compatible_search_results || @backwards_compatible_search_results %>
-                    <%= render partial: 'compatibles/compatible', collection: @compatible_search_results %>
-                    <%= render partial: 'compatibles/backwards_compatible', collection: @backwards_compatible_search_results %>
+<div class="col-md-10 col-md-offset-1">
+  <div class="search-results">
+    <div class="results-header">
+      <h2>Showing Results for <%= link_to "#{@vehicle.year} #{@vehicle.brand.name} #{@vehicle.model}", @vehicle %> <i><%= @part %></i></h1></h2>
+    </div>
+    <div class="tabs-container">
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#tab-1"> Compatible Parts <span class="label label-warning"> <%= @compatible_search_results.count %></span></a></li>
+            <li class=""><a data-toggle="tab" href="#tab-2">Potential Parts <span class="label label-warning">2</span></a></li>
+            <li class=""><a data-toggle="tab" href="#tab-3">OEM Parts <span class="label label-warning"> <%= @oem_search_results.count %></span></a></li>
+        </ul>
+        <div class="tab-content">
+            <div id="tab-1" class="tab-pane active">
+                <div class="panel-body no-padding">
+                    <% if @compatible_search_results %>
+                      <%= render partial: 'compatibles/compatible', collection: @compatible_search_results %>
+                      <% end %>
+                </div>
+            </div>
+            <div id="tab-2" class="tab-pane">
+                <div class="panel-body no-padding">
+                    <div class="search-box-padding">
+                      <h5 class="text-center">No Potentials Were Found...Yet</h5>
+                      <p class="text-center">You can help solve this problems for others by creating Discoveries and sharing your knowledge with everyone.</p>
+                    </div>
+                </div>
+            </div>
+            <div id="tab-3" class="tab-pane">
+                <div class="panel-body no-padding">
+                    <% if @oem_search_results %>
+                      <%= render partial: 'parts/oem_part', collection: @oem_search_results %>
                     <% end %>
-              </div>
-          </div>
-          <div id="tab-2" class="tab-pane">
-              <div class="panel-body">
-                  <strong>Thesea are Potential Parts - This is calculated with some nifty algorithm magic.</strong>
-
-                  <p>Thousand unknown plants are noticed by me: when I hear the buzz of the little world among the stalks, and grow familiar with the countless indescribable forms of the insects
-                      and flies, then I feel the presence of the Almighty, who formed us in his own image, and the breath </p>
-
-                  <p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend, so absorbed in the exquisite
-                      sense of mere tranquil existence, that I neglect my talents. I should be incapable of drawing a single stroke at the present moment; and yet.</p>
-              </div>
-          </div>
-          <div id="tab-3" class="tab-pane">
-              <div class="panel-body">
-                  <strong>These are OEM parts - just for your information.</strong>
-                  <% if @oem_search_results %>
-                    <%= render partial: 'parts/oem_part', collection: @oem_search_results %>
-                  <% end %>
-              </div>
-          </div>
-      </div>
+                </div>
+            </div>
+        </div>
+    </div>
   </div>
 </div>
 <% end %>

@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_many :parts
   has_many :fitments
   has_many :discoveries
+  has_many :compatibles, through: :discoveries
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

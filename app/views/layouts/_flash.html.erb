@@ -1,10 +1,10 @@
 <!-- Can't click to close notices, alerts work fine though -->
 <% if notice %>
   <div id="notice-wrapper">
-    <p class="notice"><%= notice %><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></p>
+    <p class="notice"><%= notice %><button type="button" class="close" data-dismiss="notice" aria-label="Close"><span aria-hidden="true">&times;</span></button></p>
   </div>
 <% elsif alert %>
-  <div id="notice-wrapper" >
+  <div id="notice-wrapper">
     <p class="alert"><%= alert %><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></p>
   </div>
 <% end %>
