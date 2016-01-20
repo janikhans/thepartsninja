@@ -14,10 +14,10 @@
 ActiveRecord::Schema.define(version: 20151226084132) do
 
   create_table "brands", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       default: "", null: false
     t.string   "website"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "compatibles", force: :cascade do |t|
@@ -71,22 +71,22 @@ ActiveRecord::Schema.define(version: 20151226084132) do
   add_index "parts", ["user_id"], name: "index_parts_on_user_id"
 
   create_table "products", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",        default: "", null: false
     t.text     "description"
     t.integer  "brand_id"
     t.integer  "user_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   add_index "products", ["brand_id"], name: "index_products_on_brand_id"
   add_index "products", ["user_id"], name: "index_products_on_user_id"
 
   create_table "steps", force: :cascade do |t|
-    t.text     "content"
+    t.text     "content",      default: "", null: false
     t.integer  "discovery_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   add_index "steps", ["discovery_id"], name: "index_steps_on_discovery_id"
@@ -102,21 +102,21 @@ ActiveRecord::Schema.define(version: 20151226084132) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "username"
+    t.string   "username",               default: "", null: false
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.integer  "role"
+    t.integer  "role",                   default: 0,  null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
   create_table "vehicles", force: :cascade do |t|
-    t.string   "model"
-    t.integer  "year"
+    t.string   "model",      default: "", null: false
+    t.integer  "year",                    null: false
     t.integer  "brand_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   add_index "vehicles", ["brand_id"], name: "index_vehicles_on_brand_id"

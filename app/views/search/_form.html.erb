@@ -1,0 +1,17 @@
+<%= search_form_for(@q, html: {class: ""}, url: search_path) do |f| %>
+    <div class="row">
+      <div class="col-sm-2  no-column-padding">
+        <%= f.number_field :year_matches, class:"form-control", placeholder: "Year", collection: 1900..Date.today.year+1 %>
+      </div>
+      <div class="col-sm-2  no-column-padding">
+        <%= f.text_field :brand_name_matches, class:"form-control", placeholder: "Make" %>
+      </div>
+      <div class="col-sm-2  no-column-padding">
+        <%= f.text_field :model_matches, class:"form-control", placeholder: "Model" %>
+      </div>
+      <div class="col-sm-4  no-column-padding">
+        <%= text_field(:part, :part_name, class:"form-control", placeholder: "What Part?") %>
+      </div>
+        <%= f.submit("Search", class:"btn btn-default col-sm-2 col-xs-4 col-sm-offset-0 col-xs-offset-4 no-column-padding") %>
+    </div>
+<% end %>
