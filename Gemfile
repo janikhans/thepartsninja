@@ -15,7 +15,6 @@ gem 'font-awesome-rails'
 gem 'devise'
 gem 'jquery-datatables-rails', '~> 3.3.0'
 gem 'cocoon'
-gem 'ransack'
 
 
 group :development, :test do

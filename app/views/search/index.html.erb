@@ -1,14 +1,18 @@
-<% if @new_search %>
-  <h1>You need to fill in each search box. Try again? </h1>
-<% else %>
-  <br>
-
+<div class="wrapper wrapper-content">
 <div class="col-md-10 col-md-offset-1">
   <div class="search-results">
     <div class="results-header">
-      <h2>Showing Results for <%= link_to "#{@vehicle.year} #{@vehicle.brand.name} #{@vehicle.model}", @vehicle %> <i><%= @part %></i></h1></h2>
+      <% if @vehicle %>
+        <h2>Showing Results for <%= link_to "#{@vehicle.year} #{@vehicle.brand.name} #{@vehicle.model}", @vehicle %> <i><%= @part %></i></h1></h2>
+      <% else %>
+        <h2>No Results were found. Search again?</h2>
+      <% end %>
+    <div class="col-md-8 col-md-offset-2 m-b-md">
+      <%= render 'search/form' %>
+    </div>
     </div>
     <div class="tabs-container">
+      <% if @vehicle %>
         <ul class="nav nav-tabs">
             <li class="active"><a data-toggle="tab" href="#tab-1"> Compatible Parts <span class="label label-warning"> <%= @compatible_search_results.count %></span></a></li>
             <li class=""><a data-toggle="tab" href="#tab-2">Potential Parts <span class="label label-warning">2</span></a></li>
@@ -17,9 +21,14 @@
         <div class="tab-content">
             <div id="tab-1" class="tab-pane active">
                 <div class="panel-body no-padding">
-                    <% if @compatible_search_results %>
+                    <% if @compatible_search_results.any? %>
                       <%= render partial: 'compatibles/compatible', collection: @compatible_search_results %>
-                      <% end %>
+                    <% else %>
+                    <div class="search-box-padding">
+                      <h5 class="text-center">No Compatibles Were Found...</h5>
+                      <p class="text-center">Try a different search term other than <strong><%= @part %></strong>. Maybe something shorter?</p>
+                    </div>
+                    <% end %>
                 </div>
             </div>
             <div id="tab-2" class="tab-pane">
@@ -32,13 +41,21 @@
             </div>
             <div id="tab-3" class="tab-pane">
                 <div class="panel-body no-padding">
-                    <% if @oem_search_results %>
+                    <% if @oem_search_results.any? %>
                       <%= render partial: 'parts/oem_part', collection: @oem_search_results %>
+                    <% else %>
+                    <div class="search-box-padding">
+                      <h5 class="text-center">No OEM Parts Were Found...</h5>
+                      <p class="text-center">Try a different search term other than <strong><%= @part %></strong>. Maybe something shorter?</p>
+                    </div>
                     <% end %>
                 </div>
             </div>
         </div>
+      <% else %>
+        Stuff
+      <% end %>
     </div>
   </div>
 </div>
-<% end %>
+</div>

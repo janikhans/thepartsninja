@@ -1,33 +1,35 @@
 class SearchController < ApplicationController
 
   def index
+      make = params[:search][:make].strip
+      year = params[:search][:year]
+      model = params[:search][:model].strip
+      @part = params[:search][:part_name].strip
 
-    if params[:q][:year_matches].blank? || params[:q][:brand_name_matches].blank? || params[:q][:model_matches].blank? || params[:part][:part_name].blank?
-      @new_search = true
-    else
-      @q = Vehicle.ransack(params[:q])
-      @vehicle = @q.result.includes(:brand).first
-      @part = params[:part][:part_name]
+      brand = Brand.where('lower(name) = ?', make.downcase).first
+      @vehicle = Vehicle.where("model like ? AND year = ? AND brand_id = ?", model, year, brand).first
 
-      oem_parts = @vehicle.oem_parts.all
-      compatible_parts = @vehicle.compats
-      @oem_search_results = []
-      @compatible_search_results = []
-      @backwards_compatible_search_results = []
+      if @vehicle
+        oem_parts = @vehicle.oem_parts.all
+        compatible_parts = @vehicle.compats
+        @oem_search_results = []
+        @compatible_search_results = []
+        @backwards_compatible_search_results = []
 
-      oem_parts.each do |p| 
-        if  p.product.name.downcase.include? @part.downcase.strip
-          @oem_search_results << p
+        oem_parts.each do |p| 
+          if  p.product.name.downcase.include? @part.downcase
+            @oem_search_results << p
+          end
         end
-      end
 
-      compatible_parts.each do |p| 
-        if  p.fitment.part.product.name.downcase.include? @part.downcase.strip
-          @compatible_search_results << p
+        compatible_parts.each do |p| 
+          if  p.fitment.part.product.name.downcase.include? @part.downcase
+            @compatible_search_results << p
+          end
         end
+      else
+        @nothing_exists = true
       end
-
-    end
     
   end
 
