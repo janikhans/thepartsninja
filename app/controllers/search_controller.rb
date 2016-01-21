@@ -7,7 +7,7 @@ class SearchController < ApplicationController
       @part = params[:search][:part_name].strip
 
       brand = Brand.where('lower(name) = ?', make.downcase).first
-      @vehicle = Vehicle.where("model like ? AND year = ? AND brand_id = ?", model, year, brand).first
+      @vehicle = Vehicle.where("lower(model) like ? AND year = ? AND brand_id = ?", model.downcase, year, brand).first
 
       if @vehicle
         oem_parts = @vehicle.oem_parts.all

@@ -1,13 +1,13 @@
 <%= simple_form_for :search, url: search_path, method: :get do |f| %>
     <div class="row">
       <div class="col-sm-2  no-column-padding">
-        <%= f.input :year, class:"form-control", placeholder: "Year", collection: 1900..2017, label: false %>
+        <%= f.input :year, class:"form-control", placeholder: "Year...", label: false %>
       </div>
       <div class="col-sm-2  no-column-padding">
-        <%= f.input :make, class:"form-control", placeholder: "Make", label: false %>
+        <%= f.input :make, class:"form-control", placeholder: "Make...", label: false %>
       </div>
       <div class="col-sm-2  no-column-padding">
-        <%= f.input :model, class:"form-control", placeholder: "Model", label: false %>
+        <%= f.input :model, class:"form-control", placeholder: "Model...", label: false %>
       </div>
       <div class="col-sm-4  no-column-padding">
         <%= f.input :part_name, class:"form-control", placeholder: "What Part?", label: false %>
