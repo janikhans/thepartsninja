@@ -14,7 +14,6 @@ class SearchController < ApplicationController
         compatible_parts = @vehicle.compats
         @oem_search_results = []
         @compatible_search_results = []
-        @backwards_compatible_search_results = []
 
         oem_parts.each do |p| 
           if  p.product.name.downcase.include? @part.downcase
@@ -27,6 +26,7 @@ class SearchController < ApplicationController
             @compatible_search_results << p
           end
         end
+
       else
         @nothing_exists = true
       end
