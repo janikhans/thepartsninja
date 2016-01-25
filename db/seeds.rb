@@ -88,3 +88,5 @@ dis6 = Discovery.create modifications: false, comment: "Easy Peasy", user: user1
 compat6 = dis6.compatibles.build(fitment: fitment1, compatible_fitment: fitment8, backwards: true).save
 dis7 = Discovery.create modifications: true, comment: "This doesn't work backwards", user: user1
 compat7 = dis7.compatibles.build(fitment: fitment9, compatible_fitment: fitment2, backwards: false).save
+dis8 = Discovery.create modifications: true, comment: "This should be a backwards fit", user: user1
+compat8 = dis8.compatibles.build(fitment: fitment7, compatible_fitment: fitment4, backwards: true).save

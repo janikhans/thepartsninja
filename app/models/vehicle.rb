@@ -9,6 +9,8 @@ class Vehicle < ActiveRecord::Base
   has_many :backwards_compatibles, through: :fitments
   has_many :potential_compatibles, through: :fitments
 
+  has_many :compatibles, through: :fitments
+
   #Validations - woohoo!
   before_validation :sanitize_model
   validates :model, :brand, presence: true
@@ -27,11 +29,25 @@ class Vehicle < ActiveRecord::Base
     self.brand = Brand.where('lower(name) = ?', name.downcase).first_or_create(name: name)
   end
 
-  #Can this be moved somewhere else?
+  
   def compats
-      known_compatibles | backwards_compatibles | known_not_backwards_compatibles
-  end 
+    compatibles = []
+    b_compatibles = []
 
+    self.backwards_compatibles.each do |b|
+      b.fitment, b.compatible_fitment = b.compatible_fitment, b.fitment
+      b_compatibles << b
+    end
+
+    compatibles << self.known_not_backwards_compatibles
+    compatibles << self.known_compatibles
+    compatibles << b_compatibles
+
+    compatibles.flatten!
+    # compatibles.uniq{ |c| c.discovery_id}
+
+    return compatibles
+  end
 
 private
   #This and the strip_and_upcase_name in brand.rb can be DRY'd up at some point

@@ -13,7 +13,37 @@
 </p>
 
 <p>
-  <strong>It can replace these parts:</strong>
+  <strong>This part is replaceable with these parts:</strong>
+  <table>
+    <thead>
+      <tr>
+        <th>Compatible ID</th>
+        <th>Part Number</th>
+        <th>Part Brand</th>
+        <th>Part Name</th>
+        <th>Vehicle Year</th>
+        <th>Vehicle Make</th>
+        <th>Vehicle Year</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @fitment.known_compatibles.each do |k| %>
+        <tr>
+          <td><%= k.id %></td>
+          <td><%= k.compatible_fitment.part.part_number %></td>
+          <td><%= k.compatible_fitment.part.product.brand.name %></td>
+          <td><%= k.compatible_fitment.part.product.name %> </td>
+          <td><%= k.compatible_fitment.vehicle.year %> </td>
+          <td><%= k.compatible_fitment.vehicle.brand.name %></td>
+          <td><%= k.compatible_fitment.vehicle.model %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</p>
+
+<strong>These Parts Should be backwards compatible:</strong>
   <table>
     <thead>
       <tr>
@@ -27,23 +57,21 @@
     </thead>
 
     <tbody>
-      <% @fitment.knowns.each do |fitment| %>
+      <% @fitment.backwards_compatibles.each do |k| %>
         <tr>
-          <td><%= fitment.part.part_number %></td>
-          <td><%= fitment.part.product.brand.name %></td>
-          <td><%= fitment.part.product.name %> </td>
-          <td><%= fitment.vehicle.year %> </td>
-          <td><%= fitment.vehicle.brand.name %></td>
-          <td><%= fitment.vehicle.model %></td>
+          <td><%= k.fitment.part.part_number %></td>
+          <td><%= k.fitment.part.product.brand.name %></td>
+          <td><%= k.fitment.part.product.name %> </td>
+          <td><%= k.fitment.vehicle.year %> </td>
+          <td><%= k.fitment.vehicle.brand.name %></td>
+          <td><%= k.fitment.vehicle.model %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 </p>
 
-<p>
-  <strong>It can POTENTIALLY replace these parts:</strong>
-  <p>Vote up or down to say if they will or not. </p>
+<strong>These are compatible but not backwards compatible:</strong>
   <table>
     <thead>
       <tr>
@@ -57,19 +85,49 @@
     </thead>
 
     <tbody>
-      <% @fitment.potentials.each do |fitment| %>
+      <% @fitment.known_not_backwards_compatibles.each do |k| %>
         <tr>
-          <td><%= fitment.part.part_number %></td>
-          <td><%= fitment.part.product.brand.name %></td>
-          <td><%= fitment.part.product.name %> </td>
-          <td><%= fitment.vehicle.year %> </td>
-          <td><%= fitment.vehicle.brand.name %></td>
-          <td><%= fitment.vehicle.model %></td>
+          <td><%= k.fitment.part.part_number %></td>
+          <td><%= k.fitment.part.product.brand.name %></td>
+          <td><%= k.fitment.part.product.name %> </td>
+          <td><%= k.fitment.vehicle.year %> </td>
+          <td><%= k.fitment.vehicle.brand.name %></td>
+          <td><%= k.fitment.vehicle.model %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 </p>
+
+<strong>It can replace these parts:</strong>
+  <table>
+    <thead>
+      <tr>
+        <th>Part Number</th>
+        <th>Part Brand</th>
+        <th>Part Name</th>
+        <th>Vehicle Year</th>
+        <th>Vehicle Make</th>
+        <th>Vehicle Year</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @fitment.potential_compatibles.each do |k| %>
+        <tr>
+          <td><%= k.fitment.part.part_number %></td>
+          <td><%= k.fitment.part.product.brand.name %></td>
+          <td><%= k.fitment.part.product.name %> </td>
+          <td><%= k.fitment.vehicle.year %> </td>
+          <td><%= k.fitment.vehicle.brand.name %></td>
+          <td><%= k.fitment.vehicle.model %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</p>
+
+
 
 <p>
   <strong>Discovery:</strong>

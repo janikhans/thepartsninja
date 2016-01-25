@@ -15,7 +15,7 @@
       <% if @vehicle %>
         <ul class="nav nav-tabs">
             <li class="active"><a data-toggle="tab" href="#tab-1"> Compatible Parts <span class="label label-warning"> <%= @compatible_search_results.count %></span></a></li>
-            <li class=""><a data-toggle="tab" href="#tab-2">Potential Parts <span class="label label-warning">2</span></a></li>
+            <li class=""><a data-toggle="tab" href="#tab-2">Potential Parts <span class="label label-warning"><%= @potential_oem_fitments.count %></span></a></li>
             <li class=""><a data-toggle="tab" href="#tab-3">OEM Parts <span class="label label-warning"> <%= @oem_search_results.count %></span></a></li>
         </ul>
         <div class="tab-content">
@@ -35,7 +35,7 @@
                 <div class="panel-body no-padding">
                     <div class="search-box-padding">
                       <h5 class="text-center">No Potentials Were Found...Yet</h5>
-                      <p class="text-center">You can help solve this problems for others by creating Discoveries and sharing your knowledge with everyone.</p>
+                      <p class="text-center"><% @potential_oem_fitments.each do |v| %> <%= v.vehicle.year %> <%= v.vehicle.brand.name %> <%= v.vehicle.model %> <%= v.part.product.name %> <br> <% end %></p>
                     </div>
                 </div>
             </div>

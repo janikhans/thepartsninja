@@ -74,6 +74,10 @@
                       </div>
                     </div>
                   <% end %>
+                  <% @discovery.compatibles.each do |f| %>
+                    <div class="col-md-6 col-sm-6">
+                      Backwards compatible? <%= f.backwards %>
+                  <% end %>
                   <div class="col-md-6 col-sm-6">
                       <div class="discovery-vehicle-title">
                         2007 Yamaha WR250

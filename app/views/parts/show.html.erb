@@ -62,50 +62,37 @@
       </div>
 
             <!-- These are compatible vehicles and the parts that they replace-->
+
+            
       <div class="nj-mat">
         <div data-toggle="collapse" data-target="#compatible_vehicles" class="mat-heading">
           <strong>This part is compatible with these vehicles</strong><i class="float-right fa fa-angle-double-down 2x"></i>
         </div>
         <div id="compatible_vehicles" class="collapse mat-contents table-test">
-        <% if @part.compatible_vehicles.any? %>
-          <table id="part-list" class="table table-striped table-bordered" cellspacing="0" width="100%">
-            <thead>
-                <tr>
-                    <th>Part Name</th>
-                    <th>Brand</th>
-                    <th>Part Number</th>
-                    <th>Year</th>
-                    <th>Make</th>
-                    <th>Model</th>
-                </tr>
-            </thead>
-            <tfoot>
-                <tr>
-                    <th>Part Name</th>
-                    <th>Brand</th>
-                    <th>Part Number</th>
-                    <th>Year</th>
-                    <th>Make</th>
-                    <th>Model</th>
-                </tr>
-            </tfoot>
-            <tbody>
-              <% @part.compatible_vehicles.each do |f|  %>
-                <tr>
-                  <td><%= f.fitment.part.product.name %> </td>
-                  <td><%= f.fitment.part.product.brand.name %> </td>
-                  <td><%= f.fitment.part.part_number %> </td>
-                  <td><%= f.compatible_fitment.vehicle.year %> </td>
-                  <td><%= f.compatible_fitment.vehicle.brand.name %> </td>
-                  <td><%= f.compatible_fitment.vehicle.model %> </td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-          </table>
-        <% else %>
-          This vehicle doesn't have any compattible parts yet, would you like to add one? <%= link_to "Yes!", new_fitment_path  %>
-        <% end %>    
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5>Compatible Parts</h5>
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content no-padding">
+            <% if @compatibles.any?  %>
+              <%= render partial: 'compatibles/compatible', collection: @compatibles %>
+
+            <% else %>
+              <div class="search-box-padding">
+                <h5 class="text-center">Search Compatible Parts</h5>
+                <form class="search-container text-center" action="/search">
+                  <input id="search-box" type="text" class="search-box" name="q" />
+                  <label for="search-box"><span class="glyphicon glyphicon-search search-icon"></span></label>
+                  <input type="submit" id="search-submit" />
+                </form>
+              </div>
+            <% end %>
+            </div>   
         </div>
       </div>
 
@@ -138,7 +125,7 @@
                 </tr>
             </tfoot>
             <tbody>
-              <% @part.potential_vehicles.each do |f|  %>
+              <% @part.potential_compatibles.each do |f|  %>
                 <tr>
                   <td><%= f.fitment.part.product.name %> </td>
                   <td><%= f.fitment.part.product.brand.name %> </td>

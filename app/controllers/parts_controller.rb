@@ -9,6 +9,7 @@ class PartsController < ApplicationController
   end
 
   def show
+    @compatibles = @part.compats
   end
 
   def new

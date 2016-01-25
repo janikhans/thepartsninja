@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>Product ID</th>
       <th>Part</th>
       <th>Vehicle Year</th>
       <th>Vehicle Make</th>
@@ -16,6 +17,7 @@
   <tbody>
     <% @fitments.each do |fitment| %>
       <tr>
+        <td><%= fitment.part.product.id %></td>
         <td><%= fitment.part.part_number %></td>
         <td><%= fitment.vehicle.year %></td>
         <td><%= fitment.vehicle.brand.name %></td>
