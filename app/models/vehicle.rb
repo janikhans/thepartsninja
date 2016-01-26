@@ -1,4 +1,7 @@
 class Vehicle < ActiveRecord::Base
+
+  include CompatiblesFinder
+
   belongs_to :brand
   has_many :fitments
   has_many :oem_parts, through: :fitments, source: :part
@@ -29,25 +32,6 @@ class Vehicle < ActiveRecord::Base
     self.brand = Brand.where('lower(name) = ?', name.downcase).first_or_create(name: name)
   end
 
-  
-  def compats
-    compatibles = []
-    b_compatibles = []
-
-    self.backwards_compatibles.each do |b|
-      b.fitment, b.compatible_fitment = b.compatible_fitment, b.fitment
-      b_compatibles << b
-    end
-
-    compatibles << self.known_not_backwards_compatibles
-    compatibles << self.known_compatibles
-    compatibles << b_compatibles
-
-    compatibles.flatten!
-    # compatibles.uniq{ |c| c.discovery_id}
-
-    return compatibles
-  end
 
 private
   #This and the strip_and_upcase_name in brand.rb can be DRY'd up at some point

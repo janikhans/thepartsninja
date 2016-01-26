@@ -1,4 +1,7 @@
 class Part < ActiveRecord::Base
+
+  include CompatiblesFinder
+  
   belongs_to :product
   belongs_to :user
   has_many :fitments, dependent: :destroy
@@ -11,33 +14,33 @@ class Part < ActiveRecord::Base
   has_many :backwards_compatibles, through: :fitments
   has_many :potential_compatibles, through: :fitments
 
-  def compatible_vehicles
-    vehicles = []
+  def compatible_fitments
+    fitments = []
     self.compats.each do |c|
-      vehicles << c.compatible_fitment.vehicle
+      fitments << c.compatible_fitment
     end
-    vehicles.flatten!
-    return vehicles
+    fitments.flatten!
+    return fitments
   end
 
-  def compats
-    compatibles = []
-    b_compatibles = []
+  # def compats
+  #   compatibles = []
+  #   b_compatibles = []
 
-    self.backwards_compatibles.each do |b|
-      b.fitment, b.compatible_fitment = b.compatible_fitment, b.fitment
-      b_compatibles << b
-    end
+  #   self.backwards_compatibles.each do |b|
+  #     b.fitment, b.compatible_fitment = b.compatible_fitment, b.fitment
+  #     b_compatibles << b
+  #   end
 
-    compatibles << self.known_not_backwards_compatibles
-    compatibles << self.known_compatibles
-    compatibles << b_compatibles
+  #   compatibles << self.known_not_backwards_compatibles
+  #   compatibles << self.known_compatibles
+  #   compatibles << b_compatibles
 
-    compatibles.flatten!
-    # compatibles.uniq{ |c| c.discovery_id}
+  #   compatibles.flatten!
+  #   # compatibles.uniq{ |c| c.discovery_id}
 
-    return compatibles
-  end 
+  #   return compatibles
+  # end 
 
 
   validates :product, presence: true
