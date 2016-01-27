@@ -8,14 +8,18 @@ body {
 }
 
 .hero { 
-  background: image-url('slide_one.jpg') no-repeat center center; 
-  -webkit-background-size: cover; 
-  -moz-background-size: cover; 
-  -o-background-size: cover; 
-  background-size: cover; 
-  padding: 400px 0 600px 0; 
-  height: auto;
-  background-color: #1E1825; 
+  background: image-url('background-gray.jpg'); 
+  // padding: 400px 0 600px 0;
+  background-color: #1E1825;
+  height:100%;
+  width: 100%;
+  -webkit-background-size:cover;
+  -moz-background-size:cover;
+  -o-background-size:cover;
+  background-size:cover;
+  background-position: top left, center center;
+  background-repeat: repeat, no-repeat;
+  z-index: -1; 
   .white {
     color: white;
   }
@@ -24,6 +28,18 @@ body {
   }
   .inner {
     padding: 45px 0px 20px 0px;
+  }
+  .welcome-header {
+    margin-top: 35%;
+    a { color:white;}
+    i:hover {
+        -moz-transform: translate(0px, 4px);
+        -ms-transform: translate(0px, 4px);
+        -o-transform: translate(0px, 4px);
+        -webkit-transform: translate(0px, 4px);
+        transform: translate(0px, 4px);
+        color:$navy;
+    }
   }
 }
 .hero h1 { font-size: 80px; margin: 30px 0 10px; font-weight: 900; color: #fff;}
@@ -251,5 +267,8 @@ $tl: 0.6s; // transition length
     &:hover {
       color: $navy;
     }
+  }
+  .brands-list {
+    margin-bottom: 40px;
   }
 }

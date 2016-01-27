@@ -1,17 +1,32 @@
 <section class="hero" id="intro">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8 col-md-offset-2 text-center inner">
-        <div class="animatedParent">
-          <h1 class="animated fadeInDown">Parts HUB</h1>
-          <p class="animated fadeInUp white">Millions of compatibles at your fingertips</p>
+  <div class="container stuff">
+    <div class="welcome-header">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2 text-center inner">
+          <div class="animatedParent">
+            <h1 class="animated fadeInDown">Parts HUB</h1>
+            <p class="animated fadeInUp white">Millions of compatibles at your fingertips</p>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-md-8 col-md-offset-2 text-center">
-        <%= render 'search/form' %>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2 text-center">
+          <div class="m-lg">
+            <%= render 'search/form' %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="read-more text-center">
+          <a href="#about"><h3>LEARN MORE</h3><i class="fa fa-angle-double-down fa-5x"></i></a>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- Quick Hack -->
+<style>
+  html, body { height:100%;}
+  footer { position: relative !important;}
+</style>
