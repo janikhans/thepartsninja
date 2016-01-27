@@ -1,14 +1,83 @@
-<p id="notice"><%= notice %></p>
+<div class="wrapper wrapper-content">
+  <div class="row m-b-lg m-t-lg  animated fadeInDown">
+    <div class="col-md-5">
+        <div class="">
+          <%= image_tag("missing-image.png", class:"img-responsive") %>
+        </div>  
+    </div>
+      <div class="col-md-7">
+      <div class="">
+            <table class="table small m-b-xs">
+              <tbody>
+                <tr>
+                    <td><h3><strong>Brand:</strong> <%= @brand.name %> </h3></td>
+                    <td><h3><strong>Website:</strong> <%= @brand.website %></h3></td>
+                </tr>
+                <% if current_user.try(:admin?) %>
+                <tr>
+                    <td><h3><strong>Edit:</strong> <%= link_to 'Edit', edit_brand_path(@brand) %></h3></td>
+                    <td><h3><strong>Delete:</strong> <%= link_to 'Delete', @brand, method: :delete, data: {confirm: "Are you sure"} %></h3></td>
+                </tr>
+                <% end %>
+                <tr><td></td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+              <h4>Description</h4>
+              <small>
+                  Acerbis Italia SpA manufactures and markets thermoplastic components, off-road clothing, and accessories. The company offers off-road gear, helmets, gloves, boots, protection products, bags, under gear, waterproof products, casual wear, and sportswear products; hand guards, head and tail lights, seats, fuel tanks, race materials, pants, and merchandising products. Its plastic products are used in automotive, earth-moving and agricultural machines, industrial design, and furniture sectors. It also provides football clothing and accessories. The company serves the original equipment manufacturers. Acerbis Italia SpA has a strategic alliance with Scott USA. The company was founded in 1973 and is based in Albino, Italy.
+              </small>
+          </div>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-lg-12  animated fadeInRight">
+      <% if @brand.products.any? %>  
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5><%= @brand.name %> manufactures these products</h5>
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content">
+              <div class="row">
+                <% @brand.products.each do |p|%>
+                  <div class="col-md-3 col-xs-6 oem-vehicle">
+                   <%= link_to "#{p.name}", p  %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+        </div>
+    <% end %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @brand.name %>
-</p>
+    <% if @brand.vehicles.any? %>  
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5><%= @brand.name %> manufactures these vehicles</h5>
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content">
+              <div class="row">
+                <% @brand.vehicles.each do |v|%>
+                  <div class="col-md-3 col-xs-6 oem-vehicle">
+                   <%= link_to "#{v.year} #{v.model}", v  %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+        </div>
+    <% end %>
 
-<p>
-  <strong>Website:</strong>
-  <%= @brand.website %>
-</p>
+    </div>
+  </div>
+</div>
 
-<%= link_to 'Edit', edit_brand_path(@brand) %> |
-<%= link_to 'Back', brands_path %>

@@ -39,7 +39,7 @@
       <div class="col-lg-12  animated fadeInRight">  
         <div class="ibox">
             <div class="ibox-title">
-                <h5>This part was designed for these models</h5>
+                <h5>The <%= @part.product.brand.name %> <%= @part.product.name %> was designed for these models</h5>
                 <div class="ibox-tools">
                     <a class="collapse-link">
                         <i class="fa fa-chevron-up"></i>
@@ -71,7 +71,7 @@
 
         <div class="ibox">
             <div class="ibox-title">
-                <h5>This part can be replaced with these parts</h5>
+                <h5>The <%= @part.product.brand.name %> <%= @part.product.name %> can be replaced with these parts</h5>
                 <div class="ibox-tools">
                     <a class="collapse-link">
                         <i class="fa fa-chevron-up"></i>
@@ -97,7 +97,7 @@
 
       <div class="ibox">
           <div class="ibox-title">
-            <h5>Parts that have the potential of fitting</h5>
+            <h5>The <%= @part.product.brand.name %> <%= @part.product.name %> can potentially be replaced with these parts</h5>
               <div class="ibox-tools">
                 <a class="collapse-link">
                   <i class="fa fa-chevron-up"></i>
