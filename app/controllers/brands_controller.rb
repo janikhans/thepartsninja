@@ -16,7 +16,7 @@ class BrandsController < ApplicationController
   end
 
   def index
-    @brands = Brand.order(:name)
+    @brands = Brand.order("name ASC").group_by{|u| u.name[0]}
   end
 
   def show
