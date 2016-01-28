@@ -29,3 +29,14 @@
     clear: both;
   }
 }
+
+.search-form {
+  input {
+    background: transparent;
+    color: white;
+    border-radius: 5px;
+  }
+  .btn {
+    &:hover { background: $navy; color:white; border: 1px solid $navy;}
+  }
+}

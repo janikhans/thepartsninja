@@ -30,7 +30,7 @@ body {
     padding: 45px 0px 20px 0px;
   }
   .welcome-header {
-    margin-top: 35%;
+    margin-top: 25%;
     a { color:white;}
     i:hover {
         -moz-transform: translate(0px, 4px);
@@ -228,8 +228,8 @@ $tl: 0.6s; // transition length
 }
 
 .no-column-padding {
-  padding-left: 0;
-  padding-right: 0;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .random-icon-fix {
