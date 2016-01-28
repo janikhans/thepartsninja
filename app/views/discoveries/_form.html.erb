@@ -5,28 +5,23 @@
           <h3>Tell us about the original part</h3>
           <div class="form-inline">
               <div class="form-group">
-                <%= label(:og_part, "Who's the manufacturer?") %>
-                <%= text_field(:og_part, :brand, placeholder: ' Brand', class:"form-control", required: true) %>
+                <%= f.input :oem_part_brand, placeholder: ' Brand', class:"form-control" %>
               </div>
               <div class="form-group">
-              <%= label(:og_part, "What's the part?") %>
-                <%= text_field(:og_part, :name, placeholder: ' Part Name', class:"form-control", required: true ) %>
+                <%= f.input :oem_part_name, placeholder: ' Brand', class:"form-control" %>
               </div>
           </div>
           <br>
           <h3>Did it come from another Vehicle?</h3>
           <div class="form-inline">
             <div class="form-group">
-              <%= label(:og_part, "Who's the manufacturer?") %>
-              <%= text_field(:og_vehicle, :brand, placeholder: ' Brand', class:"form-control") %>
+              <%= f.input :oem_vehicle_brand, placeholder: ' Brand', class:"form-control" %>
             </div>
             <div class="form-group">
-              <%= label(:og_part, "What year is this vehicle?") %>
-              <%= number_field(:og_vehicle, :year, class:"form-control" ) %>
+              <%= f.input :oem_vehicle_year, placeholder: ' Year', class:"form-control", as: :integer %>
             </div>
             <div class="form-group">
-              <%= label(:og_part, "What's the model of this vehicle?") %>
-              <%= text_field(:og_vehicle, :model, placeholder: ' Model', class:"form-control") %>
+              <%= f.input :oem_vehicle_model, placeholder: ' Model', class:"form-control" %>
             </div>
           </div>
         </section>
@@ -35,39 +30,33 @@
           <h3>Sweet! Now tell us what it fits</h3>
           <div class="form-inline">
             <div class="form-group">
-              <%= label(:compat_vehicle, "Who's the manufacturer?") %>
-              <%= text_field(:compat_vehicle, :brand, placeholder: ' Brand', class:"form-control", required: true) %>
+              <%= f.input :compatible_vehicle_brand, placeholder: ' Brand', class:"form-control", required: true %>
             </div>
             <div class="form-group">
-              <%= label(:compat_vehicle, "What year is this vehicle?") %>
-              <%= number_field(:compat_vehicle, :year, class:"form-control", required: true ) %>
+              <%= f.input :compatible_vehicle_year, placeholder: ' Year', class:"form-control", required: true, as: :integer, wrapper_html: { id: 'password' } %>
             </div>
             <div class="form-group">
-              <%= label(:compat_vehicle, "What's the model of this vehicle?") %>
-              <%= text_field(:compat_vehicle, :model, placeholder: ' Model', class:"form-control", required: true) %>
+              <%= f.input :compatible_vehicle_model, placeholder: ' Model', class:"form-control", required: true %>
             </div>
           </div>
           <br>
           <h3>Just to make sure, what part is being replaced?</h3>
           <div class="form-inline">
             <div class="form-group">
-              <%= label(:compat_part, "Who's the manufacturer?") %>
-              <%= text_field(:compat_part, :brand, placeholder: ' Brand', class:"form-control", required: true) %>
+              <%= f.input :compatible_part_brand, placeholder: ' Brand', class:"form-control", required: true %>
             </div>
             <div class="form-group">
-              <%= label(:compat_part, "What's the part?") %>
-              <%= text_field(:compat_part, :name, placeholder: ' Part Name', class:"form-control", required: true ) %>
+              <%= f.input :compatible_part_name, placeholder: ' Name', class:"form-control", required: true %>
             </div>
           </div>
           <div class="form-group">
-              <%= check_box_tag(:backwards) %>
-              <%= label_tag(:backwards, "Are these backwards compatible?") %>
+            <%= f.input :backwards, as: :radio_buttons %>
             </div>
         </section>
         <h3>Additional</h3>
         <section>
           <%= f.input :comment, label:"Any comments to add? Extra parts? etc" %>
-          <%= f.input :modifications, label: "Are any modifications required?" %>
+          <%= f.input :modifications, label: "Are any modifications required?", as: :radio_buttons %>
           <div id="steps">
             <h3>Tell us about those modifications. Break them apart into steps.</h3>
             <%= f.simple_fields_for :steps do |step| %>

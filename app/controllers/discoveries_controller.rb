@@ -31,9 +31,9 @@ class DiscoveriesController < ApplicationController
   def create
 
     #the params for the OEM (og foo!) vehicle
-    og_brand_name = params[:og_vehicle][:brand]
-    og_model = params[:og_vehicle][:model]
-    og_year = params[:og_vehicle][:year]
+    og_brand_name = params[:discovery][:oem_vehicle_brand]
+    og_model = params[:discovery][:oem_vehicle_model]
+    og_year = params[:discovery][:oem_vehicle_year]
 
     #This is done in case a part does not comes from a vehicle - ie Radio Shack electric motor
     if (og_brand_name.blank? || og_model.blank? || og_year.blank?)
@@ -47,22 +47,22 @@ class DiscoveriesController < ApplicationController
     end
     
     #Here we are finding the base part. Take params - then find or create the brand - then find or create the product belonging to this brand
-    og_part_brand_name = params[:og_part][:brand].strip
+    og_part_brand_name = params[:discovery][:oem_part_brand].strip
     og_part_brand = Brand.where('lower(name) = ?', og_part_brand_name.downcase).first_or_create(name: og_part_brand_name)
-    og_part_name = params[:og_part][:name].strip
+    og_part_name = params[:discovery][:oem_part_name].strip
     og_product = Product.where(brand: og_part_brand).where('lower(name) = ?', og_part_name.downcase).first_or_create(brand: og_part_brand, name: og_part_name)
 
     #Here we are finding the vehicle that the above part is compatible with. Again, we are taking the params, sanitizing and then finding or creating the brand, then the vehicle find or create
-    compat_brand_name = params[:compat_vehicle][:brand].strip
+    compat_brand_name = params[:discovery][:compatible_vehicle_brand].strip
     compat_brand = Brand.where('lower(name) = ?', compat_brand_name.downcase).first_or_create(name: compat_brand_name)
-    compat_model = params[:compat_vehicle][:model].strip
-    compat_year = params[:compat_vehicle][:year]
+    compat_model = params[:discovery][:compatible_vehicle_model].strip
+    compat_year = params[:discovery][:compatible_vehicle_year]
     compat_vehicle = Vehicle.where(brand: compat_brand).where(year: compat_year).where('lower(model) = ?', compat_model.downcase).first_or_create(brand: compat_brand, year: compat_year, model: compat_model)
    
     #Now we are creating the prouduct and part. Taking/saniziting params - finding or creating brand - taking product name param and sanitizing - creating or finding the product with the above params
-    compat_part_brand_name = params[:compat_part][:brand].strip
+    compat_part_brand_name = params[:discovery][:compatible_part_brand].strip
     compat_part_brand = Brand.where('lower(name) = ?', compat_part_brand_name.downcase).first_or_create(name: compat_part_brand_name)
-    compat_part_name = params[:compat_part][:name].strip
+    compat_part_name = params[:discovery][:compatible_part_name].strip
     compat_product = Product.where(brand: compat_part_brand).where('lower(name) = ?', compat_part_name.downcase).first_or_create(brand: compat_part_brand, name: compat_part_name) 
 
     #first step is finding the fitment between the original vehicle and original part - then making sure it is selected
@@ -78,9 +78,7 @@ class DiscoveriesController < ApplicationController
     @compatible = @discovery.compatibles.build
     @compatible.fitment = og_fitment
     @compatible.compatible_fitment = compat_fitment
-    if params[:backwards] == true ##Hack fix because it will save Nil if notihng is checked - it overwrites the database default: false 
-      @compatible.backwards = params[:backwards]
-    end
+    @compatible.backwards = params[:discovery][:backwards]
 
     respond_to do |format|
       if @discovery.save
@@ -125,6 +123,6 @@ class DiscoveriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def discovery_params
-      params.require(:discovery).permit(:user_id, :comment, :modifications, compatibles_attributes: [:id, :fitment_id, :compatible_fitment_id, :backwards, :_destroy], steps_attributes: [:id, :content, :_destroy])
+      params.require(:discovery).permit(:user_id, :comment, :modifications, :oem_part_brand, :oem_part_name, :oem_vehicle_brand, :oem_vehicle_year, :oem_vehicle_model, :compatible_vehicle_brand, :compatible_vehicle_year, :compatible_vehicle_model, :compatible_part_name, :compatible_part_brand, :backwards, compatibles_attributes: [:id, :fitment_id, :compatible_fitment_id, :backwards, :_destroy], steps_attributes: [:id, :content, :_destroy] )
     end
 end
