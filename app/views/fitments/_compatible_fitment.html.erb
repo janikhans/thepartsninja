@@ -1,0 +1,18 @@
+<div id="id_<%= compatible_fitment.id %>" class="vote-item">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="vote-actions">
+                    <i class="fa fa-random fa-rotate-270"> </i>
+                <div>4</div>
+                    <i class="fa fa-random fa-rotate-90 random-icon-fix"> </i>
+            </div>
+            <div class="vote-title">
+                <%= compatible_fitment.vehicle.year %> <%= compatible_fitment.vehicle.brand.name %> <%= compatible_fitment.vehicle.model%> <%= compatible_fitment.part.product.name %>
+            </div>
+            <div class="vote-info">
+                <div class="col-md-6"><i class="fa fa-comments-o"></i> Why: THIS PART is known to fit THIS PART</div>
+                <div class="col-md-6"><i class="fa fa-gears"></i><%= link_to " View Part", compatible_fitment.part  %></div> 
+            </div>
+        </div>
+    </div>
+</div>

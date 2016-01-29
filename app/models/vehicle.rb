@@ -32,7 +32,6 @@ class Vehicle < ActiveRecord::Base
     self.brand = Brand.where('lower(name) = ?', name.downcase).first_or_create(name: name)
   end
 
-
 private
   #This and the strip_and_upcase_name in brand.rb can be DRY'd up at some point
     def sanitize_model
