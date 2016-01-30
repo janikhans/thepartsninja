@@ -28,6 +28,8 @@ wr250 = Vehicle.create model: "WR250", year: 2009, brand_name: "Yamaha"
 rmz450 = Vehicle.create model: "RMZ450", year: 2008, brand_name: "Suzuki"
 tm250 = Vehicle.create model: "250MX", year: 2011, brand_name: "TM Racing"
 yz450f = Vehicle.create model: "YZ450F", year: 2006, brand_name: "Yamaha"
+yz25005 = Vehicle.create model: "YZ250", year: 2005, brand_name: "Yamaha"
+yz450f11 = Vehicle.create model: "YZ450F", year: 2011, brand_name: "Yamaha"
 
 front_wheel = Product.create name: "Front Wheel", description: "Complete front wheel assembly. Includes the hubs, spokes and bearings", brand_name: "Yamaha"
 rekluse = Product.create name: "Core3.0", description: "Autoclutch that nearly gets rid of all possibility of stalling", brand_name: "Rekluse"
@@ -63,6 +65,8 @@ fitment7 = part7.fitments.build(vehicle: yz250f).save
 fitment8 = part8.fitments.build(vehicle: wr250).save
 fitment9 = part9.fitments.build(vehicle: rmz450).save
 fitment10 = part1.fitments.build(vehicle: yz450f).save
+fitment11 = part4.fitments.build(vehicle: yz25005).save
+fitment12 = part7.fitments.build(vehicle: yz450f11).save
 
 fitment1 = Fitment.first
 fitment2 = Fitment.find_by(id: 2)
@@ -73,6 +77,9 @@ fitment6 = Fitment.find_by(id: 6)
 fitment7 = Fitment.find_by(id: 7)
 fitment8 = Fitment.find_by(id: 8)
 fitment9 = Fitment.find_by(id: 9)
+fitment10 = Fitment.find_by(id: 10)
+fitment11 = Fitment.find_by(id: 11)
+fitment12 = Fitment.find_by(id: 12)
 
 dis1 = Discovery.create modifications: true, comment: "You'll need the 2008 Wheel Spacers", user: user1
 compat1 = dis1.compatibles.build(fitment: fitment2, compatible_fitment: fitment3, backwards: false).save
@@ -90,3 +97,7 @@ dis7 = Discovery.create modifications: true, comment: "This doesn't work backwar
 compat7 = dis7.compatibles.build(fitment: fitment9, compatible_fitment: fitment2, backwards: false).save
 dis8 = Discovery.create modifications: true, comment: "This should be a backwards fit", user: user1
 compat8 = dis8.compatibles.build(fitment: fitment7, compatible_fitment: fitment4, backwards: true).save
+dis9 = Discovery.create modifications: false, comment: "This is a third level test", user: user1
+compat9 = dis9.compatibles.build(fitment: fitment12, compatible_fitment: fitment6, backwards: true).save
+dis10 = Discovery.create modifications: false, comment: "This is another third level test", user: user1
+compat10 = dis10.compatibles.build(fitment: fitment10, compatible_fitment: fitment3, backwards: true).save

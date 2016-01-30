@@ -22,6 +22,7 @@ module CompatiblesFinder
     compatibles.flatten!
     # compatibles.uniq{ |c| c.discovery_id}
 
+    self.reload #<---- This SOB! So much headache...
     return compatibles
   end
 
