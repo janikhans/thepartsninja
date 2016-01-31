@@ -5,10 +5,10 @@
           <h3>Tell us about the original part</h3>
           <div class="form-inline">
               <div class="form-group">
-                <%= f.input :oem_part_brand, placeholder: ' Brand', class:"form-control" %>
+                <%= f.input :oem_part_brand, placeholder: ' Brand', class:"form-control", required: true %>
               </div>
               <div class="form-group">
-                <%= f.input :oem_part_name, placeholder: ' Brand', class:"form-control" %>
+                <%= f.input :oem_part_name, placeholder: ' Brand', class:"form-control", required: true %>
               </div>
           </div>
           <br>
@@ -33,7 +33,7 @@
               <%= f.input :compatible_vehicle_brand, placeholder: ' Brand', class:"form-control", required: true %>
             </div>
             <div class="form-group">
-              <%= f.input :compatible_vehicle_year, placeholder: ' Year', class:"form-control", required: true, as: :integer, wrapper_html: { id: 'password' } %>
+              <%= f.input :compatible_vehicle_year, placeholder: ' Year', class:"form-control", required: true, as: :integer %>
             </div>
             <div class="form-group">
               <%= f.input :compatible_vehicle_model, placeholder: ' Model', class:"form-control", required: true %>
