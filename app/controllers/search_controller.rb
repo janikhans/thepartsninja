@@ -14,8 +14,7 @@ class SearchController < ApplicationController
       # Doing this in case a vehicle isn't found in the database
       if @vehicle
         #Setting up the various variables that we'll be using.
-        vehicle_fitments = @vehicle.fitments  
-        oem_parts = @vehicle.oem_parts.all
+        vehicle_fitments = @vehicle.fitments
         compatible_compatibles = @vehicle.compats
         @oem_search_results = []
         @compatible_search_results = []
