@@ -14,6 +14,7 @@ class FitmentsController < ApplicationController
   # GET /fitments/1.json
   def show
     @compats = @fitment.compats
+    @potentials = @fitment.find_potentials
   end
 
   # GET /fitments/new

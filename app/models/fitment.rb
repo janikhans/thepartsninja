@@ -41,7 +41,7 @@ class Fitment < ActiveRecord::Base
   #   return compatibles
   # end
 
-  def other_oem_fitments
+  def other_oem_fitments # Finds same level fitments from parts
     oem_fits = []
     oem_part = self.part
 
@@ -64,103 +64,51 @@ class Fitment < ActiveRecord::Base
     self.other_oem_fitments | self.compatible_fitments
   end
 
-  def first_level_fitments #Finds all fitments for the oem_fitments from self and it self
-    potentials = []
-    same_level_fits = self.other_oem_fitments
-    same_level_fits.each do |s|
-      potentials << s.next_level_fitments
+  def next_level (level)
+    previous_level = level
+    compats = []
+    oem = []
+    total = []
+
+    previous_level.each do |p|
+      compats << p.compatible_fitments
+    end
+    compats.flatten!
+
+    compats.each do |o|
+      oem << o.other_oem_fitments
     end
 
+    total << oem << compats
+    total.flatten!
+    return total
+  end
+
+  def find_potentials  
+    oem_fits = self.other_oem_fitments
+
+    potentials = []
+
+    ## Top Level represents the level on which the fitment that is being searched is on. This level will include all other fitments that the part belongs too. '06 yz250 front wheel == 06 yz450f front wheel
+    top_level = []
+    top_level << self << oem_fits
+    top_level.flatten!
+
+    ## Second level represents the immediate compatibilities found to the searched fitment
+    second_level = next_level(top_level)
+    ## Third level is the first level of Potentials to the searched fitment. Basically we're just looping this step over and over. Then pushing the unique ids into the potentials array. 
+    third_level = next_level(second_level)
+    third_level.reject! { |f| top_level.include?(f) || second_level.include?(f) }
+    potentials << third_level.uniq
+
+    fourth_level = next_level(third_level)
+
+    fourth_level.reject! { |f| top_level.include?(f) || second_level.include?(f) || third_level.include?(f) }
+    potentials << fourth_level.uniq
+
+    potentials.flatten!
     return potentials
   end
-
-  def next_level_fitments ## Finds all compatible fitments or their OEM shared fitments for the next level
-    oem_child_fits = []
-    child_fits = self.compatible_fitments
-    child_fits.each do |c|
-      oem_child_fits << c.other_oem_fitments
-    end
-    total_fits = child_fits | oem_child_fits
-    total_fits.flatten!
-    return total_fits
-  end
-
-  def next_level 
-    level_1 = self.next_level_fitments
-    level_2 = []
-    level_1.each do |l|
-     level_2 << l.next_level_fitments
-    end
-    level_2.flatten!
-    level_2.reject! { |f| f == self }
-    return level_2
-  end
-
-  def potential_search
-    level_1_compats = self.level_1
-
-    level_2_compats = self.next_level
-    potentials = []
-    return level_2_compats
-  end
-
-  # def potentials
-  #   oem_fits = self.other_oem_fitments
-  #   compatible_fits = self.compatible_fitments
-  #   known_fits = oem_fits | compatible_fits
-
-  #   potential_fits = []
-
-  #   lvl_1 = []
-  #   lvl_1 << self << oem_fits
-  #   lvl_1.flatten!
-
-  #   lvl_2_compats = []
-  #   lvl_2_oem = []
-
-  #   lvl_1.each do |o|
-  #     lvl_2_compats << o.compatible_fitments
-  #   end
-  #   lvl_2_compats.flatten!
-
-  #   lvl_2_compats.each do |o|
-  #     lvl_2_oem << o.other_oem_fitments
-  #   end
-
-  #   lvl_2_total = lvl_2_oem | lvl_2_compats
-  #   lvl_2_total.flatten!
-
-  #   lvl_3 = []
-  #   lvl_3_oem = []
-  #   lvl_3_compats = []
-  #   lvl_2_total.each do |o|
-  #     lvl_3_compats << o.compatible_fitments
-  #   end
-  #   lvl_3_compats.flatten!
-
-  #   lvl_3_compats.each do |o|
-  #     lvl_3_oem << o.other_oem_fitments
-  #   end
-
-  #   lvl_3_total = lvl_3_compats | lvl_3_oem
-  #   lvl_3_total.flatten!
-  #   lvl_3_total.reject! { |f| f == self}
-
-  #   return lvl_3_total
-  # end
-
-
-  def potential_fitments
-    comp_fits = []
-    child_fits = []
-    parent_fitments = self.compatible_fitments
-    parent_fitments.each do |c|
-      child_fits << c.compatible_fitments
-    end
-    child_fits.flatten!
-    child_fits.reject! { |p| parent_fitments.include?(p) || p == self }
-    return child_fits
-  end      
 
   #Writing out how to find all potentials
   # def potentials(level)

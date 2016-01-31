@@ -110,8 +110,8 @@
               </div>
           </div>
           <div class="ibox-content no-padding">
-            <% if @fitment.potential_fitments.any? %>
-              <%= render partial: 'fitments/potential_fitment', collection: @fitment.potential_fitments %>
+            <% if @potentials.any? %>
+              <%= render partial: 'fitments/potential_fitment', collection: @potentials %>
             <% else %>
               <div class="search-box-padding">
                 <h5 class="text-center">Search Potential Parts</h5>
