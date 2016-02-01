@@ -52,7 +52,7 @@ class Fitment < ActiveRecord::Base
     return oem_fits
   end
 
-  def compatible_fitments
+  def compatible_fitments #Finds just the compatible fitments to the fitment being searched
     comp_fits = []
     self.compats.each do |c|
       comp_fits << c.compatible_fitment
@@ -60,11 +60,7 @@ class Fitment < ActiveRecord::Base
     return comp_fits
   end
 
-  def oem_and_compatible_fitments
-    self.other_oem_fitments | self.compatible_fitments
-  end
-
-  def next_level (level)
+  def next_level (level) # Finds all fitments from the next level down, including the other oem fitments related to each compatible fitment.
     previous_level = level
     compats = []
     oem = []
