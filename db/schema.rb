@@ -21,17 +21,17 @@ ActiveRecord::Schema.define(version: 20151226084132) do
   end
 
   create_table "compatibles", force: :cascade do |t|
-    t.integer  "fitment_id"
-    t.integer  "compatible_fitment_id"
+    t.integer  "part_id"
+    t.integer  "compatible_part_id"
     t.integer  "discovery_id"
-    t.boolean  "backwards",             default: false, null: false
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.boolean  "backwards",          default: false, null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
-  add_index "compatibles", ["compatible_fitment_id"], name: "index_compatibles_on_compatible_fitment_id"
+  add_index "compatibles", ["compatible_part_id"], name: "index_compatibles_on_compatible_part_id"
   add_index "compatibles", ["discovery_id"], name: "index_compatibles_on_discovery_id"
-  add_index "compatibles", ["fitment_id"], name: "index_compatibles_on_fitment_id"
+  add_index "compatibles", ["part_id"], name: "index_compatibles_on_part_id"
 
   create_table "discoveries", force: :cascade do |t|
     t.integer  "user_id"

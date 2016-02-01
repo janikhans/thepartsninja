@@ -72,8 +72,9 @@
               </div>
           </div>
       </div>
-      <div class="col-lg-8  animated fadeInRight">  
-        <div class="ibox">
+      <div class="col-lg-8  animated fadeInRight"> 
+
+      <div class="ibox">
             <div class="ibox-title">
                 <h5>Compatible Parts</h5>
                 <div class="ibox-tools">
@@ -83,10 +84,6 @@
                 </div>
             </div>
             <div class="ibox-content no-padding">
-            <% if @compatibles.any?  %>
-              <%= render partial: 'compatibles/compatible', collection: @compatibles %>
-
-            <% else %>
               <div class="search-box-padding">
                 <h5 class="text-center">Search Compatible Parts</h5>
                 <form class="search-container text-center" action="/search">
@@ -95,7 +92,6 @@
                   <input type="submit" id="search-submit" />
                 </form>
               </div>
-            <% end %>
             </div>
         </div>
 
@@ -109,9 +105,6 @@
                 </div>
             </div>
             <div class="ibox-content no-padding">
-            <% if @potential_compatibles.any? %>
-              <%= render partial: 'compatibles/potential_compatible', collection: @potential_compatibles %>
-            <% else %>
               <div class="search-box-padding">
                 <h5 class="text-center">Search Potential Parts</h5>
                 <form class="search-container text-center" action="/search">
@@ -120,7 +113,6 @@
                   <input type="submit" id="search-submit" />
                 </form>
               </div>
-            <% end %>
           </div>
       </div>
 

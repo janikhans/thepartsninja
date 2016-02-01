@@ -15,8 +15,8 @@
   <tbody>
     <% @compatibles.each do |compatible| %>
       <tr>
-        <td><%= compatible.fitment_id %></td>
-        <td><%= compatible.compatible_fitment_id %></td>
+        <td><%= compatible.part_id %></td>
+        <td><%= compatible.compatible_part_id %></td>
         <td><%= compatible.discovery_id %></td>
         <td><%= link_to 'Show', compatible %></td>
         <td><%= link_to 'Edit', edit_compatible_path(compatible) %></td>

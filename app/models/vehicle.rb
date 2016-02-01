@@ -6,14 +6,6 @@ class Vehicle < ActiveRecord::Base
   has_many :fitments
   has_many :oem_parts, through: :fitments, source: :part
 
-  #These are for the compatibles parts - sure would be nice to clean this up - maybe
-  has_many :known_compatibles, through: :fitments
-  has_many :known_not_backwards_compatibles, through: :fitments
-  has_many :backwards_compatibles, through: :fitments
-  has_many :potential_compatibles, through: :fitments
-
-  has_many :compatibles, through: :fitments
-
   #Validations - woohoo!
   before_validation :sanitize_model
   validates :model, :brand, presence: true

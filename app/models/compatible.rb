@@ -1,6 +1,6 @@
 class Compatible < ActiveRecord::Base
-  belongs_to :fitment
-  belongs_to :compatible_fitment, class_name: "Fitment"
+  belongs_to :part
+  belongs_to :compatible_part, class_name: "Part"
   belongs_to :discovery
 
 end

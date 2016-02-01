@@ -9,10 +9,10 @@ class VehiclesController < ApplicationController
   end
 
   def show
-    @compatibles = @vehicle.compats
-    @known_not_backwards_compatibles = @vehicle.known_not_backwards_compatibles
+    # @compatibles = @vehicle.compats
+    # @known_not_backwards_compatibles = @vehicle.known_not_backwards_compatibles
     @oem_parts = @vehicle.oem_parts
-    @potential_compatibles = @vehicle.potential_compatibles.all
+    # @potential_compatibles = @vehicle.potential_compatibles.all
   end
 
   def new

@@ -7,12 +7,12 @@
               </div>
               <div class="ibox-content">
               <div class="margin-left-45">
-                <% @discovery.fitments.each do |f| %>
+                <% @discovery.parts.each do |p| %>
                   <h2 >
-                      <%= f.part.product.brand.name %> <%= f.part.product.name %><br/>
+                      <%= p.product.brand.name %> <%= p.product.name %><br/>
                   </h2>
                   <p>
-                     <strong>Part Number: </strong><%= link_to "#{f.part.part_number}", f.part %> <strong>From: </strong> <%= f.vehicle.year %> <%= f.vehicle.brand.name %> <%= f.vehicle.model %> <%= link_to "Vehicle", f.vehicle %></p>
+                     <strong>Part Number: </strong><%= link_to "#{p.part_number}", p %> <strong>From: </strong> <% p.fitments.each do |f| %> <%= f.vehicle.year %> <%= f.vehicle.brand.name %> <%= f.vehicle.model %> <%= link_to "Vehicle", f.vehicle %> <% end %></p>
                   <p>
                 <% end %>
               </div>
@@ -25,13 +25,13 @@
               </div>
               <div class="ibox-content">
                 <div class="row">
-                  <% @discovery.compatible_fitments.each do |f| %>
+                  <% @discovery.compatible_parts.each do |f| %>
                     <div class="col-md-6 col-sm-6">
                       <div class="discovery-vehicle-title">
-                        <%= f.vehicle.year %> <%= f.vehicle.brand.name %> <%= f.vehicle.model%>
+                        <%= f.product.name%> <%= f.product.brand.name %>
                       </div>
                       <div class="sub-heading">
-                          <i class="fa fa-gears"></i><strong> Replaces:</strong> <%= f.part.product.name %>
+                          <i class="fa fa-gears"></i><strong> Replaces:</strong> <%= f.product.name %>
                       </div>
                     </div>
                   <% end %>

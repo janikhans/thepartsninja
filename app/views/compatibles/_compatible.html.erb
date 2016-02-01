@@ -11,10 +11,11 @@
                 </a>
             </div>
             <div class="vote-title">
-                <%= compatible.compatible_fitment.vehicle.year %> <%= compatible.compatible_fitment.vehicle.brand.name %> <%= compatible.compatible_fitment.vehicle.model%> <%= compatible.compatible_fitment.part.product.name %>
+                <%= compatible.compatible_part.product.brand.name %> <%= compatible.compatible_part.product.name %> 
             </div>
             <div class="vote-info">
-                <div class="col-md-4"><i class="fa fa-comments-o"></i> Replaces: <%= compatible.fitment.part.product.name %></div>
+            Designed For: <% compatible.compatible_part.fitments.each do |f| %> <%= f.vehicle.year %> <%= f.vehicle.brand.name %> <%= f.vehicle.model %> <% end %>
+                <div class="col-md-4"><i class="fa fa-comments-o"></i> Replaces: <%= compatible.part.product.name %></div>
                 <div class="col-md-4"><i class="fa fa-clock-o"></i> Modifications: <%= compatible.discovery.modifications %></div>
                 <div class="col-md-4"><i class="fa fa-gears"></i><%= link_to " View Discovery", compatible.discovery  %></div> 
             </div>
