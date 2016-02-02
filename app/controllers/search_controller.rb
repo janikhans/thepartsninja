@@ -14,33 +14,36 @@ class SearchController < ApplicationController
       # Doing this in case a vehicle isn't found in the database
       if @vehicle
         #Setting up the various variables that we'll be using.
-        vehicle_fitments = @vehicle.fitments
-        compatible_compatibles = @vehicle.compats
         @oem_search_results = []
         @compatible_search_results = []
-        potential_fitments = []
-        oem_fitments = []
+        oem_parts = @vehicle.oem_parts
+        compatible_parts = []
+        potential_parts = []
 
-        vehicle_fitments.each do |p|
-          if p.part.product.name.downcase.include? @part.downcase
-            @oem_search_results << p.part
-            oem_fitments << p
+        oem_parts.each do |p|
+          if p.product.name.downcase.include? @part.downcase
+            @oem_search_results << p
           end
         end
 
-        oem_fitments.each do |p|
-          potential_fitments << p.find_potentials
+        @oem_search_results.each do |p|
+          compatible_parts << p.compats
+          potential_parts << p.find_potentials
         end
 
-        #These is going search through all the compatibles that the belong to the vehicle and see if the part has the Part search params.
-        compatible_compatibles.each do |p| 
-          if  p.fitment.part.product.name.downcase.include? @part.downcase
-            @compatible_search_results << p
-          end
+        @potential_parts = potential_parts.flatten!
+        @compatible_search_results = compatible_parts.flatten!
+
+        compatible_vehicles = []
+
+        total = @potential_parts # | @compatible_search_results
+
+        total.each do |p|
+         compatible_vehicles << p.oem_vehicles
         end
 
-        potential_fitments.flatten!
-        @potential_fitments = potential_fitments
+        @compatible_vehicles = compatible_vehicles.flatten!
+
       else
         @nothing_exists = true
       end

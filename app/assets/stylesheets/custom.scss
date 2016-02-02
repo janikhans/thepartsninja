@@ -272,3 +272,24 @@ $tl: 0.6s; // transition length
     margin-bottom: 40px;
   }
 }
+
+/* Vehicles Drill down on a compatible Part */
+
+.vote-item {
+  &:hover { background-color: #FBFBFB;}
+  .multiple-vehicles {
+    float:left;
+    &:hover {
+      cursor: pointer;
+      color: $navy;
+    }
+  }
+}
+.vehicle-dropdown {
+  clear:both;
+  color: #ADACAC;
+  background: #FFFFFF;
+  border-top: 1px solid #F5F5F5;
+  margin: 0px 10px;
+  .padding { padding: 20px;}
+}

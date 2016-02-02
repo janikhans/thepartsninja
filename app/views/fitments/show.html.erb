@@ -7,7 +7,7 @@
               <tbody>
                 <tr>
                     <td><h3><strong>Discovery id:</strong> <% if @fitment.discovery %> <%= link_to "#{@fitment.disovery.id}", @fitment.discovery %><% end %> </h3></td>
-                    <td><h3><strong>User:</strong> <% if @fitment.user %> <%= link_to "#{@fitment.user.name}", @fitment.user %><% end %></h3></td>
+                    <td><h3><strong>User:</strong> <% if @fitment.user %> <%= link_to "#{@fitment.user.username}", @fitment.user %><% end %></h3></td>
                 </tr>
                 <tr>
                     <td><h3><strong>Part:</strong> <%= @fitment.part.product.brand.name %> <%= @fitment.part.product.name %></h3></td>

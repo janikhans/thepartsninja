@@ -36,10 +36,7 @@ class DiscoveriesController < ApplicationController
     og_year = params[:discovery][:oem_vehicle_year]
 
     #This is done in case a part does not comes from a vehicle - ie Radio Shack electric motor
-    if (og_brand_name.blank? || og_model.blank? || og_year.blank?)
-      og_brand = Brand.where(name: "N/A").first
-      og_vehicle = Vehicle.where(brand: og_brand, year: 1989, model: "N/A").first_or_create(brand: og_brand, year: 1989, model: "N/A")
-    else # this is the normal use case where a part is from a vehicle. In this we are searching for the Brand and then drilling down to find the vehicle with the year and model name. Otherwise creating that vehicle. 
+    unless (og_brand_name.blank? || og_model.blank? || og_year.blank?)
       og_brand_name.strip
       og_model.strip
       og_brand = Brand.where('lower(name) = ?', og_brand_name.downcase).first_or_create(name: og_brand_name)
@@ -66,18 +63,24 @@ class DiscoveriesController < ApplicationController
     compat_product = Product.where(brand: compat_part_brand).where('lower(name) = ?', compat_part_name.downcase).first_or_create(brand: compat_part_brand, name: compat_part_name) 
 
     #first step is finding the fitment between the original vehicle and original part - then making sure it is selected
-    og_fitment_part = og_vehicle.oem_parts.where(product: og_product).first_or_create(product: og_product)
-    og_fitment = og_vehicle.fitments.where(part: og_fitment_part).first
+    if og_vehicle
+      og_part = Part.create! product: og_product, user: current_user
+      og_fitment = Fitment.create! vehicle: og_vehicle, part: og_part, user: current_user
+    else
+      og_part = Part.create! product: og_product, user: current_user
+    end
+    # og_part = og_vehicle.fitments.where(part: og_fitment_part).first
 
     #doing the same for the compatible part
-    compat_fitment_part = compat_vehicle.oem_parts.where(product: compat_product).first_or_create(product: compat_product)
-    compat_fitment = compat_vehicle.fitments.where(part: compat_fitment_part).first
+    compat_part = Part.create! product: compat_product, user: current_user
+    compat_fitment = Fitment.create! vehicle: compat_vehicle, part: compat_part, user: current_user
+    # compat_fitment = compat_vehicle.fitments.where(part: compat_fitment_part).first
 
     #building the compatible that belongs to the discovery
     @discovery = current_user.discoveries.build(discovery_params)
     @compatible = @discovery.compatibles.build
-    @compatible.fitment = og_fitment
-    @compatible.compatible_fitment = compat_fitment
+    @compatible.part = og_part
+    @compatible.compatible_part = compat_part
     @compatible.backwards = params[:discovery][:backwards]
 
     respond_to do |format|
