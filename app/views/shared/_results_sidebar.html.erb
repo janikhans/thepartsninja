@@ -1,0 +1,51 @@
+<div class="col-md-3">
+  <div class="ibox float-e-margins">
+    <div class="ibox-content profile-content">
+      <% if current_user %>
+          <h2 class="text-center font-bold">Wazzup <%= current_user.username %>?!</h2>
+          <br>
+          <p>We're stoked you came back and are seaching some more. Here's a quick list of some of your last searches...</p>
+          <ul>
+            <li>2006 Yamaha YZ250 Front Wheel</li>
+            <li>2011 KTM 340SXF Rear Brake Pads</li>
+            <li>2011 TM Racing 250MX Clutch Plates</li>
+        </ul>
+        <p>Want to checkout your dashboard?</p>
+        <div class="user-button">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                  <%= link_to edit_user_registration_path, class:"btn btn-primary text-center" do %> Dashboard <% end %>
+                    <!-- <button type="button" class="btn btn-outline btn-default"><i class="fa fa-envelope"></i> Send Message</button> -->
+                </div>
+            </div>
+        </div>
+      <% else %>
+        <h2 class="text-center font-bold">Hey You!</h2>
+        <br>
+        <p>
+            Yeah <strong>YOU!</strong> You're currently viewing Parts Web results as a guest. Did you know you'll get access to even more awesome-ness if you sign up? 
+        </p>
+        <ul>
+          <li>Help out the Community</li>
+          <li>Unlimited Results</li>
+          <li>Part Notifications</li>
+          <li>Access to the Marketplace</li>
+          <li>Much More +</li>
+        </ul>
+        <p>Signing up is free and we won't require you to do anything you don't absolutly want too. </p>
+        <div class="user-button">
+            <div class="row">
+                <div class="col-md-6">
+                  <%= link_to new_user_registration_path, class:"btn btn-primary" do %> Register <% end %>
+                    <!-- <button type="button" class="btn btn-outline btn-default"><i class="fa fa-envelope"></i> Send Message</button> -->
+                </div>
+                <div class="col-md-6">
+                  <%= link_to login_path, class:"btn btn-primary" do %> Sign-In <% end %>
+                    <!-- <button type="button" class="btn btn-default btn-sm btn-block"><i class="fa fa-coffee"></i> Buy a coffee</button> -->
+                </div>
+            </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

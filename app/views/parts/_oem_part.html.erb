@@ -2,11 +2,20 @@
     <div class="row">
         <div class="col-md-12">
             <div class="vote-title">
-                <%= oem_part.part_number %> <%= oem_part.product.brand.name %> <%= oem_part.product.name %>
+              <% if oem_part.oem_vehicles.count > 1 %> <div class="multiple-vehicles" data-toggle="collapse" data-target="#collapse_<%= oem_part.id %>">Multiple Models&nbsp;</div><% else %> <% oem_part.oem_vehicles.each do |f| %> <%= f.year %> <%= f.brand.name %> <%= f.model %> <% end %> <% end %>  -  <%= oem_part.product.brand.name %> <%= oem_part.product.name %> <% if oem_part.part_number %><small>Part Number:</small> <%= oem_part.part_number %> <% end %>
             </div>
             <div class="vote-info">
-                <div class="col-md-4"><i class="fa fa-gears"></i><%= link_to " View Part", oem_part  %></div> 
+                <i class="fa fa-comments-o"></i><%= link_to " View Part", oem_part  %> 
             </div>
         </div>
     </div>
 </div>
+<% if oem_part.oem_vehicles.count> 1 %>
+  <div id="collapse_<%= oem_part.id %>" class="collapse vehicle-dropdown">
+    <div class="padding">
+      <div class="row">
+        <% oem_part.oem_vehicles.each do |f| %> <div class="col-xs-6 col-md-3"> <%= f.year %> <%= f.brand.name %> <%= f.model %> </div> <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

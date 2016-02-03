@@ -3,11 +3,9 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .search-results {
-  background-color: #4A5159;
   border-radius: 5px 5px 0px 0px;
   margin-bottom: 15px;
   min-height: 100px;
-  box-shadow: 0px 0px 20px rgba(223, 223, 223, 0.65);
   .results-header {
     padding: 1px 20px 5px 20px;
     h2 {
@@ -18,15 +16,19 @@
         text-decoration: underline;
       }
     }
-    li {
-      a {
-        background-color: #8b8b8c;
-        color: white;
-      }
-    }
   }
   .tabs-container {
     clear: both;
+    .nav.nav-tabs {
+      li {
+        top: 1px;
+        z-index: 10;
+        a {
+          text-align: center;
+          &:hover { background-color: #FBFBFB;}
+        }
+      }
+    }
   }
 }
 

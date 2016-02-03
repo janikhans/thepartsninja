@@ -32,6 +32,7 @@ class Part < ActiveRecord::Base
     end
 
     compatibles.flatten!
+    # compatibles.reject! { |f| previous_level.include?(f) || f == self }
     return compatibles
   end
 
