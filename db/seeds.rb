@@ -6,16 +6,28 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-sensei = User.create! username: 'Sensei', email: 'thepartsninja@gmail.com', password: 'adminadmin', password_confirmation: 'adminadmin'
-janik = User.create! username: 'Janik', email: 'janik.knittle@gmail.com', password: 'password', password_confirmation: 'password', role: 'admin'
-tommy = User.create! username: 'Tommy', email: 'tommy@gmail.com', password: 'password', password_confirmation: 'password', role: 'user'
+sensei = User.create!(username: 'Sensei', email: 'thepartsninja@gmail.com', password: 'adminadmin', password_confirmation: 'adminadmin')
+janik = User.create!(username: 'Janik', email: 'janik.knittle@gmail.com', password: 'password', password_confirmation: 'password', role: 'admin')
+tommy = User.create!(username: 'Tommy', email: 'tommy@gmail.com', password: 'password', password_confirmation: 'password', role: 'user')
+
+30.times do |n|
+  username  = Faker::Internet.user_name
+  email = Faker::Internet.free_email
+  password = "password"
+  User.create!(username:  username,
+               email: email,
+               password:              password,
+               password_confirmation: password)
+end
 
 user1 = User.first
+
 brands = ["Acerbis", "Hinson", "Tusk Racing", "ARC", "Barnett", "Yamaha", "Kawasaki", "KTM", "Beta", "FORD", "Chevrolet", "Husqvarna", "N/A"]
 
 brands.each do |name| 
   Brand.create(name: name)
 end
+
 
 yz250 = Vehicle.create model: "YZ250", year: 2006, brand_name: "Yamaha"
 yz25004 = Vehicle.create model: "YZ250", year: 2004, brand_name: "Yamaha"
@@ -88,3 +100,16 @@ dis9 = Discovery.create modifications: false, comment: "This is a third level te
 compat9 = dis9.compatibles.build(part: part6, compatible_part: part7, backwards: true).save
 dis10 = Discovery.create modifications: false, comment: "This is another third level test", user: user1
 compat10 = dis10.compatibles.build(part: part3, compatible_part: part1, backwards: true).save
+
+
+users = User.all
+compatibles = Compatible.all
+
+users.each do |u|
+  votables = compatibles.sample(4)
+  votables.each do |v|
+    v.liked_by u
+  end
+end
+
+

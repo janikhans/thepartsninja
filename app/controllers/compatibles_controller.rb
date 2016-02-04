@@ -1,32 +1,25 @@
 class CompatiblesController < ApplicationController
   include Admin
-  before_action :set_compatible, only: [:show, :edit, :update, :destroy]
+  before_action :set_compatible, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
   before_action :authenticate_user!
   before_action :admin_only
 
-  # GET /compatibles
-  # GET /compatibles.json
+
   def index
     @compatibles = Compatible.all
   end
 
-  # GET /compatibles/1
-  # GET /compatibles/1.json
   def show
   end
 
-  # GET /compatibles/new
   def new
     @compatible = Compatible.new
     @fitments = Fitment.all
   end
 
-  # GET /compatibles/1/edit
   def edit
   end
 
-  # POST /compatibles
-  # POST /compatibles.json
   def create
     @compatible = Compatible.new(compatible_params)
 
@@ -41,8 +34,6 @@ class CompatiblesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /compatibles/1
-  # PATCH/PUT /compatibles/1.json
   def update
     respond_to do |format|
       if @compatible.update(compatible_params)
@@ -55,13 +46,29 @@ class CompatiblesController < ApplicationController
     end
   end
 
-  # DELETE /compatibles/1
-  # DELETE /compatibles/1.json
   def destroy
     @compatible.destroy
     respond_to do |format|
       format.html { redirect_to compatibles_url, notice: 'Compatible was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def upvote
+    if @compatible.liked_by current_user
+      respond_to do |format|
+        format.html { redirect_to :back }
+        format.js
+      end
+    end
+  end
+
+  def downvote
+    if @compatible.downvote_by current_user
+      respond_to do |format|
+        format.html { redirect_to :back }
+        format.js
+      end
     end
   end
 

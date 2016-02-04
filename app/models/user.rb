@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  acts_as_voter
   enum role: [:user, :admin]
   after_initialize :set_default_role, if: :new_record?
 

@@ -3,7 +3,14 @@ Rails.application.routes.draw do
   get 'search' => 'search#index', as: :search
 
   resources :discoveries
-  resources :compatibles
+
+  resources :compatibles do
+    member do
+      get 'upvote'
+      get 'downvote'
+    end
+  end
+
   resources :fitments
   resources :parts
   resources :products
@@ -13,7 +20,6 @@ Rails.application.routes.draw do
 
   resources :vehicles
   resources :brands, concerns: :autocompletable
-
 
 # The Welcome Page! 
   root 'pages#index'

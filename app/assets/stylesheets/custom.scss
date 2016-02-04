@@ -293,3 +293,18 @@ $tl: 0.6s; // transition length
   margin: 0px 10px;
   .padding { padding: 20px;}
 }
+
+// Voting colors
+.vote-actions {
+  a { 
+    color:#717171; 
+    &:hover { color: $navy; }
+  }
+}
+.upvoted {
+  color: $navy !important;
+}
+
+.downvoted {
+  color: red !important;
+}
