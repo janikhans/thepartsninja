@@ -55,7 +55,7 @@ class CompatiblesController < ApplicationController
   end
 
   def upvote
-    if @compatible.liked_by current_user
+    if @compatible.upvote_by current_user
       respond_to do |format|
         format.html { redirect_to :back }
         format.js

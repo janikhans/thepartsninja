@@ -10,4 +10,15 @@ module CompatiblesHelper
       return 'downvoted' if current_user.voted_down_on? compatible
     end
   end
+
+  def compatible_score_color(compatible)
+    if compatible.score > 0
+      return 'class = green'
+    elsif compatible.score < 0
+      return 'class = red'
+    else
+      nil
+    end
+  end
+  
 end

@@ -38,10 +38,6 @@ class SearchController < ApplicationController
 
         total = @potential_parts # | @compatible_search_results
 
-        total.each do |p|
-         compatible_vehicles << p.oem_vehicles
-        end
-
         @compatible_vehicles = compatible_vehicles.flatten!
 
       else

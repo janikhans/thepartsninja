@@ -104,9 +104,6 @@
               </div>
           </div>
           <div class="ibox-content no-padding">
-          <% if @part.potential_compatibles.any? %>
-              <%= render partial: 'compatibles/potential_compatible', collection: @part.potential_compatibles %>
-          <% else %>
             <div class="search-box-padding">
               <h5 class="text-center">Search For Potential Parts</h5>
               <form class="search-container text-center" action="/search">
@@ -115,7 +112,6 @@
                 <input type="submit" id="search-submit" />
               </form>
             </div>
-          <% end %>
         </div>
       </div>
 

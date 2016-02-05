@@ -11,7 +11,7 @@ janik = User.create!(username: 'Janik', email: 'janik.knittle@gmail.com', passwo
 tommy = User.create!(username: 'Tommy', email: 'tommy@gmail.com', password: 'password', password_confirmation: 'password', role: 'user')
 
 30.times do |n|
-  username  = Faker::Internet.user_name
+  username  = Faker::Internet.user_name(5)
   email = Faker::Internet.free_email
   password = "password"
   User.create!(username:  username,
@@ -104,12 +104,16 @@ compat10 = dis10.compatibles.build(part: part3, compatible_part: part1, backward
 
 users = User.all
 compatibles = Compatible.all
+comp7 = Compatible.find(7)
 
 users.each do |u|
   votables = compatibles.sample(4)
   votables.each do |v|
-    v.liked_by u
+    v.upvote_by u
   end
+  comp7.downvote_by u
 end
+
+
 
 

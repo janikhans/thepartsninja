@@ -296,15 +296,15 @@ $tl: 0.6s; // transition length
 
 // Voting colors
 .vote-actions {
-  a { 
-    color:#717171; 
-    &:hover { color: $navy; }
+  a { color:#717171;}
+  .upvoted {
+    color: $navy !important;
+  }
+  .downvoted {
+    color: red !important;
   }
 }
-.upvoted {
-  color: $navy !important;
-}
 
-.downvoted {
-  color: red !important;
-}
+.green { color: #00B700;}
+.red { color: red;}
+

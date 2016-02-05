@@ -29,3 +29,14 @@
 <br>
 
 <%= link_to 'New Compatible', new_compatible_path %>
+
+
+<div class="panel-body no-padding">
+    <% if @compatibles.any? %>
+      <%= render partial: 'compatibles/compatible', collection: @compatibles %>
+    <% else %>
+    <div class="search-box-padding">
+      <h5 class="text-center">No Compatibles Were Found...</h5>
+    </div>
+    <% end %>
+</div>
