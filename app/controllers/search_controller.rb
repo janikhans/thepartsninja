@@ -32,13 +32,8 @@ class SearchController < ApplicationController
         end
 
         @potential_parts = potential_parts.flatten!
-        @compatible_search_results = compatible_parts.flatten!
-
-        compatible_vehicles = []
-
-        total = @potential_parts # | @compatible_search_results
-
-        @compatible_vehicles = compatible_vehicles.flatten!
+        compatible_parts.flatten!
+        @compatible_search_results = compatible_parts.sort_by {|c| c.cached_votes_score }.reverse
 
       else
         @nothing_exists = true

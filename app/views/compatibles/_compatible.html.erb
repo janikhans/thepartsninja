@@ -3,7 +3,7 @@
         <div class="col-md-12">
             <div class="vote-actions">
                 <%= link_to '', upvote_compatible_path(compatible.id), remote: true, id: "upvote_#{compatible.id}", class: "fa fa-chevron-up #{upvoted_compatible compatible}" %>
-                <div <%= compatible_score_color(compatible) %>><%= compatible.score %></div>
+                <div <%= compatible_score_color(compatible) %>><%= compatible.cached_votes_score %></div>
                 <%= link_to '', downvote_compatible_path(compatible.id), remote: true, id: "downvote_#{compatible.id}", class: "fa fa-chevron-down #{downvoted_compatible compatible}" %>
             </div>
             <div class="vote-title">

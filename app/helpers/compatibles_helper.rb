@@ -12,13 +12,13 @@ module CompatiblesHelper
   end
 
   def compatible_score_color(compatible)
-    if compatible.score > 0
+    if compatible.cached_votes_score > 0
       return 'class = green'
-    elsif compatible.score < 0
+    elsif compatible.cached_votes_score < 0
       return 'class = red'
     else
       nil
     end
   end
-  
+
 end

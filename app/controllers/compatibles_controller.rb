@@ -6,7 +6,7 @@ class CompatiblesController < ApplicationController
 
 
   def index
-    @compatibles = Compatible.all
+    @compatibles = Compatible.order('compatibles.cached_votes_score DESC')
   end
 
   def show

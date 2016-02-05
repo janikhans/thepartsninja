@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160204210307) do
+ActiveRecord::Schema.define(version: 20160205192858) do
 
   create_table "brands", force: :cascade do |t|
     t.string   "name",       default: "", null: false
@@ -27,8 +27,10 @@ ActiveRecord::Schema.define(version: 20160204210307) do
     t.boolean  "backwards",          default: false, null: false
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
+    t.integer  "cached_votes_score", default: 0
   end
 
+  add_index "compatibles", ["cached_votes_score"], name: "index_compatibles_on_cached_votes_score"
   add_index "compatibles", ["compatible_part_id"], name: "index_compatibles_on_compatible_part_id"
   add_index "compatibles", ["discovery_id"], name: "index_compatibles_on_discovery_id"
   add_index "compatibles", ["part_id"], name: "index_compatibles_on_part_id"

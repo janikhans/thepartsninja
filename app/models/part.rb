@@ -18,21 +18,20 @@ class Part < ActiveRecord::Base
   def compatible_parts #Finds just the compatible parts to the fitment being searched
     compatible_parts = []
     self.compats.each do |c|
-      compatible_parts << c.compatible_part
+      compatible_parts << c.compatible_part #if c.discovery.modifications == false
     end
     return compatible_parts
   end
 
   def next_level (level) # Finds all parts from the next level down based on their compatibles.
-    previous_level = level
+    parent_level = level
     compatibles = []
 
-    previous_level.each do |p|
+    parent_level.each do |p|
       compatibles << p.compatible_parts
     end
 
     compatibles.flatten!
-    # compatibles.reject! { |f| previous_level.include?(f) || f == self }
     return compatibles
   end
 
