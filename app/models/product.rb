@@ -1,4 +1,7 @@
 class Product < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :slug_candidates, use: [:finders, :slugged]
+
   belongs_to :brand
   belongs_to :user
   has_many :parts, dependent: :destroy
@@ -14,5 +17,11 @@ class Product < ActiveRecord::Base
     name = name.strip
     self.brand = Brand.where('lower(name) = ?', name.downcase).first_or_create(name: name)
   end
-  
+
+  def slug_candidates
+   [
+    [:brand_name, :name],
+   ]
+  end
+
 end

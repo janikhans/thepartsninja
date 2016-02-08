@@ -11,14 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160205192858) do
+ActiveRecord::Schema.define(version: 20160208045015) do
 
   create_table "brands", force: :cascade do |t|
     t.string   "name",       default: "", null: false
     t.string   "website"
+    t.string   "slug"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
+
+  add_index "brands", ["slug"], name: "index_brands_on_slug", unique: true
 
   create_table "compatibles", force: :cascade do |t|
     t.integer  "part_id"
@@ -60,6 +63,19 @@ ActiveRecord::Schema.define(version: 20160205192858) do
   add_index "fitments", ["user_id"], name: "index_fitments_on_user_id"
   add_index "fitments", ["vehicle_id"], name: "index_fitments_on_vehicle_id"
 
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string   "slug",                      null: false
+    t.integer  "sluggable_id",              null: false
+    t.string   "sluggable_type", limit: 50
+    t.string   "scope"
+    t.datetime "created_at"
+  end
+
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
+  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+
   create_table "parts", force: :cascade do |t|
     t.string   "part_number"
     t.text     "note"
@@ -75,6 +91,7 @@ ActiveRecord::Schema.define(version: 20160205192858) do
   create_table "products", force: :cascade do |t|
     t.string   "name",        default: "", null: false
     t.text     "description"
+    t.string   "slug"
     t.integer  "brand_id"
     t.integer  "user_id"
     t.datetime "created_at",               null: false
@@ -82,6 +99,7 @@ ActiveRecord::Schema.define(version: 20160205192858) do
   end
 
   add_index "products", ["brand_id"], name: "index_products_on_brand_id"
+  add_index "products", ["slug"], name: "index_products_on_slug", unique: true
   add_index "products", ["user_id"], name: "index_products_on_user_id"
 
   create_table "steps", force: :cascade do |t|
@@ -116,12 +134,14 @@ ActiveRecord::Schema.define(version: 20160205192858) do
   create_table "vehicles", force: :cascade do |t|
     t.string   "model",      default: "", null: false
     t.integer  "year",                    null: false
+    t.string   "slug"
     t.integer  "brand_id"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
 
   add_index "vehicles", ["brand_id"], name: "index_vehicles_on_brand_id"
+  add_index "vehicles", ["slug"], name: "index_vehicles_on_slug", unique: true
 
   create_table "votes", force: :cascade do |t|
     t.integer  "votable_id"

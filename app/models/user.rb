@@ -1,8 +1,14 @@
 class User < ActiveRecord::Base
-  acts_as_voter
-  enum role: [:user, :admin]
+
+  #Lets make those URLs pretty. SEO and whatnot.
+  extend FriendlyId
+  friendly_id :username, use: [:finders]
+
+  acts_as_voter #Our Users have to vote afterall
+  enum role: [:user, :admin]  #Basic permissions setup
   after_initialize :set_default_role, if: :new_record?
 
+  #Associations
   has_many :products
   has_many :parts
   has_many :fitments
@@ -40,5 +46,5 @@ class User < ActiveRecord::Base
     def set_default_role
       self.role ||= :user
     end
-  
+
 end

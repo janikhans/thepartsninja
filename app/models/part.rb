@@ -1,8 +1,11 @@
 class Part < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :part_number, use: [:finders]
+
   validates :product, presence: true
 
   include CompatiblesFinder
-  
+
   belongs_to :product
   belongs_to :user
   has_many :fitments, dependent: :destroy
@@ -10,8 +13,8 @@ class Part < ActiveRecord::Base
 
   has_many :compatibles
 
-  has_many :known_compatibles,               -> {where backwards: true}, class_name: "Compatible", foreign_key: "part_id" 
-  has_many :backwards_compatibles,           -> {where backwards: true}, class_name: "Compatible", foreign_key: "compatible_part_id" 
+  has_many :known_compatibles,               -> {where backwards: true}, class_name: "Compatible", foreign_key: "part_id"
+  has_many :backwards_compatibles,           -> {where backwards: true}, class_name: "Compatible", foreign_key: "compatible_part_id"
   has_many :known_not_backwards_compatibles, -> {where backwards: false}, class_name: "Compatible", foreign_key: "part_id"
   has_many :potential_compatibles,           -> {where backwards: false}, class_name: "Compatible", foreign_key: "compatible_part_id"
 
@@ -36,7 +39,7 @@ class Part < ActiveRecord::Base
   end
 
   def find_potentials
-    potentials = []  
+    potentials = []
 
     #First level is what is directly known to be compatible with this part. Distance = 1
     compatibles = self.compatible_parts
@@ -56,7 +59,7 @@ class Part < ActiveRecord::Base
     fourth_level.reject! { |f| compatibles.include?(f) || second_level.include?(f) || third_level.include?(f) || f == self}
     potentials << fourth_level.uniq
 
-    #Fifth Level but I don't know if we'll use this yet. 
+    #Fifth Level but I don't know if we'll use this yet.
     # fifth_level = next_level(fourth_level)
     # fifth_level.reject! { |f| compatibles.include?(f) || second_level.include?(f) || third_level.include?(f) || fourth_level.include?(f) || f == self}
     # potentials << fifth_level.uniq
@@ -66,4 +69,3 @@ class Part < ActiveRecord::Base
   end
 
 end
-

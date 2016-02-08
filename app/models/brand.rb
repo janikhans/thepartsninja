@@ -1,4 +1,7 @@
 class Brand < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :name, use: [:finders, :slugged]
+
 
   has_many :vehicles, dependent: :destroy
   has_many :products, dependent: :destroy
