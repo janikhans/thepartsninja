@@ -1,5 +1,6 @@
 class Vehicle < ActiveRecord::Base
 
+  #Lets make those URLs nice and SEO friendly
   extend FriendlyId
   friendly_id :slug_candidates, use: [:finders, :slugged]
 
