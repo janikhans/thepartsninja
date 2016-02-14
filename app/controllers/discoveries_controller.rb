@@ -2,32 +2,24 @@ class DiscoveriesController < ApplicationController
   before_action :set_discovery, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
 
-  # GET /discoveries
-  # GET /discoveries.json
   def index
     @discoveries = Discovery.all
   end
 
-  # GET /discoveries/1
-  # GET /discoveries/1.json
   def show
     @steps = @discovery.steps.all
     @user = @discovery.user
   end
 
-  # GET /discoveries/new
   def new
     @discovery = current_user.discoveries.build
     @compatible = @discovery.compatibles.build
     @fitments = Fitment.all
   end
 
-  # GET /discoveries/1/edit
   def edit
   end
 
-  # POST /discoveries
-  # POST /discoveries.json
   def create
 
     #the params for the OEM (og foo!) vehicle
@@ -42,7 +34,7 @@ class DiscoveriesController < ApplicationController
       og_brand = Brand.where('lower(name) = ?', og_brand_name.downcase).first_or_create(name: og_brand_name)
       og_vehicle = Vehicle.where(brand: og_brand).where(year: og_year).where('lower(model) = ?', og_model.downcase).first_or_create(brand: og_brand, year: og_year, model: og_model)
     end
-    
+
     #Here we are finding the base part. Take params - then find or create the brand - then find or create the product belonging to this brand
     og_part_brand_name = params[:discovery][:oem_part_brand].strip
     og_part_brand = Brand.where('lower(name) = ?', og_part_brand_name.downcase).first_or_create(name: og_part_brand_name)
@@ -55,12 +47,12 @@ class DiscoveriesController < ApplicationController
     compat_model = params[:discovery][:compatible_vehicle_model].strip
     compat_year = params[:discovery][:compatible_vehicle_year]
     compat_vehicle = Vehicle.where(brand: compat_brand).where(year: compat_year).where('lower(model) = ?', compat_model.downcase).first_or_create(brand: compat_brand, year: compat_year, model: compat_model)
-   
+
     #Now we are creating the prouduct and part. Taking/saniziting params - finding or creating brand - taking product name param and sanitizing - creating or finding the product with the above params
     compat_part_brand_name = params[:discovery][:compatible_part_brand].strip
     compat_part_brand = Brand.where('lower(name) = ?', compat_part_brand_name.downcase).first_or_create(name: compat_part_brand_name)
     compat_part_name = params[:discovery][:compatible_part_name].strip
-    compat_product = Product.where(brand: compat_part_brand).where('lower(name) = ?', compat_part_name.downcase).first_or_create(brand: compat_part_brand, name: compat_part_name) 
+    compat_product = Product.where(brand: compat_part_brand).where('lower(name) = ?', compat_part_name.downcase).first_or_create(brand: compat_part_brand, name: compat_part_name)
 
     #first step is finding the fitment between the original vehicle and original part - then making sure it is selected
     if og_vehicle
@@ -94,8 +86,6 @@ class DiscoveriesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /discoveries/1
-  # PATCH/PUT /discoveries/1.json
   def update
     respond_to do |format|
       if @discovery.update(discovery_params)
@@ -108,8 +98,6 @@ class DiscoveriesController < ApplicationController
     end
   end
 
-  # DELETE /discoveries/1
-  # DELETE /discoveries/1.json
   def destroy
     @discovery.destroy
     respond_to do |format|

@@ -1,21 +1,46 @@
-<footer class="footer">
+<footer>
   <div class="container">
     <div class="row">
-      <div class="col-md-6">
-        <ul class="footer-menu">
-        <li><%= link_to "Home", root_path %></li>
-        <li><%= link_to "Help", help_path %></li>
-        <li><%= link_to "Contact", contact_path %></li>
-        </ul>
+      <div class="col-md-5 col-sm-12">
+        <h3>About</h3>
+        <p>For sure ipsum dolor away pimpin, its fo rizzle break it down elit. Nullizzle dope velizzle, phat volutpizzle, suscipit quizzle, gangsta vizzle, black. Pellentesque egizzle tortizzle. Sed erizzle. Sure sheezy dolor dapibus turpis tempizzle mofo. Maurizzle izzle nibh izzle turpizzle.</p>
       </div>
-        <div class="col-md-6 text-right">
-          <ul class="social-icons">
-            <li><%= link_to '<i class="fa fa-facebook fa-fw"></i>'.html_safe, 'https://facebook.com/thepartsninja', :target => "_blank" %></li>
-            <li><%= link_to '<i class="fa fa-instagram fa-fw"></i>'.html_safe, 'https://facebook.com/thepartsninja', :target => "_blank" %></li>
-            <li><%= link_to '<i class="fa fa-twitter fa-fw"></i>'.html_safe, 'https://facebook.com/thepartsninja', :target => "_blank" %></li>
-          </ul>
+      <div class="col-md-4 col-sm-12">
+        <h3>Pages</h3>
+        <div class="row">
+          <div class="col-md-6 col-xs-6">
+            <ul>
+              <li><%= link_to "Home", root_path %></li>
+              <li><%= link_to "Help", help_path %></li>
+              <li><%= link_to "Contact", contact_path %></li>
+              <li><%= link_to "Terms of Service", contact_path %></li>
+            </ul>
+          </div>
+          <% if current_user %>
+          <div class="col-md-6 col-xs-6">
+            <ul>
+              <li><%= link_to "User Dashboard", user_path(current_user) %></li>
+              <li><%= link_to "New Discovery", new_discovery_path %></li>
+            </ul>
+          </div>
+          <% end %>
         </div>
-    </div>  
+      </div>
+      <div class="col-md-3 col-sm-12">
+          <h3>Follow Us</h3>
+          <ul class="p-m social-icons">
+            <li><%= link_to '<i class="fa fa-facebook fa-fw fa-2x"></i>'.html_safe, 'https://facebook.com/thepartsninja', :target => "_blank" %></li>
+            <li><%= link_to '<i class="fa fa-instagram fa-fw fa-2x"></i>'.html_safe, 'https://facebook.com/thepartsninja', :target => "_blank" %></li>
+            <li><%= link_to '<i class="fa fa-twitter fa-fw fa-2x"></i>'.html_safe, 'https://facebook.com/thepartsninja', :target => "_blank" %></li>
+          </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="copyright">
+          &copy; <%= copyright_notice_year_range(2015) %> THE PARTS WEB - All Rights Reserved.
+        </div>
+      </div>
+    </div>
   </div>
 </footer>
-

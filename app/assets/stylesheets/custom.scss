@@ -1,15 +1,17 @@
+
+
 html {
   position: relative;
   min-height: 100%;
 }
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
 }
 
-.hero { 
-  background: image-url('background-gray.jpg'); 
-  // padding: 400px 0 600px 0;
+.red { color: red}
+.green { color: #00B700}
+
+.hero {
+  background: image-url('background-gray.jpg');
   background-color: #1E1825;
   height:100%;
   width: 100%;
@@ -20,15 +22,24 @@ body {
   background-position: top left, center center;
   background-repeat: repeat, no-repeat;
   z-index: -1;
-  .white {
-    color: white;
+  h1 {
+    font-size: 80px;
+    margin: 30px 0 10px;
+    font-weight: 900;
+    color: #fff;
+    span {
+      color: #a1a9b0;
+      display: inline-block;
+    }
   }
-  h3 {
-    color:white;
+  h3 {color:white;}
+  p {
+    font-size: 24px;
+    font-weight: 400;
+    color: #fefefe;
   }
-  .inner {
-    padding: 45px 0px 20px 0px;
-  }
+  .white { color: white;}
+  .inner { padding: 45px 0px 20px 0px; }
   .welcome-header {
     margin-top: 25%;
     a { color:white;}
@@ -42,31 +53,9 @@ body {
     }
   }
 }
-.hero h1 { font-size: 80px; margin: 30px 0 10px; font-weight: 900; color: #fff;}
-.hero h1 span { color: #a1a9b0; display: inline-block; }
-.hero p { font-size: 24px; font-weight: 400; color: #fefefe; }
 
 .page-header-image {
   padding: 25px 0 25px;
-}
-
-.intro {
-  width:100%;
-  position:relative;
-  padding:0;
-}
-.intro-inner {
-  width:100%;
-  position:relative;
-  padding:120px 0 20px;
-}
-
-.brand-heading {
-    font-size: 40px;
-}
-
-.intro-text {
-    font-size: 18px;
 }
 
 /*Pretty Notice and Flash message*/
@@ -89,54 +78,6 @@ body {
     }
     .notice {
         background: rgba(52, 152, 219, 0.9);
-    }
-}
-
-/*Footer */
-.footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 60px;
-    background-color: #2D2D2D;
-    padding: 20px 20px;
-}
-    /* menu */
-ul.footer-menu {
-  list-style: none;
-}
-
-ul.footer-menu li {
-  float: left;
-  margin: 0 0 0 10px;
-
-}
-
-ul.footer-menu li a {
-  color: #fff;
-  font-size: 16px;
-  padding-left: 9px;
-  line-height: 1.1em;
-  &:hover {
-      color: $navy;
-    }
-}
-
-ul.footer-menu li:first-child a {
-  border-left: none;
-  padding-left: 0;
-}
-
-.social-icons {
-    float:right;
-    display: flex;
-    list-style: none;
-    a {
-      color:white;
-      padding-right: 10px;
-    }
-    a:hover {
-      color: $navy;
     }
 }
 
@@ -173,7 +114,7 @@ $tl: 0.6s; // transition length
     color: black;
     & + label .search-icon {    color: black;    }
   }
-  &:not(:focus) {    text-indent:-5000px;    } // for more-graceful falling back (:not browsers likely support indent)
+  &:not(:focus) { text-indent:-5000px; } // for more-graceful falling back (:not browsers likely support indent)
 }
 
 #search-submit {
@@ -187,21 +128,6 @@ $tl: 0.6s; // transition length
   cursor: pointer;
 }
 
-/*Discovery Show Page*/
-.discovery-vehicle-title {
-  font-size: 18px;
-  margin-left: 45px;
-}
-.sub-heading {
-    color: #b4b6b8;
-    font-size: 12px;
-    margin-left: 45px;
-}
-
-.margin-left-45 {
-  margin-left: 45px;
-}
-
 /*Steps*/
 .step-outline {
   width: 100%;
@@ -211,25 +137,14 @@ $tl: 0.6s; // transition length
   margin-bottom: 5px;
 }
 
-.score-box {
-      padding: 30px 15px;
-}
-
 .display-none {
   display: none;
 }
 
 .dropdown-menu {
   li {
-    a {
-      color: #7B7B7B !important;
-    }
+    a {color: #7B7B7B !important;}
   }
-}
-
-.no-column-padding {
-  padding-left: 5px;
-  padding-right: 5px;
 }
 
 .random-icon-fix {
@@ -244,9 +159,7 @@ $tl: 0.6s; // transition length
   text-align: center;
   a {
     color:#676a6c;
-    &:hover {
-      color: $navy;
-    }
+    &:hover { color: $navy;}
   }
 }
 
@@ -264,13 +177,9 @@ $tl: 0.6s; // transition length
   }
   a {
     color:#676a6c;
-    &:hover {
-      color: $navy;
-    }
+    &:hover { color: $navy;}
   }
-  .brands-list {
-    margin-bottom: 40px;
-  }
+  .brands-list { margin-bottom: 40px;}
 }
 
 /* Vehicles Drill down on a compatible Part */
@@ -297,14 +206,77 @@ $tl: 0.6s; // transition length
 // Voting colors
 .vote-actions {
   a { color:#717171;}
-  .upvoted {
-    color: $navy !important;
+  .up:hover {color: #00B700;}
+  .down:hover {color: red;}
+  .upvoted {color: #00B700 ;}
+  .downvoted {color: red;}
+}
+
+
+.cta-block {
+  padding-bottom: 80px;
+}
+
+// footer
+@media only screen and (min-width : 992px) {
+  body { margin-bottom: 215px; }
+  footer { height: 215px; position: absolute}
+}
+footer {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #222222;
+  color: #787D7D;
+  padding: 40px;
+  h3 { color: #ffffff;}
+  ul {
+    list-style: none;
+    padding: 0px;
   }
-  .downvoted {
-    color: red !important;
+  .social-icons {
+    li {float: left;}
+  }
+  a {
+    color: #787D7D;
+    &:hover { color: $navy;}
+  }
+  .copyright {
+    text-align: center;
+    margin-top:15px;
+    padding: 10px;
+    border-top: 1px solid rgba(128, 128, 128, 0.12);
   }
 }
 
-.green { color: #00B700;}
-.red { color: red;}
+//Discovery Show page
+  //compatibles
+.compatible {
+  .backwards {
+    display:inline;
+    font-size: 20px;
+    i {display:block;}
+  }
+  .part{
+    color:inherit;
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 5px;
+    margin-bottom: 2px;
+  }
+  .part-info {
+    color: #b4b6b8;
+    font-size: 12px;
+    a { color:inherit;
+      &:hover {color: $navy;}
+    }
+  }
+}
 
+//popovers
+.popover {
+  text-align: center;
+  box-shadow: 3px 5px 5px rgba(132, 131, 131, 0.2);
+  .popover-title {color: #686B6D;}
+  .popover-content {color: gray;}
+}

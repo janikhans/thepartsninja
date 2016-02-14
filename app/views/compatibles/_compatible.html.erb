@@ -2,15 +2,13 @@
     <div class="row">
         <div class="col-md-12">
             <div class="vote-actions">
-                <%= link_to '', upvote_compatible_path(compatible.id), remote: true, id: "upvote_#{compatible.id}", class: "fa fa-chevron-up #{upvoted_compatible compatible}" %>
-                <div <%= compatible_score_color(compatible) %>><%= compatible.cached_votes_score %></div>
-                <%= link_to '', downvote_compatible_path(compatible.id), remote: true, id: "downvote_#{compatible.id}", class: "fa fa-chevron-down #{downvoted_compatible compatible}" %>
+              <%= vote_actions(compatible) %>
             </div>
             <div class="vote-title">
               <% if compatible.compatible_part.fitments.count > 1 %> <div class="multiple-vehicles" data-toggle="collapse" data-target="#collapse_<%= compatible.id %>">Multiple Models&nbsp;</div><% else %> <% compatible.compatible_part.fitments.each do |f| %> <%= f.vehicle.year %> <%= f.vehicle.brand.name %> <%= f.vehicle.model %> <% end %> <% end %> - <%= compatible.compatible_part.product.brand.name %> <%= compatible.compatible_part.product.name %> <% if compatible.compatible_part.part_number %><small>Part Number:</small> <%= compatible.compatible_part.part_number %> <% end %>
             </div>
             <div class="vote-info">
-                <i class="fa fa-comments-o"></i><%= link_to " View Discovery", compatible.discovery  %> 
+                <i class="fa fa-comments-o"></i><%= link_to " View Discovery", compatible.discovery  %>
                 <i class="fa fa-gears"></i> Replaces: <%= compatible.part.product.name %>
                 <% if compatible.discovery.modifications %><i class="fa fa-clock-o"></i>  Modifications Required <% end %>
             </div>

@@ -4,28 +4,20 @@ class FitmentsController < ApplicationController
   before_action :authenticate_user!
   before_action :admin_only
 
-  # GET /fitments
-  # GET /fitments.json
   def index
     @fitments = Fitment.all
   end
 
-  # GET /fitments/1
-  # GET /fitments/1.json
   def show
   end
 
-  # GET /fitments/new
   def new
     @fitment = current_user.fitments.build
   end
 
-  # GET /fitments/1/edit
   def edit
   end
 
-  # POST /fitments
-  # POST /fitments.json
   def create
     @fitment = current_user.fitments.build(fitment_params)
 
@@ -40,8 +32,6 @@ class FitmentsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /fitments/1
-  # PATCH/PUT /fitments/1.json
   def update
     respond_to do |format|
       if @fitment.update(fitment_params)
@@ -54,8 +44,6 @@ class FitmentsController < ApplicationController
     end
   end
 
-  # DELETE /fitments/1
-  # DELETE /fitments/1.json
   def destroy
     @fitment.destroy
     respond_to do |format|

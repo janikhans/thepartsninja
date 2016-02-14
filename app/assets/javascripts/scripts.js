@@ -59,6 +59,8 @@ $(document).ready(function() {
 });
 
 $(document).ready(function () {
+    //Popovers
+    $('[data-toggle="popover"]').popover();
 
     // Add body-small class if window less than 768px
     if ($(this).width() < 769) {
@@ -205,13 +207,13 @@ $(document).ready(function () {
 
 
 // Minimalize menu when screen is less than 768px
-$(window).bind("resize", function () {
-    if ($(this).width() < 769) {
-        $('body').addClass('body-small')
-    } else {
-        $('body').removeClass('body-small')
-    }
-});
+// $(window).bind("resize", function () {
+//     if ($(this).width() < 769) {
+//         $('body').addClass('body-small')
+//     } else {
+//         $('body').removeClass('body-small')
+//     }
+// });
 
 
 function SmoothlyMenu() {
@@ -237,4 +239,3 @@ function SmoothlyMenu() {
 
 //For the expanding search function in the Vehicle Show Page
 document.addEventListener("touchstart", function(){}, true);
-

@@ -3,9 +3,9 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
   before_action :admin_only, except: [:index, :show]
-  
+
   def index
-    @products = Product.all
+    @products = Product.order("name ASC").group_by{|u| u.brand }
   end
 
   def show
