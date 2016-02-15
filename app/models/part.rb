@@ -68,4 +68,61 @@ class Part < ActiveRecord::Base
     return potentials
   end
 
+
+  def array_weighted_level (level, weight)
+    parent_level = level
+    parts = []
+
+    parent_level.each do |p|
+      parts << p.compatible_parts
+    end
+    parts.flatten!
+
+    compatibles = parts.map{|part| {part: part, score: weight}}
+
+    return compatibles
+  end
+
+
+  def hash_weighted_level (level, weight)
+    parent_level = level
+    parent_parts = []
+    parts = []
+
+    parent_level.each do |p|
+      parent_parts << p[:part]
+    end
+
+    parent_parts.each do |p|
+      parts << p.compatible_parts
+    end
+    parts.flatten!
+
+    compatibles = parts.map{|part| {part: part, score: weight}}
+
+    return compatibles
+  end
+
+  def find_potentials_with_weight
+    potentials = []
+
+    compatibles = self.compatible_parts
+
+    second_level = array_weighted_level(compatibles, 0.5)
+    second_level.reject! { |f| compatibles.include?(f[:part]) || f[:part] == self }
+    potentials << second_level
+
+    #Third level is Distance = 3 from the original part
+    third_level = hash_weighted_level(second_level, 0.25)
+    third_level.reject! { |f| compatibles.include?(f[:part]) || second_level.include?(f[:part]) || f[:part] == self}
+    potentials << third_level
+
+    #Third level is Distance = 4 from the original part
+    fourth_level = hash_weighted_level(third_level, 0.1)
+    fourth_level.reject! { |f| compatibles.include?(f[:part]) || second_level.include?(f[:part]) || third_level.include?(f[:part]) || f[:part] == self}
+    potentials << fourth_level
+
+    return potentials.flatten!
+  end
+
 end
