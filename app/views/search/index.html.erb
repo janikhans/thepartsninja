@@ -20,7 +20,6 @@
                 <ul class="nav nav-tabs">
                     <li class="active"><a data-toggle="tab" href="#tab-1"> Compatible Parts <span class="label label-primary"> <%= @compatible_search_results.count %></span></a></li>
                     <li class=""><a data-toggle="tab" href="#tab-2">Potential Parts <span class="label label-primary"><%= @potential_parts.count %></span></a></li>
-                    <li class=""><a data-toggle="tab" href="#tab-4">Weighted Parts <span class="label label-primary"><%= @weighted_parts.count %></span></a></li>
                     <li class=""><a data-toggle="tab" href="#tab-3">OEM Parts <span class="label label-primary"> <%= @oem_search_results.count %></span></a></li>
                 </ul>
                 <div class="tab-content">
@@ -54,18 +53,6 @@
                         <div class="panel-body no-padding">
                             <% if @oem_search_results.any? %>
                               <%= render partial: 'parts/oem_part', collection: @oem_search_results %>
-                            <% else %>
-                            <div class="search-box-padding">
-                              <h5 class="text-center">No OEM Parts Were Found...</h5>
-                              <p class="text-center">Try a different search term other than <strong><%= @part %></strong>. Maybe something shorter?</p>
-                            </div>
-                            <% end %>
-                        </div>
-                    </div>
-                    <div id="tab-4" class="tab-pane">
-                        <div class="panel-body no-padding">
-                            <% if @weighted_parts.any? %>
-                              <%= render partial: 'parts/weighted_potential_part', collection: @weighted_parts %>
                             <% else %>
                             <div class="search-box-padding">
                               <h5 class="text-center">No OEM Parts Were Found...</h5>

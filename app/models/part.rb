@@ -21,7 +21,7 @@ class Part < ActiveRecord::Base
   def compatible_parts #Finds just the compatible parts to the fitment being searched
     compatible_parts = []
     self.compats.each do |c|
-      compatible_parts << c.compatible_part #if c.discovery.modifications == false
+      compatible_parts << c.compatible_part #if c.cached_votes_score >= 0 #if c.discovery.modifications == false
     end
     return compatible_parts
   end
@@ -43,86 +43,35 @@ class Part < ActiveRecord::Base
 
     #First level is what is directly known to be compatible with this part. Distance = 1
     compatibles = self.compatible_parts
+    compatibles.uniq!
 
-    ## Second level represents the first level of potentials to the original part. Distance = 2
+    #Second level represents the first level of potentials to the original part. Distance = 2
     second_level = next_level(compatibles)
     second_level.reject! { |f| compatibles.include?(f) || f == self }
-    potentials << second_level
+    potentials += second_level.map{|part| {part: part, score: 0.5}}
+    second_level.uniq!
 
     #Third level is Distance = 3 from the original part
     third_level = next_level(second_level)
     third_level.reject! { |f| compatibles.include?(f) || second_level.include?(f) || f == self}
-    potentials << third_level.uniq
+    potentials += third_level.map{|part| {part: part, score: 0.25}}
+    third_level.uniq!
 
     #Third level is Distance = 4 from the original part
     fourth_level = next_level(third_level)
     fourth_level.reject! { |f| compatibles.include?(f) || second_level.include?(f) || third_level.include?(f) || f == self}
-    potentials << fourth_level.uniq
+    potentials += fourth_level.map{|part| {part: part, score: 0.1}}
 
-    #Fifth Level but I don't know if we'll use this yet.
-    # fifth_level = next_level(fourth_level)
-    # fifth_level.reject! { |f| compatibles.include?(f) || second_level.include?(f) || third_level.include?(f) || fourth_level.include?(f) || f == self}
-    # potentials << fifth_level.uniq
-
-    potentials.flatten!
-    return potentials
-  end
-
-
-  def array_weighted_level (level, weight)
-    parent_level = level
-    parts = []
-
-    parent_level.each do |p|
-      parts << p.compatible_parts
-    end
-    parts.flatten!
-
-    compatibles = parts.map{|part| {part: part, score: weight}}
-
-    return compatibles
-  end
-
-
-  def hash_weighted_level (level, weight)
-    parent_level = level
-    parent_parts = []
-    parts = []
-
-    parent_level.each do |p|
-      parent_parts << p[:part]
+    #Now we need to go through our array of and combine the scores of hashes that share the same part
+    temp_potentials = Hash.new(0)
+    potentials.each do |potential|
+      temp_potentials[potential[:part]] += potential[:score]
     end
 
-    parent_parts.each do |p|
-      parts << p.compatible_parts
-    end
-    parts.flatten!
+    #Because this last step changed our format away from the format we need key: value, we're changing it back!
+    final = temp_potentials.collect{ |key, value| {part: key, score: value}}
 
-    compatibles = parts.map{|part| {part: part, score: weight}}
-
-    return compatibles
-  end
-
-  def find_potentials_with_weight
-    potentials = []
-
-    compatibles = self.compatible_parts
-
-    second_level = array_weighted_level(compatibles, 0.5)
-    second_level.reject! { |f| compatibles.include?(f[:part]) || f[:part] == self }
-    potentials << second_level
-
-    #Third level is Distance = 3 from the original part
-    third_level = hash_weighted_level(second_level, 0.25)
-    third_level.reject! { |f| compatibles.include?(f[:part]) || second_level.include?(f[:part]) || f[:part] == self}
-    potentials << third_level
-
-    #Third level is Distance = 4 from the original part
-    fourth_level = hash_weighted_level(third_level, 0.1)
-    fourth_level.reject! { |f| compatibles.include?(f[:part]) || second_level.include?(f[:part]) || third_level.include?(f[:part]) || f[:part] == self}
-    potentials << fourth_level
-
-    return potentials.flatten!
+    return final
   end
 
 end

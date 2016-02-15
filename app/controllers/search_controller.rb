@@ -19,7 +19,6 @@ class SearchController < ApplicationController
         oem_parts = @vehicle.oem_parts
         compatible_parts = []
         potential_parts = []
-        weighted_parts = []
 
         oem_parts.each do |p|
           if p.product.name.downcase.include? @part.downcase
@@ -30,11 +29,9 @@ class SearchController < ApplicationController
         @oem_search_results.each do |p|
           compatible_parts << p.compats
           potential_parts << p.find_potentials
-          weighted_parts << p.find_potentials_with_weight
         end
 
         @potential_parts = potential_parts.flatten!
-        @weighted_parts = weighted_parts.flatten!
         compatible_parts.flatten!
         @compatible_search_results = compatible_parts.sort_by {|c| c.cached_votes_score }.reverse
 
