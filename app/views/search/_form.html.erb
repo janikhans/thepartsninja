@@ -1,17 +1,17 @@
 <%= simple_form_for :search, url: search_path, method: :get do |f| %>
     <div class="row">
-      <div class="col-sm-2  no-column-padding">
+      <div class="col-sm-2  column-adjustment">
         <%= f.input :year, class:"form-control", placeholder: "Year...", label: false %>
       </div>
-      <div class="col-sm-2  no-column-padding">
+      <div class="col-sm-2  column-adjustment">
         <%= f.input :make, class:"form-control", placeholder: "Make...", label: false %>
       </div>
-      <div class="col-sm-2  no-column-padding">
+      <div class="col-sm-2  column-adjustment">
         <%= f.input :model, class:"form-control", placeholder: "Model...", label: false %>
       </div>
-      <div class="col-sm-4  no-column-padding">
+      <div class="col-sm-4  column-adjustment">
         <%= f.input :part_name, class:"form-control", placeholder: "What Part?", label: false %>
       </div>
-        <%= f.submit("Search", class:"btn btn-default col-sm-2 col-xs-4 col-sm-offset-0 col-xs-offset-4 no-column-padding results-btn") %>
+        <%= f.submit("Search", class:"btn btn-default col-sm-2 col-xs-4 col-sm-offset-0 col-xs-offset-4 column-adjustment results-btn") %>
     </div>
 <% end %>
