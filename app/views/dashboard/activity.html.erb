@@ -1,0 +1,18 @@
+<div class="ibox">
+  <div class="ibox-content">
+      <h3>Activity</h3>
+      <p>
+        There has been no activity yet.
+      </p>
+  </div>
+</div>
+<div class="ibox">
+  <div class="ibox-content">
+      <h3>My Discoveries</h3>
+      <% if @user.discoveries.any? %>
+        <% @user.discoveries.each do |d| %> <%= link_to "#{d.id}", d %><br><% end %>
+      <% else %>
+        You haven't discovered anything yet. How about you start discovering by going <%= link_to "HERE", new_discovery_path %>
+      <% end %>
+  </div>
+</div>

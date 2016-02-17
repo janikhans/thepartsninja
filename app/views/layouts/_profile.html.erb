@@ -1,0 +1,28 @@
+<div class="col-md-6">
+    <div class="profile-image">
+      <%= gravatar_for @user %>
+    </div>
+    <div class="profile-info">
+      <div class="">
+        <div>
+          <h2 class="no-margins"><%= @user.username %></h2>
+          <h4>Padawan</h4>
+          <small>
+              There are many variations of passages of Lorem Ipsum available, but the majority
+              have suffered alteration in some form Ipsum available.
+          </small>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="col-md-6">
+  <table class="table small m-b-xs">
+    <tbody>
+      <tr>
+        <td><strong> <%= @user.discoveries.count %></strong> Discoveries</td>
+        <td><strong> <%= @user.compatibles.count %></strong> Compatibilities</td>
+        <td><strong>61</strong> Karma</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

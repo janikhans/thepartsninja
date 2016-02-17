@@ -29,11 +29,14 @@ Rails.application.routes.draw do
     get "sign_up", to: "devise/registrations#new"
   end
 
-  devise_for :users
+  devise_for :users, controllers: {registrations: :registrations}
 
   resources :users, only: [:show]
 
-  get 'dashboard' => 'users#dashboard'
+  get 'dashboard' => 'dashboard#activity'
+  get 'dashboard/account-settings' => 'dashboard#settings'
+  get 'dashboard/user-profile' => 'dashboard#profile'
+
   get 'help' => 'pages#help'
   get 'contact' => 'pages#contact'
   get 'terms-of-service' => 'pages#terms'
