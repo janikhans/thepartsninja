@@ -15,15 +15,12 @@ class User < ActiveRecord::Base
   has_many :fitments
   has_many :discoveries
   has_many :compatibles, through: :discoveries
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   validates :username, uniqueness: { case_sensitive: false}, presence: true, length: { in: 4..20}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
-  validates :email, presence: true, length: { maximum: 255},
-                    format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
+  validates :email, presence: true, length: { maximum: 255}, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   validate :validate_username
   attr_accessor :login
   after_create :build_profile
@@ -33,6 +30,7 @@ class User < ActiveRecord::Base
     if login = conditions.delete(:login)
       where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
     else
+      conditions.permit! if conditions.class.to_s == "ActionController::Parameters" ##Look into this more
       where(conditions).first
     end
   end
