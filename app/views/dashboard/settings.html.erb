@@ -1,1 +1,12 @@
+<div class="ibox">
+  <div class="ibox-title">
+    <h3>Avatar</h3>
+  </div>
+  <div class="ibox-content">
+    <p>PartsHUB uses gravatar. To change your Gravatar, please follow this <%= link_to "link", 'https://en.gravatar.com/site/login', target: :_blank %>.</p>
+    <h4>Your current Gravatar:</h4>
+    <%= gravatar_for(@user) %>
+  </div>
+</div>
+
 <%= render 'devise/registrations/form' %>
