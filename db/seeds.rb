@@ -20,22 +20,29 @@ tommy = User.create!(username: 'Tommy', email: 'tommy@gmail.com', password: 'pas
                password_confirmation: password)
 end
 
+all_users = User.all
+
+all_users.each do |u|
+  u.profile.location = Faker::Address.city
+  u.profile.bio = Faker::Lorem.paragraph(2)
+  u.profile.save
+end
 user1 = User.first
 
 brands = ["Acerbis", "Hinson", "Tusk Racing", "ARC", "Barnett", "Yamaha", "Kawasaki", "KTM", "Beta", "FORD", "Chevrolet", "Husqvarna", "Honda"]
 
-brands.each do |name| 
+brands.each do |name|
   Brand.create(name: name)
 end
 
 
 yz250 = Vehicle.create model: "YZ250", year: 2006, brand_name: "Yamaha"
 yz25004 = Vehicle.create model: "YZ250", year: 2004, brand_name: "Yamaha"
-yz25008 = Vehicle.create model: "YZ250", year: 2008, brand_name: "Yamaha"   
+yz25008 = Vehicle.create model: "YZ250", year: 2008, brand_name: "Yamaha"
 yz125 = Vehicle.create model: "YZ125", year: 2005, brand_name: "Yamaha"
-wr450 = Vehicle.create model: "WR450", year: 2012, brand_name: "Yamaha" 
+wr450 = Vehicle.create model: "WR450", year: 2012, brand_name: "Yamaha"
 wr426 = Vehicle.create model: "WR426", year: 2002, brand_name: "Yamaha"
-yz250f = Vehicle.create model: "YZ250F", year: 2011, brand_name: "Yamaha" 
+yz250f = Vehicle.create model: "YZ250F", year: 2011, brand_name: "Yamaha"
 wr250 = Vehicle.create model: "WR250", year: 2009, brand_name: "Yamaha"
 rmz450 = Vehicle.create model: "RMZ450", year: 2008, brand_name: "Suzuki"
 tm250 = Vehicle.create model: "250MX", year: 2011, brand_name: "TM Racing"
@@ -113,7 +120,3 @@ users.each do |u|
   end
   comp7.downvote_by u
 end
-
-
-
-
