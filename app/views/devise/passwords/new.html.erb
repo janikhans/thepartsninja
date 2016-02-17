@@ -1,23 +1,21 @@
 <div class="passwordBox animated fadeInDown">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="ibox gray-box">
-                <h2 class="font-bold">Forgot password?</h2>
-                <p>
-                    Enter your email address and reset instructions will be emailed to you.
-                </p>
-                <div class="row">
-                    <div class="col-lg-12">
-                      <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-                        <%= f.error_notification %>
-                        <div class="form-group">
-                          <%= f.input :email, required: true, autofocus: true, placeholder: "Email", label: false %>
-                        </div>
-                          <%= f.button :submit, "Send me reset password instructions", class:"btn btn-primary block full-width m-b" %>
-                      <% end %>
-                    </div>
-                </div>
-            </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="ibox gray-box">
+        <h2 class="font-bold">Forgot password?</h2>
+        <p>Enter your email address and reset instructions will be emailed to you.</p>
+        <div class="row">
+          <div class="col-lg-12">
+            <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+              <%= f.error_notification %>
+              <div class="form-group">
+                <%= f.input :email, required: true, autofocus: true, placeholder: "Email", label: false %>
+              </div>
+                <%= f.button :submit, "Send me reset password instructions", class:"btn btn-primary block full-width m-b" %>
+            <% end %>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>

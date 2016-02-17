@@ -1,5 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
-  layout "dashboard"
+  layout "dashboard", only: [:new]
   protected
 
     def after_update_path_for(resource)
