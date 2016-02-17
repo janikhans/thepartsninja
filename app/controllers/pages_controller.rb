@@ -13,6 +13,8 @@ class PagesController < ApplicationController
   def contact
   end
 
-  private
+  def terms
+  end
+
 
 end

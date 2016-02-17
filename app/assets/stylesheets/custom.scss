@@ -281,7 +281,19 @@ footer {
   .popover-content {color: gray;}
 }
 
+//General
 .gray-box {
   background-color: #F9f9f9;
   padding:20px;
+}
+
+//dashboard
+.dashboard-links {
+  padding: 0px;
+  a {color: gray; &:hover {color: $navy;}}
+  li {
+    padding: 5px;
+    border-bottom: 1px solid #e7eaec;
+    display: block;
+  }
 }

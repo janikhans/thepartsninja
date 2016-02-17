@@ -1,0 +1,64 @@
+<div class="wrapper wrapper-content">
+  <div class="row m-b-lg m-t-lg  animated fadeInDown">
+      <div class="col-md-6">
+          <div class="profile-image">
+          <%= gravatar_for @user %>
+          </div>
+          <div class="profile-info">
+              <div class="">
+                  <div>
+                      <h2 class="no-margins">
+                          <%= @user.username %>
+                      </h2>
+                      <h4>Padawan</h4>
+                      <small>
+                          There are many variations of passages of Lorem Ipsum available, but the majority
+                          have suffered alteration in some form Ipsum available.
+                      </small>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-6">
+          <table class="table small m-b-xs">
+              <tbody>
+              <tr>
+                  <td><strong> <%= @user.discoveries.count %></strong> Discoveries</td>
+                  <td><strong> <%= @user.compatibles.count %></strong> Compatibilities</td>
+                  <td><strong>61</strong> Karma</td>
+              </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+            <h3>Dashboard</h3>
+            <ul class="dashboard-links">
+              <%= link_to edit_user_registration_path do %><li><i class="fa fa-user"></i> Account Settings </li> <% end %>
+              <%= link_to edit_user_registration_path do %><li><i class="fa fa-user-secret"></i> Edit Profile </li> <% end %>
+              <%= link_to edit_user_registration_path do %><li><i class="fa fa-envelope-o "></i> Messages <span class="label label-warning pull-right">16</span></li> <% end %>
+            </ul>
+    </div>
+    <div class="col-md-9  animated fadeInLeft">
+      <div class="ibox">
+        <div class="ibox-content">
+            <h3>Activity</h3>
+            <p>
+              There has been no activity yet.
+            </p>
+        </div>
+      </div>
+      <div class="ibox">
+        <div class="ibox-content">
+            <h3>My Discoveries</h3>
+            <% if @user.discoveries.any? %>
+              <% @user.discoveries.each do |d| %> <%= link_to "#{d.id}", d %><br><% end %>
+            <% else %>
+              You haven't discovered anything yet. How about you start discovering by going <%= link_to "HERE", new_discovery_path %>
+            <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

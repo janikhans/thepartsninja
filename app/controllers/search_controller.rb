@@ -1,6 +1,6 @@
 class SearchController < ApplicationController
 
-  def index
+  def results
       ## Lets takes those params from the view....
       make = params[:search][:make].strip
       year = params[:search][:year]

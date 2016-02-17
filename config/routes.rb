@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'search' => 'search#index', as: :search
+  get 'search' => 'search#results', as: :search
 
   resources :discoveries
 
@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   resources :vehicles
   resources :brands, concerns: :autocompletable
 
-# The Welcome Page! 
+# The Welcome Page!
   root 'pages#index'
 
   devise_scope :user do
@@ -32,9 +32,11 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :users, only: [:show]
-  
+
+  get 'dashboard' => 'users#dashboard'
   get 'help' => 'pages#help'
   get 'contact' => 'pages#contact'
+  get 'terms-of-service' => 'pages#terms'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
