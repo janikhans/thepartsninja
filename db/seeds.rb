@@ -1,36 +1,39 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+janik = User.new(username: 'Janik', email: 'janik.knittle@gmail.com', password: 'password', password_confirmation: 'password', role: 'admin')
+janik.skip_confirmation!
+janik.confirmed_at = DateTime.now
+janik.save
 
-sensei = User.create!(username: 'Sensei', email: 'thepartsninja@gmail.com', password: 'adminadmin', password_confirmation: 'adminadmin')
-janik = User.create!(username: 'Janik', email: 'janik.knittle@gmail.com', password: 'password', password_confirmation: 'password', role: 'admin')
-tommy = User.create!(username: 'Tommy', email: 'tommy@gmail.com', password: 'password', password_confirmation: 'password', role: 'user')
+sensei = User.new(username: 'Sensei', email: 'thepartsninja@gmail.com', password: 'adminadmin', password_confirmation: 'adminadmin')
+sensei.skip_confirmation!
+sensei.confirmed_at = DateTime.now
+sensei.save
+
+tommy = User.new(username: 'Tommy', email: 'tommy@gmail.com', password: 'password', password_confirmation: 'password', role: 'user')
+tommy.skip_confirmation!
+tommy.confirmed_at = DateTime.now
+tommy.save
 
 30.times do |n|
   username  = Faker::Internet.user_name(5)
   email = Faker::Internet.free_email
   password = "password"
-  User.create!(username:  username,
+  user = User.new(username:  username,
                email: email,
                password:              password,
                password_confirmation: password)
+  user.skip_confirmation!
+  user.save!
 end
 
-all_users = User.all
+users = User.all
 
-all_users.each do |u|
+users.each do |u|
   u.profile.location = Faker::Address.city
   u.profile.bio = Faker::Lorem.paragraph(2)
   u.profile.save
 end
-user1 = User.first
 
 brands = ["Acerbis", "Hinson", "Tusk Racing", "ARC", "Barnett", "Yamaha", "Kawasaki", "KTM", "Beta", "FORD", "Chevrolet", "Husqvarna", "Honda"]
-
 brands.each do |name|
   Brand.create(name: name)
 end
@@ -87,29 +90,27 @@ fitment10 = part1.fitments.build(vehicle: yz450f).save
 fitment11 = part4.fitments.build(vehicle: yz25005).save
 fitment12 = part7.fitments.build(vehicle: yz450f11).save
 
-dis1 = Discovery.create modifications: true, comment: "You'll need the 2008 Wheel Spacers", user: user1
+dis1 = Discovery.create modifications: true, comment: "You'll need the 2008 Wheel Spacers", user: janik
 compat1 = dis1.compatibles.build(part: part3, compatible_part: part2, backwards: false).save
-dis2 = Discovery.create modifications: false, comment: "Quick swap across", user: user1
+dis2 = Discovery.create modifications: false, comment: "Quick swap across", user: janik
 compat2 = dis2.compatibles.build(part: part1, compatible_part: part4, backwards: true).save
-dis3 = Discovery.create modifications: true, comment: "You'll need the 2011 Wheel Spacers", user: user1
+dis3 = Discovery.create modifications: true, comment: "You'll need the 2011 Wheel Spacers", user: janik
 compat3 = dis3.compatibles.build(part: part7, compatible_part: part6, backwards: false).save
-dis4 = Discovery.create modifications: false, comment: "Stuff and more stuff", user: user1
+dis4 = Discovery.create modifications: false, comment: "Stuff and more stuff", user: janik
 compat4 = dis4.compatibles.build(part: part8, compatible_part: part4, backwards: true).save
-dis5 = Discovery.create modifications: false, comment: "Blahhh!!!!", user: user1
+dis5 = Discovery.create modifications: false, comment: "Blahhh!!!!", user: janik
 compat5 = dis5.compatibles.build(part: part5, compatible_part: part6, backwards: true).save
-dis6 = Discovery.create modifications: false, comment: "Easy Peasy", user: user1
+dis6 = Discovery.create modifications: false, comment: "Easy Peasy", user: janik
 compat6 = dis6.compatibles.build(part: part8, compatible_part: part1, backwards: true).save
-dis7 = Discovery.create modifications: true, comment: "This doesn't work backwards", user: user1
+dis7 = Discovery.create modifications: true, comment: "This doesn't work backwards", user: janik
 compat7 = dis7.compatibles.build(part: part2, compatible_part: part9, backwards: false).save
-dis8 = Discovery.create modifications: true, comment: "This should be a backwards fit", user: user1
+dis8 = Discovery.create modifications: true, comment: "This should be a backwards fit", user: janik
 compat8 = dis8.compatibles.build(part: part4, compatible_part: part7, backwards: true).save
-dis9 = Discovery.create modifications: false, comment: "This is a third level test", user: user1
+dis9 = Discovery.create modifications: false, comment: "This is a third level test", user: janik
 compat9 = dis9.compatibles.build(part: part6, compatible_part: part7, backwards: true).save
-dis10 = Discovery.create modifications: false, comment: "This is another third level test", user: user1
+dis10 = Discovery.create modifications: false, comment: "This is another third level test", user: janik
 compat10 = dis10.compatibles.build(part: part3, compatible_part: part1, backwards: true).save
 
-
-users = User.all
 compatibles = Compatible.all
 comp7 = Compatible.find(7)
 
