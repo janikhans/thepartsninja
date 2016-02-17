@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   after_initialize :set_default_role, if: :new_record?
 
   #Associations
+  has_one :profile, dependent: :destroy
   has_many :products
   has_many :parts
   has_many :fitments
@@ -25,6 +26,7 @@ class User < ActiveRecord::Base
                     format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   validate :validate_username
   attr_accessor :login
+  after_create :build_profile
 
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
@@ -45,6 +47,10 @@ class User < ActiveRecord::Base
 
     def set_default_role
       self.role ||= :user
+    end
+
+    def build_profile
+      Profile.create(user: self)
     end
 
 end

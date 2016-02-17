@@ -6,11 +6,8 @@
       <div class="">
         <div>
           <h2 class="no-margins"><%= @user.username %></h2>
-          <h4>Padawan</h4>
-          <small>
-              There are many variations of passages of Lorem Ipsum available, but the majority
-              have suffered alteration in some form Ipsum available.
-          </small>
+          <h4><%= user_location(@user) %></h4>
+          <small><%= user_bio(@user) %></small>
         </div>
       </div>
     </div>
@@ -21,6 +18,9 @@
       <tr>
         <td><strong> <%= @user.discoveries.count %></strong> Discoveries</td>
         <td><strong> <%= @user.compatibles.count %></strong> Compatibilities</td>
+      </tr>
+      <tr>
+        <td><strong>Padawan</strong></td>
         <td><strong>61</strong> Karma</td>
       </tr>
     </tbody>
