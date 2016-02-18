@@ -38,6 +38,28 @@ brands.each do |name|
   Brand.create(name: name)
 end
 
+categories = ["Bearings", "Body", "Brakes", "Cooling Systems", "Drive", "Electrical", "Engine", "Exhaust", "Filters", "Fuel System", "Air Intake System", "Controls", "Suspension", "Wheels"]
+categories.each do |name|
+  Category.create(name: name)
+end
+
+bearings_sub = ["Crankshaft Bearings", "Shock Bearings", "Shock Linkage Bearings", "Steering Stem Beerings", "Swing Arm Bearings", "Wheel Bearings"]
+engine_sub = ["Clutch", "Camshafts", "Pistons", "Cluch Cover"]
+wheel_sub = ["Complete Wheel Assembly", "Rims", "Hubs", "Spokes", "Wheel Spacers"]
+
+bearing = Category.first
+engine = Category.find(7)
+wheel = Category.last
+
+bearings_sub.each do |name|
+  Category.create(name: name, parent_category: bearing)
+end
+engine_sub.each do |name|
+  Category.create(name: name, parent_category: engine)
+end
+wheel_sub.each do |name|
+  Category.create(name: name, parent_category: wheel)
+end
 
 yz250 = Vehicle.create model: "YZ250", year: 2006, brand_name: "Yamaha"
 yz25004 = Vehicle.create model: "YZ250", year: 2004, brand_name: "Yamaha"

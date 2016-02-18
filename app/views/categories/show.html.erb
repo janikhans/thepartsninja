@@ -6,8 +6,9 @@
 </p>
 
 <p>
+
   <strong>Parent:</strong>
-  <%= @category.parent %>
+  <%= @category.parent_category.name if @category.parent_category %>
 </p>
 
 <%= link_to 'Edit', edit_category_path(@category) %> |

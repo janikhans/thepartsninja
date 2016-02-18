@@ -1,5 +1,8 @@
 class CategoriesController < ApplicationController
+  include Admin
   before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :admin_only
 
   def index
     @categories = Category.includes(:subcategories)
@@ -10,6 +13,7 @@ class CategoriesController < ApplicationController
 
   def new
     @category = Category.new
+    @parent_categories = Category.all #find(:all, conditions: {parent_id: nil})
   end
 
   def edit
