@@ -1,0 +1,8 @@
+<ul>
+<% subcategories.each do |sub| %>
+<li>
+<%= sub.name %> <%= link_to "Edit", edit_category_path(sub), :class => "btn btn-primary btn-xs" %> <%= link_to "Delete", destroy_category_path(sub), :method => 'delete', :class => "btn btn-danger btn-xs", data: { confirm: 'Are you sure?' } %>
+<%= render partial: 'subcategory', locals: {subcategories: sub.subcategories} if sub.subcategories.present? %>
+</li>
+<% end %>
+</ul>

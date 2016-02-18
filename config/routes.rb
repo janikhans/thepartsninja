@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {registrations: :registrations}
 
   #Basic resources
-  resources :discoveries, :fitments, :parts, :products, :vehicles
+  resources :discoveries, :fitments, :parts, :products, :vehicles, :categories
   resources :profiles, only: [:update]
   resources :users, only: [:show]
   resources :compatibles do
