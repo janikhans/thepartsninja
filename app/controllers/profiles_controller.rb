@@ -1,5 +1,6 @@
 class ProfilesController < ApplicationController
   layout "dashboard"
+  before_action :authenticate_user!
 
   def update
     @user = current_user

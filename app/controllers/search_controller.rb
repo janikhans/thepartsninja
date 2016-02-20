@@ -1,4 +1,5 @@
 class SearchController < ApplicationController
+  before_action :authenticate_user!
 
   def results
     @categories = Category.all
@@ -28,7 +29,7 @@ class SearchController < ApplicationController
             @oem_search_results << p
           end
         end
-        
+
         #Sloppy hack to fix errors. - Fix this.
         if @oem_search_results.any?
 
