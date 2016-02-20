@@ -1,19 +1,14 @@
-<%= form_for(@product) do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
+<%= simple_form_for(@product) do |f| %>
+  <%= f.error_notification %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name, required: true %>
+  <div class="form-inputs">
+    <%= f.input :name, label: "Part Name" %>
+    <%= f.input :description, label: "Description"  %>
+    <%= f.association :brand,label_method: :name, value_method: :id %>
+    <%= f.association :category, label_method: :name, value_method: :id %>
   </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_field :description %>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
   </div>
-  <div class="field">
-    <%= f.label :brand_name %><br>
-    <%= f.text_field :brand_name, required: true, data: {autocomplete_source: autocomplete_brands_path} %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-  <% end %>
+<% end %>

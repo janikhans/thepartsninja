@@ -1,6 +1,4 @@
-
-<div class="wrapper wrapper-content">
-  <div class="row m-b-lg m-t-lg  animated fadeInDown">
+<div class="row m-b-lg m-t-lg  animated fadeInDown">
     <div class="col-md-5">
         <div class="">
           <%= image_tag("missing-image.png", class:"img-responsive") %>
@@ -13,6 +11,7 @@
                 <tr>
                     <td><h3><strong>Brand:</strong> <%= @product.brand.name %> </h3></td>
                     <td><h3><strong>Part:</strong> <%= @product.name %></h3></td>
+                    <td><h3><strong>Category:</strong> <%= @product.category.name %></h3></td>
                 </tr>
                 <% if current_user.try(:admin?) %>
                 <tr>
@@ -56,5 +55,4 @@
         </div>
     <% end %>
     </div>
-  </div>
 </div>

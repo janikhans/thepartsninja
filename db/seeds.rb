@@ -75,9 +75,9 @@ yz450f = Vehicle.create model: "YZ450F", year: 2006, brand_name: "Yamaha"
 yz25005 = Vehicle.create model: "YZ250", year: 2005, brand_name: "Yamaha"
 yz450f11 = Vehicle.create model: "YZ450F", year: 2011, brand_name: "Yamaha"
 
-front_wheel = Product.create name: "Front Wheel", description: "Complete front wheel assembly. Includes the hubs, spokes and bearings", brand_name: "Yamaha"
-rekluse = Product.create name: "Core3.0", description: "Autoclutch that nearly gets rid of all possibility of stalling", brand_name: "Rekluse"
-chain_guide = Product.create name: "Chain Guide v1.0", description: "Plastic 2 part chain guide block that replaces the stock unit", brand_name: "Acerbis"
+front_wheel = Product.create name: "Front Wheel", description: "Complete front wheel assembly. Includes the hubs, spokes and bearings", brand_name: "Yamaha", category_name: "Complete Wheel Assembly"
+rekluse = Product.create name: "Core3.0", description: "Autoclutch that nearly gets rid of all possibility of stalling", brand_name: "Rekluse", category_name: "Clutch"
+chain_guide = Product.create name: "Chain Guide v1.0", description: "Plastic 2 part chain guide block that replaces the stock unit", brand_name: "Acerbis", category_name: "Body"
 
 part1 = front_wheel.parts.build(part_number: "fwyz25006").save
 part2 = front_wheel.parts.build(part_number: "fwyz25004").save

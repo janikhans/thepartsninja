@@ -13,6 +13,8 @@ class ProductsController < ApplicationController
 
   def new
     @product = current_user.products.build
+    @brands = Brand.all
+    @categories = Category.all
   end
 
   def edit
@@ -58,6 +60,6 @@ class ProductsController < ApplicationController
     end
 
     def product_params
-      params.require(:product).permit(:name, :description, :brand_name)
+      params.require(:product).permit(:name, :description, :brand_id, :category_id)
     end
 end

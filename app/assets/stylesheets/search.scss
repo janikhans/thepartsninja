@@ -4,8 +4,6 @@
 
 .search-results {
   border-radius: 5px 5px 0px 0px;
-  margin-bottom: 15px;
-  min-height: 100px;
   .results-header {
     padding: 1px 20px 5px 20px;
     h2 {
@@ -33,6 +31,10 @@
 }
 
 .search-form {
+  .form-control {
+    background: transparent;
+    color: #9c9c9c;
+  }
   input {
     background: transparent;
     color: white;

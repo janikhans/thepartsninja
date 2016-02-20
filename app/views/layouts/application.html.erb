@@ -9,14 +9,21 @@
   <%= csrf_meta_tags %>
 </head>
 
-<body class="<%= @extra_class %> gray-bg">
+<body class="gray-bg">
     <%= render 'layouts/navbar' %>
     <% if @home_page %><%= render 'layouts/search_header' %><% else %><%= render 'layouts/header' %> <% end %>
     <%= render 'layouts/flash' %>
 
-        <div id="content" class="<% unless @home_page %>container<% end %>">
-          <%= yield %>
-        </div>
+        <% if @home_page %>
+            <%= yield %>
+        <% else %>
+          <div id="content" class="container">
+            <div class="wrapper wrapper-content bg-card m-b-lg">
+              <%= yield %>
+            </div>
+          </div>
+        <% end %>
+
     <%= debug(params) if Rails.env.development? %>
     <%= render 'layouts/footer' %>
 </body>

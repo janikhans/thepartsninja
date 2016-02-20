@@ -4,9 +4,10 @@ class Product < ActiveRecord::Base
 
   belongs_to :brand
   belongs_to :user
+  belongs_to :category
   has_many :parts, dependent: :destroy
 
-  validates :name, :brand, presence: true
+  validates :name, :brand_id, :category_id, presence: true
 
   def brand_name
     brand.try(:name)
@@ -16,6 +17,15 @@ class Product < ActiveRecord::Base
   def brand_name=(name)
     name = name.strip
     self.brand = Brand.where('lower(name) = ?', name.downcase).first_or_create(name: name)
+  end
+
+  def category_name
+    brand.try(:name)
+  end
+
+  def category_name=(name)
+    name = name.strip
+    self.category = Category.where('lower(name) = ?', name.downcase).first_or_create(name: name)
   end
 
   def slug_candidates

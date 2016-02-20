@@ -1,11 +1,13 @@
 class SearchController < ApplicationController
 
   def results
+    @categories = Category.all
       ## Lets takes those params from the view....
       make = params[:search][:make].strip
       year = params[:search][:year]
       model = params[:search][:model].strip
-      @part = params[:search][:part_name].strip
+      # @part = params[:search][:part_name].strip
+      @part = Category.find(params[:search][:part])
 
       #Finding the brand first and then the vehicle
       brand = Brand.where('lower(name) = ?', make.downcase).first
@@ -21,24 +23,26 @@ class SearchController < ApplicationController
         potential_parts = []
 
         oem_parts.each do |p|
-          if p.product.name.downcase.include? @part.downcase
+          # if p.product.category.name.downcase.include? @part.downcase
+          if p.product.category === @part
             @oem_search_results << p
           end
         end
+        
+        #Sloppy hack to fix errors. - Fix this.
+        if @oem_search_results.any?
 
-        @oem_search_results.each do |p|
-          compatible_parts << p.compats
-          potential_parts << p.find_potentials
+          @oem_search_results.each do |p|
+            compatible_parts << p.compats
+            potential_parts << p.find_potentials
+          end
+          @potential_parts = potential_parts.flatten!
+          compatible_parts.flatten!
+          @compatible_search_results = compatible_parts.sort_by {|c| c.cached_votes_score }.reverse
+        else
+          @vehicle = nil
         end
-
-        @potential_parts = potential_parts.flatten!
-        compatible_parts.flatten!
-        @compatible_search_results = compatible_parts.sort_by {|c| c.cached_votes_score }.reverse
-
-      else
-        @nothing_exists = true
       end
-
   end
 
 end

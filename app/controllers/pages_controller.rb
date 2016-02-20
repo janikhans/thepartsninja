@@ -2,9 +2,9 @@ class PagesController < ApplicationController
 
 
   def index
+    @categories = Category.where(parent_id: !nil)
     @search
     @home_page = true
-    @extra_class = "home"
   end
 
   def help

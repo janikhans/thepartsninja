@@ -1,10 +1,9 @@
-<div class="wrapper wrapper-content">
-  <div class="row">
+<div class="row">
     <div class="col-md-9">
       <div class="ibox float-e-margins">
         <div class="ibox-content">
           <% if @vehicle %>
-              <h2>Showing Results for: <span class="text-navy"><%= link_to "#{@vehicle.year} #{@vehicle.brand.name} #{@vehicle.model}", @vehicle %> <i>"<%= @part %>"</i></span></h2>
+              <h2>Showing Results for: <span class="text-navy"><%= link_to "#{@vehicle.year} #{@vehicle.brand.name} #{@vehicle.model}", @vehicle %> <i>"<%= @part.name %>"</i></span></h2>
            <% else %>
             <h2>Sorry, no Results were found.</h2>
           <% end %>
@@ -69,6 +68,6 @@
     </div>
     <%= render 'results_sidebar' %>
   </div>
-</div>
+
 
 <style> .results-btn { color: #737373 !important;} .results-btn:hover {color:white !important;} input {color: black !important;} </style>

@@ -1,9 +1,8 @@
-<div class="wrapper wrapper-content">
-  <div class="row m-b-lg m-t-lg  animated fadeInDown">
+  <div class="row m-b-lg animated fadeInDown">
     <div class="col-md-5">
         <div class="">
           <%= image_tag("missing-image.png", class:"img-responsive") %>
-        </div>  
+        </div>
     </div>
       <div class="col-md-7">
       <div class="">
@@ -33,7 +32,7 @@
   </div>
   <div class="row">
       <div class="col-lg-12  animated fadeInRight">
-      <% if @brand.products.any? %>  
+      <% if @brand.products.any? %>
         <div class="ibox">
             <div class="ibox-title">
                 <h5><%= @brand.name %> manufactures these products</h5>
@@ -55,7 +54,7 @@
         </div>
     <% end %>
 
-    <% if @brand.vehicles.any? %>  
+    <% if @brand.vehicles.any? %>
         <div class="ibox">
             <div class="ibox-title">
                 <h5><%= @brand.name %> manufactures these vehicles</h5>
@@ -79,5 +78,3 @@
 
     </div>
   </div>
-</div>
-

@@ -7,6 +7,21 @@ html {
 body {
 }
 
+@media only screen and (min-width : 992px) {
+  .bg-card {
+    background-color: white;
+    position: relative;
+    padding: 40px;
+    margin-top: -40px;
+    box-shadow: 0 2px 6px rgba(0,0,0,.1),0 2px 6px rgba(0,0,0,.10);
+  }
+}
+//navbar
+
+.navbar-default.navbar-scroll {
+  box-shadow: 0 2px 6px rgba(0,0,0,.23);
+}
+
 .red { color: red}
 .green { color: #00B700}
 
@@ -152,7 +167,12 @@ $tl: 0.6s; // transition length
 }
 
 .ibox {
-  box-shadow: 0px 0px 20px rgba(223, 223, 223, 0.65);
+  // box-shadow: 0px 0px 20px rgba(223, 223, 223, 0.65);
+  border: 1px solid rgba(53, 53, 53, 0.12);
+  border-radius: 5px;
+  overflow: hidden;
+  .ibox-title {background-color: #FBFBFB;}
+  .ibox-content {background-color: rgba(251, 251, 251, 0.25)}
 }
 
 .oem-vehicle {
