@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :leads, only: [:create, :destroy]
   #Users
   #Change the default devise routes to something more pleasing
   devise_scope :user do

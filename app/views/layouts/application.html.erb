@@ -11,7 +11,7 @@
 
 <body class="gray-bg">
     <%= render 'layouts/navbar' %>
-    <% if @home_page %><%= render 'layouts/search_header' %><% else %><%= render 'layouts/header' %> <% end %>
+    <% if @home_page %><%= render 'layouts/welcome_splash' %><% else %><%= render 'layouts/header' %> <% end %>
     <%= render 'layouts/flash' %>
 
         <% if @home_page %>

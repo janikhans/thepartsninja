@@ -12,7 +12,11 @@
       <div class="row">
         <div class="col-md-8 col-md-offset-2 text-center">
           <div class="search-form m-lg ">
-            <%= render 'search/form' %>
+            <% if user_signed_in? %>
+              <%= render 'search/form' %>
+            <% else %>
+              <%= render 'leads/form' %>
+            <% end %>
           </div>
         </div>
       </div>

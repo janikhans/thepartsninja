@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160218221200) do
+ActiveRecord::Schema.define(version: 20160220220832) do
 
   create_table "brands", force: :cascade do |t|
     t.string   "name",       default: "", null: false
@@ -84,6 +84,15 @@ ActiveRecord::Schema.define(version: 20160218221200) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+
+  create_table "leads", force: :cascade do |t|
+    t.string   "email",      null: false
+    t.string   "interests"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "leads", ["email"], name: "index_leads_on_email"
 
   create_table "parts", force: :cascade do |t|
     t.string   "part_number"

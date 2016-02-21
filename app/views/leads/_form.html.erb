@@ -1,0 +1,54 @@
+<form>
+  <div class="row">
+    <div class="col-sm-2  column-adjustment">
+      <input type="text" name="name" id="name" value="" tabindex="1" class="form-control" placeholder="Year..." />
+    </div>
+    <div class="col-sm-2  column-adjustment">
+      <input type="text" name="name" id="name" value="" tabindex="1" class="form-control" placeholder="Make..." />
+    </div>
+    <div class="col-sm-2  column-adjustment">
+      <input type="text" name="name" id="name" value="" tabindex="1" class="form-control" placeholder="Model..." />
+    </div>
+    <div class="col-sm-4  column-adjustment">
+      <input type="text" name="name" id="name" value="" tabindex="1" class="form-control" placeholder="What Part?" />
+    </div>
+	  <div>
+	    <input value="Submit" class="btn btn-default col-sm-2 col-xs-4 col-sm-offset-0 col-xs-offset-4 column-adjustment results-btn" data-toggle="modal" data-target="#myModal" />
+    </div>
+</form>
+
+<div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated bounceInRight">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+              <i class="fa fa-laptop modal-icon"></i>
+              <h4 class="modal-title">MetaParts</h4>
+              <small class="font-bold">Oops! We're not quite ready!</small>
+          </div>
+          <div  id="emailForm" class="modal-body">
+            <p>
+                <strong>Want to know when we are ready?</strong> Signup for our mailing list and we will notify you when MetaParts is up and running. We promise we won't sell your email
+                to anyone. While you're at it, let us know what you sort of vehicles you'll be searching for.
+            </p>
+            </br>
+            <%= simple_form_for @lead, url: leads_path(@lead), method: :post, remote: true do |f| %>
+              <%= f.error_notification %>
+
+              <%= f.input :email, class: "form-control", placeholder: "Email", label: false %>
+              <%= f.input :auto, label: "Cars/Trucks" %>
+              <%= f.input :interests, collection: ['Cars/Trucks', 'Motorcycles', 'ATVs', 'UTVs', 'Other'], as: :check_boxes, label: false %>
+
+              <div class="form-actions">
+                <%= f.button :submit, "Submit", class: "btn btn-primary" %>
+              </div>
+
+            <% end %>
+          </div>
+          <div class="modal-footer p-lg">
+            Already have an account? Sign in <%= link_to "here", login_path %>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

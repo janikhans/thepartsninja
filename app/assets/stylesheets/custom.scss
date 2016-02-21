@@ -17,9 +17,20 @@ body {
   }
 }
 //navbar
-
 .navbar-default.navbar-scroll {
   box-shadow: 0 2px 6px rgba(0,0,0,.23);
+}
+
+//Signup Modal
+#myModal {
+  .modal-body {
+    h1 {color: $navy}
+    .checkbox {
+      display: inline-block;
+      margin: 10px;
+    }
+  }
+  .modal-footer { a {color: $navy}}
 }
 
 .red { color: red}
