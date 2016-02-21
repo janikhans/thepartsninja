@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-md-2 column-adjustment"><input class="string form-control" placeholder="Year..." type="text"></div>
+  <div class="col-md-2 column-adjustment"><input class="string form-control" placeholder="Make..." type="text"></div>
+  <div class="col-md-2 column-adjustment"><input class="string form-control" placeholder="Model..." type="text"></div>
+  <div class="col-md-4 column-adjustment"><input class="string form-control" placeholder="What Part?" type="text"></div>
+  <div class="col-md-2 column-adjustment"><input name="commit" value="Search" class="btn btn-default results-btn" accept=""data-toggle="modal" data-target="#myModal"></div>
+</div>
+
+<div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated bounceInRight">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+              <i class="fa fa-laptop modal-icon"></i>
+              <h4 class="modal-title">PartsNINJA</h4>
+              <small class="font-bold">Oops! We're not quite ready!</small>
+          </div>
+          <div  id="emailForm" class="modal-body">
+            <p>
+                <strong>Want to know when we are ready?</strong> Signup for our mailing list and we will notify you when MetaParts is up and running. We promise we won't sell your email
+                to anyone. While you're at it, let us know what you sort of vehicles you'll be searching for.
+            </p>
+            </br>
+            <%= render 'leads/form' %>
+          </div>
+          <div class="modal-footer p-t-sml">
+            <ul>
+              <li><%= link_to '<i class="fa fa-facebook fa-fw fa-2x"></i>'.html_safe, 'https://facebook.com/thepartsninja', :target => "_blank" %></li>
+              <li><%= link_to '<i class="fa fa-instagram fa-fw fa-2x"></i>'.html_safe, 'https://facebook.com/thepartsninja', :target => "_blank" %></li>
+              <li><%= link_to '<i class="fa fa-twitter fa-fw fa-2x"></i>'.html_safe, 'https://facebook.com/thepartsninja', :target => "_blank" %></li>
+            </ul>
+            Already have an account? Sign in <%= link_to "here", login_path %>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

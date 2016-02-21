@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160220220832) do
+ActiveRecord::Schema.define(version: 20160221040254) do
 
   create_table "brands", force: :cascade do |t|
     t.string   "name",       default: "", null: false
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20160220220832) do
   add_index "brands", ["slug"], name: "index_brands_on_slug", unique: true
 
   create_table "categories", force: :cascade do |t|
-    t.text     "name",       null: false
+    t.string   "name",       null: false
     t.integer  "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -87,12 +87,17 @@ ActiveRecord::Schema.define(version: 20160220220832) do
 
   create_table "leads", force: :cascade do |t|
     t.string   "email",      null: false
-    t.string   "interests"
+    t.boolean  "auto"
+    t.boolean  "streetbike"
+    t.boolean  "dirtbike"
+    t.boolean  "atv"
+    t.boolean  "utv"
+    t.boolean  "watercraft"
+    t.boolean  "snowmobile"
+    t.boolean  "dualsport"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  add_index "leads", ["email"], name: "index_leads_on_email"
 
   create_table "parts", force: :cascade do |t|
     t.string   "part_number"

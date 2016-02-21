@@ -1,1 +1,8 @@
-$('#emailForm').html('<h1 class="navy">Thanks!</h1><p>We will keep you in the loop!</p>');
+<% if @lead.errors.any? %>
+  $('#emailForm').html("<%= escape_javascript(render partial: 'leads/form') %>");
+<% else %>
+  $('#emailForm').html('<h1 class="navy">Thanks!</h1><p>We will keep you in the loop!</p>');
+  setTimeout(function(){
+    $('#myModal').modal('toggle')
+  }, 3500);
+<% end %>

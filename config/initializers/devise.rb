@@ -2,10 +2,10 @@
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
 
-  # CustomFailure is changing the redirect_path after a failed authentication
-  config.warden do |manager|
-    manager.failure_app = CustomFailure
-  end
+  # CustomFailure is changing the redirect_path after a failed authentication <- Not currently working right. Doesn't show flash notices anymore. 
+  # config.warden do |manager|
+  #   manager.failure_app = CustomFailure
+  # end
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.

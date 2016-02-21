@@ -1,3 +1,4 @@
+#Currently isn't working correctly.
 class CustomFailure < Devise::FailureApp
   def redirect_url
     login_path

@@ -36,6 +36,37 @@ RSpec.describe LeadsController, :type => :controller do
   # LeadsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  describe "GET index" do
+    it "assigns all leads as @leads" do
+      lead = Lead.create! valid_attributes
+      get :index, {}, valid_session
+      expect(assigns(:leads)).to eq([lead])
+    end
+  end
+
+  describe "GET show" do
+    it "assigns the requested lead as @lead" do
+      lead = Lead.create! valid_attributes
+      get :show, {:id => lead.to_param}, valid_session
+      expect(assigns(:lead)).to eq(lead)
+    end
+  end
+
+  describe "GET new" do
+    it "assigns a new lead as @lead" do
+      get :new, {}, valid_session
+      expect(assigns(:lead)).to be_a_new(Lead)
+    end
+  end
+
+  describe "GET edit" do
+    it "assigns the requested lead as @lead" do
+      lead = Lead.create! valid_attributes
+      get :edit, {:id => lead.to_param}, valid_session
+      expect(assigns(:lead)).to eq(lead)
+    end
+  end
+
   describe "POST create" do
     describe "with valid params" do
       it "creates a new Lead" do
@@ -68,7 +99,48 @@ RSpec.describe LeadsController, :type => :controller do
       end
     end
   end
-  
+
+  describe "PUT update" do
+    describe "with valid params" do
+      let(:new_attributes) {
+        skip("Add a hash of attributes valid for your model")
+      }
+
+      it "updates the requested lead" do
+        lead = Lead.create! valid_attributes
+        put :update, {:id => lead.to_param, :lead => new_attributes}, valid_session
+        lead.reload
+        skip("Add assertions for updated state")
+      end
+
+      it "assigns the requested lead as @lead" do
+        lead = Lead.create! valid_attributes
+        put :update, {:id => lead.to_param, :lead => valid_attributes}, valid_session
+        expect(assigns(:lead)).to eq(lead)
+      end
+
+      it "redirects to the lead" do
+        lead = Lead.create! valid_attributes
+        put :update, {:id => lead.to_param, :lead => valid_attributes}, valid_session
+        expect(response).to redirect_to(lead)
+      end
+    end
+
+    describe "with invalid params" do
+      it "assigns the lead as @lead" do
+        lead = Lead.create! valid_attributes
+        put :update, {:id => lead.to_param, :lead => invalid_attributes}, valid_session
+        expect(assigns(:lead)).to eq(lead)
+      end
+
+      it "re-renders the 'edit' template" do
+        lead = Lead.create! valid_attributes
+        put :update, {:id => lead.to_param, :lead => invalid_attributes}, valid_session
+        expect(response).to render_template("edit")
+      end
+    end
+  end
+
   describe "DELETE destroy" do
     it "destroys the requested lead" do
       lead = Lead.create! valid_attributes

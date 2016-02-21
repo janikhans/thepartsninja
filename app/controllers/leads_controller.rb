@@ -6,12 +6,12 @@ class LeadsController < ApplicationController
     respond_to do |format|
       if @lead.save
         format.html { redirect_to @lead, notice: 'Lead was successfully created.' }
-        format.json { flash.now = 'Thanks!'}
+        format.json { render :show, status: :created, location: @lead }
         format.js
       else
         format.html { render :new }
         format.json { render json: @lead.errors, status: :unprocessable_entity }
-        format.js { render json: @lead.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -25,9 +25,13 @@ class LeadsController < ApplicationController
   end
 
   private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_lead
+      @lead = Lead.find(params[:id])
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def lead_params
-      params.require(:lead).permit(:email, interests:[])
+      params.require(:lead).permit(:email, :auto, :streetbike, :dirtbike, :atv, :utv, :watercraft, :snowmobile, :dualsport)
     end
 end

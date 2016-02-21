@@ -20,17 +20,30 @@ body {
 .navbar-default.navbar-scroll {
   box-shadow: 0 2px 6px rgba(0,0,0,.23);
 }
+@media only screen and (max-width : 992px) {
+  .landing-page .navbar-default.navbar-scroll { background-color: white;}
+}
 
 //Signup Modal
 #myModal {
   .modal-body {
-    h1 {color: $navy}
+    h1 { color: $navy}
+    p { color: #808080;}
+    h3 { color: #676A6C;}
     .checkbox {
       display: inline-block;
       margin: 10px;
     }
   }
-  .modal-footer { a {color: $navy}}
+  .modal-footer {
+    a {color: $navy}
+    ul {
+      float:left;
+      list-style: none;
+      padding: 0;
+      li { display: inline-block;}
+    }
+  }
 }
 
 .red { color: red}
@@ -68,6 +81,8 @@ body {
   .inner { padding: 45px 0px 20px 0px; }
   .welcome-header {
     margin-top: 25%;
+  }
+  .read-more {
     a { color:white;}
     i:hover {
         -moz-transform: translate(0px, 4px);

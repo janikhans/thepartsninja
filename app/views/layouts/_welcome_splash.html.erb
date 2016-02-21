@@ -1,10 +1,10 @@
 <section class="hero" id="intro">
-  <div class="container stuff">
+  <div class="container">
     <div class="welcome-header">
       <div class="row">
         <div class="col-md-8 col-md-offset-2 text-center inner">
           <div class="animatedParent">
-            <h1 class="animated fadeInDown">PartsMETA</h1>
+            <h1 class="animated fadeInDown">PartsNINJA</h1>
             <p class="animated fadeInUp white">Millions of compatibles at your fingertips</p>
           </div>
         </div>
@@ -15,7 +15,7 @@
             <% if user_signed_in? %>
               <%= render 'search/form' %>
             <% else %>
-              <%= render 'leads/form' %>
+              <%= render 'leads/leads_modal' %>
             <% end %>
           </div>
         </div>
