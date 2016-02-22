@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get '', to: 'dashboard#index', as: '/'
     resources :leads, only: [:index, :create, :destroy]
-    resources :brands
+    resources :brands, :categories
   end
 
   #Users
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   #Basic resources
   resources :leads, only: [:create]
-  resources :discoveries, :fitments, :parts, :products, :vehicles, :categories
+  resources :discoveries, :fitments, :parts, :products, :vehicles
   resources :profiles, only: [:update]
   resources :users, only: [:show]
   resources :compatibles do

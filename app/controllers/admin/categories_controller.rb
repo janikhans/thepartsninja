@@ -1,7 +1,6 @@
-class CategoriesController < ApplicationController
+class Admin::CategoriesController < ApplicationController
   include Admin
   before_action :set_category, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
   before_action :admin_only
 
   def index
@@ -17,6 +16,7 @@ class CategoriesController < ApplicationController
   end
 
   def edit
+    @parent_categories = Category.all
   end
 
   def create
@@ -24,8 +24,8 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.save
-        format.html { redirect_to @category, notice: 'Category was successfully created.' }
-        format.json { render :show, status: :created, location: @category }
+        format.html { redirect_to admin_category_path(@category), notice: 'Category was successfully created.' }
+        format.json { render :show, status: :created, location: admin_category_path(@category) }
       else
         format.html { render :new }
         format.json { render json: @category.errors, status: :unprocessable_entity }
@@ -36,8 +36,8 @@ class CategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @category.update(category_params)
-        format.html { redirect_to @category, notice: 'Category was successfully updated.' }
-        format.json { render :show, status: :ok, location: @category }
+        format.html { redirect_to admin_category_path(@category), notice: 'Category was successfully updated.' }
+        format.json { render :show, status: :ok, location: admin_category_path(@category) }
       else
         format.html { render :edit }
         format.json { render json: @category.errors, status: :unprocessable_entity }
@@ -48,7 +48,7 @@ class CategoriesController < ApplicationController
   def destroy
     @category.destroy
     respond_to do |format|
-      format.html { redirect_to categories_url, notice: 'Category was successfully destroyed.' }
+      format.html { redirect_to admin_categories_url, notice: 'Category was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
