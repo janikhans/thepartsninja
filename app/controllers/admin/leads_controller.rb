@@ -1,7 +1,6 @@
-class Admin::LeadsController < ApplicationController
-  include Admin
+class Admin::LeadsController < Admin::DashboardController
   before_action :set_lead, only: [:destroy]
-  before_action :admin_only
+
 
    def index
      @leads = Lead.all

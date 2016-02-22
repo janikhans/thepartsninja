@@ -1,0 +1,8 @@
+<tr>
+  <td><%= lead.email %></td>
+  <td><%= lead.auto %></td>
+  <td><%= lead.dirtbike %></td>
+  <td><%= lead.streetbike %></td>
+  <td><%= lead.atv %></td>
+  <td><%= link_to "Delete", admin_lead_path(lead), method: :delete, alert: "Are you sure?" %></td>
+</tr>

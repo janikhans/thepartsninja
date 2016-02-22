@@ -1,7 +1,5 @@
-class Admin::CompatiblesController < ApplicationController
-  include Admin
+class Admin::CompatiblesController < Admin::DashboardController
   before_action :set_compatible, only: [:show, :edit, :update, :destroy]
-  before_action :admin_only
 
 
   def index

@@ -1,7 +1,6 @@
-class Admin::CategoriesController < ApplicationController
-  include Admin
+class Admin::CategoriesController < Admin::DashboardController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
-  before_action :admin_only
+
 
   def index
     @categories = Category.includes(:subcategories)

@@ -1,0 +1,7 @@
+<tr>
+  <td><%= brand.name %></td>
+  <td><%= brand.website %></td>
+  <td><%= link_to 'Show', admin_brand_path(brand) %></td>
+  <td><%= link_to 'Edit', edit_admin_brand_path(brand) %></td>
+  <td><%= link_to "Delete", admin_brand_path(brand), method: :delete, alert: "Are you sure?" %></td>
+</tr>

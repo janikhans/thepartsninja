@@ -1,17 +1,12 @@
-class Admin::BrandsController < ApplicationController
-  include Admin
-  before_action :admin_only
+class Admin::BrandsController < Admin::DashboardController
   before_action :set_brand, only: [:show, :edit, :update, :destroy]
 
   def index
     @brands = Brand.order("name ASC")
+    @brand = Brand.new
   end
 
   def show
-  end
-
-  def new
-    @brand = Brand.new
   end
 
   def edit

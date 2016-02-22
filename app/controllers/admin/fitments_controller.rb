@@ -1,7 +1,5 @@
-class Admin::FitmentsController < ApplicationController
-  include Admin
+class Admin::FitmentsController < Admin::DashboardController
   before_action :set_fitment, only: [:show, :edit, :update, :destroy]
-  before_action :admin_only
 
   def index
     @fitments = Fitment.all

@@ -1,15 +1,38 @@
-<h1>Leads</h1>
+<% provide(:header, "Leads") %>
 
-<table>
-  <% @leads.each do |lead| %>
-      <tr>
-        <td><%= lead.email %></td>
-        <td><%= lead.auto %></td>
-        <td><%= lead.dirtbike %></td>
-        <td><%= lead.streetbike %></td>
-        <td><%= lead.atv %></td>
-        <td><%= link_to "Destroy", admin_lead_path(lead), method: :delete, alert: "Are you sure?" %></td>
-      </tr>
+<div class="row">
+  <div class="col-lg-12">
+      <div class="panel panel-default">
+          <div class="panel-heading">
+              Showing all Leads
+          </div>
+          <div class="panel-body">
+              <div class="dataTable_wrapper">
+                  <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-leads">
+                      <thead>
+                          <tr>
+                              <th>Email</th>
+                              <th>Cars/Trucks</th>
+                              <th>Dirtbikes</th>
+                              <th>Streetbikes</th>
+                              <th>ATVs</th>
+                              <th></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <%= render partial: 'admin/leads/lead', collection: @leads %>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
 
-  <% end %>
-</table>
+<script>
+  $(document).ready(function() {
+      $('#dataTables-leads').DataTable({
+              responsive: true
+      });
+  });
+</script>
