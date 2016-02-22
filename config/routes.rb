@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get '', to: 'dashboard#index', as: '/'
     resources :leads, only: [:index, :create, :destroy]
-    resources :brands, :categories
+    resources :brands, :categories, :fitments
   end
 
   #Users

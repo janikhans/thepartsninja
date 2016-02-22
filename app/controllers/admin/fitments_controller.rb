@@ -1,7 +1,6 @@
-class FitmentsController < ApplicationController
+class Admin::FitmentsController < ApplicationController
   include Admin
   before_action :set_fitment, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
   before_action :admin_only
 
   def index
@@ -23,8 +22,8 @@ class FitmentsController < ApplicationController
 
     respond_to do |format|
       if @fitment.save
-        format.html { redirect_to @fitment, notice: 'Fitment was successfully created.' }
-        format.json { render :show, status: :created, location: @fitment }
+        format.html { redirect_to admin_fitment_path(@fitment), notice: 'Fitment was successfully created.' }
+        format.json { render :show, status: :created, location: admin_fitment_path(@fitment) }
       else
         format.html { render :new }
         format.json { render json: @fitment.errors, status: :unprocessable_entity }
@@ -35,8 +34,8 @@ class FitmentsController < ApplicationController
   def update
     respond_to do |format|
       if @fitment.update(fitment_params)
-        format.html { redirect_to @fitment, notice: 'Fitment was successfully updated.' }
-        format.json { render :show, status: :ok, location: @fitment }
+        format.html { redirect_to admin_fitment_path(@fitment), notice: 'Fitment was successfully updated.' }
+        format.json { render :show, status: :ok, location: admin_fitment_path(@fitment) }
       else
         format.html { render :edit }
         format.json { render json: @fitment.errors, status: :unprocessable_entity }
@@ -47,7 +46,7 @@ class FitmentsController < ApplicationController
   def destroy
     @fitment.destroy
     respond_to do |format|
-      format.html { redirect_to fitments_url, notice: 'Fitment was successfully destroyed.' }
+      format.html { redirect_to admin_fitments_path, notice: 'Fitment was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

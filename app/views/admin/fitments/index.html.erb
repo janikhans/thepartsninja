@@ -22,9 +22,9 @@
         <td><%= fitment.vehicle.year %></td>
         <td><%= fitment.vehicle.brand.name %></td>
         <td><%= fitment.vehicle.model %></td>
-        <td><%= link_to 'Show', fitment %></td>
-        <td><%= link_to 'Edit', edit_fitment_path(fitment) %></td>
-        <td><%= link_to 'Destroy', fitment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', admin_fitment_path(fitment) %></td>
+        <td><%= link_to 'Edit', edit_admin_fitment_path(fitment) %></td>
+        <td><%= link_to 'Destroy', admin_fitment_path(fitment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -32,4 +32,4 @@
 
 <br>
 
-<%= link_to 'New Fitment', new_fitment_path %>
+<%= link_to 'New Fitment', new_admin_fitment_path %>
