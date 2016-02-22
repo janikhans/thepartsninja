@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<% provide(:header, "Catgory: #{@category.name}") %>
 
 <p>
   <strong>Name:</strong>
@@ -12,4 +12,4 @@
 </p>
 
 <%= link_to 'Edit', edit_admin_category_path(@category) %> |
-<%= link_to 'Back', admin_categories_path %>
+<%= link_to 'Delete', admin_category_path(@category), method: :delete, data: {confirm: "Are you sure"} %>

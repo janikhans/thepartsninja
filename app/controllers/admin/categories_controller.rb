@@ -4,16 +4,13 @@ class Admin::CategoriesController < Admin::DashboardController
 
   def index
     @categories = Category.includes(:subcategories)
+    @category = Category.new
+    @parent_categories = Category.all
   end
 
   def show
   end
-
-  def new
-    @category = Category.new
-    @parent_categories = Category.all #find(:all, conditions: {parent_id: nil})
-  end
-
+  
   def edit
     @parent_categories = Category.all
   end
