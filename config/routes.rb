@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     get '', to: 'dashboard#index', as: '/'
     resources :leads, only: [:index, :create, :destroy]
     resources :brands, :categories, :fitments
+    resources :compatibles
   end
 
   #Users
@@ -19,7 +20,7 @@ Rails.application.routes.draw do
   resources :discoveries, :fitments, :parts, :products, :vehicles
   resources :profiles, only: [:update]
   resources :users, only: [:show]
-  resources :compatibles do
+  resources :compatibles, only:[:show] do
     member do
       get 'upvote'
       get 'downvote'

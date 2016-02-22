@@ -1,0 +1,29 @@
+<p>
+  <strong>Original:</strong>
+  <%= @compatible.part_id %>
+</p>
+
+<p>
+  <strong>Replaces:</strong>
+  <%= @compatible.compatible_part_id %>
+</p>
+
+<p>
+  <strong>backwards Compatible?</strong>
+  <%= @compatible.backwards %>
+</p>
+
+<p>
+  <strong>Discovery:</strong>
+  <%= @compatible.discovery_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <% if @compatible.discovery %>
+    <%= @compatible.discovery.user.username %>
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_admin_compatible_path(@compatible) %> |
+<%= link_to 'Back', admin_compatibles_path %>

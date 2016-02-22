@@ -18,9 +18,9 @@
         <td><%= compatible.part_id %></td>
         <td><%= compatible.compatible_part_id %></td>
         <td><%= compatible.discovery_id %></td>
-        <td><%= link_to 'Show', compatible %></td>
-        <td><%= link_to 'Edit', edit_compatible_path(compatible) %></td>
-        <td><%= link_to 'Destroy', compatible, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', admin_compatible_path(compatible) %></td>
+        <td><%= link_to 'Edit', edit_admin_compatible_path(compatible) %></td>
+        <td><%= link_to 'Destroy', admin_compatible_path(compatible), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,7 +28,7 @@
 
 <br>
 
-<%= link_to 'New Compatible', new_compatible_path %>
+<%= link_to 'New Compatible', new_admin_compatible_path %>
 
 
 <div class="panel-body no-padding">
