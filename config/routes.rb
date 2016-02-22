@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get '', to: 'dashboard#index', as: '/'
     resources :leads, only: [:index, :create, :destroy]
+    resources :brands
   end
 
   #Users
@@ -27,7 +28,7 @@ Rails.application.routes.draw do
   concern :autocompletable do
     get 'autocomplete', on: :collection
   end
-  resources :brands, concerns: :autocompletable
+  resources :brands, only: [:index, :show], concerns: :autocompletable
 
 
   #User Dashboard

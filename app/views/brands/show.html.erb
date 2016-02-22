@@ -12,12 +12,6 @@
                     <td><h3><strong>Brand:</strong> <%= @brand.name %> </h3></td>
                     <td><h3><strong>Website:</strong> <%= @brand.website %></h3></td>
                 </tr>
-                <% if current_user.try(:admin?) %>
-                <tr>
-                    <td><h3><strong>Edit:</strong> <%= link_to 'Edit', edit_brand_path(@brand) %></h3></td>
-                    <td><h3><strong>Delete:</strong> <%= link_to 'Delete', @brand, method: :delete, data: {confirm: "Are you sure"} %></h3></td>
-                </tr>
-                <% end %>
                 <tr><td></td><td></td></tr>
               </tbody>
             </table>

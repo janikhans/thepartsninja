@@ -1,0 +1,12 @@
+<h1>New Brand</h1>
+<%= link_to "New Brand", new_admin_brand_path %>
+
+<table>
+<% @brands.each do |brand| %>
+  <tr>
+    <td><%= brand.name %></td>
+    <td><%= brand.website %></td>
+    <td><%= link_to "View", admin_brand_path(brand) %></td>
+  </tr>
+<% end %>
+</table>

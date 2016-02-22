@@ -1,0 +1,6 @@
+<%= @brand.name %> <%= @brand.website %>
+
+<h3><strong>Edit:</strong> <%= link_to 'Edit', edit_admin_brand_path(@brand) %></h3>
+<h3><strong>Delete:</strong> <%= link_to 'Delete', admin_brand_path(@brand), method: :delete, data: {confirm: "Are you sure"} %></h3>
+
+<%= link_to "Brands", admin_brands_path %>
