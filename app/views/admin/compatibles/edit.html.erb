@@ -1,6 +1,3 @@
-<h1>Editing Compatible</h1>
+<% provide(:header, "Editing Compatible: #{@compatible.id}") %>
 
 <%= render 'form' %>
-
-<%= link_to 'Show', admin_compatible_path(@compatible) %> |
-<%= link_to 'Back', admin_compatibles_path %>
