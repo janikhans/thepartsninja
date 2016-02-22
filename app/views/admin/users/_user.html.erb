@@ -1,0 +1,7 @@
+<tr>
+  <td><%= user.id %></td>
+  <td><%= user.email %></td>
+  <td><%= user.username %></td>
+  <td><%= link_to 'Show', admin_user_path(user) %></td>
+  <td><%= link_to "Delete", admin_user_path(user), method: :delete, alert: "Are you sure?" %></td>
+</tr>

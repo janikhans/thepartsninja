@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :leads, only: [:index, :create, :destroy]
     resources :brands, :categories, except: [:new]
     resources :fitments, :compatibles
+    resources :users, only: [:index, :show, :destroy, :edit]
   end
 
   #Users

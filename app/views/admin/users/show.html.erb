@@ -1,0 +1,7 @@
+<% provide(:header, "User: #{@user.username}") %>
+<p><strong>Username: </strong><%= @user.username %> </p>
+<p><strong>Email: </strong><%= @user.email %> </p>
+<p><strong>Bio: </strong><%= @user.profile.try(:bio) %> </p>
+<p><strong>Location: </strong><%= @user.profile.try(:location) %></p>
+
+<strong>Delete:</strong> <%= link_to 'Delete', admin_user_path(@user), method: :delete, data: {confirm: "Are you sure"} %>

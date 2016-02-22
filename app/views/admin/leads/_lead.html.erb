@@ -1,8 +1,12 @@
 <tr>
   <td><%= lead.email %></td>
-  <td><%= lead.auto %></td>
-  <td><%= lead.dirtbike %></td>
-  <td><%= lead.streetbike %></td>
-  <td><%= lead.atv %></td>
+  <td><%= bool_to_checkmark(lead.auto) %></td>
+  <td><%= bool_to_checkmark(lead.dirtbike) %></td>
+  <td><%= bool_to_checkmark(lead.streetbike) %></td>
+  <td><%= bool_to_checkmark(lead.atv) %></td>
+  <td><%= bool_to_checkmark(lead.utv) %></td>
+  <td><%= bool_to_checkmark(lead.dualsport) %></td>
+  <td><%= bool_to_checkmark(lead.snowmobile) %></td>
+  <td><%= bool_to_checkmark(lead.watercraft) %></td>
   <td><%= link_to "Delete", admin_lead_path(lead), method: :delete, alert: "Are you sure?" %></td>
 </tr>
