@@ -3,11 +3,6 @@
     <div class="ibox">
         <div class="ibox-title">
           <h5>Listing All Brands</h5>
-          <% if current_user.try(:admin?) %>
-            <div class="ibox-tools">
-              <%= link_to 'New Brand', new_brand_path %>
-            </div>
-          <% end %>
         </div>
         <div class="ibox-content p-m">
           <% @brands.each do |brand, brand_array|  %>

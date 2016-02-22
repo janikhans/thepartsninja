@@ -1,57 +1,49 @@
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="index.html">PartsNINJA HQ</a>
+  </div>
+
+  <ul class="nav navbar-top-links navbar-right">
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-user fa-fw"></i><i class="fa fa-caret-down"></i></a>
+      <ul class="dropdown-menu dropdown-user">
+        <li><%= link_to admin_path do %> <i class="fa fa-user fa-fw"></i> <%= current_user.username %> <% end %></li>
+        <li><%= link_to root_path do %> <i class="fa fa-gear fa-fw"></i> Client View <% end %></li>
+        </li>
+        <li class="divider"></li>
+        <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="navbar-default sidebar" role="navigation">
+    <div class="sidebar-nav navbar-collapse">
+      <ul class="nav" id="side-menu">
+        <li class="sidebar-search">
+            <div class="input-group custom-search-form">
+                <input type="text" class="form-control" placeholder="Search...">
+                <span class="input-group-btn">
+                <button class="btn btn-default" type="button">
+                    <i class="fa fa-search"></i>
                 </button>
-                <a class="navbar-brand" href="index.html">PartsNINJA HQ</a>
+            </span>
             </div>
-            <!-- /.navbar-header -->
-
-            <ul class="nav navbar-top-links navbar-right">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><%= link_to admin_path do %> <i class="fa fa-user fa-fw"></i> <%= current_user.username %> <% end %></li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
-                    </ul>
-                    <!-- /.dropdown-user -->
-                </li>
-                <!-- /.dropdown -->
-            </ul>
-            <!-- /.navbar-top-links -->
-
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                            </div>
-                            <!-- /input-group -->
-                        </li>
-                        <li><%= link_to admin_path do %> <i class="fa fa-dashboard fa-fw"></i> Dashboard <% end %></li>
-                        <li><%= link_to admin_brands_path do %> <i class="fa fa-dashboard fa-fw"></i> Brands <% end %></li>
-                        <li><%= link_to admin_categories_path do %> <i class="fa fa-dashboard fa-fw"></i> Categories <% end %></li>
-                        <li><%= link_to admin_compatibles_path do %> <i class="fa fa-dashboard fa-fw"></i> Compatibles <% end %></li>
-                        <li><%= link_to admin_fitments_path do %> <i class="fa fa-dashboard fa-fw"></i> Fitments <% end %></li>
-                        <li><%= link_to admin_leads_path do %> <i class="fa fa-dashboard fa-fw"></i> Leads <% end %></li>
-                        <li><%= link_to admin_users_path do %> <i class="fa fa-user fa-fw"></i> Users <% end %></li>
-                    </ul>
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.navbar-static-side -->
-        </nav>
+            <!-- /input-group -->
+        </li>
+        <li><%= link_to admin_path do %> <i class="fa fa-dashboard fa-fw"></i> Dashboard <% end %></li>
+        <li><%= link_to admin_brands_path do %> <i class="fa fa-dashboard fa-fw"></i> Brands <% end %></li>
+        <li><%= link_to admin_categories_path do %> <i class="fa fa-dashboard fa-fw"></i> Categories <% end %></li>
+        <li><%= link_to admin_compatibles_path do %> <i class="fa fa-dashboard fa-fw"></i> Compatibles <% end %></li>
+        <li><%= link_to admin_fitments_path do %> <i class="fa fa-dashboard fa-fw"></i> Fitments <% end %></li>
+        <li><%= link_to admin_leads_path do %> <i class="fa fa-dashboard fa-fw"></i> Leads <% end %></li>
+        <li><%= link_to admin_users_path do %> <i class="fa fa-user fa-fw"></i> Users <% end %></li>
+      </ul>
+    </div>
+  </div>
+</nav>
