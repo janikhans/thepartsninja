@@ -1,0 +1,33 @@
+<% provide(:header, "Showing Discovery: #{@discovery.id}") %>
+
+  <div class="row">
+      <div class="col-lg-8">
+          <div class="ibox">
+              <div class="ibox-title">
+                  <h5>Compatibilities Discovered</h5>
+              </div>
+          </div>
+          <div class="ibox">
+              <div class="ibox-title">
+                  <h5>Additional Information</h5>
+              </div>
+              <div class="ibox-content">
+                  <h3>Comments:</h3>
+                  <p><%= @discovery.comment %></p>
+                  <p><strong>Modifications:</strong> <%= @discovery.modifications %></p>
+                  <% if @discovery.steps.any? %>
+                    <p><strong>Steps:</strong></p>
+                    <% @discovery.steps.each do |s| %>
+                        <div class="step-outline">
+                          <%= s.content %>
+                        </div>
+                    <% end %>
+                  <% end %>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+
+<%= link_to 'Edit', edit_admin_compatible_path(@discovery) %>

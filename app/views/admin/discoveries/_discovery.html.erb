@@ -1,0 +1,10 @@
+<tr>
+  <td><%= discovery.id %></td>
+  <td><%= discovery.user.username %></td>
+  <td><%= discovery.compatibles.count %></td>
+  <td><%= bool_to_checkmark(discovery.modifications) %></td>
+  <td><%= discovery.steps.count %></td>
+  <td><%= link_to 'Show', admin_discovery_path(discovery) %></td>
+  <td><%= link_to 'Edit', edit_admin_discovery_path(discovery) %></td>
+  <td><%= link_to "Delete", admin_discovery_path(discovery), method: :delete, alert: "Are you sure?" %></td>
+</tr>

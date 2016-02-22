@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :brands, :categories, except: [:new]
     resources :fitments, :compatibles
     resources :users, only: [:index, :show, :destroy, :edit]
+    resources :discoveries, except: [:new, :create]
   end
 
   #Users
@@ -18,7 +19,8 @@ Rails.application.routes.draw do
 
   #Basic resources
   resources :leads, only: [:create]
-  resources :discoveries, :fitments, :parts, :products, :vehicles
+  resources :discoveries, except: [:index]
+  resources :fitments, :parts, :products, :vehicles
   resources :profiles, only: [:update]
   resources :users, only: [:show]
   resources :compatibles, only:[:show] do
