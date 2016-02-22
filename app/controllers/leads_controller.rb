@@ -16,22 +16,10 @@ class LeadsController < ApplicationController
     end
   end
 
-  def destroy
-    @lead.destroy
-    respond_to do |format|
-      format.html { redirect_to leads_url, notice: 'Lead was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_lead
-      @lead = Lead.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def lead_params
       params.require(:lead).permit(:email, :auto, :streetbike, :dirtbike, :atv, :utv, :watercraft, :snowmobile, :dualsport)
     end
+    
 end

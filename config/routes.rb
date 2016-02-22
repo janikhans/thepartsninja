@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
-  resources :leads, only: [:create, :destroy]
+  namespace :admin do
+    get '', to: 'dashboard#index', as: '/'
+    resources :leads, only: [:index, :create, :destroy]
+  end
+
   #Users
   #Change the default devise routes to something more pleasing
   devise_scope :user do
@@ -10,6 +14,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {registrations: :registrations}
 
   #Basic resources
+  resources :leads, only: [:create]
   resources :discoveries, :fitments, :parts, :products, :vehicles, :categories
   resources :profiles, only: [:update]
   resources :users, only: [:show]
