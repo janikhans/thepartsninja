@@ -8,8 +8,7 @@ Rails.application.routes.draw do
     resources :fitments, :compatibles
     resources :users, only: [:index, :show, :destroy, :edit]
     resources :discoveries, except: [:new, :create]
-    resources :parts, except: [:new]
-    resources :products, except: [:new]
+    resources :parts, :products, :vehicles, except: [:new]
   end
 
   #Users
@@ -23,8 +22,7 @@ Rails.application.routes.draw do
   #Resource routes for pulic
   resources :leads, only: [:create]
   resources :discoveries, except: [:index]
-  resources :vehicles
-  resources :products, only: [:show, :index]
+  resources :products, :vehicles, only: [:show, :index]
   resources :profiles, only: [:update]
   resources :users, :parts, only: [:show]
   resources :compatibles, only: [:show] do

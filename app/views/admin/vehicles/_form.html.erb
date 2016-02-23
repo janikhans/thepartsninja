@@ -1,0 +1,13 @@
+<%= simple_form_for([:admin, @vehicle]) do |f| %>
+    <%= f.error_notification %>
+
+    <div class="form-inputs">
+      <%= f.association :brand,label_method: :name, value_method: :id %>
+      <%= f.input :year %>
+      <%= f.input :model %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit %>
+    </div>
+  <% end %>

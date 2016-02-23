@@ -13,12 +13,6 @@
                     <td><h3><strong>Part:</strong> <%= @product.name %></h3></td>
                     <td><h3><strong>Category:</strong> <%= @product.category.name %></h3></td>
                 </tr>
-                <% if current_user.try(:admin?) %>
-                <tr>
-                    <td><h3><strong>Edit:</strong> <%= link_to 'Edit', edit_product_path(@product) %></h3></td>
-                    <td><h3><strong>Delete:</strong> <%= link_to 'Delete', @product, method: :delete, data: {confirm: "Are you sure"} %></h3></td>
-                </tr>
-                <% end %>
                 <tr><td></td><td></td></tr>
               </tbody>
             </table>

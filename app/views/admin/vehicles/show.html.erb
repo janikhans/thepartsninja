@@ -1,0 +1,11 @@
+<% provide(:header, "Showing Vehicle: #{@vehicle.year} #{@vehicle.brand.name} #{@vehicle.model}") %>
+
+
+<h3><strong>Brand:</strong> <%= @vehicle.brand.name %> </h3>
+<h3><strong>Year:</strong> <%= @vehicle.year %></h3>
+<h3><strong>Model:</strong> <%= @vehicle.model %></h3>
+
+<p>
+    <strong>Edit:</strong> <%= link_to 'Edit', edit_admin_vehicle_path(@vehicle) %>
+    <strong>Delete:</strong> <%= link_to 'Delete', admin_vehicle_path(@vehicle), method: :delete, data: {confirm: "Are you sure"} %>
+</p>
