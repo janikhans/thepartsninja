@@ -18,9 +18,9 @@ class Admin::BrandsController < Admin::DashboardController
     respond_to do |format|
       if @brand.save
         format.html { redirect_to admin_brand_path(@brand), notice: 'Brand was successfully created.' }
-        format.json { render :show, status: :created, location: @brand }
+        format.json { render :show, status: :created, location: [:admin, @brand] }
       else
-        format.html { render :new }
+        format.html { render :index }
         format.json { render json: @brand.errors, status: :unprocessable_entity }
       end
     end
@@ -30,7 +30,7 @@ class Admin::BrandsController < Admin::DashboardController
     respond_to do |format|
       if @brand.update(brand_params)
         format.html { redirect_to admin_brand_path(@brand), notice: 'Brand was successfully updated.' }
-        format.json { render :show, status: :ok, location: @brand }
+        format.json { render :show, status: :ok, location: [:admin, @brand] }
       else
         format.html { render :edit }
         format.json { render json: @brand.errors, status: :unprocessable_entity }

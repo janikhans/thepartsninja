@@ -19,9 +19,9 @@ class Admin::PartsController < Admin::DashboardController
     respond_to do |format|
       if @part.save
         format.html { redirect_to admin_part_path(@part), notice: 'Part was successfully created.' }
-        format.json { render :show, status: :created, location: admin_part_path(@part) }
+        format.json { render :show, status: :created, location: [:admin, @part] }
       else
-        format.html { render :new }
+        format.html { render :index }
         format.json { render json: @part.errors, status: :unprocessable_entity }
       end
     end
@@ -31,7 +31,7 @@ class Admin::PartsController < Admin::DashboardController
     respond_to do |format|
       if @part.update(part_params)
         format.html { redirect_to admin_part_path(@part), notice: 'Part was successfully updated.' }
-        format.json { render :show, status: :ok, location: admin_part_path(@part) }
+        format.json { render :show, status: :ok, location: [:admin, @part] }
       else
         format.html { render :edit }
         format.json { render json: @part.errors, status: :unprocessable_entity }

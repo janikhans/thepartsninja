@@ -21,7 +21,7 @@ class Admin::FitmentsController < Admin::DashboardController
     respond_to do |format|
       if @fitment.save
         format.html { redirect_to admin_fitment_path(@fitment), notice: 'Fitment was successfully created.' }
-        format.json { render :show, status: :created, location: admin_fitment_path(@fitment) }
+        format.json { render :show, status: :created, location: [:admin, @fitment] }
       else
         format.html { render :new }
         format.json { render json: @fitment.errors, status: :unprocessable_entity }
@@ -33,7 +33,7 @@ class Admin::FitmentsController < Admin::DashboardController
     respond_to do |format|
       if @fitment.update(fitment_params)
         format.html { redirect_to admin_fitment_path(@fitment), notice: 'Fitment was successfully updated.' }
-        format.json { render :show, status: :ok, location: admin_fitment_path(@fitment) }
+        format.json { render :show, status: :ok, location: [:admin, @fitment] }
       else
         format.html { render :edit }
         format.json { render json: @fitment.errors, status: :unprocessable_entity }

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  #Namespace routes for Admins only
   namespace :admin do
     get '', to: 'dashboard#index', as: '/'
     resources :leads, only: [:index, :create, :destroy]
@@ -8,6 +9,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :destroy, :edit]
     resources :discoveries, except: [:new, :create]
     resources :parts, except: [:new]
+    resources :products, except: [:new]
   end
 
   #Users
@@ -18,13 +20,14 @@ Rails.application.routes.draw do
   end
   devise_for :users, controllers: {registrations: :registrations}
 
-  #Basic resources
+  #Resource routes for pulic
   resources :leads, only: [:create]
   resources :discoveries, except: [:index]
-  resources :fitments, :products, :vehicles
+  resources :vehicles
+  resources :products, only: [:show, :index]
   resources :profiles, only: [:update]
   resources :users, :parts, only: [:show]
-  resources :compatibles, only:[:show] do
+  resources :compatibles, only: [:show] do
     member do
       get 'upvote'
       get 'downvote'

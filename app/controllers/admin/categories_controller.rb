@@ -10,7 +10,7 @@ class Admin::CategoriesController < Admin::DashboardController
 
   def show
   end
-  
+
   def edit
     @parent_categories = Category.all
   end
@@ -21,9 +21,9 @@ class Admin::CategoriesController < Admin::DashboardController
     respond_to do |format|
       if @category.save
         format.html { redirect_to admin_category_path(@category), notice: 'Category was successfully created.' }
-        format.json { render :show, status: :created, location: admin_category_path(@category) }
+        format.json { render :show, status: :created, location: [:admin, @category] }
       else
-        format.html { render :new }
+        format.html { render :index }
         format.json { render json: @category.errors, status: :unprocessable_entity }
       end
     end
@@ -33,7 +33,7 @@ class Admin::CategoriesController < Admin::DashboardController
     respond_to do |format|
       if @category.update(category_params)
         format.html { redirect_to admin_category_path(@category), notice: 'Category was successfully updated.' }
-        format.json { render :show, status: :ok, location: admin_category_path(@category) }
+        format.json { render :show, status: :ok, location: [:admin, @category] }
       else
         format.html { render :edit }
         format.json { render json: @category.errors, status: :unprocessable_entity }

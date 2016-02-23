@@ -2,10 +2,6 @@ class DiscoveriesController < ApplicationController
   before_action :set_discovery, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!#, except: [:index, :show]
 
-  def index
-    @discoveries = Discovery.all
-  end
-
   def show
     @steps = @discovery.steps.all
     @user = @discovery.user

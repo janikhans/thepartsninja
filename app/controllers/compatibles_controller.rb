@@ -1,57 +1,10 @@
 class CompatiblesController < ApplicationController
   include Admin
-  before_action :set_compatible, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
+  before_action :set_compatible, only: [:show, :upvote, :downvote]
   before_action :authenticate_user!
   before_action :admin_only
 
-
-  def index
-    @compatibles = Compatible.order('compatibles.cached_votes_score DESC')
-  end
-
   def show
-  end
-
-  def new
-    @compatible = Compatible.new
-    @fitments = Fitment.all
-  end
-
-  def edit
-  end
-
-  def create
-    @compatible = Compatible.new(compatible_params)
-
-    respond_to do |format|
-      if @compatible.save
-        format.html { redirect_to @compatible, notice: 'Compatible was successfully created.' }
-        format.json { render :show, status: :created, location: @compatible }
-      else
-        format.html { render :new }
-        format.json { render json: @compatible.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def update
-    respond_to do |format|
-      if @compatible.update(compatible_params)
-        format.html { redirect_to @compatible, notice: 'Compatible was successfully updated.' }
-        format.json { render :show, status: :ok, location: @compatible }
-      else
-        format.html { render :edit }
-        format.json { render json: @compatible.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def destroy
-    @compatible.destroy
-    respond_to do |format|
-      format.html { redirect_to compatibles_url, notice: 'Compatible was successfully destroyed.' }
-      format.json { head :no_content }
-    end
   end
 
   def upvote

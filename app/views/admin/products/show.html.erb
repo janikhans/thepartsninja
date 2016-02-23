@@ -1,0 +1,24 @@
+<% provide(:header, "Showing Product: #{@product.brand.name} #{@product.name}") %>
+
+
+<h3><strong>Brand:</strong> <%= @product.brand.name %> </h3>
+<h3><strong>Part:</strong> <%= @product.name %></h3>
+<h3><strong>Category:</strong> <%= @product.category.name %></h3>
+<h4>Description</h4>
+<small> <%= @product.description %> </small>
+<% if @product.parts.any? %>
+  <h5>The <%= @product.brand.name %> <%= @product.name %> was designed for these vehicles</h5>
+      <div class="row">
+        <% @product.parts.each do |p|%>
+          <% p.oem_vehicles.each do |v| %>
+            <div class="col-md-3 col-xs-6 oem-vehicle">
+             <%= v.year %> <%= v.brand.name %> <%= v.model %> <%= link_to "PN: #{p.part_number}", p  %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+<p>
+    <strong>Edit:</strong> <%= link_to 'Edit', edit_admin_product_path(@product) %>
+    <strong>Delete:</strong> <%= link_to 'Delete', admin_product_path(@product), method: :delete, data: {confirm: "Are you sure"} %>
+</p>

@@ -23,7 +23,7 @@ class Admin::CompatiblesController < Admin::DashboardController
     respond_to do |format|
       if @compatible.save
         format.html { redirect_to admin_compatible_path(@compatible), notice: 'Compatible was successfully created.' }
-        format.json { render :show, status: :created, location: admin_compatible_path(@compatible) }
+        format.json { render :show, status: :created, location: [:admin, @compatible] }
       else
         format.html { render :new }
         format.json { render json: @compatible.errors, status: :unprocessable_entity }
@@ -35,7 +35,7 @@ class Admin::CompatiblesController < Admin::DashboardController
     respond_to do |format|
       if @compatible.update(compatible_params)
         format.html { redirect_to admin_compatible_path(@compatible), notice: 'Compatible was successfully updated.' }
-        format.json { render :show, status: :ok, location: admin_compatible_path(@compatible) }
+        format.json { render :show, status: :ok, location: [:admin, @compatible] }
       else
         format.html { render :edit }
         format.json { render json: @compatible.errors, status: :unprocessable_entity }

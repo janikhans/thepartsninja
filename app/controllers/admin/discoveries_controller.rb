@@ -17,7 +17,7 @@ class Admin::DiscoveriesController < Admin::DashboardController
     respond_to do |format|
       if @discovery.update(discovery_params)
         format.html { redirect_to admin_discovery_path(@discovery), notice: 'Discovery was successfully updated.' }
-        format.json { render :show, status: :ok, location: admin_discovery_path(@discovery) }
+        format.json { render :show, status: :ok, location: [:admin, @discovery] }
       else
         format.html { render :edit }
         format.json { render json: @discovery.errors, status: :unprocessable_entity }
