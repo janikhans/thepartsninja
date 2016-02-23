@@ -18,6 +18,10 @@ class Part < ActiveRecord::Base
   has_many :known_not_backwards_compatibles, -> {where backwards: false}, class_name: "Compatible", foreign_key: "part_id"
   has_many :potential_compatibles,           -> {where backwards: false}, class_name: "Compatible", foreign_key: "compatible_part_id"
 
+  def to_label
+    "#{product.brand.name} #{product.category.name} #{product.name} #{part_number}"
+  end
+
   def compatible_parts #Finds just the compatible parts to the fitment being searched
     compatible_parts = []
     self.compats.each do |c|

@@ -4,11 +4,10 @@ Rails.application.routes.draw do
   namespace :admin do
     get '', to: 'dashboard#index', as: '/'
     resources :leads, only: [:index, :create, :destroy]
-    resources :brands, :categories, except: [:new]
-    resources :fitments, :compatibles
+    resources :fitments, :brands, :categories, :parts, :products, :vehicles, except: [:new]
+    resources :compatibles
     resources :users, only: [:index, :show, :destroy, :edit]
     resources :discoveries, except: [:new, :create]
-    resources :parts, :products, :vehicles, except: [:new]
   end
 
   #Users

@@ -3,13 +3,10 @@ class Admin::FitmentsController < Admin::DashboardController
 
   def index
     @fitments = Fitment.all
+    @fitment = Fitment.new
   end
 
   def show
-  end
-
-  def new
-    @fitment = current_user.fitments.build
   end
 
   def edit
