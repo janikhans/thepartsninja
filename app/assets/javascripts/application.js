@@ -12,12 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require dataTables/jquery.dataTables
-//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require jquery-ui/autocomplete
 //= require bootstrap-sprockets
 //= require metisMenu
 //= require jquery.steps
 //= require jquery.validate.min
 //= require cocoon
-//= require_tree .
+//= require_directory .
