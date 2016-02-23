@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :fitments, :compatibles
     resources :users, only: [:index, :show, :destroy, :edit]
     resources :discoveries, except: [:new, :create]
+    resources :parts, except: [:new]
   end
 
   #Users
@@ -20,9 +21,9 @@ Rails.application.routes.draw do
   #Basic resources
   resources :leads, only: [:create]
   resources :discoveries, except: [:index]
-  resources :fitments, :parts, :products, :vehicles
+  resources :fitments, :products, :vehicles
   resources :profiles, only: [:update]
-  resources :users, only: [:show]
+  resources :users, :parts, only: [:show]
   resources :compatibles, only:[:show] do
     member do
       get 'upvote'

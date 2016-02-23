@@ -28,6 +28,10 @@ class Product < ActiveRecord::Base
     self.category = Category.where('lower(name) = ?', name.downcase).first_or_create(name: name)
   end
 
+  def to_label
+    "#{brand.name} - #{category.name} #{name}"
+  end
+
   def slug_candidates
    [
     [:brand_name, :name],

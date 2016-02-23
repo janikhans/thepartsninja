@@ -16,4 +16,5 @@
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require bootstrap-sprockets
 //= require metisMenu
-//= require_tree .
+//= require flash
+//= require admin/sb-admin

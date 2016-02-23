@@ -1,0 +1,6 @@
+<% provide(:header, "Showing Part: #{@part.part_number}") %>
+
+<%= @part.part_number %> <%= @part.product.brand.name %>
+
+<strong>Edit:</strong> <%= link_to 'Edit', edit_admin_part_path(@part) %>
+<strong>Delete:</strong> <%= link_to 'Delete', admin_part_path(@part), method: :delete, data: {confirm: "Are you sure"} %>

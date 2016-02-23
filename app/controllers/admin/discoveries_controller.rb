@@ -16,8 +16,8 @@ class Admin::DiscoveriesController < Admin::DashboardController
   def update
     respond_to do |format|
       if @discovery.update(discovery_params)
-        format.html { redirect_to @discovery, notice: 'Discovery was successfully updated.' }
-        format.json { render :show, status: :ok, location: @discovery }
+        format.html { redirect_to admin_discovery_path(@discovery), notice: 'Discovery was successfully updated.' }
+        format.json { render :show, status: :ok, location: admin_discovery_path(@discovery) }
       else
         format.html { render :edit }
         format.json { render json: @discovery.errors, status: :unprocessable_entity }
@@ -28,7 +28,7 @@ class Admin::DiscoveriesController < Admin::DashboardController
   def destroy
     @discovery.destroy
     respond_to do |format|
-      format.html { redirect_to discoveries_url, notice: 'Discovery was successfully destroyed.' }
+      format.html { redirect_to admin_discoveries_path, notice: 'Discovery was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

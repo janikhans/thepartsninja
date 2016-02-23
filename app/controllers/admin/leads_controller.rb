@@ -9,7 +9,7 @@ class Admin::LeadsController < Admin::DashboardController
    def destroy
      @lead.destroy
      respond_to do |format|
-       format.html { redirect_to admin_leads_url, notice: 'Lead was successfully destroyed.' }
+       format.html { redirect_to admin_leads_path, notice: 'Lead was successfully destroyed.' }
        format.json { head :no_content }
      end
    end

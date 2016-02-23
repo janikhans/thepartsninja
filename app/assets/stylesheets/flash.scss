@@ -1,0 +1,22 @@
+/*Pretty Notice and Flash message*/
+#notice-wrapper {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+    .alert, .notice {
+        padding: 2.5rem 0;
+        text-align: center;
+        margin: 0;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #FFFFFF;
+        letter-spacing: 1px;
+    }
+    .alert {
+        background: rgba(234, 136, 136, 0.9);
+    }
+    .notice {
+        background: rgba(52, 152, 219, 0.9);
+    }
+}
