@@ -1,15 +1,5 @@
 Rails.application.routes.draw do
 
-  #Namespace routes for Admins only
-  namespace :admin do
-    get '', to: 'dashboard#index', as: '/'
-    resources :leads, only: [:index, :create, :destroy]
-    resources :fitments, :brands, :categories, :parts, :products, :vehicles, except: [:new]
-    resources :compatibles
-    resources :users, only: [:index, :show, :destroy, :edit]
-    resources :discoveries, except: [:new, :create]
-  end
-
   #Users
   #Change the default devise routes to something more pleasing
   devise_scope :user do
@@ -18,7 +8,17 @@ Rails.application.routes.draw do
   end
   devise_for :users, controllers: {registrations: :registrations}
 
-  #Resource routes for pulic
+  #Namespace routes for Admins only
+  namespace :admin do
+    get '', to: 'dashboard#index', as: '/'
+    resources :leads, only: [:index, :create, :destroy]
+    resources :fitments, :brands, :categories, :parts, :products, :vehicles, except: [:new]
+    resources :compatibles
+    resources :users, except: [:new]
+    resources :discoveries, except: [:new, :create]
+  end
+
+  #Resource routes for public
   resources :leads, only: [:create]
   resources :discoveries, except: [:index]
   resources :products, :vehicles, only: [:show, :index]

@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
 
   #Associations
   has_one :profile, dependent: :destroy
+  accepts_nested_attributes_for :profile
   has_many :products
   has_many :parts
   has_many :fitments
