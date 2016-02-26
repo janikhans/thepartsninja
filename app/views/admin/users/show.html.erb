@@ -12,6 +12,8 @@
           <p><strong>Email: </strong><%= @user.email %> </p>
           <p><strong>Bio: </strong><%= @user.profile.try(:bio) %> </p>
           <p><strong>Location: </strong><%= @user.profile.try(:location) %></p>
+          <p><strong>Invites Left: </strong><%= @user.invitation_limit %></p>
+          <p><strong>Invite Count: </strong><%= @user.invitations_count %></p>
         </div>
         <div class="panel-footer">
           <%= link_to 'Delete', admin_user_path(@user), method: :delete, data: {confirm: "Are you sure"} %> | <%= link_to 'Edit', edit_admin_user_path(@user) %>

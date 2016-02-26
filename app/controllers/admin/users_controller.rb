@@ -45,7 +45,7 @@ class Admin::UsersController < Admin::DashboardController
      end
 
      def user_params
-      params.require(:user).permit(:email, :username, :role, :password, :password_confirmation, profile_attributes: [:id, :bio, :location])
+      params.require(:user).permit(:email, :username, :role, :password, :password_confirmation, :invitation_limit, profile_attributes: [:id, :bio, :location])
     end
 
  end

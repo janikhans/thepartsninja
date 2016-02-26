@@ -3,9 +3,8 @@ module Admin
 
     def admin_only
       unless current_user.try(:admin?)
-        redirect_to login_path, alert: 'You must be logged in for access'
+        redirect_to dashboard_path, alert: 'Access Denied'
       end
     end
-
 
 end

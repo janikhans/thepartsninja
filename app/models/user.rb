@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   has_many :discoveries
   has_many :compatibles, through: :discoveries
 
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
+  devise :invitable, :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   validates :username, uniqueness: { case_sensitive: false}, presence: true, length: { in: 4..20}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i

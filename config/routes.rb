@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     get "login", to: "devise/sessions#new"
     get "sign_up", to: "devise/registrations#new"
   end
-  devise_for :users, controllers: {registrations: :registrations}
+  devise_for :users, controllers: {registrations: :registrations, invitations: :invitations}
 
   #Namespace routes for Admins only
   namespace :admin do
