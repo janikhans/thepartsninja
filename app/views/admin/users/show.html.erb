@@ -8,6 +8,7 @@
         </div>
         <div class="panel-body">
           <p><%= gravatar_for(@user) %></p>
+          <p><strong>Role: </strong><%= @user.role %></p>
           <p><strong>Email: </strong><%= @user.email %> </p>
           <p><strong>Bio: </strong><%= @user.profile.try(:bio) %> </p>
           <p><strong>Location: </strong><%= @user.profile.try(:location) %></p>

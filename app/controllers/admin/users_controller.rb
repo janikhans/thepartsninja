@@ -21,7 +21,7 @@ class Admin::UsersController < Admin::DashboardController
 
      respond_to do |format|
        if @user.update(user_params)
-         format.html { redirect_to admin_users_path(@user), notice: 'User was successfully updated.' }
+         format.html { redirect_to admin_user_path(@user), notice: 'User was successfully updated.' }
          format.json { render :show, status: :ok, location: [:admin, @user] }
        else
          format.html { render :edit }
@@ -45,7 +45,7 @@ class Admin::UsersController < Admin::DashboardController
      end
 
      def user_params
-      params.require(:user).permit(:email, :username, :password, :password_confirmation, profile_attributes: [:bio, :location])
+      params.require(:user).permit(:email, :username, :role, :password, :password_confirmation, profile_attributes: [:id, :bio, :location])
     end
 
  end
