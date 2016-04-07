@@ -5,6 +5,7 @@ class Vehicle < ActiveRecord::Base
   friendly_id :slug_candidates, use: [:finders, :slugged]
 
   belongs_to :brand
+  has_many :searches
   has_many :fitments
   has_many :oem_parts, through: :fitments, source: :part
 

@@ -139,6 +139,7 @@ ActiveRecord::Schema.define(version: 20160314042844) do
 
   create_table "searches", force: :cascade do |t|
     t.integer  "user_id"
+    t.integer  "vehicle_id"
     t.string   "brand"
     t.string   "model"
     t.integer  "year"
@@ -150,6 +151,7 @@ ActiveRecord::Schema.define(version: 20160314042844) do
   end
 
   add_index "searches", ["user_id"], name: "index_searches_on_user_id"
+  add_index "searches", ["vehicle_id"], name: "index_searches_on_vehicle_id"
 
   create_table "steps", force: :cascade do |t|
     t.text     "content",      default: "", null: false
@@ -179,7 +181,7 @@ ActiveRecord::Schema.define(version: 20160314042844) do
     t.datetime "invitation_created_at"
     t.datetime "invitation_sent_at"
     t.datetime "invitation_accepted_at"
-    t.integer  "invitation_limit",       default: 0
+    t.integer  "invitation_limit"
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
     t.integer  "invitations_count",      default: 0

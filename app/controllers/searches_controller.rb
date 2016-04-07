@@ -1,44 +1,34 @@
 class SearchesController < ApplicationController
-  before_action :authenticate_user!, only: [:results, :index]
-
-  def create
-    @search = Search.new(search_params)
-
-    if user_signed_in?
-      @search.user = current_user
-      if @search.save
-        redirect_to searches_path, notice: 'Search was successfully created.'
-      else
-        redirect_to root_path, alert: 'Something didnt work'
-      end
-    else
-      respond_to do |format|
-          if @search.save
-            format.js
-          else
-            format.js
-          end
-        end
-    end
-
-
-  end
-
-  def index
-  end
+  #before_action :authenticate_user!, only: [:results, :index]
 
   def results
-    @categories = Category.all
-      ## Lets takes those params from the view....
-      make = params[:search][:make].strip
-      year = params[:search][:year]
-      model = params[:search][:model].strip
-      # @part = params[:search][:part_name].strip
-      @part = Category.find(params[:search][:part])
 
-      #Finding the brand first and then the vehicle
-      brand = Brand.where('lower(name) = ?', make.downcase).first
-      @vehicle = Vehicle.where("lower(model) like ? AND year = ? AND brand_id = ?", model.downcase, year, brand).first
+    @categories = Category.all
+    ## Lets takes those params from the url....
+    make = params[:search][:brand].strip
+    year = params[:search][:year]
+    model = params[:search][:model].strip
+    # @part = params[:search][:part_name].strip
+    @part = Category.find(params[:search][:part])
+
+    #Finding the brand first and then the vehicle
+    brand = Brand.where('lower(name) = ?', make.downcase).first
+    @vehicle = Vehicle.where("lower(model) like ? AND year = ? AND brand_id = ?", model.downcase, year, brand).first
+
+    @new_search = Search.new
+
+    if @vehicle
+      @new_search.vehicle = @vehicle
+    else
+      @new_search.brand = brand
+      @new_search.model = model
+      @new_search.year = year
+    end
+    
+    @new_search.part = @part
+
+    if user_signed_in?
+      @new_search.user = current_user
 
       # Doing this in case a vehicle isn't found in the database
       if @vehicle
@@ -66,32 +56,21 @@ class SearchesController < ApplicationController
           @potential_parts = potential_parts.flatten!
           compatible_parts.flatten!
           @compatible_search_results = compatible_parts.sort_by {|c| c.cached_votes_score }.reverse
+
+          #Setting search analytics to track results
+          @new_search.compatibles = @compatible_search_results.count
+          @new_search.potentials = @potential_parts.count
         else
           @vehicle = nil
         end
       end
-  end
+      @new_search.save
+    else
+      @new_search.save
 
-  # def create
-  #   @lead = Lead.new(lead_params)
-  #
-  #   respond_to do |format|
-  #     if @lead.save
-  #       format.html { redirect_to @lead, notice: 'Lead was successfully created.' }
-  #       format.json { render :show, status: :created, location: @lead }
-  #       format.js
-  #     else
-  #       format.html { render :new }
-  #       format.json { render json: @lead.errors, status: :unprocessable_entity }
-  #       format.js
-  #     end
-  #   end
-  # end
-
-  private
-
-    def search_params
-      params.require(:search).permit(:brand, :model, :year, :part)
+      #This should redirect to a lead generation page
+      redirect_to root_path, alert: "You don't have access to that"
     end
+  end
 
 end
