@@ -48,6 +48,7 @@ Rails.application.routes.draw do
   get 'terms-of-service' => 'pages#terms'
 
   #Search
-  get 'search' => 'search#results', as: :search
+  resources :searches, only: [:create, :index]
+  get 'search' => 'searches#results', as: :search
 
 end

@@ -9,7 +9,7 @@
   <%= csrf_meta_tags %>
 </head>
 
-<body class="gray-bg">
+<body id="body" class="gray-bg">
     <%= render 'layouts/navbar' %>
     <% if @home_page %><%= render 'layouts/welcome_splash' %><% else %><%= render 'layouts/header' %> <% end %>
     <%= render 'layouts/flash' %>

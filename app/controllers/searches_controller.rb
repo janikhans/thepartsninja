@@ -1,5 +1,31 @@
-class SearchController < ApplicationController
-  before_action :authenticate_user!
+class SearchesController < ApplicationController
+  before_action :authenticate_user!, only: [:results, :index]
+
+  def create
+    @search = Search.new(search_params)
+
+    if user_signed_in?
+      @search.user = current_user
+      if @search.save
+        redirect_to searches_path, notice: 'Search was successfully created.'
+      else
+        redirect_to root_path, alert: 'Something didnt work'
+      end
+    else
+      respond_to do |format|
+          if @search.save
+            format.js
+          else
+            format.js
+          end
+        end
+    end
+
+
+  end
+
+  def index
+  end
 
   def results
     @categories = Category.all
@@ -45,5 +71,27 @@ class SearchController < ApplicationController
         end
       end
   end
+
+  # def create
+  #   @lead = Lead.new(lead_params)
+  #
+  #   respond_to do |format|
+  #     if @lead.save
+  #       format.html { redirect_to @lead, notice: 'Lead was successfully created.' }
+  #       format.json { render :show, status: :created, location: @lead }
+  #       format.js
+  #     else
+  #       format.html { render :new }
+  #       format.json { render json: @lead.errors, status: :unprocessable_entity }
+  #       format.js
+  #     end
+  #   end
+  # end
+
+  private
+
+    def search_params
+      params.require(:search).permit(:brand, :model, :year, :part)
+    end
 
 end
