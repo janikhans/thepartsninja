@@ -3,13 +3,16 @@ class SearchesController < ApplicationController
 
   def results
 
+    @user_searches = current_user.searches.where(vehicle_id: !nil).reverse[0..3] if user_signed_in? # Not giving me the most recent ones. Needs to search and limit at the same time.
+
     @categories = Category.all
     ## Lets takes those params from the url....
     make = params[:search][:brand].strip
     year = params[:search][:year]
     model = params[:search][:model].strip
     # @part = params[:search][:part_name].strip
-    @part = Category.find(params[:search][:part])
+    part = params[:search][:part]
+    @part = Category.where('lower(name) = ?', part.downcase).first
 
     #Finding the brand first and then the vehicle
     brand = Brand.where('lower(name) = ?', make.downcase).first
@@ -20,12 +23,16 @@ class SearchesController < ApplicationController
     if @vehicle
       @new_search.vehicle = @vehicle
     else
-      @new_search.brand = brand
+      if brand
+        @new_search.brand = brand
+      else
+        @new_search.brand = make
+      end
       @new_search.model = model
       @new_search.year = year
     end
-    
-    @new_search.part = @part
+
+    @new_search.part = part
 
     if user_signed_in?
       @new_search.user = current_user

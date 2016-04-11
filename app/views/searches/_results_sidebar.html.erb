@@ -6,9 +6,9 @@
           <br>
           <p>We're stoked you came back and are seaching some more. Here's a quick list of some of your last searches...</p>
           <ul>
-            <li>2006 Yamaha YZ250 Front Wheel</li>
-            <li>2011 KTM 340SXF Rear Brake Pads</li>
-            <li>2011 TM Racing 250MX Clutch Plates</li>
+            <% @user_searches.each do |s| %>
+              <li> <%= s.vehicle.brand.name %> <%= s.vehicle.model %> <%= s.vehicle.year %> <%= s.part %> </li>
+            <% end %>
         </ul>
         <p>Want to checkout your dashboard?</p>
         <div class="user-button">
@@ -23,7 +23,7 @@
         <h2 class="text-center font-bold">Hey You!</h2>
         <br>
         <p>
-            Yeah <strong>YOU!</strong> You're currently viewing Parts Web results as a guest. Did you know you'll get access to even more awesome-ness if you sign up? 
+            Yeah <strong>YOU!</strong> You're currently viewing Parts Web results as a guest. Did you know you'll get access to even more awesome-ness if you sign up?
         </p>
         <ul>
           <li>Help out the Community</li>

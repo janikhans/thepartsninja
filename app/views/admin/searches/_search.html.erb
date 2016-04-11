@@ -1,0 +1,16 @@
+<tr>
+  <td><%= search.id %></td>
+  <% if search.vehicle_id %>
+    <td><%= search.vehicle_id %></td>
+    <td><%= search.vehicle.year %></td>
+    <td><%= search.vehicle.brand.name %></td>
+    <td><%= search.vehicle.model %></td>
+  <% else %>
+    <td></td>
+    <td><%= search.year %></td>
+    <td><%= search.brand %></td>
+    <td><%= search.model %></td>
+  <% end %>
+  <td><%= search.part %></td>
+  <td><%= search.user.id if search.user_id %></td>
+</tr>

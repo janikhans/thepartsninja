@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   has_many :fitments
   has_many :discoveries
   has_many :compatibles, through: :discoveries
+  has_many :searches
 
   devise :invitable, :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
