@@ -1,0 +1,29 @@
+<div id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content animated bounceInRight">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <i class="fa fa-laptop modal-icon"></i>
+          <h4 class="modal-title">PartsNINJA</h4>
+          <small class="font-bold">Oops! We're not quite ready!</small>
+      </div>
+      <div  id="emailForm" class="modal-body">
+        <p>
+            <strong>Want to know when we are ready?</strong> Signup for our mailing list and we will notify you when MetaParts is up and running. We promise we won't sell your email
+            to anyone. While you're at it, let us know what you sort of vehicles you'll be searching for.
+        </p>
+        </br>
+        <%= render 'leads/form' %>
+      </div>
+      <div class="modal-footer p-t-sml">
+        <ul>
+          <li><%= link_to '<i class="fa fa-facebook fa-fw fa-2x"></i>'.html_safe, 'https://facebook.com/thepartsninja', :target => "_blank" %></li>
+          <li><%= link_to '<i class="fa fa-instagram fa-fw fa-2x"></i>'.html_safe, 'https://facebook.com/thepartsninja', :target => "_blank" %></li>
+          <li><%= link_to '<i class="fa fa-twitter fa-fw fa-2x"></i>'.html_safe, 'https://facebook.com/thepartsninja', :target => "_blank" %></li>
+        </ul>
+        Already have an account? Sign in <%= link_to "here", login_path %>
+      </div>
+    </div>
+  </div>
+
+</div>

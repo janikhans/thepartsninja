@@ -1,5 +1,9 @@
 class LeadsController < ApplicationController
 
+  def index
+    @lead = Lead.new
+  end
+
   def create
     @lead = Lead.new(lead_params)
 
@@ -21,5 +25,5 @@ class LeadsController < ApplicationController
     def lead_params
       params.require(:lead).permit(:email, :auto, :streetbike, :dirtbike, :atv, :utv, :watercraft, :snowmobile, :dualsport)
     end
-    
+
 end

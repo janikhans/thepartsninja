@@ -35,6 +35,7 @@ Rails.application.routes.draw do
     get 'autocomplete', on: :collection
   end
   resources :brands, only: [:index, :show], concerns: :autocompletable
+  get 'coming-soon' => 'leads#index'
 
 
   #User Dashboard

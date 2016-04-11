@@ -76,7 +76,7 @@ class SearchesController < ApplicationController
       @new_search.save
 
       #This should redirect to a lead generation page
-      redirect_to root_path, alert: "You don't have access to that"
+      redirect_to coming_soon_path
     end
   end
 
