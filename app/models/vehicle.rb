@@ -1,5 +1,7 @@
 class Vehicle < ActiveRecord::Base
 
+  scope :unique_models, -> { order("model ASC").group("model") }
+
   #Lets make those URLs nice and SEO friendly
   extend FriendlyId
   friendly_id :slug_candidates, use: [:finders, :slugged]

@@ -19,6 +19,7 @@ gem 'cocoon'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'faker'
 gem 'friendly_id', '~> 5.1.0'
+gem 'rails-jquery-autocomplete'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]

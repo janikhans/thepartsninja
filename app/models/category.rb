@@ -1,4 +1,7 @@
 class Category < ActiveRecord::Base
+
+  scope :subcategories, -> { where.not(parent_id: nil) }
+
   belongs_to :parent
   has_many :products
 

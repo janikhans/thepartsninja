@@ -49,6 +49,12 @@ Rails.application.routes.draw do
   get 'contact' => 'pages#contact'
   get 'terms-of-service' => 'pages#terms'
 
+  resources :pages, only: [] do
+    get :autocomplete_brand_name, on: :collection
+    get :autocomplete_category_name, on: :collection
+    get :autocomplete_vehicle_model, on: :collection
+  end
+
   #Search
   get 'search' => 'searches#results', as: :search
 
