@@ -24,7 +24,7 @@ class SearchesController < ApplicationController
       @new_search.vehicle = @vehicle
     else
       if brand
-        @new_search.brand = brand
+        @new_search.brand = brand.name
       else
         @new_search.brand = make
       end
