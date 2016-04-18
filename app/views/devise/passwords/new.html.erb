@@ -1,7 +1,8 @@
-<div class="passwordBox animated fadeInDown">
+<div class="passwordBox">
   <div class="row">
     <div class="col-md-12">
       <div class="ibox gray-box">
+        <div class="logo"><%= image_tag("ThePartsNinja.png", class:"img-responsive") %></div>
         <h2 class="font-bold">Forgot password?</h2>
         <p>Enter your email address and reset instructions will be emailed to you.</p>
         <div class="row">
@@ -11,7 +12,7 @@
               <div class="form-group">
                 <%= f.input :email, required: true, autofocus: true, placeholder: "Email", label: false %>
               </div>
-                <%= f.button :submit, "Send me reset password instructions", class:"btn btn-primary block full-width m-b" %>
+                <%= f.button :submit, "Send me reset password instructions", class:"btn full-width m-b" %>
             <% end %>
           </div>
         </div>

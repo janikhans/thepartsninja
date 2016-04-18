@@ -11,20 +11,20 @@
 
 <body id="body" class="gray-bg">
     <%= render 'layouts/navbar' %>
-    <% if @home_page %><%= render 'layouts/welcome_splash' %><% else %><%= render 'layouts/header' %> <% end %>
+    <% if @home_page %><%= render 'layouts/welcome_splash' %><% end %>
     <%= render 'layouts/flash' %>
 
         <% if @home_page %>
             <%= yield %>
         <% else %>
           <div id="content" class="container">
-            <div class="wrapper wrapper-content bg-card m-b-lg">
+            <div class="wrapper wrapper-content">
               <%= yield %>
             </div>
           </div>
         <% end %>
 
-    <%= debug(params) if Rails.env.development? %>
+    <%#= debug(params) if Rails.env.development? %>
     <%= render 'layouts/footer' %>
 </body>
 </html>

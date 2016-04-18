@@ -1,7 +1,8 @@
-<div class="passwordBox animated fadeInDown">
+<div class="passwordBox">
   <div class="row">
     <div class="col-md-12">
       <div class="ibox gray-box">
+        <div class="logo"><%= image_tag("ThePartsNinja.png", class:"img-responsive") %></div>
         <h2 class="font-bold">Comfirm Your Invitation</h2>
         <p>Please choose a Username (You can change it later) and a password.</p>
         <div class="row">
@@ -14,7 +15,7 @@
               <%= f.input :password, required: true, label: false, placeholder: "Password" %>
               <%= f.input :password_confirmation, required: true, label: false, placeholder: "Password Confirmation" %>
 
-              <%= f.button :submit, "Finish Invitation", class:"btn btn-primary block full-width m-b" %>
+              <%= f.button :submit, "Finish Invitation", class:"btn full-width m-b" %>
             <% end %>
           </div>
         </div>

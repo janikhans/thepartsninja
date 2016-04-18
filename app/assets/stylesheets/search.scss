@@ -30,17 +30,29 @@
   }
 }
 
+.results-search {
+  background-color: none;
+}
+
 .search-form {
   .form-control {
-    background: transparent;
+    background: $lighter-gray;
     color: #9c9c9c;
+    border: 1px $lighter-gray;
   }
   input {
     background: transparent;
     color: white;
-    border-radius: 5px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    &:focus {
+      border: 1px solid $navy;
+    }
   }
   .btn {
+    background-color: $lighter-gray;
+    border: 1px solid $lighter-gray;
+    width: 50%;
     &:hover { background: $navy; color:white; border: 1px solid $navy;}
   }
   .column-adjustment {

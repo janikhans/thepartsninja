@@ -1,15 +1,16 @@
-<div class="text-center loginscreen animated fadeInUp m-t-xxl">
+<div class="text-center loginscreen m-t-xxl">
     <div class="row">
       <div class="col-md-4 col-md-offset-4">
+        <div class="logo"><%= image_tag("ThePartsNinja.png", class:"img-responsive") %></div>
         <div class="ibox gray-box">
           <h3>Enter the Dojo</h3>
             <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
                   <div class="form-group"><%= f.input :login, required: true, autofocus: true, label: false, placeholder: 'Email or Username', input_html: { class: 'form-control'  } %></div>
-                  <div class="form-group"><%= f.input :password, required: true, label: false %></div>
+                  <div class="form-group"><%= f.input :password, required: true, label: false, placeholder: 'Password' %></div>
                   <div class="form-group"><%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %></div>
 
                 <div class="form-actions">
-                  <%= f.button :submit, "Log in", class:"btn btn-primary block full-width m-b" %>
+                  <%= f.button :submit, "Log in", class:"btn full-width m-b" %>
                 </div>
               <% end %>
               <small><%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
@@ -19,7 +20,7 @@
               <p class="text-muted text-center">
                   <small>Don't have an account yet?</small>
               </p>
-            <%= link_to "Create an account", new_user_registration_path, class:"btn btn-sm btn-white btn-block" %>
+            <%= link_to "Create an account", sign_up_path, class:"btn btn-sm btn-block" %>
         </div>
       </div>
     </div>

@@ -5,28 +5,92 @@ html {
   min-height: 100%;
 }
 body {
+  background-color: #303133;
 }
 
-@media only screen and (min-width : 992px) {
-  .bg-card {
-    background-color: white;
-    position: relative;
-    padding: 40px;
-    margin-top: -40px;
-    box-shadow: 0 2px 6px rgba(0,0,0,.1),0 2px 6px rgba(0,0,0,.10);
-  }
-}
+//General Use classes
+.red { color: red}
+.green { color: #00B700}
+.white-section { background-color: white;}
+.display-none { display: none;}
+
 //navbar
 .navbar-default.navbar-scroll {
   box-shadow: 0 2px 6px rgba(0,0,0,.23);
 }
 @media only screen and (max-width : 992px) {
-  .landing-page .navbar-default.navbar-scroll { background-color: white;}
+  .landing-page .navbar-default.navbar-scroll { background-color: #FFF;}
 }
 
-//Signup Modal
-#myModal {
-  .modal-body {
+//content
+.signupColumns {
+  .logo { height: 250px; margin: auto;}
+  max-width: 800px;
+  margin: 0 auto;
+}
+.wrapper-content {
+  color: #BFBFBF;
+}
+
+.wrapper {
+  margin-top: 100px;
+}
+
+//ibox
+.ibox {
+  background-color: $gray;
+  border-radius: 5px;
+  overflow: hidden;
+  border: 0px;
+  .ibox-content {
+    background-color: $main-gray;
+    color:#BDBDBD;
+    border-width: 0px;
+  }
+  .ibox-title {
+    background-color: $darker-gray;
+    border-width: 0px;
+  }
+  .ibox-footer {
+    border: 0px;
+    background-color: $darker-gray;
+  }
+}
+
+.home-search-box {
+  box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.5);
+  h2 {
+    font-weight: 900;
+    color: #D0D0D0;
+  }
+  h3 {
+    color:#8C8C8C;
+  }
+  .ibox-content {
+    padding: 10px 50px 10px 50px;
+  }
+}
+
+//Signup Page
+#comingSoon {
+  input {
+    background-color: $lighter-gray;
+    color: #9c9c9c;
+    border: 1px $lighter-gray;
+    &:focus {
+      border: 1px solid $navy;
+    }
+  }
+  .btn {
+    width: 50%;
+    &:hover {
+      background-color: $darker-gray;
+    }
+  }
+  .check-container {
+    text-align: center;
+  }
+  .ibox-content {
     h1 { color: $navy}
     p { color: #808080;}
     h3 { color: #676A6C;}
@@ -35,7 +99,9 @@ body {
       margin: 10px;
     }
   }
-  .modal-footer {
+  .ibox-footer {
+    padding: 30px;
+    text-align: right;
     a {color: $navy}
     ul {
       float:left;
@@ -46,12 +112,25 @@ body {
   }
 }
 
-.red { color: red}
-.green { color: #00B700}
+.coming-soon-bg {
+  position: absolute;
+  background: image-url('parts_warehouse_bg.jpg');
+  background-color: $gray;
+  height:100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  -webkit-background-size:cover;
+  -moz-background-size:cover;
+  -o-background-size:cover;
+  background-size:cover;
+  background-position: top left, center center;
+  background-repeat: repeat, no-repeat;
+}
 
 .hero {
-  background: image-url('background-gray.jpg');
-  background-color: #1E1825;
+  background: image-url('parts_warehouse_bg.jpg');
+  background-color: $gray;
   height:100%;
   width: 100%;
   -webkit-background-size:cover;
@@ -61,6 +140,7 @@ body {
   background-position: top left, center center;
   background-repeat: repeat, no-repeat;
   z-index: -1;
+  box-shadow: 0px 1px 15px 5px rgba(0, 0, 0, 0.4);
   h1 {
     font-size: 80px;
     margin: 30px 0 10px;
@@ -80,7 +160,8 @@ body {
   .white { color: white;}
   .inner { padding: 45px 0px 20px 0px; }
   .welcome-header {
-    margin-top: 25%;
+    margin-top: 175px;
+    margin-bottom: 50px;
   }
   .read-more {
     a { color:white;}
@@ -93,10 +174,6 @@ body {
         color:$navy;
     }
   }
-}
-
-.page-header-image {
-  padding: 25px 0 25px;
 }
 
 .search-box-padding {
@@ -155,10 +232,6 @@ $tl: 0.6s; // transition length
   margin-bottom: 5px;
 }
 
-.display-none {
-  display: none;
-}
-
 .dropdown-menu {
   li {
     a {color: #7B7B7B !important;}
@@ -167,15 +240,6 @@ $tl: 0.6s; // transition length
 
 .random-icon-fix {
   margin-left: -2px;
-}
-
-.ibox {
-  // box-shadow: 0px 0px 20px rgba(223, 223, 223, 0.65);
-  border: 1px solid rgba(53, 53, 53, 0.12);
-  border-radius: 5px;
-  overflow: hidden;
-  .ibox-title {background-color: #FBFBFB;}
-  .ibox-content {background-color: rgba(251, 251, 251, 0.25)}
 }
 
 .oem-vehicle {
@@ -206,7 +270,6 @@ $tl: 0.6s; // transition length
 }
 
 /* Vehicles Drill down on a compatible Part */
-
 .vote-item {
   &:hover { background-color: #FBFBFB;}
   .multiple-vehicles {
@@ -235,16 +298,12 @@ $tl: 0.6s; // transition length
   .downvoted {color: red;}
 }
 
-
-.cta-block {
-  padding-bottom: 80px;
-}
-
 // footer
 @media only screen and (min-width : 992px) {
   body { margin-bottom: 215px; }
   footer { height: 215px; position: absolute}
 }
+
 footer {
   bottom: 0;
   left: 0;
@@ -273,7 +332,6 @@ footer {
 }
 
 //Discovery Show page
-  //compatibles
 .compatible {
   .backwards {
     display:inline;
@@ -304,10 +362,20 @@ footer {
   .popover-content {color: gray;}
 }
 
-//General
 .gray-box {
-  background-color: #F9f9f9;
+  background-color: $main-gray;
   padding:20px;
+  input {
+    background: $lighter-gray;
+    border: 1px solid transparent;
+    &:focus { border: 1px solid $navy}
+  }
+  .btn {
+    color: #BBBBBB;
+    background-color: $lighter-gray;
+    border: 1px solid transparent;
+    &:hover { background: $darker-gray;}
+  }
 }
 
 //dashboard

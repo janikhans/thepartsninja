@@ -2,24 +2,26 @@
   <div class="container">
     <div class="welcome-header">
       <div class="row">
-        <div class="col-md-8 col-md-offset-2 text-center inner">
-          <div class="animatedParent">
-            <%= image_tag("ThePartsNinja.png", class:"img-responsive") %>
-            <!-- <h1 class="animated fadeInDown">PartsNINJA</h1>
-            <p class="animated fadeInUp white">Millions of compatibles at your fingertips</p> -->
+        <div class="col-md-12">
+          <div class="col-md-5">
+            <div class="animatedParent">
+              <%= image_tag("ThePartsNinja.png", class:"img-responsive animated fadeInLeft") %>
+              <p class="animated fadeInUp white text-center">Millions of options at your fingertips</p>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-8 col-md-offset-2 text-center">
-          <div class="search-form m-lg ">
-            <%= render 'searches/form' %>
+          <div class="col-md-7">
+            <div class="ibox home-search-box">
+              <div class="ibox-title">
+                <h2 class="text-center">What are you looking for?</h2>
+                <h3 class="text-center">Ask the Sensei!</h3>
+              </div>
+              <div class="ibox-content">
+                <div class="search-form">
+                  <%= render 'searches/form' %>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="read-more text-center">
-          <a href="#about"><h3>LEARN MORE</h3><i class="fa fa-angle-double-down fa-5x"></i></a>
         </div>
       </div>
     </div>
@@ -27,8 +29,8 @@
 </section>
 
 <!-- Quick Hack -->
-<style>
+<!-- /*<style>
   html, body { height:100%;}
   .hero {  min-height: 800px;}
   footer { position: relative !important;}
-</style>
+</style>*/ -->
