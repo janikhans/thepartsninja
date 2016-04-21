@@ -5,7 +5,7 @@ html {
   min-height: 100%;
 }
 body {
-  background-color: #303133;
+  background-color: $light-background;
 }
 
 //General Use classes
@@ -29,7 +29,7 @@ body {
   margin: 0 auto;
 }
 .wrapper-content {
-  color: #BFBFBF;
+  color: #666;
 }
 
 .wrapper {
@@ -38,22 +38,21 @@ body {
 
 //ibox
 .ibox {
-  background-color: $gray;
-  border-radius: 5px;
-  overflow: hidden;
-  border: 0px;
+  background-color: transparent;
   .ibox-content {
-    background-color: $main-gray;
-    color:#BDBDBD;
+    background-color: $light-main;
+    color:#666;
     border-width: 0px;
+    -webkit-box-shadow:0 1px 3px 0 rgba(0,0,0,.1);
+    box-shadow:0 1px 3px 0 rgba(0,0,0,.1) ;
   }
   .ibox-title {
-    background-color: $darker-gray;
     border-width: 0px;
+    background-color: transparent;
   }
   .ibox-footer {
     border: 0px;
-    background-color: $darker-gray;
+    background-color: $light-main;
   }
 }
 

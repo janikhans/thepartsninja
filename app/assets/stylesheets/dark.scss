@@ -1,0 +1,41 @@
+//ibox
+
+.dark-skin {
+  background-color: $dark-background !important;
+  .wrapper-content {
+    color: #BFBFBF;
+  }
+  .ibox {
+    background-color: $dark-background;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 0px;
+    .ibox-content {
+      background-color: $main-gray;
+      color:#BDBDBD;
+      border-width: 0px;
+    }
+    .ibox-title {
+      background-color: $darker-gray;
+      border-width: 0px;
+    }
+    .ibox-footer {
+      border: 0px;
+      background-color: $darker-gray;
+    }
+  }
+
+  .home-search-box {
+    box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.5);
+    h2 {
+      font-weight: 900;
+      color: #D0D0D0;
+    }
+    h3 {
+      color:#8C8C8C;
+    }
+    .ibox-content {
+      padding: 10px 50px 10px 50px;
+    }
+  }
+}
