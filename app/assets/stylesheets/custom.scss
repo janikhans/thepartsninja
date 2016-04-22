@@ -377,22 +377,6 @@ footer {
   .popover-content {color: gray;}
 }
 
-.gray-box {
-  background-color: $main-gray;
-  padding:20px;
-  input {
-    background: $lighter-gray;
-    border: 1px solid transparent;
-    &:focus { border: 1px solid $navy}
-  }
-  .btn {
-    color: #BBBBBB;
-    background-color: $lighter-gray;
-    border: 1px solid transparent;
-    &:hover { background: $darker-gray;}
-  }
-}
-
 //dashboard
 .dashboard-links {
   padding: 0px;
@@ -459,7 +443,7 @@ h1 {
     border-radius: 0px;
     li > a {
       color:#777;
-      text-decoration: capatalize;
+      text-transform: uppercase;
       &:hover {
         background-color: #f9f9f9;
         color: inherit;
@@ -547,7 +531,7 @@ h1 {
 @media (min-width: 768px) {
   /* Navbar positioning foo */
   .navbar-wrapper {
-    margin-top: 20px;
+    margin-top: 50px;
     .container {
       padding-right: 15px;
       padding-left: 15px;

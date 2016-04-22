@@ -11,7 +11,7 @@
   .navbar {
     li {
       a {
-        color:#8C8C8C;
+        color:#BFBFBF;
         font-size: 15px;
         font-weight: 400;
         &:hover {
@@ -47,10 +47,12 @@
       background-color: $main-gray;
       color:#BDBDBD;
       border-width: 0px;
-      input {
-        background: $lighter-gray;
-        border: 1px solid transparent;
-        &:focus { border: 1px solid $navy}
+      .form-control {
+        background-color: $main-gray;
+        border: 1px solid $main-gray;
+        &:focus {
+          border: 1px solid $navy;
+        }
       }
       .btn {
         color: #BBBBBB;
@@ -80,15 +82,6 @@
     }
     .ibox-content {
       padding: 10px 50px 10px 50px;
-    }
-  }
-  .results-search-form {
-    .form-control {
-      background-color: $main-gray;
-      border: 1px solid $main-gray;
-      &:focus {
-        border: 1px solid $navy;
-      }
     }
   }
   .vote-item {
