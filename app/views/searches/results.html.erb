@@ -1,73 +1,65 @@
 <div class="row">
-    <div class="col-md-9">
-      <div class="ibox float-e-margins">
+    <%= render 'results_sidebar' %>
+    <div class="col-md-8">
+      <div class="ibox">
+        <div class="ibox-title">
+        </div>
         <div class="ibox-content">
-          <% if @vehicle %>
-              <h2>Showing Results for: <span class="text-navy"><%= link_to "#{@vehicle.year} #{@vehicle.brand.name} #{@vehicle.model}", @vehicle %> <i>"<%= @part.name %>"</i></span></h2>
-           <% else %>
-            <h2>Sorry, no Results were found.</h2>
-          <% end %>
-          <small>Search Again?</small>
-
-          <div class="search-form results-search">
+          <div class="results-search-form">
               <%= render 'new_form' %>
           </div>
         </div>
+      </div>
         <% if @vehicle %>
-          <div class="search-results">
-            <div class="tabs-container">
-                <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#tab-1"> Compatible Parts <span class="label label-primary"> <%= @compatible_search_results.count %></span></a></li>
-                    <li class=""><a data-toggle="tab" href="#tab-2">Potential Parts <span class="label label-primary"><%= @potential_parts.count %></span></a></li>
-                    <li class=""><a data-toggle="tab" href="#tab-3">OEM Parts <span class="label label-primary"> <%= @oem_search_results.count %></span></a></li>
-                </ul>
-                <div class="tab-content">
-                    <div id="tab-1" class="tab-pane active">
-                        <div class="panel-body no-padding">
-                            <% if @compatible_search_results.any? %>
-                              <%= render partial: 'compatibles/compatible', collection: @compatible_search_results %>
-                            <% else %>
-                            <div class="search-box-padding">
-                              <h5 class="text-center">No Compatibles Were Found...</h5>
-                              <p class="text-center">Try a different search term other than <strong><%= @part %></strong>. Maybe something shorter?</p>
-                            </div>
-                            <% end %>
-                        </div>
-                    </div>
-
-                    <div id="tab-2" class="tab-pane">
-                        <div class="panel-body no-padding">
-                            <% if @potential_parts.any? %>
-                              <%= render partial: 'parts/potential_part', collection: @potential_parts %>
-                            <% else %>
-                            <div class="search-box-padding">
-                              <h5 class="text-center">No Potentials Were Found...</h5>
-                              <p class="text-center">Try a different search term other than <strong><%= @part %></strong>. Maybe something shorter?</p>
-                            </div>
-                            <% end %>
-                        </div>
-                    </div>
-
-                    <div id="tab-3" class="tab-pane">
-                        <div class="panel-body no-padding">
-                            <% if @oem_search_results.any? %>
-                              <%= render partial: 'parts/oem_part', collection: @oem_search_results %>
-                            <% else %>
-                            <div class="search-box-padding">
-                              <h5 class="text-center">No OEM Parts Were Found...</h5>
-                              <p class="text-center">Try a different search term other than <strong><%= @part %></strong>. Maybe something shorter?</p>
-                            </div>
-                            <% end %>
-                        </div>
-                    </div>
-                </div>
+        <div class="ibox">
+          <div class="ibox-title"><%= @compatible_search_results.count %> Compatible Parts</div>
+          <div class="ibox-content  no-padding">
+            <% if @compatible_search_results.any? %>
+              <%= render partial: 'compatibles/compatible', collection: @compatible_search_results %>
+            <% else %>
+            <div class="search-box-padding">
+              <h5 class="text-center">No Compatibles Were Found...</h5>
+              <p class="text-center">Try a different search term other than <strong><%= @part %></strong>. Maybe something shorter?</p>
             </div>
+            <% end %>
           </div>
+        </div>
+        <div class="ibox">
+          <div class="ibox-title"><%= @potential_parts.count %> Potential Parts</div>
+          <div class="ibox-content  no-padding">
+            <% if @potential_parts.any? %>
+              <%= render partial: 'parts/potential_part', collection: @potential_parts %>
+            <% else %>
+            <div class="search-box-padding">
+              <h5 class="text-center">No Potentials Were Found...</h5>
+              <p class="text-center">Try a different search term other than <strong><%= @part %></strong>. Maybe something shorter?</p>
+            </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="ibox">
+          <div class="ibox-title"><%= @oem_search_results.count %> OEM Parts </div>
+          <div class="ibox-content  no-padding">
+            <% if @oem_search_results.any? %>
+              <%= render partial: 'parts/oem_part', collection: @oem_search_results %>
+            <% else %>
+            <div class="search-box-padding">
+              <h5 class="text-center">No OEM Parts Were Found...</h5>
+              <p class="text-center">Try a different search term other than <strong><%= @part %></strong>. Maybe something shorter?</p>
+            </div>
+            <% end %>
+          </div>
+        </div>
         <% end %>
       </div>
-    </div>
-    <%= render 'results_sidebar' %>
   </div>
 
-
-<style> .results-btn { color: #737373 !important;} .results-btn:hover {color:white !important;} input {color: black !important;} </style>
+<% content_for :header do %>
+<div class="results">
+  <% if @vehicle %>
+      <h2>Showing results for: <br> <span class="text-navy"><%= link_to "#{@vehicle.year} #{@vehicle.brand.name} #{@vehicle.model}", @vehicle %> <i>"<%= @part.name %>"</i></span></h2>
+   <% else %>
+    <h2>Sorry, no results were found.</h2>
+  <% end %>
+</div>
+<% end %>

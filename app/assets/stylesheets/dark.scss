@@ -2,6 +2,39 @@
 
 .dark-skin {
   background-color: $dark-background !important;
+  .navbar-default {
+    background-color: #222222;
+  }
+  .navbar-fixed-top {
+    border-bottom: 1px solid #1F1F1F;
+  }
+  .navbar {
+    li {
+      a {
+        color:#8C8C8C;
+        font-size: 15px;
+        font-weight: 400;
+        &:hover {
+          background-color: #333333;
+          color: $navy;
+        }
+        &:active {
+          background-color: #333333;
+          color: $navy;
+        }
+        &:visited {
+          background-color: #333333;
+        }
+        &:focus {
+          background-color: #333333;
+          color: $navy;
+        }
+      }
+    }
+  }
+  .dropdown-menu {
+    background-color: #222222;
+  }
   .wrapper-content {
     color: #BFBFBF;
   }
@@ -16,15 +49,15 @@
       border-width: 0px;
     }
     .ibox-title {
-      background-color: $darker-gray;
       border-width: 0px;
+      color: white;
+      color: #D6D6D6;
     }
     .ibox-footer {
       border: 0px;
       background-color: $darker-gray;
     }
   }
-
   .home-search-box {
     box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.5);
     h2 {
@@ -37,5 +70,19 @@
     .ibox-content {
       padding: 10px 50px 10px 50px;
     }
+  }
+  .vote-item {
+    background-color: transparent;
+    border-top: 1px solid #2F2F2F;
+    &:hover {
+      background-color: #1F1F1F;
+    }
+    &:last-child {
+      border-bottom: 0px;
+    }
+  }
+  .tpn-header{
+    background-color: rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid #3A3A3A;
   }
 }

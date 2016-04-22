@@ -1,3 +1,3 @@
-$(function() {
-    $('body').addClass('landing-page');
-});
+// $(function() {
+//     $('body').addClass('landing-page');
+// });

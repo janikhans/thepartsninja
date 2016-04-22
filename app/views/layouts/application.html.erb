@@ -9,9 +9,9 @@
   <%= csrf_meta_tags %>
 </head>
 
-<body id="body" class="">
+<body id="body" class="dark-skin">
     <%= render 'layouts/navbar' %>
-    <% if @home_page %><%= render 'layouts/welcome_splash' %><% end %>
+    <% if @home_page %><%= render 'layouts/welcome_splash' %><% else %> <%= render 'layouts/header' %><% end %>
     <%= render 'layouts/flash' %>
 
         <% if @home_page %>

@@ -13,14 +13,9 @@ body {
 .green { color: #00B700}
 .white-section { background-color: white;}
 .display-none { display: none;}
-
-//navbar
-.navbar-default.navbar-scroll {
-  box-shadow: 0 2px 6px rgba(0,0,0,.23);
-}
-@media only screen and (max-width : 992px) {
-  .landing-page .navbar-default.navbar-scroll { background-color: #FFF;}
-}
+.left-border { border-left: 1px solid #D4D4D4; }
+.no-margin { margin: 0px;}
+.no-side-margin { margin-left: 0px; margin-right:0px;}
 
 //content
 .signupColumns {
@@ -32,10 +27,6 @@ body {
   color: #666;
 }
 
-.wrapper {
-  margin-top: 100px;
-}
-
 //ibox
 .ibox {
   background-color: transparent;
@@ -43,12 +34,18 @@ body {
     background-color: $light-main;
     color:#666;
     border-width: 0px;
-    -webkit-box-shadow:0 1px 3px 0 rgba(0,0,0,.1);
-    box-shadow:0 1px 3px 0 rgba(0,0,0,.1) ;
+    -webkit-box-shadow:0 1px 3px 0 rgba(0,0,0,.05);
+    box-shadow:0 1px 3px 0 rgba(0,0,0,.05);
   }
   .ibox-title {
+    font-size: 18px;
+    font-weight: 200;
+    color: #666;
     border-width: 0px;
     background-color: transparent;
+    .label {
+      float: none;
+    }
   }
   .ibox-footer {
     border: 0px;
@@ -69,25 +66,50 @@ body {
     padding: 10px 50px 10px 50px;
   }
 }
+//page Header
+.tpn-header {
+  background-color: #FFF;
+  // -webkit-box-shadow: inset 0px 2px 10px 0px rgba(0,0,0,0.55);
+  // -moz-box-shadow: inset 0px 2px 10px 0px rgba(0,0,0,0.55);
+  // box-shadow: inset 0px 2px 10px 0px rgba(0,0,0,0.55);
+  border-bottom: #E6E6E6 solid 1px;
+  .page-header-content {
+    padding: 60px 0px;
+  }
+  .results { text-align: center;}
+}
 
+//Results Page
+.results-header {
+  background-color: #FFF;
+  width:500%;
+  margin-left: -200%;
+  margin-top: -60px;
+  -webkit-box-shadow: inset 0px 2px 10px 0px rgba(0,0,0,0.55);
+  -moz-box-shadow: inset 0px 2px 10px 0px rgba(0,0,0,0.55);
+  box-shadow: inset 0px 2px 10px 0px rgba(0,0,0,0.55);
+  .results {
+    padding: 60px 0px;
+    text-align: center;
+    width: 20%;
+  }
+}
 //Signup Page
 #comingSoon {
   input {
-    background-color: $lighter-gray;
-    color: #9c9c9c;
-    border: 1px $lighter-gray;
     &:focus {
       border: 1px solid $navy;
     }
   }
   .btn {
     width: 50%;
-    &:hover {
-      background-color: $darker-gray;
-    }
   }
   .check-container {
     text-align: center;
+  }
+  .ibox-title {
+    background-color: $light-main;
+    border-bottom: 1px solid #d8d8d8;
   }
   .ibox-content {
     h1 { color: $navy}
@@ -231,12 +253,6 @@ $tl: 0.6s; // transition length
   margin-bottom: 5px;
 }
 
-.dropdown-menu {
-  li {
-    a {color: #7B7B7B !important;}
-  }
-}
-
 .random-icon-fix {
   margin-left: -2px;
 }
@@ -300,7 +316,7 @@ $tl: 0.6s; // transition length
 // footer
 @media only screen and (min-width : 992px) {
   body { margin-bottom: 215px; }
-  footer { height: 215px; position: absolute}
+  footer { height: 215px; position: absolute;}
 }
 
 footer {
@@ -391,4 +407,240 @@ footer {
 //Profile
 .profile-image {
   img {border-radius: 10px;}
+}
+
+//Base tweaked Settings
+span.navy {
+  color: $navy;
+}
+
+p.text-color {
+  color: $text-color;
+}
+
+a.navy-link {
+  color: $navy;
+  text-decoration: none;
+  &:hover {
+    color: darken($navy, 5%);
+  }
+}
+
+section p {
+  color: #aeaeae;
+  font-size: 13px;
+}
+
+h1 {
+  margin-top: 10px;
+  font-size: 30px;
+  font-weight: 200;
+}
+
+.navy-line {
+  width: 60px;
+  height: 1px;
+  margin: 60px auto 0;
+  border-bottom: 2px solid $navy;
+}
+
+/* CUSTOMIZE THE NAVBAR
+-------------------------------------------------- */
+.navbar-wrapper {
+  .nav > li > a {
+    color: $nav-text-color;
+    font-weight: 600;
+    padding: 14px 20px 14px 25px;
+  }
+  .nav > li > a i {
+    margin-right: 6px;
+  }
+  .navbar {
+    border-radius: 0px;
+    li > a {
+      color:#777;
+      text-decoration: capatalize;
+      &:hover {
+        background-color: #f9f9f9;
+        color: inherit;
+      }
+      &:active {
+        background-color: #f9f9f9;
+        color: inherit;
+      }
+      &:visited {
+        background-color: #f9f9f9;
+      }
+      &:focus {
+        background-color: #f9f9f9;
+        color: inherit;
+      }
+    }
+  }
+  .navbar-default {
+    background-color: #fff;
+  }
+  .navbar-brand {
+    color: #fff;
+    height: auto;
+    display: block;
+    font-size: 14px;
+    background: $navy;
+    padding: 15px 20px 15px 20px;
+    font-weight: 700;
+    transition: all 0.3s ease-in-out 0s;
+  }
+  .navbar-fixed-top {
+    border-bottom: 1px solid #D4D4D4;
+  }
+  .top-menu-border {
+    border-top: 1px solid #d4d4d4;
+  }
+
+}
+
+/* Sections
+------------------------- */
+
+.features-block, .features-text {
+  margin-top: 40px;
+}
+
+.features {
+  small {
+    color: $navy;
+  }
+  h2 {
+    font-size: 18px;
+    margin-top: 5px;
+  }
+}
+
+.features-icon {
+  color: $navy;
+  font-size: 40px;
+}
+
+.gray-section {
+  background: #F9F9F9;
+}
+
+/* Buttons - only primary custom button
+------------------------- */
+
+.btn-primary {
+  background-color: $navy;
+  border-color: $navy;
+  color: #FFFFFF;
+  font-size: 14px;
+  padding: 10px 20px;
+  font-weight: 600;
+  &:hover, &:focus, &:active, &.active {
+    background-color: darken($navy, 5%);
+    border-color: darken($navy, 5%);
+    color: #FFFFFF;
+  }
+}
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+@media (min-width: 768px) {
+  /* Navbar positioning foo */
+  .navbar-wrapper {
+    margin-top: 20px;
+    .container {
+      padding-right: 15px;
+      padding-left: 15px;
+    }
+    .navbar {
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .carousel-image {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel-caption {
+    left: 5%;
+    top: 80px;
+    &.blank {
+      left: 5%;
+      top: 80px;
+    }
+    h1 {
+      font-size: 28px;
+    }
+  }
+  .navbar.navbar-scroll .navbar-brand {
+    margin-top: 6px;
+  }
+  .navbar-default {
+    background-color: #fff;
+    border-color: #fff;
+    padding: 15px 0;
+    .navbar-nav > .active > a:focus {
+      background: $navy;
+      color: inherit;
+    }
+    .nav li a {
+      color: $text-color;
+      &:hover {
+        color: #777;
+        background-color: #f9f9f9;
+      }
+    }
+  }
+  .navbar-wrapper .navbar {
+    padding-top: 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid $border-color;
+    border-radius: 0;
+  }
+  .nav > li > a {
+    padding: 25px 10px 15px 10px;
+  }
+  .navbar-nav > li > a {
+    padding: 20px 10px;
+  }
+  .navbar .navbar-brand {
+    margin-top: 6px;
+    border-radius: 5px;
+    font-size: 12px;
+    padding: 10px;
+    height: auto;
+  }
+  .navbar-wrapper .navbar {
+    padding-left: 15px;
+    padding-right: 5px;
+  }
+  .navbar-default .navbar-nav > .active > a {
+    color: inherit;
+    &:hover {
+      color: #fff;
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .featurette-heading {
+    margin-top: 120px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar .navbar-header {
+    display: block;
+    float: none;
+    .navbar-toggle {
+      background-color: #ffffff;
+      padding: 9px 10px;
+      border: none;
+    }
+  }
 }
