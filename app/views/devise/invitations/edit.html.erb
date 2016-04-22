@@ -1,22 +1,24 @@
 <div class="passwordBox">
   <div class="row">
     <div class="col-md-12">
-      <div class="ibox gray-box">
-        <div class="logo"><%= image_tag("ThePartsNinja.png", class:"img-responsive") %></div>
-        <h2 class="font-bold">Comfirm Your Invitation</h2>
-        <p>Please choose a Username (You can change it later) and a password.</p>
-        <div class="row">
-          <div class="col-lg-12">
-            <%= simple_form_for resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put } do |f| %>
-              <%= devise_error_messages! %>
-              <%= f.hidden_field :invitation_token %>
+      <div class="ibox">
+        <div class="ibox-content">
+          <div class="logo"><%= image_tag("ThePartsNinja.png", class:"img-responsive") %></div>
+          <h2 class="font-bold">Comfirm Your Invitation</h2>
+          <p>Please choose a Username (You can change it later) and a password.</p>
+          <div class="row">
+            <div class="col-lg-12">
+              <%= simple_form_for resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put } do |f| %>
+                <%= devise_error_messages! %>
+                <%= f.hidden_field :invitation_token %>
 
-              <%= f.input :username, required: true, autofocus: true, label: false, placeholder: "Username" %>
-              <%= f.input :password, required: true, label: false, placeholder: "Password" %>
-              <%= f.input :password_confirmation, required: true, label: false, placeholder: "Password Confirmation" %>
+                <%= f.input :username, required: true, autofocus: true, label: false, placeholder: "Username" %>
+                <%= f.input :password, required: true, label: false, placeholder: "Password" %>
+                <%= f.input :password_confirmation, required: true, label: false, placeholder: "Password Confirmation" %>
 
-              <%= f.button :submit, "Finish Invitation", class:"btn full-width m-b" %>
-            <% end %>
+                <%= f.button :submit, "Finish Invitation", class:"btn full-width m-b" %>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>

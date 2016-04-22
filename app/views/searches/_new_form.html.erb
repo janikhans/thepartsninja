@@ -1,6 +1,5 @@
 <%= simple_form_for :search, url: search_path, method: :get do |f| %>
     <div class="row no-side-margin">
-      <h4>Search Again?</h4>
       <div class="col-md-12 no-padding">
         <div class="col-md-2 no-padding no-margin">
           <%= f.input :year, class:"form-control", collection: 1955..2017, prompt: "Year...", label: false %>
