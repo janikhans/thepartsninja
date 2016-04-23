@@ -71,7 +71,7 @@ body {
 }
 //page Header
 .tpn-header {
-  background: $main-light image-url('Compatible-bg.png');
+  background: rgba(7, 135, 255, 0.05) image-url('Compatible-bg.png');
   background-size: 100% auto;
   background-position-y: -55%;
   h2 { font-weight: 500; line-height: 40px;}
@@ -430,6 +430,7 @@ h1 {
 /* CUSTOMIZE THE NAVBAR
 -------------------------------------------------- */
 .navbar-wrapper {
+  margin-top: 50px;
   .nav > li > a i {
     margin-right: 6px;
   }
@@ -541,7 +542,6 @@ h1 {
 @media (min-width: 768px) {
   /* Navbar positioning foo */
   .navbar-wrapper {
-    margin-top: 50px;
     .container {
       padding-right: 15px;
       padding-left: 15px;

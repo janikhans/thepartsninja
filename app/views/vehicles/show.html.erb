@@ -1,40 +1,12 @@
+<% content_for :header do %>
+  <%= render 'layouts/header_partials/vehicle' %>
+<% end %>
+<% content_for :subheader do %>
+  <%= render 'layouts/header_partials/search' %>
+<% end %>
 
   <div class="row">
-    <div class="ibox">
-      <div class="ibox-content">
-        <div class="row">
-          <div class="col-md-5">
-              <div class="">
-                <%= image_tag("missing-image.png", class:"img-responsive") %>
-              </div>
-          </div>
-          <div class="col-md-7">
-            <table class="table small m-b-xs">
-              <tbody>
-                <tr>
-                    <td><h3><strong>Year:</strong> <%= @vehicle.year %> </h3></td>
-                    <td><h3><strong>Make:</strong> <%= @vehicle.brand.name %></h3></td>
-                </tr>
-                <tr>
-                    <td><h3><strong>Model:</strong> <%= @vehicle.model %></h3></td>
-                    <td><h3><strong>Category:</strong> Motocross</h3></td>
-                </tr>
-                <tr><td></td><td></td></tr>
-              </tbody>
-            </table>
-            <div>
-                <h4>Description</h4>
-                <small>
-                    This is the bike that sets the pace in the 250 2-stroke class. Powered by an enormously powerful and responsive motor that benefits from our torque-boosting Yamaha Power Valve System (YPVS), the AMA Supercross-winning YZ250 offers today´s motocross rider the ultimate in two stroke performance.
-                </small>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-      <div class="col-md-4  animated fadeInLeft">
+      <div class="col-md-4">
           <div class="ibox">
             <div class="ibox-title">
               <h5>Specifications</h5>
@@ -78,7 +50,7 @@
               </div>
           </div>
       </div>
-      <div class="col-md-8  animated fadeInRight">
+      <div class="col-md-8">
 
       <div class="ibox">
             <div class="ibox-title">
