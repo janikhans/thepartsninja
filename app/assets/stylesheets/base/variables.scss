@@ -1,5 +1,5 @@
 // Basic Colors
-$navy: #98CE07;       // Primary color alternate -> 00bf6f
+$navy: #00B4FF;       // Primary color alternate -> 00bf6f -> old green: #98CE07
 $dark-gray: #c2c2c2;  // Default color
 $blue: #1c84c6;       // Success color
 $lazur: #23c6c8;      // Info color
@@ -8,6 +8,11 @@ $red: #ED5565;        // Danger color
 
 // Various colors
 $text-color: #676a6c;   // Body text
+$main-light: #FFFFFF;
+$main: #FFFFFF;
+$main-dark: #2D2D2D;
+$main-background: #EEEEEE;
+$main-dark-text: #B6BABB;
 
 $light-gray: #D1DADE;   // Default label, badget
 $label-badget-color: #5E5E5E;
@@ -15,15 +20,11 @@ $light-blue: #f3f6fb;
 
 
 //Dark Skin
-$dark-background: #303133;         // Background wrapper color
-$lighter-gray: rgba(0,0,0,0.1);
-$main-gray: rgba(0,0,0,0.2);
-$darker-gray: rgba(0,0,0,0.3);
-
-// Light Skin
-$light-main: #FEFEFF;
-$light-light: #fff;
-$light-background: #e9eaec;
+$dark-skin-background: #303133;         // Background wrapper color
+$dark-skin-lighter: rgba(0,0,0,0.1);
+$dark-skin-main: rgba(0,0,0,0.2);
+$dark-skin-darker: #222222;
+$dark-skin-darker-text: #BFBFBF;
 
 // Spiner color and margin
 $spin-color: $navy;

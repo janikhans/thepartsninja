@@ -1,15 +1,13 @@
+<% content_for :header do %>
+  <%= render 'layouts/header_partials/results' %>
+<% end %>
+
+<% content_for :subheader do %>
+  <%= render 'layouts/header_partials/search' %>
+<% end %>
+
 <div class="row">
   <div class="col-md-8">
-    <div class="ibox">
-      <div class="ibox-title">
-        Search Again?
-      </div>
-      <div class="ibox-content">
-        <div class="results-search-form">
-            <%= render 'new_form' %>
-        </div>
-      </div>
-    </div>
       <% if @vehicle %>
       <div class="ibox">
         <div class="ibox-title"><%= @compatible_search_results.count %> Compatible Parts</div>
@@ -54,13 +52,3 @@
   </div>
   <%= render 'results_sidebar' %>
 </div>
-
-<% content_for :header do %>
-<div class="results">
-  <% if @vehicle %>
-      <h2>Showing results for: <br> <span class="text-navy"><%= link_to "#{@vehicle.year} #{@vehicle.brand.name} #{@vehicle.model}", @vehicle %> <i>"<%= @part.name %>"</i></span></h2>
-   <% else %>
-    <h2>Sorry, no results were found.</h2>
-  <% end %>
-</div>
-<% end %>

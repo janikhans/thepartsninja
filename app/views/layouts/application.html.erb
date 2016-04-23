@@ -11,7 +11,7 @@
 
 <body id="body" class="dark-skin">
     <%= render 'layouts/navbar' %>
-    <% if @home_page %><%= render 'layouts/welcome_splash' %><% else %> <%= render 'layouts/header' %><% end %>
+    <%= render 'layouts/header' %>
     <%= render 'layouts/flash' %>
 
         <% if @home_page %>
