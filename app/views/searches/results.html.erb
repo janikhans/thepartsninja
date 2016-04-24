@@ -7,7 +7,7 @@
 <% end %>
 
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-9">
       <% if @vehicle %>
       <div class="ibox">
         <div class="ibox-title"><%= @compatible_search_results.count %> Compatible Parts</div>
@@ -50,5 +50,26 @@
       </div>
       <% end %>
   </div>
-  <%= render 'results_sidebar' %>
+  <div class="col-md-3">
+    <%= render 'results_sidebar' %>
+    <div class="ibox">
+      <div class="ibox-title">
+        Quick Stats
+      </div>
+      <div class="ibox-content">
+        Compatible Vehicles:
+        <ul>
+          <li>2009 Yamaha WR250</li>
+          <li>2008 Yamah YZ250</li>
+          <li>2005 Yamaha YZ125</li>
+        </ul>
+        Potential Vehicles:
+        <ul>
+          <li>2009 Yamaha WR250</li>
+          <li>2008 Yamah YZ250</li>
+          <li>2005 Yamaha YZ125</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>

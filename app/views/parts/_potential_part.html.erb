@@ -2,23 +2,21 @@
     <div class="row">
         <div class="col-md-12">
             <div class="vote-actions">
-                <i class="fa fa-random fa-rotate-270"> </i>
-                <div><%= potential_part[:score] %></div>
-                <i class="fa fa-random fa-rotate-90 random-icon-fix"> </i>
+              <%= potential_score(potential_part[:score]) %>
             </div>
             <div class="vote-title">
-              <% if potential_part[:part].oem_vehicles.count > 1 %> <div class="multiple-vehicles" data-toggle="collapse" data-target="#acollapse_<%= potential_part[:part].id %>">Multiple Models&nbsp;</div><% else %> <% potential_part[:part].oem_vehicles.each do |f| %> <%= f.year %> <%= f.brand.name %> <%= f.model %> <% end %> <% end %>  -  <%= potential_part[:part].product.brand.name %> <%= potential_part[:part].product.name %> <% if potential_part[:part].part_number %><small>Part Number:</small> <%= potential_part[:part].part_number %> <% end %>
-            </div>
-            <div class="vote-info">
-                <i class="fa fa-comments-o"></i><%= link_to " View Part", potential_part[:part]  %>
-                <i class="fa fa-gears"></i> Reasoning: THIS PART is compatible with THIS PART
+              <%= part_vehicle_fitments(potential_part[:part]) %>
             </div>
         </div>
     </div>
 </div>
 <% if potential_part[:part].oem_vehicles.count> 1 %>
-  <div id="acollapse_<%= potential_part[:part].id %>" class="collapse vehicle-dropdown">
-    <div class="padding">
+  <div id="collapse_<%= potential_part[:part].id %>" class="collapse vehicle-dropdown">
+    <div class="info">
+      <div class="row">
+        <i class="fa fa-comments-o"></i><%= link_to " View Part", potential_part[:part]  %>
+        <i class="fa fa-gears"></i> Reasoning: THIS PART is compatible with THIS PART
+      </div>
       <div class="row">
         <% potential_part[:part].oem_vehicles.each do |f| %> <div class="col-xs-6 col-md-3"> <%= f.year %> <%= f.brand.name %> <%= f.model %> </div> <% end %>
       </div>

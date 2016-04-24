@@ -1,9 +1,9 @@
 //ibox
 
-.dark-skin {
-  background-color: $dark-skin-background !important;
-  .navbar-default { background-color: $dark-skin-darker;}
-  .navbar-fixed-top { border-bottom: 1px solid #1F1F1F;}
+.flat {
+  background-color: $flat-background !important;
+  .navbar-default { background-color: $flat-darker;}
+  .navbar-fixed-top { border-bottom: 0px;}
   .navbar {
     li {
       a {
@@ -27,39 +27,47 @@
       }
     }
   }
-  .dropdown-menu { background-color: $dark-skin-darker;}
+  .dropdown-menu { background-color: $flat-darker;}
   .wrapper-content { color: #BFBFBF;}
   .ibox {
-    background-color: $dark-skin-background;
+    background-color: $flat-main;
+    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, .2);
     .ibox-content {
-      background-color: $dark-skin-main;
+      background-color: $flat-main;
       color:#BDBDBD;
       border-width: 0px;
+      border-radius: 0px;
+      box-shadow: none;
+      h3 {color: rgba(255, 255, 255, 0.85);}
       .form-control {
-        background-color: $dark-skin-main;
-        border: 1px solid $dark-skin-main;
+        background-color: #2b2b2b;
+        border: 1px solid $flat-darker;
         &:focus { border: 1px solid $navy;}
       }
+      .select { background-color: #1E1F20}
       .btn {
-        color: #BBBBBB;
-        background-color: $dark-skin-lighter;
+        color: #FFFFFF;
+        background-color: $navy;
         border: 1px solid transparent;
-        &:hover { background: $dark-skin-darker;}
+        border-radius: 0px;
+        &:hover { background: darken($navy, 5%);}
+      }
+      .btn-contrast {
+        background-color: $flat-darker;
+        &:hover {background-color: lighten($flat-darker, 5%);}
       }
     }
     .ibox-title {
-      border-width: 0px;
-      color: white;
-      color: #D6D6D6;
-      background-color: $dark-skin-background
+      border-bottom: 1px solid $navy;
+      color: #E6E6E6;
+      background-color: rgba(0, 0, 0, 0.2);
     }
     .ibox-footer {
       border: 0px;
-      background-color: $dark-skin-darker;
+      background-color: $flat-darker;
     }
   }
   .home-search-box {
-    box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.5);
     h2 {
       font-weight: 900;
       color: #D0D0D0;
@@ -68,18 +76,20 @@
     .ibox-content { padding: 10px 50px 10px 50px;}
   }
   .vote-item {
-    background-color: transparent;
+    background-color: rgba(0, 0, 0, 0.1);
     border-top: 1px solid #2F2F2F;
-    &:hover { background-color: #1F1F1F;}
+    &:hover { background-color: rgba(0, 0, 0, 0.2);}
     &:last-child { border-bottom: 0px;}
+    &:first-child { border-top: 0px; }
   }
   .tpn-header{
     background-color: #26292D;
     h2 {color: #AFAFAF;}
   }
   .sub-header {
-    background-color: $dark-skin-darker;
+    background-color: $flat-darker;
     border: 0px;
+    box-shadow: none;
   }
   .results-search-form {
     .form-control {
@@ -97,16 +107,20 @@
     .btn { color: white;}
   }
   .vehicle-dropdown {
+    clear:both;
+    color: #ADACAC;
     border-top: 0px solid $navy;
+    background-color: rgba(0, 0, 0, 0.1);
     .info {
       border-top: 1px solid $navy;
     }
   }
+
   footer {
-    background-color: $dark-skin-darker;
-    color: $dark-skin-darker-text;
+    background-color: $flat-darker;
+    color: $flat-darker-text;
     a {
-      color: $dark-skin-darker-text;
+      color: $flat-darker-text;
       &:hover { color: $navy;}
     }
   }

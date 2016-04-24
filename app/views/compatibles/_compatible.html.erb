@@ -17,7 +17,7 @@
 </div>
 <% if compatible.compatible_part.fitments.count> 1 %>
   <div id="collapse_<%= compatible.id %>" class="collapse vehicle-dropdown">
-    <div class="padding">
+    <div class="info">
       <div class="row">
         <% compatible.compatible_part.fitments.each do |f| %> <div class="col-xs-6 col-md-3"> <%= f.vehicle.year %> <%= f.vehicle.brand.name %> <%= f.vehicle.model %> </div> <% end %>
       </div>
