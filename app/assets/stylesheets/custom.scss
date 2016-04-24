@@ -17,6 +17,7 @@ body {
 .left-border { border-left: 1px solid #D4D4D4; }
 .no-margin { margin: 0px;}
 .no-side-margin { margin-left: 0px; margin-right:0px;}
+.float-right {float: right;}
 
 //content
 .signupColumns {
@@ -285,6 +286,24 @@ $tl: 0.6s; // transition length
   .brands-list { margin-bottom: 40px;}
 }
 
+.part-group {
+  border-top: 1px solid #2F2F2F;
+  &:hover { background-color: darken($flat-main, 5%);}
+  .part-title {
+    padding: 20px;
+    cursor: pointer;
+    .part-info-btn {
+      color: $flat-main;
+      float:right;
+    }
+  }
+}
+
+.comp-profile > img {
+  height: 50px;
+  border-radius: 3px;
+}
+
 /* Vehicles Drill down on a compatible Part */
 .vote-item {
   &:hover { background-color: #FBFBFB;}
@@ -299,10 +318,9 @@ $tl: 0.6s; // transition length
 .vehicle-dropdown {
   clear:both;
   color: #ADACAC;
-  border-top: 0px solid #F5F5F5;
   .info {
     border-top: 1px solid #F5F5F5;
-    padding: 20px;
+    padding: 10px 20px;
     margin: 0px 10px;
   }
 }
