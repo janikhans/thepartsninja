@@ -57,19 +57,23 @@
   .form-control {
     background: transparent;
     color: #C5C5C5;
-    border: 1px solid #C5C5C5;
+    border: 1px solid #585858;
+    border-right: 0px !important;
   }
   input {
     background: #FFF;
     color: #C5C5C5;
     border-radius: 0px;
     &:focus {
-      border: 1px solid $navy;
+      border: 1px solid $navy !important;
     }
   }
   select {
     border-radius: 0px;
     -webkit-appearance: none;
+    &:focus {
+      border: 1px solid $navy !important;
+    }
   }
   .btn {
     background-color: $navy;
@@ -90,5 +94,11 @@
   }
   .form-group {
     margin-bottom: 0px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .form-control {
+    border: 1px solid #585858;
   }
 }

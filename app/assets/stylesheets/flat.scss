@@ -95,7 +95,7 @@
     .form-control {
       background: transparent;
       color: #C5C5C5;
-      border: 1px solid #313131;
+      border: 1px solid #585858;
     }
     input {
       color: #313131;
@@ -121,6 +121,12 @@
     a {
       color: $flat-darker-text;
       &:hover { color: $navy;}
+    }
+  }
+
+  @media screen and (max-width: 992px) {
+    .form-control {
+      border: 1px solid #585858 !important;
     }
   }
 }

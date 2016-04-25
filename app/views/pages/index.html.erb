@@ -2,7 +2,7 @@
   <%= render 'layouts/header_partials/splash' %>
 <% end %>
 
-<section id="about" class="features white-section">
+<section id="about" class="features gray-section">
   <div class="container">
     <div class="row">
         <div class="col-lg-12 text-center">
@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="col-md-6 text-center  wow zoomIn">
-            <img src="<%= image_path('landing/perspective.png') %>" alt="dashboard" class="img-responsive">
+          <%= image_tag("landing/tpnmocku.png", class:"img-responsive") %>
         </div>
         <div class="col-md-3 text-center wow fadeInRight">
             <div>
@@ -43,7 +43,7 @@
   </div>
 </section>
 
-<section class="cta-block gray-section">
+<section class="cta-block white-section">
   <div class="container">
     <div class="row">
         <div class="col-lg-12 text-center">
@@ -60,7 +60,7 @@
             <%= link_to "Become a Ninja!", sign_up_path, class:"btn btn-primary"  %>
         </div>
         <div class="col-lg-6 text-right wow fadeInRight">
-            <img src="<%= image_path('landing/dashboard.png') %>" alt="dashboard" class="img-responsive pull-right">
+            <%= image_tag("Final4.gif", class:"img-responsive pull-right") %>
         </div>
     </div>
   </div>
