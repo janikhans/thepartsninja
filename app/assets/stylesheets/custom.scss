@@ -38,7 +38,13 @@ body {
 -------------------------------------------------- */
 .navbar-wrapper {
   margin-top: 50px;
-  .nav > li > a i { margin-right: 6px;}
+  .nav {
+    .open > a {
+      background-color: #333333;
+      color: inherit;
+    }
+    li > a i { margin-right: 6px;}
+  }
   .navbar {
     border-radius: 0px;
     li > a {
@@ -97,6 +103,9 @@ body {
     box-shadow: 0 1px 3px 0 rgba(28,38,53,.2),0 1px 1px 0 rgba(28,38,53,.14),0 2px 1px -1px rgba(28,38,53,.12);
   }
   .top-menu-border { border-top: 1px solid #d4d4d4;}
+  .navbar-collapse {
+    border-color: transparent;
+  }
 }
 
 /* PAGE HEADER
@@ -216,7 +225,7 @@ section p {
   background: image-url('splash_header.jpg');
   background-color: $main-background;
   background-size: cover;
-  padding: 40px;
+  padding: 40px 0px;
   text-align: center;
   h1 {
     font-size: 48px;
@@ -597,22 +606,25 @@ footer {
     background-color: $flat-darker;
     border-color: #fff;
     padding: 15px 0;
-    .navbar-nav > .active > a:focus {
-      background: $navy;
-      color: inherit;
-    }
-    .nav li a {
-      color: $main-dark-text;
+    .navbar-nav .open .dropdown-menu li > a {
+      color: #FFFFFF;
+      opacity: .85;
       &:hover {
-        color: #777;
-        background-color: #f9f9f9;
+        background-color: #333333;
+        color: inherit;
       }
+    }
+  }
+  .navbar-default .navbar-nav > .open > a {
+    &:hover &:focus {
+      background: #333333;
+      color: white;
     }
   }
   .navbar-wrapper .navbar {
     padding-top: 0;
     padding-bottom: 5px;
-    border-bottom: 1px solid $border-color;
+    border-bottom: 1px solid $navy;
     border-radius: 0;
   }
   .nav > li > a {
