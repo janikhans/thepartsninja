@@ -26,6 +26,9 @@ body {
 .has-error .form-control {
   border-color: #a94442 !important;
 }
+.help-block {
+  color: #E66363 !important;
+}
 
 //Make those error messages more pleasing to look at...
 .alert-danger {
@@ -324,9 +327,9 @@ section p {
     .form-control {
       background-color: #2b2b2b;
       border: 1px solid $flat-darker;
+      color: #EAEAEA;
       &:focus { border: 1px solid $navy;}
     }
-    .select { background-color: #1E1F20}
     .btn {
       color: #FFFFFF;
       background-color: $navy;
@@ -375,9 +378,6 @@ section p {
   .btn {
     width: 50%;
   }
-  .ibox-content {
-    padding: 10px 50px 10px 50px;
-  }
   .ibox-footer {
     padding: 30px;
     text-align: right;
@@ -393,6 +393,9 @@ section p {
 .small-footer {
   padding: 10px !important;
   a { color: inherit;}
+}
+.padding-fix {
+  padding: 10px 50px;
 }
 
 /* BRANDS INDEX PAGE
