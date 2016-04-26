@@ -8,36 +8,26 @@
         <div class="col-lg-12 text-center">
             <div class="navy-line"></div>
             <h1>Who is...<br/> <span class="navy"> <i>The Parts NINJA?</i></span> </h1>
-            <p>Even though he hides in the shadows, he knows everything about the parts world</p>
+            <p>Through years of secret practice, he's discovered secret training practices to help you find whatever part you're looking for. </p>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-3 text-center wow fadeInLeft">
-            <div>
-                <i class="fa fa-mobile features-icon"></i>
-                <h2>Always at Hand</h2>
-                <p>The Parts NINJA is always there to help you. At home on your computer or in your pocket while you're in the store. We've got you.</p>
-            </div>
-            <div class="m-t-lg">
-                <i class="fa fa-bar-chart features-icon"></i>
-                <h2>Services</h2>
-                <p>The Sensei offers other services such as a Part-Out tool that will take out the hassle of determining what parts to sell.</p>
-            </div>
+    <div class="row m-t-md">
+        <div class="col-md-3 text-center">
+          <div>
+              <i class="fa fa-connectdevelop features-icon fa-5x"></i>
+              <h2>The Compatibility Web</h2>
+              <p>The Parts NINJA uses tricky algorithms that reference thousands of parts and connects the dots to find you every potential replacement for common and specialized parts.</p>
+          </div>
         </div>
-        <div class="col-md-6 text-center  wow zoomIn">
+        <div class="col-md-6 text-center">
           <%= image_tag("landing/tpnmocku.png", class:"img-responsive") %>
         </div>
-        <div class="col-md-3 text-center wow fadeInRight">
-            <div>
-                <i class="fa fa-envelope features-icon"></i>
-                <h2>Compatibility Webs</h2>
-                <p>Tricky algorithms that show all potential replacements for common and specialized parts.</p>
-            </div>
-            <div class="m-t-lg">
-                <i class="fa fa-google features-icon"></i>
-                <h2>Market Place</h2>
-                <p>Easily post and find ads for used parts. You don't have to worry about searching for what it fits, trust the Sensei to do it for you.</p>
-            </div>
+        <div class="col-md-3 text-center">
+          <div>
+              <i class="fa fa-mobile features-icon fa-5x"></i>
+              <h2>Always at Hand</h2>
+              <p>The Parts NINJA is always there to help you. At home on your computer, on your tablet while you're walking into the store or even on your phone while you're out at the track. We've got you covered.</p>
+          </div>
         </div>
     </div>
   </div>
@@ -53,15 +43,37 @@
         </div>
     </div>
     <div class="row features-block">
-        <div class="col-lg-6 features-text wow fadeInLeft">
+        <div class="col-lg-6">
             <small>The Parts NINJA</small>
             <h2>All the parts, all together</h2>
             <p>The ultimate DIY mechanic resource and is built by you, and all the other garage McGyvers around the world. Remember how you replaced your '11 TM Racing 250MX clutch plates with some left over '07 CR250 plates? Go ahead and submit it. Doing so allows the next person who’s in your same situation, to find an alternative. Using some sneaky ninja magic, The Parts Ninja will add this to the compatibility web so that new, unthought-of possibilites are right there when you need them most.</p>
             <%= link_to "Become a Ninja!", sign_up_path, class:"btn btn-primary"  %>
         </div>
-        <div class="col-lg-6 text-right wow fadeInRight">
-            <%= image_tag("Final4.gif", class:"img-responsive pull-right") %>
+        <div class="col-lg-6 text-center">
+            <%= image_tag("Final4.gif", class:"img-responsive") %>
         </div>
+    </div>
+  </div>
+</section>
+<section class="sign-up-banner">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="ibox">
+          <div class="ibox-title">
+            Signup for Email notifications
+          </div>
+          <div id="emailForm" class="ibox-content">
+            <%= render 'leads/form' %>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="navy-line"></div>
+        <h1>Dont miss out!</h1>
+        <p>Want to know when The Parts NINJA is ready to share his knowledge? Sign up for the email list. As an early supporter, you'll have access to the Beta program, and you'll recieve a special gift from the Ninja when he's officially live.
+          And don't worry, your email is safe with The Parts NINJA, he won't spam you or sell your information.</p>
+      </div>
     </div>
   </div>
 </section>

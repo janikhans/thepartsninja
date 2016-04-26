@@ -1,7 +1,7 @@
 <%= simple_form_for @lead, url: leads_path(@lead), method: :post, remote: true do |f| %>
   <%= f.error_notification %>
 
-  <%= f.input :email, class: "form-control", placeholder: "Email", label: false, autofocus: true %>
+  <%= f.input :email, class: "form-control", placeholder: "Email", label: false %>
   <h3 class="text-center">What are you interested in?</h3>
   <div class="check-container">
     <%= f.input :auto, label: "Cars/Trucks", wrapper: false %>

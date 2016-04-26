@@ -1,0 +1,127 @@
+// .light {
+//   background-color: $main-background;
+//   .navbar-default { background-color: $main-dark;}
+//   .navbar-fixed-top { border-bottom: 0px solid #D4D4D4;}
+//   .navbar {
+//     li {
+//       a {
+//         color: #000000;
+//          &:hover {
+          //   background-color: #484848;
+          //   color: $main-dark-text;
+          // }
+          // &:active {
+          //   background-color: #484848;
+          //   color: $main-dark-text;
+          // }
+          // &:visited {
+          //   background-color: #484848;
+          // }
+          // &:focus {
+          //   background-color: #484848 !important;
+          //   color: $main-dark-text !important;
+          // }
+//       }
+//     }
+//   }
+//   .dropdown-menu { background-color: $flat-darker;}
+//   .wrapper-content { color: $main-dark;}
+//   .ibox {
+//     background-color: $transparent;
+//     box-shadow: none;
+//     .ibox-content {
+//       background-color: $main;
+//       color:#666;
+//       border-radius: 3px;
+//       h3 {color: rgba(255, 255, 255, 0.85);}
+//       .form-control {
+//         background-color: #2b2b2b;
+//         border: 1px solid $flat-darker;
+//         &:focus { border: 1px solid $navy;}
+//       }
+//       .select { background-color: #1E1F20}
+//       .btn {
+//         color: #FFFFFF;
+//         background-color: $navy;
+//         border: 1px solid transparent;
+//         border-radius: 0px;
+//         &:hover { background: darken($navy, 5%);}
+//       }
+//       .btn-contrast {
+//         background-color: $flat-darker;
+//         &:hover {background-color: lighten($flat-darker, 5%);}
+//       }
+//     }
+//     .ibox-title {
+//       border-bottom: 1px solid $navy;
+//       color: #E6E6E6;
+//       background-color: $main-background;
+//     }
+//     .ibox-footer {
+//       background-color: $main;
+//     }
+//   }
+//   .home-search-box {
+//     h2 {
+//       font-weight: 900;
+//       color: #D0D0D0;
+//     }
+//     h3 {color:#8C8C8C;}
+//     .ibox-content { padding: 10px 50px 10px 50px;}
+//   }
+//   .vote-item {
+//     background-color: rgba(0, 0, 0, 0.1);
+//     border-top: 1px solid #2F2F2F;
+//     &:hover { background-color: #FBFBFB}
+//     &:last-child { border-bottom: 0px;}
+//     &:first-child { border-top: 0px; }
+//   }
+//   .tpn-header{
+//     background-color: rgba(7, 135, 255, 0.05);
+//     h2 {color: #AFAFAF;}
+//   }
+//   .sub-header {
+//     background-color:  #F7F7F7;
+//     border-bottom: 1px solid #D4D4D4;
+//     border-top: 1px solid #E6E6E6;
+//     box-shadow: 0px 5px 4px -4px rgba(0, 0, 0, 0.18);
+//   }
+//   .results-search-form {
+//     .form-control {
+//       background: transparent;
+//       color: #C5C5C5;
+//       border: 1px solid #585858;
+//     }
+//     input {
+//       color: #313131;
+//       border-radius: 0px;
+//       &:focus {
+//         border: 1px solid $navy;
+//       }
+//     }
+//     .btn { color: white;}
+//   }
+//   .vehicle-dropdown {
+//     clear:both;
+//     color: #ADACAC;
+//     background-color: rgba(0, 0, 0, 0.1);
+//     .info {
+//       border-top: 1px solid gray;
+//     }
+//   }
+//
+//   footer {
+//     background-color: $main-darker;
+//     color: $main-darker-text;
+//     a {
+//       color: $main-darker-text;
+//       &:hover { color: $navy;}
+//     }
+//   }
+//
+//   @media screen and (max-width: 992px) {
+//     .form-control {
+//       border: 1px solid #585858 !important;
+//     }
+//   }
+// }

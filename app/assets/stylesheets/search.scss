@@ -2,34 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.search-results {
-  border-radius: 5px 5px 0px 0px;
-  .results-header {
-    padding: 1px 20px 5px 20px;
-    h2 {
-      color: white;
-      font-weight: bold;
-      a {
-        color: white;
-        text-decoration: underline;
-      }
-    }
-  }
-  .tabs-container {
-    clear: both;
-    .nav.nav-tabs {
-      li {
-        top: 1px;
-        z-index: 10;
-        a {
-          text-align: center;
-          &:hover { background-color: #FBFBFB;}
-        }
-      }
-    }
-  }
-}
-
+/* HOME PAGE SEARCH FORM
+-------------------------------------------------- */
 .search-form {
   .form-control {
     background: $main-dark;
@@ -53,16 +27,18 @@
   }
 }
 
+/* SEARCH FORM IN THE SUBHEADER
+-------------------------------------------------- */
 .results-search-form {
   .form-control {
     background: transparent;
     color: #C5C5C5;
     border: 1px solid #585858;
-    border-right: 0px !important;
+    border-right: 0px;
   }
   input {
     background: #FFF;
-    color: #C5C5C5;
+    color: #313131;
     border-radius: 0px;
     &:focus {
       border: 1px solid $navy !important;
@@ -101,4 +77,49 @@
   .form-control {
     border: 1px solid #585858;
   }
+}
+
+/* THE EXPANDING SEARCH BOX
+-------------------------------------------------- */
+$tl: 0.6s; // transition length
+
+.search-box {
+  transition: width $tl, border-radius $tl, background $tl, box-shadow $tl;
+  width: 40px;height: 40px;
+  border-radius: 20px;border: none;
+  cursor: pointer;
+  background: rgb(235, 235, 235);
+  margin-left:70px;
+  & + label .search-icon {    color: black    }
+  &:hover {
+    color: white;
+    background: rgb(200, 200, 200);
+    box-shadow: 0 0 0 5px $navy;
+    & + label .search-icon {    color: white    }
+  }
+  &:focus {
+    transition: width $tl cubic-bezier(0,1.22,.66,1.39), border-radius $tl, background $tl;
+    border: none;outline: none;
+    box-shadow: none;
+    padding-left: 15px;
+    cursor: text;
+    width: 300px;
+    border-radius: auto;
+    background: rgb(235, 235, 235);
+    color: black;
+    & + label .search-icon {    color: black;    }
+  }
+  &:not(:focus) { text-indent:-5000px; } // for more-graceful falling back (:not browsers likely support indent)
+}
+
+#search-submit {
+  position: relative;
+  left: -5000px;
+}
+
+.search-icon {
+  position: relative;
+  left: -30px;
+  color: white;
+  cursor: pointer;
 }

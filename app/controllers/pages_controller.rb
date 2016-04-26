@@ -7,6 +7,7 @@ class PagesController < ApplicationController
   def index
     @categories = Category.where(parent_id: !nil)
     @home_page = true
+    @lead = Lead.new
   end
 
   def help
@@ -16,6 +17,9 @@ class PagesController < ApplicationController
   end
 
   def terms
+  end
+
+  def about
   end
 
 

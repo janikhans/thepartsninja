@@ -48,6 +48,7 @@ Rails.application.routes.draw do
   get 'help' => 'pages#help'
   get 'contact' => 'pages#contact'
   get 'terms-of-service' => 'pages#terms'
+  get 'about' => 'pages#about'
 
   resources :pages, only: [] do
     get :autocomplete_brand_name, on: :collection
