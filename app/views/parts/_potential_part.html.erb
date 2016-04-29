@@ -1,4 +1,4 @@
-<div data-toggle="collapse" data-target="#p_<%= potential_part[:part].id %>" class="part-group">
+<div data-toggle="collapse" data-target="#p_<%= potential_part[:part].id %>" class="part-group potential">
   <div class="row part-title">
     <div class="col-md-12">
       <i class="fa fa-plus-circle fa-3x part-info-btn"></i>
@@ -13,17 +13,20 @@
       </div>
     </div>
   </div>
-  <div id="p_<%= potential_part[:part].id %>" class="collapse part-info vehicle-dropdown">
-    <div class="info">
-      <div class="row">
-        <i class="fa fa-comments-o"></i> Part Number: <%= link_to "#{potential_part[:part].part_number}", potential_part[:part]  %> |
-        <i class="fa fa-gears"></i> Reasoning: Part -> Part -> Part -> Part
+  <div id="p_<%= potential_part[:part].id %>" class="collapse part-info">
+    <div class="row info">
+      <div class="col-md-6 col-sm-6">
+        <i class="fa fa-comments-o"></i><h4>Part Number: </h4> <%= link_to "#{potential_part[:part].part_number}", potential_part[:part]  %> <br>
+        <i class="fa fa-gears"></i><h4>Reasoning: </h4>  Part -> Part -> Part -> Part
       </div>
-      <% if potential_part[:part].oem_vehicles.count > 1 %>
-        <div class="row">
-          <% potential_part[:part].oem_vehicles.each do |f| %> <div class="col-xs-6 col-md-3"> <%= f.year %> <%= f.brand.name %> <%= f.model %> </div> <% end %>
-        </div>
-      <% end %>
+      <div class="col-md-6 col-sm-6 info-divider">
+        <% if potential_part[:part].oem_vehicles.count > 1 %>
+          <h3>OEM Models</h3>
+          <div class="row">
+            <% potential_part[:part].oem_vehicles.each do |f| %> <div class="col-xs-6 col-md-6"> <%= f.year %> <%= f.brand.name %> <%= f.model %> </div> <% end %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
