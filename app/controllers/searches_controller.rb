@@ -13,7 +13,7 @@ class SearchesController < ApplicationController
     # @part = params[:search][:part_name].strip
     part = params[:search][:part]
 
-    if (make.empty? || year.empty? || model.empty? || part.empty? )
+    if (make.empty? || year.empty? || model.empty? || part.empty? ) # So that only searches with all inputs get saved. - Very dirty hack I realize. 
       redirect_to coming_soon_path
     else
       @part = Category.where('lower(name) = ?', part.downcase).first
