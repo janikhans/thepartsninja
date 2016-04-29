@@ -12,7 +12,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'simple_form'
 gem 'font-awesome-rails'
-gem 'devise', '3.5.6'
+gem 'devise'
 gem 'devise_invitable', '~> 1.5.2'
 gem 'jquery-datatables-rails', '~> 3.3.0'
 gem 'cocoon'
@@ -49,4 +49,4 @@ group :production do
   gem 'rails_12factor'
 end
 
-# ruby "2.2.3"
+ruby "2.2.3"
