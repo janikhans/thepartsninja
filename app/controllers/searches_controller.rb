@@ -5,22 +5,21 @@ class SearchesController < ApplicationController
 
     @user_searches = current_user.searches.where(vehicle_id: !nil).reverse[0..3] if user_signed_in? # Not giving me the most recent ones. Needs to search and limit at the same time.
 
-    @categories = Category.all
     ## Lets takes those params from the url....
-    make = params[:search][:brand].strip
-    year = params[:search][:year]
-    model = params[:search][:model].strip
+    @make = params[:search][:brand].strip
+    @year = params[:search][:year]
+    @model = params[:search][:model].strip
     # @part = params[:search][:part_name].strip
-    part = params[:search][:part]
+    @part = params[:search][:part]
 
-    if (make.empty? || year.empty? || model.empty? || part.empty? ) # So that only searches with all inputs get saved. - Very dirty hack I realize. 
+    if ((@make.empty? || @year.empty? || @model.empty? || @part.empty? ) && !user_signed_in?) # So that only searches with all inputs get saved. - Very dirty hack imo.
       redirect_to coming_soon_path
     else
-      @part = Category.where('lower(name) = ?', part.downcase).first
+      @existing_part = Category.where('lower(name) = ?', @part.downcase).first
 
       #Finding the brand first and then the vehicle
-      brand = Brand.where('lower(name) = ?', make.downcase).first
-      @vehicle = Vehicle.where("lower(model) like ? AND year = ? AND brand_id = ?", model.downcase, year, brand).first
+      brand = Brand.where('lower(name) = ?', @make.downcase).first
+      @vehicle = Vehicle.where("lower(model) like ? AND year = ? AND brand_id = ?", @model.downcase, @year, brand).first
 
       @new_search = Search.new
 
@@ -30,13 +29,13 @@ class SearchesController < ApplicationController
         if brand
           @new_search.brand = brand.name
         else
-          @new_search.brand = make
+          @new_search.brand = @make
         end
-        @new_search.model = model
-        @new_search.year = year
+        @new_search.model = @model
+        @new_search.year = @year
       end
 
-      @new_search.part = part
+      @new_search.part = @existing_part
 
       if user_signed_in?
         @new_search.user = current_user
@@ -52,7 +51,7 @@ class SearchesController < ApplicationController
 
           oem_parts.each do |p|
             # if p.product.category.name.downcase.include? @part.downcase
-            if p.product.category === @part
+            if p.product.category === @existing_part
               @oem_search_results << p
             end
           end

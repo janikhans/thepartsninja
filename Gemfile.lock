@@ -280,7 +280,7 @@ DEPENDENCIES
   cocoon
   coffee-rails (~> 4.1.0)
   database_cleaner
-  devise (= 3.5.6)
+  devise
   devise_invitable (~> 1.5.2)
   factory_girl_rails
   faker
