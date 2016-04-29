@@ -3,17 +3,15 @@
     <div class="row">
       <div class="col-md-5 col-sm-12">
         <h3>About</h3>
-        <p>For sure ipsum dolor away pimpin, its fo rizzle break it down elit. Nullizzle dope velizzle, phat volutpizzle, suscipit quizzle, gangsta vizzle, black. Pellentesque egizzle tortizzle. Sed erizzle. Sure sheezy dolor dapibus turpis tempizzle mofo. Maurizzle izzle nibh izzle turpizzle.</p>
+        <p>The ultimate motorsports parts service. The Parts Ninja helps you find replacement parts with one simple search. Using ninja magic that cross references thousands of parts so you don't have too.</p>
       </div>
       <div class="col-md-4 col-sm-12">
-        <h3>Pages</h3>
+        <h3>Links</h3>
         <div class="row">
           <div class="col-md-6 col-xs-6">
             <ul>
               <li><%= link_to "Home", root_path %></li>
-              <li><%= link_to "Help", help_path %></li>
-              <li><%= link_to "Contact", contact_path %></li>
-              <li><%= link_to "Terms of Service", terms_of_service_path %></li>
+              <li><%= link_to "Login", login_path %></li>
             </ul>
           </div>
           <% if user_signed_in? %>
@@ -22,13 +20,6 @@
               <li><%= link_to "Dashboard", dashboard_path %></li>
               <li><%= link_to "New Discovery", new_discovery_path %></li>
               <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete, data: {confirm: "Are you sure?"} %></li>
-            </ul>
-          </div>
-          <% else %>
-          <div class="col-md-6 col-xs-6">
-            <ul>
-              <li><%= link_to "Login", login_path %></li>
-              <li><%= link_to "Sign Up", sign_up_path %></li>
             </ul>
           </div>
           <% end %>

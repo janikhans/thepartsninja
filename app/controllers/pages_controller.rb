@@ -2,6 +2,7 @@ class PagesController < ApplicationController
   autocomplete :brand, :name, :full => true
   autocomplete :category, :name, :full =>true, :scopes => [:subcategories]
   autocomplete :vehicle, :model, :full => true, :scopes => [:unique_models]
+  before_action :authenticate_user!, except: [:index]
 
 
   def index
