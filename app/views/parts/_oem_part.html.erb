@@ -1,21 +1,28 @@
-<div class="vote-item">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="vote-title">
-              <%= part_vehicle_fitments(oem_part) %>
-            </div>
-            <div class="vote-info">
-                <i class="fa fa-comments-o"></i><%= link_to " View Part", oem_part  %>
-            </div>
-        </div>
-    </div>
-</div>
-<% if oem_part.oem_vehicles.count> 1 %>
-  <div id="collapse_<%= oem_part.id %>" class="collapse vehicle-dropdown">
-    <div class="info">
-      <div class="row">
-        <% oem_part.oem_vehicles.each do |f| %> <div class="col-xs-6 col-md-3"> <%= f.year %> <%= f.brand.name %> <%= f.model %> </div> <% end %>
+<div data-toggle="collapse" data-target="#oem_<%= oem_part.id %>" class="part-group oem_part">
+  <div class="row part-title">
+    <div class="col-md-12">
+      <i class="fa fa-plus-circle fa-3x part-info-btn"></i>
+      <div class="vote-title">
+        <%= part_vehicle_fitments(oem_part) %>
+      </div>
+      <div class="vote-info">
+        <i class="fa fa-navicon"></i> More Information...
       </div>
     </div>
   </div>
-<% end %>
+  <div id="oem_<%= oem_part.id %>" class="collapse part-info">
+    <div class="row info">
+      <div class="col-md-6 col-sm-6">
+        <i class="fa fa-comments-o"></i><h4>Part Number: </h4> <%= link_to "#{oem_part.part_number}", oem_part  %> <br>
+      </div>
+      <div class="col-md-6 col-sm-6 info-divider">
+        <% if oem_part.oem_vehicles.count > 1 %>
+          <h3>OEM Models</h3>
+          <div class="row">
+            <% oem_part.oem_vehicles.each do |f| %> <div class="col-xs-6 col-md-6"> <%= f.year %> <%= f.brand.name %> <%= f.model %> </div> <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -431,6 +431,26 @@ section p {
       float:right;
     }
   }
+  .potential {
+    .vote-actions {margin-top:10px;}
+  }
+  .profile {
+    float:right;
+    img {
+      float:right;
+      height: 50px;
+      border-radius: 3px;
+    }
+    .user-stats {
+      margin-right: 5px;
+      margin-top: 15px;
+      float:right;
+      a {
+        float: right;
+        color: $navy;
+      }
+    }
+  }
 }
 
 .vote-item {
@@ -448,19 +468,22 @@ section p {
   }
 }
 
-.comp-profile > img {
-  height: 50px;
-  border-radius: 3px;
-}
-
-.vehicle-dropdown {
+.part-info {
   clear:both;
   color: #ADACAC;
   background-color: rgba(0, 0, 0, 0.1);
   box-shadow: inset 0px 3px 6px 0px rgba(0, 0, 0, 0.3);
   .info {
     padding: 10px 20px;
-    margin: 0px 10px;
+    a {color: $navy; margin-left: 5px;}
+    h4 {
+      display: inline-block;
+      font-weight: 900;
+      margin-left: 5px;
+    }
+    .info-divider {
+      border-left: 1px solid rgba(204, 204, 204, 0.15);
+    }
   }
 }
 
@@ -474,7 +497,7 @@ section p {
 
 /* DISCOVERY SHOW PAGE
 -------------------------------------------------- */
-.compatible {
+.compatib {
   .backwards {
     display:inline;
     font-size: 20px;
@@ -661,6 +684,12 @@ footer {
       padding: 9px 10px;
       border: none;
     }
+  }
+  .info-divider {
+    border-left: 0px !important;
+    border-top: 1px solid rgba(204, 204, 204, 0.15);
+    padding-top: 5px;
+    margin-top: 10px;
   }
 }
 
