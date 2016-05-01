@@ -42,26 +42,9 @@ module CompatiblesHelper
   end
 
   #Outputs the title for the compatible
-  def compatible_vehicle_fitments(compatible)
-    capture do
-      if compatible.compatible_part.fitments.count > 1
-        concat content_tag(:div, "Multiple Vehicles ", "data-toggle": "collapse", "data-target": "#collapse_#{compatible.id}", class: "multiple-vehicles")
-      elsif compatible.compatible_part.fitments.count === 1
-        vehicle = compatible.compatible_part.oem_vehicles.first
-        concat vehicle.year.to_s + " " + vehicle.brand.name + " " + vehicle.model + " "
-      else
-        nil
-      end
-      concat "&nbsp;- ".html_safe + compatible.compatible_part.product.brand.name + " "
-      concat compatible.compatible_part.product.name + " "
-      # concat "<small>Part Number:</small>".html_safe + " " + compatible.compatible_part.part_number if compatible.compatible_part.part_number
-    end
-  end
-
   def part_vehicle_fitments(part)
     capture do
       if part.fitments.count > 1
-        # concat content_tag(:div, "Multiple Models ", "data-toggle": "collapse", "data-target": "#collapse_#{part.id}", class: "multiple-vehicles")
         concat "Multiple Vehicles"
       elsif part.fitments.count === 1
         vehicle = part.oem_vehicles.first
@@ -71,7 +54,6 @@ module CompatiblesHelper
       end
       concat "&nbsp;- ".html_safe + part.product.brand.name + " "
       concat part.product.name + " "
-      # concat "<small>Part Number:</small>".html_safe + " " + compatible.compatible_part.part_number if compatible.compatible_part.part_number
     end
   end
 

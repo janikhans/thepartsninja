@@ -4,9 +4,10 @@ Rails.application.routes.draw do
   #Change the default devise routes to something more pleasing
   devise_scope :user do
     get "login", to: "devise/sessions#new"
-    # get "sign_up", to: "devise/registrations#new"
+    get "sign_up", to: "devise/registrations#new" if Rails.env.development?
   end
-  devise_for :users, controllers: {registrations: :registrations, invitations: :invitations}, skip: [:registrations]
+
+  devise_for :users, controllers: {registrations: :registrations, invitations: :invitations}
 
   #Namespace routes for Admins only
   namespace :admin do

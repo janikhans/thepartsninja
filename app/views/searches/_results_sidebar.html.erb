@@ -16,8 +16,7 @@
       <div class="user-button">
           <div class="row">
               <div class="col-md-12 text-center">
-                <%= link_to edit_user_registration_path, class:"btn btn-primary text-center" do %> Dashboard <% end %>
-                  <!-- <button type="button" class="btn btn-outline btn-default"><i class="fa fa-envelope"></i> Send Message</button> -->
+                <%= link_to dashboard_path, class:"btn btn-primary text-center" do %> Dashboard <% end %>
               </div>
           </div>
       </div>
@@ -38,12 +37,10 @@
       <div class="user-button">
           <div class="row">
               <div class="col-md-6">
-                <%= link_to new_user_registration_path, class:"btn btn-primary" do %> Register <% end %>
-                  <!-- <button type="button" class="btn btn-outline btn-default"><i class="fa fa-envelope"></i> Send Message</button> -->
+                <div class="btn btn-primary disabled">Register</div>
               </div>
               <div class="col-md-6">
                 <%= link_to login_path, class:"btn btn-primary" do %> Sign-In <% end %>
-                  <!-- <button type="button" class="btn btn-default btn-sm btn-block"><i class="fa fa-coffee"></i> Buy a coffee</button> -->
               </div>
           </div>
       </div>
