@@ -15,13 +15,13 @@
     <%= render 'layouts/header' %>
     <%= render 'layouts/flash' %>
 
-        <% if @home_page %>
-            <%= yield %>
-        <% else %>
-          <div id="content" class="container content-wrapper">
-            <%= yield %>
-          </div>
-        <% end %>
+    <% if @home_page %>
+        <%= yield %>
+    <% else %>
+      <div id="content" class="container content-wrapper">
+        <%= yield %>
+      </div>
+    <% end %>
 
     <%= debug(params) if Rails.env.development? %>
     <%= render 'layouts/footer' %>

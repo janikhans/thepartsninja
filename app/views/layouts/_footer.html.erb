@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-5 col-sm-12">
         <h3>About</h3>
-        <p>The ultimate motorsports parts service. The Parts Ninja helps you find replacement parts with one simple search. Using ninja magic that cross references thousands of parts so you don't have too.</p>
+        <p>The ultimate motorsports parts service. The Parts Ninja helps you find replacement parts with one simple search. Using secret ninja magic to cross reference thousands of parts, The Parts Ninja will find you all known and potential part compatibilities. </p>
       </div>
       <div class="col-md-4 col-sm-12">
         <h3>Links</h3>
@@ -11,6 +11,7 @@
           <div class="col-md-6 col-xs-6">
             <ul>
               <li><%= link_to "Home", root_path %></li>
+              <li><%= mail_to "contact@thepars.ninja", "Contact us" %></li>
             </ul>
           </div>
           <% if user_signed_in? %>
@@ -31,11 +32,11 @@
         </div>
       </div>
       <div class="col-md-3 col-sm-12">
-          <h3>Follow Us</h3>
+          <h3>Follow the Sensei</h3>
           <ul class="p-m social-icons">
             <li><%= link_to '<i class="fa fa-facebook fa-fw fa-2x"></i>'.html_safe, 'https://facebook.com/thepartsninja', :target => "_blank" %></li>
-            <li><%= link_to '<i class="fa fa-instagram fa-fw fa-2x"></i>'.html_safe, 'https://facebook.com/thepartsninja', :target => "_blank" %></li>
-            <li><%= link_to '<i class="fa fa-twitter fa-fw fa-2x"></i>'.html_safe, 'https://facebook.com/thepartsninja', :target => "_blank" %></li>
+            <li><%= link_to '<i class="fa fa-instagram fa-fw fa-2x"></i>'.html_safe, 'https://instagram.com/theparts.ninja', :target => "_blank" %></li>
+            <li><%= link_to '<i class="fa fa-twitter fa-fw fa-2x"></i>'.html_safe, 'https://twitter.com/thepartsninja', :target => "_blank" %></li>
           </ul>
       </div>
     </div>
