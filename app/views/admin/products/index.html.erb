@@ -32,6 +32,7 @@
                     </tbody>
                 </table>
             </div>
+            <%= paginate @products %>
         </div>
     </div>
   </div>
@@ -40,7 +41,9 @@
 <script>
   $(document).ready(function() {
       $('#dataTables-products').DataTable({
-        responsive: true
+        responsive: true,
+        "aaSorting": [],
+        "paging": false
       });
   });
 </script>

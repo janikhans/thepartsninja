@@ -2,7 +2,7 @@ class Admin::PartsController < Admin::DashboardController
   before_action :set_part, only: [:show, :edit, :update, :destroy]
 
   def index
-    @parts = Part.all
+    @parts = Part.page(params[:page])
     @part = Part.new
   end
 

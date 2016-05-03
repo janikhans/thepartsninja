@@ -35,6 +35,7 @@
                       </tbody>
                   </table>
               </div>
+              <%= paginate @fitments %>
           </div>
       </div>
   </div>
@@ -43,7 +44,9 @@
 <script>
   $(document).ready(function() {
       $('#dataTables-fitments').DataTable({
-              responsive: true
+        responsive: true,
+        "aaSorting": [],
+        "paging": false
       });
   });
 </script>

@@ -2,7 +2,7 @@ class Admin::ProductsController < Admin::DashboardController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   def index
-    @products = Product.order("name ASC")
+    @products = Product.page(params[:page]).order("name ASC")
     @product = Product.new
     @brands = Brand.all
     @categories = Category.all

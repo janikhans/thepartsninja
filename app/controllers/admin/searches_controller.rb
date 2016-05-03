@@ -2,7 +2,7 @@ class Admin::SearchesController < Admin::DashboardController
   before_action :set_search, only: [:destroy]
 
    def index
-     @searches = Search.all.order(created_at: :desc).limit(50)
+     @searches = Search.page(params[:page]).order('created_at DESC')
    end
 
    def destroy

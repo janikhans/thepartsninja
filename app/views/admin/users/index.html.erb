@@ -34,6 +34,7 @@
                       </tbody>
                   </table>
               </div>
+            <%= paginate @users %>
           </div>
       </div>
   </div>
@@ -42,7 +43,9 @@
 <script>
   $(document).ready(function() {
       $('#dataTables-users').DataTable({
-        responsive: true
+        responsive: true,
+        "aaSorting": [],
+        "paging": false,
       });
   });
 </script>

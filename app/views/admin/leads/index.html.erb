@@ -29,6 +29,7 @@
                       </tbody>
                   </table>
               </div>
+              <%= paginate @leads %>
           </div>
       </div>
   </div>
@@ -38,7 +39,8 @@
   $(document).ready(function() {
       $('#dataTables-leads').DataTable({
         responsive: true,
-        "aaSorting": []
+        "aaSorting": [],
+        "paging": false
       });
   });
 </script>

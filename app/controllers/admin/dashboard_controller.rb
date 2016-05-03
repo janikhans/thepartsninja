@@ -4,10 +4,10 @@ class Admin::DashboardController < ApplicationController
   layout "admin_dashboard"
 
   def index
-    @users = User.all.count
-    @leads = Lead.all.count
-    @compatibles = Compatible.all.count
-    @discoveries = Discovery.all.count
+    @users = User.count
+    @leads = Lead.where(created_at: (Time.now - 24.hours)..Time.now).count
+    @discoveries = Discovery.count
+    @searches = Search.where(created_at: (Time.now - 24.hours)..Time.now).count
   end
 
 end

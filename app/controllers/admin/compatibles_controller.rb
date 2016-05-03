@@ -3,7 +3,7 @@ class Admin::CompatiblesController < Admin::DashboardController
 
 
   def index
-    @compatibles = Compatible.order('compatibles.cached_votes_score DESC')
+    @compatibles = Compatible.page(params[:page]).order('compatibles.cached_votes_score DESC')
   end
 
   def show

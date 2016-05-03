@@ -2,7 +2,7 @@ class Admin::FitmentsController < Admin::DashboardController
   before_action :set_fitment, only: [:show, :edit, :update, :destroy]
 
   def index
-    @fitments = Fitment.all
+    @fitments = Fitment.page(params[:page])
     @fitment = Fitment.new
   end
 

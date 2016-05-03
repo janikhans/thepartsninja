@@ -27,6 +27,7 @@
                       </tbody>
                   </table>
               </div>
+              <%= paginate @compatibles %>
           </div>
       </div>
   </div>
@@ -35,7 +36,9 @@
 <script>
   $(document).ready(function() {
       $('#dataTables-compatibles').DataTable({
-        responsive: true
+        responsive: true,
+        "aaSorting": [],
+        "paging": false,
       });
   });
 </script>

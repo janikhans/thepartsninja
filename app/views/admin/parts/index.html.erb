@@ -33,6 +33,7 @@
                     </tbody>
                 </table>
             </div>
+            <%= paginate @parts %>
         </div>
     </div>
   </div>
@@ -41,7 +42,9 @@
 <script>
   $(document).ready(function() {
       $('#dataTables-parts').DataTable({
-        responsive: true
+        responsive: true,
+        "aaSorting": [],
+        "paging": false
       });
   });
 </script>

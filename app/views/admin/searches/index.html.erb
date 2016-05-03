@@ -27,6 +27,7 @@
                     </tbody>
                 </table>
             </div>
+            <%= paginate @searches %>
         </div>
     </div>
   </div>
@@ -36,7 +37,8 @@
   $(document).ready(function() {
       $('#dataTables-searches').DataTable({
         responsive: true,
-        "aaSorting": []
+        "aaSorting": [],
+        "paging": false
       });
   });
 </script>

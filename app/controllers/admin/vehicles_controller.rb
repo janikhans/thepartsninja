@@ -3,7 +3,7 @@ class Admin::VehiclesController < Admin::DashboardController
   before_action :set_vehicle, only: [:show, :edit, :update, :destroy]
 
   def index
-    @vehicles = Vehicle.all
+    @vehicles = Vehicle.page(params[:page])
     @vehicle = Vehicle.new
   end
 

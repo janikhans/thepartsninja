@@ -3,7 +3,7 @@ class Admin::UsersController < Admin::DashboardController
 
 
    def index
-     @users = User.all
+     @users = User.page(params[:page]).order('created_at DESC')
    end
 
    def show
