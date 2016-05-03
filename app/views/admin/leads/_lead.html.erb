@@ -8,5 +8,6 @@
   <td><%= bool_to_checkmark(lead.dualsport) %></td>
   <td><%= bool_to_checkmark(lead.snowmobile) %></td>
   <td><%= bool_to_checkmark(lead.watercraft) %></td>
-  <td><%= link_to "Delete", admin_lead_path(lead), method: :delete, alert: "Are you sure?" %></td>
+  <td><%= lead.created_at.strftime("%b %d, %Y") %></td>
+  <td><%= link_to "Delete", admin_lead_path(lead), method: :delete, data: {confirm: "Are you sure?"}  %></td>
 </tr>

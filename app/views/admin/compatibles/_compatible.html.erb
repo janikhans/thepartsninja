@@ -7,5 +7,5 @@
   <td><%= compatible.discovery.modifications %></td>
   <td><%= link_to 'Show', admin_compatible_path(compatible) %></td>
   <td><%= link_to 'Edit', edit_admin_compatible_path(compatible) %></td>
-  <td><%= link_to "Delete", admin_compatible_path(compatible), method: :delete, alert: "Are you sure?" %></td>
+  <td><%= link_to "Delete", admin_compatible_path(compatible), method: :delete, data: {confirm: "Are you sure?"}  %></td>
 </tr>

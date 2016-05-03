@@ -20,6 +20,7 @@
                               <th>DualSport</th>
                               <th>Snowmobiles</th>
                               <th>Watercrafts</th>
+                              <th>Date</th>
                               <th></th>
                           </tr>
                       </thead>
@@ -36,7 +37,8 @@
 <script>
   $(document).ready(function() {
       $('#dataTables-leads').DataTable({
-        responsive: true
+        responsive: true,
+        "aaSorting": []
       });
   });
 </script>

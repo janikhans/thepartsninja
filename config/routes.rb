@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     resources :compatibles
     resources :users, except: [:new]
     resources :discoveries, except: [:new, :create]
-    resources :searches, only: [:index]
+    resources :searches, only: [:index, :destroy]
   end
 
   #Resource routes for public

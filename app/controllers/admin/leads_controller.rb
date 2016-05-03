@@ -3,7 +3,7 @@ class Admin::LeadsController < Admin::DashboardController
 
 
    def index
-     @leads = Lead.all
+     @leads = Lead.all.order('created_at DESC')
    end
 
    def destroy
