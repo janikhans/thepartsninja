@@ -48,8 +48,9 @@ Rails.application.routes.draw do
   root 'pages#index'   # The Welcome Page!
   get 'help' => 'pages#help'
   get 'contact' => 'pages#contact'
-  get 'terms-of-service' => 'pages#terms'
+  get 'terms_of_service' => 'pages#terms'
   get 'about' => 'pages#about'
+  get 'privacy_policy' => 'pages#privacy'
 
   resources :pages, only: [] do
     get :autocomplete_brand_name, on: :collection
