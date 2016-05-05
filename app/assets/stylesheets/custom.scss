@@ -20,6 +20,14 @@ body {
 .float-right {float: right;}
 .gray-section { background: #F9F9F9;}
 
+.align-outer {
+  display: flex;
+  justify-content: center;
+  .align-inner {
+    align-self: center;
+  }
+}
+
 /* RANDOM FIXES
 -------------------------------------------------- */
 //The border won't show up on a validation error.
@@ -202,14 +210,14 @@ a.navy-link {
 }
 
 section p {
-  color: #aeaeae;
-  font-size: 13px;
+  color: #8C8C8C;
+  font-size: 14px;
 }
 
 .navy-line {
   width: 60px;
   height: 1px;
-  margin: 60px auto 0;
+  margin: 20px auto 0;
   border-bottom: 2px solid $navy;
 }
 
