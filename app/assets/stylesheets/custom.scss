@@ -20,12 +20,21 @@ body {
 .float-right {float: right;}
 .gray-section { background: #F9F9F9;}
 
-.align-outer {
-  display: flex;
-  justify-content: center;
-  .align-inner {
-    align-self: center;
+@media (min-width: 992px) {
+  .align-outer {
+    display: flex;
+    justify-content: center;
+    .align-inner {
+      align-self: center;
+    }
   }
+}
+
+.pages-list {
+  ul {
+    list-style: none;
+    padding: 0px;
+   }
 }
 
 /* RANDOM FIXES
@@ -209,11 +218,6 @@ a.navy-link {
   }
 }
 
-section p {
-  color: #8C8C8C;
-  font-size: 14px;
-}
-
 .navy-line {
   width: 60px;
   height: 1px;
@@ -230,6 +234,9 @@ section p {
 .info-pages {
   background-color: #F9F9F9 !important;
   color: #636363;
+  h1, h2, h3, h4, h5 {
+    color: #383737;
+  }
 }
 
 .sign-up-banner {
@@ -318,6 +325,11 @@ section p {
 .features-icon {
   color: $navy;
   font-size: 40px;
+}
+
+section p {
+  color: #757575;
+  font-size: 15px;
 }
 
 /* IBOX
@@ -593,10 +605,10 @@ footer {
   left: 0;
   width: 100%;
   background-color: $flat-darker;
-  color: $flat-darker-text;
+  color: $flat-darker-text !important;
   padding: 40px;
   font-weight: 300;
-  h3 { color: #ffffff;}
+  h3 { color: #ffffff !important;}
   ul {
     list-style: none;
     padding: 0px;
