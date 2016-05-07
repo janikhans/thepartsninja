@@ -2,43 +2,63 @@
   <%= render 'layouts/header_partials/splash' %>
 <% end %>
 
-<section id="about" class="features gray-section">
-  <div class="container">
-    <div class="row">
-        <div class="col-lg-12 text-center">
-            <div class="navy-line"></div>
-            <h1>Who is...<br/> <span class="navy"> <i>The Parts Ninja?</i></span> </h1>
-            <p>Through years of training, he's discovered secret techniques to help you find whatever part you're looking for. </p>
-        </div>
-    </div>
-    <div class="row m-t-md">
-        <div class="col-md-3 text-center">
-          <div>
-              <i class="fa fa-connectdevelop features-icon fa-5x"></i>
-              <h2>The Compatibility Web</h2>
-              <p>The Parts Ninja uses algorithms to cross-reference thousands of parts so that he can find you every potential replacement for common and specialized parts.</p>
-          </div>
-        </div>
-        <div class="col-md-6 text-center">
-          <%= image_tag("landing/tpnmocku.png", class:"img-responsive") %>
-        </div>
-        <div class="col-md-3 text-center">
-          <div>
-              <i class="fa fa-mobile features-icon fa-5x"></i>
-              <h2>Always at Hand</h2>
-              <p>The Parts Ninja is always there to help you. Your computer at home, your tablet while you're in the store or even on your phone while you're out at the track. The Ninjas got you back.</p>
-          </div>
-        </div>
-    </div>
-  </div>
-</section>
-
-<section class="white-section m-t-md">
+<section id="about" class="features">
   <div class="container">
     <div class="row">
       <div class="col-lg-12 text-center">
         <div class="navy-line"></div>
-        <h1>How...<br/> <span class="navy"> <i> Does he do it?</i></span> </h1>
+        <h1>Who is...<br/> <span class="navy"> <i>The Parts Ninja?</i></span> </h1>
+        <p>He's discovered secret techniques to help you find whatever part you're looking for. </p>
+      </div>
+    </div>
+    <div class="row m-t-md">
+      <div class="col-md-3 text-center">
+        <i class="fa fa-connectdevelop features-icon fa-5x"></i>
+        <h2>The Compatibility Web</h2>
+        <p>The Parts Ninja uses algorithms to cross-reference thousands of parts so that he can find you every potential replacement for common and specialized parts.</p>
+      </div>
+      <div class="col-md-6 text-center">
+        <%= image_tag("landing/tpnmocku.png", class:"img-responsive margin-auto") %>
+      </div>
+      <div class="col-md-3 text-center">
+        <i class="fa fa-mobile features-icon fa-5x"></i>
+        <h2>Always Available</h2>
+        <p>The Parts Ninja is always there to help you. Your computer at home, your tablet while you're in the store or even on your phone while you're out at the track. The Parts Ninja has your covered.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="white-section m-t-md m-b-md">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <div class="navy-line"></div>
+        <h1>Why...<br/> <span class="navy"> <i>Would he want to help?</i></span> </h1>
+        <p>He's been in the same shoes as you and tired of not having options.</p>
+      </div>
+    </div>
+    <div class="row m-t-md align-outer">
+      <div class="col-md-6 text-center align-inner col-md-push-6">
+        <h2>We've all been there</h2>
+        <p>It's the day before the big race and you realize your clutch plates are toast; bummer. What do you do? Call the local shop? Hope they have some? What happens when they don't?</p>
+        <p>What about that spare wheel you've always wanted? You found one but you're not sure it fits. What do you do? You probably hop on Google and do your best Google-foo.</p>
+        <p><strong>The Parts Ninja is here to help!</strong></p>
+        <p>Find out exactly what fits with one search. Don't waste money to find out that wheel wont work. How about that shop, are they out of stock? Ask if they have clutch plates from another model. You'll be surprised what is compatible.</p>
+      </div>
+      <div class="col-md-6 text-center col-md-pull-6">
+        <%= image_tag("landing/Typical_Part_Search.gif", class:"img-responsive margin-auto") %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="m-t-md">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <div class="navy-line"></div>
+        <h1>How...<br/> <span class="navy"><i>Does he do it?</i></span> </h1>
         <p>He's not all smoke and mirrors. There's a finely crafted method to his technique.</p>
       </div>
     </div>
@@ -85,13 +105,13 @@
   </div>
 </section>
 
-<section class="cta-block gray-section m-t-md m-b-md">
+<section class="cta-block white-section m-t-md p-b-md">
   <div class="container">
     <div class="row">
         <div class="col-lg-12 text-center">
           <div class="navy-line"></div>
           <h1>Are you...<br/> <span class="navy"> <i> Ready to become a Ninja?</i></span> </h1>
-            <p>Join the dojo and start helping out. It's easy and totally free!</p>
+          <p>Join the dojo and start helping out. It's easy and totally free!</p>
         </div>
     </div>
     <div class="row align-outer">
@@ -101,7 +121,7 @@
               <li>Unlimited searching</li>
               <li>Access to full search results</li>
               <li>Acesss to the free Parts Ninja Marketplace</li>
-              <li>Community</li>
+              <li>Motorsports Community</li>
             </ul>
             <div class="btn btn-primary disabled">Become a Ninja!</div>
         </div>
@@ -109,10 +129,10 @@
             <%= image_tag("TPNnewdark.png", class:"img-responsive margin-auto") %>
         </div>
         <div class="col-lg-3 align-inner pages-list text-center">
-            <h2>More Reasons</h2>
+            <h2>Need more reasons?</h2>
             <ul>
-              <li>Unlimited searching</li>
-              <li>Access to full search results</li>
+              <li>How-To Guides</li>
+              <li>Additional Tools</li>
               <li>Acesss to the free Parts Ninja Marketplace</li>
               <li>Community</li>
             </ul>
@@ -128,7 +148,7 @@
       <div class="col-lg-6">
         <div class="ibox">
           <div class="ibox-title">
-            Get Notified!
+            Subscribe!
           </div>
           <div id="emailForm" class="ibox-content">
             <%= render 'leads/form' %>
@@ -137,9 +157,9 @@
       </div>
       <div class="col-lg-6">
         <div class="navy-line"></div>
-        <h1>Dont miss out!</h1>
-        <p>Want to know when the Parts Ninja is ready to share his knowledge? Sign up for the email list. As an early supporter, you'll have access to the Beta program, and you'll recieve a special gift from the Ninja when he's officially live.
-          And don't worry, your email is safe with the Parts Ninja, he won't spam you or sell your information.</p>
+        <h1>Get Early Access!</h1>
+        <p>Do you want to be the first to have access? Sign-up for the Email list and you'll have preferencial access. We'll be rolling out in waves and you would be at the forefront! Not only will you get
+          early access, you'll also get a special gift from the Parts Ninja. Don't worry, your email is safe with the us, we won't ever spam you or sell your information.</p>
       </div>
     </div>
   </div>

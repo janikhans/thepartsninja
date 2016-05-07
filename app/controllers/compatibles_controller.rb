@@ -2,7 +2,7 @@ class CompatiblesController < ApplicationController
   include Admin
   before_action :set_compatible, only: [:show, :upvote, :downvote]
   before_action :authenticate_user!
-  before_action :admin_only
+  before_action :admin_only, only: [:show]
 
   def show
   end

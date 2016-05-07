@@ -4,15 +4,15 @@
   </div>
   <div class="ibox-content profile-content">
     <% if current_user %>
-        <h2 class="text-center font-bold">Wazzup <%= current_user.username %>?!</h2>
-        <br>
-        <p>We're stoked you came back and are seaching some more. Here's a quick list of some of your last searches...</p>
+        <h2 class="text-center font-bold" style="color: #D8D8D8;">Hey <%= current_user.username %>!</h2>
+        <hr style="opacity: 0.05">
+        <p>Here's a quick list of some of your last searches...</p>
         <ul>
-          <% @user_searches.each do |s| %>
-            <li> <%= s.vehicle.brand.name %> <%= s.vehicle.model %> <%= s.vehicle.year %> <%= s.part %> </li>
-          <% end %>
-      </ul>
-      <p>Want to checkout your dashboard?</p>
+          <li>2006 Yamaha YZ250 Front Wheel</li>
+          <li>2006 Yamaha YZ250 Front Wheel Bearings</li>
+          <li>2011 TM Racing 250MX Clutch Plates</li>
+          <li><a href="/" style="color: #5FD063;">+More</a></li>
+        </ul>
       <div class="user-button">
           <div class="row">
               <div class="col-md-12 text-center">

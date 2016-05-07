@@ -6,6 +6,7 @@
     <%= f.input :username, required: false %>
     <%= f.input :role, as: :select, collection: User.roles.keys.to_a %>
     <%= f.input :invitation_limit, required: false %>
+    <%= f.input :confirmed_at %>
     <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false %>
     <%= f.input :password_confirmation, required: false %>
     <%= f.simple_fields_for :profile do |p| %>

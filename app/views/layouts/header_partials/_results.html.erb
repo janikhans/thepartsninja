@@ -2,7 +2,7 @@
   <div class="page-header-content container">
     <div class="results">
       <% if @vehicle %>
-          <h2>Showing results for: <br> <span class="text-navy"><%= link_to "#{@vehicle.year} #{@vehicle.brand.name} #{@vehicle.model}", @vehicle %> - <i>"<%= @existing_part.name %>"</i></span></h2>
+          <h2>Showing results for: <br> <span class="text-navy"> <%= @vehicle.year %> <%= @vehicle.brand.name %> <%= @vehicle.model %> - <i>"<%= @existing_part.name %>"</i></span></h2>
        <% else %>
         <h2>Sorry, no results were found for: <br> <span class="text-navy"><%= @year %> <%= @make %> <%= @model %> - </span><i>"<%= @part %>"</i></h2>
       <% end %>
