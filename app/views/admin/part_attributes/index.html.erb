@@ -1,0 +1,32 @@
+<% provide(:header, "Part Attributes") %>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            New Part Attribute
+        </div>
+        <div class="panel-body">
+            <%= render 'admin/part_attributes/form' %>
+        </div>
+    </div>
+  </div>
+  <div class="col-lg-12">
+      <div class="panel panel-default">
+          <div class="panel-heading">
+              Showing all Part Attributes
+          </div>
+          <div class="panel-body">
+            <% @part_attributes.each do |part_attribute| %>
+            <ul>
+            <% if part_attribute.parent_id.blank? %>
+            <li><%= part_attribute.name %> <%= link_to "Edit", edit_admin_part_attribute_path(part_attribute)%>
+            <%= render partial: 'variation', locals: {attribute_variations: part_attribute.attribute_variations} if part_attribute.attribute_variations.present? %>
+            </li>
+            <% end %>
+            </ul>
+            <% end %>
+          </div>
+      </div>
+  </div>
+</div>
