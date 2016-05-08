@@ -18,3 +18,4 @@
 //= require metisMenu
 //= require flash
 //= require admin/sb-admin
+//= require cocoon

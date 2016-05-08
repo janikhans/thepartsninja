@@ -11,7 +11,7 @@ class Part < ActiveRecord::Base
   has_many :fitments, dependent: :destroy
   has_many :oem_vehicles, through: :fitments, source: :vehicle
   has_many :part_traits, dependent: :destroy
-  has_many :part_attributes, through: :part_traits, source: :PartAttribute
+  has_many :part_attributes, through: :part_traits, source: :part_attribute
   has_many :compatibles
 
 

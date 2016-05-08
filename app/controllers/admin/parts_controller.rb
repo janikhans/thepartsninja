@@ -4,6 +4,7 @@ class Admin::PartsController < Admin::DashboardController
   def index
     @parts = Part.page(params[:page])
     @part = Part.new
+    @attributes = PartAttribute.attribute_parents
   end
 
   def show
@@ -11,6 +12,7 @@ class Admin::PartsController < Admin::DashboardController
   end
 
   def edit
+    @attributes = PartAttribute.attribute_parents
   end
 
   def create
@@ -53,6 +55,6 @@ class Admin::PartsController < Admin::DashboardController
     end
 
     def part_params
-      params.require(:part).permit(:part_number, :note, :product_id, :user_id)
+      params.require(:part).permit(:part_number, :note, :product_id, :user_id, part_traits_attributes: [:id, :part_attribute_id, :_destroy])
     end
 end

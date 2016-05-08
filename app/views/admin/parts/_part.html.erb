@@ -3,6 +3,7 @@
   <td><%= part.product.category.name %></td>
   <td><%= part.product.name %></td>
   <td><%= part.part_number %></td>
+  <td><% part.part_attributes.each do |p| %><%= p.parent_attribute.name %>: <%= p.name %> <% end %></td>
   <td><%= link_to 'View', admin_part_path(part) %></td>
   <td><%= link_to 'Edit', edit_admin_part_path(part) %></td>
   <td><%= link_to 'Delete', admin_part_path(part), method: :delete, data: {confirm: "Are you sure"} %></td>

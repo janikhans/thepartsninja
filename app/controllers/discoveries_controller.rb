@@ -110,6 +110,22 @@ class DiscoveriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def discovery_params
-      params.require(:discovery).permit(:user_id, :comment, :modifications, :oem_part_brand, :oem_part_name, :oem_vehicle_brand, :oem_vehicle_year, :oem_vehicle_model, :compatible_vehicle_brand, :compatible_vehicle_year, :compatible_vehicle_model, :compatible_part_name, :compatible_part_brand, :backwards, compatibles_attributes: [:id, :fitment_id, :compatible_fitment_id, :backwards, :_destroy], steps_attributes: [:id, :content, :_destroy] )
+      params.require(:discovery).permit(:user_id,
+                                        :comment,
+                                        :modifications,
+                                        :oem_part_brand,
+                                        :oem_part_name,
+                                        :oem_vehicle_brand,
+                                        :oem_vehicle_year,
+                                        :oem_vehicle_model,
+                                        :compatible_vehicle_brand,
+                                        :compatible_vehicle_year,
+                                        :compatible_vehicle_model,
+                                        :compatible_part_name,
+                                        :compatible_part_brand,
+                                        :backwards,
+                                        compatibles_attributes: [:id, :fitment_id, :compatible_fitment_id, :backwards, :_destroy],
+                                        steps_attributes: [:id, :content, :_destroy]
+    )
     end
 end

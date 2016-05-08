@@ -1,0 +1,4 @@
+<div class="nested-fields">
+  <%= f.association :part_attribute, collection: @attributes, as: :grouped_select, group_method: :attribute_variations, include_blank: false  %>
+  <%= link_to_remove_association "remove attribute", f %>
+</div>
