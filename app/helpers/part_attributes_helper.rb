@@ -1,0 +1,2 @@
+module PartAttributesHelper
+end
