@@ -1,17 +1,24 @@
+#----------------------------#
+#Lets build those users!
 janik = User.new(username: 'Janik', email: 'janik.knittle@gmail.com', password: 'password', password_confirmation: 'password', role: 'admin')
 janik.skip_confirmation!
 janik.confirmed_at = DateTime.now
 janik.save
 
-sensei = User.new(username: 'Sensei', email: 'thepartsninja@gmail.com', password: 'adminadmin', password_confirmation: 'adminadmin')
+advrider = User.new(username: 'ADVrider', email: 'jknittle613@hotmail.com', password: 'password', password_confirmation: 'password')
+advrider.skip_confirmation!
+advrider.confirmed_at = DateTime.now
+advrider.save
+
+echo_94 = User.new(username: 'echo_94', email: 'freecomputervirus@gmail.com', password: 'password', password_confirmation: 'password')
+echo_94.skip_confirmation!
+echo_94.confirmed_at = DateTime.now
+echo_94.save
+
+sensei = User.new(username: 'Sensei', email: 'contact@theparts.ninja', password: 'sensei', password_confirmation: 'sensei')
 sensei.skip_confirmation!
 sensei.confirmed_at = DateTime.now
 sensei.save
-
-tommy = User.new(username: 'Tommy', email: 'tommy@gmail.com', password: 'password', password_confirmation: 'password', role: 'user')
-tommy.skip_confirmation!
-tommy.confirmed_at = DateTime.now
-tommy.save
 
 30.times do |n|
   username  = Faker::Internet.user_name(5)
@@ -33,10 +40,16 @@ users.each do |u|
   u.profile.save
 end
 
+#----------------------------#
+#Build those brands
+
 brands = ["Acerbis", "Hinson", "Tusk Racing", "ARC", "Barnett", "Yamaha", "Kawasaki", "KTM", "Beta", "FORD", "Chevrolet", "Husqvarna", "Honda"]
 brands.each do |name|
   Brand.create(name: name)
 end
+
+#----------------------------#
+#Categories
 
 categories = ["Bearings", "Body", "Brakes", "Cooling Systems", "Drive", "Electrical", "Engine", "Exhaust", "Filters", "Fuel System", "Air Intake System", "Controls", "Suspension", "Wheels"]
 categories.each do |name|
@@ -61,6 +74,30 @@ wheel_sub.each do |name|
   Category.create(name: name, parent_category: wheel)
 end
 
+#----------------------------#
+#Part attributes
+
+part_attributes = ["Location", "Rim Size"]
+part_attributes.each do |name|
+  PartAttribute.create(name: name)
+end
+
+location_variation = ["Front", "Rear"]
+rim_size_variation = ["19", "21", "18"]
+
+location = PartAttribute.first
+size = PartAttribute.find(2)
+
+location_variation.each do |name|
+  PartAttribute.create(name: name, parent_attribute: location)
+end
+rim_size_variation.each do |name|
+  PartAttribute.create(name: name, parent_attribute: size)
+end
+
+#----------------------------#
+#Vehicles
+
 yz250 = Vehicle.create model: "YZ250", year: 2006, brand_name: "Yamaha"
 yz25004 = Vehicle.create model: "YZ250", year: 2004, brand_name: "Yamaha"
 yz25008 = Vehicle.create model: "YZ250", year: 2008, brand_name: "Yamaha"
@@ -75,7 +112,10 @@ yz450f = Vehicle.create model: "YZ450F", year: 2006, brand_name: "Yamaha"
 yz25005 = Vehicle.create model: "YZ250", year: 2005, brand_name: "Yamaha"
 yz450f11 = Vehicle.create model: "YZ450F", year: 2011, brand_name: "Yamaha"
 
-front_wheel = Product.create name: "Front Wheel", description: "Complete front wheel assembly. Includes the hubs, spokes and bearings", brand_name: "Yamaha", category_name: "Complete Wheel Assembly"
+#----------------------------#
+#Parts
+
+front_wheel = Product.create name: "OEM Wheel Kit", description: "Complete front wheel assembly. Includes the hubs, spokes and bearings", brand_name: "Yamaha", category_name: "Complete Wheel Assembly"
 rekluse = Product.create name: "Core3.0", description: "Autoclutch that nearly gets rid of all possibility of stalling", brand_name: "Rekluse", category_name: "Clutch"
 chain_guide = Product.create name: "Chain Guide v1.0", description: "Plastic 2 part chain guide block that replaces the stock unit", brand_name: "Acerbis", category_name: "Body"
 
@@ -99,6 +139,8 @@ part7 = Part.find_by(id: 7)
 part8 = Part.find_by(id: 8)
 part9 = Part.find_by(id: 9)
 
+#----------------------------#
+#Fitments
 fitment1 = part1.fitments.build(vehicle: yz250).save
 fitment2 = part2.fitments.build(vehicle: yz25004).save
 fitment3 = part3.fitments.build(vehicle: yz25008).save
@@ -112,26 +154,32 @@ fitment10 = part1.fitments.build(vehicle: yz450f).save
 fitment11 = part4.fitments.build(vehicle: yz25005).save
 fitment12 = part7.fitments.build(vehicle: yz450f11).save
 
-dis1 = Discovery.create modifications: true, comment: "You'll need the 2008 Wheel Spacers", user: janik
+#----------------------------#
+#Discoveries and Compatibilities
+
+dis1 = Discovery.create modifications: true, comment: "You'll need the 2008 Wheel Spacers", user: advrider
 compat1 = dis1.compatibles.build(part: part3, compatible_part: part2, backwards: false).save
 dis2 = Discovery.create modifications: false, comment: "Quick swap across", user: janik
 compat2 = dis2.compatibles.build(part: part1, compatible_part: part4, backwards: true).save
 dis3 = Discovery.create modifications: true, comment: "You'll need the 2011 Wheel Spacers", user: janik
 compat3 = dis3.compatibles.build(part: part7, compatible_part: part6, backwards: false).save
-dis4 = Discovery.create modifications: false, comment: "Stuff and more stuff", user: janik
+dis4 = Discovery.create modifications: false, comment: "Stuff and more stuff", user: echo_94
 compat4 = dis4.compatibles.build(part: part8, compatible_part: part4, backwards: true).save
 dis5 = Discovery.create modifications: false, comment: "Blahhh!!!!", user: janik
 compat5 = dis5.compatibles.build(part: part5, compatible_part: part6, backwards: true).save
-dis6 = Discovery.create modifications: false, comment: "Easy Peasy", user: janik
+dis6 = Discovery.create modifications: false, comment: "Easy Peasy", user: advrider
 compat6 = dis6.compatibles.build(part: part8, compatible_part: part1, backwards: true).save
-dis7 = Discovery.create modifications: true, comment: "This doesn't work backwards", user: janik
+dis7 = Discovery.create modifications: true, comment: "This doesn't work backwards", user: advrider
 compat7 = dis7.compatibles.build(part: part2, compatible_part: part9, backwards: false).save
 dis8 = Discovery.create modifications: true, comment: "This should be a backwards fit", user: janik
 compat8 = dis8.compatibles.build(part: part4, compatible_part: part7, backwards: true).save
-dis9 = Discovery.create modifications: false, comment: "This is a third level test", user: janik
+dis9 = Discovery.create modifications: false, comment: "This is a third level test", user: advrider
 compat9 = dis9.compatibles.build(part: part6, compatible_part: part7, backwards: true).save
-dis10 = Discovery.create modifications: false, comment: "This is another third level test", user: janik
+dis10 = Discovery.create modifications: false, comment: "This is another third level test", user: echo_94
 compat10 = dis10.compatibles.build(part: part3, compatible_part: part1, backwards: true).save
+
+#----------------------------#
+#Voting on compatibles
 
 compatibles = Compatible.all
 comp7 = Compatible.find(7)
