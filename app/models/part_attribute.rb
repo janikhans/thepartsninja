@@ -1,5 +1,6 @@
 class PartAttribute < ActiveRecord::Base
   belongs_to :parent
+  has_many :part_traits, dependent: :destroy
 
   scope :specific_attribute, -> { where.not(parent_id: nil) }
   scope :attribute_parents, -> { where(parent_id: nil) }

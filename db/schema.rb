@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160508070737) do
+ActiveRecord::Schema.define(version: 20160508175426) do
 
   create_table "brands", force: :cascade do |t|
     t.string   "name",       default: "", null: false
@@ -107,6 +107,16 @@ ActiveRecord::Schema.define(version: 20160508070737) do
   end
 
   add_index "part_attributes", ["parent_id"], name: "index_part_attributes_on_parent_id"
+
+  create_table "part_traits", force: :cascade do |t|
+    t.integer  "Part_id",          null: false
+    t.integer  "PartAttribute_id", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "part_traits", ["PartAttribute_id"], name: "index_part_traits_on_PartAttribute_id"
+  add_index "part_traits", ["Part_id"], name: "index_part_traits_on_Part_id"
 
   create_table "parts", force: :cascade do |t|
     t.string   "part_number"
