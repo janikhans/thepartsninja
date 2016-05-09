@@ -140,7 +140,18 @@ part8 = Part.find_by(id: 8)
 part9 = Part.find_by(id: 9)
 
 #----------------------------#
+#Part Traits
+
+front = PartAttribute.where(name: 'Front').first
+wheels = Part.first(8)
+
+wheels.each do |wheel|
+  PartTrait.create(part: wheel, part_attribute: front)
+end
+
+#----------------------------#
 #Fitments
+
 fitment1 = part1.fitments.build(vehicle: yz250).save
 fitment2 = part2.fitments.build(vehicle: yz25004).save
 fitment3 = part3.fitments.build(vehicle: yz25008).save
