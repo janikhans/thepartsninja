@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   def prepare_meta_tags(options={})
     site_name   = "The Parts Ninja"
     title       = "The Ultimate Motorsports Parts Tool"
-    description = "The Parts Ninja has become the master at searching for parts. He'll cross reference thousands of parts to find you every compatibility posssible. Spend less time searching and more time riding."
+    description = "The Parts Ninja is the master of searching for parts. He'll cross reference thousands of parts to find you every compatibility posssible. Spend less time searching and more time riding."
     image       = options[:image] || "http://www.theparts.ninja/assets/ThePartsNinjaDefault-821b4f404fcff3d74ebc59e30987846ce15385b2784b620a12bf40fbbd4e0d4b.jpg"
     current_url = request.url
 
