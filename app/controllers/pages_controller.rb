@@ -18,12 +18,14 @@ class PagesController < ApplicationController
   end
 
   def terms
+    prepare_meta_tags title: "Terms of Service"
   end
 
   def about
   end
 
   def privacy
+    prepare_meta_tags title: "Privacy Policy"
   end
 
 

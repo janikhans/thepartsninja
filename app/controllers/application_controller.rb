@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_action :prepare_meta_tags, if: "request.get?"
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -12,6 +13,44 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     dashboard_path
   end
+
+  def prepare_meta_tags(options={})
+    site_name   = "The Parts Ninja"
+    title       = "The Ultimate Motorsports Parts Tool"
+    description = "The Parts Ninja is the ultimate motorsports tool that utilizes search algorithms to cross reference thousands of parts to find
+                  compatibilities both known and potential."
+    image       = options[:image] || "http://www.theparts.ninja/assets/ThePartsNinjaDark.png"
+    current_url = request.url
+
+    # Let's prepare a nice set of defaults
+    defaults = {
+      site:        site_name,
+      title:       title,
+      image:       image,
+      description: description,
+      keywords:    %w[motorsports parts dirtbike compatibilities motorcycle repair fitments atv utv ],
+      twitter: {
+        site_name: site_name,
+        site: '@thepartsninja',
+        card: 'summary',
+        description: description,
+        image: image
+      },
+      og: {
+        url: current_url,
+        site_name: site_name,
+        title: title,
+        image: image,
+        description: description,
+        type: 'website'
+      }
+    }
+
+    options.reverse_merge!(defaults)
+
+    set_meta_tags options
+  end
+
 
   protected
 
