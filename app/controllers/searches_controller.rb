@@ -35,7 +35,11 @@ class SearchesController < ApplicationController
         @new_search.year = @year
       end
 
-      @new_search.part = @existing_part
+      if @existing_part
+        @new_search.part = @existing_part.name
+      else
+        @new_search.part = @part
+      end
 
       if user_signed_in?
         @new_search.user = current_user
