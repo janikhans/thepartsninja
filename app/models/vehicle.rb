@@ -1,6 +1,6 @@
 class Vehicle < ActiveRecord::Base
 
-  scope :unique_models, -> { order("model ASC").group("model") }
+  # scope :unique_models, -> { select("model").order("model ASC").group("model, vehicles.id") }
 
   #Lets make those URLs nice and SEO friendly
   extend FriendlyId
