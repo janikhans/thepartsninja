@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160508182649) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "brands", force: :cascade do |t|
     t.string   "name",       default: "", null: false
     t.string   "website"
@@ -21,7 +24,7 @@ ActiveRecord::Schema.define(version: 20160508182649) do
     t.datetime "updated_at",              null: false
   end
 
-  add_index "brands", ["slug"], name: "index_brands_on_slug", unique: true
+  add_index "brands", ["slug"], name: "index_brands_on_slug", unique: true, using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       null: false
@@ -30,7 +33,7 @@ ActiveRecord::Schema.define(version: 20160508182649) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "categories", ["parent_id"], name: "index_categories_on_parent_id"
+  add_index "categories", ["parent_id"], name: "index_categories_on_parent_id", using: :btree
 
   create_table "compatibles", force: :cascade do |t|
     t.integer  "part_id"
@@ -42,10 +45,10 @@ ActiveRecord::Schema.define(version: 20160508182649) do
     t.integer  "cached_votes_score", default: 0
   end
 
-  add_index "compatibles", ["cached_votes_score"], name: "index_compatibles_on_cached_votes_score"
-  add_index "compatibles", ["compatible_part_id"], name: "index_compatibles_on_compatible_part_id"
-  add_index "compatibles", ["discovery_id"], name: "index_compatibles_on_discovery_id"
-  add_index "compatibles", ["part_id"], name: "index_compatibles_on_part_id"
+  add_index "compatibles", ["cached_votes_score"], name: "index_compatibles_on_cached_votes_score", using: :btree
+  add_index "compatibles", ["compatible_part_id"], name: "index_compatibles_on_compatible_part_id", using: :btree
+  add_index "compatibles", ["discovery_id"], name: "index_compatibles_on_discovery_id", using: :btree
+  add_index "compatibles", ["part_id"], name: "index_compatibles_on_part_id", using: :btree
 
   create_table "discoveries", force: :cascade do |t|
     t.integer  "user_id"
@@ -55,7 +58,7 @@ ActiveRecord::Schema.define(version: 20160508182649) do
     t.datetime "updated_at",                    null: false
   end
 
-  add_index "discoveries", ["user_id"], name: "index_discoveries_on_user_id"
+  add_index "discoveries", ["user_id"], name: "index_discoveries_on_user_id", using: :btree
 
   create_table "fitments", force: :cascade do |t|
     t.integer  "part_id"
@@ -66,11 +69,11 @@ ActiveRecord::Schema.define(version: 20160508182649) do
     t.datetime "updated_at",   null: false
   end
 
-  add_index "fitments", ["discovery_id"], name: "index_fitments_on_discovery_id"
-  add_index "fitments", ["part_id", "vehicle_id"], name: "index_fitments_on_part_id_and_vehicle_id", unique: true
-  add_index "fitments", ["part_id"], name: "index_fitments_on_part_id"
-  add_index "fitments", ["user_id"], name: "index_fitments_on_user_id"
-  add_index "fitments", ["vehicle_id"], name: "index_fitments_on_vehicle_id"
+  add_index "fitments", ["discovery_id"], name: "index_fitments_on_discovery_id", using: :btree
+  add_index "fitments", ["part_id", "vehicle_id"], name: "index_fitments_on_part_id_and_vehicle_id", unique: true, using: :btree
+  add_index "fitments", ["part_id"], name: "index_fitments_on_part_id", using: :btree
+  add_index "fitments", ["user_id"], name: "index_fitments_on_user_id", using: :btree
+  add_index "fitments", ["vehicle_id"], name: "index_fitments_on_vehicle_id", using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
@@ -80,10 +83,10 @@ ActiveRecord::Schema.define(version: 20160508182649) do
     t.datetime "created_at"
   end
 
-  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
-  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
-  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
-  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
   create_table "leads", force: :cascade do |t|
     t.string   "email",      null: false
@@ -106,7 +109,7 @@ ActiveRecord::Schema.define(version: 20160508182649) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "part_attributes", ["parent_id"], name: "index_part_attributes_on_parent_id"
+  add_index "part_attributes", ["parent_id"], name: "index_part_attributes_on_parent_id", using: :btree
 
   create_table "part_traits", force: :cascade do |t|
     t.integer  "part_id",           null: false
@@ -115,8 +118,8 @@ ActiveRecord::Schema.define(version: 20160508182649) do
     t.datetime "updated_at",        null: false
   end
 
-  add_index "part_traits", ["part_attribute_id"], name: "index_part_traits_on_part_attribute_id"
-  add_index "part_traits", ["part_id"], name: "index_part_traits_on_part_id"
+  add_index "part_traits", ["part_attribute_id"], name: "index_part_traits_on_part_attribute_id", using: :btree
+  add_index "part_traits", ["part_id"], name: "index_part_traits_on_part_id", using: :btree
 
   create_table "parts", force: :cascade do |t|
     t.string   "part_number"
@@ -127,8 +130,8 @@ ActiveRecord::Schema.define(version: 20160508182649) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "parts", ["product_id"], name: "index_parts_on_product_id"
-  add_index "parts", ["user_id"], name: "index_parts_on_user_id"
+  add_index "parts", ["product_id"], name: "index_parts_on_product_id", using: :btree
+  add_index "parts", ["user_id"], name: "index_parts_on_user_id", using: :btree
 
   create_table "products", force: :cascade do |t|
     t.string   "name",        default: "", null: false
@@ -141,10 +144,10 @@ ActiveRecord::Schema.define(version: 20160508182649) do
     t.integer  "category_id"
   end
 
-  add_index "products", ["brand_id"], name: "index_products_on_brand_id"
-  add_index "products", ["category_id"], name: "index_products_on_category_id"
-  add_index "products", ["slug"], name: "index_products_on_slug", unique: true
-  add_index "products", ["user_id"], name: "index_products_on_user_id"
+  add_index "products", ["brand_id"], name: "index_products_on_brand_id", using: :btree
+  add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree
+  add_index "products", ["slug"], name: "index_products_on_slug", unique: true, using: :btree
+  add_index "products", ["user_id"], name: "index_products_on_user_id", using: :btree
 
   create_table "profiles", force: :cascade do |t|
     t.integer  "user_id",    null: false
@@ -154,7 +157,7 @@ ActiveRecord::Schema.define(version: 20160508182649) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id"
+  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
 
   create_table "searches", force: :cascade do |t|
     t.integer  "user_id"
@@ -169,8 +172,8 @@ ActiveRecord::Schema.define(version: 20160508182649) do
     t.datetime "updated_at",              null: false
   end
 
-  add_index "searches", ["user_id"], name: "index_searches_on_user_id"
-  add_index "searches", ["vehicle_id"], name: "index_searches_on_vehicle_id"
+  add_index "searches", ["user_id"], name: "index_searches_on_user_id", using: :btree
+  add_index "searches", ["vehicle_id"], name: "index_searches_on_vehicle_id", using: :btree
 
   create_table "steps", force: :cascade do |t|
     t.text     "content",      default: "", null: false
@@ -179,7 +182,7 @@ ActiveRecord::Schema.define(version: 20160508182649) do
     t.datetime "updated_at",                null: false
   end
 
-  add_index "steps", ["discovery_id"], name: "index_steps_on_discovery_id"
+  add_index "steps", ["discovery_id"], name: "index_steps_on_discovery_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -210,12 +213,12 @@ ActiveRecord::Schema.define(version: 20160508182649) do
     t.integer  "role",                   default: 0,  null: false
   end
 
-  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["invitation_token"], name: "index_users_on_invitation_token", unique: true
-  add_index "users", ["invitations_count"], name: "index_users_on_invitations_count"
-  add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id"
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["invitation_token"], name: "index_users_on_invitation_token", unique: true, using: :btree
+  add_index "users", ["invitations_count"], name: "index_users_on_invitations_count", using: :btree
+  add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "vehicles", force: :cascade do |t|
     t.string   "model",      default: "", null: false
@@ -226,8 +229,8 @@ ActiveRecord::Schema.define(version: 20160508182649) do
     t.datetime "updated_at",              null: false
   end
 
-  add_index "vehicles", ["brand_id"], name: "index_vehicles_on_brand_id"
-  add_index "vehicles", ["slug"], name: "index_vehicles_on_slug", unique: true
+  add_index "vehicles", ["brand_id"], name: "index_vehicles_on_brand_id", using: :btree
+  add_index "vehicles", ["slug"], name: "index_vehicles_on_slug", unique: true, using: :btree
 
   create_table "votes", force: :cascade do |t|
     t.integer  "votable_id"
@@ -241,7 +244,23 @@ ActiveRecord::Schema.define(version: 20160508182649) do
     t.datetime "updated_at"
   end
 
-  add_index "votes", ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope"
-  add_index "votes", ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
+  add_index "votes", ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope", using: :btree
+  add_index "votes", ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope", using: :btree
 
+  add_foreign_key "discoveries", "users"
+  add_foreign_key "fitments", "parts"
+  add_foreign_key "fitments", "users"
+  add_foreign_key "fitments", "vehicles"
+  add_foreign_key "part_traits", "part_attributes"
+  add_foreign_key "part_traits", "parts"
+  add_foreign_key "parts", "products"
+  add_foreign_key "parts", "users"
+  add_foreign_key "products", "brands"
+  add_foreign_key "products", "categories"
+  add_foreign_key "products", "users"
+  add_foreign_key "profiles", "users"
+  add_foreign_key "searches", "users"
+  add_foreign_key "searches", "vehicles"
+  add_foreign_key "steps", "discoveries"
+  add_foreign_key "vehicles", "brands"
 end

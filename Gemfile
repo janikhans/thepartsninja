@@ -22,13 +22,13 @@ gem 'friendly_id', '~> 5.1.0'
 gem 'rails-jquery-autocomplete'
 gem 'kaminari'
 gem 'meta-tags'
+gem 'pg'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 
 group :development, :test do
   gem 'byebug'
-  gem 'sqlite3'
   gem 'spring'
   gem 'rspec-rails', '~> 3.0.0'
   gem 'factory_girl_rails'
@@ -47,7 +47,6 @@ group :test do
 end
 
 group :production do
-  gem 'pg'
   gem 'rails_12factor'
 end
 
