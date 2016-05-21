@@ -45,12 +45,12 @@ To get yo'self rolling in the data, contact Janik for the latest dumpfile. Make 
 
 ### Export local DB
 
-  pg_dump -Fc --no-acl --no-owner ninja_development > local.dump
+    pg_dump -Fc --no-acl --no-owner ninja_development > local.dump
 
 ## Create an Admin User *'cause you're cool like that*
 
-Admin users are (for the time being), users with an additional column 'admin'
-column attribute. You will have to create a new user in the database to access
+Admin users are (for the time being), users with an additional attribute 'admin'
+in the role column. You will have to create a new user in the database to access
 every aspect of the site. One admin user will get you into everything. To create
 a temporary user in the database, run these commands within the rails console.
 
@@ -110,8 +110,8 @@ but this is the basic timeline...
 
 ## Contact
 
-If you need to get a hold of Janik, please email janik.knittle@gmail.com. But realistically if
-you're looking at this, you're probably a special person anyways and should either ask or
-have Janik's phone number anyways.
+If you need to get a hold of Janik, please email janik.knittle@gmail.com. But
+realistically if you're looking at this, you're probably someone special and
+should have Janik's phone number anyways.
 
 # Go 'git r' dun!
