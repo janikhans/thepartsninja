@@ -4,7 +4,7 @@ class Part < ActiveRecord::Base
 
   validates :product, presence: true
 
-  include CompatiblesFinder
+  # include CompatiblesFinder
 
   belongs_to :product
   belongs_to :user
@@ -15,35 +15,15 @@ class Part < ActiveRecord::Base
   has_many :compatibles
 
 
-  has_many :known_compatibles,               -> {where backwards: true}, class_name: "Compatible", foreign_key: "part_id"
-  has_many :backwards_compatibles,           -> {where backwards: true}, class_name: "Compatible", foreign_key: "compatible_part_id"
-  has_many :known_not_backwards_compatibles, -> {where backwards: false}, class_name: "Compatible", foreign_key: "part_id"
-  has_many :potential_compatibles,           -> {where backwards: false}, class_name: "Compatible", foreign_key: "compatible_part_id"
+  # has_many :known_compatibles,               -> {where backwards: true}, class_name: "Compatible", foreign_key: "part_id"
+  # has_many :backwards_compatibles,           -> {where backwards: true}, class_name: "Compatible", foreign_key: "compatible_part_id"
+  # has_many :known_not_backwards_compatibles, -> {where backwards: false}, class_name: "Compatible", foreign_key: "part_id"
+  # has_many :potential_compatibles,           -> {where backwards: false}, class_name: "Compatible", foreign_key: "compatible_part_id"
 
   accepts_nested_attributes_for :part_traits, reject_if: :all_blank, allow_destroy: true
 
   def to_label
     "#{product.brand.name} #{product.category.name} #{product.name} #{part_number}"
-  end
-
-  def compatible_parts #Finds just the compatible parts to the fitment being searched
-    compatible_parts = []
-    self.compats.each do |c|
-      compatible_parts << c.compatible_part #if c.cached_votes_score >= 0 #if c.discovery.modifications == false
-    end
-    return compatible_parts
-  end
-
-  def next_level (level) # Finds all parts from the next level down based on their compatibles.
-    parent_level = level
-    compatibles = []
-
-    parent_level.each do |p|
-      compatibles << p.compatible_parts
-    end
-
-    compatibles.flatten!
-    return compatibles
   end
 
   def find_potentials
@@ -70,7 +50,7 @@ class Part < ActiveRecord::Base
     fourth_level.reject! { |f| compatibles.include?(f) || second_level.include?(f) || third_level.include?(f) || f == self}
     potentials += fourth_level.map{|part| {part: part, score: 0.1}}
 
-    #Now we need to go through our array of and combine the scores of hashes that share the same part
+    #Now we need to go through our array and combine the scores of hashes that share the same part
     temp_potentials = Hash.new(0)
     potentials.each do |potential|
       temp_potentials[potential[:part]] += potential[:score]
@@ -80,6 +60,27 @@ class Part < ActiveRecord::Base
     final = temp_potentials.collect{ |key, value| {part: key, score: value}}
 
     return final
+  end
+
+  private
+
+  def compatible_parts #Finds just the compatible parts to the part being searched
+    compatible_parts = []
+    self.compatibles.each do |c|
+      compatible_parts << c.compatible_part #if c.cached_votes_score >= 0 #if c.discovery.modifications == false
+    end
+    return compatible_parts
+  end
+
+  def next_level (parent_level) # Finds all parts from the next level down based on their compatibles.
+    compatibles = []
+
+    parent_level.each do |p|
+      compatibles << p.compatible_parts
+    end
+
+    compatibles.flatten!
+    return compatibles
   end
 
 end

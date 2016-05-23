@@ -189,6 +189,11 @@ compat9 = dis9.compatibles.build(part: part6, compatible_part: part7, backwards:
 dis10 = Discovery.create modifications: false, comment: "This is another third level test", user: echo_94
 compat10 = dis10.compatibles.build(part: part3, compatible_part: part1, backwards: true).save
 
+backwards_compats = Compatible.where(backwards: true)
+backwards_compats.each do |c|
+  c.make_backwards_compatible
+end
+
 #----------------------------#
 #Voting on compatibles
 

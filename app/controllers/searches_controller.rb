@@ -64,7 +64,7 @@ class SearchesController < ApplicationController
           if @oem_search_results.any?
 
             @oem_search_results.each do |p|
-              compatible_parts << p.compats
+              compatible_parts << p.compatibles
               potential_parts << p.find_potentials
             end
             @potential_parts = potential_parts.flatten!
