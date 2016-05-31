@@ -26,6 +26,14 @@ class Part < ActiveRecord::Base
     "#{product.brand.name} #{product.category.name} #{product.name} #{part_number}"
   end
 
+  def compatible_parts #Finds just the compatible parts to the part being searched
+    compatible_parts = []
+    self.compatibles.each do |c|
+      compatible_parts << c.compatible_part #if c.cached_votes_score >= 0 #if c.discovery.modifications == false
+    end
+    return compatible_parts
+  end
+
   def find_potentials
     potentials = []
 
@@ -64,23 +72,15 @@ class Part < ActiveRecord::Base
 
   private
 
-  def compatible_parts #Finds just the compatible parts to the part being searched
-    compatible_parts = []
-    self.compatibles.each do |c|
-      compatible_parts << c.compatible_part #if c.cached_votes_score >= 0 #if c.discovery.modifications == false
+    def next_level (parent_level) # Finds all parts from the next level down based on their compatibles.
+      compatibles = []
+
+      parent_level.each do |p|
+        compatibles << p.compatible_parts
+      end
+
+      compatibles.flatten!
+      return compatibles
     end
-    return compatible_parts
-  end
-
-  def next_level (parent_level) # Finds all parts from the next level down based on their compatibles.
-    compatibles = []
-
-    parent_level.each do |p|
-      compatibles << p.compatible_parts
-    end
-
-    compatibles.flatten!
-    return compatibles
-  end
 
 end

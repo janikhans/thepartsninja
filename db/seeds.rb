@@ -198,12 +198,12 @@ end
 #Voting on compatibles
 
 compatibles = Compatible.all
-comp7 = Compatible.find(7)
+badcompat = Compatible.where(part: part2, compatible_part: part9).first
 
 users.each do |u|
   votables = compatibles.sample(4)
   votables.each do |v|
     v.upvote_by u
   end
-  comp7.downvote_by u
+  badcompat.downvote_by u
 end
