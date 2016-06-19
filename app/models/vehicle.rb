@@ -5,7 +5,7 @@ class Vehicle < ActiveRecord::Base
   #Lets make those URLs nice and SEO friendly
   extend FriendlyId
   friendly_id :slug_candidates, use: [:finders, :slugged]
-
+  belongs_to :vehicle_year
   belongs_to :brand
   has_many :searches
   has_many :fitments
@@ -14,13 +14,14 @@ class Vehicle < ActiveRecord::Base
   #Validations - woohoo!
   before_validation :sanitize_model
   validates :model, :brand, presence: true
-  validates :year, presence: true,
-                   numericality: true,
-                   inclusion: { in: 1900..Date.today.year+1, message: "needs to be between 1900-#{Date.today.year+1}"},
-                   uniqueness: {scope: [:brand_id, :model], message: "This model year already exists"}
+  validates :vehicle_year, presence: true
 
   def brand_name
     brand.try(:name)
+  end
+
+  def vec_year
+    vehicle_year.try(:year)
   end
 
   #This works but could be DRY'd with the same method from each model. Also doesn't allow for 2 companies with the same exact name.
@@ -30,7 +31,7 @@ class Vehicle < ActiveRecord::Base
   end
 
   def to_label
-    "#{year} #{brand.name} #{model}"
+    "#{vehicle_year.year} #{brand.name} #{model}"
   end
 
 private
@@ -42,7 +43,7 @@ private
 
     def slug_candidates
      [
-      [:year, :brand_name, :model],
+      [:vec_year, :brand_name, :model],
      ]
     end
 

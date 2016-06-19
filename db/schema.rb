@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160508182649) do
+ActiveRecord::Schema.define(version: 20160619044904) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -220,17 +220,24 @@ ActiveRecord::Schema.define(version: 20160508182649) do
   add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "vehicle_years", force: :cascade do |t|
+    t.integer  "year",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "vehicles", force: :cascade do |t|
-    t.string   "model",      default: "", null: false
-    t.integer  "year",                    null: false
+    t.string   "model",           default: "", null: false
     t.string   "slug"
     t.integer  "brand_id"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "vehicle_year_id"
   end
 
   add_index "vehicles", ["brand_id"], name: "index_vehicles_on_brand_id", using: :btree
   add_index "vehicles", ["slug"], name: "index_vehicles_on_slug", unique: true, using: :btree
+  add_index "vehicles", ["vehicle_year_id"], name: "index_vehicles_on_vehicle_year_id", using: :btree
 
   create_table "votes", force: :cascade do |t|
     t.integer  "votable_id"
@@ -263,4 +270,5 @@ ActiveRecord::Schema.define(version: 20160508182649) do
   add_foreign_key "searches", "vehicles"
   add_foreign_key "steps", "discoveries"
   add_foreign_key "vehicles", "brands"
+  add_foreign_key "vehicles", "vehicle_years"
 end

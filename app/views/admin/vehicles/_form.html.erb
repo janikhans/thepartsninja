@@ -3,6 +3,7 @@
 
     <div class="form-inputs">
       <%= f.association :brand,label_method: :name, value_method: :id %>
+      <%= f.association :vehicle_year, label_method: :year %>
       <%= f.input :year %>
       <%= f.input :model %>
     </div>

@@ -12,7 +12,7 @@
         <% @product.parts.each do |p|%>
           <% p.oem_vehicles.each do |v| %>
             <div class="col-md-3 col-xs-6 oem-vehicle">
-             <%= v.year %> <%= v.brand.name %> <%= v.model %> <%= link_to "PN: #{p.part_number}", p  %>
+             <%= v.vehicle_year.year %> <%= v.brand.name %> <%= v.model %> <%= link_to "PN: #{p.part_number}", p  %>
             </div>
           <% end %>
         <% end %>

@@ -49,6 +49,14 @@ brands.each do |name|
 end
 
 #----------------------------#
+# Build the VehicleYears
+
+years = (1950..Date.today.year+1).to_a
+years.each do |year|
+  VehicleYear.create(year: year)
+end
+
+#----------------------------#
 #Categories
 
 categories = ["Bearings", "Body", "Brakes", "Cooling Systems", "Drive", "Electrical", "Engine", "Exhaust", "Filters", "Fuel System", "Air Intake System", "Controls", "Suspension", "Wheels"]
@@ -98,19 +106,19 @@ end
 #----------------------------#
 #Vehicles
 
-yz250 = Vehicle.create model: "YZ250", year: 2006, brand_name: "Yamaha"
-yz25004 = Vehicle.create model: "YZ250", year: 2004, brand_name: "Yamaha"
-yz25008 = Vehicle.create model: "YZ250", year: 2008, brand_name: "Yamaha"
-yz125 = Vehicle.create model: "YZ125", year: 2005, brand_name: "Yamaha"
-wr450 = Vehicle.create model: "WR450", year: 2012, brand_name: "Yamaha"
-wr426 = Vehicle.create model: "WR426", year: 2002, brand_name: "Yamaha"
-yz250f = Vehicle.create model: "YZ250F", year: 2011, brand_name: "Yamaha"
-wr250 = Vehicle.create model: "WR250", year: 2009, brand_name: "Yamaha"
-rmz450 = Vehicle.create model: "RMZ450", year: 2008, brand_name: "Suzuki"
-tm250 = Vehicle.create model: "250MX", year: 2011, brand_name: "TM Racing"
-yz450f = Vehicle.create model: "YZ450F", year: 2006, brand_name: "Yamaha"
-yz25005 = Vehicle.create model: "YZ250", year: 2005, brand_name: "Yamaha"
-yz450f11 = Vehicle.create model: "YZ450F", year: 2011, brand_name: "Yamaha"
+yz250 = Vehicle.create model: "YZ250", vehicle_year: VehicleYear.where(year: 2006).first, brand_name: "Yamaha"
+yz25004 = Vehicle.create model: "YZ250", vehicle_year: VehicleYear.where(year: 2004).first, brand_name: "Yamaha"
+yz25008 = Vehicle.create model: "YZ250", vehicle_year: VehicleYear.where(year: 2008).first, brand_name: "Yamaha"
+yz125 = Vehicle.create model: "YZ125", vehicle_year: VehicleYear.where(year: 2005).first, brand_name: "Yamaha"
+wr450 = Vehicle.create model: "WR450", vehicle_year: VehicleYear.where(year: 2012).first, brand_name: "Yamaha"
+wr426 = Vehicle.create model: "WR426", vehicle_year: VehicleYear.where(year: 2002).first, brand_name: "Yamaha"
+yz250f = Vehicle.create model: "YZ250F", vehicle_year: VehicleYear.where(year: 2011).first, brand_name: "Yamaha"
+wr250 = Vehicle.create model: "WR250", vehicle_year: VehicleYear.where(year: 2009).first, brand_name: "Yamaha"
+rmz450 = Vehicle.create model: "RMZ450", vehicle_year: VehicleYear.where(year: 2008).first, brand_name: "Suzuki"
+tm250 = Vehicle.create model: "250MX", vehicle_year: VehicleYear.where(year: 2011).first, brand_name: "TM Racing"
+yz450f = Vehicle.create model: "YZ450F", vehicle_year: VehicleYear.where(year: 2006).first, brand_name: "Yamaha"
+yz25005 = Vehicle.create model: "YZ250", vehicle_year: VehicleYear.where(year: 2005).first, brand_name: "Yamaha"
+yz450f11 = Vehicle.create model: "YZ450F", vehicle_year: VehicleYear.where(year: 2011).first, brand_name: "Yamaha"
 
 #----------------------------#
 #Parts

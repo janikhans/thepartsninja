@@ -19,7 +19,8 @@ class SearchesController < ApplicationController
 
       #Finding the brand first and then the vehicle
       brand = Brand.where('lower(name) = ?', @make.downcase).first
-      @vehicle = Vehicle.where("lower(model) like ? AND year = ? AND brand_id = ?", @model.downcase, @year, brand).first
+      year = VehicleYear.where('year = ?', @year).first
+      @vehicle = Vehicle.where("lower(model) like ? AND vehicle_year_id = ? AND brand_id = ?", @model.downcase, year, brand).first
 
       @new_search = Search.new
 

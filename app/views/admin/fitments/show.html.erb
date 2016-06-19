@@ -12,7 +12,7 @@
                     <td><h3><strong>Part Number:</strong> <%= @fitment.part.part_number %></h3></td>
                 </tr>
                 <tr>
-                    <td><h3><strong>Designed For:</strong> <%= @fitment.vehicle.year %> <%= @fitment.vehicle.brand.name %> <%= @fitment.vehicle.model %></h3></td>
+                    <td><h3><strong>Designed For:</strong> <%= @fitment.vehicle.vehicle_year.year %> <%= @fitment.vehicle.brand.name %> <%= @fitment.vehicle.model %></h3></td>
                     <td><h3><strong><%= link_to 'Edit', edit_admin_fitment_path(@fitment) %></strong></h3></td>
                 </tr>
               </tbody>
