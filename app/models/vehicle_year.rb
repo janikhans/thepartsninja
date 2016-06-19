@@ -1,5 +1,5 @@
 class VehicleYear < ActiveRecord::Base
-  has_many :vehicles
+  has_many :vehicles, dependent: :restrict_with_error
 
   validates :year,
     presence: true,

@@ -8,7 +8,7 @@ class Vehicle < ActiveRecord::Base
   belongs_to :vehicle_year
   belongs_to :brand
   has_many :searches
-  has_many :fitments
+  has_many :fitments, dependent: :destroy
   has_many :oem_parts, through: :fitments, source: :part
 
   #Validations - woohoo!
