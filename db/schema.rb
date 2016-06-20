@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160619071426) do
+ActiveRecord::Schema.define(version: 20160620055210) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -245,16 +245,13 @@ ActiveRecord::Schema.define(version: 20160619071426) do
   end
 
   create_table "vehicles", force: :cascade do |t|
-    t.string   "model",               default: "", null: false
     t.string   "slug"
-    t.integer  "brand_id"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.integer  "vehicle_year_id"
     t.integer  "vehicle_submodel_id"
   end
 
-  add_index "vehicles", ["brand_id"], name: "index_vehicles_on_brand_id", using: :btree
   add_index "vehicles", ["slug"], name: "index_vehicles_on_slug", unique: true, using: :btree
   add_index "vehicles", ["vehicle_submodel_id"], name: "index_vehicles_on_vehicle_submodel_id", using: :btree
   add_index "vehicles", ["vehicle_year_id"], name: "index_vehicles_on_vehicle_year_id", using: :btree
@@ -291,7 +288,6 @@ ActiveRecord::Schema.define(version: 20160619071426) do
   add_foreign_key "steps", "discoveries"
   add_foreign_key "vehicle_models", "brands"
   add_foreign_key "vehicle_submodels", "vehicle_models"
-  add_foreign_key "vehicles", "brands"
   add_foreign_key "vehicles", "vehicle_submodels"
   add_foreign_key "vehicles", "vehicle_years"
 end

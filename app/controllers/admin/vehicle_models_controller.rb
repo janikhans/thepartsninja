@@ -4,6 +4,7 @@ class Admin::VehicleModelsController < Admin::DashboardController
 
   def new
      @vehicle_model = VehicleModel.new
+     @vehicle_model.vehicle_submodels.build
   end
 
   def edit
@@ -37,11 +38,10 @@ class Admin::VehicleModelsController < Admin::DashboardController
         :name,
         { vehicle_submodels_attributes: [:id,
           :name,
-          vehicles_attributes: [:id,
-            :brand_id,
+          { vehicles_attributes: [:id,
             :vehicle_year_id,
-            :vehicle_submodel_id,
             :_destroy]
+          }
         ]}
       )
     end

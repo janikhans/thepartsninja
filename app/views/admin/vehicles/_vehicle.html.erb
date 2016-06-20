@@ -1,7 +1,8 @@
 <tr>
   <td><%= vehicle.vehicle_year.year %></td>
-  <td><%= vehicle.brand.name %></td>
-  <td><%= vehicle.model %></td>
+  <td><%= vehicle.vehicle_submodel.vehicle_model.brand.name %></td>
+  <td><%= vehicle.vehicle_submodel.vehicle_model.name %></td>
+  <td><%= vehicle.vehicle_submodel.name %></td>
   <td><%= link_to 'View', admin_vehicle_path(vehicle) %></td>
   <td><%= link_to 'Edit', edit_admin_vehicle_path(vehicle) %></td>
   <td><%= link_to 'Delete', admin_vehicle_path(vehicle), method: :delete, data: {confirm: "Are you sure"} %></td>
