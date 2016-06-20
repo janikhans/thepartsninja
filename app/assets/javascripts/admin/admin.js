@@ -19,3 +19,4 @@
 //= require flash
 //= require admin/sb-admin
 //= require cocoon
+//= require admin/vehicles

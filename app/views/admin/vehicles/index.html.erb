@@ -7,7 +7,8 @@
             New Vehicle
         </div>
         <div class="panel-body">
-            <%= render 'admin/vehicle_models/form' %>
+          <%= link_to "Bulk Vehicles", new_admin_vehicle_model_path %> | <%= link_to "Single Vehicle", new_admin_vehicle_path %>
+            <%#= render 'admin/vehicle_models/form' %>
         </div>
     </div>
     <div class="panel panel-default">

@@ -1,6 +1,6 @@
 <div class="nested-fields">
-  <div class="col-md-1">
+  <div class="col-md-1 year-select-fields">
     <%= f.association :vehicle_year, label_method: :year, label: false, placeholder: "Year", wrapper_html: { class: 'year-select' } %>
-    <%= link_to_remove_association "X", f %>
+    <%= link_to_remove_association icon(:trash, class: "fa-2x"), f %>
   </div>
 </div>

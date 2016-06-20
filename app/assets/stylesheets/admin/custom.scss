@@ -1,8 +1,11 @@
 .green {color: green;}
 
 .vehicle-model {
-  .year-select {
-    width: 90px;
-    display: inline-block;
+  .year-select-fields {
+    a { color: red; position: relative; top: 6px;}
+    .year-select {
+      width: 90px;
+      display: inline-block;
+    }
   }
 }

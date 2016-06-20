@@ -2,15 +2,18 @@
     <%= f.error_notification %>
 
     <div class="form-inputs">
-      <%= f.association :brand, label_method: :name, value_method: :id %>
-      <%= f.input :name, label: "Model Name" %>
-      <%= f.simple_fields_for :vehicle_submodels, @vehicle.vehicle_submodels.build do |s| %>
-        <%= s.simple_fields_for :vehicles, s.object.vehicles.build do |v| %>
-          <%= v.association :brand, label: "Make - blah" %>
-          <%= v.association :vehicle_year, label: "Year", label_method: :year %>
-          <%= v.input :model, label: "Model - blah" %>
+      <%= f.association :vehicle_year, label: false, prompt: "Year", label_method: :year %>
+      <%= f.simple_fields_for :vehicle_submodel do |s| %>
+        <%= s.simple_fields_for :vehicle_model do |m| %>
+          <div id="brand" class="row">
+            <div id="brand_from_list" class="col-md-10">
+              <%= m.association :brand, label: false, prompt: "Make" %>
+            </div>
+            <%= link_to_add_association 'add a new brand', m, :brand %>
+          </div>
+          <%= m.input :name, label: false, placeholder: "Enter Model" %>
         <% end %>
-        <%= s.input :name, label: "Submodel" %>
+        <%= s.input :name, label: false, placeholder: "Enter Submodel", hint: "Leave blank if submodel doesn't exist" %>
       <% end %>
     </div>
 

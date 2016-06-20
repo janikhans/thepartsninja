@@ -16,16 +16,19 @@ class Vehicle < ActiveRecord::Base
   belongs_to :vehicle_submodel, inverse_of: :vehicles
   validates :vehicle_submodel, presence: true
 
+  # Testing reverse creation
+  accepts_nested_attributes_for :vehicle_submodel, reject_if: :all_blank
+
   def vec_year
     vehicle_year.try(:year)
   end
 
   def vec_brand
-    vehicle_submodel.vehicle_model.brand.name
+    vehicle_submodel.vehicle_model.brand.try(:name)
   end
 
   def vec_model
-    vehicle_submodel.vehicle_model.name
+    vehicle_submodel.vehicle_model.try(:name)
   end
 
   def to_label

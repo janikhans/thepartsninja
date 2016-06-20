@@ -9,9 +9,9 @@ class Admin::VehiclesController < Admin::DashboardController
   end
 
   def new
-     @vehicle = VehicleModel.new
-     @vehicle.vehicle_submodels.build
-    #  @vehicle.vehicle_submodel.vehicles.build
+     @vehicle = Vehicle.new
+     @vehicle.build_vehicle_submodel
+     @vehicle.vehicle_submodel.build_vehicle_model
   end
 
   def show
@@ -22,9 +22,7 @@ class Admin::VehiclesController < Admin::DashboardController
   end
 
   def create
-    @vehicle = VehicleModel.new(vehicle_params)
-    @vehicle.vehicle_submodels.build
-    # @vehicle.vehicle_submodel.vehicles.build
+    @vehicle = Vehicle.new(vehicle_params)
 
     respond_to do |format|
       if @vehicle.save
@@ -62,45 +60,8 @@ class Admin::VehiclesController < Admin::DashboardController
       @vehicle = Vehicle.find(params[:id])
     end
 
-    # def vehicle_params
-    #   params.require(:vehicle).permit(:model,
-    #     :vehicle_year_id,
-    #     :brand_name,
-    #     :brand_id,
-    #     :vehicle_submodel,
-    #     { vehicle_submodel_attributes: [:id,
-    #       :name,
-    #       { vehicle_model_attributes: [:id,
-    #         :brand_id,
-    #         :name]
-    #       }
-    #     ]}
-    #   )
-    # end
-
-    # def vehicle_params
-    #   params.require(:vehicle).permit(:model,
-    #     :vehicle_year_id,
-    #     :brand_name,
-    #     :brand_id,
-    #     :vehicle_submodel,
-    #     vehicle_submodel_attributes: [:id,
-    #       :name]
-    #   )
-    # end
-
     def vehicle_params
-      params.require(:vehicle_model).permit(:brand_id,
-        :name,
-        { vehicle_submodels_attributes: [:id,
-          :name,
-          { vehicles_attributes: [:id,
-            :brand_id,
-            :name,
-            :vehicl_year_id,
-            :model]
-          }
-        ]}
-      )
+      params.require(:vehicle).permit(:vehicle_year_id, :vehicle_submodel_id, vehicle_submodel_attributes: [:id, :name, :vehicle_model_id, :_destroy, vehicle_model_attributes: [:id, :name, :brand_id, :_destroy, brand_attributes: [:id, :name, :_destroy]]])
     end
+
 end

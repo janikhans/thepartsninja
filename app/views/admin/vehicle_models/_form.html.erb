@@ -11,7 +11,7 @@
             <%= render 'admin/vehicle_models/vehicle_fields', :f => vehicle %>
           <% end %>
           <div class='links'>
-            <%= link_to_add_association '+ year', submodel, :vehicles, partial: 'admin/vehicle_models/vehicle_fields' %>
+            <%= link_to_add_association icon(:plus, class: "fa-2x"), submodel, :vehicles, partial: 'admin/vehicle_models/vehicle_fields' %>
           </div>
         </div>
       <% end %>
