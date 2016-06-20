@@ -2,9 +2,16 @@
     <%= f.error_notification %>
 
     <div class="form-inputs">
-      <%= f.association :brand,label_method: :name, value_method: :id %>
-      <%= f.association :vehicle_year, label_method: :year %>
-      <%= f.input :model %>
+      <%= f.association :brand, label_method: :name, value_method: :id %>
+      <%= f.input :name, label: "Model Name" %>
+      <%= f.simple_fields_for :vehicle_submodels, @vehicle.vehicle_submodels.build do |s| %>
+        <%= s.simple_fields_for :vehicles, s.object.vehicles.build do |v| %>
+          <%= v.association :brand, label: "Make - blah" %>
+          <%= v.association :vehicle_year, label: "Year", label_method: :year %>
+          <%= v.input :model, label: "Model - blah" %>
+        <% end %>
+        <%= s.input :name, label: "Submodel" %>
+      <% end %>
     </div>
 
     <div class="form-actions">

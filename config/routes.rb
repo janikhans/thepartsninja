@@ -13,11 +13,12 @@ Rails.application.routes.draw do
   namespace :admin do
     get '', to: 'dashboard#index', as: '/'
     resources :leads, only: [:index, :create, :destroy]
-    resources :fitments, :brands, :categories, :parts, :products, :vehicles, :part_attributes, except: [:new]
-    resources :compatibles
+    resources :fitments, :brands, :categories, :parts, :products, :part_attributes, except: [:new]
+    resources :compatibles, :vehicles
     resources :users, except: [:new]
     resources :discoveries, except: [:new, :create]
     resources :searches, only: [:index, :destroy]
+    resources :vehicle_models, only: [:new, :edit, :create, :update, :destroy]
   end
 
   #Resource routes for public

@@ -37,6 +37,7 @@ end
 group :development do
   gem 'web-console', '~> 2.0'
   gem 'pry'
+  gem 'strong_like_bull'
 end
 
 group :test do

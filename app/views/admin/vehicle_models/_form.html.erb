@@ -1,0 +1,18 @@
+<%= simple_form_for([:admin, @vehicle_model]) do |f| %>
+    <%= f.error_notification %>
+
+    <div class="form-inputs">
+      <%= f.association :brand, label_method: :name, value_method: :id %>
+      <%= f.input :name, label: "Model Name" %>
+      <%= f.simple_fields_for :vehicle_submodels, @vehicle_model.vehicle_submodels.build do |submodel| %>
+        <%= submodel.input :name, placeholder: "Submodel name" %>
+        <%= submodel.simple_fields_for :vehicles, submodel.object.vehicles.build do |vehicle| %>
+          <%= vehicle.association :vehicle_year %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit %>
+    </div>
+  <% end %>

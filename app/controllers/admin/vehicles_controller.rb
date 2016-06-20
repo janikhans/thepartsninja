@@ -4,7 +4,14 @@ class Admin::VehiclesController < Admin::DashboardController
 
   def index
     @vehicles = Vehicle.page(params[:page])
-    @vehicle = Vehicle.new
+    @vehicle_model = VehicleModel.new
+    @vehicle_model.vehicle_submodels.build
+  end
+
+  def new
+     @vehicle = VehicleModel.new
+     @vehicle.vehicle_submodels.build
+    #  @vehicle.vehicle_submodel.vehicles.build
   end
 
   def show
@@ -15,14 +22,16 @@ class Admin::VehiclesController < Admin::DashboardController
   end
 
   def create
-    @vehicle = Vehicle.new(vehicle_params)
+    @vehicle = VehicleModel.new(vehicle_params)
+    @vehicle.vehicle_submodels.build
+    # @vehicle.vehicle_submodel.vehicles.build
 
     respond_to do |format|
       if @vehicle.save
         format.html { redirect_to admin_vehicles_path(@vehicle), notice: 'Vehicle was successfully created.' }
         format.json { render :show, status: :created, location: [:admin, @vehicle] }
       else
-        format.html { render :index }
+        format.html { render :new }
         format.json { render json: @vehicle.errors, status: :unprocessable_entity }
       end
     end
@@ -53,7 +62,45 @@ class Admin::VehiclesController < Admin::DashboardController
       @vehicle = Vehicle.find(params[:id])
     end
 
+    # def vehicle_params
+    #   params.require(:vehicle).permit(:model,
+    #     :vehicle_year_id,
+    #     :brand_name,
+    #     :brand_id,
+    #     :vehicle_submodel,
+    #     { vehicle_submodel_attributes: [:id,
+    #       :name,
+    #       { vehicle_model_attributes: [:id,
+    #         :brand_id,
+    #         :name]
+    #       }
+    #     ]}
+    #   )
+    # end
+
+    # def vehicle_params
+    #   params.require(:vehicle).permit(:model,
+    #     :vehicle_year_id,
+    #     :brand_name,
+    #     :brand_id,
+    #     :vehicle_submodel,
+    #     vehicle_submodel_attributes: [:id,
+    #       :name]
+    #   )
+    # end
+
     def vehicle_params
-      params.require(:vehicle).permit(:model, :vehicle_year_id, :brand_name, :brand_id)
+      params.require(:vehicle_model).permit(:brand_id,
+        :name,
+        { vehicle_submodels_attributes: [:id,
+          :name,
+          { vehicles_attributes: [:id,
+            :brand_id,
+            :name,
+            :vehicl_year_id,
+            :model]
+          }
+        ]}
+      )
     end
 end

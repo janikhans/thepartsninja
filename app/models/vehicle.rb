@@ -12,9 +12,13 @@ class Vehicle < ActiveRecord::Base
   has_many :oem_parts, through: :fitments, source: :part
 
   #Validations - woohoo!
-  before_validation :sanitize_model
-  validates :model, :brand, presence: true
+  before_validation :set_model
+  # before_validation :sanitize_model
+  validates :brand, presence: true
   validates :vehicle_year, presence: true
+
+  belongs_to :vehicle_submodel, inverse_of: :vehicles
+  validates :vehicle_submodel, presence: true
 
   def brand_name
     brand.try(:name)
@@ -36,7 +40,13 @@ class Vehicle < ActiveRecord::Base
 
 private
   #This and the strip_and_upcase_name in brand.rb can be DRY'd up at some point
+
+    def set_model
+      self.model = "Blah"
+    end
+
     def sanitize_model
+      return if self.model.nil?
       self.model = model.strip
       self.model = model[0].upcase + model[1..-1]
     end
