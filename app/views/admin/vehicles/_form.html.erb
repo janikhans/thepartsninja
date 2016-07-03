@@ -2,16 +2,16 @@
     <%= f.error_notification %>
 
     <div class="form-inputs">
-      <%= f.association :vehicle_year, label: false, prompt: "Year", label_method: :year %>
+      <%= f.association :vehicle_year, label: false, prompt: "Year", label_method: :year, required: true %>
       <%= f.simple_fields_for :vehicle_submodel do |s| %>
         <%= s.simple_fields_for :vehicle_model do |m| %>
           <div id="brand" class="row">
             <div id="brand_from_list" class="col-md-10">
-              <%= m.association :brand, label: false, prompt: "Make" %>
+              <%= m.association :brand, label: false, prompt: "Make", required: true %>
             </div>
             <%= link_to_add_association 'add a new brand', m, :brand %>
           </div>
-          <%= m.input :name, label: false, placeholder: "Enter Model" %>
+          <%= m.input :name, label: false, placeholder: "Enter Model", required: true %>
         <% end %>
         <%= s.input :name, label: false, placeholder: "Enter Submodel", hint: "Leave blank if submodel doesn't exist" %>
       <% end %>

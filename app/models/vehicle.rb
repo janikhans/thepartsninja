@@ -12,6 +12,7 @@ class Vehicle < ActiveRecord::Base
 
   #Validations - woohoo!
   validates :vehicle_year, presence: true
+  validates_uniqueness_of :vehicle_year, scope: :vehicle_submodel_id, message: "This model year already exists"
 
   belongs_to :vehicle_submodel, inverse_of: :vehicles
   validates :vehicle_submodel, presence: true

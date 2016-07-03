@@ -19,6 +19,9 @@ Rails.application.routes.draw do
     resources :discoveries, except: [:new, :create]
     resources :searches, only: [:index, :destroy]
     resources :vehicle_models, only: [:new, :edit, :create, :update, :destroy]
+    controller :auto_complete do
+      get :update_models
+    end
   end
 
   #Resource routes for public

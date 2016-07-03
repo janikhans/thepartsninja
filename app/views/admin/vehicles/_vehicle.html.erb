@@ -1,7 +1,7 @@
 <tr>
   <td><%= vehicle.vehicle_year.year %></td>
   <td><%= vehicle.vehicle_submodel.vehicle_model.brand.name %></td>
-  <td><%= vehicle.vehicle_submodel.vehicle_model.name %></td>
+  <td><%= vehicle.vehicle_submodel.vehicle_model.name %> &mdash; <%= vehicle.vehicle_submodel.vehicle_model.id %></td>
   <td><%= vehicle.vehicle_submodel.name %> &mdash; <%= vehicle.vehicle_submodel.id %> </td>
   <td><%= link_to 'View', admin_vehicle_path(vehicle) %></td>
   <td><%= link_to 'Edit', edit_admin_vehicle_path(vehicle) %></td>

@@ -23,16 +23,19 @@ class Admin::VehiclesController < Admin::DashboardController
 
   def create
     @vehicle = Vehicle.new(vehicle_params)
+    existing_model = VehicleModel.where('brand_id = ? AND lower(name) = ?', params[:vehicle][:vehicle_submodel_attributes][:vehicle_model_attributes][:brand_id].to_i, params[:vehicle][:vehicle_submodel_attributes][:vehicle_model_attributes][:name].downcase ).first
+    @vehicle.vehicle_submodel.vehicle_model = existing_model if existing_model
+    existing_submodel = VehicleSubmodel.where('vehicle_model_id = ? AND lower(name) = ?', @vehicle.vehicle_submodel.vehicle_model.id, params[:vehicle][:vehicle_submodel_attributes][:name].downcase ).first if @vehicle.vehicle_submodel.vehicle_model
+    @vehicle.vehicle_submodel = existing_submodel if existing_submodel
 
-    respond_to do |format|
-      if @vehicle.save
-        format.html { redirect_to admin_vehicles_path(@vehicle), notice: 'Vehicle was successfully created.' }
-        format.json { render :show, status: :created, location: [:admin, @vehicle] }
-      else
-        format.html { render :new }
-        format.json { render json: @vehicle.errors, status: :unprocessable_entity }
-      end
+    if @vehicle.save
+      redirect_to admin_vehicles_path(@vehicle), notice: 'Vehicle was successfully created.'
+    else
+      @vehicle.vehicle_submodel.vehicle_model = params[:vehicle][:vehicle_submodel_attributes][:vehicle_model_attributes]
+      @vehicle.vehicle_submodel.reload = params[:vehicle][:vehicle_submodel_attributes]
+      render :new
     end
+
   end
 
   def update
