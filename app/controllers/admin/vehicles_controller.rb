@@ -9,9 +9,10 @@ class Admin::VehiclesController < Admin::DashboardController
   end
 
   def new
-     @vehicle = Vehicle.new
-     @vehicle.build_vehicle_submodel
-     @vehicle.vehicle_submodel.build_vehicle_model
+    #  @vehicle = Vehicle.new
+    #  @vehicle.build_vehicle_submodel
+    #  @vehicle.vehicle_submodel.build_vehicle_model
+    @new_vehicle = VehicleForm.new
   end
 
   def show
@@ -22,17 +23,18 @@ class Admin::VehiclesController < Admin::DashboardController
   end
 
   def create
-    @vehicle = Vehicle.new(vehicle_params)
-    existing_model = VehicleModel.where('brand_id = ? AND lower(name) = ?', params[:vehicle][:vehicle_submodel_attributes][:vehicle_model_attributes][:brand_id].to_i, params[:vehicle][:vehicle_submodel_attributes][:vehicle_model_attributes][:name].downcase ).first
-    @vehicle.vehicle_submodel.vehicle_model = existing_model if existing_model
-    existing_submodel = VehicleSubmodel.where('vehicle_model_id = ? AND lower(name) = ?', @vehicle.vehicle_submodel.vehicle_model.id, params[:vehicle][:vehicle_submodel_attributes][:name].downcase ).first if @vehicle.vehicle_submodel.vehicle_model
-    @vehicle.vehicle_submodel = existing_submodel if existing_submodel
+    # @vehicle = Vehicle.new(vehicle_params)
+    # existing_model = VehicleModel.where('brand_id = ? AND lower(name) = ?', params[:vehicle][:vehicle_submodel_attributes][:vehicle_model_attributes][:brand_id].to_i, params[:vehicle][:vehicle_submodel_attributes][:vehicle_model_attributes][:name].downcase ).first
+    # @vehicle.vehicle_submodel.vehicle_model = existing_model if existing_model
+    # existing_submodel = VehicleSubmodel.where('vehicle_model_id = ? AND lower(name) = ?', @vehicle.vehicle_submodel.vehicle_model.id, params[:vehicle][:vehicle_submodel_attributes][:name].downcase ).first if @vehicle.vehicle_submodel.vehicle_model
+    # @vehicle.vehicle_submodel = existing_submodel if existing_submodel
 
-    if @vehicle.save
-      redirect_to admin_vehicles_path(@vehicle), notice: 'Vehicle was successfully created.'
+    @new_vehicle = VehicleForm.new(vehicle_params)
+    if @new_vehicle.submit(vehicle_params)
+      redirect_to admin_vehicles_path(@new_vehicle), notice: 'Vehicle was successfully created.'
     else
-      @vehicle.vehicle_submodel.vehicle_model = params[:vehicle][:vehicle_submodel_attributes][:vehicle_model_attributes]
-      @vehicle.vehicle_submodel.reload = params[:vehicle][:vehicle_submodel_attributes]
+      # @vehicle.vehicle_submodel.vehicle_model = params[:vehicle][:vehicle_submodel_attributes][:vehicle_model_attributes]
+      # @vehicle.vehicle_submodel.reload = params[:vehicle][:vehicle_submodel_attributes]
       render :new
     end
 
@@ -64,7 +66,11 @@ class Admin::VehiclesController < Admin::DashboardController
     end
 
     def vehicle_params
-      params.require(:vehicle).permit(:vehicle_year_id, :vehicle_submodel_id, vehicle_submodel_attributes: [:id, :name, :vehicle_model_id, :_destroy, vehicle_model_attributes: [:id, :name, :brand_id, :_destroy, brand_attributes: [:id, :name, :_destroy]]])
+      params.require(:vehicle).permit(:brand, :vehicle_model, :vehicle_submodel, :vehicle_year)
     end
+
+    # def vehicle_params
+    #   params.require(:vehicle).permit(:vehicle_year_id, :vehicle_submodel_id, vehicle_submodel_attributes: [:id, :name, :vehicle_model_id, :_destroy, vehicle_model_attributes: [:id, :name, :brand_id, :_destroy, brand_attributes: [:id, :name, :_destroy]]])
+    # end
 
 end

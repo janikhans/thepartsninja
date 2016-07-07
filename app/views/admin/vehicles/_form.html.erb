@@ -1,23 +1,14 @@
-<%= simple_form_for([:admin, @vehicle]) do |f| %>
-    <%= f.error_notification %>
+<%= simple_form_for([:admin, @new_vehicle]) do |f| %>
+  <%= f.error_notification %>
 
-    <div class="form-inputs">
-      <%= f.association :vehicle_year, label: false, prompt: "Year", label_method: :year, required: true %>
-      <%= f.simple_fields_for :vehicle_submodel do |s| %>
-        <%= s.simple_fields_for :vehicle_model do |m| %>
-          <div id="brand" class="row">
-            <div id="brand_from_list" class="col-md-10">
-              <%= m.association :brand, label: false, prompt: "Make", required: true %>
-            </div>
-            <%= link_to_add_association 'add a new brand', m, :brand %>
-          </div>
-          <%= m.input :name, label: false, placeholder: "Enter Model", required: true %>
-        <% end %>
-        <%= s.input :name, label: false, placeholder: "Enter Submodel", hint: "Leave blank if submodel doesn't exist" %>
-      <% end %>
-    </div>
+  <div class="form-inputs">
+    <%= f.input :brand %>
+    <%= f.input :vehicle_model %>
+    <%= f.input :vehicle_submodel %>
+    <%= f.input :vehicle_year, collection: VehicleYear.all, :label_method => :year,:value_method => :id,:label => "Year" ,:include_blank => false %>
+  </div>
 
-    <div class="form-actions">
-      <%= f.button :submit %>
-    </div>
-  <% end %>
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
