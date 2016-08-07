@@ -20,27 +20,47 @@ class Vehicle < ActiveRecord::Base
   # Testing reverse creation
   accepts_nested_attributes_for :vehicle_submodel, reject_if: :all_blank
 
+  def year
+    vehicle_year.year
+  end
+
+  def brand
+    vehicle_submodel.vehicle_model.brand
+  end
+
+  def model
+    vehicle_submodel.vehicle_model
+  end
+
+  def submodel
+    vehicle_submodel
+  end
+
   def vec_year
-    vehicle_year.try(:year)
+    vehicle_year.year
   end
 
   def vec_brand
-    vehicle_submodel.vehicle_model.brand.try(:name)
+    vehicle_submodel.vehicle_model.brand.name
   end
 
   def vec_model
-    vehicle_submodel.vehicle_model.try(:name)
+    vehicle_submodel.vehicle_model.name
+  end
+
+  def vec_submodel
+    vehicle_submodel.try(:name)
   end
 
   def to_label
-    "#{vec_year} #{vec_brand} #{vec_model}"
+    "#{vec_year} #{vec_brand} #{vec_model} #{vec_submodel}"
   end
 
 private
 
     def slug_candidates
      [
-      [:vec_year, :vec_brand, :vec_model],
+      [:vec_year, :vec_brand, :vec_model, :vec_submodel],
      ]
     end
 

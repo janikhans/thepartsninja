@@ -1,10 +1,10 @@
-<% provide(:header, "Showing Vehicle: #{@vehicle.vehicle_year.year} #{@vehicle.brand.name} #{@vehicle.model}") %>
+<% provide(:header, "Showing Vehicle: #{@vehicle.year} #{@vehicle.brand.name} #{@vehicle.model.name}") %>
 
 <div class="row">
   <div class="col-lg-12">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <strong><%= @vehicle.brand.name %> <%= @vehicle.vehicle_year.year %> <%= @vehicle.model %></strong>
+            <strong><%= @vehicle.brand.name %> <%= @vehicle.year %> <%= @vehicle.model.name %></strong>
         </div>
         <div class="panel-body">
           <p>Specs.....</p>

@@ -9,15 +9,18 @@ class VehicleForm
   attr_accessor :brand, :vehicle_model, :vehicle_submodel, :vehicle_year
   attr_reader :vehicle
 
-  # TODO better validations
+  # TODO better validations, such as only integers, no symbols etc
+  # Return vehicle after save
+  # more safety checks etc
 
   validates :brand, :vehicle_model,
     length: { maximum: 75},
     presence: true
+
   validates :vehicle_year,
-    presence: true,
     numericality: { only_integer: true },
-    inclusion: { in: 1900..Date.today.year+1, message: "needs to be between 1900-#{Date.today.year+1}"}
+    inclusion: { in: 1900..Date.today.year+1,
+                 message: "needs to be between 1900-#{Date.today.year+1}"}
 
   before_validation :vehicle_string_to_integer, :sanitize_fields
 
