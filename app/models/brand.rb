@@ -11,8 +11,8 @@ class Brand < ActiveRecord::Base
 
     def sanitize_name
       unless self.name.blank?
-        self.name = name.strip
-        self.name = name[0].upcase + name[1..-1]
+        self.name = self.name.strip
+        self.name = self.name[0].upcase + self.name[1..-1]
       end
     end
 

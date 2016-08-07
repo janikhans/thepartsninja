@@ -30,7 +30,7 @@ class Admin::VehiclesController < Admin::DashboardController
     # @vehicle.vehicle_submodel = existing_submodel if existing_submodel
 
     @new_vehicle = VehicleForm.new(vehicle_params)
-    if @new_vehicle.submit(vehicle_params)
+    if @new_vehicle.save
       redirect_to admin_vehicles_path(@new_vehicle), notice: 'Vehicle was successfully created.'
     else
       # @vehicle.vehicle_submodel.vehicle_model = params[:vehicle][:vehicle_submodel_attributes][:vehicle_model_attributes]

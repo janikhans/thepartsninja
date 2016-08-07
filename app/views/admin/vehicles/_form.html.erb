@@ -5,7 +5,7 @@
     <%= f.input :brand %>
     <%= f.input :vehicle_model %>
     <%= f.input :vehicle_submodel %>
-    <%= f.input :vehicle_year, collection: VehicleYear.all, :label_method => :year,:value_method => :id,:label => "Year" ,:include_blank => false %>
+    <%= f.input :vehicle_year, collection: VehicleYear.all, label_method: :year, value_method: :year, label: "Year" ,include_blank: false %>
   </div>
 
   <div class="form-actions">

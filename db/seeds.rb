@@ -51,7 +51,7 @@ end
 #----------------------------#
 # Build the VehicleYears
 
-years = (1950..Date.today.year+1).to_a
+years = (1900..Date.today.year+1).to_a
 years.each do |year|
   VehicleYear.create(year: year)
 end
@@ -106,19 +106,21 @@ end
 #----------------------------#
 #Vehicles
 
-yz250 = Vehicle.create model: "YZ250", vehicle_year: VehicleYear.where(year: 2006).first, brand_name: "Yamaha"
-yz25004 = Vehicle.create model: "YZ250", vehicle_year: VehicleYear.where(year: 2004).first, brand_name: "Yamaha"
-yz25008 = Vehicle.create model: "YZ250", vehicle_year: VehicleYear.where(year: 2008).first, brand_name: "Yamaha"
-yz125 = Vehicle.create model: "YZ125", vehicle_year: VehicleYear.where(year: 2005).first, brand_name: "Yamaha"
-wr450 = Vehicle.create model: "WR450", vehicle_year: VehicleYear.where(year: 2012).first, brand_name: "Yamaha"
-wr426 = Vehicle.create model: "WR426", vehicle_year: VehicleYear.where(year: 2002).first, brand_name: "Yamaha"
-yz250f = Vehicle.create model: "YZ250F", vehicle_year: VehicleYear.where(year: 2011).first, brand_name: "Yamaha"
-wr250 = Vehicle.create model: "WR250", vehicle_year: VehicleYear.where(year: 2009).first, brand_name: "Yamaha"
-rmz450 = Vehicle.create model: "RMZ450", vehicle_year: VehicleYear.where(year: 2008).first, brand_name: "Suzuki"
-tm250 = Vehicle.create model: "250MX", vehicle_year: VehicleYear.where(year: 2011).first, brand_name: "TM Racing"
-yz450f = Vehicle.create model: "YZ450F", vehicle_year: VehicleYear.where(year: 2006).first, brand_name: "Yamaha"
-yz25005 = Vehicle.create model: "YZ250", vehicle_year: VehicleYear.where(year: 2005).first, brand_name: "Yamaha"
-yz450f11 = Vehicle.create model: "YZ450F", vehicle_year: VehicleYear.where(year: 2011).first, brand_name: "Yamaha"
+yz250 = VehicleForm.new(vehicle_model: "YZ250", vehicle_year: 2006, brand: "Yamaha").save
+yz25004 = VehicleForm.new(vehicle_model: "YZ250", vehicle_year: 2004, brand: "Yamaha").save
+yz25008 = VehicleForm.new(vehicle_model: "YZ250", vehicle_year: 2008, brand: "Yamaha").save
+yz125 = VehicleForm.new(vehicle_model: "YZ125", vehicle_year: 2005, brand: "Yamaha").save
+wr450 = VehicleForm.new(vehicle_model: "WR450", vehicle_year: 2012, brand: "Yamaha").save
+wr426 = VehicleForm.new(vehicle_model: "WR426", vehicle_year: 2002, brand: "Yamaha").save
+yz250f = VehicleForm.new(vehicle_model: "YZ250F", vehicle_year: 2011, brand: "Yamaha").save
+wr250 = VehicleForm.new(vehicle_model: "WR250", vehicle_year: 2009, brand: "Yamaha").save
+rmz450 = VehicleForm.new(vehicle_model: "RMZ450", vehicle_year: 2008, brand: "Suzuki").save
+tm250 = VehicleForm.new(vehicle_model: "250MX", vehicle_year: 2011, brand: "TM Racing").save
+yz450f = VehicleForm.new(vehicle_model: "YZ450F", vehicle_year: 2006, brand: "Yamaha").save
+yz25005 = VehicleForm.new(vehicle_model: "YZ250", vehicle_year: 2005, brand: "Yamaha").save
+yz450f11 = VehicleForm.new(vehicle_model: "YZ450F", vehicle_year: 2011, brand: "Yamaha").save
+f150 = VehicleForm.new(vehicle_model: "F150", vehicle_year: 1994, brand: "ford", vehicle_submodel: "lariat").save
+silverado = VehicleForm.new(vehicle_model: "2500", vehicle_year: 2000, brand: "chevroLET", vehicle_submodel: "King Ranch").save
 
 #----------------------------#
 #Parts
