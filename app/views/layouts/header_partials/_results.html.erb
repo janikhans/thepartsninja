@@ -1,10 +1,10 @@
 <section class="tpn-header">
   <div class="page-header-content container">
     <div class="results">
-      <% if @vehicle %>
-          <h2>Showing results for: <br> <span class="text-navy"> <%= @vehicle.vehicle_year.year %> <%= @vehicle.brand.name %> <%= @vehicle.model %> - <i>"<%= @existing_part.name %>"</i></span></h2>
+      <% if @search.vehicle && ( !@search.compatible_results.nil? || !@search.potential_results.nil? ) %>
+          <h2>Showing results for: <br> <span class="text-navy"> <%= @search.vehicle.year %> <%= @search.vehicle.brand.name %> <%= @search.vehicle.model.name %> - <i>"<%= @search.part %>"</i></span></h2>
        <% else %>
-        <h2>Sorry, no results were found for: <br> <span class="text-navy"><%= @year %> <%= @make %> <%= @model %> - </span><i>"<%= @part %>"</i></h2>
+        <h2>Sorry, no results were found for: <br> <span class="text-navy"><%= @search.year %> <%= @search.brand %> <%= @search.model %> - </span><i>"<%= @search.part %>"</i></h2>
       <% end %>
     </div>
   </div>

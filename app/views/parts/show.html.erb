@@ -49,7 +49,7 @@
               <div class="row">
                 <% @part.oem_vehicles.each do |v|%>
                   <div class="col-md-3 col-xs-6 oem-vehicle">
-                   <%= link_to "#{v.vehicle_year.year} #{v.brand.name} #{v.model}", v  %>
+                   <%= link_to "#{v.year} #{v.brand.name} #{v.model.name}", v  %>
                   </div>
                 <% end %>
               </div>

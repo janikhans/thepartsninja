@@ -48,7 +48,7 @@ module CompatiblesHelper
         concat "Multiple Vehicles"
       elsif part.fitments.count === 1
         vehicle = part.oem_vehicles.first
-        concat vehicle.vehicle_year.year.to_s + " " + vehicle.brand.name + " " + vehicle.model + " "
+        concat vehicle.year.to_s + " " + vehicle.brand.name + " " + vehicle.model.name + " "
       else
         nil
       end

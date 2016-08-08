@@ -5,42 +5,42 @@
 
 <div class="row">
   <div class="col-md-9">
-      <% if @vehicle %>
+      <% if @search.vehicle && @search.oem_results.any?%>
       <div class="ibox">
-        <div class="ibox-title"><%= @compatible_search_results.count %> Compatible Parts</div>
+        <div class="ibox-title"><%= @search.compatible_results.count %> Compatible Parts</div>
         <div class="ibox-content no-padding">
-          <% if @compatible_search_results.any? %>
-            <%= render partial: 'compatibles/compatible', collection: @compatible_search_results %>
+          <% if @search.compatible_results.any? %>
+            <%= render partial: 'compatibles/compatible', collection: @search.compatible_results %>
           <% else %>
           <div class="search-box-padding">
             <h5 class="text-center">No Compatibles Were Found...</h5>
-            <p class="text-center">Try a different search term other than <strong><%= @part %></strong>. Maybe something shorter?</p>
+            <p class="text-center">Try a different search term other than <strong><%= @search.part %></strong>. Maybe something shorter?</p>
           </div>
           <% end %>
         </div>
       </div>
       <div class="ibox">
-        <div class="ibox-title"><%= @potential_parts.count %> Potential Parts</div>
+        <div class="ibox-title"><%= @search.potential_results.count %> Potential Parts</div>
         <div id="potentials" class="ibox-content no-padding">
-          <% if @potential_parts.any? %>
-            <%= render partial: 'parts/potential_part', collection: @potential_parts %>
+          <% if @search.potential_results.any? %>
+            <%= render partial: 'parts/potential_part', collection: @search.potential_results %>
           <% else %>
           <div class="search-box-padding">
             <h5 class="text-center">No Potentials Were Found...</h5>
-            <p class="text-center">Try a different search term other than <strong><%= @part %></strong>. Maybe something shorter?</p>
+            <p class="text-center">Try a different search term other than <strong><%= @search.part %></strong>. Maybe something shorter?</p>
           </div>
           <% end %>
         </div>
       </div>
       <div class="ibox">
-        <div class="ibox-title"><%= @oem_search_results.count %> OEM Parts </div>
+        <div class="ibox-title"><%= @search.oem_results.count %> OEM Parts </div>
         <div class="ibox-content no-padding">
-          <% if @oem_search_results.any? %>
-            <%= render partial: 'parts/oem_part', collection: @oem_search_results %>
+          <% if @search.oem_results.any? %>
+            <%= render partial: 'parts/oem_part', collection: @search.oem_results %>
           <% else %>
           <div class="search-box-padding">
             <h5 class="text-center">No OEM Parts Were Found...</h5>
-            <p class="text-center">Try a different search term other than <strong><%= @part %></strong>. Maybe something shorter?</p>
+            <p class="text-center">Try a different search term other than <strong><%= @search.part %></strong>. Maybe something shorter?</p>
           </div>
           <% end %>
         </div>

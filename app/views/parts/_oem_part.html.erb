@@ -19,7 +19,7 @@
         <% if oem_part.oem_vehicles.count > 1 %>
           <h3>OEM Models</h3>
           <div class="row">
-            <% oem_part.oem_vehicles.each do |f| %> <div class="col-xs-6 col-md-6"> <%= f.vehicle_year.year %> <%= f.brand.name %> <%= f.model %> </div> <% end %>
+            <% oem_part.oem_vehicles.each do |f| %> <div class="col-xs-6 col-md-6"> <%= f.year %> <%= f.brand.name %> <%= f.model.name %> </div> <% end %>
           </div>
         <% end %>
       </div>

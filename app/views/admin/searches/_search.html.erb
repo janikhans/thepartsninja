@@ -1,10 +1,10 @@
 <tr>
   <td><%= search.id %></td>
-  <% if search.vehicle_id %>
+  <% if search.vehicle %>
     <td><%= search.vehicle_id %></td>
-    <td><%= search.vehicle.vehicle_year.year %></td>
+    <td><%= search.vehicle.year %></td>
     <td><%= search.vehicle.brand.name %></td>
-    <td><%= search.vehicle.model %></td>
+    <td><%= search.vehicle.model.name %></td>
   <% else %>
     <td></td>
     <td><%= search.year %></td>
