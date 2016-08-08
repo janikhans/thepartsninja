@@ -4,7 +4,7 @@ module DiscoveriesHelper
     vehicles = part.oem_vehicles
     output = ''
     vehicles.each do |v|
-      line = v.vehicle_year.year.to_s + " " + v.brand.name + " " + v.model + '<br>'
+      line = v.year.to_s + " " + v.brand.name + " " + v.model.name + '<br>'
       output += line
     end
     return output

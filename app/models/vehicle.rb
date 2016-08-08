@@ -1,24 +1,21 @@
 class Vehicle < ActiveRecord::Base
-
-  # scope :unique_models, -> { select("model").order("model ASC").group("model, vehicles.id") }
-
   #Lets make those URLs nice and SEO friendly
   extend FriendlyId
   friendly_id :slug_candidates, use: [:finders, :slugged]
-  belongs_to :vehicle_year
+
   has_many :searches
   has_many :fitments, dependent: :destroy
   has_many :oem_parts, through: :fitments, source: :part
 
   #Validations - woohoo!
+  belongs_to :vehicle_year
   validates :vehicle_year, presence: true
-  validates_uniqueness_of :vehicle_year, scope: :vehicle_submodel_id, message: "This model year already exists"
+  validates_uniqueness_of :vehicle_year,
+    scope: :vehicle_submodel_id,
+    message: "This model year already exists"
 
   belongs_to :vehicle_submodel, inverse_of: :vehicles
   validates :vehicle_submodel, presence: true
-
-  # Testing reverse creation
-  accepts_nested_attributes_for :vehicle_submodel, reject_if: :all_blank
 
   def year
     vehicle_year.year
@@ -36,31 +33,27 @@ class Vehicle < ActiveRecord::Base
     vehicle_submodel
   end
 
-  def vec_year
-    vehicle_year.year
-  end
-
-  def vec_brand
+  def brand_name
     vehicle_submodel.vehicle_model.brand.name
   end
 
-  def vec_model
+  def model_name
     vehicle_submodel.vehicle_model.name
   end
 
-  def vec_submodel
+  def submodel_name
     vehicle_submodel.try(:name)
   end
 
   def to_label
-    "#{vec_year} #{vec_brand} #{vec_model} #{vec_submodel}"
+    "#{year} #{brand.name} #{model.name} #{submodel_name}"
   end
 
 private
 
     def slug_candidates
      [
-      [:vec_year, :vec_brand, :vec_model, :vec_submodel],
+      [:year, :brand_name :model_name, :submodel_name],
      ]
     end
 

@@ -106,21 +106,21 @@ end
 #----------------------------#
 #Vehicles
 
-yz250 = VehicleForm.new(vehicle_model: "YZ250", vehicle_year: 2006, brand: "Yamaha").save
-yz25004 = VehicleForm.new(vehicle_model: "YZ250", vehicle_year: 2004, brand: "Yamaha").save
-yz25008 = VehicleForm.new(vehicle_model: "YZ250", vehicle_year: 2008, brand: "Yamaha").save
-yz125 = VehicleForm.new(vehicle_model: "YZ125", vehicle_year: 2005, brand: "Yamaha").save
-wr450 = VehicleForm.new(vehicle_model: "WR450", vehicle_year: 2012, brand: "Yamaha").save
-wr426 = VehicleForm.new(vehicle_model: "WR426", vehicle_year: 2002, brand: "Yamaha").save
-yz250f = VehicleForm.new(vehicle_model: "YZ250F", vehicle_year: 2011, brand: "Yamaha").save
-wr250 = VehicleForm.new(vehicle_model: "WR250", vehicle_year: 2009, brand: "Yamaha").save
-rmz450 = VehicleForm.new(vehicle_model: "RMZ450", vehicle_year: 2008, brand: "Suzuki").save
-tm250 = VehicleForm.new(vehicle_model: "250MX", vehicle_year: 2011, brand: "TM Racing").save
-yz450f = VehicleForm.new(vehicle_model: "YZ450F", vehicle_year: 2006, brand: "Yamaha").save
-yz25005 = VehicleForm.new(vehicle_model: "YZ250", vehicle_year: 2005, brand: "Yamaha").save
-yz450f11 = VehicleForm.new(vehicle_model: "YZ450F", vehicle_year: 2011, brand: "Yamaha").save
-f150 = VehicleForm.new(vehicle_model: "F150", vehicle_year: 1994, brand: "ford", vehicle_submodel: "lariat").save
-silverado = VehicleForm.new(vehicle_model: "2500", vehicle_year: 2000, brand: "chevroLET", vehicle_submodel: "King Ranch").save
+yz250 = VehicleForm.new(model: "YZ250", year: 2006, brand: "Yamaha").save
+yz25004 = VehicleForm.new(model: "YZ250", year: 2004, brand: "Yamaha").save
+yz25008 = VehicleForm.new(model: "YZ250", year: 2008, brand: "Yamaha").save
+yz125 = VehicleForm.new(model: "YZ125", year: 2005, brand: "Yamaha").save
+wr450 = VehicleForm.new(model: "WR450", year: 2012, brand: "Yamaha").save
+wr426 = VehicleForm.new(model: "WR426", year: 2002, brand: "Yamaha").save
+yz250f = VehicleForm.new(model: "YZ250F", year: 2011, brand: "Yamaha").save
+wr250 = VehicleForm.new(model: "WR250", year: 2009, brand: "Yamaha").save
+rmz450 = VehicleForm.new(model: "RMZ450", year: 2008, brand: "Suzuki").save
+tm250 = VehicleForm.new(model: "250MX", year: 2011, brand: "TM Racing").save
+yz450f = VehicleForm.new(model: "YZ450F", year: 2006, brand: "Yamaha").save
+yz25005 = VehicleForm.new(model: "YZ250", year: 2005, brand: "Yamaha").save
+yz450f11 = VehicleForm.new(model: "YZ450F", year: 2011, brand: "Yamaha").save
+f150 = VehicleForm.new(model: "F150", year: 1994, brand: "ford", submodel: "lariat").save
+silverado = VehicleForm.new(model: "2500", year: 2000, brand: "chevroLET", submodel: "King Ranch").save
 
 #----------------------------#
 #Parts

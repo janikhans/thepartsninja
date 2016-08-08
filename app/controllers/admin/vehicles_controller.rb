@@ -55,7 +55,7 @@ class Admin::VehiclesController < Admin::DashboardController
     end
 
     def vehicle_params
-      params.require(:vehicle).permit(:brand, :vehicle_model, :vehicle_submodel, :vehicle_year)
+      params.require(:vehicle).permit(:brand, :model, :submodel, :year)
     end
 
     # def vehicle_params

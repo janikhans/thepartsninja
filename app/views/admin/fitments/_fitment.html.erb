@@ -2,9 +2,9 @@
   <td><%= fitment.part.product.name %></td>
   <td><%= fitment.part.part_number %></td>
   <td><%= fitment.part.product.category.name %></td>
-  <td><%= fitment.vehicle.vehicle_year.year %></td>
+  <td><%= fitment.vehicle.year %></td>
   <td><%= fitment.vehicle.brand.name %></td>
-  <td><%= fitment.vehicle.model %></td>
+  <td><%= fitment.vehicle.model.name %></td>
   <td><%= link_to 'Show', admin_fitment_path(fitment) %></td>
   <td><%= link_to 'Edit', edit_admin_fitment_path(fitment) %></td>
   <td><%= link_to 'Destroy', admin_fitment_path(fitment), method: :delete, data: { confirm: 'Are you sure?' } %></td>

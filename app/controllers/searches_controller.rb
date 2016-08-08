@@ -10,7 +10,6 @@ class SearchesController < ApplicationController
       @search.results(current_user = nil)
       redirect_to coming_soon_path
     end
-
   end
 
 end
