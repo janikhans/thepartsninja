@@ -1,0 +1,14 @@
+janik:
+  bio: "It's me"
+  location: Portland
+  user: janik
+
+hans:
+  bio: "The one and only"
+  location: Germany
+  user: hans
+
+sensei:
+  bio: "Bow down"
+  location: "Everywhere"
+  user: sensei

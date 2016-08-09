@@ -50,7 +50,7 @@ class Vehicle < ActiveRecord::Base
   end
 
   def to_label
-    "#{year} #{brand.name} #{model.name} #{submodel_name}"
+    "#{year} #{brand_name} #{model_name} #{submodel_name}"
   end
 
 private

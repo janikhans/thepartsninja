@@ -1,0 +1,13 @@
+janik:
+  username: Janik
+  email: janik@thepartsninja.com
+  role: 1
+
+hans:
+  username: Hans
+  email: hans@thepartsninja.com
+
+sensei:
+  username: theSensei
+  email: theSensei@thepartsninja.com
+  role: 1
