@@ -279,21 +279,6 @@ ActiveRecord::Schema.define(version: 20160620055210) do
   add_index "votes", ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope", using: :btree
   add_index "votes", ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope", using: :btree
 
-  add_foreign_key "discoveries", "users"
-  add_foreign_key "fitments", "parts"
-  add_foreign_key "fitments", "users"
-  add_foreign_key "fitments", "vehicles"
-  add_foreign_key "part_traits", "part_attributes"
-  add_foreign_key "part_traits", "parts"
-  add_foreign_key "parts", "products"
-  add_foreign_key "parts", "users"
-  add_foreign_key "products", "brands"
-  add_foreign_key "products", "categories"
-  add_foreign_key "products", "users"
-  add_foreign_key "profiles", "users"
-  add_foreign_key "searches", "users"
-  add_foreign_key "searches", "vehicles"
-  add_foreign_key "steps", "discoveries"
   add_foreign_key "vehicle_models", "brands"
   add_foreign_key "vehicle_models", "vehicle_types"
   add_foreign_key "vehicle_submodels", "vehicle_models"
