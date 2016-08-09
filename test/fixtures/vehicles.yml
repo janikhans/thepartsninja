@@ -1,0 +1,19 @@
+yz250:
+  vehicle_submodel: yz250
+  vehicle_year: year06
+
+yz125:
+  vehicle_submodel: yz125
+  vehicle_year: year05
+
+f150:
+  vehicle_submodel: f150
+  vehicle_year: year10
+
+te300:
+  vehicle_submodel: te300
+  vehicle_year: year13
+
+lariat:
+  vehicle_submodel: f150
+  vehicle_year: year07

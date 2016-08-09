@@ -30,21 +30,21 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 group :development, :test do
   gem 'byebug'
   gem 'spring'
-  gem 'rspec-rails', '~> 3.0.0'
-  gem 'factory_girl_rails'
 end
 
 group :development do
   gem 'web-console', '~> 2.0'
   gem 'pry'
-  gem 'strong_like_bull'
 end
 
 group :test do
-  gem 'capybara'
-  gem 'guard-rspec'
-  gem 'launchy'
-  gem 'database_cleaner'
+  gem 'capybara', '~> 2.7.1'
+  gem 'launchy', '~> 2.4.3'
+  gem 'test-unit', '~> 3.2.1'
+  gem 'shoulda', '~> 3.5.0'
+  gem 'poltergeist', '~> 1.10.0'
+  gem 'fivemat'
+  gem 'selenium-webdriver'
 end
 
 group :production do

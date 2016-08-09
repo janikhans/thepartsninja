@@ -1,0 +1,17 @@
+motorcycle:
+  name: Motorcycle
+
+utv:
+  name: UTV/ATV
+
+snowmobile:
+  name: Snowmobile
+
+scooter:
+  name: Scooter
+
+pwc:
+  name: Personal Watercraft
+
+truck:
+  name: Truck

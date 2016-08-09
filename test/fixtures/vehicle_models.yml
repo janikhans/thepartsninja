@@ -1,0 +1,19 @@
+yz250:
+  name: YZ250
+  brand: yamaha
+  vehicle_type: motorcycle
+
+yz125:
+  brand: yamaha
+  name: yz125
+  vehicle_type: motorcycle
+
+f150:
+  brand: ford
+  name: F150
+  vehicle_type: truck
+
+te300:
+  brand: husqvarna
+  name: TE300
+  vehicle_type: motorcycle

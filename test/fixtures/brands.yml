@@ -1,0 +1,13 @@
+yamaha:
+  name: Yamaha
+  website: "www.yamaha.com"
+
+honda:
+  name: Honda
+  website: "www.honda.com"
+
+ford:
+  name: FORD
+
+husqvarna:
+  name: Husqvarna

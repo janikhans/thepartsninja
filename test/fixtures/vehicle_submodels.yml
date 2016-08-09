@@ -1,0 +1,15 @@
+yz250:
+  vehicle_model: yz250
+
+yz125:
+  vehicle_model: yz125
+
+f150:
+  vehicle_model: f150
+
+te300:
+  vehicle_model: te300
+
+lariat:
+  name: lariat
+  vehicle_model: f150
