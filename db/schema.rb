@@ -222,12 +222,14 @@ ActiveRecord::Schema.define(version: 20160620055210) do
 
   create_table "vehicle_models", force: :cascade do |t|
     t.integer  "brand_id"
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "vehicle_type_id"
+    t.string   "name",            null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   add_index "vehicle_models", ["brand_id"], name: "index_vehicle_models_on_brand_id", using: :btree
+  add_index "vehicle_models", ["vehicle_type_id"], name: "index_vehicle_models_on_vehicle_type_id", using: :btree
 
   create_table "vehicle_submodels", force: :cascade do |t|
     t.integer  "vehicle_model_id"
@@ -237,6 +239,12 @@ ActiveRecord::Schema.define(version: 20160620055210) do
   end
 
   add_index "vehicle_submodels", ["vehicle_model_id"], name: "index_vehicle_submodels_on_vehicle_model_id", using: :btree
+
+  create_table "vehicle_types", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "vehicle_years", force: :cascade do |t|
     t.integer  "year",       null: false
@@ -287,6 +295,7 @@ ActiveRecord::Schema.define(version: 20160620055210) do
   add_foreign_key "searches", "vehicles"
   add_foreign_key "steps", "discoveries"
   add_foreign_key "vehicle_models", "brands"
+  add_foreign_key "vehicle_models", "vehicle_types"
   add_foreign_key "vehicle_submodels", "vehicle_models"
   add_foreign_key "vehicles", "vehicle_submodels"
   add_foreign_key "vehicles", "vehicle_years"

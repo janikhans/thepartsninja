@@ -6,6 +6,7 @@
     <%= f.input :model %>
     <%= f.input :submodel %>
     <%= f.input :year, collection: VehicleYear.all, label_method: :year, value_method: :year, label: "Year" ,include_blank: false %>
+    <%= f.input :type, collection: VehicleType.all, label_method: :name, value_method: :name, label: "Vehicle Type" ,include_blank: false %>
   </div>
 
   <div class="form-actions">

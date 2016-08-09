@@ -6,14 +6,15 @@ class VehicleForm
     ActiveModel::Name.new(self, nil, "Vehicle")
   end
 
-  attr_accessor :brand, :model, :submodel, :year
+  attr_accessor :brand, :model, :submodel, :year, :type
   attr_reader :vehicle
 
   # TODO better validations, such as only integers, no symbols etc
   # Return vehicle after save
   # more safety checks etc
+  # validate inclusion of vehicle_types
 
-  validates :brand, :model,
+  validates :brand, :model, :type,
     length: { maximum: 75},
     presence: true
 
@@ -27,13 +28,11 @@ class VehicleForm
   def save
     if valid?
       brand = Brand.where('lower(name) = ?', @brand.downcase).first_or_create!(name: @brand)
-      model = brand.vehicle_models.where('lower(name) = ?', @model.downcase).first_or_create!(name: @model)
-      if @submodel.present?
-        submodel = model.vehicle_submodels.where('lower(name) = ?', @submodel.downcase).first_or_create!(name: @submodel)
-      else
-        submodel = model.vehicle_submodels.where(name: nil).first_or_create!
-      end
-      @vehicle = Vehicle.where(vehicle_year: VehicleYear.where(year: @year).first, vehicle_submodel: submodel).first_or_create!
+      type = VehicleType.where('lower(name) = ?', @type.downcase).first
+      model = brand.vehicle_models.where('lower(name) = ? AND id = ?', @model.downcase, type.id).first_or_create!(name: @model, vehicle_type_id: type.id)
+      submodel = find_or_set_submodel(model)
+      year = VehicleYear.where(year: @year).first
+      @vehicle = Vehicle.where(vehicle_year_id: year.id, vehicle_submodel_id: submodel.id).first_or_create!
     else
       false
     end
@@ -57,6 +56,14 @@ class VehicleForm
       unless field.blank?
         field = field.strip
         field = field[0].upcase + field[1..-1]
+      end
+    end
+
+    def find_or_set_submodel(model)
+      if @submodel.present?
+        model.vehicle_submodels.where('lower(name) = ?', @submodel.downcase).first_or_create!(name: @submodel)
+      else
+        model.vehicle_submodels.where(name: nil).first_or_create!
       end
     end
 end

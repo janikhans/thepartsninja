@@ -5,6 +5,10 @@ class VehicleModel < ActiveRecord::Base
   belongs_to :brand
   validates :brand, presence: true
 
+  belongs_to :vehicle_type,
+    inverse_of: :vehicle_models
+  validates :vehicle_type, presence: true
+
   has_many :vehicle_submodels,
     inverse_of: :vehicle_model,
     dependent: :destroy

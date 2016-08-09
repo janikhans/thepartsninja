@@ -33,6 +33,10 @@ class Vehicle < ActiveRecord::Base
     vehicle_submodel
   end
 
+  def type
+    vehicle_submodel.vehicle_model.vehicle_type
+  end
+
   def brand_name
     vehicle_submodel.vehicle_model.brand.name
   end
@@ -53,7 +57,7 @@ private
 
     def slug_candidates
      [
-      [:year, :brand_name :model_name, :submodel_name],
+      [:year, :brand_name, :model_name, :submodel_name],
      ]
     end
 
