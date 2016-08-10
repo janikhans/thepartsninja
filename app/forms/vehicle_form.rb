@@ -29,7 +29,7 @@ class VehicleForm
     if valid?
       brand = Brand.where('lower(name) = ?', @brand.downcase).first_or_create!(name: @brand)
       type = VehicleType.where('lower(name) = ?', @type.downcase).first
-      model = brand.vehicle_models.where('lower(name) = ? AND id = ?', @model.downcase, type.id).first_or_create!(name: @model, vehicle_type_id: type.id)
+      model = brand.vehicle_models.where('lower(name) = ? AND vehicle_type_id = ?', @model.downcase, type.id).first_or_create!(name: @model, vehicle_type_id: type.id)
       submodel = find_or_set_submodel(model)
       year = VehicleYear.where(year: @year).first
       @vehicle = Vehicle.where(vehicle_year_id: year.id, vehicle_submodel_id: submodel.id).first_or_create!

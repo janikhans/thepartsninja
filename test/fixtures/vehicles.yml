@@ -8,12 +8,12 @@ yz125:
 
 f150:
   vehicle_submodel: f150
-  vehicle_year: year10
+  vehicle_year: year16
 
 te300:
   vehicle_submodel: te300
-  vehicle_year: year13
+  vehicle_year: year16
 
 lariat:
-  vehicle_submodel: f150
-  vehicle_year: year07
+  vehicle_submodel: lariat
+  vehicle_year: year17

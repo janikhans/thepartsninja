@@ -18,7 +18,7 @@ class Vehicle < ActiveRecord::Base
   validates :vehicle_submodel, presence: true
 
   def year
-    vehicle_year.year
+    vehicle_year.year.to_s
   end
 
   def brand
@@ -37,23 +37,27 @@ class Vehicle < ActiveRecord::Base
     vehicle_submodel.vehicle_model.vehicle_type
   end
 
-  def brand_name
-    vehicle_submodel.vehicle_model.brand.name
-  end
-
-  def model_name
-    vehicle_submodel.vehicle_model.name
-  end
-
   def submodel_name
     vehicle_submodel.try(:name)
   end
 
   def to_label
-    "#{year} #{brand_name} #{model_name} #{submodel_name}"
+    if submodel_name
+      "#{year} #{brand_name} #{model_name} #{submodel_name}"
+    else
+      "#{year} #{brand_name} #{model_name}"
+    end
   end
 
-private
+  private
+
+    def brand_name
+      vehicle_submodel.vehicle_model.brand.name
+    end
+
+    def model_name
+      vehicle_submodel.vehicle_model.name
+    end
 
     def slug_candidates
      [

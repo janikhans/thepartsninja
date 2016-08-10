@@ -4,29 +4,8 @@ year05:
 year06:
   year: 2006
 
-year07:
-  year: 2007
-
 year08:
   year: 2008
-
-year09:
-  year: 2009
-
-year10:
-  year: 2010
-
-year11:
-  year: 2011
-
-year12:
-  year: 2012
-
-year13:
-  year: 2013
-
-year14:
-  year: 2014
 
 year15:
   year: 2015
@@ -37,5 +16,5 @@ year16:
 year17:
   year: 2017
 
-year18:
-  year: 2018
+not_valid:
+  year: <%= Date.today.year + 2 %>

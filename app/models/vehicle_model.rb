@@ -1,6 +1,7 @@
 class VehicleModel < ActiveRecord::Base
-  validates :name, presence: true
-  # validates :name, uniqueness: {scope: :brand_id, case_sensitive: false, message: 'This model already exists'}
+  validates :name,
+    presence: true,
+    uniqueness: { scope: :brand_id, case_sensitive: false }
 
   belongs_to :brand
   validates :brand, presence: true

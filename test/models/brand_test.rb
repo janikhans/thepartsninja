@@ -12,6 +12,7 @@ class BrandTest < ActiveSupport::TestCase
     @honda = brands(:honda)
     @ford = brands(:ford)
     @husqvarna = brands(:husqvarna)
+    @tusk = brands(:tusk)
   end
 
   test "fixtures should be valid" do
@@ -19,6 +20,7 @@ class BrandTest < ActiveSupport::TestCase
     assert @honda.valid?
     assert @ford.valid?
     assert @husqvarna.valid?
+    assert @tusk.valid?
   end
 
   test "name should be sanitized with capital first letter, remaining unchanged" do

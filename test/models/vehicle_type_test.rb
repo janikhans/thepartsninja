@@ -22,4 +22,22 @@ class VehicleTypeTest < ActiveSupport::TestCase
     assert @pwc.valid?
     assert @truck.valid?
   end
+
+  test "name should be sanitized with capital first letter, remaining unchanged" do
+    type = VehicleType.new
+
+    assert_not type.valid?
+    type.name = "TEST"
+    assert type.new_record?
+    type.save
+    assert type.name = "TEST"
+
+    type.name = "tESt"
+    type.save
+    assert type.name = "TESt"
+
+    type.name = "test"
+    type.save
+    assert type.name = "Test"
+  end
 end

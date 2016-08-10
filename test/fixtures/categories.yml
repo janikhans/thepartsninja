@@ -1,0 +1,23 @@
+wheels:
+  name: Wheels
+
+bearings:
+  name: Bearings
+
+body:
+  name: Body
+
+brakes:
+  name: Brakes
+
+wheel_assembly:
+  name: "Complete Wheel Assembly"
+  parent: wheels
+
+wheel_bearings:
+  name: "Wheel Bearings"
+  parent: bearings
+
+brake_pads:
+  name: "Brake Pads"
+  parent: brakes
