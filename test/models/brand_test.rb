@@ -40,6 +40,15 @@ class BrandTest < ActiveSupport::TestCase
     assert brand.name = "Test"
   end
 
+  test "slug for url should be friendly" do
+    brand = @new_brand
+
+    assert brand.valid?
+    brand.save
+
+    assert_equal brand.slug, "test"
+  end
+
   # TODO this and more tests
   # test "website should only take correct website format" do
   #   this test needs to be done

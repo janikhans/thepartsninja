@@ -1,5 +1,17 @@
 wheel:
-  name: "Impack Wheel Kit"
-  description: "Heavy duty wheel kit for all purposes"
-  brand: tusk
+  name: "OEM Wheel assmbly"
+  description: "Standard issue Yamaha wheel"
+  brand: yamaha
   category: wheel_assembly
+
+brake_pads:
+  name: "Dominator Pads"
+  description: "Heavy duty brake pads for all purposes"
+  brand: tusk
+  category: brake_pads
+
+wheel_bearings:
+  name: "Sealed ball bearings"
+  description: "Sealed ball bearing wheel bearings that will last a lifetime"
+  brand: tusk
+  category: wheel_bearings

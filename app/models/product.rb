@@ -7,7 +7,7 @@ class Product < ActiveRecord::Base
   belongs_to :category
   has_many :parts, dependent: :destroy
 
-  validates :name, :brand_id, :category_id, presence: true
+  validates :name, :brand, :category, presence: true
 
   def brand_name
     brand.try(:name)

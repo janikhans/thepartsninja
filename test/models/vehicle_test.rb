@@ -39,6 +39,21 @@ class VehicleTest < ActiveSupport::TestCase
     assert_equal lariat.to_label, "2017 FORD F150 Lariat"
   end
 
+  test "slug for url should be friendly" do
+    vehicle = VehicleForm.new(brand: "Kawasaki", model: "KX450F", type: "Motorcycle", year: 2008)
+
+    assert vehicle.valid?
+    vehicle.save
+
+    assert_equal vehicle.vehicle.slug, "2008-kawasaki-kx450f"
+
+    new_vehicle = VehicleForm.new(brand: "Kawasaki", model: "KX450F", type: "Motorcycle", submodel: "Test", year: 2008)
+    assert new_vehicle.valid?
+    new_vehicle.save
+
+    assert_equal new_vehicle.vehicle.slug, "2008-kawasaki-kx450f-test"
+  end
+
   test "VehicleForm should integer or string year attribute" do
     vehicle = VehicleForm.new(brand: "Kawasaki", model: "KX450F", type: "Motorcycle", year: 2008)
     assert vehicle.valid?
