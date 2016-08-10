@@ -11,18 +11,26 @@ class VehicleTest < ActiveSupport::TestCase
 
   setup do
     @yz250 = vehicles(:yz250)
+    @yz25008 = vehicles(:yz25008)
     @yz125 = vehicles(:yz125)
+    @yz12506 = vehicles(:yz12506)
     @f150 = vehicles(:f150)
     @te300 = vehicles(:te300)
     @lariat = vehicles(:lariat)
+    @yz450 = vehicles(:yz450)
+    @wr250 = vehicles(:wr250)
   end
 
   test "fixtures should be valid" do
     assert @yz250.valid?
+    assert @yz25008.valid?
     assert @yz125.valid?
+    assert @yz12506.valid?
     assert @f150.valid?
     assert @te300.valid?
     assert @lariat.valid?
+    assert @yz450.valid?
+    assert @wr250.valid?
   end
 
   test "methods should show a vehicles associated attributes" do
@@ -52,65 +60,5 @@ class VehicleTest < ActiveSupport::TestCase
     new_vehicle.save
 
     assert_equal new_vehicle.vehicle.slug, "2008-kawasaki-kx450f-test"
-  end
-
-  test "VehicleForm should integer or string year attribute" do
-    vehicle = VehicleForm.new(brand: "Kawasaki", model: "KX450F", type: "Motorcycle", year: 2008)
-    assert vehicle.valid?
-
-    vehicle.year = "2008"
-    assert vehicle.valid?
-  end
-
-  test "VehicleForm should create new vehicle and association" do
-    vehicle = VehicleForm.new(brand: "Kawasaki", model: "KX450F", type: "Motorcycle", year: 2008)
-    assert vehicle.valid?
-
-    assert_difference ["Brand.count", "VehicleModel.count", "VehicleSubmodel.count", "Vehicle.count"] do
-      vehicle.save
-    end
-
-    new_vehicle = vehicle.vehicle
-    assert_equal new_vehicle.brand.name, "Kawasaki"
-  end
-
-  test "VehicleForm should select brand, model and nil submodel if no name is given" do
-    vehicle = VehicleForm.new(brand: "Kawasaki", model: "KX450F", type: "Motorcycle", year: 2008)
-    assert vehicle.valid?
-    vehicle.save
-    vehicle_count = Vehicle.count
-
-    new_vehicle = VehicleForm.new(brand: "Kawasaki", model: "KX450F", type: "Motorcycle", year: 2015)
-    assert new_vehicle.valid?
-
-    assert_no_difference ["Brand.count", "VehicleModel.count", "VehicleSubmodel.count"] do
-      new_vehicle.save
-    end
-    assert_equal Vehicle.count, vehicle_count + 1
-  end
-
-  test "VehicleForm should select brand, model and create submodel if name is given" do
-    vehicle = VehicleForm.new(brand: "Kawasaki", model: "KX450F", type: "Motorcycle", year: 2008)
-    assert vehicle.valid?
-    vehicle.save
-
-    new_vehicle = VehicleForm.new(brand: "Kawasaki", model: "KX450F", type: "Motorcycle", submodel: "Test", year: 2015)
-    assert new_vehicle.valid?
-
-    assert_difference ["Vehicle.count", "VehicleSubmodel.count"] do
-      new_vehicle.save
-    end
-  end
-
-  test "VehicleForm should return vehicle if already exists" do
-    vehicle = VehicleForm.new(brand: "Yamaha", model: "YZ250", type: "Motorcycle", year: 2006)
-    assert vehicle.valid?
-    vehicle.save
-
-    assert_no_difference ["Brand.count", "VehicleModel.count", "VehicleSubmodel.count", "Vehicle.count"] do
-      vehicle.save
-    end
-
-    assert_equal vehicle.vehicle, vehicles(:yz250)
   end
 end

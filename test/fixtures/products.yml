@@ -4,6 +4,12 @@ wheel:
   brand: yamaha
   category: wheel_assembly
 
+speedowheel:
+  name: "OEM Wheel assmbly with speedometer"
+  description: "Standard issue Yamaha offroad wheel"
+  brand: yamaha
+  category: wheel_assembly
+
 brake_pads:
   name: "Dominator Pads"
   description: "Heavy duty brake pads for all purposes"

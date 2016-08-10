@@ -13,23 +13,21 @@ class PartTest < ActiveSupport::TestCase
   should accept_nested_attributes_for(:part_traits)
 
   setup do
-    @new_category = Category.new(name: "Test")
-    @wheels = categories(:wheels)
-    @bearings = categories(:bearings)
-    @body = categories(:body)
-    @brakes = categories(:brakes)
-    @wheel_assembly = categories(:wheel_assembly)
-    @wheel_bearings = categories(:wheel_bearings)
-    @brake_pads = categories(:brake_pads)
+    @new_part = Part.new(product: products(:wheel), part_number: "1234", note: "More test info")
+    @wheel06yz = parts(:wheel06yz)
+    @wheel05yz = parts(:wheel05yz)
+    @wheel08yz = parts(:wheel08yz)
+    @wheel15yz = parts(:wheel15yz)
+    @brakepadste300 = parts(:brakepadste300)
+    @speedowheel17wr = parts(:speedowheel17wr)
   end
 
   test "fixtures should be valid" do
-    assert @wheels.valid?
-    assert @bearings.valid?
-    assert @body.valid?
-    assert @brakes.valid?
-    assert @wheel_assembly.valid?
-    assert @wheel_bearings.valid?
-    assert @brake_pads.valid?
+    assert @wheel06yz.valid?
+    assert @wheel05yz.valid?
+    assert @wheel08yz.valid?
+    assert @wheel15yz.valid?
+    assert @brakepadste300.valid?
+    assert @speedowheel17wr.valid?
   end
 end

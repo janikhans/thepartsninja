@@ -8,6 +8,16 @@ yz125:
   name: yz125
   vehicle_type: motorcycle
 
+yz450:
+  name: YZ450F
+  brand: yamaha
+  vehicle_type: motorcycle
+
+wr250:
+  name: WR250
+  brand: yamaha
+  vehicle_type: motorcycle
+
 f150:
   brand: ford
   name: F150

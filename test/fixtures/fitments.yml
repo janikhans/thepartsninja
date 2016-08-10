@@ -1,0 +1,27 @@
+wheel06yz250:
+  part: wheel06yz
+  vehicle: yz250
+
+wheel06yz125:
+  part: wheel06yz
+  vehicle: yz12506
+
+wheel05yz125:
+  part: wheel05yz
+  vehicle: yz125
+
+wheel08yz250:
+  part: wheel08yz
+  vehicle: yz25008
+
+wheel15yz450:
+  part: wheel15yz
+  vehicle: yz250
+
+speedowheel17wr250:
+  part: speedowheel17wr
+  vehicle: wr250
+
+brakepadste300:
+  part: brakepadste300
+  vehicle: te300

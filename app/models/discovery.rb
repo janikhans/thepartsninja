@@ -1,5 +1,6 @@
 class Discovery < ActiveRecord::Base
   belongs_to :user
+  validates :user, presence: true
   has_many :compatibles, dependent: :destroy
   has_many :steps, dependent: :destroy
   has_many :parts, through: :compatibles, source: :part

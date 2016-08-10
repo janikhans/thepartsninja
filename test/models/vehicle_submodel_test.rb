@@ -12,6 +12,8 @@ class VehicleSubmodelTest < ActiveSupport::TestCase
     @f150 = vehicle_submodels(:f150)
     @te300 = vehicle_submodels(:te300)
     @lariat = vehicle_submodels(:lariat)
+    @yz450 = vehicle_submodels(:yz450)
+    @wr250 = vehicle_submodels(:wr250)
   end
 
   test "fixtures should be valid" do
@@ -20,6 +22,8 @@ class VehicleSubmodelTest < ActiveSupport::TestCase
     assert @f150.valid?
     assert @te300.valid?
     assert @lariat.valid?
+    assert @wr250.valid?
+    assert @yz450.valid?
   end
 
   test "vehicle submodel should be unique on name and vehicle_model_id" do

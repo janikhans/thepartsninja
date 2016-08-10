@@ -4,6 +4,12 @@ yz250:
 yz125:
   vehicle_model: yz125
 
+yz450:
+  vehicle_model: yz450
+
+wr250:
+  vehicle_model: wr250
+
 f150:
   vehicle_model: f150
 

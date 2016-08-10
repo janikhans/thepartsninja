@@ -1,0 +1,25 @@
+location:
+  name: Location
+
+rim_size:
+  name: "Rim Size"
+
+front:
+  name: Front
+  parent_attribute: location
+
+rear:
+  name: Rear
+  parent_attribute: location
+
+rim19:
+  name: "19"
+  parent_attribute: rim_size
+
+rim21:
+  name: "21"
+  parent_attribute: rim_size
+
+rim18:
+  name: "18"
+  parent_attribute: rim_size

@@ -1,0 +1,31 @@
+one:
+  part: wheel06yz
+  compatible_part: wheel05yz
+  discovery: one
+
+two:
+  part: wheel05yz
+  compatible_part: wheel08yz
+  discovery: two
+
+three:
+  part: wheel08yz
+  compatible_part: wheel15yz
+  discovery: three
+
+four:
+  part: speedowheel17wr
+  compatible_part: wheel08yz
+  discovery: four
+  backwards: true
+
+five:
+  part: wheel08yz
+  compatible_part: speedowheel17wr
+  discovery: four
+  backwards: true
+
+six:
+  part: wheel06yz
+  compatible_part: brakepadste300
+  discovery: five

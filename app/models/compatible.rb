@@ -1,8 +1,16 @@
 class Compatible < ActiveRecord::Base
-
   belongs_to :part
+  validates :part, presence: true
+
   belongs_to :compatible_part, class_name: "Part"
+  validates :compatible_part, presence: true
+
   belongs_to :discovery
+  validates :discovery, presence: true
+
+  # TODO validation scope on compatible_part, part_id, discovery_id
+  # Make backwards_compatible into an after_create callback
+
   acts_as_votable
 
   def make_backwards_compatible
@@ -10,6 +18,6 @@ class Compatible < ActiveRecord::Base
     new_compat = self.dup
     new_compat.part, new_compat.compatible_part = new_compat.compatible_part, new_compat.part
     new_compat.save
+    # Compatible.create(part: self.compatible_part, compatible_part: self.part, discovery: self.discovery, backwards: true)
   end
-
 end

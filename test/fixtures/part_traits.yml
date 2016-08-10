@@ -1,0 +1,43 @@
+wheel06location:
+  part: wheel06yz
+  part_attribute: front
+
+wheel05location:
+  part: wheel05yz
+  part_attribute: front
+
+wheel08location:
+  part: wheel08yz
+  part_attribute: front
+
+wheel15location:
+  part: wheel15yz
+  part_attribute: front
+
+speedowheel17wrlocation:
+  part: speedowheel17wr
+  part_attribute: front
+
+wheel06rim_size:
+  part: wheel06yz
+  part_attribute: rim21
+
+wheel05rim_size:
+  part: wheel05yz
+  part_attribute: rim21
+
+wheel08rim_size:
+  part: wheel08yz
+  part_attribute: rim21
+
+wheel15rim_size:
+  part: wheel15yz
+  part_attribute: rim21
+
+speedowheel17wrrim_size:
+  part: speedowheel17wr
+  part_attribute: rim21
+
+brakepadslocation:
+  part: brakepadste300
+  part_attribute: rear

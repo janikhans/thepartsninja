@@ -2,9 +2,25 @@ yz250:
   vehicle_submodel: yz250
   vehicle_year: year06
 
+yz25008:
+  vehicle_submodel: yz250
+  vehicle_year: year08
+
 yz125:
   vehicle_submodel: yz125
   vehicle_year: year05
+
+yz12506:
+  vehicle_submodel: yz125
+  vehicle_year: year06
+
+yz450:
+  vehicle_submodel: yz450
+  vehicle_year: year15
+
+wr250:
+  vehicle_submodel: wr250
+  vehicle_year: year17
 
 f150:
   vehicle_submodel: f150

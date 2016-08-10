@@ -1,0 +1,29 @@
+wheel06yz:
+  part_number: 06-yz-250-front-wheel
+  note: "silver and what not"
+  product: wheel
+
+wheel05yz:
+  part_number: 05-yz-125-front-wheel
+  note: "silver and what not"
+  product: wheel
+
+wheel08yz:
+  part_number: 08-yz-250-front-wheel
+  note: "silver and what not"
+  product: wheel
+
+wheel15yz:
+  part_number: 15-yz450-front-wheel
+  note: "silver and what not"
+  product: wheel
+
+brakepadste300:
+  part_number: te-300-brake-pads
+  note: "silver and what not"
+  product: brake_pads
+
+speedowheel17wr:
+  part_number: 17-wr250-speedow-front-wheel
+  note: "Has the included speedo cables"
+  product: speedowheel

@@ -1,0 +1,16 @@
+one:
+  user: janik
+  comment: "This is a basic one way compatibility"
+
+two:
+  user: janik
+
+three:
+  user: hans
+
+four:
+  user: sensei
+
+five:
+  user: hans
+  comment: "I don't know what I'm doing"
