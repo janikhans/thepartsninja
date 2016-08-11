@@ -24,6 +24,3 @@
 
 #Ignore environment files
 .env
-
-#Ignore ruby-version
-.ruby-version
