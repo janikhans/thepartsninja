@@ -5,7 +5,7 @@ class CompatibleTest < ActiveSupport::TestCase
   should belong_to(:part)
   should validate_presence_of(:compatible_part)
   should belong_to(:compatible_part)
-  # should validate_uniqueness_of(:compatible_part).scoped_to(:part_id, :discovery_id)
+  should validate_uniqueness_of(:compatible_part).scoped_to(:part_id, :discovery_id)
   should belong_to(:discovery)
   should validate_presence_of(:discovery)
 
@@ -39,5 +39,17 @@ class CompatibleTest < ActiveSupport::TestCase
     assert_equal Compatible.count, compatible_count + 2
     assert_equal compatible.part, last_compatible.compatible_part
     assert_equal compatible.compatible_part, last_compatible.part
+  end
+
+  test "compatible should have votes" do
+    User.all.each do |u|
+      @one.upvote_by u
+      @six.downvote_by u
+    end
+    compatible = @one
+    bad_compatible = @six
+
+    assert_equal compatible.cached_votes_score, 10
+    assert_equal bad_compatible.cached_votes_score, -10
   end
 end

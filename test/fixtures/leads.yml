@@ -1,0 +1,16 @@
+one:
+  email: test@example.com
+  auto: true
+  streetbike: true
+  watercraft: true
+
+two:
+  email: another@test.com
+  dualsport: true
+  dirtbike: true
+
+three:
+  email: blah@blah.com
+  utv: true
+  atv: true
+  snowmobile: true

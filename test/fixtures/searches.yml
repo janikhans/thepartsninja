@@ -1,0 +1,27 @@
+one:
+  brand: Yamaha
+  model: YZ250
+  year: 2008
+  part: "Wheel Assembly"
+
+two:
+  brand: Yamaha
+  model: YZ450F
+  year: 2006
+  part: "Brake Pads"
+
+three:
+  vehicle: yz250
+  user: janik
+  part: "Complete Wheel Assembly"
+  compatibles: 2
+  potentials: 4
+
+four:
+  brand: Kawasaki
+  model: KX450F
+  year: 2008
+  user: janik
+  part: "Complete Wheel Assembly"
+  compatibles: 2
+  potentials: 4

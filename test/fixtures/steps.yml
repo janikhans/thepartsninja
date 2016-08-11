@@ -1,0 +1,11 @@
+one:
+  discovery: one
+  content: "Step one"
+
+two:
+  discovery: one
+  content: "Step two"
+
+three:
+  discovery: two
+  content: "Stuff"

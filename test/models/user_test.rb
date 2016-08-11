@@ -31,6 +31,8 @@ class UserTest < ActiveSupport::TestCase
 
     assert @sensei.valid?
     assert @sensei.admin?
+
+    assert_equal User.count, 10
   end
 
   test "username should be acceptable" do

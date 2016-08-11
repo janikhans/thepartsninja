@@ -3,13 +3,14 @@ class Compatible < ActiveRecord::Base
   validates :part, presence: true
 
   belongs_to :compatible_part, class_name: "Part"
-  validates :compatible_part, presence: true
+  validates :compatible_part,
+    presence: true,
+    uniqueness: { scope: [:discovery_id, :part_id] }
 
   belongs_to :discovery
   validates :discovery, presence: true
 
-  # TODO validation scope on compatible_part, part_id, discovery_id
-  # Make backwards_compatible into an after_create callback
+  # TODO Make backwards_compatible into an after_create callback
 
   acts_as_votable
 

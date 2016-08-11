@@ -11,3 +11,9 @@ sensei:
   username: theSensei
   email: theSensei@thepartsninja.com
   role: 1
+
+<% 7.times do |n| %>
+user_<%= n %>:
+  username: <%= "user#{n}" %>
+  email: <%= "user#{n}@example.com" %>
+<% end %>

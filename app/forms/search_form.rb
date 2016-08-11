@@ -12,12 +12,17 @@ class SearchForm
   # TODO better validations, such as only integers, no symbols etc
   # Return vehicle after save
   # more safety checks etc
+  # rename that results method to something better
 
   validates :brand, :model, :part,
     length: { maximum: 75},
     presence: true
 
+  validates :submodel,
+    length: { maximum: 75 }
+
   validates :year,
+    presence: true,
     numericality: { only_integer: true },
     inclusion: { in: 1900..Date.today.year+1,
                  message: "needs to be between 1900-#{Date.today.year+1}"}
