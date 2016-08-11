@@ -1,4 +1,7 @@
 class PartTrait < ActiveRecord::Base
+  # FIXME as with PartAttribute, this model should be renamed
+  # potentiall PartAttribution?
+  
   belongs_to :part
   validates :part, presence: true
 

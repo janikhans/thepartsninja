@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  # TODO user should have karma, car-ma, gas, reputation, whatever ranking system
+  # user should be seteup with a soft delete
+  # look through and verify which associated objects should be dependent: :destroy
 
   #Lets make those URLs pretty. SEO and whatnot.
   extend FriendlyId

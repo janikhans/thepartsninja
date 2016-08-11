@@ -26,4 +26,8 @@ class CategoryTest < ActiveSupport::TestCase
     assert @wheel_bearings.valid?
     assert @brake_pads.valid?
   end
+
+  # TODO fix validation above on uniquness scope
+  # tests to check for sanitization methods
+  # users will probably have to create some of these types so look into that
 end

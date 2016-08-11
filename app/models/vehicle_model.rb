@@ -1,4 +1,7 @@
 class VehicleModel < ActiveRecord::Base
+  # TODO will we ever need those accepts_nested_attributes_for?
+  # sanitizing - first letter for sure
+
   validates :name,
     presence: true,
     uniqueness: { scope: :brand_id, case_sensitive: false }

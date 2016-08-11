@@ -1,11 +1,16 @@
 class Brand < ActiveRecord::Base
+  # TODO brand will eventually need some attribute to show if it's a
+  # vehicle manufacturer, part manufacturer and/or both
+  # Potentially an ebay ID
+  # potentially a user_id if it's added by a user
+
   extend FriendlyId
   friendly_id :name, use: [:finders, :slugged]
 
   has_many :vehicle_models,
     inverse_of: :brand,
     dependent: :destroy
-    
+
   has_many :products,
     dependent: :destroy
 

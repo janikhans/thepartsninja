@@ -1,4 +1,7 @@
 class Discovery < ActiveRecord::Base
+  # TODO this is going to become it's own form. most things here will be deleted
+  # should also have a new association to a new model Comments
+
   belongs_to :user
   validates :user, presence: true
   has_many :compatibles, dependent: :destroy

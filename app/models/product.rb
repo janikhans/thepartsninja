@@ -1,4 +1,9 @@
 class Product < ActiveRecord::Base
+  # TODO potentially fix/remove these getter/setter methods.
+  # Maybe the PartForm will replace all of this
+  # slug should not include the brand in the future since the url will include it
+  # when nested routes are used
+
   extend FriendlyId
   friendly_id :slug_candidates, use: [:finders, :slugged]
 

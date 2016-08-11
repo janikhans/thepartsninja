@@ -1,4 +1,6 @@
 class Fitment < ActiveRecord::Base
+  # TODO a column showing the source of the fitment. User/Discovery/Ebay/etc
+
   belongs_to :part
   validates :part,
     presence: true,

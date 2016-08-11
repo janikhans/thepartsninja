@@ -1,24 +1,21 @@
 class Part < ActiveRecord::Base
+  # TODO column with Ebay ID if it's from the Ebay database.
+  # Eventually every part should require a part_number - Maybe
+  # asssociated table with part_numbers from various suppliers
+  # this part_number is the OEM supplied part_number
+
   extend FriendlyId
   friendly_id :part_number, use: [:finders]
 
   validates :product, presence: true
-
-  # include CompatiblesFinder
-
   belongs_to :product
+
   belongs_to :user
   has_many :fitments, dependent: :destroy
   has_many :oem_vehicles, through: :fitments, source: :vehicle
   has_many :part_traits, dependent: :destroy
   has_many :part_attributes, through: :part_traits, source: :part_attribute
   has_many :compatibles, dependent: :destroy
-
-
-  # has_many :known_compatibles,               -> {where backwards: true}, class_name: "Compatible", foreign_key: "part_id"
-  # has_many :backwards_compatibles,           -> {where backwards: true}, class_name: "Compatible", foreign_key: "compatible_part_id"
-  # has_many :known_not_backwards_compatibles, -> {where backwards: false}, class_name: "Compatible", foreign_key: "part_id"
-  # has_many :potential_compatibles,           -> {where backwards: false}, class_name: "Compatible", foreign_key: "compatible_part_id"
 
   accepts_nested_attributes_for :part_traits, reject_if: :all_blank, allow_destroy: true
 

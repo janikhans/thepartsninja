@@ -10,6 +10,7 @@ class SearchForm
   attr_reader :vehicle, :search_record, :existing_part, :oem_results, :potential_results, :compatible_results
 
   # TODO better validations, such as only integers, no symbols etc
+  # search should search by similar name, instead of exact - future on description
   # Return vehicle after save
   # more safety checks etc
   # rename that results method to something better

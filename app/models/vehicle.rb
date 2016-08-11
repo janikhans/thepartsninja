@@ -1,4 +1,9 @@
 class Vehicle < ActiveRecord::Base
+  # FIXME should have an attribute for ebay vehicle ID
+  # possible a user_id attribute for the user who created it?
+  # change the slug in the future for canonical urls /year/brand/model/submodel - maybe?
+  # look at these methods and see if there's a better way of clearning that up
+   
   #Lets make those URLs nice and SEO friendly
   extend FriendlyId
   friendly_id :slug_candidates, use: [:finders, :slugged]

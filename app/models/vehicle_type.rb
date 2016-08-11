@@ -1,4 +1,8 @@
 class VehicleType < ActiveRecord::Base
+  # TODO subcategories for vehicle_types
+  # Motorcycle: [dirtbike, dual-sport, streetbike, enduro, etc]
+  # set permission so that only admin can create a new vehicle_type
+  
   before_validation :sanitize_name
   validates :name,
     presence: true,

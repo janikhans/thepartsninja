@@ -1,4 +1,7 @@
 class Compatible < ActiveRecord::Base
+  # TODO change the :backward column attribute somehow. Maybe a second attribute
+  # with an id to the other backwards:true reference?
+
   belongs_to :part
   validates :part, presence: true
 
