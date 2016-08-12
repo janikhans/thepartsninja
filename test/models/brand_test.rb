@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class BrandTest < ActiveSupport::TestCase
+class BrandTest < UnitTest
   should validate_presence_of(:name)
   should validate_uniqueness_of(:name).with_message("brand already exists")
   should have_many(:vehicle_models).dependent(:destroy)

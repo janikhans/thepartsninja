@@ -1,6 +1,8 @@
 require 'test_helper'
 
-class VehicleYearTest < ActiveSupport::TestCase
+class VehicleYearTest < UnitTest
+  # assert_all_fixtures_valid(VehicleYear)
+
   should validate_presence_of(:year)
   should validate_uniqueness_of(:year)
   should validate_numericality_of(:year)

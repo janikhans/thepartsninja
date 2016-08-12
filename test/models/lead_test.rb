@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class LeadTest < ActiveSupport::TestCase
+class LeadTest < UnitTest
   should validate_presence_of(:email)
   should validate_length_of(:email).is_at_most(255)
 

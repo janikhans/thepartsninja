@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class VehicleTest < ActiveSupport::TestCase
+class VehicleTest < UnitTest
   should belong_to(:vehicle_year)
   # should validate_presence_of(:vehicle_year)
   should belong_to(:vehicle_submodel)

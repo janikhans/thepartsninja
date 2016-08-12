@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class VehicleFormTest < ActiveSupport::TestCase
+class VehicleFormTest < UnitTest
   should validate_presence_of(:brand)
   should validate_presence_of(:model)
   should validate_presence_of(:type)

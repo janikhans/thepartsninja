@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class SearchTest < ActiveSupport::TestCase
+class SearchTest < UnitTest
   should belong_to(:user)
   should belong_to(:vehicle)
 

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class DiscoveryTest < ActiveSupport::TestCase
+class DiscoveryTest < UnitTest
   should validate_presence_of(:user)
   should belong_to(:user)
   should have_many(:compatibles).dependent(:destroy)

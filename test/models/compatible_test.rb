@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CompatibleTest < ActiveSupport::TestCase
+class CompatibleTest < UnitTest
   should validate_presence_of(:part)
   should belong_to(:part)
   should validate_presence_of(:compatible_part)

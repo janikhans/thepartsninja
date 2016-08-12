@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class VehicleTypeTest < ActiveSupport::TestCase
+class VehicleTypeTest < UnitTest
   should validate_presence_of(:name)
   should validate_uniqueness_of(:name)
   should have_many(:vehicle_models)

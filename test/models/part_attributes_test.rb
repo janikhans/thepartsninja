@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class PartAttributeTest < ActiveSupport::TestCase
+class PartAttributeTest < UnitTest
   should validate_presence_of(:name)
   # should validate_uniqueness_of(:name).scoped_to(:parent_id)
   should have_many(:attribute_variations).dependent(:destroy)

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class PartTest < ActiveSupport::TestCase
+class PartTest < UnitTest
   should validate_presence_of(:product)
   # should validate_uniqueness_of(:part_number).scoped_to(:product_id)
   should belong_to(:product)

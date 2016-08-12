@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class UserTest < ActiveSupport::TestCase
+class UserTest < UnitTest
   should validate_uniqueness_of(:username)
   should validate_presence_of(:username)
   should validate_uniqueness_of(:email)

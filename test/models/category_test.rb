@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CategoryTest < ActiveSupport::TestCase
+class CategoryTest < UnitTest
   should validate_presence_of(:name)
   # should validate_uniqueness_of(:name).scoped_to(:parent_id)
   should have_many(:subcategories).dependent(:destroy)

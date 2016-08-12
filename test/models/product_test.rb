@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ProductTest < ActiveSupport::TestCase
+class ProductTest < UnitTest
   should validate_presence_of(:name)
   should belong_to(:brand)
   should validate_presence_of(:brand)

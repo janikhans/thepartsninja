@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class StepTest < ActiveSupport::TestCase
+class StepTest < UnitTest
   should validate_presence_of(:discovery)
   should belong_to(:discovery)
   should validate_presence_of(:content)

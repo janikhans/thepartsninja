@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class FitmentTest < ActiveSupport::TestCase
+class FitmentTest < UnitTest
   should validate_presence_of(:vehicle)
   should belong_to(:vehicle)
   should validate_presence_of(:part)
