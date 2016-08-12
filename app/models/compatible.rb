@@ -1,4 +1,4 @@
-class Compatible < ActiveRecord::Base
+class Compatible < ApplicationRecord
   # TODO change the :backward column attribute somehow. Maybe a second attribute
   # with an id to the other backwards:true reference?
 

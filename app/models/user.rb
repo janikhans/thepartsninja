@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   # TODO user should have karma, car-ma, gas, reputation, whatever ranking system
   # user should be seteup with a soft delete
   # look through and verify which associated objects should be dependent: :destroy

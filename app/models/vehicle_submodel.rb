@@ -1,4 +1,4 @@
-class VehicleSubmodel < ActiveRecord::Base
+class VehicleSubmodel < ApplicationRecord
   belongs_to :vehicle_model,
     inverse_of: :vehicle_submodels
 

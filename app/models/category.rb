@@ -1,6 +1,6 @@
-class Category < ActiveRecord::Base
+class Category < ApplicationRecord
   # TODO should users have the ability to go through and add new categories?
-  
+
   scope :subcategories, -> { where.not(parent_id: nil) }
 
   belongs_to :parent

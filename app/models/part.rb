@@ -1,4 +1,4 @@
-class Part < ActiveRecord::Base
+class Part < ApplicationRecord
   # TODO column with Ebay ID if it's from the Ebay database.
   # Eventually every part should require a part_number - Maybe
   # asssociated table with part_numbers from various suppliers

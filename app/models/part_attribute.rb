@@ -1,4 +1,4 @@
-class PartAttribute < ActiveRecord::Base
+class PartAttribute < ApplicationRecord
   # FIXME rename this to something better
   # scope naming needs to be changed to something more concise
 
@@ -12,7 +12,7 @@ class PartAttribute < ActiveRecord::Base
     class_name: "PartAttribute",
     foreign_key: "parent_id",
     dependent: :destroy
-    
+
   belongs_to :parent_attribute,
     class_name: "PartAttribute",
     foreign_key: "parent_id"

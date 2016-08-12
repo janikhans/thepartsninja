@@ -1,4 +1,4 @@
-class VehicleYear < ActiveRecord::Base
+class VehicleYear < ApplicationRecord
   # TODO set permission so that only an admin can create a new vehicle_year
   # vehicle_years that aren't integers are still valid entries
 

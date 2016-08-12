@@ -1,4 +1,4 @@
-class Profile < ActiveRecord::Base
+class Profile < ApplicationRecord
   # TODO add more user profile attributes such as facebook, twitter, insta, etc
   # Should the profile store the users car-ma?
 

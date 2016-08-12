@@ -1,4 +1,4 @@
-class Fitment < ActiveRecord::Base
+class Fitment < ApplicationRecord
   # TODO a column showing the source of the fitment. User/Discovery/Ebay/etc
 
   belongs_to :part

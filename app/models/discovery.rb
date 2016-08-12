@@ -1,4 +1,4 @@
-class Discovery < ActiveRecord::Base
+class Discovery < ApplicationRecord
   # TODO this is going to become it's own form. most things here will be deleted
   # should also have a new association to a new model Comments
 

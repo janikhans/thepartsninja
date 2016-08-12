@@ -1,4 +1,4 @@
-class Product < ActiveRecord::Base
+class Product < ApplicationRecord
   # TODO potentially fix/remove these getter/setter methods.
   # Maybe the PartForm will replace all of this
   # slug should not include the brand in the future since the url will include it

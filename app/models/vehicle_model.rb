@@ -1,4 +1,4 @@
-class VehicleModel < ActiveRecord::Base
+class VehicleModel < ApplicationRecord
   # TODO will we ever need those accepts_nested_attributes_for?
   # sanitizing - first letter for sure
 

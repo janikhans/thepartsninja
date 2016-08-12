@@ -1,4 +1,4 @@
-class Lead < ActiveRecord::Base
+class Lead < ApplicationRecord
   # TODO potentiall sanitize email addresses and check uniqueness
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i

@@ -1,4 +1,4 @@
-class Brand < ActiveRecord::Base
+class Brand < ApplicationRecord
   # TODO brand will eventually need some attribute to show if it's a
   # vehicle manufacturer, part manufacturer and/or both
   # Potentially an ebay ID
