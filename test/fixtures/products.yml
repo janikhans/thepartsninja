@@ -1,11 +1,11 @@
 wheel:
-  name: "OEM Wheel assmbly"
+  name: "OEM Wheel assembly"
   description: "Standard issue Yamaha wheel"
   brand: yamaha
   category: wheel_assembly
 
 speedowheel:
-  name: "OEM Wheel assmbly with speedometer"
+  name: "OEM Wheel assembly with speedometer"
   description: "Standard issue Yamaha offroad wheel"
   brand: yamaha
   category: wheel_assembly

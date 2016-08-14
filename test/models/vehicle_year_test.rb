@@ -2,6 +2,7 @@ require 'test_helper'
 
 class VehicleYearTest < UnitTest
   # assert_all_fixtures_valid(VehicleYear)
+  # find_all_invalid_fixtures
 
   should validate_presence_of(:year)
   should validate_uniqueness_of(:year)
@@ -27,4 +28,5 @@ class VehicleYearTest < UnitTest
     assert @year17.valid?
     assert_not @not_valid.valid?
   end
+
 end

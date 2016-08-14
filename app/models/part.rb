@@ -3,6 +3,8 @@ class Part < ApplicationRecord
   # Eventually every part should require a part_number - Maybe
   # asssociated table with part_numbers from various suppliers
   # this part_number is the OEM supplied part_number
+  # part_number is required if no associated vehicles exist
+  # uniqueness on part_number and product_id
 
   extend FriendlyId
   friendly_id :part_number, use: [:finders]

@@ -1,5 +1,6 @@
 class Fitment < ApplicationRecord
   # TODO a column showing the source of the fitment. User/Discovery/Ebay/etc
+  # Will have has_many flag table to show which fitments are reported.
 
   belongs_to :part
   validates :part,

@@ -14,3 +14,6 @@ three:
   utv: true
   atv: true
   snowmobile: true
+
+four:
+  email: bademail.com

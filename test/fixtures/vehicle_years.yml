@@ -18,3 +18,9 @@ year17:
 
 not_valid:
   year: <%= Date.today.year + 2 %>
+
+yEAR:
+  year: 2019
+
+year200:
+  year: abc
