@@ -16,7 +16,6 @@ class VehicleYearTest < UnitTest
     @year15 = vehicle_years(:year15)
     @year16 = vehicle_years(:year16)
     @year17 = vehicle_years(:year17)
-    @not_valid = vehicle_years(:not_valid)
   end
 
   test "fixtures should be valid" do
@@ -26,7 +25,6 @@ class VehicleYearTest < UnitTest
     assert @year15.valid?
     assert @year16.valid?
     assert @year17.valid?
-    assert_not @not_valid.valid?
   end
 
 end

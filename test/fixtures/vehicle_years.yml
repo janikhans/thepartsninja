@@ -15,12 +15,3 @@ year16:
 
 year17:
   year: 2017
-
-not_valid:
-  year: <%= Date.today.year + 2 %>
-
-yEAR:
-  year: 2019
-
-year200:
-  year: abc

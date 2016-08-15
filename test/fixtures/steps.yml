@@ -9,6 +9,3 @@ two:
 three:
   discovery: two
   content: "Stuff"
-
-four:
-  content: "Badddd"
