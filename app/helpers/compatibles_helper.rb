@@ -16,9 +16,9 @@ module CompatiblesHelper
   #Changes color of the score based on its over score
   def compatible_score_color(compatible)
     if compatible.cached_votes_score > 0
-      'class = green'
+      'green'
     elsif compatible.cached_votes_score < 0
-      'class = red'
+      'red'
     else
       nil
     end
@@ -29,7 +29,7 @@ module CompatiblesHelper
     if current_user
       capture do
         concat link_to('', upvote_compatible_path(compatible.id), remote: true, id: "upvote_#{compatible.id}", class: "fa fa-chevron-up #{upvoted_compatible compatible} up")
-        concat content_tag(:div, "#{compatible.cached_votes_score}", class: "#{compatible_score_color(compatible)}")
+        concat content_tag(:div, "#{compatible.cached_votes_score}", id: "compat_#{compatible.id}_score", class: "#{compatible_score_color(compatible)}", value:"#{compatible.cached_votes_score}")
         concat link_to('', downvote_compatible_path(compatible.id), remote: true, id: "downvote_#{compatible.id}", class: "fa fa-chevron-down #{downvoted_compatible compatible} down")
       end
     else

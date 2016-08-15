@@ -1,2 +1,3 @@
 $("#upvote_<%= @compatible.id %>").addClass('upvoted');
 $("#downvote_<%= @compatible.id %>").removeClass('downvoted');
+$("#compat_<%= @compatible.id %>_score").html(<%= @compatible.cached_votes_score %>)
