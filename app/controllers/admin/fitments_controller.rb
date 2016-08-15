@@ -15,35 +15,24 @@ class Admin::FitmentsController < Admin::DashboardController
   def create
     @fitment = current_user.fitments.build(fitment_params)
 
-    respond_to do |format|
-      if @fitment.save
-        format.html { redirect_to admin_fitment_path(@fitment), notice: 'Fitment was successfully created.' }
-        format.json { render :show, status: :created, location: [:admin, @fitment] }
-      else
-        format.html { render :new }
-        format.json { render json: @fitment.errors, status: :unprocessable_entity }
-      end
+    if @fitment.save
+      redirect_to admin_fitment_path(@fitment), notice: 'Fitment was successfully created.'
+    else
+      render :new
     end
   end
 
   def update
-    respond_to do |format|
-      if @fitment.update(fitment_params)
-        format.html { redirect_to admin_fitment_path(@fitment), notice: 'Fitment was successfully updated.' }
-        format.json { render :show, status: :ok, location: [:admin, @fitment] }
-      else
-        format.html { render :edit }
-        format.json { render json: @fitment.errors, status: :unprocessable_entity }
-      end
+    if @fitment.update(fitment_params)
+      redirect_to admin_fitment_path(@fitment), notice: 'Fitment was successfully updated.'
+    else
+      render :edit
     end
   end
 
   def destroy
     @fitment.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_fitments_path, notice: 'Fitment was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to admin_fitments_path, notice: 'Fitment was successfully destroyed.'
   end
 
   private

@@ -18,30 +18,24 @@ class Admin::PartAttributesController < Admin::DashboardController
   def create
     @part_attribute = PartAttribute.new(part_attribute_params)
 
-    respond_to do |format|
-      if @part_attribute.save
-        format.html { redirect_to admin_part_attributes_path, notice: 'Part Attribute was successfully created.' }
-      else
-        format.html { render :index }
-      end
+    if @part_attribute.save
+      redirect_to admin_part_attributes_path, notice: 'Part Attribute was successfully created.'
+    else
+      render :index
     end
   end
 
   def update
-    respond_to do |format|
-      if @part_attribute.update(part_attribute_params)
-        format.html { redirect_to admin_part_attribute_path(@part_attribute), notice: 'Part Attribute was successfully updated.' }
-      else
-        format.html { render :edit }
-      end
+    if @part_attribute.update(part_attribute_params)
+      redirect_to admin_part_attribute_path(@part_attribute), notice: 'Part Attribute was successfully updated.'
+    else
+      render :edit
     end
   end
 
   def destroy
     @part_attribute.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_categories_url, notice: 'Part Attribute was successfully destroyed.' }
-    end
+    redirect_to admin_categories_url, notice: 'Part Attribute was successfully destroyed.'
   end
 
   private

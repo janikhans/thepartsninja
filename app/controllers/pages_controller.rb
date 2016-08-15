@@ -27,6 +27,4 @@ class PagesController < ApplicationController
   def privacy
     prepare_meta_tags title: "Privacy Policy"
   end
-
-
 end

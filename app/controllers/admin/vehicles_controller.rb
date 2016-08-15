@@ -30,26 +30,20 @@ class Admin::VehiclesController < Admin::DashboardController
   end
 
   def update
-    respond_to do |format|
-      if @vehicle.update(vehicle_params)
-        format.html { redirect_to admin_vehicles_path(@vehicle), notice: 'Vehicle was successfully updated.' }
-        format.json { render :show, status: :ok, location: [:admin, @vehicle] }
-      else
-        format.html { render :edit }
-        format.json { render json: @vehicle.errors, status: :unprocessable_entity }
-      end
+    if @vehicle.update(vehicle_params)
+      redirect_to admin_vehicles_path(@vehicle), notice: 'Vehicle was successfully updated.'
+    else
+      render :edit
     end
   end
 
   def destroy
     @vehicle.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_vehicles_path, notice: 'Vehicle was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to admin_vehicles_path, notice: 'Vehicle was successfully destroyed.'
   end
 
   private
+  
     def set_vehicle
       @vehicle = Vehicle.find(params[:id])
     end
@@ -57,9 +51,4 @@ class Admin::VehiclesController < Admin::DashboardController
     def vehicle_params
       params.require(:vehicle).permit(:brand, :model, :submodel, :year, :type)
     end
-
-    # def vehicle_params
-    #   params.require(:vehicle).permit(:vehicle_year_id, :vehicle_submodel_id, vehicle_submodel_attributes: [:id, :name, :vehicle_model_id, :_destroy, vehicle_model_attributes: [:id, :name, :brand_id, :_destroy, brand_attributes: [:id, :name, :_destroy]]])
-    # end
-
 end

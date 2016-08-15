@@ -8,10 +8,7 @@ class Admin::LeadsController < Admin::DashboardController
 
    def destroy
      @lead.destroy
-     respond_to do |format|
-       format.html { redirect_to admin_leads_path, notice: 'Lead was successfully destroyed.' }
-       format.json { head :no_content }
-     end
+      redirect_to admin_leads_path, notice: 'Lead was successfully destroyed.'
    end
 
    private
@@ -19,5 +16,4 @@ class Admin::LeadsController < Admin::DashboardController
      def set_lead
        @lead = Lead.find(params[:id])
      end
-
  end

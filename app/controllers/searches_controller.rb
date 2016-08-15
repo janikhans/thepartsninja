@@ -11,5 +11,4 @@ class SearchesController < ApplicationController
       redirect_to coming_soon_path
     end
   end
-
 end

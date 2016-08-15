@@ -17,35 +17,24 @@ class Admin::ProductsController < Admin::DashboardController
   def create
     @product = current_user.products.build(product_params)
 
-    respond_to do |format|
-      if @product.save
-        format.html { redirect_to admin_product_path(@product), notice: 'Product was successfully created.' }
-        format.json { render :show, status: :created, location: [:admin, @product] }
-      else
-        format.html { render :index }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
-      end
+    if @product.save
+      redirect_to admin_product_path(@product), notice: 'Product was successfully created.'
+    else
+      render :index
     end
   end
 
   def update
-    respond_to do |format|
-      if @product.update(product_params)
-        format.html { redirect_to admin_product_path(@product), notice: 'Product was successfully updated.' }
-        format.json { render :show, status: :ok, location: [:admin, @product] }
-      else
-        format.html { render :edit }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
-      end
+    if @product.update(product_params)
+      redirect_to admin_product_path(@product), notice: 'Product was successfully updated.'
+    else
+      render :edit
     end
   end
 
   def destroy
     @product.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_products_path, notice: 'Product was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to admin_products_path, notice: 'Product was successfully destroyed.'
   end
 
   private

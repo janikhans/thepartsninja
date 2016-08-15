@@ -9,5 +9,4 @@ class Admin::DashboardController < ApplicationController
     @discoveries = Discovery.count
     @searches = Search.where(created_at: (Time.now - 24.hours)..Time.now).count
   end
-
 end
