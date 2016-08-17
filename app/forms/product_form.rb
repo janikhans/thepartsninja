@@ -6,7 +6,7 @@ class ProductForm
     ActiveModel::Name.new(self, nil, "Product")
   end
 
-  attr_accessor :brand, :product_name, :category, :subcategory
+  attr_accessor :brand, :product_name, :category, :subcategory, :user
   attr_reader :product
 
   before_validation :sanitize_fields
@@ -20,9 +20,9 @@ class ProductForm
       brand = Brand.where('lower(name) = ?', @brand.downcase).first_or_create!(name: @brand)
       category = Category.where('lower(name) = ? AND parent_id IS ?', @category.downcase, nil).first_or_create!(name: @category, parent_id: nil)
       subcategory = category.subcategories.where('lower(name) = ?', @subcategory.downcase).first_or_create!(name: @subcategory)
-      @product = brand.products.where('lower(name) = ? AND category_id = ?', @product_name.downcase, subcategory.id).first_or_create!(name: @product_name, category: subcategory)
+      @product = brand.products.where('lower(name) = ? AND category_id = ?', @product_name.downcase, subcategory.id).first_or_create!(name: @product_name, category: subcategory, user: @user)
     else
-      return false
+      false
     end
   end
 

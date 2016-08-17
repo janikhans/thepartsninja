@@ -1,7 +1,7 @@
 <ul>
 <% subcategories.each do |sub| %>
 <li>
-<%= sub.name %> <%= link_to "Edit", edit_admin_category_path(sub)%> <%= link_to "Delete", admin_category_path(sub), :method => 'delete', data: { confirm: 'Are you sure?' } %>
+<%= sub.name %> <%= link_to "Show", admin_category_path(sub), class: "hover-link" %>
 <%= render partial: 'subcategory', locals: {subcategories: sub.subcategories} if sub.subcategories.present? %>
 </li>
 <% end %>

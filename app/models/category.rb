@@ -2,6 +2,7 @@ class Category < ApplicationRecord
   # TODO should users have the ability to go through and add new categories?
 
   scope :subcategories, -> { where.not(parent_id: nil) }
+  scope :parent_categories, -> {where(parent_id: nil)}
 
   belongs_to :parent
   has_many :products, dependent: :restrict_with_error

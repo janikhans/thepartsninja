@@ -138,4 +138,14 @@ class ProductFormTest < UnitTest
       product.save
     end
   end
+
+  test "should set user if user is given" do
+    product = @product
+    product.user = users(:janik)
+    assert product.valid?
+
+    product.save
+
+    assert_equal product.product.user, users(:janik)
+  end
 end

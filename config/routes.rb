@@ -12,13 +12,13 @@ Rails.application.routes.draw do
   #Namespace routes for Admins only
   namespace :admin do
     get '', to: 'dashboard#index', as: '/'
-    resources :leads, only: [:index, :create, :destroy]
-    resources :fitments, :brands, :categories, :parts, :products, :part_attributes, except: [:new]
-    resources :compatibles, :vehicles
-    resources :users, except: [:new]
-    resources :discoveries, except: [:new, :create]
+    resources :compatibles, :vehicles, :products
+    resources :fitments, :brands, :categories, :parts, :part_attributes, :vehicle_types, :users, except: [:new]
+    resources :attributes, only: [:index]
     resources :searches, only: [:index, :destroy]
-    resources :vehicle_models, only: [:new, :edit, :create, :update, :destroy]
+    resources :leads, only: [:index, :create, :destroy]
+    resources :discoveries, except: [:new, :create]
+    resources :vehicle_models, except: [:index, :show]
     controller :auto_complete do
       get :update_models
     end

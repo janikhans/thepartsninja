@@ -1,7 +1,7 @@
 <ul>
 <% attribute_variations.each do |variation| %>
 <li>
-<%= variation.name %> <%= link_to "Edit", edit_admin_part_attribute_path(variation)%>
+<%= variation.name %> <%= link_to "Show", admin_part_attribute_path(variation), class: "hover-link" %>
 <%= render partial: 'variation', locals: {attribute_variations: variation.attribute_variations} if variation.attribute_variations.present? %>
 </li>
 <% end %>

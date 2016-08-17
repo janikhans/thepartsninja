@@ -3,9 +3,10 @@ class Admin::ProductsController < Admin::DashboardController
 
   def index
     @products = Product.page(params[:page]).order("name ASC")
-    @product = Product.new
-    @brands = Brand.all
-    @categories = Category.all
+    @product = ProductForm.new
+  end
+
+  def new
   end
 
   def show
@@ -15,17 +16,18 @@ class Admin::ProductsController < Admin::DashboardController
   end
 
   def create
-    @product = current_user.products.build(product_params)
+    @product = ProductForm.new(product_params)
+    @product.user = current_user
 
     if @product.save
-      redirect_to admin_product_path(@product), notice: 'Product was successfully created.'
+      redirect_to admin_product_path(@product.product), notice: 'Product was successfully created.'
     else
-      render :index
+      render :new
     end
   end
 
   def update
-    if @product.update(product_params)
+    if @product.update(edit_product_params)
       redirect_to admin_product_path(@product), notice: 'Product was successfully updated.'
     else
       render :edit
@@ -43,6 +45,10 @@ class Admin::ProductsController < Admin::DashboardController
     end
 
     def product_params
-      params.require(:product).permit(:name, :description, :brand_id, :category_id)
+      params.require(:product).permit(:product_name, :brand, :category, :subcategory)
+    end
+
+    def edit_product_params
+      params.require(:product).permit(:name, :description, :category_id)
     end
 end

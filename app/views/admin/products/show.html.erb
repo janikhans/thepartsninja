@@ -1,24 +1,42 @@
-<% provide(:header, "Showing Product: #{@product.brand.name} #{@product.name}") %>
+<% provide(:header, "#{@product.brand.name} #{@product.name}") %>
 
-
-<h3><strong>Brand:</strong> <%= @product.brand.name %> </h3>
-<h3><strong>Part:</strong> <%= @product.name %></h3>
-<h3><strong>Category:</strong> <%= @product.category.name %></h3>
-<h4>Description</h4>
-<small> <%= @product.description %> </small>
-<% if @product.parts.any? %>
-  <h5>The <%= @product.brand.name %> <%= @product.name %> was designed for these vehicles</h5>
-      <div class="row">
-        <% @product.parts.each do |p|%>
-          <% p.oem_vehicles.each do |v| %>
-            <div class="col-md-3 col-xs-6 oem-vehicle">
-             <%= v.vehicle_year.year %> <%= v.brand.name %> <%= v.model %> <%= link_to "PN: #{p.part_number}", p  %>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="action-btns pull-right">
+            <%= link_to 'Edit', edit_admin_product_path(@product) %> |
+            <%= link_to 'Delete', admin_product_path(@product), method: :delete, data: {confirm: "Are you sure"} %>
+          </div>
+          <h3>Brand:<small> <%= link_to @product.brand.name, admin_brand_path(@product.brand) %></small> </h3>
+          <h3>Product Name:<small> <%= @product.name %></small></h3>
+          <h3>Category:<small> <%= @product.category.parent_category.name %> - <%= @product.category.name %></small></h3>
+          <h3>Description:</h3>
+          <small> <%= @product.description %> </small>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Parts Listing
+        </div>
+        <div class="panel-body">
+          <% if @product.parts.any? %>
+            <div class="row">
+              <% @product.parts.each do |p|%>
+                <div class="col-md-3 col-xs-6 oem-vehicle">
+                  <%= link_to "#{p.part_number}", admin_part_path(p)  %>
+                  <ul>
+                    <% p.oem_vehicles.each do |v| %>
+                       <li><%= v.year %> <%= v.brand.name %> <%= v.model.name %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>
             </div>
+          <% else %>
+            <h5>This part doesn't have any oem fitments yet</h5>
           <% end %>
-        <% end %>
-      </div>
-    <% end %>
-<p>
-    <strong>Edit:</strong> <%= link_to 'Edit', edit_admin_product_path(@product) %>
-    <strong>Delete:</strong> <%= link_to 'Delete', admin_product_path(@product), method: :delete, data: {confirm: "Are you sure"} %>
-</p>
+        </div>
+    </div>
+  </div>
+</div>
