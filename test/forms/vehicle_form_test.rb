@@ -10,11 +10,18 @@ class VehicleFormTest < UnitTest
     @vehicle = VehicleForm.new(brand: "Kawasaki", model: "KX450F", type: "Motorcycle", year: 2008)
   end
 
-  test "VehicleForm should accept integer or string year attribute" do
+  test "VehicleForm should accept integer or string year and epid attribute" do
     vehicle = @vehicle
     assert vehicle.valid?
 
     vehicle.year = "2008"
+    assert vehicle.valid?
+
+    vehicle.epid = "123456"
+    assert vehicle.valid?
+    assert_equal vehicle.epid, 123456
+
+    vehicle.epid = 123456
     assert vehicle.valid?
   end
 
@@ -81,6 +88,19 @@ class VehicleFormTest < UnitTest
     end
 
     assert_equal vehicle.vehicle, vehicles(:yz250)
+  end
+
+  test "VehicleForm should set epid if given" do
+    vehicle = @vehicle
+    vehicle.epid = 123456
+    assert vehicle.valid?
+
+    vehicle.save
+    assert_equal vehicle.epid, 123456
+
+    new_vehicle = VehicleForm.new(brand: "Yamaha", model: "YZ250", type: "Motorcycle", year: 2015, epid: "123456")
+    new_vehicle.save
+    assert_equal new_vehicle.epid, 123456
   end
 
   # TODO test sanitization

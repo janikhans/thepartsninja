@@ -6,7 +6,7 @@ class VehicleForm
     ActiveModel::Name.new(self, nil, "Vehicle")
   end
 
-  attr_accessor :brand, :model, :submodel, :year, :type
+  attr_accessor :brand, :model, :submodel, :year, :type, :epid
   attr_reader :vehicle
 
   # TODO better validations, such as only integers, no symbols etc
@@ -24,7 +24,7 @@ class VehicleForm
     inclusion: { in: 1900..Date.today.year+1,
                  message: "needs to be between 1900-#{Date.today.year+1}"}
 
-  before_validation :vehicle_string_to_integer, :sanitize_fields
+  before_validation :sanitize_to_integer, :sanitize_fields
 
   def save
     if valid?
@@ -33,7 +33,7 @@ class VehicleForm
       model = brand.vehicle_models.where('lower(name) = ? AND vehicle_type_id = ?', @model.downcase, type.id).first_or_create!(name: @model, vehicle_type_id: type.id)
       submodel = find_or_set_submodel(model)
       year = VehicleYear.where(year: @year).first
-      @vehicle = Vehicle.where(vehicle_year_id: year.id, vehicle_submodel_id: submodel.id).first_or_create!
+      @vehicle = Vehicle.where(vehicle_year_id: year.id, vehicle_submodel_id: submodel.id).first_or_create!(vehicle_year: year, vehicle_submodel: submodel, epid: @epid)
     else
       false
     end
@@ -41,10 +41,9 @@ class VehicleForm
 
   private
 
-    def vehicle_string_to_integer
-      if @year.is_a? String
-        @year = @year.to_i
-      end
+    def sanitize_to_integer
+      @year = @year.to_i if @year.is_a? String
+      @epid = @epid.to_i if @epid.is_a? String
     end
 
     def sanitize_fields
