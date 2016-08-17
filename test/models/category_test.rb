@@ -17,16 +17,6 @@ class CategoryTest < UnitTest
     @brake_pads = categories(:brake_pads)
   end
 
-  test "fixtures should be valid" do
-    assert @wheels.valid?
-    assert @bearings.valid?
-    assert @body.valid?
-    assert @brakes.valid?
-    assert @wheel_assembly.valid?
-    assert @wheel_bearings.valid?
-    assert @brake_pads.valid?
-  end
-
   # TODO fix validation above on uniquness scope
   # tests to check for sanitization methods
   # users will probably have to create some of these types so look into that

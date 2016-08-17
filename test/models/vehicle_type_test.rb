@@ -14,15 +14,6 @@ class VehicleTypeTest < UnitTest
     @truck = vehicle_types(:truck)
   end
 
-  test "fixtures should be valid" do
-    assert @motorcycle.valid?
-    assert @utv.valid?
-    assert @snowmobile.valid?
-    assert @scooter.valid?
-    assert @pwc.valid?
-    assert @truck.valid?
-  end
-
   test "name should be sanitized with capital first letter, remaining unchanged" do
     type = VehicleType.new
 

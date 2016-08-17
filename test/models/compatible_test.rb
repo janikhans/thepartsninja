@@ -18,15 +18,6 @@ class CompatibleTest < UnitTest
     @six = compatibles(:six)
   end
 
-  test "fixtures should be valid" do
-    assert @one.valid?
-    assert @two.valid?
-    assert @three.valid?
-    assert @four.valid?
-    assert @five.valid?
-    assert @six.valid?
-  end
-
   test "should create a second compatible when backwards is true" do
     compatible = Compatible.new(part: parts(:wheel06yz), compatible_part: parts(:wheel15yz), backwards: true, discovery: discoveries(:one))
     assert compatible.valid?

@@ -10,13 +10,7 @@ class ProfileTest < UnitTest
     @hans = profiles(:hans)
     @sensei = profiles(:sensei)
   end
-
-  test "fixtures should be valid" do
-    assert @janik.valid?
-    assert @hans.valid?
-    assert @sensei.valid?
-  end
-
+  
   test "location can't be too long" do
     profile = @janik
 

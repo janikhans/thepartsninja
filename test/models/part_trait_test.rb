@@ -20,20 +20,5 @@ class PartTraitTest < UnitTest
     @speedowheel17wrrim_size = part_traits(:speedowheel17wrrim_size)
     @brakepadslocation = part_traits(:brakepadslocation)
   end
-
-  test "fixtures should be valid" do
-    assert @wheel06location.valid?
-    assert @wheel05location.valid?
-    assert @wheel08location.valid?
-    assert @wheel15location.valid?
-    assert @speedowheel17wrlocation.valid?
-    assert @wheel06rim_size.valid?
-    assert @wheel05rim_size.valid?
-    assert @wheel08rim_size.valid?
-    assert @wheel15rim_size.valid?
-    assert @speedowheel17wrrim_size.valid?
-    assert @brakepadslocation.valid?
-  end
-
   # TODO tests for sanitization
 end

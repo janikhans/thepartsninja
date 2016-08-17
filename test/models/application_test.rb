@@ -6,7 +6,7 @@ class ApplicationTest < ActiveSupport::TestCase
     application_records = ApplicationRecord.descendants
     active_records = ActiveRecord::Base.descendants
 
-    blacklist = [ApplicationRecord, ActiveRecord::SchemaMigration]
+    blacklist = [ApplicationRecord, ActiveRecord::SchemaMigration, ActsAsVotable::Vote]
     uninherited = active_records - application_records - blacklist
 
     assert uninherited.empty?,

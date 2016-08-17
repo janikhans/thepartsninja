@@ -16,16 +16,6 @@ class VehicleSubmodelTest < UnitTest
     @wr250 = vehicle_submodels(:wr250)
   end
 
-  test "fixtures should be valid" do
-    assert @yz250.valid?
-    assert @yz125.valid?
-    assert @f150.valid?
-    assert @te300.valid?
-    assert @lariat.valid?
-    assert @wr250.valid?
-    assert @yz450.valid?
-  end
-
   test "vehicle submodel should be unique on name and vehicle_model_id" do
     new_submodel = VehicleSubmodel.new(vehicle_model: vehicle_models(:f150))
     existing_submodel_name = @lariat.name

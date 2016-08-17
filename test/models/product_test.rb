@@ -17,13 +17,6 @@ class ProductTest < UnitTest
     @speedowheel = products(:speedowheel)
   end
 
-  test "fixtures should be valid" do
-    assert @wheel.valid?
-    assert @brake_pads.valid?
-    assert @wheel_bearings.valid?
-    assert @speedowheel.valid?
-  end
-
   test "slug for url should be friendly" do
     product = @new_product
 

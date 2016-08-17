@@ -20,12 +20,4 @@ class DiscoveryTest < UnitTest
     @four = discoveries(:four)
     @five = discoveries(:five)
   end
-
-  test "fixtures should be valid" do
-    assert @one.valid?
-    assert @two.valid?
-    assert @three.valid?
-    assert @four.valid?
-    assert @five.valid?
-  end
 end

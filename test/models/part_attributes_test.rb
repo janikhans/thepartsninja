@@ -16,16 +16,5 @@ class PartAttributeTest < UnitTest
     @rim21 = part_attributes(:rim21)
     @rim18 = part_attributes(:rim18)
   end
-
-  test "fixtures should be valid" do
-    assert @location.valid?
-    assert @rim_size.valid?
-    assert @front.valid?
-    assert @rear.valid?
-    assert @rim19.valid?
-    assert @rim21.valid?
-    assert @rim18.valid?
-  end
-
   # TODO tests for scopes
 end

@@ -19,16 +19,7 @@ class VehicleModelTest < UnitTest
     @yz450 = vehicle_models(:yz450)
     @wr250 = vehicle_models(:wr250)
   end
-
-  test "fixtures should be valid" do
-    assert @yz250.valid?
-    assert @yz125.valid?
-    assert @f150.valid?
-    assert @te300.valid?
-    assert @yz450.valid?
-    assert @wr250.valid?
-  end
-
+  
   test "vehicle model should be unique on name and brand_id" do
     new_model = @new_model
     existing_model_name = @yz250.name

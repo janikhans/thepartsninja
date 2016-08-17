@@ -18,14 +18,4 @@ class FitmentTest < UnitTest
     @brakepadste300 = fitments(:brakepadste300)
     @speedowheel17wr250 = fitments(:speedowheel17wr250)
   end
-
-  test "fixtures should be valid" do
-    assert @wheel06yz250.valid?
-    assert @wheel06yz125.valid?
-    assert @wheel05yz125.valid?
-    assert @wheel08yz250.valid?
-    assert @wheel15yz450.valid?
-    assert @brakepadste300.valid?
-    assert @speedowheel17wr250.valid?
-  end
 end

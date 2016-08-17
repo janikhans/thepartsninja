@@ -10,11 +10,4 @@ class StepTest < UnitTest
     @two = steps(:two)
     @three = steps(:three)
   end
-
-  test "fixtures should be valid" do
-    assert @one.valid?
-    assert @two.valid?
-    assert @three.valid?
-  end
-
 end

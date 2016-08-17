@@ -9,10 +9,4 @@ class LeadTest < UnitTest
     @two = leads(:two)
     @three = leads(:three)
   end
-
-  test "fixtures should be valid" do
-    assert @one.valid?
-    assert @two.valid?
-    assert @three.valid?
-  end
 end

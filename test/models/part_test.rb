@@ -21,16 +21,7 @@ class PartTest < UnitTest
     @brakepadste300 = parts(:brakepadste300)
     @speedowheel17wr = parts(:speedowheel17wr)
   end
-
-  test "fixtures should be valid" do
-    assert @wheel06yz.valid?
-    assert @wheel05yz.valid?
-    assert @wheel08yz.valid?
-    assert @wheel15yz.valid?
-    assert @brakepadste300.valid?
-    assert @speedowheel17wr.valid?
-  end
-
+  
   test "should find compatible parts" do
     part = @wheel06yz
     assert_includes part.compatible_parts, @wheel05yz

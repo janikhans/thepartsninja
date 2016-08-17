@@ -22,16 +22,10 @@ class UserTest < UnitTest
     @sensei = users(:sensei)
   end
 
-  test "fixtures should be valid and correct attributes" do
-    assert @janik.valid?
+  test "fixtures should have correct attributes" do
     assert @janik.admin?
-
-    assert @hans.valid?
     assert_not @hans.admin?
-
-    assert @sensei.valid?
     assert @sensei.admin?
-
     assert_equal User.count, 10
   end
 

@@ -21,18 +21,6 @@ class VehicleTest < UnitTest
     @wr250 = vehicles(:wr250)
   end
 
-  test "fixtures should be valid" do
-    assert @yz250.valid?
-    assert @yz25008.valid?
-    assert @yz125.valid?
-    assert @yz12506.valid?
-    assert @f150.valid?
-    assert @te300.valid?
-    assert @lariat.valid?
-    assert @yz450.valid?
-    assert @wr250.valid?
-  end
-
   test "methods should show a vehicles associated attributes" do
     vehicle = @yz250
     lariat = @lariat
