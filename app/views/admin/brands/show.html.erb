@@ -1,6 +1,62 @@
 <% provide(:header, "#{@brand.name}") %>
 
-<%= @brand.name %> <%= @brand.website %>
-
-<strong>Edit:</strong> <%= link_to 'Edit', edit_admin_brand_path(@brand) %>
-<strong>Delete:</strong> <%= link_to 'Delete', admin_brand_path(@brand), method: :delete, data: {confirm: "Are you sure"} %>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="action-btns pull-right">
+            <%= link_to 'Edit', edit_admin_brand_path(@brand) %> |
+            <%= link_to 'Delete', admin_brand_path(@brand), method: :delete, data: {confirm: "Are you sure"} %>
+          </div>
+          <h3>Name: <small><%= @brand.name %></small></h3>
+          <% if @brand.website.present? %>
+            <h3>Website:<small> <%= @brand.website %></small> </h3>
+            <% else %>
+            <h3>Website: <small>No website yet...</small></h3>
+          <% end %>
+          <h3>About: <small>About this brand...</small></h3>
+        </div>
+    </div>
+    <% if @brand.vehicle_models.any? %>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+            Models
+        </div>
+        <div class="panel-body">
+          <% @brand.vehicle_models.each do |m| %>
+            <div class="col-md-3 col-xs-6">
+              <%= m.name %>
+              <% m.vehicle_submodels.each do |s| %>
+                <%= s.try(:name) %>
+                <% s.vehicles.each do |v| %>
+                  <ul>
+                    <li><%= link_to v.year, admin_vehicle_path(v) %></li>
+                  </ul>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+    <% if @brand.products.any? %>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+            Products
+        </div>
+        <div class="panel-body">
+          <% @brand.products.group_by{ |p| p.category }.each do |category, products| %>
+            <div class="col-md-3 col-xs-6">
+              <%= category.parent_category.name %> &mdash; <%= category.name %>
+              <ul>
+                <% products.each do |product| %>
+                  <li><%= link_to product.name, admin_product_path(product) %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
