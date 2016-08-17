@@ -23,17 +23,14 @@
             Models
         </div>
         <div class="panel-body">
-          <% @brand.vehicle_models.each do |m| %>
+          <% @brand.vehicles.group_by{ |p| p.submodel }.each do |submodel, vehicles| %>
             <div class="col-md-3 col-xs-6">
-              <%= m.name %>
-              <% m.vehicle_submodels.each do |s| %>
-                <%= s.try(:name) %>
-                <% s.vehicles.each do |v| %>
-                  <ul>
-                    <li><%= link_to v.year, admin_vehicle_path(v) %></li>
-                  </ul>
+              <%= submodel.vehicle_model.name %> <%= submodel.try(:name) %>
+              <ul>
+                <% vehicles.each do |vehicle| %>
+                  <li><%= link_to vehicle.year, admin_vehicle_path(vehicle) %></li>
                 <% end %>
-              <% end %>
+              </ul>
             </div>
           <% end %>
         </div>

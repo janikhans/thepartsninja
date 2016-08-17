@@ -1,17 +1,17 @@
 <div class="row">
-  <div class="col-lg-12  animated fadeInRight">
+  <div class="col-lg-12">
     <div class="ibox">
         <div class="ibox-title">
           <h5>Listing All Brands</h5>
         </div>
         <div class="ibox-content p-m">
-          <% @brands.each do |brand, brand_array|  %>
+          <% @brands.each do |first_letter, brands|  %>
             <div class="row brand">
               <div class="title">
-                <h1><%= brand%></h1>
+                <h1><%= first_letter %></h1>
               </div>
               <div class="brands-list">
-                <% brand_array.each do |brand|  %>
+                <% brands.each do |brand|  %>
                   <div class="col-sm-2 col-xs-3">
                     <%= link_to "#{brand.name}", brand %>
                   </div>
