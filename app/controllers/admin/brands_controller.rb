@@ -2,7 +2,7 @@ class Admin::BrandsController < Admin::DashboardController
   before_action :set_brand, only: [:show, :edit, :update, :destroy]
 
   def index
-    @brands = Brand.page(params[:page]).order('created_at DESC').order("name ASC")
+    @brands = Brand.page(params[:page]).order("name ASC")
     @brand = Brand.new
   end
 

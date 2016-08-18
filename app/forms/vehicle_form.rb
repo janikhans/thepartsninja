@@ -24,16 +24,26 @@ class VehicleForm
     inclusion: { in: 1900..Date.today.year+1,
                  message: "needs to be between 1900-#{Date.today.year+1}"}
 
+  validates :type,
+    presence: true,
+    inclusion: { in: ["Motorcycle", "ATV/UTV", "Snowmobile", "Scooter", "Car", "Personal Watercraft", "Truck", "Golf Cart"]}
+
   before_validation :sanitize_to_integer, :sanitize_fields
 
   def save
     if valid?
       brand = Brand.where('lower(name) = ?', @brand.downcase).first_or_create!(name: @brand)
       type = VehicleType.where('lower(name) = ?', @type.downcase).first
-      model = brand.vehicle_models.where('lower(name) = ? AND vehicle_type_id = ?', @model.downcase, type.id).first_or_create!(name: @model, vehicle_type_id: type.id)
-      submodel = find_or_set_submodel(model)
-      year = VehicleYear.where(year: @year).first
-      @vehicle = Vehicle.where(vehicle_year_id: year.id, vehicle_submodel_id: submodel.id).first_or_create!(vehicle_year: year, vehicle_submodel: submodel, epid: @epid)
+      begin
+        model = brand.vehicle_models.where('lower(name) = ? AND vehicle_type_id = ?', @model.downcase, type.id).first_or_create!(name: @model, vehicle_type_id: type.id)
+      rescue ActiveRecord::RecordInvalid
+        self.errors.add(:model, "model is invalid for some reason")
+        return false
+      else
+        submodel = find_or_set_submodel(model)
+        year = VehicleYear.where(year: @year).first
+        @vehicle = Vehicle.where(vehicle_year_id: year.id, vehicle_submodel_id: submodel.id).first_or_create!(vehicle_year_id: year.id, vehicle_submodel_id: submodel.id, epid: @epid)
+      end
     else
       false
     end

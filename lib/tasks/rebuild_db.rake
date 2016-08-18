@@ -11,8 +11,11 @@ namespace :rebuild_db do
     Discovery.delete_all
     Compatible.delete_all
     Product.delete_all
+    Part.delete_all
     ActsAsVotable::Vote.delete_all
+    Brand.delete_all
 
+    Brand.connection.execute('ALTER SEQUENCE brands_id_seq RESTART WITH 1')
     VehicleType.connection.execute('ALTER SEQUENCE vehicle_types_id_seq RESTART WITH 1')
     VehicleModel.connection.execute('ALTER SEQUENCE vehicle_models_id_seq RESTART WITH 1')
     VehicleSubmodel.connection.execute('ALTER SEQUENCE vehicle_submodels_id_seq RESTART WITH 1')
@@ -22,13 +25,14 @@ namespace :rebuild_db do
     Compatible.connection.execute('ALTER SEQUENCE compatibles_id_seq RESTART WITH 1')
     ActsAsVotable::Vote.connection.execute('ALTER SEQUENCE votes_id_seq RESTART WITH 1')
     Product.connection.execute('ALTER SEQUENCE products_id_seq RESTART WITH 1')
+    Part.connection.execute('ALTER SEQUENCE parts_id_seq RESTART WITH 1')
     Fitment.connection.execute('ALTER SEQUENCE fitments_id_seq RESTART WITH 1')
 
     janik = User.where(username: 'Janik').first
     advrider = User.where(username: 'ADVrider').first
     echo_94 = User.where(username: 'echo_94').first
 
-    types = ["Motorcycle", "ATV/UTV", "Snowmobile", "Scooter", "Personal Watercraft", "Car", "Truck"]
+    types = ["Motorcycle", "ATV/UTV", "Snowmobile", "Scooter", "Personal Watercraft", "Car", "Truck", "Golf Cart"]
     types.each do |name|
       VehicleType.create(name: name)
     end
@@ -36,6 +40,14 @@ namespace :rebuild_db do
     years = (1900..Date.today.year+1).to_a
     years.each do |year|
       VehicleYear.create(year: year)
+    end
+
+    #----------------------------#
+    #Build those brands
+
+    brands = ["Acerbis", "Hinson", "Tusk Racing", "ARC", "Barnett", "Yamaha", "Kawasaki", "KTM", "Beta", "FORD", "Chevrolet", "Husqvarna", "Honda"]
+    brands.each do |name|
+      Brand.create(name: name)
     end
 
     #----------------------------#
@@ -145,5 +157,6 @@ namespace :rebuild_db do
       badcompat.downvote_by u
     end
 
+    puts "Finished rebuilding db"
   end
 end

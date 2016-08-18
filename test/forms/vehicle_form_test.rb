@@ -25,6 +25,12 @@ class VehicleFormTest < UnitTest
     assert vehicle.valid?
   end
 
+  test "form should only allow certain vehicle_types" do
+    vehicle = @vehicle
+    vehicle.type = "Bad Type"
+    assert_not vehicle.valid?
+  end
+
   test "VehicleForm should create new vehicle and associations if none exist" do
     vehicle = @vehicle
     assert vehicle.valid?

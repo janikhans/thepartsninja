@@ -51,7 +51,7 @@ end
 #----------------------------#
 #Build those Vehicle Types
 
-types = ["Motorcycle", "ATV/UTV", "Snowmobile", "Scooter", "Car", "Personal Watercraft", "Truck"]
+types = ["Motorcycle", "ATV/UTV", "Snowmobile", "Scooter", "Car", "Personal Watercraft", "Truck", "Golf Cart"]
 types.each do |name|
   VehicleType.create(name: name)
 end
