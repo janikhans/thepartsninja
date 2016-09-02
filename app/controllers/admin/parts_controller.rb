@@ -40,7 +40,7 @@ class Admin::PartsController < Admin::DashboardController
 
   private
     def set_part
-      @part = Part.find(params[:id])
+      @part = Part.friendly.find(params[:id])
     end
 
     def part_params

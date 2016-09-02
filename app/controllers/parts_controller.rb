@@ -8,6 +8,6 @@ class PartsController < ApplicationController
 
   private
     def set_part
-      @part = Part.find(params[:id])
+      @part = Part.friendly.find(params[:id])
     end
 end

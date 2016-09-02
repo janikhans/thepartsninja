@@ -36,8 +36,9 @@ class Admin::BrandsController < Admin::DashboardController
   end
 
   private
+    # FIXME shouldn't need this .friendly. method in this call
     def set_brand
-      @brand = Brand.find(params[:id])
+      @brand = Brand.friendly.find(params[:id])
     end
 
     def brand_params

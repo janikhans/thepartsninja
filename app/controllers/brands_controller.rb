@@ -20,8 +20,8 @@ class BrandsController < ApplicationController
   end
 
   private
-  
+    # FIXME should't need .friendly. in this call
     def set_brand
-      @brand = Brand.find(params[:id])
+      @brand = Brand.friendly.find(params[:id])
     end
 end
