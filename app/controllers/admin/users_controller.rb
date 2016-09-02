@@ -31,9 +31,9 @@ class Admin::UsersController < Admin::DashboardController
   end
 
   private
-
+    # FIXME we shouldn't need to use User.friendly here. Friendly_id :finders should pick these up.
     def set_user
-      @user = User.find(params[:id])
+      @user = User.friendly.find(params[:id])
     end
 
     def user_params
