@@ -24,12 +24,12 @@ Clone this repo to your local machine:
 
 Once you have cloned a copy of the ninja repo, do your typical...
 
-    bundle install                      # Are you surprised?
+    bundle install                      # Shocker, right?
 
 A few things to note...
 
-    Running postgresql                  # Make sure you have PostGres installed and running locally
-    Email port: http://127.0.0.1:1080   # Originally setup with Mailcatcher locally, choose your own poison
+    Running postgresql                  # Make sure you have PostGresql installed and running locally
+    Email port: http://127.0.0.1:1080   # Originally setup with Mailcatcher locally
 
 **Shimmy!!**
 
@@ -63,6 +63,14 @@ a temporary user in the database, run these commands within the rails console.
     u.skip_confirmation!                    # Every user has to accept a confirmation email, keep this in mind if you're creating users.
     u.confirmed_at = DateTime.now           
     u.save # This will persist the changes on the database.
+
+## Special Notes / methods
+
+    *test methods*
+    sign_in(user)                   # Signs in a user as through the form (such as a user would do)
+    login_as(user, scope: :user)    # Signs in a user through warden/devise, skipping the login page
+    sign_out                        # Uses destroy_user_session_path to sign_out and gets redirected
+    logout(:user)                   # Logs out via warden/devise and does not trigger the redirect
 
 ## The Basic Layout
 

@@ -6,18 +6,24 @@ require 'capybara/rails'
 require 'pry'
 
 class ActiveSupport::TestCase
-  # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
-
-
-  # Add more helper methods to be used by all tests here...
+  fixtures :all
 end
 
-class ActionDispatch::IntegrationTest
+class IntegrationTest < ActionDispatch::IntegrationTest
   include Capybara::DSL
+  include Warden::Test::Helpers
+  include Authentication
+
+  setup do
+    Capybara.reset_sessions!
+  end
+
+  teardown do
+    Capybara.use_default_driver
+  end
 end
 
 class UnitTest < ActiveSupport::TestCase
-  fixtures :all
 
   def assert_differences(expression_array, message = nil, &block)
     b = block.send(:binding)

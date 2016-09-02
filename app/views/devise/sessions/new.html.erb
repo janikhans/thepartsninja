@@ -10,7 +10,7 @@
                 <div class="form-group"><%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %></div>
 
               <div class="form-actions">
-                <%= f.button :submit, "Log in", class:"btn full-width m-b" %>
+                <%= f.button :submit, "Log In", class:"btn full-width m-b" %>
               </div>
             <% end %>
             <small><%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
