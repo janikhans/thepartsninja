@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class PagesTest < IntegrationTest
+class LayoutFlowsTest < IntegrationTest
 
   setup do
     @user = users(:janik)

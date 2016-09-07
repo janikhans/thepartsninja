@@ -119,6 +119,7 @@ class UserTest < UnitTest
 
     assert user.profile
     assert_equal Profile.count, profile_count + 1
+    assert_equal Profile.last.user, user
   end
 
 end

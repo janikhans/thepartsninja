@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class SearchesTest < IntegrationTest
+class SearchFlowsTest < IntegrationTest
 
   setup do
     @user = users(:janik)
