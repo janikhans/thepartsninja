@@ -1,16 +1,20 @@
 class Part < ApplicationRecord
-  # TODO column with Ebay ID if it's from the Ebay database.
+  # TODO
   # Eventually every part should require a part_number - Maybe
   # asssociated table with part_numbers from various suppliers
   # this part_number is the OEM supplied part_number
   # part_number is required if no associated vehicles exist
   # uniqueness on part_number and product_id
+  # uniqueness on EPID
 
   extend FriendlyId
   friendly_id :part_number, use: [:finders]
 
   validates :product, presence: true
   belongs_to :product
+  validates_uniqueness_of :epid,
+    if: 'epid.present?',
+    allow_blank: true
 
   belongs_to :user
   has_many :fitments, dependent: :destroy

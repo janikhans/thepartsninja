@@ -2,6 +2,7 @@ require 'test_helper'
 
 class PartTest < UnitTest
   should validate_presence_of(:product)
+  # should validate_uniqueness_of(:epid)
   # should validate_uniqueness_of(:part_number).scoped_to(:product_id)
   should belong_to(:product)
   should belong_to(:user)
@@ -21,7 +22,7 @@ class PartTest < UnitTest
     @brakepadste300 = parts(:brakepadste300)
     @speedowheel17wr = parts(:speedowheel17wr)
   end
-  
+
   test "should find compatible parts" do
     part = @wheel06yz
     assert_includes part.compatible_parts, @wheel05yz

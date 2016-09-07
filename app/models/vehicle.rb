@@ -3,6 +3,7 @@ class Vehicle < ApplicationRecord
   # possible a user_id attribute for the user who created it?
   # change the slug in the future for canonical urls /year/brand/model/submodel - maybe?
   # look at these methods and see if there's a better way of clearning that up
+  # Unique EPIDs
 
   #Lets make those URLs nice and SEO friendly
   extend FriendlyId
@@ -18,6 +19,9 @@ class Vehicle < ApplicationRecord
   validates_uniqueness_of :vehicle_year,
     scope: :vehicle_submodel_id,
     message: "This model year already exists"
+
+  validates_uniqueness_of :epid,
+    if: 'epid.present?'
 
   belongs_to :vehicle_submodel, inverse_of: :vehicles
   validates :vehicle_submodel, presence: true

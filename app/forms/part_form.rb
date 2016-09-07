@@ -12,10 +12,11 @@ class PartForm
     ActiveModel::Name.new(self, nil, "Part")
   end
 
-  attr_accessor :brand, :product_name, :category, :subcategory, :part_number, :vehicle
+  attr_accessor :brand, :product_name, :category, :subcategory, :part_number, :vehicle, :epid
   attr_reader :part, :product, :vehicle
 
-  before_validation :sanitize_fields
+  before_validation :sanitize_fields, :sanitize_to_integer
+  before_validation :part_epid_is_unique, if: 'epid.present?'
 
   validates :brand, :product_name, :category, :subcategory,
     length: { maximum: 75 },
@@ -45,7 +46,7 @@ class PartForm
           @part.fitments.create(vehicle: @vehicle)
         end
       else
-        @part = @product.parts.where('lower(part_number) = ?', @part_number.downcase).first_or_create!(part_number: part_number)
+        @part = @product.parts.where('lower(part_number) = ?', @part_number.downcase).first_or_create!(part_number: part_number, epid: @epid)
       end
     else
       return false
@@ -53,6 +54,10 @@ class PartForm
   end
 
   private
+
+  def sanitize_to_integer
+    @epid = @epid.to_i if @epid.is_a? String
+  end
 
   def sanitize_fields
     @brand = sanitize(@brand)
@@ -66,6 +71,12 @@ class PartForm
     unless field.blank?
       field = field.strip
       field = field[0].upcase + field[1..-1]
+    end
+  end
+
+  def part_epid_is_unique
+    unless Part.where(epid: @epid).count == 0
+      errors.add(:epid, 'Part with this epid already exists')
     end
   end
 end

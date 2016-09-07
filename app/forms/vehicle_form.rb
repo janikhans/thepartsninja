@@ -13,6 +13,7 @@ class VehicleForm
   # Return vehicle after save
   # more safety checks etc
   # validate inclusion of vehicle_types
+  # unique Epid again
 
   validates :brand, :model, :type,
     length: { maximum: 75},
@@ -29,6 +30,7 @@ class VehicleForm
     inclusion: { in: ["Motorcycle", "ATV/UTV", "Snowmobile", "Scooter", "Car", "Personal Watercraft", "Truck", "Golf Cart"]}
 
   before_validation :sanitize_to_integer, :sanitize_fields
+  before_validation :vehicle_epid_is_unique, if: 'epid.present?'
 
   def save
     if valid?
@@ -74,6 +76,12 @@ class VehicleForm
         model.vehicle_submodels.where('lower(name) = ?', @submodel.downcase).first_or_create!(name: @submodel)
       else
         model.vehicle_submodels.where(name: nil).first_or_create!
+      end
+    end
+
+    def vehicle_epid_is_unique
+      unless Vehicle.where(epid: @epid).count == 0
+        errors.add(:epid, 'Vehicle with this epid already exists')
       end
     end
 end

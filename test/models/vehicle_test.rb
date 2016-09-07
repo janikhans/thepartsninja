@@ -5,6 +5,7 @@ class VehicleTest < UnitTest
   # should validate_presence_of(:vehicle_year)
   should belong_to(:vehicle_submodel)
   # should validate_presence_of(:vehicle_submodel)
+  # should validate_uniqueness_of(:epid)
   should have_many(:searches)
   should have_many(:fitments).dependent(:destroy)
   should have_many(:oem_parts).through(:fitments).source(:part)

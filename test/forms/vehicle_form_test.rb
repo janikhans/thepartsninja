@@ -104,9 +104,21 @@ class VehicleFormTest < UnitTest
     vehicle.save
     assert_equal vehicle.epid, 123456
 
-    new_vehicle = VehicleForm.new(brand: "Yamaha", model: "YZ250", type: "Motorcycle", year: 2015, epid: "123456")
+    new_vehicle = VehicleForm.new(brand: "Yamaha", model: "YZ250", type: "Motorcycle", year: 2015, epid: "987654")
     new_vehicle.save
-    assert_equal new_vehicle.epid, 123456
+    assert_equal new_vehicle.epid, 987654
+  end
+
+  test "VehicleForm should be invalid if epid already exits" do
+    vehicle = @vehicle
+    vehicle.epid = 123456
+    assert vehicle.valid?
+
+    vehicle.save
+    assert_equal vehicle.epid, 123456
+
+    new_vehicle = VehicleForm.new(brand: "Existing Epid", model: "Example", type: "Motorcycle", year: 2015, epid: "123456")
+    assert_not new_vehicle.valid?
   end
 
   # TODO test sanitization
