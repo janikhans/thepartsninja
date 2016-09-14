@@ -11,7 +11,8 @@ namespace :ebay_import do
     CSV.foreach(filename, headers: true) do |row|
       binding.pry
       # submodel = row["Submodel"] unless row["Submodel"] == "--"
-      # vehicle = VehicleForm.new(brand: row["Make"], model: row["Model"], submodel: submodel, year: row["Year"], type: row["Vehicle Type"], epid: row["ePID"])
+      part = PartForm.new(brand: row["Part Brand"], product_name: row["Part Type"],
+                          part_number: row["Part number"], epid: row["ePID"])
       # if vehicle.valid?
       #   if vehicle.save
       #     counter += 1
