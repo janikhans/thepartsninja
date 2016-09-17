@@ -3,8 +3,8 @@ require 'csv'
 namespace :ebay_import do
 
   desc "Import parts from Ebay Parts CSV"
-  task parts: :environment do
-    filename = File.join Rails.root, "ebay_parts_test.csv"
+  task :parts, [:file_path] => [:environment] do |t, args|
+    filename = File.join Rails.root, args[:file_path]
     counter = 0
     invalids = 0
     start_time = Time.now
@@ -34,5 +34,13 @@ namespace :ebay_import do
     total_time = end_time - start_time
     puts "It took #{total_time} seconds to import #{counter} parts"
     puts "There were #{invalids} invalid parts"
+  end
+end
+
+namespace :thing do
+  desc "it does a thing"
+  task :work, [:option] => [:environment] do |t, args|
+    puts args
+    puts args[:option]
   end
 end

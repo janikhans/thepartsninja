@@ -3,8 +3,8 @@ require 'csv'
 namespace :ebay_import do
 
   desc "Import vehicles from Ebay Vehicles CSV"
-  task vehicles: :environment do
-    filename = File.join Rails.root, "ebay_vehicles_test.csv"
+  task :vehicles, [:file_path] => [:environment] do |t, args|
+    filename = File.join Rails.root, args[:file_path]
     counter = 0
     invalids = 0
     start_time = Time.now

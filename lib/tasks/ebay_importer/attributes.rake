@@ -3,10 +3,8 @@ require 'csv'
 namespace :ebay_import do
 
   desc "Find attributes Ebay Parts CSV"
-  task attributes: :environment do
-    filename = File.join Rails.root, "ebay_data/ebay_parts_data.csv"
-    # filename = "ebay_parts_test.csv"
-    # file_path = Rails.root, "ebay_parts_data.csv"
+  task :attributes, [:file_path] => [:environment] do |t, args|
+    filename = File.join Rails.root, args[:file_path]
     counter = 0
     start_time = Time.now
     attributes = []
