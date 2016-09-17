@@ -43,18 +43,6 @@ class PartFormTest < UnitTest
     assert_equal part.part_number, "Blahh-34534-"
   end
 
-  test "PartForm should accept integer or string epid attribute" do
-    part = @new_part
-    assert part.valid?
-
-    part.epid = "123456"
-    assert part.valid?
-    assert_equal part.epid, 123456
-
-    part.epid = 123456
-    assert part.valid?
-  end
-
   test "should only validate part_number if vehicle is not given" do
     part = @new_part
     assert part.valid?
@@ -195,37 +183,5 @@ class PartFormTest < UnitTest
 
     assert_not_equal new_part.part, part.part
     assert_nil new_part.part.part_number
-  end
-
-  test "PartForm should set epid if given" do
-    part = @new_part
-    part.epid = 123456
-    assert part.valid?
-
-    part.save
-    assert_equal part.epid, 123456
-  end
-
-  test "PartForm should be invalid if epid already exists" do
-    part = PartForm.new(brand: "Acerbis",
-                      product_name: "SXS Skidplate",
-                      parent_category: "Motorycle Parts",
-                      category: "Body",
-                      subcategory: "Skidplate",
-                      part_number: "12345")
-    part.epid = 123456
-    assert part.valid?
-
-    part.save
-    assert_equal part.epid, 123456
-
-    new_part = PartForm.new(brand: "Bad",
-                         product_name: "Example",
-                         parent_category: " -- ",
-                         category: "With",
-                         subcategory: "Existing",
-                         part_number: "EPID")
-    new_part.epid = 123456
-    assert_not new_part.valid?
   end
 end

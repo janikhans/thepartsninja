@@ -4,7 +4,7 @@ namespace :ebay_import do
 
   desc "Find categories from Ebay Parts CSV"
   task categories: :environment do
-    filename = File.join Rails.root, "ebay_parts_data.csv"
+    filename = File.join Rails.root, "ebay_data/ebay_parts_data.csv"
     counter = 0
     start_time = Time.now
     categories = []
@@ -29,7 +29,7 @@ namespace :ebay_import do
     category_counts = categories.each_with_object(Hash.new(0)) { |category,counts| counts[category] += 1 }
       .sort_by {|key, value| value}.reverse.to_h
 
-    CSV.open("category_export.csv", "w") do |csv|
+    CSV.open("ebay_data/category_export.csv", "w") do |csv|
       csv << ['Category Breadcrumb', 'Count']  #column head of csv file
       category_counts.each do |category|
       csv << [category[0].join(":"), category[1]] #fields name

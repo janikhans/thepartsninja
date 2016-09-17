@@ -1,0 +1,341 @@
+Color:
+Black,15915
+Red,3699
+Blue,3032
+White,2702
+Silver,2084
+Gold,1671
+Orange,999
+Green,970
+Yellow,905
+Amber,423
+Gray,372
+Black/Red,141
+Red/Black,123
+Pink,121
+Matte Black,119
+Black/Black,106
+Flat Black,102
+Black/White,96
+Dark Blue,94
+Purple,88
+Black/Blue,85
+Silver/Black,82
+Blue/Black,79
+Black/Gold,76
+Black/Carbon,76
+Black/Gray,75
+Black/Orange,74
+Black/Green,66
+
+Finish:
+Chrome,7860
+Polished,1610
+Black Anodized,355
+Brushed Aluminum,156
+Blue Anodized,119
+Black Carbon Fiber,93
+Clear,2106
+White Carbon Fiber,72
+Natural,1256
+Gloss Black,335
+
+Teeth:
+14T,649
+13T,547
+15T,514
+48T,477
+50T,413
+45T,363
+47T,361
+42T,352
+46T,340
+44T,335
+43T,313
+51T,304
+12T,273
+52T,264
+16T,256
+40T,246
+41T,234
+49T,398
+38T,185
+39T,177
+17T,136
+37T,133
+66T,133
+53T,106
+36T,79
+70T,76
+11T,72
+54T,59
+35T,48
+18T,44
+55T,30
+34T,29
+22T,28
+56T,27
+24T,26
+33T,25
+23T,24
+65T,24
+32T,20
+21T,17
+19T,13
+10T,13
+25T,13
+132T,12
+30T,11
+57T,10
+135T,9
+9T,9
+133T,9
+102T,9
+
+
+Chain Length:
+130 Links,238
+120 Links,591
+110 Links,239
+150 Links,168
+100 Links,148
+114 Links,126
+116 Links,113
+112 Links,106
+104 Links,93
+118 Links,92
+106 Links,85
+102 Links,84
+108 Links,82
+160 Links,72
+90 Links,59
+96 Links,55
+92 Links,53
+88 Links,45
+86 Links,44
+84 Links,43
+98 Links,41
+140 Links,41
+132 Links,40
+82 Links,35
+122 Links,32
+124 Links,30
+94 Links,27
+126 Links,25
+134 Links,17
+76 Links,11
+136 Links,11
+
+Location:
+Front,636
+Left,529
+Rear,936
+Right,512
+Front/Rear,21
+
+
+Bore:
+Standard Bore 54.00mm,88
+Standard Bore 66.35mm,75
+Standard Bore 76.96mm,66
+Standard Bore 96.00mm,62
+Standard Bore 77.00mm,62
+Standard Bore 53.95mm,62
+Standard Bore 53.96mm,61
+Standard Bore 72.00mm,60
+Standard Bore 95.96mm,59
+Standard Bore 66.34mm,56
+Standard Bore 66.40mm,51
+Standard Bore 76.97mm,51
+Standard Bore 95.00mm,50
+54.00mm Bore,49
+Standard Bore 78.00mm,49
+Standard Bore 81.00mm,47
+Standard Bore 53.94mm,47
+Standard Bore 94.95mm,46
+Standard Bore 76.95mm,45
+Standard Bore 76.00mm,45
+Standard Bore 82.00mm,43
+Standard Bore 66.00mm,42
+Standard Bore 95.97mm,42
+Standard Bore 94.96mm,40
+Standard Bore 80.00mm,39
+Standard Bore 85.00mm,38
+77.00mm Bore,37
+Standard Bore 66.36mm,35
+Standard Bore 83.00mm,33
+66.40mm Bore,33
+Standard Bore 95.95mm,33
+78mm Bore,31
+Standard Bore 65.00mm,30
+Standard Bore 53.97mm,30
+Standard Bore 95.98mm,29
+68mm Bore,29
+70mm Bore,27
+Standard Bore 67.00mm,26
+Standard Bore 68.00mm,26
+96.00mm Bore,26
+Standard Bore 64.00mm,24
+Standard Bore 100.00mm,24
+Standard Bore 76.98mm,24
+77mm Bore,24
+Standard Bore 73.00mm,23
+3.498in. Bore),22
+76mm Bore,22
+79mm Bore,22
+Standard Bore 47.00mm,21
+Standard Bore 94.97mm,21
+Standard Bore 46.95mm,21
+81mm Bore,21
+Standard Bore 56.00mm,21
+80.00mm Bore,21
+96mm Bore,20
+75mm Bore,20
+68.00mm Bore,19
+Standard Bore 94.94mm,19
+Standard Bore 88.00mm,19
+98mm Bore,19
+97.00mm Bore,18
+95.00mm Bore,18
+Standard Bore 66.50mm,18
+80mm Bore,18
+Standard Bore 70.00mm,18
+72mm Bore,17
+85.00mm Bore,17
+Standard Bore 97.00mm,17
+97mm Bore,17
+74mm Bore,16
+Standard Bore 74.00mm,16
+Standard Bore 77.97mm,16
+Standard Bore 77.96mm,16
+82mm Bore,16
+Standard Bore 77.95mm,16
+Standard Bore 63.95mm,16
+83mm Bore,16
+76.00mm Bore,16
+99mm Bore,15
+Standard Bore 96.95mm,15
+Standard Bore 84.00mm,15
+102.00mm Bore,15
+95mm Bore,15
+88.00mm Bore,15
+Standard Bore 96.96mm,14
+81.00mm Bore,14
+78.00mm Bore,14
+Standard Bore 47.45mm,14
+Standard Bore 67.50mm,14
+66.00mm Bore,14
+Standard Bore 102.00mm,14
+85mm Bore,14
+Standard Bore 95.50mm,13
+56.00mm Bore,13
+100mm Bore,13
+84mm Bore,13
+Standard Bore 71.95mm,13
+58.00mm Bore,12
+Standard Bore 71.00mm,12
+Standard Bore 67.75mm,12
+Standard Bore 48.00mm,12
+Standard Bore 89.00mm,12
+72.00mm Bore,12
+100.00mm Bore,12
+3-3/16in. Bore),12
+Standard Bore 47.95mm,12
+69mm Bore,11
+Standard Bore 77.25mm,11
+Standard Bore 66.37mm,11
+67.00mm Bore,11
+Standard Bore 47.50mm,11
+Standard Bore 96.93mm,11
+90.00mm Bore,11
+Standard Bore 77.98mm,11
+3 5/8in. Big Bore,11
+Standard Bore 76.76mm,11
+Standard Bore 95.47mm,11
+68.50mm Bore,11
+83.00mm Bore,11
+Standard Bore 101.97mm,10
+Standard Bore 69.50mm,10
+Standard Bore 89.96mm,10
+98.00mm Bore,10
+Standard Bore 95.46mm,10
+Standard Bore 76.78mm,10
+74.00mm Bore,10
+101mm Bore,10
+Standard Bore 101.96mm,10
+48.00mm Bore,10
+Standard Bore 44.97mm,10
+Standard Bore 63.94mm,10
+Standard Bore 74.50mm,10
+Standard Bore 76.77mm,10
+94mm Bore,10
+84.00mm Bore,10
+Standard Bore 70.50mm,9
+
+Tire Size:
+120/70ZR-17,43
+180/55ZR-17,43
+190/55ZR-17,34
+190/50ZR-17,29
+160/60ZR-17,28
+120/60ZR-17,24
+150/70R-17,23
+110/80R-19,21
+110/80-19,19
+170/60ZR-17,11
+120/70ZR-18,10
+110/70ZR-17,10
+160/60ZR-18,8
+200/50ZR-17,8
+160/60R-17,8
+150/60ZR-17,8
+110/80ZR-18,7
+140/80R-17,7
+170/60R-17,7
+150/70ZR-17,6
+120/70R-17,6
+130/70R-18,6
+200/55ZR-17,5
+180/70R-16,5
+130/80R-17,5
+150/80R-16,5
+120/70R-19,5
+120/70R-15,4
+130/70R-17,4
+130/70ZR-16,4
+180/60ZR-17,3
+120/60R-17,3
+150/70R-18,3
+170/60-17,3
+110/70R-17,3
+150/80-16 WW,3
+200/55R-17,3
+180/55VR-17,3
+240/40ZR-18,3
+160/70ZR-17,3
+100/90-19,121
+110/90-19,101
+80/100-21,87
+90/90-21,64
+110/100-18,61
+130/90-16,51
+70/100-17,42
+120/90-18,41
+90/100-14,38
+100/100-18,38
+150/80-16,36
+70/100-19,33
+80/100-12,27
+120/100-18,27
+120/80-19,25
+140/90-15,20
+100/90-18,19
+120/70-12,18
+120/80-18,18
+110/80-18,15
+140/90-16,15
+150/90-15,15
+130/90-17,14
+80/90-21,14
+110/70-17,13
+140/80-17,13

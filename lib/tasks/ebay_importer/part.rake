@@ -9,10 +9,16 @@ namespace :ebay_import do
     invalids = 0
     start_time = Time.now
     CSV.foreach(filename, headers: true) do |row|
-      binding.pry
-      # submodel = row["Submodel"] unless row["Submodel"] == "--"
-      part = PartForm.new(brand: row["Part Brand"], product_name: row["Part Type"],
-                          part_number: row["Part number"], epid: row["ePID"])
+      category_breadcrumb = row["Category Breadcrumb"].split(":")
+      parent_category = category_breadcrumb[2]
+      category = category_breadcrumb[3]
+      subcategory = category_breadcrumb[4]
+      attributes =
+      note = row["RESERVED_PRODUCT_TITLE"]
+      part = EbayPartImportForm.new(brand: row["Part Brand"], product_name: row["Part Type"],
+                          part_number: row["Part number"], epid: row["ePID"],
+                          parent_category: parent_category, category: category,
+                          subcategory: subcategory, note: note)
       # if vehicle.valid?
       #   if vehicle.save
       #     counter += 1

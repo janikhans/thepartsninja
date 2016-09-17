@@ -4,7 +4,7 @@ namespace :ebay_import do
 
   desc "Find attributes Ebay Parts CSV"
   task attributes: :environment do
-    filename = File.join Rails.root, "ebay_parts_data.csv"
+    filename = File.join Rails.root, "ebay_data/ebay_parts_data.csv"
     # filename = "ebay_parts_test.csv"
     # file_path = Rails.root, "ebay_parts_data.csv"
     counter = 0
@@ -36,7 +36,7 @@ namespace :ebay_import do
     attribute_counts = attributes.flatten.each_with_object(Hash.new(0)) { |attribute,counts| counts[attribute] += 1 }
                                  .sort_by {|_key, value| value}.reverse.to_h
 
-    CSV.open("attribute_export.csv", "w") do |csv|
+    CSV.open("ebay_data/attribute_export.csv", "w") do |csv|
       csv << ['Attribute Name', 'Count']  #column head of csv file
       attribute_counts.each do |attribute|
       csv << [attribute[0], attribute[1]] #fields name

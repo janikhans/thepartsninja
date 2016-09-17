@@ -26,4 +26,4 @@
 .env
 
 #Ignore temp CSV files
-/data_csv/*.csv
+/ebay_data
