@@ -12,13 +12,13 @@ class EbayPartImportForm
     ActiveModel::Name.new(self, nil, "Part")
   end
 
-  attr_accessor :brand, :product_name, :parent_category, :category, :subcategory, :part_number, :epid, :note
+  attr_accessor :brand, :product_name, :parent_category, :category, :subcategory, :part_number, :epid, :note, :attributes
   attr_reader :part, :product
 
   before_validation :sanitize_fields, :sanitize_to_integer
   before_validation :part_epid_is_unique, if: 'epid.present?'
 
-  validates :brand, :product_name, :parent_category, :category, :subcategory, :epid,
+  validates :brand, :product_name, :parent_category, :category, :epid,
     length: { maximum: 75 },
     presence: true
 
@@ -29,6 +29,13 @@ class EbayPartImportForm
     if valid?
       @product = ProductForm.new(brand: @brand, product_name: @product_name, parent_category: @parent_category, category: @category, subcategory: @subcategory).save
       @part = @product.parts.where('lower(part_number) = ?', @part_number.downcase).first_or_create!(part_number: part_number, epid: @epid, note: @note)
+      if @attributes
+        @attributes.each do |a|
+          parent_attribute = PartAttribute.where('lower(name) = ?', a[:parent_attribute].downcase).first_or_create!(name: a[:parent_attribute])
+          part_attribute = parent_attribute.attribute_variations.where('lower(name) = ?', a[:attribute].downcase).first_or_create!(name: a[:attribute])
+          part_trait = @part.part_traits.create(part_attribute: part_attribute)
+        end
+      end
     else
       return false
     end

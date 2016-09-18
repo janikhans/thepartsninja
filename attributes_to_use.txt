@@ -339,3 +339,140 @@ Tire Size:
 80/90-21,14
 110/70-17,13
 140/80-17,13
+
+size
+Large,204
+Small,175
+Medium, 91
+X-Large,29
+XX-Large,5
+
+Gallons
+3.2Gal.,36
+4.0Gal.,32
+3.1Gal.,20
+3.3 Gal.,18
+3.4Gal.,16
+3.0Gal.,16
+3.6Gal.,14
+3.2 Gal.,14
+2.7Gal.,11
+3.4 Gal.,10
+3.7Gal.,10
+2.9Gal.,10
+5.3 Gal.,9
+3.1 Gal.,8
+3.0 Gal.,8
+5.8 Gal.,8
+3.5 Gal.,8
+4.9Gal.,7
+4.1 Gal.,6
+2.6 Gal.,6
+2.3 Gal.,6
+4.0 Gal.,6
+2.5Gal.,6
+4.2 Gal.,5
+2.8Gal.,5
+3.9 Gal.,5
+2.9 Gal.,5
+2.2 Gal.,5
+2.7 Gal.,5
+2.6Gal.,5
+2.8 Gal.,5
+5.6Gal.,4
+
+Oversize bore
+2.00mm Oversize to 56.00mm,44
+1.00mm Oversize to 55.00mm,34
+0.50mm Oversize to 54.50mm,29
+0.50mm Oversize to 66.50mm,25
+1.00mm Oversize to 67.00mm,23
+2.00mm Oversize to 68.00mm,21
+1.00mm Oversize to 73.00mm,19
+0.50mm Oversize to 72.50mm,17
+2.10mm Oversize to 68.50mm,17
+1.00mm Oversize to 77.00mm,17
+0.50mm Oversize to 76.50mm,16
+1.00mm Oversize to 68.00mm,15
+1.50mm Oversize to 67.50mm,15
+1.10mm Oversize to 67.50mm,14
+1.00mm Oversize to 48.00mm,14
+1.00mm Oversize to 71.00mm,14
+1.50mm Oversize to 73.50mm,14
+0.50mm Oversize to 64.50mm,14
+1.00mm Oversize to 79.00mm,1
+1.00mm Oversize to 57.00mm,13
+0.50mm Oversize to 47.50mm,13
+1.00mm Oversize to 75.00mm,13
+0.50mm Oversize to 80.50mm Bore,13
+.01mm Oversize to 76.97mm,13
+0.60mm Oversize to 67.00mm,13
+1.00mm Oversize to 82.00mm Bore,13
+2.00mm Oversize to 66.00mm,13
+0.50mm Oversize to 81.50mm Bore,12
+1.00mm Oversize to 65.00mm,12
+1.00mm Oversize to 86.00mm,12
+.02mm Oversize to 66.36mm,12
+.01mm Oversize to 66.35mm,12
+1.00mm Oversize to 81.00mm Bore,12
+0.50mm Oversize to 56.50mm,11
+0.50mm Oversize to 48.00mm,11
+2.00mm Oversize to 72.00mm,11
+1.00mm Oversize to 49.00mm,11
+1.00mm Oversize to 48.50mm,11
+0.50mm Oversize to 83.50mm,11
+0.50mm Oversize to 81.50mm,10
+0.50mm Oversize to 65.50mm,1
+.01mm Oversize to 53.96mm,10
+2.00mm Oversize to 49.50mm,10
+1.00mm Oversize to 82.00mm,10
+.02mm Oversize to 76.98mm,10
+0.50mm Oversize to 70.00mm,10
+0.50mm Oversize to 85.50mm,10
+2.00mm Oversize to 79.00mm,10
+0.50mm Oversize to 73.50mm,10
+1.00mm Oversize to 84.00mm,10
+2.00mm Oversize to 69.00mm,10
+1.00mm Oversize to 101.00mm,10
+.02mm Oversize to 53.97mm,10
+1.00mm Oversize to 81.00mm,10
+1.00mm Oversize to 74.00mm,10
+1.50mm Oversize to 55.50mm,9
+0.25mm Oversize to 81.25mm Bore,9
+0.50mm Oversize to 70.50mm,9
+1.00mm Oversize to 83.00mm,9
+0.50mm Oversize to 74.50mm,9
+1.00mm Oversize to 66.00mm,9
+1.00mm Oversize to 103.00mm,9
+2.00mm Oversize to 50.00mm,9
+2.00mm Oversize to 49.00mm,9
+0.25mm Oversize to 66.25mm,9
+1.50mm Oversize to 65.50mm,8
+0.50mm Oversize to 48.50mm,8
+1.50mm Oversize to 77.50mm,8
+0.75mm Oversize to 81.75mm Bore,8
+2.00mm Oversize to 97.00mm,8
+.02mm Oversize to 95.98mm,8
+1.50mm Oversize to 49.00mm,8
+.02mm Oversize to 94.98mm,8
+0.50mm Oversize to 68.50mm,8
+0.50mm Oversize to 82.50mm,8
+0.50mm Oversize to 67.50mm,8
+1.00mm Oversize to 69.00mm,8
+.01mm Oversize to 95.97mm,8
+1.00mm Oversize to 87.00mm,8
+1.00mm Oversize to 77.00mm Bore,8
+0.50mm Oversize to 82.50mm Bore,8
+2.00mm Oversize to 91.00mm,8
+0.50mm Oversize to 80.50mm,8
+.01mm Oversize to 94.97mm,8
+1.25mm Oversize to 67.25mm,7
+2.00mm Oversize to 70.00mm,7
+0.50mm Oversize to 76.50mm Bore,7
+1.00mm Oversize to 90.00mm,7
+0.25mm Oversize to 80.25mm Bore,7
+2.00mm Oversize to 87.00mm,7
+.01mm Oversize to 94.96mm,7
+1.00mm Oversize to 85.00mm Bore,7
+0.50mm Oversize to 89.50mm,7
+0.75mm Oversize to 66.75mm,7

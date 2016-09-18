@@ -26,28 +26,27 @@ namespace :ebay_import do
       end
     end
 
-    category_counts = categories.each_with_object(Hash.new(0)) { |category,counts| counts[category] += 1 }
-      .sort_by {|key, value| value}.reverse.to_h
+    # category_counts = categories.each_with_object(Hash.new(0)) { |category,counts| counts[category] += 1 }
+    #   .sort_by {|key, value| value}.reverse.to_h
 
-    CSV.open("ebay_data/category_export.csv", "w") do |csv|
-      csv << ['Category Breadcrumb', 'Count']  #column head of csv file
-      category_counts.each do |category|
-      csv << [category[0].join(":"), category[1]] #fields name
-      end
-    end
-
-    # CSV.open("invalid_malformed_parts.csv", "w") do |csv|
-    #   csv << ['Part Epid']  #column head of csv file
-    #   invalids.each do |invalid|
-    #     binding.pry
-    #     csv << invalid #fields name
+    # CSV.open("ebay_data/category_export.csv", "w") do |csv|
+    #   csv << ['Category Breadcrumb', 'Count']  #column head of csv file
+    #   category_counts.each do |category|
+    #   csv << [category[0].join(":"), category[1]] #fields name
     #   end
     # end
+
+    CSV.open("ebay_data/invalid_malformed_parts.csv", "w") do |csv|
+      csv << ["ePID","Part Brand","Part Type","Part number","RESERVED_PRODUCT_TITLE","Category ID","Category Breadcrumb"]
+      invalids.each do |invalid|
+        csv << [invalid] #fields name
+      end
+    end
 
     end_time = Time.now
     total_time = end_time - start_time
     puts "#{counter} part records were analyzed in #{total_time} seconds"
-    puts "#{category_counts.count} unqiue categories were found"
+    # puts "#{category_counts.count} unqiue categories were found"
     puts "#{invalids.count} invalid part records were found"
     puts "The exported categories can be found in category_export.csv"
     puts "The invalid part records can be found in invalid_malformed_parts.csv"

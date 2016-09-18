@@ -12,7 +12,8 @@ class PartForm
     ActiveModel::Name.new(self, nil, "Part")
   end
 
-  attr_accessor :brand, :product_name, :parent_category, :category, :subcategory, :part_number, :vehicle
+  attr_accessor :brand, :product_name, :parent_category, :category,
+                :subcategory, :part_number, :vehicle, :attributes
   attr_reader :part, :product, :vehicle
 
   before_validation :sanitize_fields
@@ -46,6 +47,13 @@ class PartForm
         end
       else
         @part = @product.parts.where('lower(part_number) = ?', @part_number.downcase).first_or_create!(part_number: part_number)
+      end
+      if @attributes
+        @attributes.each do |a|
+          parent_attribute = PartAttribute.where('lower(name) = ?', a[:parent_attribute].downcase).first_or_create!(name: a[:parent_attribute])
+          part_attribute = parent_attribute.attribute_variations.where('lower(name) = ?', a[:attribute].downcase).first_or_create!(name: a[:attribute])
+          part_trait = @part.part_traits.create(part_attribute: part_attribute)
+        end
       end
     else
       return false

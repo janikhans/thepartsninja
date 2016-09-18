@@ -167,7 +167,41 @@ class EbayPartImportFormTest < UnitTest
     assert_equal Part.last.note, "This is a note"
   end
 
-  test "should correctly create and set attributes" do
-    # figure out how to save attributes
+  test "should create new and then set attributes" do
+    part = @new_part
+    part.attributes = [{parent_attribute: "Color", attribute: "Red"}]
+    assert part.valid?
+
+    assert_differences [['PartAttribute.count', 2], ['PartTrait.count', 1]] do
+      part.save
+    end
+
+    assert_includes part.part.part_attributes, PartAttribute.where(name: "Red").first
   end
+
+  test "should correctly find and set attributes" do
+    part = @new_part
+    part.attributes = [{parent_attribute: "Location", attribute: "Front"}]
+    assert part.valid?
+
+    assert_differences [['PartAttribute.count', 0], ['PartTrait.count', 1]] do
+      part.save
+    end
+
+    assert_includes part.part.part_attributes, PartAttribute.where(name: "Front").first
+  end
+
+  test "should correctly find and set multiple attributes" do
+    part = @new_part
+    part.attributes = [{parent_attribute: "Color", attribute: "Red"},
+                       {parent_attribute: "Size", attribute: "Large"}]
+    assert part.valid?
+
+    assert_differences [['PartAttribute.count', 4], ['PartTrait.count', 2]] do
+      part.save
+    end
+
+    assert_includes part.part.part_attributes, PartAttribute.where(name: "Red").first
+  end
+
 end
