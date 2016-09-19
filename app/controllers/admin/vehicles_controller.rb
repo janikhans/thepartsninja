@@ -3,7 +3,8 @@ class Admin::VehiclesController < Admin::DashboardController
   before_action :set_vehicle, only: [:show, :edit, :update, :destroy]
 
   def index
-    @vehicles = Vehicle.page(params[:page])
+    @vehicles = Vehicle.includes(:vehicle_year, vehicle_submodel: {vehicle_model: [:brand, :vehicle_type]})
+        .page(params[:page])
     @vehicle_model = VehicleModel.new
     @vehicle_model.vehicle_submodels.build
   end
@@ -43,9 +44,9 @@ class Admin::VehiclesController < Admin::DashboardController
   end
 
   private
-  
+
     def set_vehicle
-      @vehicle = Vehicle.find(params[:id])
+      @vehicle = Vehicle.friendly.find(params[:id])
     end
 
     def vehicle_params

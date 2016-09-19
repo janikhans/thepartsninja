@@ -4,7 +4,8 @@ namespace :ebay_import do
 
   desc "Import parts from Ebay Parts CSV"
   task :parts, [:file_path] => [:environment] do |t, args|
-    filename = File.join Rails.root, args[:file_path]
+    filepath = File.join Rails.root, args[:file_path]
+    filename = File.basename args[:file_path], ".csv"
     counter = 0
     invalid_parts = []
     start_time = Time.now
@@ -113,7 +114,7 @@ namespace :ebay_import do
     "2.5Gal.","4.2 Gal.","2.8Gal.","3.9 Gal.","2.9 Gal.","2.2 Gal.","2.7 Gal.","2.6Gal.",
     "2.8 Gal.","5.6Gal."]
 
-    File.foreach(filename) do |line|
+    File.foreach(filepath) do |line|
       begin
         CSV.parse(line) do |row|
           category_breadcrumb = row[6].split(":")
@@ -162,6 +163,7 @@ namespace :ebay_import do
                               subcategory: subcategory, note: note, attributes: part_attributions)
           if part.valid?
             if part.save
+              counter += 1
               true
             else
               invalid_parts << [line, part.errors.full_messages]
@@ -171,18 +173,18 @@ namespace :ebay_import do
           end
         end
       rescue CSV::MalformedCSVError => e
-        invalid_parts << line
+        invalid_parts << [line, e.message]
       end
-      counter += 1
-      if counter % 10000 == 0
+      if counter % 5000 == 0
         puts "Imported #{counter} parts"
       end
     end
 
-    CSV.open("ebay_data/invalid_malformed_parts.csv", "w") do |csv|
-      csv << ["Part"]
+    export_path = "ebay_data/#{filename}_invalid_parts.csv"
+    CSV.open(export_path, "w") do |csv|
+      csv << ["Part", "Error"]
       invalid_parts.each do |invalid|
-        csv << [invalid] #fields name
+        csv << [invalid[0], invalid[1]]
       end
     end
 
@@ -190,6 +192,6 @@ namespace :ebay_import do
     total_time = end_time - start_time
     puts "It took #{total_time} seconds to import #{counter} parts"
     puts "There were #{invalid_parts.count} invalid parts"
-    puts "Invalid parts can be found in ebay_data/invalid_malformed_parts.csv"
+    puts "Invalid parts can be found in #{export_path}"
   end
 end

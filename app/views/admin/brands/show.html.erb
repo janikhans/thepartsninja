@@ -44,7 +44,7 @@
         <div class="panel-body">
           <% @brand.products.group_by{ |p| p.category }.each do |category, products| %>
             <div class="col-md-3 col-xs-6">
-              <%= category.parent_category.name %> &mdash; <%= category.name %>
+              <%= category.parent_category.name if category.parent_category %> &mdash; <%= category.name %>
               <ul>
                 <% products.each do |product| %>
                   <li><%= link_to product.name, admin_product_path(product) %></li>

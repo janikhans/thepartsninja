@@ -2,7 +2,7 @@ class Admin::ProductsController < Admin::DashboardController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   def index
-    @products = Product.page(params[:page]).order("name ASC")
+    @products = Product.includes(:brand, :category).page(params[:page]).order("name ASC")
     @product = ProductForm.new
   end
 
@@ -41,7 +41,7 @@ class Admin::ProductsController < Admin::DashboardController
 
   private
     def set_product
-      @product = Product.find(params[:id])
+      @product = Product.friendly.find(params[:id])
     end
 
     def product_params
