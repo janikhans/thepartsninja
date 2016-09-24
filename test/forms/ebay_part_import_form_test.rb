@@ -4,12 +4,10 @@ class EbayPartImportFormTest < UnitTest
   should validate_presence_of(:brand)
   should validate_presence_of(:product_name)
   should validate_presence_of(:category)
-  should validate_presence_of(:subcategory)
   should validate_presence_of(:epid)
   should validate_length_of(:brand).is_at_most(75)
   should validate_length_of(:product_name).is_at_most(75)
   should validate_length_of(:category).is_at_most(75)
-  should validate_length_of(:subcategory).is_at_most(75)
   should validate_length_of(:part_number).is_at_most(75)
 
   setup do
