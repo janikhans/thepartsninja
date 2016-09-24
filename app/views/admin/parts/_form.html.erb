@@ -4,7 +4,8 @@
   <div class="form-inputs">
     <%= f.input :part_number %>
     <%= f.input :note %>
-    <%= f.association :product, label_method: :to_label %>
+    There needs to be a way to select the Product here.
+    <%#= f.association :product, label_method: :to_label %>
     <div id="part_traits">
       <h3>What are some of the part Attributes?</h3>
       <%= f.simple_fields_for :part_traits do |part_trait| %>

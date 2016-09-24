@@ -2,7 +2,7 @@ class Admin::DiscoveriesController < Admin::DashboardController
   before_action :set_discovery, only: [:show, :edit, :update, :destroy]
 
   def index
-    @discoveries = Discovery.page(params[:page]).order('created_at DESC')
+    @discoveries = Discovery.includes(:user).page(params[:page]).order('created_at DESC')
   end
 
   def show

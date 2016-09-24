@@ -2,7 +2,7 @@ class Admin::CompatiblesController < Admin::DashboardController
   before_action :set_compatible, only: [:show, :edit, :update, :destroy]
 
   def index
-    @compatibles = Compatible.page(params[:page]).order('compatibles.cached_votes_score DESC')
+    @compatibles = Compatible.includes(:part, :compatible_part, :discovery).page(params[:page]).order('compatibles.cached_votes_score DESC')
   end
 
   def show
