@@ -23,6 +23,7 @@ gem 'rails-jquery-autocomplete'
 gem 'kaminari'
 gem 'meta-tags'
 gem 'pg'
+gem 'httparty'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
@@ -30,6 +31,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'spring'
+  gem 'dotenv-rails'
 end
 
 group :development do
