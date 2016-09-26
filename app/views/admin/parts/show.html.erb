@@ -9,6 +9,7 @@
             <%= link_to 'Delete', admin_part_path(@part), method: :delete, data: {confirm: "Are you sure"} %>
           </div>
           <h3>Part Number: <small><%= @part.part_number %></small></h3>
+          <h3>Category: <small><%= @part.product.category.name %></small></h3>
           <h3>Brand:<small> <%= link_to @part.product.brand.name, admin_brand_path(@part.product.brand) %></small> </h3>
           <h3>Product Name:<small> <%= @part.product.name %></small></h3>
           <h3>Attributes: <small><% @part.part_attributes.each do |p| %><%= p.parent_attribute.name %>: <%= p.name %> <% end %></small></h3>
@@ -16,18 +17,19 @@
             <h3>Notes: <small><%= @part.note %></small></h3>
           <% end %>
           <h3>epid: <small><%= @part.epid %></small></h3>
+          <h3>id: <small><%= @part.id %></small></h3>
         </div>
     </div>
     <div class="panel panel-default">
       <div class="panel-heading">
-          OEM vehicles
+          OEM vehicles <%= link_to "Update Fitments", update_ebay_fitments_admin_part_path(@part), class: "btn btn-primary btn-sm pull-right" %>
       </div>
       <div class="panel-body">
         <% if @part.oem_vehicles.any? %>
           <div class="row">
-            <% @part.oem_vehicles.each do |v|%>
+            <% @part.oem_vehicles.includes(:vehicle_year, vehicle_submodel: {vehicle_model: :brand}).each do |v|%>
               <div class="col-md-3 col-xs-6 oem-vehicle">
-                <%= v.year %> <%= v.brand.name %> <%= v.model.name %>
+                <%= v.year %> <%= v.brand.name %> <%= v.model.name %> <%= v.submodel.try(:name) %>
               </div>
             <% end %>
           </div>

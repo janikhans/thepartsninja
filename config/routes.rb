@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get '', to: 'dashboard#index', as: '/'
     resources :compatibles, :vehicles, :products
-    resources :fitments, :brands, :categories, :parts, :part_attributes, :vehicle_types, :users, except: [:new]
+    resources :fitments, :brands, :categories, :part_attributes, :vehicle_types, :users, except: [:new]
     resources :attributes, only: [:index]
     resources :searches, only: [:index, :destroy]
     resources :leads, only: [:index, :create, :destroy]
@@ -21,6 +21,9 @@ Rails.application.routes.draw do
     resources :vehicle_models, except: [:index, :show]
     controller :auto_complete do
       get :update_models
+    end
+    resources :parts, except: [:new] do
+      get :update_ebay_fitments, on: :member
     end
   end
 

@@ -10,6 +10,11 @@ class Fitment < ApplicationRecord
   belongs_to :vehicle
   validates :vehicle, presence: true
 
+  # The source of this fitment. Ebay, User, Scraping, etc
+  # We don't know the accuracy of these fitments unless they're imported from a
+  # known catalog. 
+  enum source: [:user, :ebay]
+
   # TODO figure out if these are worth having
   belongs_to :user
   belongs_to :discovery

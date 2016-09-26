@@ -1,5 +1,5 @@
 class Admin::PartsController < Admin::DashboardController
-  before_action :set_part, only: [:show, :edit, :update, :destroy]
+  before_action :set_part, only: [:show, :edit, :update, :destroy, :update_ebay_fitments]
 
   def index
     parts = Part.includes(:product, {product: [:brand, :category]}, :part_attributes)
@@ -37,6 +37,11 @@ class Admin::PartsController < Admin::DashboardController
   def destroy
     @part.destroy
     redirect_to admin_parts_path, notice: 'Part was successfully destroyed.'
+  end
+
+  def update_ebay_fitments
+    @part.update_fitments_from_ebay
+    redirect_to admin_part_path(@part), notice: "Part fitments updated"
   end
 
   private
