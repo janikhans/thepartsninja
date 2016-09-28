@@ -5,8 +5,8 @@
     <div class="panel panel-default">
         <div class="panel-body">
           <div class="action-btns pull-right">
-            <%= link_to 'Edit', edit_admin_product_path(@product) %> |
-            <%= link_to 'Delete', admin_product_path(@product), method: :delete, data: {confirm: "Are you sure"} %>
+            <%= link_to "Update Fitments", update_ebay_fitments_admin_product_path(@product) %> |
+            <%= link_to 'Edit', edit_admin_product_path(@product) %>
           </div>
           <h3>Brand:<small> <%= link_to @product.brand.name, admin_brand_path(@product.brand) %></small> </h3>
           <h3>Product Name:<small> <%= @product.name %></small></h3>
@@ -16,27 +16,43 @@
         </div>
     </div>
     <div class="panel panel-default">
-        <div class="panel-heading">
-            Parts Listing
-        </div>
-        <div class="panel-body">
-          <% if @product.parts.any? %>
-            <div class="row">
-              <% @product.parts.each do |p|%>
-                <div class="col-md-3 col-xs-6 oem-vehicle">
-                  <%= link_to "#{p.part_number}", admin_part_path(p)  %>
-                  <ul>
-                    <% p.oem_vehicles.each do |v| %>
-                       <li><%= v.year %> <%= v.brand.name %> <%= v.model.name %></li>
-                    <% end %>
-                  </ul>
-                </div>
+      <div class="panel-heading">
+        Parts Listing
+      </div>
+      <div class="panel-body">
+        <div class="dataTable_wrapper">
+          <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-parts">
+            <thead>
+              <tr>
+                <th>Part Number</th>
+                <th># Fitments</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @parts.each do |part| %>
+                <tr>
+                  <td><%= part.part_number %></td>
+                  <td><%= part.fitments.count %></td>
+                  <td><%= link_to 'View', admin_part_path(part) %></td>
+                </tr>
               <% end %>
-            </div>
-          <% else %>
-            <h5>This part doesn't have any oem fitments yet</h5>
-          <% end %>
+            </tbody>
+          </table>
         </div>
+        <%= paginate @parts %>
+      </div>
     </div>
   </div>
 </div>
+
+
+<script>
+  $(document).ready(function() {
+      $('#dataTables-parts').DataTable({
+        responsive: true,
+        "aaSorting": [],
+        "paging": false
+      });
+  });
+</script>

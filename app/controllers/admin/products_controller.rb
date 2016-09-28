@@ -1,5 +1,5 @@
 class Admin::ProductsController < Admin::DashboardController
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_product, only: [:show, :edit, :update, :destroy, :update_ebay_fitments]
 
   def index
     @products = Product.includes(:brand, :category).page(params[:page]).order("name ASC")
@@ -10,6 +10,7 @@ class Admin::ProductsController < Admin::DashboardController
   end
 
   def show
+    @parts = @product.parts.page(params[:page]).order("part_number ASC")
   end
 
   def edit
@@ -39,6 +40,15 @@ class Admin::ProductsController < Admin::DashboardController
     redirect_to admin_products_path, notice: 'Product was successfully destroyed.'
   end
 
+  def update_ebay_fitments
+    parts = @product.parts
+
+    parts.each do |p|
+      p.update_fitments_from_ebay
+    end
+
+    redirect_to admin_product_path(@product), notice: 'Fitments were updated.'
+  end
   private
     def set_product
       @product = Product.friendly.find(params[:id])

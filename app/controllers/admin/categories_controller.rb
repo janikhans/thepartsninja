@@ -9,6 +9,14 @@ class Admin::CategoriesController < Admin::DashboardController
   end
 
   def show
+    @imported_parts_count = Part.joins(:product)
+        .where('products.category_id = ? AND parts.ebay_fitments_imported = true', @category.id)
+        .count
+    @need_imported_parts_count = Part.joins(:product)
+        .where('products.category_id = ? AND parts.ebay_fitments_imported = false', @category.id)
+        .count
+    @category_parts_count = @category.products.joins(:parts).count
+    @products = @category.products.includes(:brand).page(params[:page]).order("name ASC")
   end
 
   def edit

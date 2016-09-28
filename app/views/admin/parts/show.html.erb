@@ -5,8 +5,8 @@
     <div class="panel panel-default">
         <div class="panel-body">
           <div class="action-btns pull-right">
-            <%= link_to 'Edit', edit_admin_part_path(@part) %> |
-            <%= link_to 'Delete', admin_part_path(@part), method: :delete, data: {confirm: "Are you sure"} %>
+            <%= link_to "Update Fitments", update_ebay_fitments_admin_part_path(@part) %> |
+            <%= link_to 'Edit', edit_admin_part_path(@part) %>
           </div>
           <h3>Part Number: <small><%= @part.part_number %></small></h3>
           <h3>Category: <small><%= @part.product.category.name %></small></h3>
@@ -22,7 +22,7 @@
     </div>
     <div class="panel panel-default">
       <div class="panel-heading">
-          OEM vehicles <%= link_to "Update Fitments", update_ebay_fitments_admin_part_path(@part), class: "btn btn-primary btn-sm pull-right" %>
+          OEM vehicles
       </div>
       <div class="panel-body">
         <% if @part.oem_vehicles.any? %>

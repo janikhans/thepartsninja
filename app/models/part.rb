@@ -79,8 +79,9 @@ class Part < ApplicationRecord
     ebay_detail.fitments.each do |f|
       submodel = f[:submodel] unless f[:submodel] == "--"
       vehicle = Vehicle.find_with_specs(f[:make], f[:model], f[:year], submodel)
-      Fitment.create(vehicle_id: vehicle.id, part_id: self.id, source: "ebay")
+      Fitment.create(vehicle_id: vehicle.id, part_id: self.id, source: "ebay") if vehicle
     end
+    self.update_attribute(:ebay_fitments_imported, true)
   end
 
   private

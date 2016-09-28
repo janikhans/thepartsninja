@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   #Namespace routes for Admins only
   namespace :admin do
     get '', to: 'dashboard#index', as: '/'
-    resources :compatibles, :vehicles, :products
+    resources :compatibles, :vehicles
     resources :fitments, :brands, :categories, :part_attributes, :vehicle_types, :users, except: [:new]
     resources :attributes, only: [:index]
     resources :searches, only: [:index, :destroy]
@@ -23,6 +23,9 @@ Rails.application.routes.draw do
       get :update_models
     end
     resources :parts, except: [:new] do
+      get :update_ebay_fitments, on: :member
+    end
+    resources :products do
       get :update_ebay_fitments, on: :member
     end
   end
