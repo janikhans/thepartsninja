@@ -14,7 +14,9 @@ class Admin::VehiclesController < Admin::DashboardController
   end
 
   def show
-    @oem_parts = @vehicle.oem_parts
+    oem_parts = @vehicle.oem_parts.includes(:part_attributes, product: [:brand, :category])
+    @oem_parts_count = oem_parts.count
+    @oem_parts = oem_parts.page(params[:page])
   end
 
   def edit
