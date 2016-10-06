@@ -14,12 +14,12 @@
                 <table class="table small m-b-xs">
                   <tbody>
                     <tr>
-                        <td><h3><strong>Year:</strong> <%= @vehicle.vehicle_year.year %> </h3></td>
+                        <td><h3><strong>Year:</strong> <%= @vehicle.year %> </h3></td>
                         <td><h3><strong>Make:</strong> <%= @vehicle.brand.name %></h3></td>
                     </tr>
                     <tr>
-                        <td><h3><strong>Model:</strong> <%= @vehicle.model %></h3></td>
-                        <td><h3><strong>Category:</strong> Motocross</h3></td>
+                        <td><h3><strong>Model:</strong> <%= @vehicle.model.name %> <%= @vehicle.submodel_name %></h3></td>
+                        <td><h3><strong>Category:</strong> <%= @vehicle.type.name %></h3></td>
                     </tr>
                     <tr><td></td><td></td></tr>
                   </tbody>

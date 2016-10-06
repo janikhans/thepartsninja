@@ -12,6 +12,6 @@ class VehiclesController < ApplicationController
 
   private
     def set_vehicle
-      @vehicle = Vehicle.find(params[:id])
+      @vehicle = Vehicle.friendly.find(params[:id])
     end
 end

@@ -103,7 +103,7 @@
           </div>
           <div class="ibox-content no-padding">
           <% if @oem_parts %>
-            <%= render partial: 'parts/oem_part', collection: @oem_parts %>
+            <%= render partial: 'parts/oem_part', collection: @oem_parts.first(5) %>
           <% else %>
             <div class="search-box-padding">
               <h5 class="text-center">Search OEM Parts</h5>
