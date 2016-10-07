@@ -5,6 +5,7 @@
   <td><%= compatibility.compatible_part.part_number %></td>
   <td><%= compatibility.discovery_id %></td>
   <td><%= compatibility.modifications %></td>
+  <td><%= compatibility.backwards %></td>
   <td><%= link_to 'Show', admin_compatibility_path(compatibility) %></td>
   <td><%= link_to 'Edit', edit_admin_compatibility_path(compatibility) %></td>
   <td><%= link_to "Delete", admin_compatibility_path(compatibility), method: :delete, data: {confirm: "Are you sure?"}  %></td>
