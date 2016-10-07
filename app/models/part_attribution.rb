@@ -1,6 +1,4 @@
-class PartTrait < ApplicationRecord
-  # FIXME as with PartAttribute, this model should be renamed
-  # potentiall PartAttribution?
+class PartAttribution < ApplicationRecord
 
   belongs_to :part
   validates :part, presence: true

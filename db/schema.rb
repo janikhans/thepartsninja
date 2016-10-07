@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160927013637) do
+ActiveRecord::Schema.define(version: 20161006231037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,13 +104,13 @@ ActiveRecord::Schema.define(version: 20160927013637) do
     t.index ["parent_id"], name: "index_part_attributes_on_parent_id", using: :btree
   end
 
-  create_table "part_traits", force: :cascade do |t|
+  create_table "part_attributions", force: :cascade do |t|
     t.integer  "part_id",           null: false
     t.integer  "part_attribute_id", null: false
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
-    t.index ["part_attribute_id"], name: "index_part_traits_on_part_attribute_id", using: :btree
-    t.index ["part_id"], name: "index_part_traits_on_part_id", using: :btree
+    t.index ["part_attribute_id"], name: "index_part_attributions_on_part_attribute_id", using: :btree
+    t.index ["part_id"], name: "index_part_attributions_on_part_id", using: :btree
   end
 
   create_table "parts", force: :cascade do |t|

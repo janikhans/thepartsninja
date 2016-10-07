@@ -164,7 +164,7 @@ front = PartAttribute.where(name: 'Front').first
 wheels = Part.first(8)
 
 wheels.each do |wheel|
-  PartTrait.create(part: wheel, part_attribute: front)
+  PartAttribution.create(part: wheel, part_attribute: front)
 end
 
 #----------------------------#

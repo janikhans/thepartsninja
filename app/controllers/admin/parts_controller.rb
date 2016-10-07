@@ -50,6 +50,6 @@ class Admin::PartsController < Admin::DashboardController
     end
 
     def part_params
-      params.require(:part).permit(:part_number, :note, :product_id, :user_id, part_traits_attributes: [:id, :part_attribute_id, :_destroy])
+      params.require(:part).permit(:part_number, :note, :product_id, :user_id, part_attributions_attributes: [:id, :part_attribute_id, :_destroy])
     end
 end

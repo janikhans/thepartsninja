@@ -6,13 +6,13 @@
     <%= f.input :note %>
     There needs to be a way to select the Product here.
     <%#= f.association :product, label_method: :to_label %>
-    <div id="part_traits">
+    <div id="part_attributions">
       <h3>What are some of the part Attributes?</h3>
-      <%= f.simple_fields_for :part_traits do |part_trait| %>
-        <%= render 'part_trait_fields', f: part_trait %>
+      <%= f.simple_fields_for :part_attributions do |part_attribution| %>
+        <%= render 'part_attribution_fields', f: part_attribution %>
       <% end %>
         <div class="links">
-          <%= link_to_add_association 'Add Attribute', f, :part_traits %>
+          <%= link_to_add_association 'Add Attribute', f, :part_attributions %>
         </div>
     </div>
   </div>

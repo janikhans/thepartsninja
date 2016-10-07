@@ -8,10 +8,10 @@ class PartTest < UnitTest
   should belong_to(:user)
   should have_many(:fitments)
   should have_many(:oem_vehicles).through(:fitments).source(:vehicle)
-  should have_many(:part_traits).dependent(:destroy)
-  should have_many(:part_attributes).through(:part_traits).source(:part_attribute)
+  should have_many(:part_attributions).dependent(:destroy)
+  should have_many(:part_attributes).through(:part_attributions).source(:part_attribute)
   should have_many(:compatibles).dependent(:destroy)
-  should accept_nested_attributes_for(:part_traits)
+  should accept_nested_attributes_for(:part_attributions)
 
   setup do
     @new_part = Part.new(product: products(:wheel), part_number: "1234", note: "More test info")

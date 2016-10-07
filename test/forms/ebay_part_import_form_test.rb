@@ -170,7 +170,7 @@ class EbayPartImportFormTest < UnitTest
     part.attributes = [{parent_attribute: "Color", attribute: "Red"}]
     assert part.valid?
 
-    assert_differences [['PartAttribute.count', 2], ['PartTrait.count', 1]] do
+    assert_differences [['PartAttribute.count', 2], ['PartAttribution.count', 1]] do
       part.save
     end
 
@@ -182,7 +182,7 @@ class EbayPartImportFormTest < UnitTest
     part.attributes = [{parent_attribute: "Location", attribute: "Front"}]
     assert part.valid?
 
-    assert_differences [['PartAttribute.count', 0], ['PartTrait.count', 1]] do
+    assert_differences [['PartAttribute.count', 0], ['PartAttribution.count', 1]] do
       part.save
     end
 
@@ -195,7 +195,7 @@ class EbayPartImportFormTest < UnitTest
                        {parent_attribute: "Size", attribute: "Large"}]
     assert part.valid?
 
-    assert_differences [['PartAttribute.count', 4], ['PartTrait.count', 2]] do
+    assert_differences [['PartAttribute.count', 4], ['PartAttribution.count', 2]] do
       part.save
     end
 

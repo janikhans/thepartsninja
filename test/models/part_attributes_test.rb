@@ -4,10 +4,10 @@ class PartAttributeTest < UnitTest
   should validate_presence_of(:name)
   # should validate_uniqueness_of(:name).scoped_to(:parent_id)
   should have_many(:attribute_variations).dependent(:destroy)
-  should have_many(:part_traits).dependent(:destroy)
+  should have_many(:part_attributions).dependent(:destroy)
 
   setup do
-    @new_part_trait = PartAttribute.new(name: "Test")
+    @new_part_attribute = PartAttribute.new(name: "Test")
     @location = part_attributes(:location)
     @rim_size = part_attributes(:rim_size)
     @front = part_attributes(:front)

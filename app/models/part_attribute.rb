@@ -3,7 +3,7 @@ class PartAttribute < ApplicationRecord
   # scope naming needs to be changed to something more concise
 
   belongs_to :parent
-  has_many :part_traits, dependent: :destroy
+  has_many :part_attributions, dependent: :destroy
 
   scope :specific_attributes, -> { where.not(parent_id: nil) }
   scope :attribute_parents, -> { where(parent_id: nil) }
