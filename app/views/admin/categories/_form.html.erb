@@ -4,6 +4,15 @@
   <div class="form-inputs">
     <%= f.input :name %>
     <%= f.association :parent, collection: @parent_categories %>
+    <div id="product_types">
+      <h3>What product types exist in this category?</h3>
+      <%= f.simple_fields_for :product_types do |product_type| %>
+        <%= render 'product_type_fields', f: product_type %>
+      <% end %>
+        <div class="links">
+          <%= link_to_add_association 'Add Product Type', f, :product_types %>
+        </div>
+    </div>
   </div>
 
   <div class="form-actions">

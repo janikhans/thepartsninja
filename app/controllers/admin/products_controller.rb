@@ -14,6 +14,7 @@ class Admin::ProductsController < Admin::DashboardController
   end
 
   def edit
+    @product_types = @product.category.product_types
   end
 
   def create
@@ -55,10 +56,10 @@ class Admin::ProductsController < Admin::DashboardController
     end
 
     def product_params
-      params.require(:product).permit(:product_name, :brand, :category, :subcategory)
+      params.require(:product).permit(:product_name, :brand, :category, :subcategory, :product_type_id)
     end
 
     def edit_product_params
-      params.require(:product).permit(:name, :description, :category_id)
+      params.require(:product).permit(:name, :description, :category_id, :product_type_id)
     end
 end

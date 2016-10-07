@@ -52,6 +52,6 @@ class Admin::CategoriesController < Admin::DashboardController
     end
 
     def category_params
-      params.require(:category).permit(:name, :parent_id)
+      params.require(:category).permit(:name, :parent_id, product_types_attributes: [:id, :name, :description, :_destroy])
     end
 end

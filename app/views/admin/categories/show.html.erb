@@ -22,6 +22,13 @@
           <p><strong>Parts:</strong><%= @category_parts_count %></p>
           <p><strong>Total Imported:</strong><%= @imported_parts_count %></p>
           <p><strong>Needing Import:</strong><%= @need_imported_parts_count %></p>
+          <h3>Product Types</h3>
+          <ul>
+            <% @category.product_types.each do |type| %>
+              <li><%= type.name %></li>
+            <% end %>
+          </ul>
+
         </div>
     </div>
     <div class="panel panel-default">

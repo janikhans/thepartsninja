@@ -1,5 +1,4 @@
 class PartAttribution < ApplicationRecord
-
   belongs_to :part
   validates :part, presence: true
 

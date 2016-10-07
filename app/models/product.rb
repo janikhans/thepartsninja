@@ -10,6 +10,7 @@ class Product < ApplicationRecord
   belongs_to :brand
   belongs_to :user
   belongs_to :category
+  belongs_to :product_type
   has_many :parts, dependent: :destroy
 
   validates :name, :brand, :category, presence: true
