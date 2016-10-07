@@ -9,7 +9,7 @@ class DiscoveriesController < ApplicationController
 
   def new
     @discovery = current_user.discoveries.build
-    @compatible = @discovery.compatibles.build
+    @compatibility = @discovery.compatibilities.build
     @fitments = Fitment.all
   end
 
@@ -68,10 +68,11 @@ class DiscoveriesController < ApplicationController
 
     #building the compatible that belongs to the discovery
     @discovery = current_user.discoveries.build(discovery_params)
-    @compatible = @discovery.compatibles.build
-    @compatible.part = og_part
-    @compatible.compatible_part = compat_part
-    @compatible.backwards = params[:discovery][:backwards]
+    @compatibility = @discovery.compatibilities.build
+    @compatibility.part = og_part
+    @compatibility.compatible_part = compat_part
+    @compatibility.backwards = params[:discovery][:backwards]
+    @compatibility.modifications = params[:discovery][:modifications]
 
     respond_to do |format|
       if @discovery.save
@@ -114,7 +115,6 @@ class DiscoveriesController < ApplicationController
     def discovery_params
       params.require(:discovery).permit(:user_id,
                                         :comment,
-                                        :modifications,
                                         :oem_part_brand,
                                         :oem_part_name,
                                         :oem_vehicle_brand,
@@ -126,7 +126,7 @@ class DiscoveriesController < ApplicationController
                                         :compatible_part_name,
                                         :compatible_part_brand,
                                         :backwards,
-                                        compatibles_attributes: [:id, :fitment_id, :compatible_fitment_id, :backwards, :_destroy],
+                                        compatibilities_attributes: [:id, :fitment_id, :compatible_fitment_id, :backwards, :_destroy],
                                         steps_attributes: [:id, :content, :_destroy]
     )
     end

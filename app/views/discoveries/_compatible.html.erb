@@ -1,31 +1,31 @@
-<div class="vote-item compatible">
+<div class="vote-item compatibility">
   <div class="row">
     <div class="col-md-1 col-xs-1">
         <div class="vote-actions">
-          <%= vote_actions(compatible) %>
+          <%= vote_actions(compatibility) %>
         </div>
     </div>
     <div class="col-md-5 col-xs-5 text-left">
         <div class="part">
-          <%= compatible.part.product.brand.name %> <%= compatible.part.product.name %>
+          <%= compatibility.part.product.brand.name %> <%= compatibility.part.product.name %>
         </div>
         <div class="part-info">
-            <%= link_to('Vehicles +', '#', 'data-toggle': "popover", title: "Built for...", 'data-placement': "bottom", 'data-html': true, 'data-content': "#{vehicle_list(compatible.part)}") %>
-            PN: <%= link_to "#{compatible.part.part_number}", compatible.part %>
+            <%= link_to('Vehicles +', '#', 'data-toggle': "popover", title: "Built for...", 'data-placement': "bottom", 'data-html': true, 'data-content': "#{vehicle_list(compatibility.part)}") %>
+            PN: <%= link_to "#{compatibility.part.part_number}", compatibility.part %>
         </div>
     </div>
     <div class="col-md-1 col-xs-1">
         <div class="backwards">
-          <%= backwards(compatible) %>
+          <%= backwards(compatibility) %>
         </div>
     </div>
     <div class="col-md-5 col-xs-5 text-right">
         <div class="part">
-          <%= compatible.compatible_part.product.brand.name %> <%= compatible.compatible_part.product.name %>
+          <%= compatibility.compatible_part.product.brand.name %> <%= compatibility.compatible_part.product.name %>
         </div>
         <div class="part-info">
-            <%= link_to('Vehicles +', '#', 'data-toggle': "popover", title: "Built for...", 'data-placement': "bottom", 'data-html': true, 'data-content': "#{vehicle_list(compatible.compatible_part)}") %>
-            PN: <%= link_to "#{compatible.compatible_part.part_number}", compatible.compatible_part %>
+            <%= link_to('Vehicles +', '#', 'data-toggle': "popover", title: "Built for...", 'data-placement': "bottom", 'data-html': true, 'data-content': "#{vehicle_list(compatibility.compatible_part)}") %>
+            PN: <%= link_to "#{compatibility.compatible_part.part_number}", compatibility.compatible_part %>
         </div>
     </div>
   </div>

@@ -44,9 +44,9 @@
           Compatible Parts
       </div>
       <div class="panel-body">
-        <% if @part.compatibles.any? %>
+        <% if @part.compatibilities.any? %>
           <div class="row">
-            <% @part.compatibles.each do |c|%>
+            <% @part.compatibilities.each do |c|%>
               <div class="col-md-3 col-xs-6 oem-vehicle">
                 Compatible ID: <%= c.id %>
                 <ul>

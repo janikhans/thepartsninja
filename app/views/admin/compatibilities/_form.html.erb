@@ -1,10 +1,11 @@
-<%= simple_form_for([:admin, @compatible]) do |f| %>
+<%= simple_form_for([:admin, @compatibility]) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
     <%= f.input :part_id, :collection => @parts, :label_method => :id, :value_method => :id, :label => "Part" %>
     <%= f.input :compatible_part_id, :collection => @parts, :label_method => :id, :value_method => :id, :label => "Compatible Part"  %>
-    <%= f.input :backwards,     as: :radio_buttons %>
+    <%= f.input :backwards, as: :radio_buttons %>
+    <%= f.input :modifications, as: :radio_buttons %>
   </div>
 
   <div class="form-actions">

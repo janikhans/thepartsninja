@@ -4,11 +4,11 @@ class Discovery < ApplicationRecord
 
   belongs_to :user
   validates :user, presence: true
-  has_many :compatibles, dependent: :destroy
+  has_many :compatibilities, dependent: :destroy
   has_many :steps, dependent: :destroy
-  has_many :parts, through: :compatibles, source: :part
-  has_many :compatible_parts, through: :compatibles, source: :compatible_part
-  accepts_nested_attributes_for :compatibles, reject_if: :all_blank, allow_destroy: true
+  has_many :parts, through: :compatibilities, source: :part
+  has_many :compatible_parts, through: :compatibilities, source: :compatible_part
+  accepts_nested_attributes_for :compatibilities, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :steps, reject_if: :all_blank, allow_destroy: true
 
   #Work around so that the discovery form validates and saves info in case it's wrong

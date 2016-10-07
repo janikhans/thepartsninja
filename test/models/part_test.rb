@@ -10,7 +10,7 @@ class PartTest < UnitTest
   should have_many(:oem_vehicles).through(:fitments).source(:vehicle)
   should have_many(:part_attributions).dependent(:destroy)
   should have_many(:part_attributes).through(:part_attributions).source(:part_attribute)
-  should have_many(:compatibles).dependent(:destroy)
+  should have_many(:compatibilities).dependent(:destroy)
   should accept_nested_attributes_for(:part_attributions)
 
   setup do

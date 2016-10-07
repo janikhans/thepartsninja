@@ -6,7 +6,7 @@
                   <h5>Compatibilities Discovered</h5>
               </div>
               <div class="ibox-content no-padding">
-                <%= render partial: 'compatible', collection: @discovery.compatibles %>
+                <%= render partial: 'compatibility', collection: @discovery.compatibilities %>
               </div>
           </div>
           <div class="ibox">
@@ -16,7 +16,6 @@
               <div class="ibox-content">
                   <h3>Comments:</h3>
                   <p><%= @discovery.comment %></p>
-                  <p><strong>Modifications:</strong> <%= @discovery.modifications %></p>
                   <% if @discovery.steps.any? %>
                     <p><strong>Steps:</strong></p>
                     <% @discovery.steps.each do |s| %>
@@ -51,7 +50,7 @@
                       <div class="col-md-4">
                         <div class="text-center">
                           <i class="fa fa-gears"></i></br>
-                          <h4><strong><%= @user.compatibles.count %></strong></h4>
+                          <h4><strong><%= @user.compatibilities.count %></strong></h4>
                         </div>
                       </div>
                       <div class="col-md-4">

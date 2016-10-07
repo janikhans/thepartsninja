@@ -12,7 +12,7 @@ class UserTest < UnitTest
   should have_many(:products)
   should have_many(:parts)
   should have_many(:fitments)
-  should have_many(:compatibles).through(:discoveries)
+  should have_many(:compatibilities).through(:discoveries)
   should have_many(:searches)
 
   setup do

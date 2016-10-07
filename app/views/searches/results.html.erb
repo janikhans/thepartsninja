@@ -10,7 +10,7 @@
         <div class="ibox-title"><%= @search.compatible_results.count %> Compatible Parts</div>
         <div class="ibox-content no-padding">
           <% if @search.compatible_results.any? %>
-            <%= render partial: 'compatibles/compatible', collection: @search.compatible_results %>
+            <%= render partial: 'compatibilities/compatibility', collection: @search.compatible_results %>
           <% else %>
           <div class="search-box-padding">
             <h5 class="text-center">No Compatibles Were Found...</h5>

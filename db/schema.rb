@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161006231037) do
+ActiveRecord::Schema.define(version: 20161007001507) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20161006231037) do
     t.index ["parent_id"], name: "index_categories_on_parent_id", using: :btree
   end
 
-  create_table "compatibles", force: :cascade do |t|
+  create_table "compatibilities", force: :cascade do |t|
     t.integer  "part_id"
     t.integer  "compatible_part_id"
     t.integer  "discovery_id"
@@ -40,18 +40,18 @@ ActiveRecord::Schema.define(version: 20161006231037) do
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
     t.integer  "cached_votes_score", default: 0
-    t.index ["cached_votes_score"], name: "index_compatibles_on_cached_votes_score", using: :btree
-    t.index ["compatible_part_id"], name: "index_compatibles_on_compatible_part_id", using: :btree
-    t.index ["discovery_id"], name: "index_compatibles_on_discovery_id", using: :btree
-    t.index ["part_id"], name: "index_compatibles_on_part_id", using: :btree
+    t.boolean  "modifications",      default: false, null: false
+    t.index ["cached_votes_score"], name: "index_compatibilities_on_cached_votes_score", using: :btree
+    t.index ["compatible_part_id"], name: "index_compatibilities_on_compatible_part_id", using: :btree
+    t.index ["discovery_id"], name: "index_compatibilities_on_discovery_id", using: :btree
+    t.index ["part_id"], name: "index_compatibilities_on_part_id", using: :btree
   end
 
   create_table "discoveries", force: :cascade do |t|
     t.integer  "user_id"
     t.text     "comment"
-    t.boolean  "modifications", default: false, null: false
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_discoveries_on_user_id", using: :btree
   end
 

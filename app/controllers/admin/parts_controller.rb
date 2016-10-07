@@ -9,7 +9,7 @@ class Admin::PartsController < Admin::DashboardController
   end
 
   def show
-    @compatibles = @part.compatibles
+    @compatibilities = @part.compatibilities
   end
 
   def edit

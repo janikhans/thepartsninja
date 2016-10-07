@@ -1,4 +1,4 @@
-class Compatible < ApplicationRecord
+class Compatibility < ApplicationRecord
   # TODO change the :backward column attribute somehow. Maybe a second attribute
   # with an id to the other backwards:true reference?
 
@@ -17,11 +17,11 @@ class Compatible < ApplicationRecord
 
   acts_as_votable
 
-  def make_backwards_compatible
+  def make_backwards_compatible!
     return if self.backwards == false
     new_compat = self.dup
     new_compat.part, new_compat.compatible_part = new_compat.compatible_part, new_compat.part
     new_compat.save
-    # Compatible.create(part: self.compatible_part, compatible_part: self.part, discovery: self.discovery, backwards: true)
+    # Compatibility.create(part: self.compatible_part, compatible_part: self.part, discovery: self.discovery, backwards: true)
   end
 end

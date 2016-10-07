@@ -3,7 +3,7 @@ class PartsController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    @compatibles = @part.compatibles
+    @compatibilities = @part.compatibilities
   end
 
   private

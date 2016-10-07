@@ -122,7 +122,7 @@ class SearchForm
     def find_compatible_parts(oem_parts)
       compatible_parts = []
       oem_parts.each do |p|
-        compatible_parts << p.compatibles
+        compatible_parts << p.compatibilities
       end
       compatible_parts.flatten!
       return compatible_parts.sort_by {|c| c.cached_votes_score }.reverse

@@ -21,7 +21,7 @@ class Part < ApplicationRecord
   has_many :oem_vehicles, through: :fitments, source: :vehicle
   has_many :part_attributions, dependent: :destroy
   has_many :part_attributes, through: :part_attributions, source: :part_attribute
-  has_many :compatibles, dependent: :destroy
+  has_many :compatibilities, dependent: :destroy
 
   accepts_nested_attributes_for :part_attributions, reject_if: :all_blank, allow_destroy: true
 
@@ -31,8 +31,8 @@ class Part < ApplicationRecord
 
   def compatible_parts #Finds just the compatible parts to the part being searched
     compatible_parts = []
-    self.compatibles.each do |c|
-      compatible_parts << c.compatible_part #if c.cached_votes_score >= 0 #if c.discovery.modifications == false
+    self.compatibilities.each do |c|
+      compatible_parts << c.compatible_part #if c.cached_votes_score >= 0 #if c.modifications == false
     end
     return compatible_parts
   end

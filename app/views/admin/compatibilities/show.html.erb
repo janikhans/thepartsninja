@@ -1,0 +1,34 @@
+<% provide(:header, "Showing Compatibility: #{@compatibility.id}") %>
+<p>
+  <strong>Original:</strong>
+  <%= @compatibility.part_id %>
+</p>
+
+<p>
+  <strong>Replaces:</strong>
+  <%= @compatibility.compatible_part_id %>
+</p>
+
+<p>
+  <strong>Backwards Compatible?</strong>
+  <%= @compatibility.backwards %>
+</p>
+
+<p>
+  <strong>Discovery:</strong>
+  <%= @compatibility.discovery_id %>
+</p>
+
+<p>
+  <strong>modifications:</strong>
+  <%= @compatibility.modifications %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <% if @compatibility.discovery %>
+    <%= @compatibility.discovery.user.username %>
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_admin_compatibility_path(@compatibility) %>
