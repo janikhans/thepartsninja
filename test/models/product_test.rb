@@ -6,6 +6,7 @@ class ProductTest < UnitTest
   should validate_presence_of(:brand)
   should belong_to(:category)
   should validate_presence_of(:category)
+  should belong_to(:product_type)
   should belong_to(:user) # is this really necessary?
   should have_many(:parts)
 

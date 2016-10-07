@@ -11,7 +11,7 @@
           <h3>Brand:<small> <%= link_to @product.brand.name, admin_brand_path(@product.brand) %></small> </h3>
           <h3>Product Name:<small> <%= @product.name %></small></h3>
           <h3>Category:<small> <%= @product.category.parent_category.name if @product.category.parent_category %> - <%= @product.category.name %></small></h3>
-          <h3>Product Type:<small> <%= @product.product_type.name %></small></h3>
+          <h3>Product Type:<small> <%= @product.product_type ? @product.product_type.name : "No Product Type Yet" %></small></h3>
           <h3>Description:</h3>
           <small> <%= @product.description %> </small>
         </div>
