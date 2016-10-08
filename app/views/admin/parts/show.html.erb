@@ -11,7 +11,7 @@
           <h3>Part Number: <small><%= @part.part_number %></small></h3>
           <h3>Category: <small><%= @part.product.category.name %></small></h3>
           <h3>Brand:<small> <%= link_to @part.product.brand.name, admin_brand_path(@part.product.brand) %></small> </h3>
-          <h3>Product Name:<small> <%= @part.product.name %></small></h3>
+          <h3>Product Name:<small> <%= link_to @part.product.name, admin_product_path(@part.product) %></small></h3>
           <h3>Attributes: <small><% @part.part_attributes.each do |p| %><%= p.parent_attribute.name %>: <%= p.name %> <% end %></small></h3>
           <% if @part.note.present? %>
             <h3>Notes: <small><%= @part.note %></small></h3>
