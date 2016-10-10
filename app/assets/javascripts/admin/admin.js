@@ -20,3 +20,4 @@
 //= require admin/sb-admin
 //= require cocoon
 //= require admin/vehicles
+//= require chosen-jquery

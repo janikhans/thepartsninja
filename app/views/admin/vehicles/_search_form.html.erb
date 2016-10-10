@@ -1,8 +1,8 @@
 <%= simple_form_for :search do |f| %>
   <div class="row">
-      <%= f.input :brand, collection: Brand.joins(:vehicles).select("DISTINCT brands.*").order(name: :asc), class:"form-control", required: true, label: false, prompt: "Make...", wrapper_html: {class: "col-md-3"} %>
-      <%= f.input :model, collection: [], class:"form-control", required: true, label: false, prompt: "Model...", wrapper_html: {class: "col-md-3"}%>
-      <%= f.input :submodel, collection: [], class:"form-control", required: true, label: false, prompt: "Submodel...", wrapper_html: {class: "col-md-3"}%>
+      <%= f.input :brand, collection: Brand.joins(:vehicles).select("DISTINCT brands.*").order(name: :asc), class:"form-control", label: false, prompt: "Make...", wrapper_html: {class: "col-md-3"}, input_html: {class: "chosen-select" } %>
+      <%= f.input :model, collection: [], class: "form-control", label: false, prompt: "Model...", wrapper_html: {class: "col-md-3"}, input_html: {class: "chosen-select" }%>
+      <%= f.input :submodel, collection: [], class:"form-control", label: false, prompt: "Submodel...", wrapper_html: {class: "col-md-3"} %>
       <%= f.input :year, collection: [], prompt: "Year...", label: false, class:"form-control", label_method: :year, wrapper_html: {class: "col-md-3"} %>
     <div class="text-center">
       <%= link_to "Go", "#", id: "search-vehicle-link", class: "btn btn-default"%>
@@ -19,6 +19,9 @@
     $('#search_year').empty();
     $('#search_year').append($("<option></option>").text('Year...'));
     $("#search-vehicle-link").attr("href", "#");
+    $('#search_model').trigger("chosen:updated");
+    $('#search_submodel').trigger("chosen:updated");
+    $('#search_year').trigger("chosen:updated");
     var brandId = $(this).val();
     if (brandId > 0 ) {
       return $.ajax({
