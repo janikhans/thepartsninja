@@ -45,9 +45,19 @@ Rails.application.routes.draw do
   concern :autocompletable do
     get 'autocomplete', on: :collection
   end
-  resources :brands, only: [:index, :show], concerns: :autocompletable
-  get 'coming-soon' => 'leads#index'
+  resources :brands, only: [:index, :show] do
+    get :models, on: :member
+  end
 
+  resources :vehicle_models, only: [] do
+    get :submodels, on: :member
+  end
+
+  resources :vehicle_submodels, only: [] do
+    get :vehicles, on: :member
+  end
+
+  get 'coming-soon' => 'leads#index'
 
   #User Dashboard
   get 'dashboard' => 'dashboard#activity'

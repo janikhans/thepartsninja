@@ -1,0 +1,10 @@
+$('#search_submodel').empty();
+$('#search_submodel').append($("<option></option>").text('Select a Submodel...'));
+<% @submodels.each do |submodel| %>
+  <% if submodel.name.nil? %>
+    <% name = "-- (Base Model)" %>
+  <% else %>
+    <% name = submodel.name %>
+  <% end %>
+  $('#search_submodel').append($("<option></option>").attr("value",<%= submodel.id %>).text('<%= name %>'));
+<% end %>
