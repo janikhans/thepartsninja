@@ -10,10 +10,8 @@ class BrandsController < ApplicationController
   end
 
   def models
-    @models = @brand.vehicle_models.order(name: :asc)
-    respond_to do |format|
-      format.js
-    end
+    @models = @brand.vehicle_models.joins(:vehicle_type).where('vehicle_models.vehicle_type_id = ?',1).order(name: :asc)
+    render json: @models, only: [:id, :name]
   end
 
   private

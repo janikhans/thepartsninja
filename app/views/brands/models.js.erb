@@ -1,6 +1,0 @@
-$('#search_model').empty();
-$('#search_model').append($("<option></option>").text('Select a Model...'));
-<% @models.each do |model| %>
-  $('#search_model').append($("<option></option>").attr("value",<%= model.id %>).text('<%= model.name %>'));
-<% end %>
-$('#search_model').trigger("chosen:updated");

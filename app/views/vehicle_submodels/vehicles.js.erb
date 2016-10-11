@@ -1,5 +1,0 @@
-$('#search_year').empty();
-$('#search_year').append($("<option></option>").text('Select a Year...'));
-<% @vehicles.each do |vehicle| %>
-  $('#search_year').append($("<option></option>").attr("value",<%= vehicle.id %>).text('<%= vehicle.year %>'));
-<% end %>

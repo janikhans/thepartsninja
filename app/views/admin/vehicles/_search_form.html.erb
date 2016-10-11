@@ -5,62 +5,25 @@
       <%= f.input :submodel, collection: [], class:"form-control", label: false, prompt: "Submodel...", wrapper_html: {class: "col-md-3"} %>
       <%= f.input :year, collection: [], prompt: "Year...", label: false, class:"form-control", label_method: :year, wrapper_html: {class: "col-md-3"} %>
     <div class="text-center">
-      <%= link_to "Go", "#", id: "search-vehicle-link", class: "btn btn-default"%>
+      <%= link_to "Go", "#", id: "search-vehicle-link", class: "btn btn-default disabled"%>
     </div>
   </div>
 <% end %>
 
 <script type="text/javascript">
-  $("#search_brand").on("change", function() {
-    $('#search_model').empty();
-    $('#search_model').append($("<option></option>").text('Model...'));
-    $('#search_submodel').empty();
-    $('#search_submodel').append($("<option></option>").text('Submodel...'));
-    $('#search_year').empty();
-    $('#search_year').append($("<option></option>").text('Year...'));
-    $("#search-vehicle-link").attr("href", "#");
-    $('#search_model').trigger("chosen:updated");
-    $('#search_submodel').trigger("chosen:updated");
-    $('#search_year').trigger("chosen:updated");
-    var brandId = $(this).val();
-    if (brandId > 0 ) {
-      return $.ajax({
-        url: "/brands/"+brandId+"/models",
-        type: "GET"
-      });
-    };
-  });
-
-  $("#search_model").on("change", function() {
-    $('#search_submodel').empty();
-    $('#search_submodel').append($("<option></option>").text('Submodel...'));
-    $('#search_year').empty();
-    $('#search_year').append($("<option></option>").text('Year...'));
-    $("#search-vehicle-link").attr("href", "#");
-    var modelId = $(this).val();
-    if (modelId > 0 ) {
-      return $.ajax({
-        url: "/vehicle_models/"+modelId+"/submodels",
-        type: "GET"
-      });
-    };
-  });
-
-  $("#search_submodel").on("change", function() {
-    $('#search_year').empty();
-    $('#search_year').append($("<option></option>").text('Year...'));
-    $("#search-vehicle-link").attr("href", "#");
-    var submodelId = $(this).val();
-    if (submodelId > 0 ) {
-      return $.ajax({
-        url: "/vehicle_submodels/"+submodelId+"/vehicles",
-        type: "GET"
-      });
-    };
-  });
+  dynamic_vehicle_form("search");
 
   $("#search_year").on("change", function() {
     var vehicleId = $(this).val();
-    $("#search-vehicle-link").attr("href", "/admin/vehicles/"+vehicleId);
+    update_link(vehicleId);
   });
+
+  function update_link(vehicleId) {
+    if ( vehicleId ) {
+      $("#search-vehicle-link").removeClass("disabled");
+      $("#search-vehicle-link").attr("href", "/admin/vehicles/"+vehicleId);
+    } else {
+      $("#search-vehicle-link").addClass("disabled");
+    };
+  };
 </script>

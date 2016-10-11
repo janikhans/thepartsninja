@@ -21,3 +21,4 @@
 //= require cocoon
 //= require admin/vehicles
 //= require chosen-jquery
+//= require dynamic_selects

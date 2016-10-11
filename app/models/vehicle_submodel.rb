@@ -16,6 +16,14 @@ class VehicleSubmodel < ApplicationRecord
 
   accepts_nested_attributes_for :vehicles, reject_if: :all_blank
 
+  def adjusted_name
+    if self.name.nil?
+      "-- Base"
+    else
+      self.name
+    end
+  end
+
   private
 
     def sanitize_name
