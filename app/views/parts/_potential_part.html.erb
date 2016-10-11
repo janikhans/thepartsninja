@@ -20,12 +20,12 @@
         <i class="fa fa-gears"></i><h4>Reasoning: </h4>  Part -> Part -> Part -> Part
       </div>
       <div class="col-md-6 col-sm-6 info-divider">
-        <% if potential_part[:part].oem_vehicles.count > 1 %>
+        <%# if potential_part[:part].oem_vehicles.count > 1 %>
           <h3>OEM Models</h3>
           <div class="row">
-            <% potential_part[:part].oem_vehicles.each do |f| %> <div class="col-xs-6 col-md-6"> <%= f.year %> <%= f.brand.name %> <%= f.model.name %> </div> <% end %>
+            <%# potential_part[:part].oem_vehicles.each do |f| %> <div class="col-xs-6 col-md-6"> <%#= f.year %> <%#= f.brand.name %> <%#= f.model.name %> </div> <%# end %>
           </div>
-        <% end %>
+        <%# end %>
       </div>
     </div>
   </div>
