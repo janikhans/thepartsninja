@@ -48,15 +48,19 @@ Rails.application.routes.draw do
   resources :brands, only: [:index, :show] do
     get :models, on: :member
   end
-
   resources :vehicle_models, only: [] do
     get :submodels, on: :member
   end
-
   resources :vehicle_submodels, only: [] do
     get :vehicles, on: :member
   end
-
+  resources :compatibility_checks, only: [:new] do
+    get :results, on: :collection
+  end
+  resources :categories, only: [] do
+    get :subcategories, on: :member
+    get :product_types, on: :member
+  end
   get 'coming-soon' => 'leads#index'
 
   #User Dashboard

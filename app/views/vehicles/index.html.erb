@@ -1,27 +1,27 @@
 <div class="row">
-<div class="col-md-12">
-  <div id="nj-heading" class="nj-mat">
-    <h1>Vehicles</h1>
-    <p>The Ninja database currently has <%= @vehicles.count %> vehicles.</p>
-  </div>
+  <div class="col-md-12">
+    <div id="nj-heading" class="nj-mat">
+      <h1>Vehicles</h1>
+      <p>The Ninja database currently has <%= @vehicles.count %> vehicles.</p>
+    </div>
 
-  <div id="nj-content" class="nj-mat">
-    <table class=" nj-table">
-      <thead>
-        <tr>
-          <th>Id</th>
-          <th>Parts Count</th>
-          <th>Year</th>
-          <th>Brand</th>
-          <th>Model</th>
-          <th colspan="2"></th>
-        </tr>
-      </thead>
+    <div id="nj-content" class="nj-mat">
+      <table class=" nj-table">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Parts Count</th>
+            <th>Year</th>
+            <th>Brand</th>
+            <th>Model</th>
+            <th colspan="2"></th>
+          </tr>
+        </thead>
 
-      <tbody>
-        <%#= render @vehicles %>
-      </tbody>
-    </table>
+        <tbody>
+          <%#= render @vehicles %>
+        </tbody>
+      </table>
+    </div>
   </div>
-</div>
 </div>

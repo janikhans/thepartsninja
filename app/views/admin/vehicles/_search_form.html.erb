@@ -3,7 +3,7 @@
       <%= f.input :brand, collection: Brand.joins(:vehicles).select("DISTINCT brands.*").order(name: :asc), class:"form-control", label: false, prompt: "Make...", wrapper_html: {class: "col-md-3"}, input_html: {class: "chosen-select" } %>
       <%= f.input :model, collection: [], class: "form-control", label: false, prompt: "Model...", wrapper_html: {class: "col-md-3"}, input_html: {class: "chosen-select" }%>
       <%= f.input :submodel, collection: [], class:"form-control", label: false, prompt: "Submodel...", wrapper_html: {class: "col-md-3"} %>
-      <%= f.input :year, collection: [], prompt: "Year...", label: false, class:"form-control", label_method: :year, wrapper_html: {class: "col-md-3"} %>
+      <%= f.input :year, collection: [], prompt: "Year...", label: false, class:"form-control", wrapper_html: {class: "col-md-3"} %>
     <div class="text-center">
       <%= link_to "Go", "#", id: "search-vehicle-link", class: "btn btn-default disabled"%>
     </div>
@@ -12,12 +12,13 @@
 
 <script type="text/javascript">
   dynamic_vehicle_form("search");
-
+  $("#search_brand, #search_model, #search_submodel").on("change", function() {
+    update_link();
+  });
   $("#search_year").on("change", function() {
     var vehicleId = $(this).val();
     update_link(vehicleId);
   });
-
   function update_link(vehicleId) {
     if ( vehicleId ) {
       $("#search-vehicle-link").removeClass("disabled");

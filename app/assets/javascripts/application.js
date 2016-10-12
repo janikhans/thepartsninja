@@ -19,4 +19,5 @@
 //= require jquery.steps
 //= require jquery.validate.min
 //= require cocoon
+//= require chosen-jquery
 //= require_directory .

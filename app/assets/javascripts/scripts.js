@@ -227,3 +227,11 @@ $(document).ready(function () {
 
 //For the expanding search function in the Vehicle Show Page
 document.addEventListener("touchstart", function(){}, true);
+
+$(function() {
+  return $('.chosen-select').chosen({
+    allow_single_deselect: true,
+    no_results_text: 'No results matched',
+    width: '100%'
+  });
+});

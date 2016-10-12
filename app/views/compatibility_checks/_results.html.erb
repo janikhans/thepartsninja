@@ -1,0 +1,10 @@
+<% if @compatibility_check.results.any? %>
+  Found <%= @compatibility_check.results.count %> compatible parts
+  <% @compatibility_check.results.each do |c| %>
+    <p>
+       <%= render partial: "parts/oem_part", locals: {oem_part: c} %>
+    </p>
+  <% end %>
+<% else %>
+  No compatibilities found.
+<% end %>
