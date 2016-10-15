@@ -13,6 +13,7 @@
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
+            <li><%= link_to "Compatibility Check", compatibility_check_path %> </li>
             <li><%= link_to "New Discovery", new_discovery_path %> </li>
               <% if current_user.admin?  %>
                 <li><%= link_to "Admin", admin_path %></li>

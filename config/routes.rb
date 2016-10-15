@@ -54,9 +54,11 @@ Rails.application.routes.draw do
   resources :vehicle_submodels, only: [] do
     get :vehicles, on: :member
   end
-  resources :compatibility_checks, only: [:new] do
+  resources :compatibility_checks, only: [] do
     get :results, on: :collection
   end
+  get 'compatibility-check' => 'compatibility_checks#new'
+
   resources :categories, only: [] do
     get :subcategories, on: :member
     get :product_types, on: :member

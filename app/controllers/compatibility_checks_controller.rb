@@ -2,7 +2,6 @@ class CompatibilityChecksController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    # @compatibility_check = CompatibilityCheck.new
   end
 
   def results
