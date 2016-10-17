@@ -9,8 +9,8 @@ class CompatibilityCheck
   end
 
   def process
-    vehicle_one_parts = @vehicle_one.oem_parts.joins(:product).where('products.product_type_id = ?', @product_type.id)
-    vehicle_two_parts = @vehicle_two.oem_parts.joins(:product).where('products.product_type_id = ?', @product_type.id)
+    vehicle_one_parts = @vehicle_one.oem_parts.joins(:product).where('products.product_type_id = ?', @product_type.id).includes(product: :brand)
+    vehicle_two_parts = @vehicle_two.oem_parts.joins(:product).where('products.product_type_id = ?', @product_type.id).includes(product: :brand)
     @results = vehicle_one_parts & vehicle_two_parts
   end
 end

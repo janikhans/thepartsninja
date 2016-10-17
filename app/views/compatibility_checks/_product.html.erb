@@ -1,0 +1,18 @@
+<div id="product_<%= product.id%>" class="product">
+  <div class="row">
+    <div class="col-md-9">
+      <div class="product-image">
+        <%= image_tag("missing-brand-image", class:"img-responsive") %>
+      </div>
+      <div class="product-title"><%= product.brand.name %> - <%= product.name %></div>
+      <div class="product-description">Talk about sports, entertainment, music, movies, your favorite color, talk about enything.</div>
+    </div>
+    <div class="col-md-2 product-info">
+      <span><%= parts.count %></span>
+      <div><small>Compatible Parts</small></div>
+    </div>
+    <div class="col-md-1 product-info">
+      <small><%= link_to "View", product_path(product)%></small>
+    </div>
+  </div>
+</div>

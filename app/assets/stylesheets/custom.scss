@@ -4,7 +4,7 @@ html {
 }
 body {
   background-color: $flat-background;
-  color: #B1B1B1;
+  color: #5a5a5a;
 }
 
 /* General Use Classes
@@ -141,7 +141,7 @@ body {
     font-size: 30px;
   }
   .page-header-content {
-    padding: 50px 0px;
+    padding: 40px 0px 15px;
   }
   .results { text-align: center;}
   .default {
@@ -161,7 +161,7 @@ body {
 }
 
 .sub-header {
-  background-color: $flat-darker;
+  background-color: #FFFFFF;
   padding: 15px;
   .quicklinks {
     width: 100%;
@@ -205,8 +205,8 @@ body {
 
 /* PAGE CONTENT
 -------------------------------------------------- */
-.content-wrapper {
-  padding: 20px;
+#content {
+  margin-top: 15px;
 }
 
 span.navy { color: $navy;}
@@ -437,6 +437,68 @@ section p {
     &:hover { color: $navy;}
   }
   .brands-list { margin-bottom: 40px;}
+}
+
+
+/* COMPATIBILITY CHECK
+-------------------------------------------------- */
+#compatibility-check {
+  .result-stats {
+    border-bottom: 1px solid $flat-border-light;
+  }
+  .nav-pills > li {
+  	> a { border-radius: 0;}
+  	&.active > a {
+      color: #ffffff;
+  		background-color: $navy;
+  		&:hover {
+        color: #ffffff;
+    		background-color: $navy; }
+  		&:focus {
+        color: #ffffff;
+    		background-color: $navy;}
+  	}
+  }
+}
+.compatibility-check-arrow {
+  display: block !important;
+  color: inherit;
+  text-align: center;
+}
+
+/* SIDEBAR
+-------------------------------------------------- */
+#sidebar {
+  border-left: 1px solid $flat-border-light;
+}
+
+/* PRODUCT PARTIAL
+-------------------------------------------------- */
+.product {
+  padding: 10px 10px 20px;
+  border-bottom: 1px solid #f1f1f1;
+  &:hover { background-color: #F9F9F9;}
+  .product-image {
+    float: left;
+    width: 60px;
+    margin-right: 20px;
+    text-align: center;
+  }
+  .product-title {
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .product-description {
+    color: #999;
+    margin-left: 50px;
+  }
+  .product-info {
+    font-size: 15px;
+    line-height: 18px;
+    font-weight: 400;
+    text-align: center;
+  }
 }
 
 /* COMPATIBLE/POTENTIAL PARTIALS
