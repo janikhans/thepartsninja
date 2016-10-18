@@ -1,0 +1,26 @@
+<div class="col-md-12 col-sm-6">
+  <div class="ibox">
+    <div class="ibox-content ebay-listing">
+      <div class="listing-image">
+          <%= image_tag ebay_listing["pictureURLLarge"] %>
+      </div>
+      <div class="listing-description">
+        <span class="listing-price">
+          <%= number_to_currency(ebay_listing["price"]) %>
+        </span>
+        <small class="text-muted"><%= ebay_listing["sellerName"] %> - <%= ebay_listing["sellerScore"] %> (<%= ebay_listing["sellerFeedbackPercent"] %>%)</small>
+        <%= link_to ebay_listing["viewItemURL"], target: "_blank", class: "product-name" do %>
+          <%= ebay_listing["title"] %>
+        <% end %>
+        <div class="small m-t-xs">
+          <%= distance_of_time_in_words(Time.now, ebay_listing["endingAt"]) %> remaining
+        </div>
+        <div class="m-t text-right">
+          <%= link_to ebay_listing["viewItemURL"], target: "_blank", class: "btn btn-xs btn-outline btn-primary" do %>
+            Buy <i class="fa fa-long-arrow-right"></i>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -15,6 +15,8 @@ class CompatibilityChecksController < ApplicationController
           @parts = compatibility_check.results
           @products = compatibility_check.results.group_by { |s| s.product }
       end
+      search_term = v_one.to_label + " " + product_type.name
+      @ebay_results = YaberAdvancedListing.search(search_term, 5)
     end
   end
 
@@ -24,6 +26,8 @@ class CompatibilityChecksController < ApplicationController
         @results = @compatibility_check.results
         @parts = @compatibility_check.results
         @products = @compatibility_check.results.group_by { |s| s.product }
+        search_term = @compatibility_check.vehicle_one.to_label + " " + @compatibility_check.product_type.name
+        @ebay_results = YaberAdvancedListing.search(search_term, 5)
       respond_to :js
     else
       "damn..."

@@ -1,11 +1,10 @@
 class CompatibilityCheck
-  attr_reader :results
+  attr_reader :results, :vehicle_one, :vehicle_two, :product_type
 
   def initialize(params = {})
     @vehicle_one = Vehicle.find_by(id: params[:vehicle_one_id])
     @vehicle_two = Vehicle.find_by(id: params[:vehicle_two_id])
     @product_type = ProductType.find_by(id: params[:product_type_id])
-    @results = []
   end
 
   def process

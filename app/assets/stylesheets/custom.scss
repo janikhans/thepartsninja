@@ -501,6 +501,45 @@ section p {
   }
 }
 
+/* EBAY LISTING PARTIAL
+-------------------------------------------------- */
+.ebay-listing {
+  padding: 0;
+  border: 1px solid #e7eaec;
+  background-color: #FFFFFF !important;
+  border-radius: 0px !important;
+  &:hover {
+    -webkit-box-shadow: 0 3px 7px 0 rgba(168, 168, 168, 1);
+    -moz-box-shadow: 0 3px 7px 0 rgba(168, 168, 168, 1);
+    box-shadow: 0 3px 7px 0 rgba(168, 168, 168, 1);
+  }
+  .listing-image {
+    text-align: center;
+    background-color: #5b5b5b;
+    color: #222222;
+    font-weight: 600;
+    img {
+      width: 100%;
+      height: auto;
+      margin: auto;
+    }
+  }
+  .listing-description {
+    padding: 20px;
+    position: relative;
+    .listing-price {
+      font-size: 14px;
+      font-weight: 600;
+      color: #ffffff;
+      background-color: #5FD063;
+      padding: 6px 12px;
+      position: absolute;
+      top: -32px;
+      right: 0;
+    }
+  }
+}
+
 /* COMPATIBLE/POTENTIAL PARTIALS
 -------------------------------------------------- */
 .part-group {
@@ -693,6 +732,12 @@ footer {
 
 /* RESPONSIVE CSS
 -------------------------------------------------- */
+@media (min-width: 1200px) {
+  .container {
+    width: 1280px;
+  }
+}
+
 @media (min-width: 768px) {
   /* Navbar positioning foo */
   .navbar-wrapper {
