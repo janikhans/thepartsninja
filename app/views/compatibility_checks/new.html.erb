@@ -6,12 +6,15 @@
   <%= render 'layouts/header_partials/quicklinks' %>
 <% end %>
 <div class="row">
-  <div id="compatibility-check-form" class="ibox-content">
-    <%= render 'compatibility_checks/form' %>
+  <div id="compatibility-check-form" class="col-md-12">
+    <h3>Begin Your Search</h3>
+    <div class="ibox-content shadow">
+      <%= render 'compatibility_checks/form' %>
+    </div>
   </div>
 </div>
-<div class="row m-t-md">
-  <div id="compatibility-check" class="col-md-9 ibox-content">
+<div class="row m-t-sm">
+  <div id="compatibility-check" class="col-md-9">
     <%= render 'results' %>
   </div>
   <div id="ebay-results-sidebar" class="col-md-3">

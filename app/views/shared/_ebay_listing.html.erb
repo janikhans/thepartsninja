@@ -1,4 +1,4 @@
-<div class="col-md-12 col-sm-6">
+<div class="col-md-12 col-xs-6">
   <div class="ibox">
     <div class="ibox-content ebay-listing">
       <div class="listing-image">
@@ -13,7 +13,7 @@
           <%= ebay_listing["title"] %>
         <% end %>
         <div class="small m-t-xs">
-          <%= distance_of_time_in_words(Time.now, ebay_listing["endingAt"]) %> remaining
+          <i><%= distance_of_time_in_words(Time.now, ebay_listing["endingAt"]) %> remaining</i>
         </div>
         <div class="m-t text-right">
           <%= link_to ebay_listing["viewItemURL"], target: "_blank", class: "btn btn-xs btn-outline btn-primary" do %>

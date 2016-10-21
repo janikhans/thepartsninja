@@ -1,37 +1,41 @@
-<% if @results.any? %>
-    <ul class="nav nav-pills nav-justified result-stats">
-      <li class="active"><a data-toggle="pill" href="#all">Results</a></li>
-      <li><a data-toggle="pill" href="#products">Products (<%= @products.count %>)</a></li>
-      <li><a data-toggle="pill" href="#parts">Parts (<%= @parts.count %>)</a></li>
-      <li><a data-toggle="pill" href="#potentials">Potentials</a></li>
-    </ul>
-  <div class="results">
-    <div class="tab-content">
-      <div id="all" class="tab-pane fade in active">
-        <h3>Results</h3>
-        <p>It appears that there were some compatibilities found.</p>
-      </div>
-      <div id="parts" class="tab-pane fade">
-        <% @parts.each do |part| %>
-          <%= render partial: "parts/oem_part", locals: {oem_part: part} %>
-        <% end %>
-      </div>
-      <div id="products" class="tab-pane fade">
-        <% @products.each do |product, parts| %>
-          <%= render partial: "product", locals: {product: product, parts: parts} %>
-        <% end %>
-      </div>
-      <div id="potentials" class="tab-pane fade">
-        <h3>Menu 2</h3>
-        <p>Some content in menu 2.</p>
+<h3>Results</h3>
+<div class="ibox-content shadow">
+  <% if @results.any? %>
+      <ul class="nav nav-pills nav-justified result-stats">
+        <li class="active"><a data-toggle="pill" href="#overview">Overview</a></li>
+        <li><a data-toggle="pill" href="#products">Products (<%= @products.count %>)</a></li>
+        <li><a data-toggle="pill" href="#parts">Parts (<%= @parts.count %>)</a></li>
+        <li><a data-toggle="pill" href="#potentials">Potentials</a></li>
+      </ul>
+    <div class="results">
+      <div class="tab-content">
+        <div id="overview" class="tab-pane fade in active">
+          <p>It appears that there were some <%= @check.product_type.name %> compatibilities found between:</p>
+          <%= @check.vehicle_one.to_label %> and <%= @check.vehicle_two.to_label %>
+          <p>There were a total of <%= @parts.count %> compatibilities found</p>
+          Of these <%= @parts.count %> were aftermarket.
+          And 34 were OEM.
+        </div>
+        <div id="parts" class="tab-pane fade">
+          <%= render partial: "parts/oem_part", collection: @parts %>
+        </div>
+        <div id="products" class="tab-pane fade">
+          <% @products.each do |product, parts| %>
+            <%= render partial: "product", locals: {product: product, parts: parts} %>
+          <% end %>
+        </div>
+        <div id="potentials" class="tab-pane fade">
+          <h3>Menu 2</h3>
+          <p>Some content in menu 2.</p>
+        </div>
       </div>
     </div>
-  </div>
-<% else %>
-  <div class="result-stats">
-    No compatibilities found.
-  </div>
-  <div class="results">
-    Try again?
-  </div>
-<% end %>
+  <% else %>
+    <div class="result-stats">
+      No compatibilities found.
+    </div>
+    <div class="results">
+      Try again?
+    </div>
+  <% end %>
+</div>

@@ -1,20 +1,32 @@
 <%= simple_form_for :compatibility_check, url: results_compatibility_checks_path, method: :get, remote: true do |f| %>
   <div class="row">
     <div class="col-md-4">
-      <%= f.input :vehicle_one_brand, collection: Brand.joins(:vehicles).where("vehicle_models.vehicle_type_id = 1").select("DISTINCT brands.*").order(name: :asc), class:"form-control", label: false, prompt: "Make...", input_html: {class: "chosen-select" } %>
+      <div class="vehicle-one text-center">
+        <h2>Vehicle One</h2>
+        <i class="fa fa-motorcycle fa-5x compatibility-check-arrow"></i>
+      </div>
+      <%= f.input :vehicle_one_brand, collection: @brands, class:"form-control", label: false, prompt: "Make...", input_html: {class: "chosen-select" } %>
       <%= f.input :vehicle_one_model, collection: [], class: "form-control", label: false, prompt: "Model...", input_html: {class: "chosen-select" }%>
       <%= f.input :vehicle_one_submodel, collection: [], class:"form-control", label: false, prompt: "Submodel..." %>
       <%= f.input :vehicle_one_year, collection: [], prompt: "Year...", label: false, class:"form-control" %>
       <%= f.input :vehicle_one_id, as: :hidden %>
     </div>
     <div class="col-md-4">
-      <i class="fa fa-arrows-h fa-5x compatibility-check-arrow"></i>
+      <div class="check-part text-center">
+        <h2>What Part?</h2>
+        <i class="fa fa-arrows-h fa-5x compatibility-check-arrow"></i>
+      </div>
       <%= f.input :category_parent, collection: Category.where(parent_id: 35), class:"form-control", label: false, prompt: "Category...", input_html: {class: "chosen-select" } %>
       <%= f.input :category_subcategories, collection: [], class: "form-control", label: false, prompt: "Children...", input_html: {class: "chosen-select" }%>
       <%= f.input :product_type_id, collection: [], prompt: "Part...", label: false, class:"form-control" %>
+      <%= f.input :part_attributes, collection: [], prompt: "Specify...", label: false, class:"form-control", input_html: {class: "chosen-select", multiple: true } %>
     </div>
     <div class="col-md-4">
-      <%= f.input :vehicle_two_brand, collection: Brand.joins(:vehicles).select("DISTINCT brands.*").order(name: :asc), class:"form-control", label: false, prompt: "Make...", input_html: {class: "chosen-select" } %>
+      <div class="vehicle-two text-center">
+        <h2>Vehicle Two</h2>
+        <i class="fa fa-motorcycle fa-5x fa-flip-horizontal compatibility-check-arrow"></i>
+      </div>
+      <%= f.input :vehicle_two_brand, collection: @brands, class:"form-control", label: false, prompt: "Make...", input_html: {class: "chosen-select" } %>
       <%= f.input :vehicle_two_model, collection: [], class: "form-control", label: false, prompt: "Model...", input_html: {class: "chosen-select" }%>
       <%= f.input :vehicle_two_submodel, collection: [], class:"form-control", label: false, prompt: "Submodel..." %>
       <%= f.input :vehicle_two_year, collection: [], prompt: "Year...", label: false, class:"form-control" %>
@@ -29,18 +41,17 @@
 <script type="text/javascript">
   dynamic_vehicle_form("compatibility_check_vehicle_one");
   dynamic_vehicle_form("compatibility_check_vehicle_two");
-  dynamic_product_type_form("compatibility_check_category");
+  dynamic_category_form("compatibility_check");
+  // dynamic_product_type_form("compatibility_check_category");
+  dynamic_part_attributes_form("compatibility_check");
 
   $("#compatibility_check_vehicle_one_year").on("change", function() {
-    console.log("vehicle one changed");
     var vehicleId = $(this).val();
     $("#compatibility_check_vehicle_one_id").val(vehicleId);
   });
 
   $("#compatibility_check_vehicle_two_year").on("change", function() {
-    console.log("vehicle two changed");
     var vehicleId = $(this).val();
-    console.log(vehicleId);
     $("#compatibility_check_vehicle_two_id").val(vehicleId);
   });
 

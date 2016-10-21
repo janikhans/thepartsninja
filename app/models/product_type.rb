@@ -3,8 +3,10 @@ class ProductType < ApplicationRecord
   has_many :products
 
   validates :category, presence: true
-  
+
   validates :name,
     presence: true,
     uniqueness: { scope: :category_id }
+
+  has_many :part_attributes, -> { distinct }, through: :products
 end

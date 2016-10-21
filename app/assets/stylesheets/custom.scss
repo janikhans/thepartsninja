@@ -19,6 +19,7 @@ body {
 .no-side-margin { margin-left: 0px; margin-right:0px;}
 .float-right {float: right;}
 .gray-section { background: #F9F9F9;}
+.shadow {box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.2);}
 
 @media (min-width: 992px) {
   .align-outer {
