@@ -24,12 +24,12 @@ class CompatibilityChecksController < ApplicationController
 
   def results
     @compatibility_check = CompatibilityCheck.new(compatibility_check_params)
-          # binding.pry
     if @compatibility_check.process
         @results = @compatibility_check.results
         @parts = @compatibility_check.results
         @products = @compatibility_check.results.group_by { |s| s.product }
-        search_term = @compatibility_check.vehicle_one.to_label + " " + @compatibility_check.product_type.name
+        search_term = @compatibility_check.vehicle_one.to_label + " " + @compatibility_check.product_type.name + " " + @compatibility_check.part_attributes.first.try(:name)
+        # binding.pry
         @ebay_results = YaberAdvancedListing.search(search_term, 5)
         @check = @compatibility_check
       respond_to :js
