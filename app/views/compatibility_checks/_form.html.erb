@@ -3,6 +3,7 @@
     <div class="col-md-4">
       <div class="vehicle-one text-center">
         <h2>Vehicle One</h2>
+        <div id="v_one"><span id="vehicle_one_year"></span><span id="vehicle_one_brand"></span><span id="vehicle_one_model"></span><span id="vehicle_one_submodel"></span></div>
         <i class="fa fa-motorcycle fa-5x compatibility-check-arrow"></i>
       </div>
       <%= f.input :vehicle_one_brand, collection: @brands, class:"form-control", label: false, prompt: "Make...", input_html: {class: "chosen-select" } %>
@@ -24,6 +25,7 @@
     <div class="col-md-4">
       <div class="vehicle-two text-center">
         <h2>Vehicle Two</h2>
+        <div id="vehicle_two"><span id="vehicle_two_year"></span><span id="vehicle_two_brand"></span><span id="vehicle_two_model"></span><span id="vehicle_two_submodel"></span></div>
         <i class="fa fa-motorcycle fa-5x fa-flip-horizontal compatibility-check-arrow"></i>
       </div>
       <%= f.input :vehicle_two_brand, collection: @brands, class:"form-control", label: false, prompt: "Make...", input_html: {class: "chosen-select" } %>
@@ -44,6 +46,8 @@
   dynamic_category_form("compatibility_check");
   // dynamic_product_type_form("compatibility_check_category");
   dynamic_part_attributes_form("compatibility_check");
+  update_vehicle_tag("vehicle_one");
+  update_vehicle_tag("vehicle_two");
 
   $("#compatibility_check_vehicle_one_year").on("change", function() {
     var vehicleId = $(this).val();
@@ -55,17 +59,31 @@
     $("#compatibility_check_vehicle_two_id").val(vehicleId);
   });
 
-  $("#compatibility_check_product_type_id").on("change", function() {
-    $("#compatibility-check-process").removeClass("disabled");
+  $("#compatibility_check_product_type_id, #compatibility_check_vehicle_two_id, #compatibility_check_vehicle_one_id").on("change", function() {
+    update_link();
+    // $("#compatibility-check-process").removeClass("disabled");
   });
   function update_link() {
-    var vehicleTwo = $("compatibility_check_vehicle_two_id").val();
-    var vehicleOne = $("compatibility_check_vehicle_one_id").val();
-    var productType = $("compatibility_check_product_type_id").val();
+    var vehicleTwo = $("#compatibility_check_vehicle_two_id").val();
+    var vehicleOne = $("#compatibility_check_vehicle_one_id").val();
+    var productType = $("#compatibility_check_product_type_id").val();
     if ( vehicleOne > 0 && vehicleTwo > 0 && productType > 0 ) {
-      $("#search-vehicle-link").removeClass("disabled");
+      $("#compatibility-check-process").removeClass("disabled");
     } else {
-      $("#search-vehicle-link").addClass("disabled");
+      $("#compatibility-check-process").addClass("disabled");
     };
+  };
+  function update_vehicle_span(vehicle, attribute) {
+    $("#compatibility_check_" + vehicle + "_" + attribute).on("change", function() {
+      var optionText = $(this).find("option:selected").text();
+      $("#" + vehicle + "_" + attribute).html(optionText + " ");
+    });
+  };
+
+  function update_vehicle_tag(vehicle) {
+    update_vehicle_span(vehicle, "brand");
+    update_vehicle_span(vehicle, "model");
+    update_vehicle_span(vehicle, "submodel");
+    update_vehicle_span(vehicle, "year");
   };
 </script>
