@@ -1,0 +1,8 @@
+<ul>
+  <% note_variations.order(name: :asc).each do |variation| %>
+    <li>
+      <%= variation.name %> <%= link_to "Show", admin_fitment_note_path(variation), class: "hover-link" %>
+      <%= render partial: 'variation', locals: {note_variations: variation.note_variations} if variation.note_variations.present? %>
+    </li>
+  <% end %>
+</ul>

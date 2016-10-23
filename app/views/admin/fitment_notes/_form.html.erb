@@ -1,0 +1,13 @@
+<%= simple_form_for([:admin, @fitment_note]) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :used_for_search %>
+    <%= f.association :parent, collection: @fitment_parents %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

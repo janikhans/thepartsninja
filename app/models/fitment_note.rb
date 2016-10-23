@@ -6,7 +6,7 @@ class FitmentNote < ApplicationRecord
   belongs_to :parent
   has_many :fitment_notations, dependent: :destroy
 
-  scope :parent_notes, -> { where(parent_id: nil)}
+  scope :parent_groups, -> { where(parent_id: nil)}
   scope :individual_notes, -> { where.not(parent_id: nil)}
 
   has_many :note_variations,
@@ -14,7 +14,7 @@ class FitmentNote < ApplicationRecord
     foreign_key: "parent_id",
     dependent: :destroy
 
-  belongs_to :parent_fitment,
+  belongs_to :parent_note,
     class_name: "FitmentNote",
-    foreign_key: "parent_id",
+    foreign_key: "parent_id"
 end

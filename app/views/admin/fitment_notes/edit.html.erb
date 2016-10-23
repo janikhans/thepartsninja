@@ -1,0 +1,5 @@
+<% provide(:header, "Editing Fitment Note:") %>
+
+<%= render 'form' %>
+
+<%= link_to "Delete", admin_fitment_note_path(@fitment_note), :method => 'delete', data: { confirm: 'Are you sure?' } %>
