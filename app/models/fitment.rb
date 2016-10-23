@@ -21,4 +21,5 @@ class Fitment < ApplicationRecord
 
   has_many :fitment_notations, dependent: :destroy
   has_many :fitment_notes, through: :fitment_notations, source: :fitment_note
+  accepts_nested_attributes_for :fitment_notations, reject_if: :all_blank, allow_destroy: true
 end

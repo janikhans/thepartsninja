@@ -1,26 +1,18 @@
-<div class="row m-b-lg animated fadeInDown">
-      <div class="col-md-12">
-      <div class="">
-            <table class="table small m-b-xs">
-              <tbody>
-                <tr>
-                    <td><h3><strong>Discovery id:</strong> <% if @fitment.discovery %> <%= link_to "#{@fitment.disovery.id}", @fitment.discovery %><% end %> </h3></td>
-                    <td><h3><strong>User:</strong> <% if @fitment.user %> <%= link_to "#{@fitment.user.username}", @fitment.user %><% end %></h3></td>
-                </tr>
-                <tr>
-                    <td><h3><strong>Part:</strong> <%= @fitment.part.product.brand.name %> <%= @fitment.part.product.name %></h3></td>
-                    <td><h3><strong>Part Number:</strong> <%= @fitment.part.part_number %></h3></td>
-                </tr>
-                <tr>
-                    <td><h3><strong>Designed For:</strong> <%= @fitment.vehicle.vehicle_year.year %> <%= @fitment.vehicle.brand.name %> <%= @fitment.vehicle.model %></h3></td>
-                    <td><h3><strong><%= link_to 'Edit', edit_admin_fitment_path(@fitment) %></strong></h3></td>
-                </tr>
-              </tbody>
-            </table>
+<% provide(:header, "Showing Fitment: #{@fitment.id}") %>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="action-btns pull-right">
+            <%= link_to 'Edit', edit_admin_fitment_path(@fitment) %>
           </div>
-      </div>
+          <h3>Discovery id: <small><% if @fitment.discovery %> <%= link_to "#{@fitment.disovery.id}", @fitment.discovery %><% end %></small></h3>
+          <h3>User: <small><% if @fitment.user %> <%= link_to "#{@fitment.user.username}", @fitment.user %><% end %></small></h3>
+          <h3>Part: <small><%= @fitment.part.part_number %> &mdash; <%= @fitment.part.product.brand.name %> <%= @fitment.part.product.name %></small></h3>
+          <h3>Designed For: <small><%= @fitment.vehicle.year %> <%= @fitment.vehicle.brand.name %> <%= @fitment.vehicle.model.name %></small></h3>
+          <h3>Notes: <small><%= @fitment.try(:note) %></small></h3>
+          <h3>Notations: <small><% @fitment.fitment_notes.each do |p| %><%= p.parent_note.name %>: <%= p.name %> <% end %></small></h3>
+        </div>
+    </div>
   </div>
-  <div class="row">
-      <div class="col-lg-12 animated fadeInRight">
-      </div>
-  </div>
+</div>

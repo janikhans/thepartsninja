@@ -5,6 +5,15 @@
     <%#= f.association :part, label_method: :to_label, value_method: :id %>
     <%#= f.association :vehicle,label_method: :to_label, value_method: :id %>
   </div>
+  <div id="fitment_notations">
+    <h3>What are some of the fitment notes?</h3>
+    <%= f.simple_fields_for :fitment_notations do |fitment_notation| %>
+      <%= render 'fitment_notation_fields', f: fitment_notation %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association 'Add Note', f, :fitment_notations %>
+    </div>
+  </div>
 
   <div class="form-actions">
     <%= f.button :submit %>

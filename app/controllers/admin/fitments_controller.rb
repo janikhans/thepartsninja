@@ -4,12 +4,14 @@ class Admin::FitmentsController < Admin::DashboardController
   def index
     @fitments = Fitment.includes(vehicle: [:vehicle_year, vehicle_submodel: {vehicle_model: :brand}], part: {product: :category} ).page(params[:page])
     @fitment = Fitment.new
+    @notes = FitmentNote.parent_groups
   end
 
   def show
   end
 
   def edit
+    @notes = FitmentNote.parent_groups
   end
 
   def create
@@ -43,6 +45,6 @@ class Admin::FitmentsController < Admin::DashboardController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def fitment_params
-      params.require(:fitment).permit(:part_id, :vehicle_id, :discovery_id, :user_id)
+      params.require(:fitment).permit(:part_id, :vehicle_id, :discovery_id, :user_id, fitment_notations_attributes: [:id, :fitment_note_id, :_destroy])
     end
 end

@@ -1,0 +1,61 @@
+<% provide(:header, "Search For Fitment Notes") %>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Search Fitment Notes
+        </div>
+        <div class="panel-body">
+            <%= render 'form' %>
+        </div>
+    </div>
+  </div>
+  <% if @query %>
+    <div class="col-lg-12">
+      <div class="panel panel-default">
+          <div class="panel-heading">
+              Stats for <i><%= @query %> </i>
+          </div>
+          <div class="panel-body">
+              Results: <%= @fitment_count %><br>
+              Info: <% @note_counts.each do |n| %><%= n[0] %> - <%= n[1] %> <br><% end %>
+          </div>
+      </div>
+    </div>
+  <% end %>
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+          Showing all Fitments
+      </div>
+      <div class="panel-body">
+        <div class="dataTable_wrapper">
+          <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-fitments">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Note</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <%= render partial: 'fitment', collection: @fitments %>
+            </tbody>
+          </table>
+        </div>
+        <%= paginate @fitments %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+      $('#dataTables-fitments').DataTable({
+        responsive: true,
+        "aaSorting": [],
+        "paging": false
+      });
+  });
+</script>
