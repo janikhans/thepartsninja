@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161023070947) do
+ActiveRecord::Schema.define(version: 20161023184017) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,25 @@ ActiveRecord::Schema.define(version: 20161023070947) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_discoveries_on_user_id", using: :btree
+  end
+
+  create_table "fitment_notations", force: :cascade do |t|
+    t.integer  "fitment_id",      null: false
+    t.integer  "fitment_note_id", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["fitment_id", "fitment_note_id"], name: "index_fitment_notations_on_fitment_id_and_fitment_note_id", unique: true, using: :btree
+    t.index ["fitment_id"], name: "index_fitment_notations_on_fitment_id", using: :btree
+    t.index ["fitment_note_id"], name: "index_fitment_notations_on_fitment_note_id", using: :btree
+  end
+
+  create_table "fitment_notes", force: :cascade do |t|
+    t.string   "name",                            null: false
+    t.integer  "parent_id"
+    t.boolean  "used_for_search", default: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.index ["parent_id"], name: "index_fitment_notes_on_parent_id", using: :btree
   end
 
   create_table "fitments", force: :cascade do |t|
@@ -277,6 +296,8 @@ ActiveRecord::Schema.define(version: 20161023070947) do
     t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope", using: :btree
   end
 
+  add_foreign_key "fitment_notations", "fitment_notes"
+  add_foreign_key "fitment_notations", "fitments"
   add_foreign_key "product_types", "categories"
   add_foreign_key "products", "product_types"
   add_foreign_key "vehicle_models", "brands"

@@ -1,0 +1,20 @@
+location:
+  name: Location
+
+quantity_required:
+  name: Quantity Required
+
+rear:
+  name: Rear
+  parent: location
+  used_for_search: true
+
+front:
+  name: Front
+  parent: location
+  used_for_search: true
+
+required_two:
+  name: "2"
+  parent: quantity_required
+  used_for_search: false
