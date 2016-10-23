@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161007032025) do
+ActiveRecord::Schema.define(version: 20161023070947) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20161007032025) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.integer  "source"
+    t.text     "note"
     t.index ["discovery_id"], name: "index_fitments_on_discovery_id", using: :btree
     t.index ["part_id", "vehicle_id"], name: "index_fitments_on_part_id_and_vehicle_id", unique: true, using: :btree
     t.index ["part_id"], name: "index_fitments_on_part_id", using: :btree
@@ -118,10 +119,11 @@ ActiveRecord::Schema.define(version: 20161007032025) do
     t.text     "note"
     t.integer  "product_id"
     t.integer  "user_id"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
     t.integer  "epid"
-    t.boolean  "ebay_fitments_imported", default: false
+    t.boolean  "ebay_fitments_imported",   default: false
+    t.datetime "ebay_fitments_updated_at"
     t.index ["product_id"], name: "index_parts_on_product_id", using: :btree
     t.index ["user_id"], name: "index_parts_on_user_id", using: :btree
   end

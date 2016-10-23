@@ -74,14 +74,18 @@ class Part < ApplicationRecord
   end
 
   def update_fitments_from_ebay
+    return if self.epid.nil?
     ebay_detail = YaberProduct.fitments_for(self.epid)
 
     ebay_detail.fitments.each do |f|
       submodel = f[:submodel] unless f[:submodel] == "--"
       vehicle = Vehicle.find_with_specs(f[:make], f[:model], f[:year], submodel)
-      Fitment.create(vehicle_id: vehicle.id, part_id: self.id, source: "ebay") if vehicle
+      if vehicle
+        fitment = Fitment.where(vehicle_id: vehicle.id, part_id: self.id, source: "ebay").first_or_initialize
+        fitment.update_attribute(:note, f[:note])
+      end
     end
-    self.update_attribute(:ebay_fitments_imported, true)
+    self.update_attributes(ebay_fitments_imported: true, ebay_fitments_updated_at: Time.now)
   end
 
   private

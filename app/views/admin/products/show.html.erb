@@ -8,6 +8,7 @@
             <%= link_to "Update Fitments", update_ebay_fitments_admin_product_path(@product) %> |
             <%= link_to 'Edit', edit_admin_product_path(@product) %>
           </div>
+          <h3>ID:<small><%= @product.id %></small></h3>
           <h3>Brand:<small> <%= link_to @product.brand.name, admin_brand_path(@product.brand) %></small> </h3>
           <h3>Product Name:<small> <%= @product.name %></small></h3>
           <h3>Category:<small> <%= @product.category.parent_category.name if @product.category.parent_category %> - <%= link_to @product.category.name, admin_category_path(@product.category.id) %></small></h3>

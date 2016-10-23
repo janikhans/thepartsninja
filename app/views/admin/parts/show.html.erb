@@ -19,6 +19,7 @@
           <h3>epid: <small><%= @part.epid %></small></h3>
           <h3>id: <small><%= @part.id %></small></h3>
           <h3>Ebay Fitments Imported: <small><%= @part.ebay_fitments_imported %></small></h3>
+          <h3>Ebay Fitments Last Updated: <small><%= @part.ebay_fitments_updated_at.strftime('%x') if @part.ebay_fitments_updated_at %></small></h3>
         </div>
     </div>
     <div class="panel panel-default">

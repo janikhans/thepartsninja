@@ -1,10 +1,9 @@
 class YaberProduct < Yaber
-  attr_accessor :epid, :fitments, :notes
+  attr_accessor :epid, :fitments
 
-  def initialize(epid, fitments, notes)
+  def initialize(epid, fitments)
     self.epid = epid
     self.fitments = fitments
-    self.notes = notes
   end
 
   def self.product_endpoint
@@ -18,7 +17,6 @@ class YaberProduct < Yaber
   end
 
   def self.fitments_for(epid)
-    notes = []
     fitments = []
     current_page = 0
     total_pages = 1 # Hack. Set this to begin with 1 since there will always be at least one page
@@ -31,11 +29,12 @@ class YaberProduct < Yaber
       compatibilities = Array.wrap(response["compatibilityDetails"])
 
       compatibilities.each do |c|
-        fitments << property_details_to_hash(c["productDetails"])
-        notes << property_detail_to_hash(c["notes"]["noteDetails"]) if c["notes"]
+        fitment = property_details_to_hash(c["productDetails"])
+        fitment[:note] = property_detail_to_hash(c["notes"]["noteDetails"]) if c["notes"]
+        fitments << fitment
       end
     end
 
-    YaberProduct.new(epid, fitments, notes)
+    YaberProduct.new(epid, fitments)
   end
 end
