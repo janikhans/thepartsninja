@@ -9,4 +9,5 @@ class ProductType < ApplicationRecord
     uniqueness: { scope: :category_id }
 
   has_many :part_attributes, -> { distinct }, through: :products
+  has_many :fitment_notes, -> { distinct }, through: :products
 end

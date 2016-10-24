@@ -16,7 +16,7 @@ class Admin::CategoriesController < Admin::DashboardController
         .where('products.category_id = ? AND parts.ebay_fitments_imported = false', @category.id)
         .count
     @category_parts_count = @category.products.joins(:parts).count
-    @products = @category.products.includes(:brand).page(params[:page]).order("name ASC")
+    @products = @category.products.includes(:brand, :product_type).page(params[:page]).order("name ASC")
   end
 
   def edit

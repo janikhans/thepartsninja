@@ -111,3 +111,14 @@ function dynamic_part_attributes_form(form) {
     };
   });
 };
+
+function dynamic_fitment_notes_form(form) {
+  $("#"+ form +"_product_type_id").on("change", function() {
+    empty_and_reset_select("#"+ form +"_fitment_note_id", "Specify...")
+    var productTypeId = $(this).val();
+    if (productTypeId > 0 ) {
+      var url = "/product_types/"+productTypeId+"/fitment_notes";
+      update_select(url, "#" + form + "_fitment_note_id");
+    };
+  });
+};

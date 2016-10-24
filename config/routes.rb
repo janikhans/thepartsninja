@@ -61,6 +61,7 @@ Rails.application.routes.draw do
   end
   resources :product_types, only: [] do
     get :part_attributes, on: :member
+    get :fitment_notes, on: :member
   end
   resources :compatibility_checks, only: [] do
     get :results, on: :collection

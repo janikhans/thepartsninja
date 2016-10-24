@@ -28,9 +28,9 @@ class CompatibilityChecksController < ApplicationController
         @results = @compatibility_check.results
         @parts = @compatibility_check.results
         @products = @compatibility_check.results.group_by { |s| s.product }
-        search_term = @compatibility_check.vehicle_one.to_label + " " + @compatibility_check.product_type.name + " " + @compatibility_check.part_attributes.first.try(:name)
-        # binding.pry
-        @ebay_results = YaberAdvancedListing.search(search_term, 5)
+        # search_term = @compatibility_check.vehicle_one.to_label + " " + @compatibility_check.product_type.name + " " + @compatibility_check.part_attributes.first.try(:name)
+        # # binding.pry
+        # @ebay_results = YaberAdvancedListing.search(search_term, 5)
         @check = @compatibility_check
       respond_to :js
     else
@@ -41,6 +41,6 @@ class CompatibilityChecksController < ApplicationController
   private
 
   def compatibility_check_params
-    params.require(:compatibility_check).permit(:vehicle_one_id, :vehicle_two_id, :product_type_id, part_attributes: [])
+    params.require(:compatibility_check).permit(:vehicle_one_id, :vehicle_two_id, :product_type_id, :fitment_note_id, part_attributes: [])
   end
 end

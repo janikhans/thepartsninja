@@ -42,6 +42,7 @@
               <tr>
                 <th>Brand</th>
                 <th>Product Name</th>
+                <th>Product Type</th>
                 <th></th>
               </tr>
             </thead>
@@ -50,6 +51,7 @@
                 <tr>
                   <td><%= product.brand.name %></td>
                   <td><%= product.name %></td>
+                  <td><%= product.product_type.try(:name) %></td>
                   <td><%= link_to 'View', admin_product_path(product) %></td>
                 </tr>
               <% end %>

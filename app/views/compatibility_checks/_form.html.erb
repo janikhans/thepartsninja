@@ -20,7 +20,8 @@
       <%= f.input :category_parent, collection: Category.where(parent_id: 35), class:"form-control", label: false, prompt: "Category...", input_html: {class: "chosen-select" } %>
       <%= f.input :category_subcategories, collection: [], class: "form-control", label: false, prompt: "Children...", input_html: {class: "chosen-select" }%>
       <%= f.input :product_type_id, collection: [], prompt: "Part...", label: false, class:"form-control" %>
-      <%= f.input :part_attributes, collection: [], prompt: "Specify...", label: false, class:"form-control", input_html: {class: "chosen-select", multiple: true } %>
+      <%= f.input :fitment_note_id, collection: [], prompt: "Specify...", label: false, class:"form-control" %>
+      <%#= f.input :part_attributes, collection: [], prompt: "Specify...", label: false, class:"form-control", input_html: {class: "chosen-select", multiple: true } %>
     </div>
     <div class="col-md-4">
       <div class="vehicle-two text-center">
@@ -45,7 +46,8 @@
   dynamic_vehicle_form("compatibility_check_vehicle_two");
   dynamic_category_form("compatibility_check");
   // dynamic_product_type_form("compatibility_check_category");
-  dynamic_part_attributes_form("compatibility_check");
+  // dynamic_part_attributes_form("compatibility_check");
+  dynamic_fitment_notes_form("compatibility_check");
   update_vehicle_tag("vehicle_one");
   update_vehicle_tag("vehicle_two");
 
