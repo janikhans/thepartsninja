@@ -6,9 +6,9 @@ class Admin::FitmentNotes::SearchNotesController < Admin::DashboardController
     else
       fitments = Fitment.where("note IS NOT NULL")
     end
-    @fitments = fitments.includes(part: :product).page(params[:page])
+    @fitments = fitments.includes(:fitment_notes, part: :product).page(params[:page])
     @fitment_count = fitments.count
-    @note_counts = seperate_terms(fitments)
+    # @note_counts = seperate_terms(fitments)
     # binding.pry
   end
 
@@ -18,6 +18,7 @@ class Admin::FitmentNotes::SearchNotesController < Admin::DashboardController
     notes = []
     fitments.each do |f|
       fitment_notes = f.note.split("; ")
+      # fitment_notes.reject!{ |n| f.fitment_notes.include?(FitmentNote.find_by(name: n)) } # this removes the results that currently have a FitmentNotation
       notes << fitment_notes
     end
 

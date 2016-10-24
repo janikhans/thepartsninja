@@ -21,6 +21,7 @@ class Part < ApplicationRecord
   has_many :oem_vehicles, through: :fitments, source: :vehicle
   has_many :part_attributions, dependent: :destroy
   has_many :part_attributes, through: :part_attributions, source: :part_attribute
+  has_many :fitment_notes, -> { distinct }, through: :fitments
   has_many :compatibilities, dependent: :destroy
 
   accepts_nested_attributes_for :part_attributions, reject_if: :all_blank, allow_destroy: true

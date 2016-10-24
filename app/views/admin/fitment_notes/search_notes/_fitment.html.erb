@@ -1,5 +1,6 @@
 <tr>
   <td><%= fitment.part.product.name %></td>
   <td><%= fitment.note %></td>
+  <td><% if fitment.fitment_notes.any? %><% fitment.fitment_notes.each do |n| %><%= n.parent_note.name %>: <%= n.name %> <%end %><% end %></td>
   <td><%= link_to 'Show', admin_fitment_path(fitment) %></td>
 </tr>

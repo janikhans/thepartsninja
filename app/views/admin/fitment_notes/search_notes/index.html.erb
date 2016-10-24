@@ -19,7 +19,7 @@
           </div>
           <div class="panel-body">
               Results: <%= @fitment_count %><br>
-              Info: <% @note_counts.each do |n| %><%= n[0] %> - <%= n[1] %> <br><% end %>
+              <!-- Info: <%# @note_counts.each do |n| %><%#= n[0] %> - <%#= n[1] %> <br><%# end %> -->
           </div>
       </div>
     </div>
@@ -36,6 +36,7 @@
               <tr>
                 <th>Product</th>
                 <th>Note</th>
+                <th>Fitment Notes</th>
                 <th></th>
               </tr>
             </thead>

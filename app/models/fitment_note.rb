@@ -5,6 +5,7 @@ class FitmentNote < ApplicationRecord
 
   belongs_to :parent
   has_many :fitment_notations, dependent: :destroy
+  has_many :fitments, through: :fitment_notations
 
   scope :parent_groups, -> { where(parent_id: nil)}
   scope :individual_notes, -> { where.not(parent_id: nil)}
