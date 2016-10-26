@@ -2,7 +2,7 @@ class Admin::FitmentsController < Admin::DashboardController
   before_action :set_fitment, only: [:show, :edit, :update, :destroy]
 
   def index
-    @fitments = Fitment.includes(vehicle: [:vehicle_year, vehicle_submodel: {vehicle_model: :brand}], part: {product: :category} ).page(params[:page])
+    @fitments = Fitment.includes(vehicle: [:vehicle_year, vehicle_submodel: {vehicle_model: :brand}], part: {product: :category} ).order(id: :asc).page(params[:page])
     @fitment = Fitment.new
     @notes = FitmentNote.parent_groups
   end
