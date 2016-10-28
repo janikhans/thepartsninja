@@ -2,7 +2,14 @@ class Admin::ProductsController < Admin::DashboardController
   before_action :set_product, only: [:show, :edit, :update, :destroy, :update_ebay_fitments]
 
   def index
-    @products = Product.includes(:brand, :category).page(params[:page]).order("name ASC")
+    @query = params[:q]
+    if @query.present?
+      products = Product.where("name ilike ?", "%#{@query}%").includes(:brand, :category)
+    else
+      products = Product.includes(:brand, :category)
+    end
+    @products = products.order("name ASC").page(params[:page])
+    @products_count = products.count
     @product = ProductForm.new
   end
 

@@ -1,1 +1,0 @@
-$('#emailed_order_user_id').replaceWith("<%= j(select("emailed_order", "user_id", @users.collect {|u| ["#{u.person.full_name} <#{u.email}>", u.id ] }, { include_blank: false }, {class:"form-control"}) ) %>");

@@ -27,7 +27,7 @@
             <div class="col-md-3 col-xs-6">
               <%= submodel.vehicle_model.name %> <%= submodel.try(:name) %>
               <ul>
-                <% vehicles.each do |vehicle| %>
+                <% vehicles.sort! { |a,b| a.year <=> b.year }.each do |vehicle| %>
                   <li><%= link_to vehicle.year, admin_vehicle_path(vehicle) %></li>
                 <% end %>
               </ul>

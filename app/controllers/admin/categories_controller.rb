@@ -3,7 +3,7 @@ class Admin::CategoriesController < Admin::DashboardController
 
 
   def index
-    @categories = Category.includes(:subcategories)
+    @categories = Category.where(id: 35).includes(subcategories: {subcategories: :subcategories})
     @category = Category.new
     @parent_categories = Category.all
   end

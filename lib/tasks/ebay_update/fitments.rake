@@ -7,12 +7,18 @@ namespace :ebay_update do
     start_time = Time.now
     counter = 0
 
-    category = Category.find(args[:category_id])
+    if args[:category_id] == "0"
+      parts = Part.where('ebay_fitments_imported is TRUE AND ebay_fitments_updated_at IS NULL')
+        .first(args[:part_count])
+    else
+      category = Category.find(args[:category_id])
 
-    parts = Part.joins(:product)
-      .where('products.category_id = ? AND parts.ebay_fitments_updated_at IS NULL', args[:category_id])
-      .order(product_id: :asc)
-      .first(args[:part_count])
+      parts = Part.joins(:product)
+        .where('products.category_id = ? AND parts.ebay_fitments_updated_at IS NULL', args[:category_id])
+        .order(product_id: :asc)
+        .first(args[:part_count])
+    end
+
 
     parts.each do |part|
       part.update_fitments_from_ebay
@@ -33,6 +39,7 @@ namespace :ebay_update do
     puts "Updating completed in #{total_time} seconds"
     puts "Added #{new_fitments} fitments"
     puts "Updated notes for #{updated_fitments} fitments"
-    puts "For #{counter} parts in category #{category.name}"
+    puts "For #{counter} parts"
+    puts "In category #{category.name}" if category
   end
 end

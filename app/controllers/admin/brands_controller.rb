@@ -2,7 +2,14 @@ class Admin::BrandsController < Admin::DashboardController
   before_action :set_brand, only: [:show, :edit, :update, :destroy]
 
   def index
-    @brands = Brand.page(params[:page]).order("name ASC")
+    @query = params[:q]
+    if @query.present?
+      brands = Brand.where("name ilike ?", "%#{@query}%")
+    else
+      brands = Brand.all
+    end
+    @brands = brands.order("name ASC").page(params[:page])
+    @brands_count = brands.count
     @brand = Brand.new
   end
 
