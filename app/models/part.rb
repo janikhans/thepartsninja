@@ -6,7 +6,7 @@ class Part < ApplicationRecord
   # part_number is required if no associated vehicles exist
   # uniqueness on part_number and product_id
   # uniqueness on EPID
-
+  
   extend FriendlyId
   friendly_id :part_number, use: [:finders]
 

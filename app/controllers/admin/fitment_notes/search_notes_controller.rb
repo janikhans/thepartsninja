@@ -9,7 +9,7 @@ class Admin::FitmentNotes::SearchNotesController < Admin::DashboardController
     end
     @fitments = fitments.includes(:fitment_notes, part: :product).page(params[:page])
     @fitment_count = fitments.count
-    @note_counts = seperate_terms(fitments)
+    # @note_counts = seperate_terms(fitments)
     # binding.pry
   end
 

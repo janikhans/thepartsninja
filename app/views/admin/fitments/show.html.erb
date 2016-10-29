@@ -6,12 +6,37 @@
           <div class="action-btns pull-right">
             <%= link_to 'Edit', edit_admin_fitment_path(@fitment) %>
           </div>
-          <h3>Discovery id: <small><% if @fitment.discovery %> <%= link_to "#{@fitment.disovery.id}", @fitment.discovery %><% end %></small></h3>
-          <h3>User: <small><% if @fitment.user %> <%= link_to "#{@fitment.user.username}", @fitment.user %><% end %></small></h3>
-          <h3>Part: <small><%= @fitment.part.part_number %> &mdash; <%= @fitment.part.product.brand.name %> <%= @fitment.part.product.name %></small></h3>
-          <h3>Designed For: <small><%= @fitment.vehicle.year %> <%= @fitment.vehicle.brand.name %> <%= @fitment.vehicle.model.name %></small></h3>
-          <h3>Notes: <small><%= @fitment.try(:note) %></small></h3>
-          <h3>Notations: <small><% @fitment.fitment_notes.each do |p| %><%= p.parent_note.name %>: <%= p.name %> <% end %></small></h3>
+          <% if @fitment.source == "ebay" %>
+            <h3>Source: <small>Ebay</small></h3>
+          <% else %>
+            <h3>Discovery id: <small><%= link_to "#{@fitment.disovery.id}", @fitment.discovery if @fitment.discovery %></small></h3>
+            <h3>User: <small><%= link_to "#{@fitment.user.username}", @fitment.user if @fitment.user %></small></h3>
+          <% end %>
+          <h3>Part: </h3>
+          <ul style="list-style:none; margin:0px;">
+            <li><strong>Part Number:</strong> <%= link_to @fitment.part.part_number, admin_parts_path(@fitment.part) %></li>
+            <li><strong>Brand:</strong> <%= link_to @fitment.part.product.brand.name, admin_brands_path(@fitment.part.product.brand) %></li>
+            <li><strong>Product:</strong> <%= link_to @fitment.part.product.name, admin_products_path(@fitment.part.product) %></li>
+          </ul>
+          <h3>Vehicle:</h3>
+            <ul style="list-style:none; margin:0px;">
+              <li><strong><%= link_to "View", admin_vehicles_path(@fitment.vehicle) %></strong></li>
+              <li><strong>Year:</strong> <%= @fitment.vehicle.year %></li>
+              <li><strong>Brand:</strong> <%= @fitment.vehicle.brand.name %></li>
+              <li><strong>Model:</strong> <%= @fitment.vehicle.model.name %></li>
+              <li><strong>Submodel:</strong> <%= @fitment.vehicle.submodel.adjusted_name %></li>
+            </ul>
+          <% if @fitment.note %>
+            <h3>Notes: <small><%= @fitment.note %></small></h3>
+          <% end %>
+          <% if @fitment.fitment_notes.any? %>
+          <h3>Notations:</h3>
+            <ul style="list-style:none; margin:0px;">
+              <% @fitment.fitment_notes.each do |p| %>
+                <li><strong><%= p.parent_note.name %>:</strong> <%= link_to p.name, admin_fitment_note_path(p) %></li>
+              <% end %>
+            </ul>
+          <% end %>
         </div>
     </div>
   </div>

@@ -2,8 +2,7 @@ class Admin::PartsController < Admin::DashboardController
   before_action :set_part, only: [:show, :edit, :update, :destroy, :update_ebay_fitments]
 
   def index
-    parts = Part.includes(:product, {product: [:brand, :category]}, :part_attributes)
-    @parts = parts.page(params[:page])
+    @parts = Part.includes(:product, {product: [:brand, :category]}, part_attributes: :parent_attribute).page(params[:page])
     @part = Part.new
     @attributes = PartAttribute.attribute_parents
   end
