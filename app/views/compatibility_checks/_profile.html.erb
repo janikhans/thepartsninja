@@ -1,0 +1,33 @@
+<div id="sidebar-profile" class="m-b-md">
+  <% if current_user %>
+    <div class="profile-header"></div>
+    <div class="profile-body text-center">
+      <div class="profile-image">
+        <%= gravatar_for(current_user) %>
+      </div>
+      <div class="profile-username">
+        <h4><%= current_user.username %></h4>
+        <p>Welcome Back!</p>
+      </div>
+      <div class="">
+        <%= link_to "Dashboard", dashboard_path, class:"btn btn-default text-center" %>
+        <%= link_to "Profile", dashboard_path, class:"btn btn-default text-center" %>
+      </div>
+    </div>
+  <% else %>
+    <div class="profile-header"></div>
+    <div class="profile-body text-center">
+      <div class="profile-image">
+        <%= gravatar_for(current_user) %>
+      </div>
+      <div class="profile-username">
+        <h4>Hey You!</h4>
+        <p>Yeah <strong>YOU!</strong> You're currently viewing Parts Web results as a guest. Did you know you'll get access to even more awesome-ness if you sign up?</p>
+      </div>
+      <div class="">
+        <%= link_to "Sign Up", sign_up_path, class:"btn btn-default text-center" %>
+        <%= link_to "Sign In", login__path, class:"btn btn-default text-center" %>
+      </div>
+    </div>
+  <% end %>
+</div>

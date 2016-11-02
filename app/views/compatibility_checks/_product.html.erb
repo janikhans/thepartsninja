@@ -1,5 +1,5 @@
 <div id="product_<%= product.id%>" class="product">
-  <div class="row">
+  <div  data-toggle="collapse" data-target="#product_<%= product.id %>_parts" class="row product-details">
     <div class="col-md-9">
       <div class="product-image">
         <%= image_tag("missing-brand-image", class:"img-responsive") %>
@@ -13,6 +13,16 @@
     </div>
     <div class="col-md-1 product-info">
       <small><%= link_to "View", product_path(product)%></small>
+    </div>
+  </div>
+  <div id="product_<%= product.id %>_parts" class="row collapse">
+    <div class="row product-parts">
+      <div class="col-md-2 section-title"><%= pluralize_without_count(parts.count, "part number") %></div>
+      <div class="col-md-10">
+        <% parts.each do |p| %>
+          <div class="col-md-4"><%= p.part_number %></div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

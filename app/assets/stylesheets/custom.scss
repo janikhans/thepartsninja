@@ -20,6 +20,8 @@ body {
 .float-right {float: right;}
 .gray-section { background: #F9F9F9;}
 .shadow {box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.2);}
+.muted {opacity: .65;}
+.cb {clear:both;}
 
 @media (min-width: 992px) {
   .align-outer {
@@ -36,6 +38,16 @@ body {
     list-style: none;
     padding: 0px;
    }
+}
+
+.topic-title {
+  text-transform: uppercase;
+  color: #8e8e8e;
+  font-weight: 700;
+  margin-bottom: 15px;
+  h3 {
+    font-size: 13px;
+  }
 }
 
 /* RANDOM FIXES
@@ -443,76 +455,193 @@ section p {
 
 /* COMPATIBILITY CHECK
 -------------------------------------------------- */
-#compatibility-check {
-  .result-stats {
-    border-bottom: 1px solid $flat-border-light;
+#compatibility-check-results {
+  .results-overview {
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
   }
-  .nav-pills > li {
-  	> a { border-radius: 0;}
-  	&.active > a {
-      color: #ffffff;
-  		background-color: $navy;
-  		&:hover {
-        color: #ffffff;
-    		background-color: $navy; }
-  		&:focus {
-        color: #ffffff;
-    		background-color: $navy;}
-  	}
+  .success {
+    background-color: rgba( $navy, .4 );
+    color: #256327;
   }
 }
-.compatibility-check-arrow {
-  display: block !important;
-  color: inherit;
-  text-align: center;
+.search-container {
+  border: 1px solid #dcdcdc;
+  .search-display {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background-color: #FFFFFF;
+    min-height: 61px;
+    .search-box {
+      padding: 16px 16px 10px;
+      width: 85%;
+      float: left;
+      cursor: text;
+      .search-icon {
+        display: inline-block;
+        font-size: 13.5px;
+        margin-right: 4px;
+        line-height: 2;
+        color: #999;
+        vertical-align: top;
+      }
+      .search-params {
+        display: inline-block;
+        vertical-align: middle;
+        width: 95%;
+        .query-term {
+          border-radius: 3px;
+          float: left;
+          height: 28px;
+          line-height: 28px;
+          margin: 0 8px 6px 0;
+          padding: 0 8px 0 8px;
+          font-weight: 500;
+          white-space: nowrap;
+          background-color: rgba( $navy, .4 );
+          color: #256327;
+        }
+      }
+    }
+    .search-actions {
+      position: relative;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      padding: 16px 16px 10px 0;
+      width: 12%;
+      float: right;
+      .btn {float:right;}
+    }
+  }
+  .search-inputs {
+    min-height: 50px;
+    width: 100%;
+    background-color: #ECECEC;
+    li {
+      width: 33%;
+      border-right: 1px solid #DCDCDC;
+      text-align: center;
+      color: #8c8c8c;
+      &:last-child {
+        border-right: 0px;
+      }
+      .dropdown-menu {
+        width: 100%;
+        padding: 5px;
+      }
+      a {
+        text-transform: uppercase;
+        font-weight: 700;
+        color: inherit;
+      }
+    }
+  }
 }
 
-/* SIDEBAR
+/* SIDEBARS
 -------------------------------------------------- */
-#sidebar {
-  border-left: 1px solid $flat-border-light;
+#sidebar-profile {
+  background-color: #FFFFFF;
+  border: 1px solid #dcdcdc;
+  .profile-header {
+    padding: 15px 15px 50px 15px;
+    min-height: 75px;
+    position: relative;
+    overflow: hidden;
+    background: $navy; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(-75deg, $navy, rgba( $navy, .6 )); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(-75deg, $navy, rgba( $navy, .6 )); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(-75deg, $navy, rgba( $navy, .6 )); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(-75deg, $navy, rgba( $navy, .6 )); /* Standard syntax */
+  }
+  .profile-body {
+    padding: 20px;
+    position: relative;
+    .profile-image > img {
+      position: absolute;
+      left: 50%;
+      margin-left: -32px;
+      top: -32px;
+      box-shadow: 0 0 0 4px rgba(0,0,0,0.1);
+      border-radius: 50px;
+      width: 64px;
+      height: 64px;
+    }
+    .profile-username {
+      h4 { margin-top: 20px;}
+    }
+  }
 }
 
 /* PRODUCT PARTIAL
 -------------------------------------------------- */
 .product {
-  padding: 10px 10px 20px;
-  border-bottom: 1px solid #f1f1f1;
-  &:hover { background-color: #F9F9F9;}
-  .product-image {
-    float: left;
-    width: 60px;
-    margin-right: 20px;
-    text-align: center;
+  border: 1px solid #dcdcdc;
+  background-color: #FFFFFF;
+  margin-top: 10px;
+  .product-details {
+    border-left: 8px solid rgba( $navy, .4 );
+    padding: 10px 10px 20px;
+    margin: 0;
+    cursor: pointer;
+    .product-image {
+      float: left;
+      width: 60px;
+      margin-right: 20px;
+      text-align: center;
+    }
+    .product-title {
+      display: block;
+      font-size: 18px;
+      font-weight: 600;
+    }
+    .product-description {
+      color: #999;
+      margin-left: 50px;
+    }
+    .product-info {
+      font-size: 15px;
+      line-height: 18px;
+      font-weight: 400;
+      text-align: center;
+    }
   }
-  .product-title {
-    display: block;
-    font-size: 18px;
-    font-weight: 600;
+  .product-parts {
+    padding: 5px;
+    border-top: 1px dotted #dcdcdc;
+    margin: 5px 30px;
+    display: flex;
+    .section-title {
+      text-transform: uppercase;
+      border-right: 1px dotted #dcdcdc;
+      font-weight: 700;
+      flex: 1;
+    }
   }
-  .product-description {
-    color: #999;
-    margin-left: 50px;
-  }
-  .product-info {
-    font-size: 15px;
-    line-height: 18px;
-    font-weight: 400;
-    text-align: center;
+  &:hover {
+    -webkit-box-shadow: 0 4px 5px 0 rgba(168, 168, 168, 0.25);
+    -moz-box-shadow: 0 4px 5px 0 rgba(168, 168, 168, 0.25);
+    box-shadow: 0 4px 5px 0 rgba(168, 168, 168, 0.25);
   }
 }
 
 /* EBAY LISTING PARTIAL
 -------------------------------------------------- */
 .ebay-listing {
-  padding: 0;
-  border: 1px solid #e7eaec;
-  background-color: #FFFFFF !important;
-  border-radius: 0px !important;
+  border: 1px solid #dcdcdc;
+  color: #BDBDBD;
+  padding: 0px;
+  overflow: hidden;
+  background-color: #FFFFFF;
+  clear: both;
+  margin-bottom: 10px;
   &:hover {
-    -webkit-box-shadow: 0 3px 7px 0 rgba(168, 168, 168, 1);
-    -moz-box-shadow: 0 3px 7px 0 rgba(168, 168, 168, 1);
-    box-shadow: 0 3px 7px 0 rgba(168, 168, 168, 1);
+    -webkit-box-shadow: 0 4px 5px 0 rgba(168, 168, 168, 0.25);
+    -moz-box-shadow: 0 4px 5px 0 rgba(168, 168, 168, 0.25);
+    box-shadow: 0 4px 5px 0 rgba(168, 168, 168, 0.25);
   }
   .listing-image {
     text-align: center;
@@ -538,6 +667,12 @@ section p {
       top: -32px;
       right: 0;
     }
+  }
+  .btn {
+    color: #FFFFFF;
+    background-color: #5FD063;
+    border: 1px solid transparent;
+    border-radius: 0px;
   }
 }
 
@@ -681,9 +816,9 @@ section p {
 
 /* USER PROFILE
 -------------------------------------------------- */
-.profile-image {
-  img {border-radius: 10px;}
-}
+// .profile-image {
+//   img {border-radius: 10px;}
+// }
 
 /* Buttons - only primary custom button
 ------------------------- */

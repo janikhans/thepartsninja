@@ -1,8 +1,12 @@
-<h3>Find it On Ebay</h3>
-<div class="row">
-  <% if @ebay_results.present? && @ebay_results.results.any? %>
-    <%= render partial: 'shared/ebay_listing', collection: @ebay_results.results%>
-  <% else %>
-    You need to search for something first
-  <% end %>
+<div id="sidebar-ebay-results">
+  <div class="topic-title">
+    <h3>Find it On Ebay</h3>
+  </div>
+  <div class="row">
+    <% if @ebay_results.present? && @ebay_results.results.any? %>
+      <%= render partial: 'shared/ebay_listing', collection: @ebay_results.results%>
+    <% else %>
+      You need to search for something first
+    <% end %>
+  </div>
 </div>
