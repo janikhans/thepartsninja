@@ -176,6 +176,7 @@ body {
 .sub-header {
   background-color: #FFFFFF;
   padding: 15px;
+  border-bottom: 1px solid #DCDCDC;
   .quicklinks {
     width: 100%;
     text-align: center;
@@ -462,7 +463,7 @@ section p {
     border-radius: 10px;
   }
   .success {
-    background-color: rgba( $navy, .4 );
+    background-color: $muted-navy;
     color: #256327;
   }
 }
@@ -500,7 +501,7 @@ section p {
           padding: 0 8px 0 8px;
           font-weight: 500;
           white-space: nowrap;
-          background-color: rgba( $navy, .4 );
+          background-color: $muted-navy;
           color: #256327;
         }
       }
@@ -544,8 +545,6 @@ section p {
 /* SIDEBARS
 -------------------------------------------------- */
 #sidebar-profile {
-  background-color: #FFFFFF;
-  border: 1px solid #dcdcdc;
   .profile-header {
     padding: 15px 15px 50px 15px;
     min-height: 75px;
@@ -576,14 +575,21 @@ section p {
   }
 }
 
+/* Cards
+-------------------------------------------------- */
+.card {
+  border: 1px solid #dcdcdc;
+  background-color: #FFFFFF;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
 /* PRODUCT PARTIAL
 -------------------------------------------------- */
 .product {
-  border: 1px solid #dcdcdc;
-  background-color: #FFFFFF;
-  margin-top: 10px;
   .product-details {
-    border-left: 8px solid rgba( $navy, .4 );
+    border-left: 8px solid $muted-navy;
     padding: 10px 10px 20px;
     margin: 0;
     cursor: pointer;
@@ -613,12 +619,13 @@ section p {
     padding: 5px;
     border-top: 1px dotted #dcdcdc;
     margin: 5px 30px;
-    display: flex;
-    .section-title {
-      text-transform: uppercase;
-      border-right: 1px dotted #dcdcdc;
-      font-weight: 700;
-      flex: 1;
+    .product-section {
+      margin-top: 5px;
+      .section-title {
+        text-transform: uppercase;
+        border-right: 1px dotted #dcdcdc;
+        font-weight: 700;
+      }
     }
   }
   &:hover {
@@ -631,13 +638,9 @@ section p {
 /* EBAY LISTING PARTIAL
 -------------------------------------------------- */
 .ebay-listing {
-  border: 1px solid #dcdcdc;
   color: #BDBDBD;
   padding: 0px;
-  overflow: hidden;
-  background-color: #FFFFFF;
   clear: both;
-  margin-bottom: 10px;
   &:hover {
     -webkit-box-shadow: 0 4px 5px 0 rgba(168, 168, 168, 0.25);
     -moz-box-shadow: 0 4px 5px 0 rgba(168, 168, 168, 0.25);

@@ -1,61 +1,60 @@
+<div class="topic-title">
+  <h3>Check Compatibility</h3>
+</div>
 <div id="compatibility-check-form" class="m-b-md">
-  <div class="topic-title">
-    <h3>Check Compatibility</h3>
-  </div>
-  <div>
-    <%= simple_form_for :compatibility_check, url: results_compatibility_checks_path, method: :get, remote: true do |f| %>
-      <div class="search-container">
-        <div class="search-display">
-          <div class="search-box">
-            <%= icon(:search, class: "search-icon") %>
-            <div class="search-params">
-              <div id="v_one" class="query-term"><span id="vehicle_one_year">2006 </span><span id="vehicle_one_brand">Yamaha </span><span id="vehicle_one_model">YZ250 </span><span id="vehicle_one_submodel"></span> <%= link_to icon(:times), "#", class: "muted" %></div>
-              <div id="v_two" class="query-term"><span id="vehicle_two_year">2010 </span><span id="vehicle_two_brand">Yamaha </span><span id="vehicle_two_model">YZ450F </span><span id="vehicle_two_submodel"></span> <%= link_to icon(:times), "#", class: "muted" %></div>
-              <div id="part" class="query-term">Complete Wheel - Front <%= link_to icon(:times), "#", class: "muted" %></div>
-            </div>
-          </div>
-          <div class="search-actions">
-            <%= f.submit "Check", id: "compatibility-check-process", class: "btn btn-default disabled" %>
+  <%= simple_form_for :compatibility_check, url: results_compatibility_checks_path, method: :get, remote: true do |f| %>
+    <div class="search-container">
+      <div class="search-display">
+        <div class="search-box">
+          <%= icon(:search, class: "search-icon") %>
+          <div class="search-params">
+            <div id="v_one" class="query-term"><span id="vehicle_one_year">2006 </span><span id="vehicle_one_brand">Yamaha </span><span id="vehicle_one_model">YZ250 </span><span id="vehicle_one_submodel"></span> <%= link_to icon(:times), "#", class: "muted" %></div>
+            <div id="v_two" class="query-term"><span id="vehicle_two_year">2010 </span><span id="vehicle_two_brand">Yamaha </span><span id="vehicle_two_model">YZ450F </span><span id="vehicle_two_submodel"></span> <%= link_to icon(:times), "#", class: "muted" %></div>
+            <div id="part" class="query-term">Complete Wheel - Front <%= link_to icon(:times), "#", class: "muted" %></div>
           </div>
         </div>
-        <div class="cb"></div>
-        <ul class="search-inputs nav navbar-nav">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= icon(:motorcycle) %> Vehicle One <b class="caret"></b></a>
-            <div class="dropdown-menu">
-              <%= f.input :vehicle_one_brand, collection: @brands, class:"form-control", label: false, prompt: "Make...", input_html: {class: "chosen-select" } %>
-              <%= f.input :vehicle_one_model, collection: [], class: "form-control", label: false, prompt: "Model...", input_html: {class: "chosen-select" }%>
-              <%= f.input :vehicle_one_submodel, collection: [], class:"form-control", label: false, prompt: "Submodel..." %>
-              <%= f.input :vehicle_one_year, collection: [], prompt: "Year...", label: false, class:"form-control" %>
-              <%= f.input :vehicle_one_id, as: :hidden %>
-            </div>
-          </li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= icon(:motorcycle) %> Vehicle Two<b class="caret"></b></a>
-            <div class="dropdown-menu">
-              <%= f.input :category_parent, collection: Category.where(parent_id: 35), class:"form-control", label: false, prompt: "Category...", input_html: {class: "chosen-select" } %>
-              <%= f.input :category_subcategories, collection: [], class: "form-control", label: false, prompt: "Children...", input_html: {class: "chosen-select" }%>
-              <%= f.input :product_type_id, collection: [], prompt: "Part...", label: false, class:"form-control" %>
-              <%= f.input :fitment_note_id, collection: [], prompt: "Specify...", label: false, class:"form-control" %>
-              <%#= f.input :part_attributes, collection: [], prompt: "Specify...", label: false, class:"form-control", input_html: {class: "chosen-select", multiple: true } %>
-            </div>
-          </li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= icon(:gears) %> Part<b class="caret"></b></a>
-            <div class="dropdown-menu">
-              <%= f.input :vehicle_two_brand, collection: @brands, class:"form-control", label: false, prompt: "Make...", input_html: {class: "chosen-select" } %>
-              <%= f.input :vehicle_two_model, collection: [], class: "form-control", label: false, prompt: "Model...", input_html: {class: "chosen-select" }%>
-              <%= f.input :vehicle_two_submodel, collection: [], class:"form-control", label: false, prompt: "Submodel..." %>
-              <%= f.input :vehicle_two_year, collection: [], prompt: "Year...", label: false, class:"form-control" %>
-              <%= f.input :vehicle_two_id, as: :hidden %>
-            </div>
-          </li>
-        </ul>
-        <div class="cb"></div>
+        <div class="search-actions">
+          <%= f.submit "Check", id: "compatibility-check-process", class: "btn btn-default disabled" %>
+        </div>
       </div>
-    <% end %>
-  </div>
+      <div class="cb"></div>
+      <ul class="search-inputs nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= icon(:motorcycle) %> Vehicle One <b class="caret"></b></a>
+          <div class="dropdown-menu">
+            <%= f.input :vehicle_one_brand, collection: @brands, class:"form-control", label: false, prompt: "Make...", input_html: {class: "chosen-select" } %>
+            <%= f.input :vehicle_one_model, collection: [], class: "form-control", label: false, prompt: "Model...", input_html: {class: "chosen-select" }%>
+            <%= f.input :vehicle_one_submodel, collection: [], class:"form-control", label: false, prompt: "Submodel..." %>
+            <%= f.input :vehicle_one_year, collection: [], prompt: "Year...", label: false, class:"form-control" %>
+            <%= f.input :vehicle_one_id, as: :hidden %>
+          </div>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= icon(:motorcycle) %> Vehicle Two<b class="caret"></b></a>
+          <div class="dropdown-menu">
+            <%= f.input :category_parent, collection: Category.where(parent_id: 35), class:"form-control", label: false, prompt: "Category...", input_html: {class: "chosen-select" } %>
+            <%= f.input :category_subcategories, collection: [], class: "form-control", label: false, prompt: "Children...", input_html: {class: "chosen-select" }%>
+            <%= f.input :product_type_id, collection: [], prompt: "Part...", label: false, class:"form-control" %>
+            <%= f.input :fitment_note_id, collection: [], prompt: "Specify...", label: false, class:"form-control" %>
+            <%#= f.input :part_attributes, collection: [], prompt: "Specify...", label: false, class:"form-control", input_html: {class: "chosen-select", multiple: true } %>
+          </div>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= icon(:gears) %> Part<b class="caret"></b></a>
+          <div class="dropdown-menu">
+            <%= f.input :vehicle_two_brand, collection: @brands, class:"form-control", label: false, prompt: "Make...", input_html: {class: "chosen-select" } %>
+            <%= f.input :vehicle_two_model, collection: [], class: "form-control", label: false, prompt: "Model...", input_html: {class: "chosen-select" }%>
+            <%= f.input :vehicle_two_submodel, collection: [], class:"form-control", label: false, prompt: "Submodel..." %>
+            <%= f.input :vehicle_two_year, collection: [], prompt: "Year...", label: false, class:"form-control" %>
+            <%= f.input :vehicle_two_id, as: :hidden %>
+          </div>
+        </li>
+      </ul>
+      <div class="cb"></div>
+    </div>
+  <% end %>
 </div>
+
 <script type="text/javascript">
   dynamic_vehicle_form("compatibility_check_vehicle_one");
   dynamic_vehicle_form("compatibility_check_vehicle_two");
