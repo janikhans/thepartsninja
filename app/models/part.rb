@@ -6,7 +6,7 @@ class Part < ApplicationRecord
   # part_number is required if no associated vehicles exist
   # uniqueness on part_number and product_id
   # uniqueness on EPID
-  
+
   extend FriendlyId
   friendly_id :part_number, use: [:finders]
 
@@ -84,6 +84,12 @@ class Part < ApplicationRecord
       if vehicle
         fitment = Fitment.where(vehicle_id: vehicle.id, part_id: self.id, source: "ebay").first_or_initialize
         fitment.update_attribute(:note, f[:note])
+      else
+        vehicle = VehicleForm.new(brand: f[:make], model: f[:model], year: f[:year], submodel:  submodel, type: "Motorcycle")
+        if vehicle.valid?
+          vehicle.save
+          Fitment.create(vehicle_id: vehicle.vehicle.id, part_id: self.id, source: "ebay")
+        end
       end
     end
     self.update_attributes(ebay_fitments_imported: true, ebay_fitments_updated_at: Time.now)
