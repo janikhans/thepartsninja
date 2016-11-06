@@ -5,6 +5,8 @@
   <% if @ebay_results.present? && @ebay_results.results.any? %>
     <%= render partial: 'shared/ebay_listing', collection: @ebay_results.results%>
   <% else %>
-    You need to search for something first
+  <div class="card p-md">
+    <h3 class="text-center">Find listings on eBay <%= link_to "here", "#" %></h3>
+  </div>
   <% end %>
 </div>

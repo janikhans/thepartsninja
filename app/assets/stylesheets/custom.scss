@@ -50,6 +50,19 @@ body {
   }
 }
 
+/* Cards
+-------------------------------------------------- */
+.card {
+  border: 1px solid #dcdcdc;
+  background-color: #FFFFFF;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  overflow: hidden;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 /* RANDOM FIXES
 -------------------------------------------------- */
 //The border won't show up on a validation error.
@@ -456,17 +469,116 @@ section p {
 
 /* COMPATIBILITY CHECK
 -------------------------------------------------- */
-#compatibility-check-results {
-  .results-overview {
-    margin: 20px;
-    padding: 20px;
-    border-radius: 10px;
+
+// .compatibility-check-form {
+//   -webkit-box-sizing: border-box;
+//   -moz-box-sizing: border-box;
+//   box-sizing: border-box;
+//   background-color: #FFFFFF;
+//   border: 1px solid #dcdcdc;
+//   margin: 0px;
+//   .check-column {
+//     text-align: center;
+//     .query-placeholder {
+//       padding: 16px 16px 16px;
+//       border-right: 1px dotted #DCDCDC;
+//       .query-tag{
+//         border-radius: 3px;
+//         line-height: 28px;
+//         padding: 0 8px 0 8px;
+//         font-weight: 500;
+//         background-color: $muted-navy;
+//         color: #256327;
+//         display: inline-block;
+//       }
+//     }
+//     .search-input {
+//       background-color: #ECECEC;
+//       text-transform: uppercase;
+//       font-weight: 700;
+//       color: #8c8c8c;
+//       padding: 10px 0px;
+//       border-right: 1px solid #DCDCDC;
+//       text-align: center;
+//     }
+//   }
+// }
+
+.check-form {
+  overflow: visible;
+  text-align: center;
+  .query-placeholder {
+    padding: 16px 16px 16px;
+    border-right: 1px dotted #DCDCDC;
+    &:last-child {
+      border-right: 0px;
+    }
+    .query-tag {
+      border-radius: 3px;
+      line-height: 28px;
+      padding: 0 8px 0 8px;
+      font-weight: 500;
+      background-color: $muted-navy;
+      color: #256327;
+    }
   }
-  .success {
-    background-color: $muted-navy;
-    color: #256327;
+  .search-inputs {
+    display: inline-block;
+    background-color: #ECECEC;
+    width: 100%;
+    .input {
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #8c8c8c;
+      padding: 10px 0px;
+      border-right: 1px solid #DCDCDC;
+      text-align: center;
+      &:last-child {
+        border-right: 0px;
+      }
+      &:hover {
+        background-color: darken(#DCDCDC, .05);
+        cursor: pointer;
+      }
+      a { color: #8c8c8c }
+      .popover-select {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 1000;
+        float: left;
+        min-width: 100%;
+        padding: 8px;
+        margin: 0px 0 0;
+        font-size: 14px;
+        text-align: left;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        border-radius: 0 0 4px 4px;
+        -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+        background-clip: padding-box;
+      }
+    }
+  }
+  .action {
+    padding: 15px;
+    .btn {
+      width: 250px;
+    }
   }
 }
+.results-overview {
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+}
+.overview-success {
+  background-color: $muted-navy;
+  color: #256327;
+}
+
 .search-container {
   border: 1px solid #dcdcdc;
   .search-display {
@@ -573,16 +685,6 @@ section p {
       h4 { margin-top: 20px;}
     }
   }
-}
-
-/* Cards
--------------------------------------------------- */
-.card {
-  border: 1px solid #dcdcdc;
-  background-color: #FFFFFF;
-  margin-bottom: 15px;
-  border-radius: 5px;
-  overflow: hidden;
 }
 
 /* PRODUCT PARTIAL

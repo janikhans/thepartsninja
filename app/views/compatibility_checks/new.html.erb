@@ -7,8 +7,22 @@
 <% end %>
 <div class="row">
   <div class="col-md-9">
-    <%= render 'compatibility_checks/form' %>
-    <%= render 'results' %>
+    <div id= "compatibility-check-form" class="m-b-md">
+      <div class="topic-title">
+        <h3>Check Compatibility</h3>
+      </div>
+      <%= render 'compatibility_checks/form' %>
+    </div>
+    <div id="compatibility-check-results">
+      <% if @results.blank? %>
+        <div class="results-overview card">
+          <h2 class="text-center">Begin your search above!</h2>
+          <p class="text-center">Select the vehicles and that part that you want to check compatibility with.</p>
+        </div>
+      <% else %>
+        <%= render 'results' %>
+      <% end %>
+    </div>
   </div>
   <div class="col-md-3">
     <%= render 'profile' %>

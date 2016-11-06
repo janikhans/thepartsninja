@@ -1,59 +1,74 @@
-<div class="topic-title">
-  <h3>Check Compatibility</h3>
-</div>
-<div id="compatibility-check-form" class="m-b-md">
-  <%= simple_form_for :compatibility_check, url: results_compatibility_checks_path, method: :get, remote: true do |f| %>
-    <div class="search-container">
-      <div class="search-display">
-        <div class="search-box">
-          <%= icon(:search, class: "search-icon") %>
-          <div class="search-params">
-            <div id="v_one" class="query-term"><span id="vehicle_one_year">2006 </span><span id="vehicle_one_brand">Yamaha </span><span id="vehicle_one_model">YZ250 </span><span id="vehicle_one_submodel"></span> <%= link_to icon(:times), "#", class: "muted" %></div>
-            <div id="v_two" class="query-term"><span id="vehicle_two_year">2010 </span><span id="vehicle_two_brand">Yamaha </span><span id="vehicle_two_model">YZ450F </span><span id="vehicle_two_submodel"></span> <%= link_to icon(:times), "#", class: "muted" %></div>
-            <div id="part" class="query-term">Complete Wheel - Front <%= link_to icon(:times), "#", class: "muted" %></div>
-          </div>
-        </div>
-        <div class="search-actions">
-          <%= f.submit "Check", id: "compatibility-check-process", class: "btn btn-default disabled" %>
-        </div>
+<%= simple_form_for :compatibility_check, url: results_compatibility_checks_path, method: :get, html: { class: "card check-form" }, remote: true do |f| %>
+  <div class="search-tags">
+    <div class="col-md-4 query-placeholder">
+      <div id="vehicle_one" class="query-tag">
+        <span id="vehicle_one_year"></span>
+        <span id="vehicle_one_brand"></span>
+        <span id="vehicle_one_model"></span>
+        <span id="vehicle_one_submodel"></span>
+        <%= link_to icon(:times), "#", class: "muted" %>
       </div>
-      <div class="cb"></div>
-      <ul class="search-inputs nav navbar-nav">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= icon(:motorcycle) %> Vehicle One <b class="caret"></b></a>
-          <div class="dropdown-menu">
-            <%= f.input :vehicle_one_brand, collection: @brands, class:"form-control", label: false, prompt: "Make...", input_html: {class: "chosen-select" } %>
-            <%= f.input :vehicle_one_model, collection: [], class: "form-control", label: false, prompt: "Model...", input_html: {class: "chosen-select" }%>
-            <%= f.input :vehicle_one_submodel, collection: [], class:"form-control", label: false, prompt: "Submodel..." %>
-            <%= f.input :vehicle_one_year, collection: [], prompt: "Year...", label: false, class:"form-control" %>
-            <%= f.input :vehicle_one_id, as: :hidden %>
-          </div>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= icon(:motorcycle) %> Vehicle Two<b class="caret"></b></a>
-          <div class="dropdown-menu">
-            <%= f.input :category_parent, collection: Category.where(parent_id: 35), class:"form-control", label: false, prompt: "Category...", input_html: {class: "chosen-select" } %>
-            <%= f.input :category_subcategories, collection: [], class: "form-control", label: false, prompt: "Children...", input_html: {class: "chosen-select" }%>
-            <%= f.input :product_type_id, collection: [], prompt: "Part...", label: false, class:"form-control" %>
-            <%= f.input :fitment_note_id, collection: [], prompt: "Specify...", label: false, class:"form-control" %>
-            <%#= f.input :part_attributes, collection: [], prompt: "Specify...", label: false, class:"form-control", input_html: {class: "chosen-select", multiple: true } %>
-          </div>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= icon(:gears) %> Part<b class="caret"></b></a>
-          <div class="dropdown-menu">
-            <%= f.input :vehicle_two_brand, collection: @brands, class:"form-control", label: false, prompt: "Make...", input_html: {class: "chosen-select" } %>
-            <%= f.input :vehicle_two_model, collection: [], class: "form-control", label: false, prompt: "Model...", input_html: {class: "chosen-select" }%>
-            <%= f.input :vehicle_two_submodel, collection: [], class:"form-control", label: false, prompt: "Submodel..." %>
-            <%= f.input :vehicle_two_year, collection: [], prompt: "Year...", label: false, class:"form-control" %>
-            <%= f.input :vehicle_two_id, as: :hidden %>
-          </div>
-        </li>
-      </ul>
-      <div class="cb"></div>
     </div>
-  <% end %>
-</div>
+    <div class="col-md-4 query-placeholder">
+      <div id="part" class="query-tag">
+        <span id="part_note"></span>
+        <span id="part_type"></span>
+        <%= link_to icon(:times), "#", class: "muted" %>
+      </div>
+    </div>
+    <div class="col-md-4 query-placeholder">
+      <div id="vehicle_two" class="query-tag">
+        <span id="vehicle_two_year"></span>
+        <span id="vehicle_two_brand"></span>
+        <span id="vehicle_two_model"></span>
+        <span id="vehicle_two_submodel"></span>
+        <%= link_to icon(:times), "#", class: "muted" %>
+      </div>
+    </div>
+  </div>
+  <div class="row search-inputs">
+    <div class="col-md-4 input">
+      <%= link_to "#", onclick: "show_popover_select($(this))" do %>
+        <%= icon(:motorcycle) %> Vehicle One<b class="caret"></b>
+      <% end %>
+      <div class="popover-select hide">
+        <%= f.input :vehicle_one_brand, collection: @brands, class:"form-control", label: false, prompt: "Make...", input_html: {class: "chosen-select" } %>
+        <%= f.input :vehicle_one_model, collection: [], class: "form-control", label: false, prompt: "Model...", input_html: {class: "chosen-select" }%>
+        <%= f.input :vehicle_one_submodel, collection: [], class:"form-control", label: false, prompt: "Submodel..." %>
+        <%= f.input :vehicle_one_year, collection: [], prompt: "Year...", label: false, class:"form-control" %>
+        <%= f.input :vehicle_one_id, as: :hidden %>
+      </div>
+    </div>
+    <div class="col-md-4 input">
+      <%= link_to "#", onclick: "show_popover_select($(this))" do %>
+        <%= icon(:exchange) %> Part <b class="caret"></b>
+      <% end %>
+      <div class="popover-select hide">
+        <%= f.input :category_parent, collection: Category.where(parent_id: 35), class:"form-control", label: false, prompt: "Category...", input_html: {class: "chosen-select" } %>
+        <%= f.input :category_subcategories, collection: [], class: "form-control", label: false, prompt: "Children...", input_html: {class: "chosen-select" } %>
+        <%= f.input :product_type_id, collection: [], prompt: "Part...", label: false, class:"form-control" %>
+        <%= f.input :fitment_note_id, collection: [], prompt: "Specify...", label: false, class:"form-control" %>
+      </div>
+    </div>
+    <div class="col-md-4 input">
+      <%= link_to "#", onclick: "show_popover_select($(this))" do %>
+        <%= icon(:motorcycle, class:"fa-flip-horizontal") %> Vehicle Two<b class="caret"></b>
+      <% end %>
+      <div class="popover-select hide">
+        <%= f.input :vehicle_two_brand, collection: @brands, class:"form-control", label: false, prompt: "Make...", input_html: {class: "chosen-select" } %>
+        <%= f.input :vehicle_two_model, collection: [], class: "form-control", label: false, prompt: "Model...", input_html: {class: "chosen-select" } %>
+        <%= f.input :vehicle_two_submodel, collection: [], class:"form-control", label: false, prompt: "Submodel..." %>
+        <%= f.input :vehicle_two_year, collection: [], prompt: "Year...", label: false, class:"form-control" %>
+        <%= f.input :vehicle_two_id, as: :hidden %>
+      </div>
+    </div>
+  </div>
+  <div class="row search-action">
+    <div class="col-md-12 action text-center">
+      <%= f.submit "Check", id: "compatibility-check-process", class: "btn btn-default" %>
+    </div>
+  </div>
+<% end %>
 
 <script type="text/javascript">
   dynamic_vehicle_form("compatibility_check_vehicle_one");
@@ -64,6 +79,8 @@
   dynamic_fitment_notes_form("compatibility_check");
   update_vehicle_tag("vehicle_one");
   update_vehicle_tag("vehicle_two");
+  update_part_tag("product_type_id", "part_type");
+  update_part_tag("fitment_note_id", "part_note");
 
   $("#compatibility_check_vehicle_one_year").on("change", function() {
     var vehicleId = $(this).val();
@@ -75,20 +92,20 @@
     $("#compatibility_check_vehicle_two_id").val(vehicleId);
   });
 
-  $("#compatibility_check_product_type_id, #compatibility_check_vehicle_two_id, #compatibility_check_vehicle_one_id").on("change", function() {
-    update_link();
-    // $("#compatibility-check-process").removeClass("disabled");
-  });
-  function update_link() {
-    var vehicleTwo = $("#compatibility_check_vehicle_two_id").val();
-    var vehicleOne = $("#compatibility_check_vehicle_one_id").val();
-    var productType = $("#compatibility_check_product_type_id").val();
-    if ( vehicleOne > 0 && vehicleTwo > 0 && productType > 0 ) {
-      $("#compatibility-check-process").removeClass("disabled");
-    } else {
-      $("#compatibility-check-process").addClass("disabled");
-    };
-  };
+  // $("#compatibility_check_product_type_id, #compatibility_check_vehicle_two_id, #compatibility_check_vehicle_one_id").on("change", function() {
+  //   update_link();
+  //   // $("#compatibility-check-process").removeClass("disabled");
+  // });
+  // function update_link() {
+  //   var vehicleTwo = $("#compatibility_check_vehicle_two_id").val();
+  //   var vehicleOne = $("#compatibility_check_vehicle_one_id").val();
+  //   var productType = $("#compatibility_check_product_type_id").val();
+  //   if ( vehicleOne > 0 && vehicleTwo > 0 && productType > 0 ) {
+  //     $("#compatibility-check-process").removeClass("disabled");
+  //   } else {
+  //     $("#compatibility-check-process").addClass("disabled");
+  //   };
+  // };
   function update_vehicle_span(vehicle, attribute) {
     $("#compatibility_check_" + vehicle + "_" + attribute).on("change", function() {
       var optionText = $(this).find("option:selected").text();
@@ -103,9 +120,19 @@
     update_vehicle_span(vehicle, "year");
   };
 
-  $('.dropdown.keep-open').on({
-      "shown.bs.dropdown": function() { this.closable = false; },
-      "click":             function() { this.closable = true; },
-      "hide.bs.dropdown":  function() { return this.closable; }
-  });
+  function update_part_tag(select, span) {
+    $("#compatibility_check_" + select).on("change", function() {
+      var optionText = $(this).find("option:selected").text();
+      $("#" + span).html(optionText + " ");
+    });
+  };
+
+  function show_popover_select(popover) {
+    target = $(popover).next('.popover-select');
+    if ( $( target ).hasClass( "hide" ) ) {
+      target.removeClass('hide');
+    } else {
+      target.addClass('hide');
+    };
+  };
 </script>
