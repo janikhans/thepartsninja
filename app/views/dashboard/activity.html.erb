@@ -1,22 +1,21 @@
-<div class="ibox">
-  <div class="ibox-title">
-    <h3>Activity</h3>
-  </div>
-  <div class="ibox-content">
-      <p>
-        No recent activity.
-      </p>
+<div class="topic-title">
+  <h3>Activity</h3>
+</div>
+<div class="card">
+  <div class="card-content">
+    <p>No recent activity</p>
   </div>
 </div>
-<div class="ibox">
-  <div class="ibox-title">
-    <h3>Your Discoveries</h3>
-  </div>
-  <div class="ibox-content">
-      <% if @user.discoveries.any? %>
-        <% @user.discoveries.each do |d| %> <%= link_to "#{d.id}", d %><br><% end %>
-      <% else %>
-        You haven't discovered anything yet. How about you start discovering by going <%= link_to "HERE", new_discovery_path %>
-      <% end %>
+
+<div class="topic-title">
+  <h3>Your Discoveries</h3>
+</div>
+<div class="card">
+  <div class="card-content">
+    <% if @user.discoveries.any? %>
+      <% @user.discoveries.each do |d| %> <%= link_to "#{d.id}", d %><br><% end %>
+    <% else %>
+      You haven't discovered anything yet. How about you start discovering by going <%= link_to "HERE", new_discovery_path %>
+    <% end %>
   </div>
 </div>

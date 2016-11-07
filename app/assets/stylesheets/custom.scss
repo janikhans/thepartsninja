@@ -72,6 +72,7 @@ body {
     }
   }
   .card-content {
+    padding: 10px;
   }
   .btn-contrast {
     background-color: #dcdcdc;
@@ -97,6 +98,28 @@ body {
   }
   .card-content {
     padding: 35px;
+  }
+}
+
+.card-dashboard-links {
+  .card-content {
+    padding: 0px;
+    ul {
+      padding: 0px;
+      margin: 0px;
+      li {
+        padding: 10px;
+        border-left: 4px solid $muted-navy;
+        display: block;
+        &:hover {background-color: #f9f9f9}
+      }
+    }
+    a {
+      color: gray;
+      &:hover {
+        color: lighten($navy, 10%);
+      }
+    }
   }
 }
 
@@ -946,15 +969,7 @@ section p {
 
 /* USER DASHBOARD
 -------------------------------------------------- */
-.dashboard-links {
-  padding: 0px;
-  a {color: gray; &:hover {color: $navy;}}
-  li {
-    padding: 5px;
-    border-bottom: 1px solid #e7eaec;
-    display: block;
-  }
-}
+
 
 /* USER PROFILE
 -------------------------------------------------- */

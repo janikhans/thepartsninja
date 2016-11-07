@@ -1,32 +1,36 @@
-<div class="col-md-6">
-    <div class="profile-image">
-      <%= gravatar_for @user %>
-    </div>
-    <div class="profile-info">
-      <div class="">
-        <div>
-          <h2 class="no-margins"><%= @user.username %></h2>
-          <h4><%= user_location(@user) %></h4>
-          <small><%= user_bio(@user) %></small>
+<div class="card">
+  <div class="card-content">
+    <div class="col-md-6">
+        <div class="profile-image">
+          <%= gravatar_for @user %>
         </div>
-      </div>
+        <div class="profile-info">
+          <div class="">
+            <div>
+              <h2 class="no-margins"><%= @user.username %></h2>
+              <h4><%= user_location(@user) %></h4>
+              <small><%= user_bio(@user) %></small>
+            </div>
+          </div>
+        </div>
     </div>
-</div>
-<div class="col-md-6">
-  <table class="table small m-b-xs">
-    <tbody>
-      <tr>
-        <td><strong> <%= @user.discoveries.count %></strong> Discoveries</td>
-        <td><strong> <%= @user.compatibilities.count %></strong> Compatibilities</td>
-      </tr>
-      <tr>
-        <td><strong>Padawan</strong></td>
-        <td><strong>61</strong> Karma</td>
-      </tr>
-      <tr>
-        <td><strong>Expert</strong> 2006 Yamaha 250</td>
-        <td><strong>183</strong> Marketplace Rating</td>
-      </tr>
-    </tbody>
-  </table>
+    <div class="col-md-6">
+      <table class="table small m-b-xs">
+        <tbody>
+          <tr>
+            <td><strong> <%= @user.discoveries.count %></strong> Discoveries</td>
+            <td><strong> <%= @user.compatibilities.count %></strong> Compatibilities</td>
+          </tr>
+          <tr>
+            <td><strong>Padawan</strong></td>
+            <td><strong>61</strong> Karma</td>
+          </tr>
+          <tr>
+            <td><strong>Expert</strong> 2006 Yamaha 250</td>
+            <td><strong>183</strong> Marketplace Rating</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
