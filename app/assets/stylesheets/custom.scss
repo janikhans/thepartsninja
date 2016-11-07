@@ -61,6 +61,43 @@ body {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  box-shadow: 0 1px 0 0 rgba(0,0,0,0.1);
+  .card-header {
+    text-transform: uppercase;
+    color: #8e8e8e;
+    font-weight: 700;
+    h3 {
+      font-size: 15px;
+      margin-bottom: -15px;
+    }
+  }
+  .card-content {
+  }
+  .btn-contrast {
+    background-color: #dcdcdc;
+    &:hover {
+      background-color: darken(#dcdcdc, 15%);
+    }
+  }
+  .form-control {
+    background-color: #e8ebed;
+    border-color: #e8ebed;
+    &:focus {
+      border-color: $navy;
+    }
+  }
+}
+
+.user-card {
+  border-top: 5px solid $muted-navy;
+  box-shadow: 0 2px 0 0 rgba(0,0,0,0.1);
+  .card-header {
+    margin-top: 15px;
+    text-align: center;
+  }
+  .card-content {
+    padding: 35px;
+  }
 }
 
 /* RANDOM FIXES
@@ -75,9 +112,9 @@ body {
 
 //Make those error messages more pleasing to look at...
 .alert-danger {
-    background-color: #EA5858;
-    border-color: #F54343;
-    color: #FFFFFF;
+  background-color: #ec7d7d;
+  border-color: #ec7d7d;
+  color: #FFFFFF;
 }
 
 /* CUSTOMIZE THE NAVBAR
@@ -928,6 +965,10 @@ section p {
 /* Buttons - only primary custom button
 ------------------------- */
 .btn-primary {
+  -webkit-transition: background-color 500ms ease;
+  -moz-transition: background-color 500ms ease;
+  -o-transition: background-color 500ms ease;
+  transition: background-color 500ms ease;
   background-color: $navy;
   border-color: $navy;
   color: #FFFFFF;
@@ -935,8 +976,8 @@ section p {
   padding: 10px 20px;
   font-weight: 600;
   &:hover, &:focus, &:active, &.active {
-    background-color: darken($navy, 5%);
-    border-color: darken($navy, 5%);
+    background-color: darken($navy, 15%);
+    border-color: darken($navy, 15%);
     color: #FFFFFF;
   }
 }
