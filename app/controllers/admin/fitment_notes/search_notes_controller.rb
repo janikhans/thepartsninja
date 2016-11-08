@@ -1,4 +1,4 @@
-class Admin::FitmentNotes::SearchNotesController < Admin::DashboardController
+class Admin::FitmentNotes::SearchNotesController < Admin::ApplicationController
   def index
     @query = params[:q]
     if @query

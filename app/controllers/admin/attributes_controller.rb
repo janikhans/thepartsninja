@@ -1,4 +1,4 @@
-class Admin::AttributesController < Admin::DashboardController
+class Admin::AttributesController < Admin::ApplicationController
   def index
     @categories = Category.includes(:subcategories)
     @part_attributes = PartAttribute.includes(:attribute_variations)

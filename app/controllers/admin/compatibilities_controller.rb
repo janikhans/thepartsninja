@@ -1,4 +1,4 @@
-class Admin::CompatibilitiesController < Admin::DashboardController
+class Admin::CompatibilitiesController < Admin::ApplicationController
   before_action :set_compatibility, only: [:show, :edit, :update, :destroy]
 
   def index

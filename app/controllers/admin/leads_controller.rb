@@ -1,4 +1,4 @@
-class Admin::LeadsController < Admin::DashboardController
+class Admin::LeadsController < Admin::ApplicationController
   before_action :set_lead, only: [:destroy]
 
 

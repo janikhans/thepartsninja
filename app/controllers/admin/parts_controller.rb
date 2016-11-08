@@ -1,4 +1,4 @@
-class Admin::PartsController < Admin::DashboardController
+class Admin::PartsController < Admin::ApplicationController
   before_action :set_part, only: [:show, :edit, :update, :destroy, :update_ebay_fitments]
 
   def index

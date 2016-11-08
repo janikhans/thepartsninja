@@ -1,4 +1,4 @@
-class Admin::SearchesController < Admin::DashboardController
+class Admin::SearchesController < Admin::ApplicationController
   before_action :set_search, only: [:destroy]
 
    def index

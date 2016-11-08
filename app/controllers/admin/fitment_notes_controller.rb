@@ -1,4 +1,4 @@
-class Admin::FitmentNotesController < Admin::DashboardController
+class Admin::FitmentNotesController < Admin::ApplicationController
   before_action :set_fitment_note, only: [:show, :edit, :update, :destroy]
 
 

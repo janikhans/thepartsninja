@@ -1,4 +1,4 @@
-class Admin::ProductsController < Admin::DashboardController
+class Admin::ProductsController < Admin::ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy, :update_ebay_fitments]
 
   def index

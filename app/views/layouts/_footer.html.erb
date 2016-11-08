@@ -19,7 +19,7 @@
           <% if user_signed_in? %>
           <div class="col-md-6 col-xs-6">
             <ul>
-              <li><%= link_to "Dashboard", dashboard_path %></li>
+              <li><%= link_to "Dashboard", account_root_path %></li>
               <li><%= link_to "New Discovery", new_discovery_path %></li>
               <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete, data: {confirm: "Are you sure?"} %></li>
             </ul>

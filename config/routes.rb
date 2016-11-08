@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   end
   #Namespace routes for Admins only
   namespace :admin do
-    get '', to: 'dashboard#index', as: '/'
+    root to: 'statistics#index'
     resources :compatibilities, :vehicles
     resources :fitments, :brands, :categories, :part_attributes, :vehicle_types, :users, except: [:new]
     resources :attributes, only: [:index]
@@ -79,11 +79,6 @@ Rails.application.routes.draw do
     get :product_types, on: :member
   end
   get 'coming-soon' => 'leads#index'
-
-  #User Dashboard
-  get 'dashboard' => 'dashboard#activity'
-  get 'dashboard/account-settings' => 'dashboard#settings'
-  get 'dashboard/user-profile' => 'dashboard#profile'
 
   #Static Pages
   root 'pages#index'   # The Welcome Page!

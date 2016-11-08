@@ -1,4 +1,4 @@
-class Admin::DiscoveriesController < Admin::DashboardController
+class Admin::DiscoveriesController < Admin::ApplicationController
   before_action :set_discovery, only: [:show, :edit, :update, :destroy]
 
   def index

@@ -1,4 +1,4 @@
-module DashboardHelper
+module Account::ApplicationHelper
 
   def resource_name
     :user

@@ -1,4 +1,4 @@
-class Admin::UsersController < Admin::DashboardController
+class Admin::UsersController < Admin::ApplicationController
   before_action :set_user, only: [:show, :destroy, :edit, :update]
 
 

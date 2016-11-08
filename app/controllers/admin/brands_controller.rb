@@ -1,4 +1,4 @@
-class Admin::BrandsController < Admin::DashboardController
+class Admin::BrandsController < Admin::ApplicationController
   before_action :set_brand, only: [:show, :edit, :update, :destroy]
 
   def index

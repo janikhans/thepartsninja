@@ -1,4 +1,4 @@
-class Admin::VehiclesController < Admin::DashboardController
+class Admin::VehiclesController < Admin::ApplicationController
 
   before_action :set_vehicle, only: [:show, :edit, :update, :destroy]
 

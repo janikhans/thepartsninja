@@ -1,4 +1,4 @@
-class Admin::FitmentsController < Admin::DashboardController
+class Admin::FitmentsController < Admin::ApplicationController
   before_action :set_fitment, only: [:show, :edit, :update, :destroy]
 
   def index

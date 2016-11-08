@@ -1,8 +1,4 @@
-class Admin::DashboardController < ApplicationController
-  include Admin
-  before_action :admin_only
-  layout "admin_dashboard"
-
+class Admin::StatisticsController < Admin::ApplicationController
   def index
     @recent_leads = Lead.where(created_at: (Time.now - 24.hours)..Time.now).count(:all)
     @recent_searches = Search.where(created_at: (Time.now - 24.hours)..Time.now).count(:all)

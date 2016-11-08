@@ -1,4 +1,4 @@
-class Admin::PartAttributesController < Admin::DashboardController
+class Admin::PartAttributesController < Admin::ApplicationController
   before_action :set_part_attribute, only: [:show, :edit, :update, :destroy]
 
 

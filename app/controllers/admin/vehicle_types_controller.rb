@@ -1,4 +1,4 @@
-class Admin::VehicleTypesController < Admin::DashboardController
+class Admin::VehicleTypesController < Admin::ApplicationController
   before_action :set_vehicle_type, only: [:show, :edit, :update, :destroy]
 
   def index
