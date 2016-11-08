@@ -1,6 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
   before_action :production_redirect, only: [:new, :create]
-  layout "dashboard", only: [:edit, :update]
+  layout "account/application", only: [:edit, :update]
 
   protected
 
@@ -12,6 +12,6 @@ class RegistrationsController < Devise::RegistrationsController
     end
 
     def after_update_path_for(resource)
-      dashboard_account_settings_path
+      account_settings_path
     end
 end

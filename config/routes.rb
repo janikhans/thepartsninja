@@ -9,6 +9,13 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: {registrations: :registrations, invitations: :invitations}
 
+  namespace :account do
+    root to: "activity#index"
+    resources :settings, only: [:index]
+    resources :profile, only: [:update] do
+      get :edit, on: :collection
+    end
+  end
   #Namespace routes for Admins only
   namespace :admin do
     get '', to: 'dashboard#index', as: '/'
@@ -39,7 +46,6 @@ Rails.application.routes.draw do
   resources :leads, only: [:create]
   resources :discoveries, except: [:index]
   resources :products, :vehicles, only: [:show, :index]
-  resources :profiles, only: [:update]
   resources :users, :parts, only: [:show]
   resources :compatibilities, only: [:show] do
     member do
