@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    dashboard_path
+    account_root_path
   end
 
   def prepare_meta_tags(options={})
