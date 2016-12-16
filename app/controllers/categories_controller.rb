@@ -1,4 +1,4 @@
-class CategoriesController < DashboardController
+class CategoriesController < ApplicationController
   before_action :set_category
 
   def subcategories
