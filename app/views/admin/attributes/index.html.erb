@@ -1,17 +1,17 @@
 <% provide(:header, "General Attributes") %>
 
 <div class="row">
-  <div class="col-lg-4">
+  <div class="col-lg-3">
       <div class="panel panel-default">
         <div class="panel-heading">
-            Categories <%= link_to "New Category", admin_categories_path, class: "pull-right" %>
+            Ninja Categories <%= link_to "New Category", admin_ninja_categories_path, class: "pull-right" %>
         </div>
         <div class="panel-body">
-          <% @categories.order(name: :asc).each do |category| %>
+          <% @ninja_categories.order(name: :asc).each do |category| %>
           <ul>
             <% if category.parent_id.blank? %>
-              <li><%= category.name %> <%= link_to "Show", admin_category_path(category), class: "hover-link" %>
-              <%= render partial: 'admin/categories/subcategory', locals: {subcategories: category.subcategories} if category.subcategories.present? %>
+              <li><%= category.name %> <%= link_to "Show", admin_ninja_category_path(category), class: "hover-link" %>
+              <%= render partial: 'admin/ninja_categories/subcategory', locals: {subcategories: category.subcategories} if category.subcategories.present? %>
               </li>
             <% end %>
           </ul>
@@ -19,7 +19,25 @@
         </div>
       </div>
   </div>
-  <div class="col-lg-4">
+  <div class="col-lg-3">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+            Ebay Categories <%= link_to "New Category", admin_ebay_categories_path, class: "pull-right" %>
+        </div>
+        <div class="panel-body">
+          <% @ebay_categories.order(name: :asc).each do |category| %>
+          <ul>
+            <% if category.parent_id.blank? %>
+              <li><%= category.name %> <%= link_to "Show", admin_ebay_category_path(category), class: "hover-link" %>
+              <%= render partial: 'admin/ebay_categories/subcategory', locals: {subcategories: category.subcategories} if category.subcategories.present? %>
+              </li>
+            <% end %>
+          </ul>
+          <% end %>
+        </div>
+      </div>
+  </div>
+  <div class="col-lg-3">
       <div class="panel panel-default">
         <div class="panel-heading">
             Part Attributes <%= link_to "New Part Attribute", admin_part_attributes_path, class: "pull-right" %>
@@ -37,7 +55,7 @@
         </div>
       </div>
   </div>
-  <div class="col-lg-4">
+  <div class="col-lg-3">
       <div class="panel panel-default">
         <div class="panel-heading">
             Vehicle Types <%= link_to "New Vehicle Type", admin_vehicle_types_path, class: "pull-right" %>
