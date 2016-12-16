@@ -1,0 +1,7 @@
+one:
+  name: "Wheel Bearings"
+  parent: bearings
+
+two:
+  name: "Brake Pads"
+  parent: brakes

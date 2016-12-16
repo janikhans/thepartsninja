@@ -14,7 +14,7 @@ class Admin::EbayCategoryFlowsTest < IntegrationTest
   end
 
   test "should create new ebay category" do
-    ebay_category = categories(:ebay_category_one)
+    ebay_category = ebay_categories(:one)
     visit admin_ebay_categories_path
     ebay_category_name = "Test Category"
 
@@ -26,14 +26,14 @@ class Admin::EbayCategoryFlowsTest < IntegrationTest
   end
 
   test "should show a ebay_categories page" do
-    ebay_category = categories(:ebay_category_one)
+    ebay_category = ebay_categories(:one)
     visit admin_ebay_category_path(ebay_category)
 
     assert has_text? "Ebay Category"
   end
 
   test "should edit ebay category" do
-    ebay_category = categories(:ebay_category_one)
+    ebay_category = ebay_categories(:one)
     visit edit_admin_ebay_category_path(ebay_category)
 
     assert has_text? "Editing Ebay Category"

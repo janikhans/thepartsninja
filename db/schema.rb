@@ -25,11 +25,11 @@ ActiveRecord::Schema.define(version: 20161216012248) do
   end
 
   create_table "categories", force: :cascade do |t|
-    t.string   "name",       null: false
+    t.string   "name",        null: false
+    t.string   "description"
     t.integer  "parent_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "type"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.index ["parent_id"], name: "index_categories_on_parent_id", using: :btree
   end
 
@@ -54,6 +54,14 @@ ActiveRecord::Schema.define(version: 20161216012248) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_discoveries_on_user_id", using: :btree
+  end
+
+  create_table "ebay_categories", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.integer  "parent_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parent_id"], name: "index_ebay_categories_on_parent_id", using: :btree
   end
 
   create_table "fitment_notations", force: :cascade do |t|
@@ -158,17 +166,19 @@ ActiveRecord::Schema.define(version: 20161216012248) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.string   "name",            default: "", null: false
+    t.string   "name",             default: "", null: false
     t.text     "description"
     t.string   "slug"
     t.integer  "brand_id"
     t.integer  "user_id"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.integer  "category_id"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.integer  "ebay_category_id"
     t.integer  "product_type_id"
+    t.integer  "category_id"
     t.index ["brand_id"], name: "index_products_on_brand_id", using: :btree
     t.index ["category_id"], name: "index_products_on_category_id", using: :btree
+    t.index ["ebay_category_id"], name: "index_products_on_ebay_category_id", using: :btree
     t.index ["product_type_id"], name: "index_products_on_product_type_id", using: :btree
     t.index ["slug"], name: "index_products_on_slug", unique: true, using: :btree
     t.index ["user_id"], name: "index_products_on_user_id", using: :btree
@@ -299,7 +309,8 @@ ActiveRecord::Schema.define(version: 20161216012248) do
 
   add_foreign_key "fitment_notations", "fitment_notes"
   add_foreign_key "fitment_notations", "fitments"
-  add_foreign_key "product_types", "categories"
+  add_foreign_key "product_types", "ebay_categories", column: "category_id"
+  add_foreign_key "products", "categories"
   add_foreign_key "products", "product_types"
   add_foreign_key "vehicle_models", "brands"
   add_foreign_key "vehicle_models", "vehicle_types"

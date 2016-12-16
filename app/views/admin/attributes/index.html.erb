@@ -4,14 +4,14 @@
   <div class="col-lg-3">
       <div class="panel panel-default">
         <div class="panel-heading">
-            Ninja Categories <%= link_to "New Category", admin_ninja_categories_path, class: "pull-right" %>
+            Categories <%= link_to "New Category", admin_categories_path, class: "pull-right" %>
         </div>
         <div class="panel-body">
-          <% @ninja_categories.order(name: :asc).each do |category| %>
+          <% @categories.order(name: :asc).each do |category| %>
           <ul>
             <% if category.parent_id.blank? %>
-              <li><%= category.name %> <%= link_to "Show", admin_ninja_category_path(category), class: "hover-link" %>
-              <%= render partial: 'admin/ninja_categories/subcategory', locals: {subcategories: category.subcategories} if category.subcategories.present? %>
+              <li><%= category.name %> <%= link_to "Show", admin_category_path(category), class: "hover-link" %>
+              <%= render partial: 'admin/categories/subcategory', locals: {subcategories: category.subcategories} if category.subcategories.present? %>
               </li>
             <% end %>
           </ul>

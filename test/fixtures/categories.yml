@@ -1,52 +1,33 @@
 motorcycle_parts:
   name: Motorcycle Parts
-  type: NinjaCategory
 
 atv_parts:
   name: ATV/UTV Parts
-  type: NinjaCategory
 
 wheels:
   name: Wheels
   parent: motorycle_parts
-  type: NinjaCategory
 
 bearings:
   name: Bearings
   parent: motorycle_parts
-  type: NinjaCategory
 
 body:
   name: Body
   parent: motorycle_parts
-  type: NinjaCategory
 
 brakes:
   name: Brakes
   parent: motorycle_parts
-  type: NinjaCategory
 
 wheel_assembly:
   name: "Complete Wheel Assembly"
   parent: wheels
-  type: NinjaCategory
 
 wheel_bearings:
   name: "Wheel Bearings"
   parent: bearings
-  type: NinjaCategory
 
 brake_pads:
   name: "Brake Pads"
   parent: brakes
-  type: NinjaCategory
-
-ebay_category_one:
-  name: "Wheel Bearings"
-  parent: bearings
-  type: EbayCategory
-
-ebay_category_two:
-  name: "Brake Pads"
-  parent: brakes
-  type: EbayCategory

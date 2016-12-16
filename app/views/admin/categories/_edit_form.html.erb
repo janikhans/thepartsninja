@@ -1,9 +1,19 @@
-<%= simple_form_for([:admin, @ninja_category]) do |f| %>
+<%= simple_form_for([:admin, @category]) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
     <%= f.input :name %>
-    <%= f.association :parent, collection: @parent_ninja_categories %>
+    <%= f.association :parent, collection: @parent_categories %>
+    <div id="subcategories">
+      <h3>Does this category have any subcategories?</h3>
+      <%= f.simple_fields_for :subcategories do |subcategory| %>
+        <%= render 'subcategory_fields', f: subcategory %>
+      <% end %>
+        <div class="links">
+          <%= link_to_add_association 'Add Subcategory', f, :subcategories %>
+        </div>
+    </div>
+    <div class="cb"></div>
     <div id="product_types">
       <h3>What product types exist in this category?</h3>
       <%= f.simple_fields_for :product_types do |product_type| %>

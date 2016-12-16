@@ -1,0 +1,8 @@
+<ul>
+<% subcategories.order(name: :asc).each do |sub| %>
+<li>
+<%= sub.name %> <%= link_to "Show", admin_category_path(sub), class: "hover-link" %>
+<%= render partial: 'admin/categories/subcategory', locals: {subcategories: sub.subcategories} if sub.subcategories.present? %>
+</li>
+<% end %>
+</ul>
