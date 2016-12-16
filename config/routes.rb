@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'statistics#index'
     resources :compatibilities, :vehicles
-    resources :fitments, :brands, :categories, :part_attributes, :vehicle_types, :users, except: [:new]
+    resources :fitments, :brands, :ninja_categories, :ebay_categories, :part_attributes, :vehicle_types, :users, except: [:new]
     resources :attributes, only: [:index]
     resources :searches, only: [:index, :destroy]
     resources :leads, only: [:index, :create, :destroy]

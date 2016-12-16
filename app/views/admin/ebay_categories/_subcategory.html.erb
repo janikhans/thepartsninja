@@ -1,0 +1,9 @@
+<ul>
+<% subcategories.order(name: :asc).each do |sub| %>
+<li>
+<% remaining_parts = Part.joins(:product).where('products.category_id = ? AND parts.ebay_fitments_imported = false', sub.id).count if sub.subcategories.empty? %>
+<%= sub.name %> <%= remaining_parts > 0 ? remaining_parts : icon(:check) if remaining_parts %> <%= link_to "Show", admin_ebay_category_path(sub), class: "hover-link" %>
+<%= render partial: 'subcategory', locals: {subcategories: sub.subcategories} if sub.subcategories.present? %>
+</li>
+<% end %>
+</ul>

@@ -1,34 +1,27 @@
-<% provide(:header, "Category: #{@category.name}") %>
+<% provide(:header, "Ebay Category: #{@ebay_category.name}") %>
 
 <div class="row">
   <div class="col-lg-12">
     <div class="panel panel-default">
         <div class="panel-body">
           <div class="action-btns pull-right">
-            <%= link_to 'Edit', edit_admin_category_path(@category) %>
+            <%= link_to 'Edit', edit_admin_ebay_category_path(@ebay_category) %>
           </div>
           <p>
             <strong>Category Breadcrumb:</strong>
-            <% if @category.parent_category && @category.parent_category.parent_category %>
-              <%= @category.parent_category.parent_category.name %> <
+            <% if @ebay_category.parent_category && @ebay_category.parent_category.parent_category %>
+              <%= @ebay_category.parent_category.parent_category.name %> <
             <% end %>
-            <% if @category.parent_category %>
-              <%= @category.parent_category.name  %> <
+            <% if @ebay_category.parent_category %>
+              <%= @ebay_category.parent_category.name  %> <
             <% end %>
-            <%= @category.name %>
+            <%= @ebay_category.name %>
           </p>
           <h2>Stats</h2>
-          <p><strong>Products:</strong><%= @category.products.count %></p>
-          <p><strong>Parts:</strong><%= @category_parts_count %></p>
+          <p><strong>Products:</strong><%= @ebay_category.products.count %></p>
+          <p><strong>Parts:</strong><%= @ebay_category_parts_count %></p>
           <p><strong>Total Imported:</strong><%= @imported_parts_count %></p>
           <p><strong>Needing Import:</strong><%= @need_imported_parts_count %></p>
-          <h3>Product Types</h3>
-          <ul>
-            <% @category.product_types.each do |type| %>
-              <li><%= type.name %></li>
-            <% end %>
-          </ul>
-
         </div>
     </div>
     <div class="panel panel-default">
