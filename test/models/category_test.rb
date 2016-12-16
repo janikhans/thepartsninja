@@ -3,7 +3,6 @@ require 'test_helper'
 class CategoryTest < UnitTest
   should validate_presence_of(:name)
   # should validate_uniqueness_of(:name).scoped_to(:parent_id)
-  should have_many(:subcategories).dependent(:destroy)
   should have_many(:products).dependent(:restrict_with_error)
   should have_many(:product_types).dependent(:destroy)
 
