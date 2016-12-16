@@ -20,8 +20,7 @@ class Admin::NinjaCategoriesController < Admin::ApplicationController
     @ninja_category = NinjaCategory.new(ninja_category_params)
 
     if @ninja_category.save
-      redirect_to :back, notice: "Category successfully created"
-      # redirect_to admin_category_path(@ninja_category), notice: 'Category was successfully created.'
+      redirect_to admin_ninja_category_path(@ninja_category), notice: 'Category was successfully created.'
     else
       render :index
     end

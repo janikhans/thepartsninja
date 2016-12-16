@@ -52,6 +52,6 @@ class Admin::EbayCategoriesController < Admin::ApplicationController
     end
 
     def ebay_category_params
-      params.require(:category).permit(:name, :parent_id)
+      params.require(:ebay_category).permit(:name, :parent_id)
     end
 end
