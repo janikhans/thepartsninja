@@ -30,9 +30,14 @@ class Admin::ProductFlowsTest < IntegrationTest
   #   assert has_text? product_name
   # end
 
-  test "should show a products page" do
+  test "should navigate to a products page" do
     product = products(:wheel)
-    visit admin_product_path(product)
+    visit admin_products_path
+
+    within "#product_#{product.id}" do
+      click_on "View"
+    end
+
     assert has_text? product.name
   end
 

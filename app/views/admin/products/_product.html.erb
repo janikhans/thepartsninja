@@ -1,6 +1,7 @@
-<tr>
+<tr id="product_<%= product.id %>" class="product">
   <td><%= product.brand.name %></td>
-  <td><%= product.category.name %></td>
+  <td><%= product.ebay_category.try(:name) %></td>
+  <td><%= product.category.try(:name) %></td>
   <td><%= product.name %></td>
   <td><%= link_to 'View', admin_product_path(product) %></td>
   <td><%= link_to 'Edit', edit_admin_product_path(product) %></td>

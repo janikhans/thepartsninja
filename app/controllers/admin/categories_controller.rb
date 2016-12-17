@@ -20,7 +20,8 @@ class Admin::CategoriesController < Admin::ApplicationController
     @category = Category.new(category_params)
 
     if @category.save
-      redirect_to admin_category_path(@category), notice: 'Category was successfully created.'
+      redirect_to :back, notice: 'Category was successfully created.'
+      # redirect_to admin_category_path(@category), notice: 'Category was successfully created.'
     else
       render :index
     end

@@ -10,10 +10,10 @@ class Admin::EbayCategoriesController < Admin::ApplicationController
 
   def show
     @imported_parts_count = Part.joins(:product)
-        .where('products.category_id = ? AND parts.ebay_fitments_imported = true', @ebay_category.id)
+        .where('products.ebay_category_id = ? AND parts.ebay_fitments_imported = true', @ebay_category.id)
         .count
     @need_imported_parts_count = Part.joins(:product)
-        .where('products.category_id = ? AND parts.ebay_fitments_imported = false', @ebay_category.id)
+        .where('products.ebay_category_id = ? AND parts.ebay_fitments_imported = false', @ebay_category.id)
         .count
     @ebay_category_parts_count = @ebay_category.products.joins(:parts).count
     @products = @ebay_category.products.includes(:brand, :product_type).page(params[:page]).order("name ASC")

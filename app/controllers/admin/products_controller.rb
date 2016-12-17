@@ -63,10 +63,10 @@ class Admin::ProductsController < Admin::ApplicationController
     end
 
     def product_params
-      params.require(:product).permit(:product_name, :brand, :category, :subcategory, :product_type_id)
+      params.require(:product).permit(:product_name, :brand, :ebay_category_id, :category, :subcategory, :product_type_id)
     end
 
     def edit_product_params
-      params.require(:product).permit(:name, :description, :category_id, :product_type_id)
+      params.require(:product).permit(:name, :description, :ebay_category_id, :category_id, :product_type_id)
     end
 end

@@ -6,12 +6,12 @@
     <%= f.association :parent, collection: @parent_categories %>
     <div id="subcategories">
       <h3>Does this category have any subcategories?</h3>
+      <div class="links">
+        <%= link_to_add_association 'Add Subcategory', f, :subcategories %>
+      </div>
       <%= f.simple_fields_for :subcategories do |subcategory| %>
         <%= render 'subcategory_fields', f: subcategory %>
       <% end %>
-        <div class="links">
-          <%= link_to_add_association 'Add Subcategory', f, :subcategories %>
-        </div>
     </div>
     <div class="cb"></div>
     <div id="product_types">

@@ -9,7 +9,7 @@
             <%= link_to 'Edit', edit_admin_part_path(@part) %>
           </div>
           <h3>Part Number: <small><%= @part.part_number %></small></h3>
-          <h3>Category: <small><%= @part.product.category.name %></small></h3>
+          <h3>Category: <small><%= @part.product.ebay_category.name %></small></h3>
           <h3>Brand:<small> <%= link_to @part.product.brand.name, admin_brand_path(@part.product.brand) %></small> </h3>
           <h3>Product Name:<small> <%= link_to @part.product.name, admin_product_path(@part.product) %></small></h3>
           <h3>Attributes: <small><% @part.part_attributes.each do |p| %><%= p.parent_attribute.name %>: <%= p.name %> <% end %></small></h3>
