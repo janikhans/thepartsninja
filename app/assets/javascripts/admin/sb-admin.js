@@ -1,7 +1,16 @@
 $(function() {
-
-    $('#side-menu').metisMenu();
-
+  $('#side-menu').metisMenu();
+  $('.checkable').click(function() {     //when an element of class checkable is clicked
+    var check_count = $('.checkable:checked').size();  //count the number of checked elements
+    if( check_count >= 1 ) {
+      $("#bulk-edit-submit").show();
+    } else {
+      $("#bulk-edit-submit").hide();
+    }
+  });
+  $("#check-all").click(function(){
+      $('input:checkbox').click();
+  });
 });
 
 //Loads the correct sidebar on window load,

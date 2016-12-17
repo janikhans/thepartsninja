@@ -1,0 +1,7 @@
+<tr id="product_<%= product.id %>" class="product">
+  <td><%= check_box_tag "product_ids[]", product.id, false, class: "checkable" %></td>
+  <td><%= product.brand.name %></td>
+  <td><%= product.ebay_category.try(:name) %></td>
+  <td><%= product.category.try(:name) %></td>
+  <td><%= product.name %></td>
+</tr>

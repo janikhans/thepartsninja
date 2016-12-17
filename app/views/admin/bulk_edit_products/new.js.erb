@@ -1,0 +1,6 @@
+if ( !$('#new_bulk_edit_products').length ) {
+  $('body').append('<%= j(render "modal_new") %>');
+} else {
+  $('#new_bulk_edit_products').replaceWith('<%= j(render "modal_new") %>');
+};
+$('#new_bulk_edit_products').modal();

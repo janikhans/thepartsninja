@@ -1,0 +1,31 @@
+<%= simple_form_for @product, url: admin_bulk_edit_products_path do |f| %>
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">&times;</a>
+    <h4 class="modal-title"><%= icon(:plus) %> Bulk Editing <%= pluralize(@products.count, "Product") %></h4>
+  </div>
+  <div class="modal-body">
+    <table class="table table-condensed table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>Brand</th>
+          <th>Name</th>
+          <th>Ebay Category</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @products.each do |product| %>
+          <tr>
+            <td><%= hidden_field_tag "product_ids[]", product.id %><%= product.brand.name %></td>
+            <td><%= product.name %></td>
+            <td><%= product.ebay_category.parent_category.name %> > <%= product.ebay_category.name %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= f.input :category_id, collection: Category.first.subcategories.includes(:subcategories), as: :grouped_select, group_method: :subcategories %>
+  </div>
+  <div class="modal-footer">
+    <%= link_to "Close", "#", class: "btn btn-default", data: { dismiss: "modal" } %>
+    <%= f.submit "Update Products", class: "btn btn-primary" %>
+  </div>
+<% end %>

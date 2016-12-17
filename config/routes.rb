@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     resources :leads, only: [:index, :create, :destroy]
     resources :discoveries, except: [:new, :create]
     resources :vehicle_models, except: [:index, :show]
+    resources :bulk_edit_products, only: [:index, :new, :create]
     controller :auto_complete do
       get :update_models
     end
