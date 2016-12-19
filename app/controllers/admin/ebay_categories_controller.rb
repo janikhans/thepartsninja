@@ -3,7 +3,7 @@ class Admin::EbayCategoriesController < Admin::ApplicationController
 
 
   def index
-    @ebay_categories = EbayCategory.includes(subcategories: {subcategories: :subcategories})
+    @ebay_categories = EbayCategory.all #includes(subcategories: {subcategories: :subcategories})
     @ebay_category = EbayCategory.new
     @parent_ebay_categories = EbayCategory.all
   end

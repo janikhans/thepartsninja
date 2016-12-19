@@ -40,6 +40,8 @@ GEM
       tzinfo (~> 1.1)
     acts_as_votable (0.10.0)
     addressable (2.4.0)
+    ancestry (2.2.2)
+      activerecord (>= 3.0.0)
     arel (7.1.2)
     autoprefixer-rails (6.4.1.1)
       execjs
@@ -264,6 +266,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_votable (~> 0.10.0)
+  ancestry
   bootstrap-sass (~> 3.3.6)
   bullet
   byebug

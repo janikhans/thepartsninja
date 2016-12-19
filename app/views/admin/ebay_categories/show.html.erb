@@ -7,17 +7,7 @@
           <div class="action-btns pull-right">
             <%= link_to 'Edit', edit_admin_ebay_category_path(@ebay_category) %>
           </div>
-          <p>
-            <strong>Category Breadcrumb:</strong>
-            <% if @ebay_category.parent_category && @ebay_category.parent_category.parent_category %>
-              <%= @ebay_category.parent_category.parent_category.name %> <
-            <% end %>
-            <% if @ebay_category.parent_category %>
-              <%= @ebay_category.parent_category.name  %> <
-            <% end %>
-            <%= @ebay_category.name %>
-          </p>
-          <h2>Stats</h2>
+          <p><%= category_breadcrumb(@ebay_category) unless @ebay_category.depth == 0 %></p>
           <p><strong>Products:</strong><%= @ebay_category.products.count %></p>
           <p><strong>Parts:</strong><%= @ebay_category_parts_count %></p>
           <p><strong>Total Imported:</strong><%= @imported_parts_count %></p>

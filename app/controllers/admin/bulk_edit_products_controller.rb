@@ -2,9 +2,11 @@ class Admin::BulkEditProductsController < Admin::ApplicationController
 
   def index
     @search = search
-    if @search.present?
+    if @search[:ebay_category_id].present?
       keyword = @search[:keyword]
-      products = Product.where("name ilike ?", "%#{keyword}%").includes(:brand, :ebay_category, :category)
+      categories = EbayCategory.find(@search[:ebay_category_id]).descendants
+      products = Product.where(ebay_category_id: categories)
+      products = products.where("name ilike ?", "%#{keyword}%").includes(:brand, :ebay_category, :category) if @search[:keyword]
     else
       products = Product.includes(:brand, :category)
     end

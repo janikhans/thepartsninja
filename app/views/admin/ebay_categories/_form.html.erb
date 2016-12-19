@@ -3,7 +3,7 @@
 
   <div class="form-inputs">
     <%= f.input :name %>
-    <%= f.association :parent, collection: @parent_ebay_categories %>
+    <%= f.input :parent_id, collection: @parent_ebay_categories %>
   </div>
 
   <div class="form-actions">

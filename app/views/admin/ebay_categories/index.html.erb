@@ -17,15 +17,10 @@
             Showing all Ebay Categories
           </div>
           <div class="panel-body">
-            <% @ebay_categories.each do |ebay_category| %>
             <ul>
-            <% if ebay_category.parent_id.blank? %>
-            <li><%= ebay_category.name %> <%= link_to "Edit", edit_admin_ebay_category_path(ebay_category)%> <%= link_to "Delete", admin_ebay_category_path(ebay_category), method: 'delete', data: { confirm: 'Are you sure?' } %>
-            <%= render partial: 'subcategory', locals: {subcategories: ebay_category.subcategories} if ebay_category.subcategories.present? %>
-            </li>
-            <% end %>
+              <%#= render @ebay_categories %>
             </ul>
-            <% end %>
+            <%= nested_categories @ebay_categories.arrange(order: :name) %>
           </div>
       </div>
   </div>
