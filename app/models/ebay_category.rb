@@ -6,6 +6,7 @@ class EbayCategory < ApplicationRecord
 
   belongs_to :parent
   has_many :products, dependent: :restrict_with_error
+  has_many :products, through: :subcategories
 
   has_many :subcategories, class_name: "EbayCategory", foreign_key: "parent_id", dependent: :destroy
   belongs_to :parent_category, class_name: "EbayCategory", foreign_key: "parent_id"
