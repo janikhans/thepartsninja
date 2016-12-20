@@ -42,15 +42,26 @@
             Products
         </div>
         <div class="panel-body">
-          <% @brand.products.includes(:ebay_category).group_by{ |p| p.ebay_category }.each do |category, products| %>
+          <% @brand.products.includes(:ebay_category, :category).group_by{ |p| [p.category, p.ebay_category] }.each do |category_array, products| %>
+            <% if category_array.first.present? %>
             <div class="col-md-3 col-xs-6">
-              <%= category.parent.name unless category.depth == 0 %> &mdash; <%= category.name %>
+              <%= category_array.first.parent.name unless category_array.first.root? %> &mdash; <%= category_array.first.name %>
               <ul>
                 <% products.each do |product| %>
                   <li><%= link_to product.name, admin_product_path(product) %></li>
                 <% end %>
               </ul>
             </div>
+            <% else %>
+              <div class="col-md-3 col-xs-6">
+                Ebay: <%= category_array.second.parent.name unless category_array.second.root? %> &mdash; <%= category_array.second.name %>
+                <ul>
+                  <% products.each do |product| %>
+                    <li><%= link_to product.name, admin_product_path(product) %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
           <% end %>
         </div>
       </div>

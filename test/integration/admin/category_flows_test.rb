@@ -27,7 +27,7 @@ class Admin::CategoryFlowsTest < IntegrationTest
   end
 
   test "should create new subcategory" do
-    parent_category = categories(:wheels)
+    parent_category = categories(:motorcycle_parts)
     visit admin_categories_path
     category_name = "Test Category"
 

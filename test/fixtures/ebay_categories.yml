@@ -1,7 +1,13 @@
+bearings:
+  name: "Bearings"
+
+brakes:
+  name: "Brakes"
+
 one:
   name: "Wheel Bearings"
-  parent: bearings
+  ancestry: <%= ActiveRecord::FixtureSet.identify(:bearings) %>
 
 two:
   name: "Brake Pads"
-  parent: brakes
+  ancestry: <%= ActiveRecord::FixtureSet.identify(:brakes) %>

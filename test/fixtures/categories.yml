@@ -6,28 +6,28 @@ atv_parts:
 
 wheels:
   name: Wheels
-  parent: motorycle_parts
+  ancestry: <%= ActiveRecord::FixtureSet.identify(:motorcycle_parts) %>
 
 bearings:
   name: Bearings
-  parent: motorycle_parts
+  ancestry: <%= ActiveRecord::FixtureSet.identify(:motorcycle_parts) %>
 
 body:
   name: Body
-  parent: motorycle_parts
+  ancestry: <%= ActiveRecord::FixtureSet.identify(:motorcycle_parts) %>
 
 brakes:
   name: Brakes
-  parent: motorycle_parts
+  ancestry: <%= ActiveRecord::FixtureSet.identify(:motorcycle_parts) %>
 
 wheel_assembly:
   name: "Complete Wheel Assembly"
-  parent: wheels
+  ancestry: <%= ActiveRecord::FixtureSet.identify(:motorcycle_parts) %>/<%= ActiveRecord::FixtureSet.identify(:wheels) %>
 
 wheel_bearings:
   name: "Wheel Bearings"
-  parent: bearings
+  ancestry: <%= ActiveRecord::FixtureSet.identify(:motorcycle_parts) %>/<%= ActiveRecord::FixtureSet.identify(:bearings) %>
 
 brake_pads:
   name: "Brake Pads"
-  parent: brakes
+  ancestry: <%= ActiveRecord::FixtureSet.identify(:motorcycle_parts) %>/<%= ActiveRecord::FixtureSet.identify(:brakes) %>
