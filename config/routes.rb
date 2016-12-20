@@ -65,10 +65,6 @@ Rails.application.routes.draw do
   resources :vehicle_submodels, only: [] do
     get :vehicles, on: :member
   end
-  resources :product_types, only: [] do
-    get :part_attributes, on: :member
-    get :fitment_notes, on: :member
-  end
   resources :compatibility_checks, only: [] do
     get :results, on: :collection
   end
@@ -76,7 +72,8 @@ Rails.application.routes.draw do
 
   resources :categories, only: [] do
     get :subcategories, on: :member
-    get :product_types, on: :member
+    get :part_attributes, on: :member
+    get :fitment_notes, on: :member
   end
   get 'coming-soon' => 'leads#index'
 

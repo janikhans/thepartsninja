@@ -8,15 +8,15 @@ class CompatibilityChecksController < ApplicationController
     if params[:v_one].present?
       v_one = Vehicle.find_with_specs(params[:v_one][:brand],params[:v_one][:model],params[:v_one][:year])
       v_two = Vehicle.find_with_specs(params[:v_two][:brand],params[:v_two][:model],params[:v_two][:year])
-      product_type = ProductType.find_by(name: params[:product])
-      compatibility_check = CompatibilityCheck.new(vehicle_one_id: v_one.id, vehicle_two_id: v_two.id, product_type_id: product_type.id)
+      category = Category.find_by(name: params[:category])
+      compatibility_check = CompatibilityCheck.new(vehicle_one_id: v_one.id, vehicle_two_id: v_two.id, category_id: category.id)
       if compatibility_check.process
           @results = compatibility_check.results
           @parts = compatibility_check.results
           @products = compatibility_check.results.group_by { |s| s.product }
           @check = compatibility_check
       end
-      search_term = v_one.to_label + " " + product_type.name
+      search_term = v_one.to_label + " " + category.name
       @ebay_results = YaberAdvancedListing.search(search_term, 5)
     end
   end
@@ -27,9 +27,9 @@ class CompatibilityChecksController < ApplicationController
         @results = @compatibility_check.results
         @parts = @compatibility_check.results
         @products = @compatibility_check.results.group_by { |s| s.product }
-        # search_term = @compatibility_check.vehicle_one.to_label + " " + @compatibility_check.product_type.name + " " + @compatibility_check.part_attributes.first.try(:name)
+        # search_term = @compatibility_check.vehicle_one.to_label + " " + @compatibility_check.category.name + " " + @compatibility_check.part_attributes.first.try(:name)
         @check = @compatibility_check
-        search_term = @check.vehicle_one.to_label + " " + @check.product_type.name
+        search_term = @check.vehicle_one.to_label + " " + @check.category.name
         # # binding.pry
         @ebay_results = YaberAdvancedListing.search(search_term, 5)
       respond_to :js
@@ -41,6 +41,6 @@ class CompatibilityChecksController < ApplicationController
   private
 
   def compatibility_check_params
-    params.require(:compatibility_check).permit(:vehicle_one_id, :vehicle_two_id, :product_type_id, :fitment_note_id, part_attributes: [])
+    params.require(:compatibility_check).permit(:vehicle_one_id, :vehicle_two_id, :category_id, :fitment_note_id, part_attributes: [])
   end
 end

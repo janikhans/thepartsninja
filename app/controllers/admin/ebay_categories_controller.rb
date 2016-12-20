@@ -16,7 +16,7 @@ class Admin::EbayCategoriesController < Admin::ApplicationController
         .where('products.ebay_category_id = ? AND parts.ebay_fitments_imported = false', @ebay_category.id)
         .count
     @ebay_category_parts_count = @ebay_category.products.joins(:parts).count
-    @products = @ebay_category.products.includes(:brand, :product_type).page(params[:page]).order("name ASC")
+    @products = @ebay_category.products.includes(:brand).page(params[:page]).order("name ASC")
   end
 
   def edit

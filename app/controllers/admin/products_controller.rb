@@ -21,7 +21,6 @@ class Admin::ProductsController < Admin::ApplicationController
   end
 
   def edit
-    @product_types = @product.category.product_types
   end
 
   def create
@@ -63,10 +62,10 @@ class Admin::ProductsController < Admin::ApplicationController
     end
 
     def product_params
-      params.require(:product).permit(:product_name, :brand, :ebay_category_id, :category, :subcategory, :product_type_id)
+      params.require(:product).permit(:product_name, :brand, :ebay_category_id, :category, :subcategory)
     end
 
     def edit_product_params
-      params.require(:product).permit(:name, :description, :ebay_category_id, :category_id, :product_type_id)
+      params.require(:product).permit(:name, :description, :ebay_category_id, :category_id)
     end
 end

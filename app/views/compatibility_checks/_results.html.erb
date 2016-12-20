@@ -5,7 +5,7 @@
   <div class="results-overview overview-success alert">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
     <h2 class="text-center"><%= icon(:check, class:"fa-2x") %></h2>
-    <p>It appears that there were some <%= @check.product_type.name %> compatibilities found between:</p>
+    <p>It appears that there were some <%= @check.category.name %> compatibilities found between:</p>
     <%= @check.vehicle_one.to_label %> and <%= @check.vehicle_two.to_label %>
     <p>There were a total of <%= @parts.count %> compatibilities found</p>
     Of these <%= @parts.count %> were aftermarket.

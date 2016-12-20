@@ -13,7 +13,6 @@
           <h3>Product Name:<small> <%= @product.name %></small></h3>
           <h3>Category:<small> <%= category_breadcrumb @product.category %></small></h3>
           <h3>Ebay Category:<small> <%= category_breadcrumb @product.ebay_category %></small></h3>
-          <h3>Product Type:<small> <%= @product.product_type ? @product.product_type.name : (link_to "Add Product Type", edit_admin_product_path(@product)) %></small></h3>
           <h3>Description:</h3>
           <small> <%= @product.description %> </small>
         </div>

@@ -11,7 +11,6 @@ class Product < ApplicationRecord
   belongs_to :user
   belongs_to :category
   belongs_to :ebay_category
-  belongs_to :product_type
   has_many :parts, dependent: :destroy
   has_many :part_attributes, -> { distinct }, through: :parts
   has_many :fitment_notes, -> { distinct }, through: :parts

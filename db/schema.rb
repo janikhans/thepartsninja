@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161220014800) do
+ActiveRecord::Schema.define(version: 20161220041752) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -160,15 +160,6 @@ ActiveRecord::Schema.define(version: 20161220014800) do
     t.index ["user_id"], name: "index_parts_on_user_id", using: :btree
   end
 
-  create_table "product_types", force: :cascade do |t|
-    t.integer  "category_id"
-    t.string   "name",        null: false
-    t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["category_id"], name: "index_product_types_on_category_id", using: :btree
-  end
-
   create_table "products", force: :cascade do |t|
     t.string   "name",             default: "", null: false
     t.text     "description"
@@ -178,12 +169,10 @@ ActiveRecord::Schema.define(version: 20161220014800) do
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.integer  "ebay_category_id"
-    t.integer  "product_type_id"
     t.integer  "category_id"
     t.index ["brand_id"], name: "index_products_on_brand_id", using: :btree
     t.index ["category_id"], name: "index_products_on_category_id", using: :btree
     t.index ["ebay_category_id"], name: "index_products_on_ebay_category_id", using: :btree
-    t.index ["product_type_id"], name: "index_products_on_product_type_id", using: :btree
     t.index ["slug"], name: "index_products_on_slug", unique: true, using: :btree
     t.index ["user_id"], name: "index_products_on_user_id", using: :btree
   end
@@ -313,9 +302,7 @@ ActiveRecord::Schema.define(version: 20161220014800) do
 
   add_foreign_key "fitment_notations", "fitment_notes"
   add_foreign_key "fitment_notations", "fitments"
-  add_foreign_key "product_types", "ebay_categories", column: "category_id"
   add_foreign_key "products", "categories"
-  add_foreign_key "products", "product_types"
   add_foreign_key "vehicle_models", "brands"
   add_foreign_key "vehicle_models", "vehicle_types"
   add_foreign_key "vehicle_submodels", "vehicle_models"

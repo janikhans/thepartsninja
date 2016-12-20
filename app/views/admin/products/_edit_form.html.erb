@@ -5,7 +5,6 @@
     <%= f.input :name, label: "Part Name" %>
     <%= f.input :description, label: "Description"  %>
     <%= f.association :category, label_method: :name, value_method: :id %>
-    <%= f.association :product_type, collection: @product_types %>
   </div>
 
   <div class="form-actions">
