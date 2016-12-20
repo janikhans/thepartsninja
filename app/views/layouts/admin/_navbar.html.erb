@@ -37,10 +37,6 @@
             <!-- /input-group -->
         </li>
         <li><%= link_to admin_root_path do %> <i class="fa fa-dashboard fa-fw"></i> Dashboard <% end %></li>
-        <li><%= link_to admin_searches_path do %> <i class="fa fa-user fa-fw"></i> Searches <% end %></li>
-        <li><%= link_to admin_users_path do %> <i class="fa fa-user fa-fw"></i> Users <% end %></li>
-        <li><%= link_to admin_discoveries_path do %> <i class="fa fa-exclamation fa-fw"></i> Discoveries <% end %></li>
-        <li><%= link_to admin_leads_path do %> <i class="fa fa-bullhorn fa-fw"></i> Leads <% end %></li>
         <li>
           <a href="#"><i class="fa fa-bolt fa-fw"></i> General<span class="fa arrow"></span></a>
           <ul class="nav nav-second-level collapse" aria-expanded="true">
@@ -51,6 +47,10 @@
             <li><%= link_to "Fitment Notes", admin_fitment_notes_path %></li>
           </ul>
         </li>
+        <li><%= link_to admin_searches_path do %> <i class="fa fa-user fa-fw"></i> Searches <% end %></li>
+        <li><%= link_to admin_users_path do %> <i class="fa fa-user fa-fw"></i> Users <% end %></li>
+        <li><%= link_to admin_discoveries_path do %> <i class="fa fa-exclamation fa-fw"></i> Discoveries <% end %></li>
+        <li><%= link_to admin_leads_path do %> <i class="fa fa-bullhorn fa-fw"></i> Leads <% end %></li>
         <li><%= link_to admin_vehicles_path do %> <i class="fa fa-motorcycle fa-fw"></i> Vehicles <% end %></li>
         <li><%= link_to admin_brands_path do %> <i class="fa fa-building fa-fw"></i> Brands <% end %></li>
         <li>
@@ -62,7 +62,13 @@
         </li>
         <li><%= link_to admin_parts_path do %> <i class="fa fa-user fa-fw"></i> Parts <% end %></li>
         <li><%= link_to admin_compatibilities_path do %> <i class="fa fa-exchange fa-fw"></i> Compatibilities <% end %></li>
-        <li><%= link_to admin_fitments_path do %> <i class="fa fa-gears fa-fw"></i> Fitments <% end %></li>
+        <li>
+          <a href="#"><i class="fa fa-gears fa-fw"></i> Fitments<span class="fa arrow"></span></a>
+          <ul class="nav nav-second-level collapse" aria-expanded="true">
+            <li><%= link_to "All Fitments", admin_fitments_path %></li>
+            <li><%= link_to "Find Fitment Notes", search_notes_admin_fitment_notes_path %></li>
+          </ul>
+        </li>
       </ul>
     </div>
   </div>

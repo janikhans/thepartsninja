@@ -1,7 +1,7 @@
 <tr>
   <td><%= fitment.part.product.name %></td>
   <td><%= fitment.part.part_number %></td>
-  <td><%= fitment.part.product.category.name %></td>
+  <td><%= fitment.part.product.ebay_category ? fitment.part.product.ebay_category.name : nil %><%= fitment.part.product.category.try(:name) %></td>
   <td><%= fitment.vehicle.year %></td>
   <td><%= fitment.vehicle.brand.name %></td>
   <td><%= fitment.vehicle.model.name %></td>

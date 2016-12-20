@@ -42,9 +42,9 @@
             Products
         </div>
         <div class="panel-body">
-          <% @brand.products.includes(ebay_category: :parent_category).group_by{ |p| p.ebay_category }.each do |category, products| %>
+          <% @brand.products.includes(:ebay_category).group_by{ |p| p.ebay_category }.each do |category, products| %>
             <div class="col-md-3 col-xs-6">
-              <%= category.parent_category.name if category.parent_category %> &mdash; <%= category.name %>
+              <%= category.parent.name unless category.depth == 0 %> &mdash; <%= category.name %>
               <ul>
                 <% products.each do |product| %>
                   <li><%= link_to product.name, admin_product_path(product) %></li>

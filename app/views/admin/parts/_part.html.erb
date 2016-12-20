@@ -1,6 +1,6 @@
 <tr>
   <td><%= part.product.brand.name %></td>
-  <td><%= part.product.category.name %></td>
+  <td><%= part.product.ebay_category ? part.product.ebay_category.name : nil %><%= part.product.category.try(:name) %></td>
   <td><%= part.product.name %></td>
   <td><%= part.part_number %></td>
   <td><%= part.note %></td>
