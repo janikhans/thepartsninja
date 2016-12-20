@@ -17,7 +17,7 @@
           <tr>
             <td><%= hidden_field_tag "product_ids[]", product.id %><%= product.brand.name %></td>
             <td><%= product.name %></td>
-            <td><%= category_breadcrumb product.ebay_category if product.ebay_category.present? %></td>
+            <td><%= category_breadcrumb product.ebay_category %></td>
           </tr>
         <% end %>
       </tbody>

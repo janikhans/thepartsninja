@@ -6,6 +6,7 @@ module Admin::CategoriesHelper
   end
 
   def category_breadcrumb(category)
+    return if category.nil?
     content_tag(:span, class: "category-breadcrumb") do
       category.path.map { |e| e.name }.join(" < ")
     end

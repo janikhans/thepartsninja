@@ -1,8 +1,8 @@
 <tr id="product_<%= product.id %>" class="product">
   <td><%= check_box_tag "product_ids[]", product.id, false, class: "checkable" %></td>
   <td><%= product.brand.name %></td>
-  <td><%= product.ebay_category.try(:name) %></td>
-  <td><%= product.category.try(:name) %></td>
+  <td><%= category_breadcrumb product.ebay_category %></td>
+  <td><%= category_breadcrumb product.category %></td>
   <td><%= product.name %></td>
   <td><%= link_to "View", admin_product_path(product) %></td>
 </tr>
