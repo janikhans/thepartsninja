@@ -1,15 +1,16 @@
 $(function() {
   $('#side-menu').metisMenu();
-  $('.checkable').click(function() {     //when an element of class checkable is clicked
+  $('.checkable').change(function() {     //when an element of class checkable is clicked
     var check_count = $('.checkable:checked').size();  //count the number of checked elements
     if( check_count >= 1 ) {
-      $("#bulk-edit-submit").show();
+      $("#bulk-edit-submit").prop("disabled", false)
     } else {
-      $("#bulk-edit-submit").hide();
+      $("#bulk-edit-submit").prop("disabled", true)
     }
   });
-  $("#check-all").click(function(){
-      $('input:checkbox').click();
+  $("#checkAll").click(function () {
+    $('.checkable').not(this).prop('checked', this.checked);
+    $('.checkable').trigger('change');
   });
 });
 

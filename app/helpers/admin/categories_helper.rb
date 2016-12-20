@@ -6,8 +6,8 @@ module Admin::CategoriesHelper
   end
 
   def category_breadcrumb(category)
-    content_tag(:div, class: "category-breadcrumb") do
-      "<strong>Category:</strong> ".html_safe + category.path.map { |e| e.name }.join(" < ")
+    content_tag(:span, class: "category-breadcrumb") do
+      category.path.map { |e| e.name }.join(" < ")
     end
   end
 end

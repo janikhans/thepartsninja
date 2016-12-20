@@ -1,21 +1,22 @@
 class Admin::BulkEditProductsController < Admin::ApplicationController
 
   def index
+    products = Product.includes(:brand, :category, :ebay_category)
     @search = search
-    if @search[:ebay_category_id].present?
-      keyword = @search[:keyword]
-      categories = EbayCategory.find(@search[:ebay_category_id]).descendants
-      products = Product.where(ebay_category_id: categories)
-      products = products.where("name ilike ?", "%#{keyword}%").includes(:brand, :ebay_category, :category) if @search[:keyword]
-    else
-      products = Product.includes(:brand, :category)
+    if @search
+      if @search[:ebay_category_id].present?
+        categories = EbayCategory.find(@search[:ebay_category_id]).descendants
+        products = products.where(ebay_category_id: categories)
+      end
+      products = products.where("name ilike ?", "%#{@search[:keyword]}%").includes(:brand, :ebay_category, :category) if @search[:keyword].present?
+      products = products.where(category_id: nil) if @search[:nil_category] == "1"
     end
     @products = products.order("name ASC").page(params[:page])
     @products_count = products.count
   end
 
   def new
-    @products = Product.where(id: product_collection_params[:product_ids]).includes(:brand, ebay_category: :parent_category)
+    @products = Product.where(id: product_collection_params[:product_ids]).includes(:brand, :ebay_category)
     @product = Product.new
   end
 

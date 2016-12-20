@@ -12,6 +12,7 @@
         <%= simple_form_for :search, url: admin_bulk_edit_products_path, method: :get, html: { id: "product-search", class: "form-inline" } do |f| %>
           <%= f.input :ebay_category_id, collection: EbayCategory.where(parent_id: nil), selected: params[:search].try(:[], :ebay_category_id), prompt: "Select an Ebay Category", label: false, include_blank: true %>
           <%= f.input :keyword, input_html: {value: params[:search].try(:[], :keyword)}, placeholder: "Keyword", label: false %>
+          <%= f.input :nil_category, as: :boolean, input_html: { checked: params[:search].try(:[], :nil_category) }, inline_label: 'Without Category?' %>
           <%= f.submit "Search", class: "btn btn-primary" %>
         <% end %>
       </div>
@@ -39,8 +40,8 @@
         <div class="panel-body">
           <div class="dataTable_wrapper">
             <%= simple_form_for :product, url: new_admin_bulk_edit_product_path, method: :get, remote: true do |f| %>
-              <%= link_to "Check All", "", class: "btn btn-primary", id: "check-all", onclick: "return false;" %>
-              <%= f.submit "Bulk Edit", class: "btn btn-primary", id: "bulk-edit-submit" %>
+              <%= f.submit "Bulk Edit", class: "btn btn-primary", disabled: true, id: "bulk-edit-submit" %>
+              <input type="checkbox" id="checkAll"> Check All
               <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-products">
                 <thead>
                   <tr>
@@ -49,6 +50,7 @@
                     <th>Ebay Category</th>
                     <th>Category</th>
                     <th>Name</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>

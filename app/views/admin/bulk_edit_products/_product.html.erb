@@ -4,4 +4,5 @@
   <td><%= product.ebay_category.try(:name) %></td>
   <td><%= product.category.try(:name) %></td>
   <td><%= product.name %></td>
+  <td><%= link_to "View", admin_product_path(product) %></td>
 </tr>
