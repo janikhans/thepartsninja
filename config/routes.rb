@@ -21,7 +21,6 @@ Rails.application.routes.draw do
     root to: 'statistics#index'
     resources :compatibilities, :vehicles
     resources :fitments, :brands, :categories, :ebay_categories, :part_attributes, :vehicle_types, :users, except: [:new]
-    resources :attributes, only: [:index]
     resources :searches, only: [:index, :destroy]
     resources :leads, only: [:index, :create, :destroy]
     resources :discoveries, except: [:new, :create]
