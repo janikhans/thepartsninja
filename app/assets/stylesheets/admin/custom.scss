@@ -2,6 +2,14 @@
   margin-left: 10px;
 }
 
+.no-link-decoration {
+  color: inherit;
+  text-decoration: none;
+  &:hover, &:focus {
+    text-decoration: none;
+  }
+}
+
 .green {color: green;}
 .cb {clear:both;}
 .vehicle-model {

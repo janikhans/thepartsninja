@@ -17,15 +17,7 @@
               Showing all Categories
           </div>
           <div class="panel-body">
-            <% @categories.each do |category| %>
-            <ul>
-            <% if category.parent_id.blank? %>
-            <li><%= category.name %> <%= link_to "Edit", edit_admin_category_path(category)%> <%= link_to "Delete", admin_category_path(category), method: 'delete', data: { confirm: 'Are you sure?' } %>
-            <%= render partial: 'subcategory', locals: {subcategories: category.subcategories} if category.subcategories.present? %>
-            </li>
-            <% end %>
-            </ul>
-            <% end %>
+            <%= nested_categories @categories.arrange(order: :name) %>
           </div>
       </div>
   </div>

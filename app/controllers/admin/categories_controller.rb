@@ -2,18 +2,19 @@ class Admin::CategoriesController < Admin::ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
 
   def index
-    @categories = Category.includes(subcategories: {subcategories: :subcategories})
+    @categories = Category.all
     @category = Category.new
-    @parent_categories = Category.all
+    @parent_categories = Category.roots
   end
 
   def show
+    @new_category = Category.new
     @category_parts_count = @category.products.joins(:parts).count
-    @products = @category.products.includes(:brand, :product_type).page(params[:page]).order("name ASC")
+    @products = @category.products.includes(:brand).page(params[:page]).order("name ASC")
   end
 
   def edit
-    @parent_categories = Category.all
+    @parent_categories = Category.first
   end
 
   def create

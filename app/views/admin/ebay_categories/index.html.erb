@@ -17,9 +17,6 @@
             Showing all Ebay Categories
           </div>
           <div class="panel-body">
-            <ul>
-              <%#= render @ebay_categories %>
-            </ul>
             <%= nested_categories @ebay_categories.arrange(order: :name) %>
           </div>
       </div>

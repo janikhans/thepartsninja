@@ -7,29 +7,33 @@
           <div class="action-btns pull-right">
             <%= link_to 'Edit', edit_admin_category_path(@category) %>
           </div>
-          <p>
-            <strong>Category Breadcrumb:</strong>
-            <% if @category.parent_category && @category.parent_category.parent_category %>
-              <%= @category.parent_category.parent_category.name %> <
-            <% end %>
-            <% if @category.parent_category %>
-              <%= @category.parent_category.name  %> <
-            <% end %>
-            <%= @category.name %>
-          </p>
+          <p><%= category_breadcrumb @category %></p>
           <h2>Stats</h2>
           <p><strong>Products:</strong> <%= @category.products.count %></p>
           <p><strong>Parts:</strong> <%= @category_parts_count %></p>
           <p><strong>Total Imported:</strong> <%= @imported_parts_count %></p>
           <p><strong>Needing Import:</strong> <%= @need_imported_parts_count %></p>
-          <h3>Product Types</h3>
-          <ul>
-            <% @category.product_types.each do |type| %>
-              <li><%= type.name %></li>
-            <% end %>
-          </ul>
-
+          <% if @category.children.any? %>
+            <p><strong>Subcategories:</strong></p>
+            <ul>
+              <% @category.children.each do |subcategory| %>
+                <li><%= subcategory.name %> <%= link_to "show", admin_category_path(subcategory), class: "hover-link" %></li>
+              <% end %>
+            </ul>
+          <% else %>
+            <p><strong>Subcategories: </strong><i>none</i></p>
+          <% end %>
         </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <a data-toggle="collapse" href="#new-subcategory" class="no-link-decoration">New Subcategory</a>
+      </div>
+      <div id="new-subcategory" class="panel-collapse collapse">
+        <div class="panel-body">
+          <%= render 'admin/categories/subcategory_form' %>
+        </div>
+      </div>
     </div>
     <div class="panel panel-default">
       <div class="panel-heading">
