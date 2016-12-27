@@ -10,9 +10,9 @@
       </div>
       <div class="panel-body">
         <%= simple_form_for :search, url: admin_bulk_edit_products_path, method: :get, html: { id: "product-search", class: "form-inline" } do |f| %>
-          <%= f.input :ebay_category_id, collection: EbayCategory.where(parent_id: nil), selected: params[:search].try(:[], :ebay_category_id), prompt: "Select an Ebay Category", label: false, include_blank: true %>
+          <%= f.input :ebay_category_id, collection: EbayCategory.where(id: [170,35,200,167,289]), selected: params[:search].try(:[], :ebay_category_id), prompt: "Select an Ebay Category", label: false, include_blank: true %>
           <%= f.input :keyword, input_html: {value: params[:search].try(:[], :keyword)}, placeholder: "Keyword", label: false %>
-          <%= f.input :nil_category, as: :boolean, input_html: { checked: params[:search].try(:[], :nil_category) }, inline_label: 'Without Category?' %>
+          <%= f.input :category_status, collection: [['Empty',1], ['Set',2]], selected: params[:search].try(:[], :category_status), prompt: "Category Status", label: false, include_blank: true %>
           <%= f.submit "Search", class: "btn btn-primary" %>
         <% end %>
       </div>

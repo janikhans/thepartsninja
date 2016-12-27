@@ -9,7 +9,10 @@ class Admin::BulkEditProductsController < Admin::ApplicationController
         products = products.where(ebay_category_id: categories)
       end
       products = products.where("name ilike ?", "%#{@search[:keyword]}%").includes(:brand, :ebay_category, :category) if @search[:keyword].present?
-      products = products.where(category_id: nil) if @search[:nil_category] == "1"
+      if @search[:category_status].present?
+        products = products.where(category_id: nil) if @search[:category_status] == "1"
+        products = products.where.not(category_id: nil) if @search[:category_status] == "2"
+      end
     end
     @products = products.order("name ASC").page(params[:page])
     @products_count = products.count
