@@ -12,13 +12,13 @@ class EbayPartImportForm
     ActiveModel::Name.new(self, nil, "Part")
   end
 
-  attr_accessor :brand, :product_name, :parent_category, :category, :subcategory, :part_number, :epid, :note, :attributes
+  attr_accessor :brand, :product_name, :root_category, :category, :subcategory, :part_number, :epid, :note, :attributes
   attr_reader :part, :product
 
   before_validation :sanitize_fields, :sanitize_to_integer
   before_validation :part_epid_is_unique, if: 'epid.present?'
 
-  validates :brand, :product_name, :parent_category, :category, :epid,
+  validates :brand, :product_name, :root_category, :category, :epid,
     length: { maximum: 75 },
     presence: true
 
@@ -27,7 +27,7 @@ class EbayPartImportForm
 
   def save
     if valid?
-      @product = ProductForm.new(brand: @brand, product_name: @product_name, parent_category: @parent_category, category: @category, subcategory: @subcategory).save
+      @product = ProductForm.new(brand: @brand, product_name: @product_name, root_category: @root_category, category: @category, subcategory: @subcategory).save
       @part = @product.parts.where('lower(part_number) = ?', @part_number.downcase).first_or_create!(part_number: part_number, epid: @epid, note: @note)
       if @attributes
         @attributes.each do |a|
@@ -50,7 +50,7 @@ class EbayPartImportForm
   def sanitize_fields
     @brand = sanitize(@brand)
     @product_name = sanitize(@product_name)
-    @parent_category = sanitize(@parent_category)
+    @root_category = sanitize(@root_category)
     @category = sanitize(@category)
     @subcategory = sanitize(@subcategory)
     @part_number = sanitize(@part_number)

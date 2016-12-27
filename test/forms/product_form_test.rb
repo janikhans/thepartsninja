@@ -3,7 +3,7 @@ require 'test_helper'
 class ProductFormTest < UnitTest
   should validate_presence_of(:brand)
   should validate_presence_of(:product_name)
-  should validate_presence_of(:parent_category)
+  should validate_presence_of(:root_category)
   should validate_presence_of(:category)
   should validate_length_of(:brand).is_at_most(75)
   should validate_length_of(:product_name).is_at_most(75)
@@ -12,7 +12,7 @@ class ProductFormTest < UnitTest
   setup do
     @product = ProductForm.new(brand: "Acerbis",
                                product_name: "SXS Skidplate",
-                               parent_category: "Motorcycle Parts",
+                               root_category: "Motorcycle Parts",
                                category: "Body",
                                subcategory: "Skidplate")
   end
@@ -20,14 +20,14 @@ class ProductFormTest < UnitTest
   test "should sanitize fields" do
     product = ProductForm.new(brand: "  Kawasaki  ",
                         product_name: "   big skidplate  ",
-                        parent_category: "  motorcycle Parts  ",
+                        root_category: "  motorcycle Parts  ",
                         category: "body",
                         subcategory: "   sKidplatE   ")
     assert product.valid?
 
     assert_equal product.brand, "Kawasaki"
     assert_equal product.product_name, "Big skidplate"
-    assert_equal product.parent_category, "Motorcycle Parts"
+    assert_equal product.root_category, "Motorcycle Parts"
     assert_equal product.category, "Body"
     assert_equal product.subcategory, "SKidplatE"
   end
@@ -55,7 +55,7 @@ class ProductFormTest < UnitTest
     assert_equal Brand.last.name, "Acerbis"
   end
 
-  test "should create product with only parent_category and category" do
+  test "should create product with only root_category and category" do
     product = @product
     product.subcategory = nil
     assert product.valid?
@@ -67,16 +67,16 @@ class ProductFormTest < UnitTest
 
   test "product form should select existing parent, category AND subcategory if they exist" do
     product = @product
-    product.parent_category = "Motorcycle Parts"
+    product.root_category = "Motorcycle Parts"
     product.category = "Bearings"
     product.subcategory = "Wheel Bearings"
-    parent_category = Category.where(name: product.parent_category).first
-    category = parent_category.subcategories.where(name: product.category).first
-    subcategory = category.subcategories.where(name: product.subcategory).first
-    assert_not_nil parent_category
+    root_category = Category.roots.where(name: product.root_category).first
+    category = root_category.children.where(name: product.category).first
+    subcategory = category.children.where(name: product.subcategory).first
+    assert_not_nil root_category
     assert_not_nil category
     assert_not_nil subcategory
-    assert_includes category.subcategories.map { |s| s.name }, product.subcategory
+    assert_includes category.children.map { |s| s.name }, product.subcategory
 
     assert product.valid?
     assert_no_difference ['Category.count'] do
@@ -86,10 +86,10 @@ class ProductFormTest < UnitTest
 
   test "product form should find category and create subcategory if it doesn't exist" do
     product = @product
-    parent_category = Category.where(name: product.parent_category, parent_id: nil).first
-    body_category = parent_category.subcategories.where(name: product.category).first
+    root_category = Category.where(name: product.root_category, parent_id: nil).first
+    body_category = root_category.children.where(name: product.category).first
     assert_not_nil body_category
-    assert_empty body_category.subcategories
+    assert_empty body_category.children
 
     assert product.valid?
 
@@ -97,7 +97,7 @@ class ProductFormTest < UnitTest
       product.save
     end
 
-    assert_not_empty body_category.subcategories
+    assert_not_empty body_category.children
   end
 
   test "product form should create category and subcategory if both don't exist" do
@@ -115,15 +115,15 @@ class ProductFormTest < UnitTest
 
     new_category = Category.where(name: product.category).first
     assert_not_nil new_category
-    assert_not_empty new_category.subcategories
+    assert_not_empty new_category.children
 
-    assert_equal new_category.subcategories.first.name, "New Subcategory"
+    assert_equal new_category.children.first.name, "New Subcategory"
   end
 
   test "should find product if it already exists" do
     product = ProductForm.new(brand: "Tusk Racing",
                         product_name: "Sealed ball bearings",
-                        parent_category: "Motorcycle Parts",
+                        root_category: "Motorcycle Parts",
                         category: "Bearings",
                         subcategory: "Wheel Bearings")
 
@@ -146,14 +146,14 @@ class ProductFormTest < UnitTest
     assert_equal Product.last, product.product
   end
 
-  test "should create brand, parent_category, category, subcategory and product if none exist" do
+  test "should create brand, root_category, category, subcategory and product if none exist" do
     product = @product
-    product.parent_category = "Tessstt"
+    product.root_category = "Tessstt"
     product.category = "Test"
     product.subcategory = "Moar Test"
     assert_empty Brand.where(name: product.brand.downcase)
     assert_empty Product.where(name: product.product_name.downcase)
-    assert_empty Category.where(name: product.category.downcase || product.subcategory.downcase || product.parent_category.downcase)
+    assert_empty Category.where(name: product.category.downcase || product.subcategory.downcase || product.root_category.downcase)
 
     assert product.valid?
 

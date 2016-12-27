@@ -6,22 +6,22 @@ class ProductForm
     ActiveModel::Name.new(self, nil, "Product")
   end
 
-  attr_accessor :brand, :product_name, :parent_category, :category, :subcategory, :user
+  attr_accessor :brand, :product_name, :root_category, :category, :subcategory, :user
   attr_reader :product
 
   before_validation :sanitize_fields
 
-  validates :brand, :product_name, :category, :parent_category,
+  validates :brand, :product_name, :category, :root_category,
     length: { maximum: 75 },
     presence: true
 
   def save
     if valid?
       brand = Brand.where('lower(name) = ?', @brand.downcase).first_or_create!(name: @brand)
-      parent_category = Category.where('lower(name) = ? AND parent_id IS ?', @parent_category.downcase, nil).first_or_create!(name: @parent_category, parent_id: nil)
-      category = parent_category.subcategories.where('lower(name) = ?', @category.downcase).first_or_create!(name: @category)
+      root_category = Category.roots.where('lower(name) = ?', @root_category.downcase).first_or_create!(name: @root_category)
+      category = root_category.children.where('lower(name) = ?', @category.downcase).first_or_create!(name: @category)
       if @subcategory
-        subcategory = category.subcategories.where('lower(name) = ?', @subcategory.downcase).first_or_create!(name: @subcategory)
+        subcategory = category.children.where('lower(name) = ?', @subcategory.downcase).first_or_create!(name: @subcategory)
       else
         subcategory = category
       end
@@ -36,7 +36,7 @@ class ProductForm
   def sanitize_fields
     @brand = sanitize(@brand)
     @product_name = sanitize(@product_name)
-    @parent_category = sanitize(@parent_category)
+    @root_category = sanitize(@root_category)
     @category = sanitize(@category)
     @subcategory = sanitize(@subcategory)
   end

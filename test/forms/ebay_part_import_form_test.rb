@@ -13,14 +13,14 @@ class EbayPartImportFormTest < UnitTest
   setup do
     @new_part = EbayPartImportForm.new(brand: "Acerbis",
                          product_name: "SXS Skidplate",
-                         parent_category: "Motorcycle Parts",
+                         root_category: "Motorcycle Parts",
                          category: "Body",
                          subcategory: "Skidplate",
                          part_number: "12345",
                          epid: 12345)
     @existing_part = EbayPartImportForm.new(brand: "Yamaha",
                         product_name: "OEM Wheel Assembly",
-                        parent_category: "Motorcycle Parts",
+                        root_category: "Motorcycle Parts",
                         category: "Wheels",
                         subcategory: "Complete Wheel Assembly",
                         part_number: "06-yz-250-front-wheel",
@@ -30,7 +30,7 @@ class EbayPartImportFormTest < UnitTest
   test "should sanitize fields" do
     part = EbayPartImportForm.new(brand: "  Kawasaki  ",
                         product_name: "   big skidplate  ",
-                        parent_category: "   motorcycle Parts   ",
+                        root_category: "   motorcycle Parts   ",
                         category: "body",
                         subcategory: "   sKidplatE   ",
                         part_number: "  Blahh-34534-  ",
@@ -39,7 +39,7 @@ class EbayPartImportFormTest < UnitTest
 
     assert_equal part.brand, "Kawasaki"
     assert_equal part.product_name, "Big skidplate"
-    assert_equal part.parent_category, "Motorcycle Parts"
+    assert_equal part.root_category, "Motorcycle Parts"
     assert_equal part.category, "Body"
     assert_equal part.subcategory, "SKidplatE"
     assert_equal part.part_number, "Blahh-34534-"
@@ -74,13 +74,13 @@ class EbayPartImportFormTest < UnitTest
   test "should create brand, category, subcategory, product and part if none exist" do
     part = @new_part
     part.part_number = "12345"
-    part.parent_category = "Tessttt"
+    part.root_category = "Tessttt"
     part.category = "Test"
     part.subcategory = "Moar Test"
     assert_empty Brand.where(name: part.brand.downcase)
     assert_empty Product.where(name: part.product_name.downcase)
     assert_empty Part.where(part_number: part.part_number)
-    assert_empty Category.where(name: part.category.downcase || part.subcategory.downcase || part.parent_category.downcase )
+    assert_empty Category.where(name: part.category.downcase || part.subcategory.downcase || part.root_category.downcase )
 
     assert part.valid?
 
@@ -132,7 +132,7 @@ class EbayPartImportFormTest < UnitTest
   test "PartForm should be invalid if epid already exists" do
     part = EbayPartImportForm.new(brand: "Acerbis",
                       product_name: "SXS Skidplate",
-                      parent_category: "Motorycle Parts",
+                      root_category: "Motorycle Parts",
                       category: "Body",
                       subcategory: "Skidplate",
                       part_number: "12345")
@@ -144,7 +144,7 @@ class EbayPartImportFormTest < UnitTest
 
     new_part = EbayPartImportForm.new(brand: "Bad",
                          product_name: "Example",
-                         parent_category: " -- ",
+                         root_category: " -- ",
                          category: "With",
                          subcategory: "Existing",
                          part_number: "EPID")

@@ -12,13 +12,13 @@ class PartForm
     ActiveModel::Name.new(self, nil, "Part")
   end
 
-  attr_accessor :brand, :product_name, :parent_category, :category,
+  attr_accessor :brand, :product_name, :root_category, :category,
                 :subcategory, :part_number, :vehicle, :attributes
   attr_reader :part, :product, :vehicle
 
   before_validation :sanitize_fields
 
-  validates :brand, :product_name, :parent_category, :category, :subcategory,
+  validates :brand, :product_name, :root_category, :category, :subcategory,
     length: { maximum: 75 },
     presence: true
 
@@ -31,7 +31,7 @@ class PartForm
 
   def save
     if valid?
-      @product = ProductForm.new(brand: @brand, product_name: @product_name, parent_category: @parent_category, category: @category, subcategory: @subcategory).save
+      @product = ProductForm.new(brand: @brand, product_name: @product_name, root_category: @root_category, category: @category, subcategory: @subcategory).save
       if @vehicle
         if @part_number
           existing_oem_part = @vehicle.oem_parts.where('lower(part_number) = ? AND product_id = ?', @part_number.downcase, @product.id).first
@@ -65,7 +65,7 @@ class PartForm
   def sanitize_fields
     @brand = sanitize(@brand)
     @product_name = sanitize(@product_name)
-    @parent_category = sanitize(@parent_category)
+    @root_category = sanitize(@root_category)
     @category = sanitize(@category)
     @subcategory = sanitize(@subcategory)
     @part_number = sanitize(@part_number)
