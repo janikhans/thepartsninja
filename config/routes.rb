@@ -74,6 +74,7 @@ Rails.application.routes.draw do
     get :subcategories, on: :member
     get :part_attributes, on: :member
     get :fitment_notes, on: :member
+    get :leaves, on: :member
   end
   get 'coming-soon' => 'leads#index'
 

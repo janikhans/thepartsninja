@@ -1,6 +1,10 @@
 class CategoriesController < ApplicationController
   before_action :set_category
 
+  def leaves
+    render json: @category.descendants.leaves, only: [:id, :name]
+  end
+
   def subcategories
     @subcategories = @category.children
   end
