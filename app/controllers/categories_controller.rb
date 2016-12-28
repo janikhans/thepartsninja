@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
   before_action :set_category
 
   def subcategories
-    render json: @category.children, only: [:id, :name]
+    @subcategories = @category.children
   end
 
   def part_attributes

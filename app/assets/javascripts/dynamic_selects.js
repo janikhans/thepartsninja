@@ -83,20 +83,59 @@ function dynamic_vehicle_form(form) {
 //   });
 // };
 
-function dynamic_category_form(form) {
-  $("#"+ form +"_category_parent").on("change", function() {
-    empty_and_reset_select("#"+ form +"_category_subcategories", "Subcategory...")
+// function dynamic_category_form(form) {
+//   $("#"+ form +"_category_parent").on("change", function() {
+//     empty_and_reset_select("#"+ form +"_category_subcategories", "Subcategory...")
+//     var categoryId = $(this).val();
+//     if (categoryId > 0 ) {
+//       var url = "/categories/"+categoryId+"/subcategories";
+//       update_select(url, "#"+ form + "_category_subcategories");
+//     };
+//   });
+//   $("#"+ form +"_category_subcategories").on("change", function() {
+//     var subcategoryId = $(this).val();
+//     if (subcategoryId > 0 ) {
+//       var url = "/categories/"+subcategoryId+"/product_types";
+//       update_select(url, "#" + form + "_product_type_id");
+//     };
+//   });
+// };
+
+// function dynamic_category_form(select) {
+//   $(select).on("change", function() {
+//     var categoryId = $(this).val();
+//     if (categoryId > 0 ) {
+//       var url = "/categories/"+categoryId+"/subcategories";
+//       append_select(url, parentSelect);
+//     };
+//   });
+// };
+
+function dynamic_category_select() {
+  $('.dynamic-category-select').on("change", function() {
     var categoryId = $(this).val();
     if (categoryId > 0 ) {
-      var url = "/categories/"+categoryId+"/subcategories";
-      update_select(url, "#"+ form + "_category_subcategories");
+      append_category_select(categoryId, $(this));
     };
   });
-  $("#"+ form +"_category_subcategories").on("change", function() {
-    var subcategoryId = $(this).val();
-    if (subcategoryId > 0 ) {
-      var url = "/categories/"+subcategoryId+"/product_types";
-      update_select(url, "#" + form + "_product_type_id");
+};
+
+function append_category_select(categoryId, parentSelect) {
+  var url = "/categories/"+categoryId+"/subcategories";
+  $.getJSON(url, function(json){
+    var descendants = json.descendants;
+    var subcategories = json.subcategories;
+
+    if (subcategories.length >= 1) {
+      var select = $('<select>');
+      select.attr("id", "category_" + categoryId + "_subcategories");
+      $(parentSelect).closest('#dynamic-category-select-container').append(select);
+      // $(select).append($('<option>').text("Select..."));
+      // $.each(subcategories, function(i, obj){
+      //   // $(parentSelect).append('<span>' + obj.name + '</span>');
+      //   $(select).append($('<option>').text(obj.name).attr('value', obj.id));
+      // });
+      // $(select).trigger("chosen:updated");
     };
   });
 };

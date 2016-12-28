@@ -44,10 +44,12 @@
         <%= icon(:exchange) %> Part <b class="caret"></b>
       <% end %>
       <div class="popover-select hide">
-        <%= f.input :category_parent, collection: Category.where(parent_id: 35), class:"form-control", label: false, prompt: "Category...", input_html: {class: "chosen-select" } %>
-        <%= f.input :category_subcategories, collection: [], class: "form-control", label: false, prompt: "Children...", input_html: {class: "chosen-select" } %>
-        <%= f.input :product_type_id, collection: [], prompt: "Part...", label: false, class:"form-control" %>
-        <%= f.input :fitment_note_id, collection: [], prompt: "Specify...", label: false, class:"form-control" %>
+        <div id="dynamic-select-category-container">
+          <%= f.input :category_parent, collection: @category.children, class:"form-control", label: false, prompt: "Category...", input_html: {class: "dynamic-category-select chosen-select" }%>
+        </div>
+        <%#= f.input :category_subcategories, collection: [], class: "form-control", label: false, prompt: "Children...", input_html: {class: "chosen-select" } %>
+        <%#= f.input :product_type_id, collection: [], prompt: "Part...", label: false, class:"form-control" %>
+        <%#= f.input :fitment_note_id, collection: [], prompt: "Specify...", label: false, class:"form-control" %>
       </div>
     </div>
     <div class="col-md-4 input">
@@ -73,7 +75,7 @@
 <script type="text/javascript">
   dynamic_vehicle_form("compatibility_check_vehicle_one");
   dynamic_vehicle_form("compatibility_check_vehicle_two");
-  dynamic_category_form("compatibility_check");
+  dynamic_category_select();
   // dynamic_product_type_form("compatibility_check_category");
   // dynamic_part_attributes_form("compatibility_check");
   dynamic_fitment_notes_form("compatibility_check");

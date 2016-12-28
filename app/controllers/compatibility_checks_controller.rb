@@ -2,6 +2,7 @@ class CompatibilityChecksController < ApplicationController
   before_action :authenticate_user!
 
   def new
+    @category = Category.first
     @brands = Brand.joins(:vehicles).where("vehicle_models.vehicle_type_id = 1").select("DISTINCT brands.*").order(name: :asc)
     # Example params for testing
     # http://localhost:3000/compatibility-check?utf8=%E2%9C%93&v_one%5Byear%5D=2004&v_one%5Bbrand%5D=Yamaha&v_one%5Bmodel%5D=Yz250&v_two%5Byear%5D=2010&v_two%5Bbrand%5D=Yamaha&v_two%5Bmodel%5D=yz450f&product%5D=Wheel+Assembly
