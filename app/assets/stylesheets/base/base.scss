@@ -682,13 +682,16 @@ table.table-mail tr td {
 }
 
 .panel-success {
-  border-color: $blue;
+  border-color: $muted-navy;
 }
 
 .panel-success > .panel-heading {
-  background-color: $blue;
-  border-color: $blue;
+  background-color: $muted-navy;
+  border-color: $muted-navy;
   color: #ffffff;
+  .panel-title {
+    color: #5a5a5a;
+  }
 }
 
 .panel-info {
@@ -709,6 +712,9 @@ table.table-mail tr td {
   background-color: $yellow;
   border-color: $yellow;
   color: #ffffff;
+  .panel-title {
+    color: #5a5a5a;
+  }
 }
 
 .panel-danger {

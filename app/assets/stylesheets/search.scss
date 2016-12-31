@@ -79,47 +79,68 @@
   }
 }
 
-/* THE EXPANDING SEARCH BOX
+/* TWITTER TYPEAHEAD
 -------------------------------------------------- */
-// $tl: 0.6s; // transition length
-//
-// .search-box {
-//   transition: width $tl, border-radius $tl, background $tl, box-shadow $tl;
-//   width: 40px;height: 40px;
-//   border-radius: 20px;border: none;
-//   cursor: pointer;
-//   background: rgb(235, 235, 235);
-//   margin-left:70px;
-//   & + label .search-icon {    color: black    }
-//   &:hover {
-//     color: white;
-//     background: rgb(200, 200, 200);
-//     box-shadow: 0 0 0 5px $navy;
-//     & + label .search-icon {    color: white    }
-//   }
-//   &:focus {
-//     transition: width $tl cubic-bezier(0,1.22,.66,1.39), border-radius $tl, background $tl;
-//     border: none;outline: none;
-//     box-shadow: none;
-//     padding-left: 15px;
-//     cursor: text;
-//     width: 300px;
-//     border-radius: auto;
-//     background: rgb(235, 235, 235);
-//     color: black;
-//     & + label .search-icon {    color: black;    }
-//   }
-//   &:not(:focus) { text-indent:-5000px; } // for more-graceful falling back (:not browsers likely support indent)
-// }
-//
-// #search-submit {
-//   position: relative;
-//   left: -5000px;
-// }
-//
-// .search-icon {
-//   position: relative;
-//   left: -30px;
-//   color: white;
-//   cursor: pointer;
-// }
+
+span.twitter-typeahead {
+  width: 100%
+}
+
+.input-group {
+  span.twitter-typeahead {
+    display: block !important;
+    .tt-dropdown-menu {
+      top: 32px !important;
+      width: 100%;
+    }
+  }
+}
+
+.twitter-typeahead .tt-query,
+.twitter-typeahead .tt-hint {
+	margin-bottom: 0;
+}
+.tt-hint {
+	display: block;
+	width: 100%;
+	height: 34px;
+	padding: 8px 12px;
+	font-size: 14px;
+	line-height: 1.428571429;
+	color: #999;
+	vertical-align: middle;
+	background-color: #ffffff;
+	border: 1px solid #cccccc;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	-webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+	      transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+.tt-dropdown-menu {
+	min-width: 160px;
+	margin-top: 2px;
+	padding: 5px 0;
+	background-color: #ffffff;
+	border: 1px solid #cccccc;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	border-radius: 4px;
+	-webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+	      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+	background-clip: padding-box;
+
+}
+.tt-suggestion {
+	display: block;
+	padding: 3px 20px;
+}
+.tt-suggestion.tt-is-under-cursor {
+	color: #fff;
+	background-color: #428bca;
+}
+.tt-suggestion.tt-is-under-cursor a {
+	color: #fff;
+}
+.tt-suggestion p {
+	margin: 0;
+}

@@ -14,7 +14,7 @@
       <%= render 'compatibility_checks/form' %>
     </div>
     <div id="compatibility-check-results">
-      <% if @results.blank? %>
+      <% if @check.compatible_parts.blank? %>
         <div class="results-overview card">
           <h2 class="text-center">Begin your search above!</h2>
           <p class="text-center">Select the vehicles and that part that you want to check compatibility with.</p>

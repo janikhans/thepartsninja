@@ -49,6 +49,8 @@ GEM
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
+    bootstrap-typeahead-rails (0.10.5.1)
+      railties (>= 3.0)
     builder (3.2.2)
     bullet (5.4.0)
       activesupport (>= 3.0.0)
@@ -272,6 +274,7 @@ DEPENDENCIES
   acts_as_votable (~> 0.10.0)
   ancestry
   bootstrap-sass (~> 3.3.6)
+  bootstrap-typeahead-rails
   bullet
   byebug
   capybara (~> 2.7.1)

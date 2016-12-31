@@ -20,4 +20,6 @@
 //= require jquery.validate.min
 //= require cocoon
 //= require chosen-jquery
+//= require bootstrap-typeahead-rails
+//= require categories
 //= require_directory .
