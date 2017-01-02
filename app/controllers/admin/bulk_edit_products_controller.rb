@@ -14,7 +14,7 @@ class Admin::BulkEditProductsController < Admin::ApplicationController
         products = products.where.not(category_id: nil) if @search[:category_status] == "2"
       end
     end
-    @products = products.order("name ASC").page(params[:page])
+    @products = products.order("name ASC").page(params[:page]).per(100)
     @products_count = products.count
   end
 

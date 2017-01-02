@@ -22,7 +22,11 @@ class Category < ApplicationRecord
 
   def self.refresh_leaves
     all.each do |category|
-      category.update_attribute(:leaf, true) if category.is_childless?
+      if category.is_childless?
+        category.update_attribute(:leaf, true)
+      else
+        category.update_attribute(:leaf, false)
+      end
     end
   end
 end
