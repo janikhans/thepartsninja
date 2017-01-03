@@ -20,13 +20,15 @@ class Category < ApplicationRecord
     leaf
   end
 
-  def self.refresh_leaves
-    all.each do |category|
-      if category.is_childless?
-        category.update_attribute(:leaf, true)
-      else
-        category.update_attribute(:leaf, false)
-      end
+  def refresh_leaf
+    if is_childless?
+      update_attribute(:leaf, true)
+    else
+      update_attribute(:leaf, false)
     end
+  end
+
+  def self.refresh_leaves
+    all.map(&:refresh_leaf)
   end
 end

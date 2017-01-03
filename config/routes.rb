@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     resources :discoveries, except: [:new, :create]
     resources :vehicle_models, except: [:index, :show]
     resources :bulk_edit_products, only: [:index, :new, :create]
+    resources :bulk_edit_fitments, only: [:index, :new, :create]
     controller :auto_complete do
       get :update_models
     end
@@ -35,11 +36,7 @@ Rails.application.routes.draw do
     resources :products do
       get :update_ebay_fitments, on: :member
     end
-    resources :fitment_notes, except: [:new] do
-      scope module: "fitment_notes" do
-        get :search_notes, on: :collection, controller: :search_notes, action: "index"
-      end
-    end
+    resources :fitment_notes, except: [:new]
   end
 
   #Resource routes for public

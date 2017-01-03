@@ -13,6 +13,7 @@
           <%= f.input :ebay_category_id, collection: EbayCategory.where(id: [170,35,200,167,289]), selected: params[:search].try(:[], :ebay_category_id), prompt: "Select an Ebay Category", label: false, include_blank: true %>
           <%= f.input :keyword, input_html: {value: params[:search].try(:[], :keyword)}, placeholder: "Keyword", label: false %>
           <%= f.input :category_status, collection: [['Empty',1], ['Set',2]], selected: params[:search].try(:[], :category_status), prompt: "Category Status", label: false, include_blank: true %>
+          <%= f.input :exclude, input_html: {value: params[:search].try(:[], :exclude)}, placeholder: "Exclude Word", label: false %>
           <%= f.submit "Search", class: "btn btn-primary" %>
         <% end %>
       </div>
@@ -27,6 +28,15 @@
         <div class="panel-body">
           <ul style="list-style:none;">
             <li>Results Found: <%= @products_count %><br></li>
+            <% if @excluded_terms.present? %>
+              <li>Exluded Terms:
+                <ul>
+                  <% @excluded_terms.each do |term| %>
+                    <li><%= term %></li>
+                  <% end %>
+                </ul>
+              </li>
+            <% end %>
           </ul>
         </div>
     </div>

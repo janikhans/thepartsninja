@@ -1,0 +1,34 @@
+<%= simple_form_for @fitment, url: admin_bulk_edit_fitments_path do |f| %>
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">&times;</a>
+    <h4 class="modal-title"><%= icon(:plus) %> Bulk Editing <%= pluralize(@fitments.count, "Fitment") %></h4>
+  </div>
+  <div class="modal-body">
+    <table class="table table-condensed table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Note</th>
+          <th>Fitment Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @fitments.each do |fitment| %>
+          <tr>
+            <td><%= hidden_field_tag "fitment_ids[]", fitment.id %><%= fitment.part.product.name %></td>
+            <td><%= fitment.note %></td>
+            <td><% if fitment.fitment_notes.any? %><% fitment.fitment_notes.each do |n| %><%= n.parent_note.name %>: <%= n.name %> <% end %><% end %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <small class="pull-right"><%= link_to "New Note", admin_fitment_notes_path, target: :_blank %></small>
+    <%= f.simple_fields_for :notations do |o| %>
+      <%= o.input :fitment_note_id, collection: FitmentNote.all, as: :grouped_select, group_method: :note_variations %>
+    <% end %>
+  </div>
+  <div class="modal-footer">
+    <%= link_to "Close", "#", class: "btn btn-default", data: { dismiss: "modal" } %>
+    <%= f.submit "Update Fitments", class: "btn btn-primary" %>
+  </div>
+<% end %>

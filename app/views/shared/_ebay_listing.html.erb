@@ -1,6 +1,6 @@
 <div class="col-md-12 col-xs-6 card ebay-listing">
   <div class="listing-image">
-      <%= image_tag ebay_listing["pictureURLLarge"] %>
+      <%= image_tag(ebay_listing["pictureURLLarge"] || "missing-brand-image") %>
   </div>
   <div class="listing-description">
     <span class="listing-price">

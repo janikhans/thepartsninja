@@ -1,20 +1,26 @@
 class Admin::BulkEditProductsController < Admin::ApplicationController
 
   def index
-    products = Product.includes(:brand, :category, :ebay_category)
-    @search = search
+    products = Product.all
+    @search = params[:search]
     if @search
       if @search[:ebay_category_id].present?
         categories = EbayCategory.find(@search[:ebay_category_id]).descendants
         products = products.where(ebay_category_id: categories)
       end
-      products = products.where("name ilike ?", "%#{@search[:keyword]}%").includes(:brand, :ebay_category, :category) if @search[:keyword].present?
+      products = products.where("name ilike ?", "%#{@search[:keyword]}%") if @search[:keyword].present?
+      if @search[:exclude].present?
+        @excluded_terms = @search[:exclude].split(",").map(&:strip)
+        @excluded_terms.each do |term|
+          products = products.where("name not ilike ?", "%#{term}%")
+        end
+      end
       if @search[:category_status].present?
         products = products.where(category_id: nil) if @search[:category_status] == "1"
         products = products.where.not(category_id: nil) if @search[:category_status] == "2"
       end
     end
-    @products = products.order("name ASC").page(params[:page]).per(100)
+    @products = products.includes(:brand, :category, :ebay_category).order("name ASC").page(params[:page]).per(100)
     @products_count = products.count
   end
 
@@ -35,10 +41,6 @@ class Admin::BulkEditProductsController < Admin::ApplicationController
   end
 
   private
-
-    def search
-      @search = params[:search]
-    end
 
     def product_collection_params
       params.permit(product_ids: [])

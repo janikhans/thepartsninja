@@ -1,4 +1,5 @@
-<tr>
+<tr id="fitment_<%= fitment.id %>" class="fitment">
+  <td><%= check_box_tag "fitment_ids[]", fitment.id, false, class: "checkable" %></td>
   <td><%= fitment.part.product.name %></td>
   <td><%= fitment.note %></td>
   <td><% if fitment.fitment_notes.any? %><% fitment.fitment_notes.each do |n| %><%= n.parent_note.name %>: <%= n.name %> <%end %><% end %></td>

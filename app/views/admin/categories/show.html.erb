@@ -5,7 +5,8 @@
     <div class="panel panel-default">
         <div class="panel-body">
           <div class="action-btns pull-right">
-            <%= link_to 'Edit', edit_admin_category_path(@category) %>
+            <%= link_to 'Edit', edit_admin_category_path(@category) %> |
+            <%= link_to 'Delete', admin_category_path(@category), method: :delete, data: {confirm: "Are you sure"} %>
           </div>
           <p><%= category_breadcrumb @category %></p>
           <h2>Stats</h2>
