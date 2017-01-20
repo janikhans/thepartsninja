@@ -28,6 +28,7 @@ gem 'chosen-rails'
 gem 'ancestry'
 gem 'jbuilder'
 gem 'bootstrap-typeahead-rails'
+gem 'neo4j'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
