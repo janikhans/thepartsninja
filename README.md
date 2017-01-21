@@ -1,4 +1,4 @@
-# The Parts Ninja
+ne# The Parts Ninja
 
 ![alt tag](https://raw.githubusercontent.com/janikhans/thepartsninja/master/app/assets/images/ThePartsNinjaDark.png?token=APaPoMBWgJJwwZd84rj1ictpW17PH_CUks5XSSw3wA%3D%3D)
 
@@ -33,19 +33,72 @@ A few things to note...
 
 **Shimmy!!**
 
-## Moar Setup
-### Rolling deep in the data
+## Postgres DB
+The main database for the Ninja is Postgres. You will need this to do anything within the app.
+### PG Setup
 
-To get yo'self rolling in the data, contact Janik for the latest dumpfile. Make sure you save this .dumpfile in the app root directory. From there...
+To get yo'self the data, contact Janik for the latest dumpfile. Make sure you save this .dumpfile in the app root directory. From there...
 
     rake db:drop
     rake db:create
     pg_restore --verbose --clean --no-acl --no-owner -d ninja_development DUMPFILE # Make sure to substitute DUMPFILE with the correct file name.
     rake db:migrate
 
-### Export local DB
+#### Export local PG DB
 
     pg_dump -Fc --no-acl --no-owner ninja_development > local.dump
+
+## Neo4j
+Neo4j is used for the recommendation/compatibility engine. Neo4j is a NoSQL graph database.
+The current Neo4j setup is very simple consisting of Nodes: Vehicle and Part connected with a Fitment relationship.
+This app also uses the neo4j.rb gem to mimic ActiveRecord ORM to communicate with the neo4j database.
+For neo4j.rb information http://neo4jrb.readthedocs.io/en/7.2.x/
+For the Cyhper cheatsheet, go here https://neo4j.com/docs/cypher-refcard/current/
+
+### Setting up Neo4j
+Make sure the following are installed and/or running
+
+    Java 8
+
+Neo4j will be installed within the root directory if installed this way. If you need to install it in a different location, following the Neo4j setup instructions.
+
+    Install server - rake neo4j:install[community-latest,development]
+    Start server - rake neo4j:start[development]
+    Migrate neo4j migrations - rake neo4j:migrate
+    Neo4j admin panel - http://localhost:7474/browser/
+
+#### Neo4j CSV exports from PG
+
+  \copy (Select * From table) To 'db/neo4j/development/import/table.csv' With CSV header
+
+#### Neo4j imports
+
+Make sure the neo4j server is running and then run the following.
+
+    // Parts
+    USING PERIODIC COMMIT 1000
+    LOAD CSV WITH HEADERS FROM "file:///parts_with_category_id.csv" AS csvLine
+    CREATE (part:NeoPart { part_id: toInteger(csvLine.id), note: csvLine.note, category_id: toInteger(csvLine.category_id)} )
+
+    // Vehicles
+    USING PERIODIC COMMIT 1000
+    LOAD CSV WITH HEADERS FROM "file:///vehicles.csv" AS csvLine
+    CREATE (vehicle:NeoVehicle { vehicle_id: toInteger(csvLine.id)})
+
+    // FITMENTS
+    USING PERIODIC COMMIT 10000
+    LOAD CSV WITH HEADERS FROM "file:///fitments.csv" AS csvLine
+    MATCH (part:NeoPart { part_id: toInteger(csvLine.part_id)})
+    MATCH (vehicle:NeoVehicle { vehicle_id: toInteger(csvLine.vehicle_id)})
+    CREATE (part)-[:FITS {fitment_id: toInteger(csvLine.id), note: csvLine.note, source: csvLine.source}]->(vehicle)
+
+#### Neo4j rebuild
+
+    rake neo4j:stop[development]
+    delete db/neo4j/development/data/databases/graph.db
+    rake neo4j:start[development]
+    rake neo4j:migrate
+    rake neo4j:build_ninja_db
 
 ## Create an Admin User *'cause you're cool like that*
 

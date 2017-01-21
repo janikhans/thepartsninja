@@ -7,6 +7,7 @@ class Part < ApplicationRecord
   # uniqueness on part_number and product_id
   # uniqueness on EPID
 
+  include NeoNodeable
   extend FriendlyId
   friendly_id :part_number, use: [:finders]
 

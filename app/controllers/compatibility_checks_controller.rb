@@ -13,18 +13,29 @@ class CompatibilityChecksController < ApplicationController
       search_term = @check.vehicles.first.to_label + " " + @check.category.name
       @ebay_results = YaberAdvancedListing.search(search_term, 5)
     end
+
+    @neo_check = NeoCompatibilityCheck.new(url_check_params).process!
   end
 
   def results
-    @check = CompatibilityCheck.new(compatibility_check_params)
-    if @check.find_compatible_parts
-        @products = @check.compatible_parts.group_by { |s| s.product }
-        search_term = @check.vehicles.first.to_label + " " + @check.category.name
-        @ebay_results = YaberAdvancedListing.search(search_term, 5)
+    # @check = CompatibilityCheck.new(compatibility_check_params)
+    @check = NeoCompatibilityCheck.new(compatibility_check_params)
+    if @check.process!
+      @products = @check.products
+      search_term = @check.vehicles.first.to_label + " " + @check.category.name
+      @ebay_results = YaberAdvancedListing.search(search_term, 5)
       respond_to :js
     else
-      "damn..."
+      # repsond_to :js and show errors
     end
+    # if @check.find_compatible_parts
+    #     @products = @check.compatible_parts.group_by { |s| s.product }
+    #     search_term = @check.vehicles.first.to_label + " " + @check.category.name
+    #     @ebay_results = YaberAdvancedListing.search(search_term, 5)
+    #   respond_to :js
+    # else
+    #   "damn..."
+    # end
   end
 
   private
