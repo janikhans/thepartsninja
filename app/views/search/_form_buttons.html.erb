@@ -1,0 +1,18 @@
+<div class="row">
+  <%= link_to find_compatibilities_search_path, remote: true do %>
+    <div class="col-md-3 col-md-offset-2 text-center card">
+      <div class="card-header"><%= image_tag("missing-brand-image", class:"img-responsive") %></div>
+      <div class="card-content text-center">
+        <h3>Need to know what vehicles share the same part?</h3>
+      </div>
+    </div>
+  <% end %>
+  <%= link_to check_compatibility_search_path, remote: true do %>
+    <div class="col-md-3 col-md-offset-1 text-center card">
+      <div class="card-header"><%= image_tag("missing-brand-image", class:"img-responsive") %></div>
+      <div class="card-content">
+        <h3>Need to know if parts between two vehicles fit?</h3>
+      </div>
+    </div>
+  <% end %>
+</div>

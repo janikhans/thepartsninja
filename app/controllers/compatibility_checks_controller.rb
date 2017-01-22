@@ -19,6 +19,7 @@ class CompatibilityChecksController < ApplicationController
 
   def results
     # @check = CompatibilityCheck.new(compatibility_check_params)
+    binding.pry
     @check = NeoCompatibilityCheck.new(compatibility_check_params)
     if @check.process!
       @products = @check.products

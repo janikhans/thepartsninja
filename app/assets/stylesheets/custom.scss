@@ -644,7 +644,6 @@ section p {
 }
 
 .search-container {
-  border: 1px solid #dcdcdc;
   .search-display {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -653,16 +652,22 @@ section p {
     min-height: 61px;
     .search-box {
       padding: 16px 16px 10px;
-      width: 85%;
+      width: 100%;
       float: left;
       cursor: text;
       .search-icon {
         display: inline-block;
-        font-size: 13.5px;
+        font-size: 16px;
         margin-right: 4px;
         line-height: 2;
         color: #999;
         vertical-align: top;
+      }
+      .search-field {
+        display: inline-block;
+        width: 95%;
+        vertical-align: middle;
+        margin-bottom: 6px;
       }
       .search-params {
         display: inline-block;

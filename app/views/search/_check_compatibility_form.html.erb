@@ -1,0 +1,164 @@
+<%= simple_form_for :compatibility_check, url: results_compatibility_checks_path, method: :get, html: { class: "check-form" }, remote: true do |f| %>
+  <div class="card m-b-md">
+    <div class="search-container">
+      <div class="search-display">
+        <div class="search-box">
+          <%= icon(:search, class: "search-icon") %>
+          <%= f.input :category_name, input_html: {class: "js-category-autocomplete"}, wrapper_html: {class:"search-field"}, label: false, placeholder: "What part are you looking for?" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="search-tags">
+      <div class="col-md-4 query-placeholder">
+        <div id="vehicle_one" class="query-tag">
+          <span id="vehicle_one_year"></span>
+          <span id="vehicle_one_brand"></span>
+          <span id="vehicle_one_model"></span>
+          <span id="vehicle_one_submodel"></span>
+          <%= link_to icon(:times), "#", class: "muted" %>
+        </div>
+      </div>
+      <div class="col-md-4 query-placeholder">
+        <div id="part" class="query-tag">
+          <span id="category_name"></span>
+          <span id="part_type"></span>
+          <%= link_to icon(:times), "#", class: "muted" %>
+        </div>
+      </div>
+      <div class="col-md-4 query-placeholder">
+        <div id="vehicle_two" class="query-tag">
+          <span id="vehicle_two_year"></span>
+          <span id="vehicle_two_brand"></span>
+          <span id="vehicle_two_model"></span>
+          <span id="vehicle_two_submodel"></span>
+          <%= link_to icon(:times), "#", class: "muted" %>
+        </div>
+      </div>
+    </div>
+    <div class="row search-inputs">
+      <div class="col-md-4 input">
+        <%= link_to "#", onclick: "show_popover_select($(this))" do %>
+          <%= icon(:motorcycle) %> Vehicle One<b class="caret"></b>
+        <% end %>
+        <div class="popover-select hide">
+          <%= f.input :vehicle_one_brand, collection: @brands, class:"form-control", label: false, prompt: "Make...", input_html: {class: "chosen-select" } %>
+          <%= f.input :vehicle_one_model, collection: [], class: "form-control", label: false, prompt: "Model...", input_html: {class: "chosen-select" }%>
+          <%= f.input :vehicle_one_submodel, collection: [], class:"form-control", label: false, prompt: "Submodel..." %>
+          <%= f.input :vehicle_one_year, collection: [], prompt: "Year...", label: false, class:"form-control" %>
+          <%= hidden_field_tag "compatibility_check[vehicles][][id]", nil, id: "compatibility_check_vehicle_one_id" %>
+        </div>
+      </div>
+      <div class="col-md-4 input">
+      </div>
+      <div class="col-md-4 input">
+        <%= link_to "#", onclick: "show_popover_select($(this))" do %>
+          <%= icon(:motorcycle, class:"fa-flip-horizontal") %> Vehicle Two<b class="caret"></b>
+        <% end %>
+        <div class="popover-select hide">
+          <%= f.input :vehicle_two_brand, collection: @brands, class:"form-control", label: false, prompt: "Make...", input_html: {class: "chosen-select" } %>
+          <%= f.input :vehicle_two_model, collection: [], class: "form-control", label: false, prompt: "Model...", input_html: {class: "chosen-select" } %>
+          <%= f.input :vehicle_two_submodel, collection: [], class:"form-control", label: false, prompt: "Submodel..." %>
+          <%= f.input :vehicle_two_year, collection: [], prompt: "Year...", label: false, class:"form-control" %>
+          <%= hidden_field_tag "compatibility_check[vehicles][][id]", nil, id: "compatibility_check_vehicle_two_id" %>
+          <%= hidden_field_tag "compatibility_check[fitment_note_id]", nil, id: "fitment_note_id" %>
+          <%= f.hidden_field :form_type, value: 1 %>
+        </div>
+      </div>
+    </div>
+    <div class="row search-action">
+      <div class="col-md-12 action text-center">
+        <%= f.submit "Check", id: "compatibility-check-process", class: "btn btn-default" %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+
+  $(function() {
+    var initialize_categories_typeahead;
+    initialize_categories_typeahead = function() {
+      var categories_typeahead = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.obj.whitespace("name"),
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        prefetch: "/categories/1/leaves"
+      });
+      categories_typeahead.initialize();
+      return $(".js-category-autocomplete").typeahead(null, {
+        displayKey: "name",
+        source: categories_typeahead.ttAdapter()
+      });
+    };
+    return initialize_categories_typeahead();
+  });
+
+  dynamic_vehicle_form("compatibility_check_vehicle_one");
+  dynamic_vehicle_form("compatibility_check_vehicle_two");
+  // dynamic_category_select();
+  // dynamic_product_type_form("compatibility_check_category");
+  // dynamic_part_attributes_form("compatibility_check");
+  // dynamic_fitment_notes_form("compatibility_check");
+  update_vehicle_tag("vehicle_one");
+  update_vehicle_tag("vehicle_two");
+  update_part_tag("category_name", "category_name");
+  update_part_tag("fitment_note_id", "part_note");
+
+  $("#compatibility_check_vehicle_one_year").on("change", function() {
+    var vehicleId = $(this).val();
+    $("#compatibility_check_vehicle_one_id").val(vehicleId);
+  });
+
+  $("#compatibility_check_vehicle_two_year").on("change", function() {
+    var vehicleId = $(this).val();
+    $("#compatibility_check_vehicle_two_id").val(vehicleId);
+  });
+
+  // $("#compatibility_check_product_type_id, #compatibility_check_vehicle_two_id, #compatibility_check_vehicle_one_id").on("change", function() {
+  //   update_link();
+  //   // $("#compatibility-check-process").removeClass("disabled");
+  // });
+  // function update_link() {
+  //   var vehicleTwo = $("#compatibility_check_vehicle_two_id").val();
+  //   var vehicleOne = $("#compatibility_check_vehicle_one_id").val();
+  //   var productType = $("#compatibility_check_product_type_id").val();
+  //   if ( vehicleOne > 0 && vehicleTwo > 0 && productType > 0 ) {
+  //     $("#compatibility-check-process").removeClass("disabled");
+  //   } else {
+  //     $("#compatibility-check-process").addClass("disabled");
+  //   };
+  // };
+  function update_vehicle_span(vehicle, attribute) {
+    $("#compatibility_check_" + vehicle + "_" + attribute).on("change", function() {
+      var optionText = $(this).find("option:selected").text();
+      if (optionText !== "-- Base") {
+        $("#" + vehicle + "_" + attribute).html(optionText + " ");
+      };
+    });
+  };
+
+  function update_vehicle_tag(vehicle) {
+    update_vehicle_span(vehicle, "brand");
+    update_vehicle_span(vehicle, "model");
+    update_vehicle_span(vehicle, "submodel");
+    update_vehicle_span(vehicle, "year");
+  };
+
+  function update_part_tag(select, span) {
+    $("#compatibility_check_" + select).on('typeahead:selected', function() {
+      var text = $(this).val();
+      // var optionText = $(this).find("option:selected").text();
+      $("#" + span).html(text + " ");
+    });
+  };
+
+  function show_popover_select(popover) {
+    target = $(popover).next('.popover-select');
+    if ( $( target ).hasClass( "hide" ) ) {
+      target.removeClass('hide');
+    } else {
+      target.addClass('hide');
+    };
+  };
+</script>

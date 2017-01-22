@@ -90,6 +90,12 @@ Rails.application.routes.draw do
   end
 
   #Search
-  get 'search' => 'searches#results', as: :search
+  # get 'search' => 'search#results', as: :search
+  resource :search, controller: :search, only: [:new] do
+    get :find_compatibilities
+    get :check_compatibility
+    get :refresh_buttons
+    get :results
+  end
 
 end
