@@ -1,29 +1,26 @@
-class NeoCompatibilityCheck
+class NeoFindCompatibles
   # TODO add validations and error callbacks
-  attr_reader :compatible_parts, :vehicles, :category, :part_attributes, :fitment_note
+  attr_reader :compatible_vehicles, :vehicle, :category, :part_attributes, :fitment_note
 
   def initialize(params = {})
-    @vehicles = find_vehicles(params[:vehicles])
+    @vehicle = set_vehicle(params[:vehicle])
     @category = set_category(params)
     # FIXME temp hack because rails form sends an empty param through the form
     # @part_attribute_ids = params[:part_attributes].delete_if { |x| x.empty? }
     @part_attributes = PartAttribute.where(id: @part_attribute_ids) if @part_attribute_ids.present?
     @fitment_note = FitmentNote.find(params[:fitment_note_id]) if params[:fitment_note_id].present?
-    @compatible_parts = []
+    @compatible_vehicles = []
   end
 
   def process!
-    return if @vehicles.blank? || @category.blank?
+    return if @vehicle.blank? || @category.blank?
+    neo_compatible_vehicles = NeoVehicle.as(:v1).where(vehicle_id: @vehicle.id)
     neo_compatible_parts = NeoVehicle.as(:v1).where(vehicle_id: @vehicles.first.id)
                             .neo_parts(:p).where(category_id: @category.id.to_s)
                             .neo_vehicles(:v2).where(vehicle_id: @vehicles.second.id)
                             .pluck('p.part_id')
-    @compatible_parts = Part.where(id: neo_compatible_parts).includes(product: :brand)
+    @compatible_vehicles = Part.where(id: neo_compatible_parts).includes(product: :brand)
     return self
-  end
-
-  def products
-    self.compatible_parts.group_by { |s| s.product }
   end
 
   private
@@ -37,6 +34,18 @@ class NeoCompatibilityCheck
       else
         # return error
       end
+    end
+
+    def set_vehicle(vehicle_params)
+      return if vehicle_params.blank? # should add error
+      if vehicle_params[:id].present?
+        vehicle = Vehicle.find(vehicle_params[:id])
+      elsif vehicle_params[:brand].present? && vehicle_params[:model].present? && vehicle_params[:year].present?
+        vehicle = Vehicle.find_with_specs(vehicle_params[:brand],vehicle_params[:model],vehicle_params[:year])
+      else
+        # return error
+      end
+      return vehicle
     end
 
     def find_vehicles(vehicles_array)
