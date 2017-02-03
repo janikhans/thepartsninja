@@ -14,12 +14,18 @@ class NeoFindCompatibles
 
   def process!
     return if @vehicle.blank? || @category.blank?
-    neo_compatible_vehicles = NeoVehicle.as(:v1).where(vehicle_id: @vehicle.id)
-    neo_compatible_parts = NeoVehicle.as(:v1).where(vehicle_id: @vehicles.first.id)
-                            .neo_parts(:p).where(category_id: @category.id.to_s)
-                            .neo_vehicles(:v2).where(vehicle_id: @vehicles.second.id)
-                            .pluck('p.part_id')
-    @compatible_vehicles = Part.where(id: neo_compatible_parts).includes(product: :brand)
+    # neo_compatible_vehicles = NeoVehicle.as(:v1).where(vehicle_id: @vehicle.id)
+    #                             .neo_parts(:p).where(category_id: @category.id.to_s)
+    #                             .neo_vehicles(:v2).count(:v2).as(:occurances)
+    #                             .return(:v2, :occurances)
+    #                             .order(occurances: :DESC)
+    neo_compatible_vehicles = NeoVehicle.where(vehicle_id: @vehicle.id)
+                                .neo_parts(:p)
+                                .where(category_id: @category.id.to_s)
+                                .neo_vehicles(:m)
+                                .order('count(m) DESC')
+                                .pluck(:m, 'count(m)')
+    @compatible_vehicles = Vehicle.where(id: neo_compatible_vehicles.map{ |v| v.first.vehicle_id }).includes(:vehicle_year, vehicle_submodel: {vehicle_model: :brand})
     return self
   end
 
@@ -63,3 +69,9 @@ class NeoFindCompatibles
       return vehicles
     end
 end
+
+# neo_compatible_vehicles = NeoVehicle.as(:v1).where(vehicle_id: 1).neo_parts(:p).where(category_id: "120").neo_vehicles(:v2).count(:v2).as(:occurances).return(:v2, :occurances).order(occurances: :DESC)
+# NeoVehicle.match(v1: {NeoVehicle: {vehicle_id: 1}})
+# NeoVehicle.where(vehicle_id: 1).neo_parts(:p).where(category_id: "120").neo_vehicles(:m).order('count(m)').pluck(:m, 'count(m)')
+# NeoVehicle.where(vehicle_id: 1).neo_parts(:p).where(category_id: "120").neo_vehicles(:m).order('count(m)').query.return(:m, count: 'count(m)')
+# Vehicle.where(vehicle_id: 1).parts(:p).where(category_id: "120").vehicles(:v2).order('count(m)').query.return(:m, count: 'count(m)')

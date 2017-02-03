@@ -1,16 +1,46 @@
-<%= simple_form_for :search, url: search_path, method: :get do |f| %>
-  <div class="row">
-    <%= f.input :year, class:"form-control", collection: 1955..2017, prompt: "Year...", label: false %>
-    <%= f.autocomplete_field :brand, autocomplete_brand_name_pages_path, placeholder: "Make...", class:"form-control", required: true %>
-    <%#= f.input :make, class:"form-control", collection: Brand.all.order(:name), include_blank: false, label: false %>
-    <%#= f.input :brand, class:"form-control", placeholder: "Make...", label: false %>
-    <%= f.autocomplete_field :model, autocomplete_vehicle_model_pages_path, placeholder: "Model...", class:"form-control", required: true %>
-    <%#= f.input :model, class:"form-control", collection: Vehicle.all.order(:model), label_method: :to_label, value_method: :id, include_blank: false, label: false %>
-    <%#= f.input :model, class:"form-control", placeholder: "Model...", label: false %>
-    <%= f.autocomplete_field :part, autocomplete_category_name_pages_path, placeholder: "What Part...", class:"form-control", required: true %>
-    <%#= f.input :part, class:"form-control", collection: Category.all, as: :grouped_select, group_method: :subcategories, value_method: :name, placeholder: "What Part?", include_blank: false, label: false %>
-    <div class="text-center">
-      <%= f.submit("Search", class:"btn btn-default submit-btn") %>
+<%= simple_form_for :compatibilities, url: compat_results_search_path, method: :get, remote: true do |f| %>
+  <%= f.input :category_name, input_html: {class: "js-category-autocomplete"}, wrapper_html: {class:"search-field"}, label: false, placeholder: "What part are you looking for?" %>
+    <div class="row search-inputs">
+      <div class="col-md-4 input">
+        <%= icon(:motorcycle) %> Vehicle<b class="caret"></b>
+        <%= f.input :vehicle_brand, collection: @brands, class:"form-control", label: false, prompt: "Make...", input_html: {class: "chosen-select" } %>
+        <%= f.input :vehicle_model, collection: [], class: "form-control", label: false, prompt: "Model...", input_html: {class: "chosen-select" }%>
+        <%= f.input :vehicle_submodel, collection: [], class:"form-control", label: false, prompt: "Submodel..." %>
+        <%= f.input :vehicle_year, collection: [], prompt: "Year...", label: false, class:"form-control" %>
+        <%= hidden_field_tag "compatibilities_vehicle_id", nil, id: "compatibilities_vehicle_id" %>
+      </div>
+    </div>
+    <div class="row search-action">
+      <div class="col-md-12 action text-center">
+        <%= f.submit "Find", id: "compatibilities-process", class: "btn btn-default" %>
+      </div>
     </div>
   </div>
 <% end %>
+
+<script type="text/javascript">
+
+  $(function() {
+    var initialize_categories_typeahead;
+    initialize_categories_typeahead = function() {
+      var categories_typeahead = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.obj.whitespace("name"),
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        prefetch: "/categories/1/leaves"
+      });
+      categories_typeahead.initialize();
+      return $(".js-category-autocomplete").typeahead(null, {
+        displayKey: "name",
+        source: categories_typeahead.ttAdapter()
+      });
+    };
+    return initialize_categories_typeahead();
+  });
+
+  dynamic_vehicle_form("compatibilities_vehicle_one");
+
+  $("#compatibilities_vehicle_year").on("change", function() {
+    var vehicleId = $(this).val();
+    $("#compatibilities_vehicle_one_id").val(vehicleId);
+  });
+</script>

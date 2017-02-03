@@ -5,6 +5,7 @@ class SearchController < ApplicationController
   end
 
   def find_compatibilities
+    @brands = Brand.joins(:vehicle_models).where("vehicle_models.vehicle_type_id = 1").select("DISTINCT brands.*").order(name: :asc)
     respond_to :js
   end
 
@@ -28,9 +29,18 @@ class SearchController < ApplicationController
     end
   end
 
+  def compat_results
+    @search = NeoFindCompatibles.new(compat_params)
+    @search.process!
+  end
+
   private
 
   def search_params
     params.require(:search).permit(:year, :brand, :model, :part)
+  end
+
+  def compat_params
+    params.require(:compat).permit(:category_id, :category_name, :fitment_note_id, part_attributes: [], vehicles: [:id])
   end
 end

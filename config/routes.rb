@@ -96,6 +96,7 @@ Rails.application.routes.draw do
     get :check_compatibility
     get :refresh_buttons
     get :results
+    get :compat_results
   end
 
 end
