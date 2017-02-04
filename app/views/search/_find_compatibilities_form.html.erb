@@ -1,20 +1,12 @@
 <%= simple_form_for :compatibilities, url: compat_results_search_path, method: :get, remote: true do |f| %>
   <%= f.input :category_name, input_html: {class: "js-category-autocomplete"}, wrapper_html: {class:"search-field"}, label: false, placeholder: "What part are you looking for?" %>
-    <div class="row search-inputs">
-      <div class="col-md-4 input">
-        <%= icon(:motorcycle) %> Vehicle<b class="caret"></b>
-        <%= f.input :vehicle_brand, collection: @brands, class:"form-control", label: false, prompt: "Make...", input_html: {class: "chosen-select" } %>
-        <%= f.input :vehicle_model, collection: [], class: "form-control", label: false, prompt: "Model...", input_html: {class: "chosen-select" }%>
-        <%= f.input :vehicle_submodel, collection: [], class:"form-control", label: false, prompt: "Submodel..." %>
-        <%= f.input :vehicle_year, collection: [], prompt: "Year...", label: false, class:"form-control" %>
-        <%= hidden_field_tag "compatibilities_vehicle_id", nil, id: "compatibilities_vehicle_id" %>
-      </div>
-    </div>
-    <div class="row search-action">
-      <div class="col-md-12 action text-center">
-        <%= f.submit "Find", id: "compatibilities-process", class: "btn btn-default" %>
-      </div>
-    </div>
+  <%= f.input :vehicle_brand, collection: @brands, class:"form-control", label: false, prompt: "Make...", input_html: {class: "chosen-select" } %>
+  <%= f.input :vehicle_model, collection: [], class: "form-control", label: false, prompt: "Model...", input_html: {class: "chosen-select" }%>
+  <%= f.input :vehicle_submodel, collection: [], class:"form-control", label: false, prompt: "Submodel..." %>
+  <%= f.input :vehicle_year, collection: [], prompt: "Year...", label: false, class:"form-control" %>
+  <%= hidden_field_tag "compatibilities[vehicle][id]", nil, id: "compatibilities_vehicle" %>
+  <%#= f.input :vehicle, as: :hidden %>
+  <%= f.submit "Find", id: "compatibilities-process", class: "btn btn-default" %>
   </div>
 <% end %>
 
@@ -37,10 +29,10 @@
     return initialize_categories_typeahead();
   });
 
-  dynamic_vehicle_form("compatibilities_vehicle_one");
+  dynamic_vehicle_form("compatibilities_vehicle");
 
   $("#compatibilities_vehicle_year").on("change", function() {
     var vehicleId = $(this).val();
-    $("#compatibilities_vehicle_one_id").val(vehicleId);
+    $("#compatibilities_vehicle").val(vehicleId);
   });
 </script>

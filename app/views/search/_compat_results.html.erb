@@ -34,9 +34,9 @@
     </div>
   </div>
   <div class="results">
-    <%# @products.each do |product, parts| %>
-      <%#= render partial: "product", locals: {product: product, parts: parts} %>
-    <%# end %>
+    <% @grouped_vehicles.sort_by { |submodel, vehicles| vehicles.length }.reverse.each do |vehicle_submodel, vehicles| %>
+      <%= render partial: "vehicle", locals: {vehicle_submodel: vehicle_submodel, vehicles: vehicles} %>
+    <% end %>
   </div>
 <% else %>
   <div class="results-overview card text-center">

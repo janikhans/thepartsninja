@@ -53,21 +53,6 @@ class NeoFindCompatibles
       end
       return vehicle
     end
-
-    def find_vehicles(vehicles_array)
-      return if vehicles_array.blank? # should add error
-      vehicles = []
-      vehicles_array.each do |vehicle|
-        if vehicle[:id].present?
-          vehicles << Vehicle.find(vehicle[:id])
-        elsif vehicle[:brand].present? && vehicle[:model].present? && vehicle[:year].present?
-          vehicles << Vehicle.find_with_specs(vehicle[:brand],vehicle[:model],vehicle[:year])
-        else
-          # return error
-        end
-      end
-      return vehicles
-    end
 end
 
 # neo_compatible_vehicles = NeoVehicle.as(:v1).where(vehicle_id: 1).neo_parts(:p).where(category_id: "120").neo_vehicles(:v2).count(:v2).as(:occurances).return(:v2, :occurances).order(occurances: :DESC)

@@ -30,8 +30,9 @@ class SearchController < ApplicationController
   end
 
   def compat_results
-    @search = NeoFindCompatibles.new(compat_params)
+    @search = NeoFindCompatibles.new(compatibilities_params)
     @search.process!
+    @grouped_vehicles = @search.compatible_vehicles.group_by{ |v| v.vehicle_submodel }
   end
 
   private
@@ -40,7 +41,7 @@ class SearchController < ApplicationController
     params.require(:search).permit(:year, :brand, :model, :part)
   end
 
-  def compat_params
-    params.require(:compat).permit(:category_id, :category_name, :fitment_note_id, part_attributes: [], vehicles: [:id])
+  def compatibilities_params
+    params.require(:compatibilities).permit(:category_name, :fitment_note_id, vehicle: [:id], part_attributes: [])
   end
 end
