@@ -34,9 +34,10 @@
     </div>
   </div>
   <div class="results">
-    <% @grouped_vehicles.sort_by { |submodel, vehicles| vehicles.length }.reverse.each do |vehicle_submodel, vehicles| %>
+    <% @search.compatible_vehicles.group_by{ |v| v.vehicle_submodel }.sort_by { |submodel, vehicles| vehicles.length }.reverse.each do |vehicle_submodel, vehicles| %>
       <%= render partial: "vehicle", locals: {vehicle_submodel: vehicle_submodel, vehicles: vehicles} %>
     <% end %>
+    <%#= render partial: "vehicle", collection: @search.compatible_vehicles.group_by{ |v| v.vehicle_submodel }.sort_by { |submodel, vehicles| vehicles.length }.reverse, locals: {vehicle_submodel: vehicle_submodel, vehicles: vehicles} %>
   </div>
 <% else %>
   <div class="results-overview card text-center">

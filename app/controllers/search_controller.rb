@@ -32,7 +32,7 @@ class SearchController < ApplicationController
   def compat_results
     @search = FindCompatibles.new(compatibilities_params)
     @search.process!
-    @grouped_vehicles = @search.compatible_vehicles.group_by{ |v| v.vehicle_submodel }
+    # @grouped_vehicles = @search.compatible_vehicles.group_by{ |v| v.vehicle_submodel }
   end
 
   private
