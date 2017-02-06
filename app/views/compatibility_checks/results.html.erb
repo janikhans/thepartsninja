@@ -11,13 +11,13 @@
       <div class="topic-title">
         <h3>Check Compatibility</h3>
       </div>
-      <%= render 'compatibility_checks/new_form' %>
+      <%= render 'checks/new_form' %>
+    </div>
+    <div class="topic-title">
+      <h3>Results</h3>
     </div>
     <div id="compatibility-check-results">
-      <div class="results-overview card">
-        <h2 class="text-center">Begin your search above!</h2>
-        <p class="text-center">Select the vehicles and that part that you want to check compatibility with.</p>
-      </div>
+      <%= render 'results' %>
     </div>
   </div>
   <div class="col-md-3">

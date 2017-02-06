@@ -20,23 +20,19 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'statistics#index'
     resources :compatibilities, :vehicles
-    resources :fitments, :brands, :categories, :ebay_categories, :part_attributes, :vehicle_types, :users, except: [:new]
+    resources :fitments, :brands, :fitment_notes, :categories, :ebay_categories, :part_attributes, :vehicle_types, :users, except: [:new]
     resources :searches, only: [:index, :destroy]
     resources :leads, only: [:index, :create, :destroy]
     resources :discoveries, except: [:new, :create]
     resources :vehicle_models, except: [:index, :show]
     resources :bulk_edit_products, only: [:index, :new, :create]
     resources :bulk_edit_fitments, only: [:index, :new, :create]
-    controller :auto_complete do
-      get :update_models
-    end
     resources :parts, except: [:new] do
       get :update_ebay_fitments, on: :member
     end
     resources :products do
       get :update_ebay_fitments, on: :member
     end
-    resources :fitment_notes, except: [:new]
   end
 
   #Resource routes for public
@@ -50,9 +46,6 @@ Rails.application.routes.draw do
       get 'downvote'
     end
   end
-  concern :autocompletable do
-    get 'autocomplete', on: :collection
-  end
   resources :brands, only: [:index, :show] do
     get :models, on: :member
   end
@@ -62,18 +55,21 @@ Rails.application.routes.draw do
   resources :vehicle_submodels, only: [] do
     get :vehicles, on: :member
   end
-  resources :compatibility_checks, only: [] do
-    get :results, on: :collection
+  resource :check, controller: :compatibility_checks, only: [] do
+    get :new, as: "/"
+    get :results
   end
-  get 'compatibility-check' => 'compatibility_checks#new'
 
   resources :categories, only: [] do
-    get :subcategories, on: :member
-    get :part_attributes, on: :member
-    get :fitment_notes, on: :member
-    get :leaves, on: :member
+    member do
+      get :subcategories
+      get :part_attributes
+      get :fitment_notes
+      get :leaves
+    end
   end
-  get 'coming-soon' => 'leads#index'
+
+  get 'coming-soon' => 'leads#new'
 
   #Static Pages
   root 'pages#index'   # The Welcome Page!
@@ -82,12 +78,6 @@ Rails.application.routes.draw do
   get 'terms-of-service' => 'pages#terms'
   get 'about' => 'pages#about'
   get 'privacy-policy' => 'pages#privacy'
-
-  resources :pages, only: [] do
-    get :autocomplete_brand_name, on: :collection
-    get :autocomplete_category_name, on: :collection
-    get :autocomplete_vehicle_model, on: :collection
-  end
 
   #Search
   get 'search' => 'searches#results', as: :search

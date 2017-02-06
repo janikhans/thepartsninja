@@ -27,3 +27,6 @@
 
 #Ignore temp CSV files
 /ebay_data
+
+#Ignore Neo4j development server
+/db/neo4j

@@ -1,5 +1,8 @@
-class SearchesController < ApplicationController
+class SearchController < ApplicationController
   #before_action :authenticate_user!, only: [:results, :index]
+
+  def new
+  end
 
   def results
     @search = SearchForm.new(search_params)

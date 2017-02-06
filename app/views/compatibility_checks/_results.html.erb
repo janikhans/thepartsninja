@@ -1,7 +1,8 @@
-<div class="topic-title">
-  <h3>Results</h3>
-</div>
-<% if @check.compatible_parts.any? %>
+<% if @compatibility_check.errors.any? %>
+  <div class="results-overview card text-center">
+    <%= render 'shared/error_messages', object: @compatibility_check %>
+  </div>
+<% elsif @compatibility_check.compatible_parts.any? %>
   <div class="panel-group" id="accordion">
     <div class="panel panel-success card cursor-pointer">
       <div data-toggle="collapse" data-parent="#accordion" href="#collapse1" class="panel-heading">
@@ -12,10 +13,10 @@
       </div>
       <div id="collapse1" class="panel-collapse collapse in">
         <div class="panel-body">
-          <p>There were some <%= @check.category.name %> compatibilities found between:</p>
-          <%= @check.vehicles.first.to_label %> and <%= @check.vehicles.second.to_label %>
-          <p>There were total of <%= @check.compatible_parts.count %> compatibilities found</p>
-          Of these <%= @check.compatible_parts.count %> were aftermarket.
+          <p>There were some <%= @compatibility_check.category.name %> compatibilities found between:</p>
+          <%= @compatibility_check.vehicles.first.to_label %> and <%= @compatibility_check.vehicles.second.to_label %>
+          <p>There were total of <%= @compatibility_check.compatible_parts.count %> compatibilities found</p>
+          Of these <%= @compatibility_check.compatible_parts.count %> were aftermarket.
           And 34 were OEM.
       </div>
       </div>

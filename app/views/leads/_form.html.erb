@@ -1,4 +1,4 @@
-<%= simple_form_for @lead, url: leads_path(@lead), method: :post, remote: true do |f| %>
+<%= simple_form_for @lead, url: leads_path(@lead), remote: true do |f| %>
   <%= f.error_notification %>
 
   <%= f.input :email, class: "form-control", placeholder: "Email", label: false %>

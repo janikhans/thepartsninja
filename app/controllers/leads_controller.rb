@@ -1,6 +1,6 @@
 class LeadsController < ApplicationController
 
-  def index
+  def new
     @lead = Lead.new
     prepare_meta_tags title: "Coming Soon!", description: "The grand release of The Parts Ninja is right around the corner. Until then, sign-up for the newsletter to get early access and updates."
   end
