@@ -13,8 +13,7 @@
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
-            <li><%= link_to "Compatibility Check", check_path %> </li>
-            <li><%= link_to "New Discovery", new_discovery_path %> </li>
+            <li><%= link_to "Search", search_path %> </li>
               <% if current_user.admin?  %>
                 <li><%= link_to "Admin", admin_root_path %></li>
                 <li class="dropdown">
@@ -23,6 +22,7 @@
                     <li><%= link_to "Brands", brands_path %></li>
                     <li><%= link_to "Vehicles", vehicles_path %></li>
                     <li><%= link_to "Products", products_path %></li>
+                    <li><%= link_to "New Discovery", new_discovery_path %> </li>
                   </ul>
                 </li>
               <% end %>

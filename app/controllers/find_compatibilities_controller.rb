@@ -3,7 +3,7 @@ class FindCompatibilitiesController < ApplicationController
 
   def new
     @find_compatibilities = FindCompatibilities.new
-    @brands = Brand.joins(:vehicles).where("vehicle_models.vehicle_type_id = 1").select("DISTINCT brands.*").order(name: :asc)
+    @brands = Brand.joins(:vehicle_models).where("vehicle_models.vehicle_type_id = 1").select("DISTINCT brands.*").order(name: :asc)
   end
 
   # Example params for testing

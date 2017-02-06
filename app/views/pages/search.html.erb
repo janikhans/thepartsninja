@@ -1,0 +1,27 @@
+<% content_for :header_topic do %>
+  Your Search Starts Here
+<% end %>
+
+<% content_for :header do %>
+  <%= render 'layouts/header_partials/default' %>
+  <%= render 'layouts/header_partials/quicklinks' %>
+<% end %>
+
+<div class="row">
+  <%= link_to find_path do %>
+    <div class="col-md-3 col-md-offset-2 text-center card">
+      <div class="card-header"><%= image_tag("missing-brand-image", class:"img-responsive") %></div>
+      <div class="card-content text-center">
+        <h3>Find all compatible vehicles that share a part</h3>
+      </div>
+    </div>
+  <% end %>
+  <%= link_to check_path do %>
+    <div class="col-md-3 col-md-offset-1 text-center card">
+      <div class="card-header"><%= image_tag("missing-brand-image", class:"img-responsive") %></div>
+      <div class="card-content">
+        <h3>Check to see if a part fits between vehicles</h3>
+      </div>
+    </div>
+  <% end %>
+</div>

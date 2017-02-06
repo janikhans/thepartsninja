@@ -83,8 +83,9 @@ Rails.application.routes.draw do
   get 'terms-of-service' => 'pages#terms'
   get 'about' => 'pages#about'
   get 'privacy-policy' => 'pages#privacy'
+  get 'search' => 'pages#search'
 
   #Search
-  get 'search' => 'searches#results', as: :search
+  # get 'search' => 'searches#results', as: :search
 
 end
