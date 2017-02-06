@@ -60,6 +60,11 @@ Rails.application.routes.draw do
     get :results
   end
 
+  resource :find, controller: :find_compatibilities, only: [] do
+    get :new, as: "/"
+    get :results
+  end
+
   resources :categories, only: [] do
     member do
       get :subcategories

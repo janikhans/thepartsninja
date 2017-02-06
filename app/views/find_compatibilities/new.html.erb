@@ -1,5 +1,5 @@
 <% content_for :header_topic do %>
-  Compatibility Check
+  Find Compatibilities
 <% end %>
 <% content_for :header do %>
   <%= render 'layouts/header_partials/default' %>
@@ -7,13 +7,13 @@
 <% end %>
 <div class="row">
   <div class="col-md-9">
-    <div id= "compatibility-check-form" class="m-b-md">
+    <div id= "find-compatibilities-form" class="m-b-md">
       <div class="topic-title">
-        <h3>Check Compatibility</h3>
+        <h3>Find Compatibilities</h3>
       </div>
-      <%= render 'compatibility_checks/new_form' %>
+      <%= render 'find_compatibilities/form' %>
     </div>
-    <div id="compatibility-check-results">
+    <div id="find-compatibilities-results">
       <div class="results-overview card">
         <h2 class="text-center">Begin your search above!</h2>
         <p class="text-center">Select the vehicles and that part that you want to check compatibility with.</p>

@@ -31,30 +31,30 @@ class CompatibilityCheck
     find_compatible_parts
   end
 
-  def find_compatible_parts_sql
-    return false if @vehicles.blank? || @category.blank?
-    compatible_parts = Part.joins(:product, :fitments).where('products.category_id = ? AND fitments.vehicle_id IN (?)', @category.id, @vehicles.pluck(:id))
-    compatible_parts = compatible_parts.joins(:fitment_notes).where('fitment_notes.id = ?', @fitment_note.id) if @fitment_note.present?
-    compatible_parts = compatible_parts.joins(:part_attributes).where('part_attributes.id IN (?)', @part_attributes.pluck(:id)) if @part_attributes.present?
-    @compatible_parts = compatible_parts.select("DISTINCT parts.*").includes(product: :brand)
-    return self
-  end
-
-  def find_compatible_parts
-    return if @vehicles.blank? || @category.blank?
-    vehicle_parts = []
-    @vehicles.each do |vehicle|
-      parts = vehicle.oem_parts.joins(:product).where('products.category_id = ?', @category.id)
-      parts = parts.joins(:fitment_notes).where('fitment_notes.id = ?', @fitment_note.id) if @fitment_note.present?
-      parts = parts.joins(:part_attributes).where('part_attributes.id IN (?)', @part_attribute.pluck(:id)) if @part_attributes.present?
-      parts = parts.select("DISTINCT parts.*").includes(product: :brand)
-      vehicle_parts << parts
-    end
-    @compatible_parts = vehicle_parts.inject(:&)
-    return self
-  end
-
   private
+
+    def find_compatible_parts_sql
+      return false if @vehicles.blank? || @category.blank?
+      compatible_parts = Part.joins(:product, :fitments).where('products.category_id = ? AND fitments.vehicle_id IN (?)', @category.id, @vehicles.pluck(:id))
+      compatible_parts = compatible_parts.joins(:fitment_notes).where('fitment_notes.id = ?', @fitment_note.id) if @fitment_note.present?
+      compatible_parts = compatible_parts.joins(:part_attributes).where('part_attributes.id IN (?)', @part_attributes.pluck(:id)) if @part_attributes.present?
+      @compatible_parts = compatible_parts.select("DISTINCT parts.*").includes(product: :brand)
+      return self
+    end
+
+    def find_compatible_parts
+      return if @vehicles.blank? || @category.blank?
+      vehicle_parts = []
+      @vehicles.each do |vehicle|
+        parts = vehicle.oem_parts.joins(:product).where('products.category_id = ?', @category.id)
+        parts = parts.joins(:fitment_notes).where('fitment_notes.id = ?', @fitment_note.id) if @fitment_note.present?
+        parts = parts.joins(:part_attributes).where('part_attributes.id IN (?)', @part_attribute.pluck(:id)) if @part_attributes.present?
+        parts = parts.select("DISTINCT parts.*").includes(product: :brand)
+        vehicle_parts << parts
+      end
+      @compatible_parts = vehicle_parts.inject(:&)
+      return self
+    end
 
     def set_category(params)
       if params[:category_id].present?
@@ -71,7 +71,7 @@ class CompatibilityCheck
 
     def set_fitment_note(params)
       if params[:fitment_note_id].present?
-        FitmentNote.find(params[:fitment_note_id])
+        FitmentNote.find_by_id(params[:fitment_note_id])
       elsif params[:fitment_note_name].present?
         FitmentNote.where('lower(name) = ?', params[:fitment_note_name].downcase).first
       else
@@ -84,7 +84,7 @@ class CompatibilityCheck
       vehicles = []
       vehicles_array.each do |vehicle|
         if vehicle[:id].present?
-          vehicles << Vehicle.find(vehicle[:id])
+          vehicles << Vehicle.find_by_id(vehicle[:id])
         elsif vehicle[:brand].present? && vehicle[:model].present? && vehicle[:year].present?
           vehicles << Vehicle.find_with_specs(vehicle[:brand],vehicle[:model],vehicle[:year])
         else

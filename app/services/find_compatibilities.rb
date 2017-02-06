@@ -1,18 +1,27 @@
 class FindCompatibilities
+  include ActiveModel::Model
+  include ActiveModel::Validations::Callbacks
   # TODO add validations and error callbacks
+  attr_accessor :category_name, :category_id, :vehicle, :fitment_note_id, :fitment_note_name, :part_attributes,
+    :vehicle_brand, :vehicle_model, :vehicle_submodel, :vehicle_year
+
   attr_reader :compatible_vehicles, :vehicle, :category, :part_attributes, :fitment_note
+
+  validates :category, presence: true
+  validates :vehicle, presence: true
 
   def initialize(params = {})
     @vehicle = set_vehicle(params[:vehicle])
     @category = set_category(params)
+    @fitment_note = set_fitment_note(params)
     # FIXME temp hack because rails form sends an empty param through the form
     # @part_attribute_ids = params[:part_attributes].delete_if { |x| x.empty? }
     @part_attributes = PartAttribute.where(id: @part_attribute_ids) if @part_attribute_ids.present?
-    @fitment_note = FitmentNote.find(params[:fitment_note_id]) if params[:fitment_note_id].present?
     @compatible_vehicles = []
   end
 
-  def process!
+  def process
+    return false unless valid?
     return if @vehicle.blank? || @category.blank?
     if @fitment_note.present?
       @compatible_vehicles = find_compatible_vehicles_with_fitment_note(@vehicle, @category.id, @fitment_note.id)
@@ -27,7 +36,7 @@ class FindCompatibilities
 
     def set_category(params)
       if params[:category_id].present?
-        Category.find(params[:category_id])
+        Category.find_by_id(params[:category_id])
       elsif params[:category_name].present?
         # Currently set so we're only using the Motrycycle Parts category Category.id => 1
         Category.first.descendants.leaves.where('lower(name) = ?', params[:category_name].downcase).first
@@ -36,10 +45,20 @@ class FindCompatibilities
       end
     end
 
+    def set_fitment_note(params)
+      if params[:fitment_note_id].present?
+        FitmentNote.find_by_id(params[:fitment_note_id])
+      elsif params[:fitment_note_name].present?
+        FitmentNote.where('lower(name) = ?', params[:fitment_note_name].downcase).first
+      else
+        # return error
+      end
+    end
+
     def set_vehicle(vehicle_params)
       return if vehicle_params.blank? # should add error
       if vehicle_params[:id].present?
-        vehicle = Vehicle.find(vehicle_params[:id])
+        vehicle = Vehicle.find_by_id(vehicle_params[:id])
       elsif vehicle_params[:brand].present? && vehicle_params[:model].present? && vehicle_params[:year].present?
         vehicle = Vehicle.find_with_specs(vehicle_params[:brand],vehicle_params[:model],vehicle_params[:year])
       else
