@@ -12,14 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui/autocomplete
-//= require autocomplete-rails
 //= require bootstrap-sprockets
-//= require metisMenu
-//= require jquery.steps
-//= require jquery.validate.min
 //= require cocoon
 //= require chosen-jquery
 //= require bootstrap-typeahead-rails
-//= require categories
 //= require_directory .

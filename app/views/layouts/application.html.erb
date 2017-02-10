@@ -12,6 +12,7 @@
 </head>
 
 <body id="body">
+    <%= render 'layouts/hero' if @home_page %>
     <%= render 'layouts/navbar' %>
     <%= render 'layouts/header' %>
     <%= render 'layouts/flash' %>
@@ -24,7 +25,7 @@
       </div>
     <% end %>
 
-    <%= debug(params) if Rails.env.development? %>
+    <%#= debug(params) if Rails.env.development? %>
     <%= render 'layouts/footer' %>
 </body>
 </html>

@@ -1,0 +1,38 @@
+<section class="hero" id="intro">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 text-center inner">
+        <div class="animatedParent">
+          <h1 class="animated fadeInDown">The Parts Ninja</h1>
+          <p class="animated fadeInUp">The easiest way to search and find motorsports parts. Instantly search
+          through thousands of parts to find replacments to get you back where you belong... behind the handlebars!</p>
+          <a href="#about" class="learn-more-btn btn-scroll">Learn more</a>
+        </div>
+      </div>
+      <div class="col-md-6 text-center">
+        <div class="col-md-6">
+          <div class="search-box">
+            <div class="header-image"><%= image_tag("missing-brand-image", class:"img-responsive") %></div>
+            <div class="content">
+              Compare parts between two vehicles to verify that they fit.
+            </div>
+            <div class="footer">
+              <%= link_to "Search", check_path, class: "btn btn-primary" %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="search-box">
+            <div class="header-image"><%= image_tag("missing-brand-image", class:"img-responsive") %></div>
+            <div class="content">
+              Find all compatible vehicles for a given part.
+            </div>
+            <div class="footer">
+              <%= link_to "Search", find_path, class: "btn btn-primary" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

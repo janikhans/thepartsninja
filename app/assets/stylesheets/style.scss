@@ -6,21 +6,23 @@
 @import "bootstrap";
 
 // Variables, Mixins
-@import "base/variables";
-
-// Base Requirements
-@import "base/typography";
-@import "base/buttons";
-@import "base/badges_labels";
-@import "base/base";
-@import "base/pages";
-
-// Additional styling to override base attributes
-@import "custom";
-@import "vehicles";
-@import "wizard";
-@import "search";
-@import "flash";
-@import "chosen-styling";
+// @import "base/variables";
+//
+// // Base Requirements
+// @import "base/typography";
+// @import "base/buttons";
+// @import "base/badges_labels";
+// @import "base/base";
+// @import "base/pages";
+//
+// // Additional styling to override base attributes
+// @import "custom";
+// @import "vehicles";
+// @import "wizard";
+// @import "search";
+// @import "flash";
+// @import "chosen-styling";
 //@import "dark";
 //@import "flat";
+
+@import "bcor";
