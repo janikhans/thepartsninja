@@ -2,12 +2,12 @@ Rails.application.routes.draw do
 
   #Users
   #Change the default devise routes to something more pleasing
+    devise_for :users, controllers: {registrations: :registrations, invitations: :invitations}
+
   devise_scope :user do
     get "login", to: "devise/sessions#new"
     get "sign_up", to: "devise/registrations#new" if Rails.env.development?
   end
-
-  devise_for :users, controllers: {registrations: :registrations, invitations: :invitations}
 
   namespace :account do
     root to: "activity#index"
@@ -38,8 +38,8 @@ Rails.application.routes.draw do
   #Resource routes for public
   resources :leads, only: [:create]
   resources :discoveries, except: [:index]
-  resources :products, :vehicles, only: [:show, :index]
-  resources :users, :parts, only: [:show]
+  resources :products, :vehicles, :users, only: [:show, :index]
+  resources :parts, only: [:show]
   resources :compatibilities, only: [:show] do
     member do
       get 'upvote'
