@@ -1,7 +1,9 @@
 namespace :rebuild_db do
-  desc "Seeds discoveries and all compatibilities"
+  desc "Rebuilds database for test purposes"
   task :god_mode => :environment do
 
+    FitmentNotation.delete_all
+    FitmentNote.delete_all
     Fitment.delete_all
     Vehicle.delete_all
     VehicleSubmodel.delete_all
@@ -11,7 +13,11 @@ namespace :rebuild_db do
     Discovery.delete_all
     Compatibility.delete_all
     Product.delete_all
+    Category.delete_all
+    EbayCategory.delete_all
     Part.delete_all
+    PartAttribute.delete_all
+    PartAttribution.delete_all
     ActsAsVotable::Vote.delete_all
     Brand.delete_all
 
@@ -27,6 +33,12 @@ namespace :rebuild_db do
     Product.connection.execute('ALTER SEQUENCE products_id_seq RESTART WITH 1')
     Part.connection.execute('ALTER SEQUENCE parts_id_seq RESTART WITH 1')
     Fitment.connection.execute('ALTER SEQUENCE fitments_id_seq RESTART WITH 1')
+    FitmentNote.connection.execute('ALTER SEQUENCE fitment_notes_id_seq RESTART WITH 1')
+    FitmentNotation.connection.execute('ALTER SEQUENCE fitment_notations_id_seq RESTART WITH 1')
+    Category.connection.execute('ALTER SEQUENCE categories_id_seq RESTART WITH 1')
+    EbayCategory.connection.execute('ALTER SEQUENCE ebay_categories_id_seq RESTART WITH 1')
+    PartAttribute.connection.execute('ALTER SEQUENCE part_attributes_id_seq RESTART WITH 1')
+    PartAttribution.connection.execute('ALTER SEQUENCE part_attributions_id_seq RESTART WITH 1')
 
     janik = User.where(username: 'Janik').first
     advrider = User.where(username: 'ADVrider').first
@@ -43,6 +55,73 @@ namespace :rebuild_db do
     end
 
     #----------------------------#
+    #Categories
+
+    root_category = Category.create(name: "Motorcycle Parts")
+
+    categories = ["Bearings", "Body", "Brakes", "Cooling Systems", "Drive", "Electrical", "Engine", "Exhaust", "Filters", "Fuel System", "Air Intake System", "Controls", "Suspension", "Wheels"]
+    categories.each do |name|
+      root_category.children.create(name: name)
+    end
+
+
+    bearings_sub = ["Crankshaft Bearings", "Shock Bearings", "Shock Linkage Bearings", "Steering Stem Beerings", "Swing Arm Bearings", "Wheel Bearings"]
+    engine_sub = ["Clutch", "Camshafts", "Pistons", "Cluch Cover"]
+    wheel_sub = ["Complete Wheel Assembly", "Rims", "Hubs", "Spokes", "Wheel Spacers"]
+
+    bearing = Category.find_by(name: "Bearings")
+    engine = Category.find_by(name: "Engine")
+    wheel = Category.find_by(name: "Wheels")
+
+    bearings_sub.each do |name|
+      bearing.children.create(name: name)
+    end
+    engine_sub.each do |name|
+      engine.children.create(name: name)
+    end
+    wheel_sub.each do |name|
+      wheel.children.create(name: name)
+    end
+
+    Category.find_by(name: "Brakes").children.create(name: "Brake Pads")
+
+    Category.refresh_leaves
+
+    #----------------------------#
+    #Part attributes
+
+    ["Rim Size", "Color"].each do |name|
+      PartAttribute.create(name: name)
+    end
+
+    color_variations = ["Black", "Red"]
+    rim_size_variations = ["19", "21", "18"]
+
+    color_variations.each do |name|
+      PartAttribute.find_by(name: "Color").attribute_variations.create(name: name)
+    end
+    rim_size_variations.each do |name|
+      PartAttribute.find_by(name: "Rim Size").attribute_variations.create(name: name)
+    end
+
+    #----------------------------#
+    # Fitment Notes
+
+    ["Location", "Quantity"].each do |name|
+      FitmentNote.create(name: name)
+    end
+
+    location_variations = ["Front", "Rear"]
+    quantity_variations = ["1", "2", "4"]
+
+    location_variations.each do |name|
+      FitmentNote.find_by(name: "Location").note_variations.create(name: name)
+    end
+    quantity_variations.each do |name|
+      FitmentNote.find_by(name: "Quantity").note_variations.create(name: name)
+    end
+
+    #----------------------------#
     #Build those brands
 
     brands = ["Acerbis", "Hinson", "Tusk Racing", "ARC", "Barnett", "Yamaha", "Kawasaki", "KTM", "Beta", "FORD", "Chevrolet", "Husqvarna", "Honda"]
@@ -51,36 +130,13 @@ namespace :rebuild_db do
     end
 
     #----------------------------#
-    #Parts
-
-    front_wheel = Product.create name: "OEM Wheel Kit", description: "Complete front wheel assembly. Includes the hubs, spokes and bearings", brand_name: "Yamaha", category_name: "Complete Wheel Assembly"
-    rekluse = Product.create name: "Core3.0", description: "Autoclutch that nearly gets rid of all possibility of stalling", brand_name: "Rekluse", category_name: "Clutch"
-    chain_guide = Product.create name: "Chain Guide v1.0", description: "Plastic 2 part chain guide block that replaces the stock unit", brand_name: "Acerbis", category_name: "Body"
-
-    part1 = front_wheel.parts.build(part_number: "fwyz25006").save
-    part2 = front_wheel.parts.build(part_number: "fwyz25004").save
-    part3 = front_wheel.parts.build(part_number: "fwyz25008").save
-    part4 = front_wheel.parts.build(part_number: "fwyz12505").save
-    part5 = front_wheel.parts.build(part_number: "fwwr45012").save
-    part6 = front_wheel.parts.build(part_number: "fwwr42602").save
-    part7 = front_wheel.parts.build(part_number: "fwyz250F11").save
-    part8 = front_wheel.parts.build(part_number: "fwwr25009").save
-    part9 = chain_guide.parts.build(part_number: "217909", note: "Specific part numbers are Black: 2179090001 White: 2179090002 Yellow: 2179090005").save
-
-    part1 = Part.first
-    part2 = Part.find_by(id: 2)
-    part3 = Part.find_by(id: 3)
-    part4 = Part.find_by(id: 4)
-    part5 = Part.find_by(id: 5)
-    part6 = Part.find_by(id: 6)
-    part7 = Part.find_by(id: 7)
-    part8 = Part.find_by(id: 8)
-    part9 = Part.find_by(id: 9)
+    # VehicleModels/ VehicleSubmodels / Vehicles
 
     yz250 = VehicleForm.new(model: "YZ250", year: 2006, brand: "Yamaha", type: "Motorcycle").save
     yz25004 = VehicleForm.new(model: "YZ250", year: 2004, brand: "Yamaha", type: "Motorcycle").save
     yz25008 = VehicleForm.new(model: "YZ250", year: 2008, brand: "Yamaha", type: "Motorcycle").save
     yz125 = VehicleForm.new(model: "YZ125", year: 2005, brand: "Yamaha", type: "Motorcycle").save
+    yz12509 = VehicleForm.new(model: "YZ125", year: 2009, brand: "Yamaha", type: "Motorcycle").save
     wr450 = VehicleForm.new(model: "WR450", year: 2012, brand: "Yamaha", type: "Motorcycle").save
     wr426 = VehicleForm.new(model: "WR426", year: 2002, brand: "Yamaha", type: "Motorcycle").save
     yz250f = VehicleForm.new(model: "YZ250F", year: 2011, brand: "Yamaha", type: "Motorcycle").save
@@ -93,28 +149,60 @@ namespace :rebuild_db do
     f150 = VehicleForm.new(model: "F150", year: 1994, brand: "ford", submodel: "lariat", type: "Truck").save
     silverado = VehicleForm.new(model: "2500", year: 2000, brand: "chevroLET", submodel: "King Ranch", type: "Truck").save
 
-    part1 = Part.first
-    part2 = Part.find_by(id: 2)
-    part3 = Part.find_by(id: 3)
-    part4 = Part.find_by(id: 4)
-    part5 = Part.find_by(id: 5)
-    part6 = Part.find_by(id: 6)
-    part7 = Part.find_by(id: 7)
-    part8 = Part.find_by(id: 8)
-    part9 = Part.find_by(id: 9)
+    #----------------------------#
+    # Parts / Products / Fitments
 
-    fitment1 = part1.fitments.build(vehicle: yz250).save
-    fitment2 = part2.fitments.build(vehicle: yz25004).save
-    fitment3 = part3.fitments.build(vehicle: yz25008).save
-    fitment4 = part4.fitments.build(vehicle: yz125).save
-    fitment5 = part5.fitments.build(vehicle: wr450).save
-    fitment6 = part6.fitments.build(vehicle: wr426).save
-    fitment7 = part7.fitments.build(vehicle: yz250f).save
-    fitment8 = part8.fitments.build(vehicle: wr250).save
-    fitment9 = part9.fitments.build(vehicle: rmz450).save
-    fitment10 = part1.fitments.build(vehicle: yz450f).save
-    fitment11 = part4.fitments.build(vehicle: yz25005).save
-    fitment12 = part7.fitments.build(vehicle: yz450f11).save
+    part1 = PartForm.new(brand: "Yamaha", product_name: "OEM Wheel Kit", part_number: "fwyz25006", root_category: "Motorcycle Parts", category: "Wheels", subcategory: "Complete Wheel Assembly", vehicle: yz250, attributes: [{parent_attribute: "Color", attribute: "Silver"}, {parent_attribute: "Rim Size", attribute: "21"}]).save
+    part2 = PartForm.new(brand: "Yamaha", product_name: "OEM Wheel Kit", part_number: "fwyz25004", root_category: "Motorcycle Parts", category: "Wheels", subcategory: "Complete Wheel Assembly", vehicle: yz25004, attributes: [{parent_attribute: "Color", attribute: "Silver"}]).save
+    part3 = PartForm.new(brand: "Yamaha", product_name: "OEM Wheel Kit", part_number: "fwyz25008", root_category: "Motorcycle Parts", category: "Wheels", subcategory: "Complete Wheel Assembly", vehicle: yz25008, attributes: [{parent_attribute: "Color", attribute: "Black"}]).save
+    part4 = PartForm.new(brand: "Yamaha", product_name: "OEM Wheel Kit", part_number: "fwyz12505", root_category: "Motorcycle Parts", category: "Wheels", subcategory: "Complete Wheel Assembly", vehicle: yz125, attributes: [{parent_attribute: "Rim Size", attribute: "21"}]).save
+    part5 = PartForm.new(brand: "Yamaha", product_name: "OEM Wheel Kit", part_number: "fwwr45012", root_category: "Motorcycle Parts", category: "Wheels", subcategory: "Complete Wheel Assembly", vehicle: wr450).save
+    part6 = PartForm.new(brand: "Yamaha", product_name: "OEM Wheel Kit", part_number: "fwwr42602", root_category: "Motorcycle Parts", category: "Wheels", subcategory: "Complete Wheel Assembly", vehicle: wr426).save
+    part7 = PartForm.new(brand: "Yamaha", product_name: "OEM Wheel Kit", part_number: "fwyz250F11", root_category: "Motorcycle Parts", category: "Wheels", subcategory: "Complete Wheel Assembly", vehicle: yz250f, attributes: [{parent_attribute: "Color", attribute: "Black"}]).save
+    part8 = PartForm.new(brand: "Yamaha", product_name: "OEM Wheel Kit", part_number: "fwwr25009", root_category: "Motorcycle Parts", category: "Wheels", subcategory: "Complete Wheel Assembly", vehicle: wr250, attributes: [{parent_attribute: "Color", attribute: "Blue"}]).save
+    part9 = PartForm.new(brand: "Acerbis", product_name: "Chain Guide v1.0", part_number: "217909", root_category: "Motorcycle Parts", category: "Body", subcategory: "Chain Guides", vehicle: rmz450, attributes: [{parent_attribute: "Color", attribute: "Yellow"}]).save
+    part10 = PartForm.new(brand: "Tusk Racing", product_name: "Sintered Metal Brake Pad", part_number: "12345", root_category: "Motorcycle Parts", category: "Brakes", subcategory: "Brake Pads", vehicle: yz250).save
+    part11 = PartForm.new(brand: "Tusk Racing", product_name: "Sintered Metal Brake Pad", part_number: "12345", root_category: "Motorcycle Parts", category: "Brakes", subcategory: "Brake Pads", vehicle: yz25008).save
+    part12 = PartForm.new(brand: "Tusk Racing", product_name: "Sintered Metal Brake Pad", part_number: "12345", root_category: "Motorcycle Parts", category: "Brakes", subcategory: "Brake Pads", vehicle: yz125).save
+    part13 = PartForm.new(brand: "Tusk Racing", product_name: "Sintered Metal Brake Pad", part_number: "12345", root_category: "Motorcycle Parts", category: "Brakes", subcategory: "Brake Pads", vehicle: yz25004).save
+    part14 = PartForm.new(brand: "EBC", product_name: "Extreme brake pads", part_number: "56789", root_category: "Motorcycle Parts", category: "Brakes", subcategory: "Brake Pads", vehicle: yz250).save
+    part15 = PartForm.new(brand: "EBC", product_name: "Extreme brake pads", part_number: "56789", root_category: "Motorcycle Parts", category: "Brakes", subcategory: "Brake Pads", vehicle: yz25008).save
+    part16 = PartForm.new(brand: "EBC", product_name: "Extreme brake pads", part_number: "56789", root_category: "Motorcycle Parts", category: "Brakes", subcategory: "Brake Pads", vehicle: yz25004).save
+    part17 = PartForm.new(brand: "EBC", product_name: "Extreme brake pads", part_number: "56789", root_category: "Motorcycle Parts", category: "Brakes", subcategory: "Brake Pads", vehicle: yz125).save
+    part18 = PartForm.new(brand: "EBC", product_name: "Extreme brake pads", part_number: "56789", root_category: "Motorcycle Parts", category: "Brakes", subcategory: "Brake Pads", vehicle: wr450).save
+    part19 = PartForm.new(brand: "Braking", product_name: "Intimidator Organi Pads", part_number: "int-234", root_category: "Motorcycle Parts", category: "Brakes", subcategory: "Brake Pads", vehicle: yz250).save
+    part20 = PartForm.new(brand: "Braking", product_name: "Intimidator Organi Pads", part_number: "int-234", root_category: "Motorcycle Parts", category: "Brakes", subcategory: "Brake Pads", vehicle: yz25008).save
+    part21 = PartForm.new(brand: "Braking", product_name: "Intimidator Organi Pads", part_number: "int-234", root_category: "Motorcycle Parts", category: "Brakes", subcategory: "Brake Pads", vehicle: yz25004).save
+    part22 = PartForm.new(brand: "Braking", product_name: "Intimidator Organi Pads", part_number: "int-234", root_category: "Motorcycle Parts", category: "Brakes", subcategory: "Brake Pads", vehicle: wr450).save
+    part23 = PartForm.new(brand: "Braking", product_name: "Intimidator Organi Pads", part_number: "int-234-rear", root_category: "Motorcycle Parts", category: "Brakes", subcategory: "Brake Pads", vehicle: yz250).save
+    part24 = PartForm.new(brand: "Braking", product_name: "Intimidator Organi Pads", part_number: "int-234-rear", root_category: "Motorcycle Parts", category: "Brakes", subcategory: "Brake Pads", vehicle: yz25008).save
+    part25 = PartForm.new(brand: "Braking", product_name: "Intimidator Organi Pads", part_number: "int-234-rear", root_category: "Motorcycle Parts", category: "Brakes", subcategory: "Brake Pads", vehicle: yz25004).save
+    part26 = PartForm.new(brand: "Braking", product_name: "Intimidator Organi Pads", part_number: "int-234-rear", root_category: "Motorcycle Parts", category: "Brakes", subcategory: "Brake Pads", vehicle: wr450).save
+    part27 = PartForm.new(brand: "Braking", product_name: "Intimidator Organi Pads", part_number: "int-234", root_category: "Motorcycle Parts", category: "Brakes", subcategory: "Brake Pads", vehicle: yz12509).save
+
+    #----------------------------#
+    # Other
+
+    Fitment.update_all(source: 1)
+    Fitment.find_by(vehicle: yz250, part: part1).fitment_notations.create(fitment_note: FitmentNote.find_by(name: "Front"))
+    Fitment.find_by(vehicle: yz250, part: part1).fitment_notations.create(fitment_note: FitmentNote.find_by(name: "1"))
+    Fitment.find_by(vehicle: yz25004, part: part2).fitment_notations.create(fitment_note: FitmentNote.find_by(name: "Front"))
+    Fitment.find_by(vehicle: yz25008, part: part3).fitment_notations.create(fitment_note: FitmentNote.find_by(name: "Front"))
+    Fitment.find_by(vehicle: yz25004, part: part10).fitment_notations.create(fitment_note: FitmentNote.find_by(name: "Front"))
+    Fitment.find_by(vehicle: yz25008, part: part11).fitment_notations.create(fitment_note: FitmentNote.find_by(name: "Front"))
+    Fitment.find_by(vehicle: yz25004, part: part19).fitment_notations.create(fitment_note: FitmentNote.find_by(name: "Front"))
+    Fitment.find_by(vehicle: yz25008, part: part20).fitment_notations.create(fitment_note: FitmentNote.find_by(name: "Front"))
+    Fitment.find_by(vehicle: yz25008, part: part23).fitment_notations.create(fitment_note: FitmentNote.find_by(name: "Front"))
+    Fitment.find_by(vehicle: yz12509, part: part27).fitment_notations.create(fitment_note: FitmentNote.find_by(name: "Front"))
+
+    fitment10 = part1.fitments.create(vehicle: yz450f)
+    fitment11 = part4.fitments.create(vehicle: yz25005)
+    fitment12 = part7.fitments.create(vehicle: yz450f11)
+
+
+
+    #----------------------------#
+    #Parts
 
     dis1 = Discovery.create comment: "You'll need the 2008 Wheel Spacers", user: advrider
     compat1 = dis1.compatibilities.build(modifications: true, part: part3, compatible_part: part2, backwards: false).save
