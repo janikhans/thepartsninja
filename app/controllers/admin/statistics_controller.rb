@@ -33,6 +33,6 @@ class Admin::StatisticsController < Admin::ApplicationController
       @discovery_count + @step_count + @compatibilities_count + @user_count + @profile_count + @search_count + @lead_count + @vote_count +
       @ebay_categories_count + @fitment_note_count + @fitment_notation_count
     @percentage_imported = (@parts_with_imported_fitments / @part_count.to_f) * 100
-    @average_fitment_count = (@fitment_count / @parts_with_imported_fitments.to_f ).floor
+    @average_fitment_count = (@fitment_count / @parts_with_imported_fitments.to_f ).floor if @parts_with_imported_fitments > 0
   end
 end

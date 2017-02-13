@@ -55,6 +55,7 @@ class PartForm
           part_attribution = @part.part_attributions.create(part_attribute: part_attribute)
         end
       end
+      return @part
     else
       return false
     end

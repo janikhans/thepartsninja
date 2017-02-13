@@ -16,8 +16,8 @@ class CompatibilityChecksController < ApplicationController
         @compatibility_check = CompatibilityCheck.new(check_params)
         if @compatibility_check.process
           @products = @compatibility_check.compatible_parts.group_by { |s| s.product }
-          search_term = @compatibility_check.vehicles.first.to_label + " " + @compatibility_check.category.name
-          @ebay_results = YaberAdvancedListing.search(search_term, 5)
+          #search_term = @compatibility_check.vehicles.first.to_label + " " + @compatibility_check.category.name
+          #@ebay_results = YaberAdvancedListing.search(search_term, 5)
           format.html
           format.js
         else

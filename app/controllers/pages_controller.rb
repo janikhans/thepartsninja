@@ -1,14 +1,12 @@
 class PagesController < ApplicationController
-  autocomplete :brand, :name, :full => true
-  autocomplete :category, :name, :full =>true, :scopes => [:subcategories]
-  autocomplete :vehicle, :model, :full => true#, :scopes => [:unique_models]
-  before_action :authenticate_user!, only: [:help, :contact, :about]
-
+  before_action :authenticate_user!, only: [:help, :contact, :about, :search]
 
   def index
-    @categories = Category.where(parent_id: !nil)
     @home_page = true
     @lead = Lead.new
+  end
+
+  def search
   end
 
   def help

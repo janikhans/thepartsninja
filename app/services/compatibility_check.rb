@@ -33,6 +33,7 @@ class CompatibilityCheck
 
   private
 
+    # FIXME this isn't working right. Need to show records that have have common vehicle.id
     def find_compatible_parts_sql
       return false if @vehicles.blank? || @category.blank?
       compatible_parts = Part.joins(:product, :fitments).where('products.category_id = ? AND fitments.vehicle_id IN (?)', @category.id, @vehicles.pluck(:id))
