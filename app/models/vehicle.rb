@@ -10,6 +10,7 @@ class Vehicle < ApplicationRecord
   friendly_id :slug_candidates, use: [:finders, :slugged]
 
   has_many :searches
+  has_many :check_searches
   has_many :fitments, dependent: :destroy
   has_many :oem_parts, through: :fitments, source: :part
 

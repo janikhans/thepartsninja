@@ -10,15 +10,16 @@ class CompatibilityCheck
   attr_accessor :category_name, :category_id, :vehicles, :fitment_note_id, :fitment_note_name, :part_attributes,
     :vehicle_one_brand, :vehicle_one_model, :vehicle_one_submodel, :vehicle_one_year,
     :vehicle_two_brand, :vehicle_two_model, :vehicle_two_submodel, :vehicle_two_year
-  attr_reader :compatible_parts, :vehicles, :category, :part_attributes, :fitment_note
+  attr_reader :compatible_parts, :vehicles, :category, :category_name, :part_attributes, :fitment_note
 
   # before_validation :sanitize_fields
-  validates :category, presence: true
+  validates :category_name, presence: true
   validate :validate_vehicles
 
   def initialize(params = {})
     @vehicles = find_vehicles(params[:vehicles])
     @category = set_category(params)
+    @category_name = params[:category_name]
     @fitment_note = set_fitment_note(params)
     # FIXME temp hack because rails form sends an empty param through the form
     # @part_attribute_ids = params[:part_attributes].delete_if { |x| x.empty? }
@@ -26,9 +27,10 @@ class CompatibilityCheck
     @compatible_parts = []
   end
 
-  def process
-    return false unless valid?
-    find_compatible_parts
+  def process(current_user = nil)
+    return false unless valid? && @category.present?
+    @compatible_parts = find_compatible_parts
+    CheckSearch.create(vehicle_one: @vehicles.first, vehicle_two: @vehicles.second, user: current_user, category: @category, category_name: @category_name)
   end
 
   private
@@ -39,8 +41,7 @@ class CompatibilityCheck
       compatible_parts = Part.joins(:product, :fitments).where('products.category_id = ? AND fitments.vehicle_id IN (?)', @category.id, @vehicles.pluck(:id))
       compatible_parts = compatible_parts.joins(:fitment_notes).where('fitment_notes.id = ?', @fitment_note.id) if @fitment_note.present?
       compatible_parts = compatible_parts.joins(:part_attributes).where('part_attributes.id IN (?)', @part_attributes.pluck(:id)) if @part_attributes.present?
-      @compatible_parts = compatible_parts.select("DISTINCT parts.*").includes(product: :brand)
-      return self
+      compatible_parts = compatible_parts.select("DISTINCT parts.*").includes(product: :brand)
     end
 
     def find_compatible_parts
@@ -53,8 +54,7 @@ class CompatibilityCheck
         parts = parts.select("DISTINCT parts.*").includes(product: :brand)
         vehicle_parts << parts
       end
-      @compatible_parts = vehicle_parts.inject(:&)
-      return self
+      compatible_parts = vehicle_parts.inject(:&)
     end
 
     def set_category(params)
