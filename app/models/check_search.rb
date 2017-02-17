@@ -1,9 +1,9 @@
 class CheckSearch < ApplicationRecord
-  belongs_to :vehicle_one, class_name: "Vehicle"
-  validates :vehicle_one, presence: true
+  belongs_to :vehicle
+  validates :vehicle, presence: true
 
-  belongs_to :vehicle_two, class_name: "Vehicle"
-  validates :vehicle_two, presence: true
+  belongs_to :comparing_vehicle, class_name: "Vehicle"
+  validates :comparing_vehicle, presence: true
 
   belongs_to :category
   belongs_to :user

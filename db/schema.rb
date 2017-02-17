@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170217054630) do
+ActiveRecord::Schema.define(version: 20170217070128) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,16 +38,16 @@ ActiveRecord::Schema.define(version: 20170217054630) do
 
   create_table "check_searches", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "vehicle_one_id", null: false
-    t.integer  "vehicle_two_id", null: false
+    t.integer  "vehicle_id",           null: false
+    t.integer  "comparing_vehicle_id", null: false
     t.integer  "category_id"
-    t.string   "category_name",  null: false
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.string   "category_name",        null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
     t.index ["category_id"], name: "index_check_searches_on_category_id", using: :btree
+    t.index ["comparing_vehicle_id"], name: "index_check_searches_on_comparing_vehicle_id", using: :btree
     t.index ["user_id"], name: "index_check_searches_on_user_id", using: :btree
-    t.index ["vehicle_one_id"], name: "index_check_searches_on_vehicle_one_id", using: :btree
-    t.index ["vehicle_two_id"], name: "index_check_searches_on_vehicle_two_id", using: :btree
+    t.index ["vehicle_id"], name: "index_check_searches_on_vehicle_id", using: :btree
   end
 
   create_table "compatibilities", force: :cascade do |t|
@@ -63,6 +63,18 @@ ActiveRecord::Schema.define(version: 20170217054630) do
     t.index ["compatible_part_id"], name: "index_compatibilities_on_compatible_part_id", using: :btree
     t.index ["discovery_id"], name: "index_compatibilities_on_discovery_id", using: :btree
     t.index ["part_id"], name: "index_compatibilities_on_part_id", using: :btree
+  end
+
+  create_table "compatibility_searches", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "vehicle_id",    null: false
+    t.integer  "category_id"
+    t.string   "category_name", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["category_id"], name: "index_compatibility_searches_on_category_id", using: :btree
+    t.index ["user_id"], name: "index_compatibility_searches_on_user_id", using: :btree
+    t.index ["vehicle_id"], name: "index_compatibility_searches_on_vehicle_id", using: :btree
   end
 
   create_table "discoveries", force: :cascade do |t|
@@ -317,6 +329,10 @@ ActiveRecord::Schema.define(version: 20170217054630) do
 
   add_foreign_key "check_searches", "categories"
   add_foreign_key "check_searches", "users"
+  add_foreign_key "check_searches", "vehicles"
+  add_foreign_key "compatibility_searches", "categories"
+  add_foreign_key "compatibility_searches", "users"
+  add_foreign_key "compatibility_searches", "vehicles"
   add_foreign_key "fitment_notations", "fitment_notes"
   add_foreign_key "fitment_notations", "fitments"
   add_foreign_key "products", "categories"

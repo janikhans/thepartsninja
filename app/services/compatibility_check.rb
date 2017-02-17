@@ -28,9 +28,10 @@ class CompatibilityCheck
   end
 
   def process(current_user = nil)
-    return false unless valid? && @category.present?
+    return false unless valid?
+    CheckSearch.create(vehicle: @vehicles.first, comparing_vehicle: @vehicles.second, category: @category, category_name: @category_name, user: current_user)
+    return false unless @category.present?
     @compatible_parts = find_compatible_parts
-    CheckSearch.create(vehicle_one: @vehicles.first, vehicle_two: @vehicles.second, user: current_user, category: @category, category_name: @category_name)
   end
 
   private
@@ -92,6 +93,7 @@ class CompatibilityCheck
           # return error
         end
       end
+      # TODO add error if both vehicles are the same
       return vehicles
     end
 

@@ -11,6 +11,8 @@ class Vehicle < ApplicationRecord
 
   has_many :searches
   has_many :check_searches
+  has_many :comparing_check_searches, class_name: "CheckSearch", foreign_key: "comparing_vehicle_id"
+  has_many :compatibility_searches
   has_many :fitments, dependent: :destroy
   has_many :oem_parts, through: :fitments, source: :part
 

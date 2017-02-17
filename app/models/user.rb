@@ -20,6 +20,8 @@ class User < ApplicationRecord
   has_many :discoveries
   has_many :compatibilities, through: :discoveries
   has_many :searches
+  has_many :check_searches
+  has_many :compatibility_searches
 
   devise :invitable, :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
 

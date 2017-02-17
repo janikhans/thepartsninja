@@ -5,14 +5,15 @@ class FindCompatibilities
   attr_accessor :category_name, :category_id, :vehicle, :fitment_note_id, :fitment_note_name, :part_attributes,
     :vehicle_brand, :vehicle_model, :vehicle_submodel, :vehicle_year
 
-  attr_reader :compatible_vehicles, :vehicle, :category, :part_attributes, :fitment_note
+  attr_reader :compatible_vehicles, :vehicle, :category, :category_name, :part_attributes, :fitment_note
 
-  validates :category, presence: true
+  validates :category_name, presence: true
   validates :vehicle, presence: true
 
   def initialize(params = {})
     @vehicle = set_vehicle(params[:vehicle])
     @category = set_category(params)
+    @category_name = params[:category_name]
     @fitment_note = set_fitment_note(params)
     # FIXME temp hack because rails form sends an empty param through the form
     # @part_attribute_ids = params[:part_attributes].delete_if { |x| x.empty? }
@@ -20,9 +21,10 @@ class FindCompatibilities
     @compatible_vehicles = []
   end
 
-  def process
+  def process(current_user = nil)
     return false unless valid?
-    return if @vehicle.blank? || @category.blank?
+    CompatibilitySearch.create(vehicle: @vehicle, user: current_user, category: @category, category_name: @category_name)
+    return false unless @category.present?
     if @fitment_note.present?
       @compatible_vehicles = find_compatible_vehicles_with_fitment_note(@vehicle, @category.id, @fitment_note.id)
     else

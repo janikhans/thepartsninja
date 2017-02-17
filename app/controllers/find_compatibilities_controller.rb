@@ -13,7 +13,7 @@ class FindCompatibilitiesController < ApplicationController
     respond_to do |format|
       if params[:find_compatibilities].present?
         @find_compatibilities = FindCompatibilities.new(find_compatibilities_params)
-        if @find_compatibilities.process
+        if @find_compatibilities.process(current_user)
           # search_term = @find_compatibilities.vehicle.to_label + " " + @find_compatibilities.category.name
           # @ebay_results = YaberAdvancedListing.search(search_term, 5)
           format.html
