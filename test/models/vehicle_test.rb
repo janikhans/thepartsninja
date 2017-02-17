@@ -30,7 +30,7 @@ class VehicleTest < UnitTest
     assert_equal vehicle.model, vehicle_models(:yz250)
     assert_equal vehicle.submodel, vehicle_submodels(:yz250)
     assert_equal vehicle.year, "2006"
-    assert_equal vehicle.submodel_name, nil
+    assert_nil vehicle.submodel_name
     assert_equal vehicle.to_label, "2006 Yamaha YZ250"
 
     assert_equal lariat.to_label, "2017 FORD F150 Lariat"

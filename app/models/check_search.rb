@@ -9,4 +9,6 @@ class CheckSearch < ApplicationRecord
   belongs_to :user
 
   validates :category_name, presence: true
+
+  has_one :search_record, as: :searchable
 end

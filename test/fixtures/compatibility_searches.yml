@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user: one
-  vehicle: one
-  category: one
-  category_name: MyString
+  user: janik
+  vehicle: yz250
+  category: brake_pads
+  category_name: "Brake Pads"
 
 two:
-  user: two
-  vehicle: two
-  category: two
-  category_name: MyString
+  user: hans
+  vehicle: yz125
+  category:
+  category_name: Blargl

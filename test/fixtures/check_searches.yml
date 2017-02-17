@@ -1,15 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user: one
-  vehicle_one: one
-  vehicle_two: one
-  category: one
-  category_name: MyString
+  user: janik
+  vehicle: yz250
+  comparing_vehicle: te300
+  category: wheel_bearings
+  category_name: "Wheel Bearings"
 
 two:
-  user: two
-  vehicle_one: two
-  vehicle_two: two
-  category: two
-  category_name: MyString
+  user: hans
+  vehicle: yz125
+  comparing_vehicle: yz250
+  category:
+  category_name: blahh

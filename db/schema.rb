@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170217070128) do
+ActiveRecord::Schema.define(version: 20170217074727) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ar_internal_metadata", primary_key: "key", id: :string, force: :cascade do |t|
+    t.string   "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "brands", force: :cascade do |t|
     t.string   "name",       default: "", null: false
@@ -341,4 +347,40 @@ ActiveRecord::Schema.define(version: 20170217070128) do
   add_foreign_key "vehicle_submodels", "vehicle_models"
   add_foreign_key "vehicles", "vehicle_submodels"
   add_foreign_key "vehicles", "vehicle_years"
+
+  create_view :search_records,  sql_definition: <<-SQL
+      SELECT row_number() OVER () AS id,
+      t.searchable_id,
+      t.searchable_type,
+      t.user_id,
+      t.vehicle_id,
+      t.comparing_vehicle_id,
+      t.category_id,
+      t.category_name,
+      t.created_at,
+      t.updated_at
+     FROM ( SELECT check_searches.id AS searchable_id,
+              'CheckSearch'::text AS searchable_type,
+              check_searches.user_id,
+              check_searches.vehicle_id,
+              check_searches.comparing_vehicle_id,
+              check_searches.category_id,
+              check_searches.category_name,
+              check_searches.created_at,
+              check_searches.updated_at
+             FROM check_searches
+          UNION
+           SELECT compatibility_searches.id AS searchable_id,
+              'CompatibilitySearch'::text AS searchable_type,
+              compatibility_searches.user_id,
+              compatibility_searches.vehicle_id,
+              NULL::integer AS comparing_vehicle_id,
+              compatibility_searches.category_id,
+              compatibility_searches.category_name,
+              compatibility_searches.created_at,
+              compatibility_searches.updated_at
+             FROM compatibility_searches
+    ORDER BY 8) t;
+  SQL
+
 end
