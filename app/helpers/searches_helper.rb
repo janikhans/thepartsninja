@@ -25,4 +25,13 @@ module SearchesHelper
     content_tag :span, output
     # add ? popover w/ explanation why there is a gap if skip_year == true
   end
+
+  def search_type_icon(searchable_type)
+    case searchable_type
+    when "CompatibilitySearch"
+      icon(:exchange)
+    when "CheckSearch"
+      icon(:bullseye)
+    end
+  end
 end

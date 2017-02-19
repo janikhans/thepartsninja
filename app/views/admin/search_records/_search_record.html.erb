@@ -1,0 +1,14 @@
+<%= content_tag :tr, id: "search_record_#{search_record.id}", class: search_record.searchable_type.underscore do %>
+  <td><%= search_record.vehicle.to_label %></td>
+  <td><%= search_record.comparing_vehicle.try(:to_label) %></td>
+  <td><%= search_record.category_name %></td>
+  <td>
+    <% if search_record.category %>
+      <%= icon(:check, class: "green") %>
+    <% else %>
+      <%= icon(:times, class: "red") %>
+    <% end %>
+  </td>
+  <td><%= search_record.user.try(:username) %></td>
+  <td><%= search_record.created_at.strftime("%b %d, %Y") %> <%= link_to "Delete", admin_search_record_path(search_record), method: :delete, data: {confirm: "Are you sure?"}, class: "hover-link" %></td>
+<% end %>

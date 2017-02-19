@@ -1,7 +1,7 @@
 class Admin::StatisticsController < Admin::ApplicationController
   def index
     @recent_leads = Lead.where(created_at: (Time.now - 24.hours)..Time.now).count(:all)
-    @recent_searches = Search.where(created_at: (Time.now - 24.hours)..Time.now).count(:all)
+    @recent_searches = SearchRecord.where(created_at: (Time.now - 24.hours)..Time.now).count(:all)
     @recent_users = User.where(created_at: (Time.now - 24.hours)..Time.now).count(:all)
     @recent_discoveries = Discovery.where(created_at: (Time.now - 24.hours)..Time.now).count(:all)
     @parts_with_imported_fitments = Part.where(ebay_fitments_imported: true).count(:all)
@@ -25,7 +25,7 @@ class Admin::StatisticsController < Admin::ApplicationController
     @step_count = Step.count(:all)
     @compatibilities_count = Compatibility.count(:all)
     @profile_count = Profile.count(:all)
-    @search_count = Search.count(:all)
+    @search_count = SearchRecord.count(:all)
     @lead_count = Lead.count(:all)
     @vote_count = ActsAsVotable::Vote.count(:all)
     @total_records = @fitment_count + @brand_count + @product_count + @category_count + @part_count + @part_attribution_count +

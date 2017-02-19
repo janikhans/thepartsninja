@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     root to: 'statistics#index'
     resources :compatibilities, :vehicles
     resources :fitments, :brands, :fitment_notes, :categories, :ebay_categories, :part_attributes, :vehicle_types, :users, except: [:new]
-    resources :searches, only: [:index, :destroy]
+    resources :search_records, only: [:index, :destroy]
     resources :leads, only: [:index, :create, :destroy]
     resources :discoveries, except: [:new, :create]
     resources :vehicle_models, except: [:index, :show]
@@ -84,8 +84,4 @@ Rails.application.routes.draw do
   get 'about' => 'pages#about'
   get 'privacy-policy' => 'pages#privacy'
   get 'search' => 'pages#search'
-
-  #Search
-  # get 'search' => 'searches#results', as: :search
-
 end
