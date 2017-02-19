@@ -2,11 +2,12 @@ require 'test_helper'
 
 class VehicleTest < UnitTest
   should belong_to(:vehicle_year)
-  # should validate_presence_of(:vehicle_year)
+  should validate_presence_of(:vehicle_year)
   should belong_to(:vehicle_submodel)
-  # should validate_presence_of(:vehicle_submodel)
-  # should validate_uniqueness_of(:epid)
-  should have_many(:searches)
+  should validate_presence_of(:vehicle_submodel)
+  should validate_uniqueness_of(:epid)
+  should have_many(:check_searches)
+  should have_many(:compatibility_searches)
   should have_many(:fitments).dependent(:destroy)
   should have_many(:oem_parts).through(:fitments).source(:part)
 

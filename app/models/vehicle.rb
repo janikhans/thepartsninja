@@ -9,13 +9,12 @@ class Vehicle < ApplicationRecord
   extend FriendlyId
   friendly_id :slug_candidates, use: [:finders, :slugged]
 
-  has_many :searches
+  has_many :compatibility_searches
   has_many :check_searches
   has_many :comparing_check_searches, class_name: "CheckSearch", foreign_key: "comparing_vehicle_id"
-  has_many :compatibility_searches
   has_many :search_records
   has_many :comparing_search_records, class_name: "SearchRecord", foreign_key: "comparing_vehicle_id"
-  
+
   has_many :fitments, dependent: :destroy
   has_many :oem_parts, through: :fitments, source: :part
 

@@ -20,15 +20,13 @@ class User < ApplicationRecord
   has_many :discoveries
   has_many :compatibilities, through: :discoveries
 
-
-  has_many :searches
   has_many :check_searches
   has_many :compatibility_searches
   has_many :search_records
 
   devise :invitable, :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
-  validates :username, uniqueness: { case_sensitive: false}, presence: true, length: { in: 4..20}
+  validates :username, uniqueness: { case_sensitive: false }, presence: true, length: { in: 4..20 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255}, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   validate :validate_username
