@@ -60,7 +60,7 @@ class CompatibilityCheck
 
     def set_category(params)
       if params[:category_id].present?
-        category = Category.find_by_id(params[:category_id])
+        category = Category.find_by(id: params[:category_id])
         # self.errors.add :category, 'We were unable to find a category with that ID' if category.nil?
       elsif params[:category_name].present?
         # Currently set so we're only using the Motrycycle Parts category Category.id => 1
@@ -73,7 +73,7 @@ class CompatibilityCheck
 
     def set_fitment_note(params)
       if params[:fitment_note_id].present?
-        FitmentNote.find_by_id(params[:fitment_note_id])
+        FitmentNote.find_by(id: params[:fitment_note_id])
       elsif params[:fitment_note_name].present?
         FitmentNote.where('lower(name) = ?', params[:fitment_note_name].downcase).first
       else
@@ -86,7 +86,7 @@ class CompatibilityCheck
       vehicles = []
       vehicles_array.each do |vehicle|
         if vehicle[:id].present?
-          vehicles << Vehicle.find_by_id(vehicle[:id])
+          vehicles << Vehicle.find_by(id: vehicle[:id])
         elsif vehicle[:brand].present? && vehicle[:model].present? && vehicle[:year].present?
           vehicles << Vehicle.find_with_specs(vehicle[:brand],vehicle[:model],vehicle[:year])
         else

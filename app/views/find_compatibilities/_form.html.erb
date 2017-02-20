@@ -1,5 +1,9 @@
 <%= simple_form_for @find_compatibilities, url: results_find_path, method: :get, remote: true do |f| %>
-  <%= f.input :category_name, input_html: {class: "js-category-autocomplete"}, wrapper_html: {class:"search-field"}, label: false, placeholder: "What part are you looking for?" %>
+  <div class="row">
+    <%= f.input :category_name, input_html: {class: "typeahead", autocomplete: 'off' }, wrapper_html: {class:"search-field col-md-8"}, label: false, placeholder: "What part are you looking for?" %>
+    <%= f.input :category_id, as: :hidden %>
+    <%= f.input :fitment_note_id, collection: [], wrapper_html: { class:"col-md-4" }, label: false, disabled: true %>
+  </div>
   <%= f.input :vehicle_brand, collection: @brands, class:"form-control", label: false, prompt: "Make...", input_html: {class: "chosen-select" } %>
   <%= f.input :vehicle_model, collection: [], class: "form-control", label: false, prompt: "Model...", input_html: {class: "chosen-select" }%>
   <%= f.input :vehicle_submodel, collection: [], class:"form-control", label: false, prompt: "Submodel..." %>
@@ -9,22 +13,50 @@
 <% end %>
 
 <script type="text/javascript">
-  $(function() {
-    var initialize_categories_typeahead;
-    initialize_categories_typeahead = function() {
-      var categories_typeahead = new Bloodhound({
-        datumTokenizer: Bloodhound.tokenizers.obj.whitespace("name"),
-        queryTokenizer: Bloodhound.tokenizers.whitespace,
-        prefetch: "/categories/1/leaves"
-      });
-      categories_typeahead.initialize();
-      return $(".js-category-autocomplete").typeahead(null, {
-        displayKey: "name",
-        source: categories_typeahead.ttAdapter()
+  var categories = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    prefetch: {url: '/categories/1/leaves.json',
+               ttl: 3600000 } // Locally cache results for 1 hr
+  });
+
+  $('.typeahead').typeahead({
+    hint: true,
+    highlight: true,
+    autoselect: true
+  },
+  {
+    name: 'categories',
+    display: 'name',
+    limit: 10,
+    source: categories
+  });
+  $('.typeahead').bind('typeahead:select', function(ev, suggestion) {
+    $('#find_compatibilities_category_id').val(suggestion.id);
+    $('#find_compatibilities_category_id').trigger('change');
+  });
+
+  $('#find_compatibilities_category_id').on("change", function() {
+    var select = $('#find_compatibilities_fitment_note_id')
+    select.empty();
+    var categoryId = $(this).val();
+    if (categoryId > 0 ) {
+      var url = "/categories/"+categoryId+"/fitment_notes";
+      $.getJSON(url, function(json){
+        if ( json.length > 0 ) {
+          select.empty();
+          select.append($('<option>').text("Specify..."));
+          $.each(json, function(i, obj){
+            select.append($('<option>').text(obj.name).attr('value', obj.id));
+          });
+          select.prop('disabled', false);
+        } else {
+          select.prop('disabled', true);
+        };
       });
     };
-    return initialize_categories_typeahead();
   });
+
   dynamic_vehicle_form("find_compatibilities_vehicle");
   $("#find_compatibilities_vehicle_year").on("change", function() {
     var vehicleId = $(this).val();

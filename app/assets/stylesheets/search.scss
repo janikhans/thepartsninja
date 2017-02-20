@@ -27,61 +27,6 @@
   }
 }
 
-/* SEARCH FORM IN THE SUBHEADER
--------------------------------------------------- */
-.results-search-form {
-  .form-control {
-    background: transparent;
-    color: #C5C5C5;
-    border: 1px solid #585858;
-    border-right: 0px;
-  }
-  input {
-    background: #FFF;
-    color: #313131;
-    border-radius: 0px;
-    &:focus {
-      border: 1px solid $navy !important;
-    }
-  }
-  select {
-    border-radius: 0px;
-    -webkit-appearance: none;
-    &:focus {
-      border: 1px solid $navy !important;
-    }
-  }
-  .btn {
-    background-color: $navy;
-    color: white;
-    border: 1px solid $navy;
-    width: 100%;
-    &:hover { background: darken($navy, 5%); color:white; border: 1px solid $navy;}
-  }
-  .both-column-adjust {
-    padding-left: 0px;
-    padding-right: 0px;
-  }
-  .first-column-adjust {
-    padding-right: 0px;
-  }
-  .last-column-adjust {
-    padding-left: 0px;
-  }
-  .form-group {
-    margin-bottom: 0px;
-  }
-}
-
-@media screen and (max-width: 992px) {
-  .form-control {
-    border: 1px solid #585858;
-  }
-}
-
-/* TWITTER TYPEAHEAD
--------------------------------------------------- */
-
 span.twitter-typeahead {
   width: 100%
 }

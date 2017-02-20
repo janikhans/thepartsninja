@@ -2,9 +2,10 @@
   <div class="card m-b-md" style="overflow: visible">
     <div class="search-container">
       <div class="search-display">
-        <div class="search-box">
-          <%= icon(:search, class: "search-icon") %>
-          <%= f.input :category_name, input_html: {class: "js-category-autocomplete"}, wrapper_html: {class:"search-field"}, label: false, placeholder: "What part are you looking for?" %>
+        <div class="row search-box">
+          <%= f.input :category_name, input_html: {class: "typeahead", autocomplete: "off"}, wrapper_html: {class:"col-md-8"}, label: false, placeholder: "What part are you looking for?" %>
+          <%= f.input :category_id, as: :hidden %>
+          <%= f.input :fitment_note_id, collection: [], wrapper_html: { class:"col-md-4" }, label: false, disabled: true %>
         </div>
       </div>
     </div>
@@ -53,7 +54,6 @@
           <%= f.input :vehicle_two_submodel, collection: [], class:"form-control", label: false, prompt: "Submodel..." %>
           <%= f.input :vehicle_two_year, collection: [], prompt: "Year...", label: false, class:"form-control" %>
           <%= hidden_field_tag "compatibility_check[vehicles][][id]", nil, id: "compatibility_check_vehicle_two_id" %>
-          <%= hidden_field_tag "compatibility_check[fitment_note_id]", nil, id: "fitment_note_id" %>
         </div>
       </div>
     </div>
@@ -66,28 +66,52 @@
 <% end %>
 
 <script type="text/javascript">
-  $(function() {
-    var initialize_categories_typeahead;
-    initialize_categories_typeahead = function() {
-      var categories_typeahead = new Bloodhound({
-        datumTokenizer: Bloodhound.tokenizers.obj.whitespace("name"),
-        queryTokenizer: Bloodhound.tokenizers.whitespace,
-        prefetch: "/categories/1/leaves"
-      });
-      categories_typeahead.initialize();
-      return $(".js-category-autocomplete").typeahead(null, {
-        displayKey: "name",
-        source: categories_typeahead.ttAdapter()
+  var categories = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    prefetch: {url: '/categories/1/leaves.json',
+               ttl: 3600000 } // Locally cache results for 1 hr
+  });
+
+  $('.typeahead').typeahead({
+    hint: true,
+    highlight: true,
+    autoselect: true
+  },
+  {
+    name: 'categories',
+    display: 'name',
+    limit: 10,
+    source: categories
+  });
+  $('.typeahead').bind('typeahead:select', function(ev, suggestion) {
+    $('#compatibility_check_category_id').val(suggestion.id);
+    $('#compatibility_check_category_id').trigger('change');
+  });
+
+  $('#compatibility_check_category_id').on("change", function() {
+    var select = $('#compatibility_check_fitment_note_id')
+    select.empty();
+    var categoryId = $(this).val();
+    if (categoryId > 0 ) {
+      var url = "/categories/"+categoryId+"/fitment_notes";
+      $.getJSON(url, function(json){
+        if ( json.length > 0 ) {
+          select.empty();
+          select.append($('<option>').text("Specify..."));
+          $.each(json, function(i, obj){
+            select.append($('<option>').text(obj.name).attr('value', obj.id));
+          });
+          select.prop('disabled', false);
+        } else {
+          select.prop('disabled', true);
+        };
       });
     };
-    return initialize_categories_typeahead();
   });
+
   dynamic_vehicle_form("compatibility_check_vehicle_one");
   dynamic_vehicle_form("compatibility_check_vehicle_two");
-  // dynamic_category_select();
-  // dynamic_product_type_form("compatibility_check_category");
-  // dynamic_part_attributes_form("compatibility_check");
-  // dynamic_fitment_notes_form("compatibility_check");
   update_vehicle_tag("vehicle_one");
   update_vehicle_tag("vehicle_two");
   update_part_tag("category_name", "category_name");
@@ -100,20 +124,6 @@
     var vehicleId = $(this).val();
     $("#compatibility_check_vehicle_two_id").val(vehicleId);
   });
-  // $("#compatibility_check_product_type_id, #compatibility_check_vehicle_two_id, #compatibility_check_vehicle_one_id").on("change", function() {
-  //   update_link();
-  //   // $("#compatibility-check-process").removeClass("disabled");
-  // });
-  // function update_link() {
-  //   var vehicleTwo = $("#compatibility_check_vehicle_two_id").val();
-  //   var vehicleOne = $("#compatibility_check_vehicle_one_id").val();
-  //   var productType = $("#compatibility_check_product_type_id").val();
-  //   if ( vehicleOne > 0 && vehicleTwo > 0 && productType > 0 ) {
-  //     $("#compatibility-check-process").removeClass("disabled");
-  //   } else {
-  //     $("#compatibility-check-process").addClass("disabled");
-  //   };
-  // };
   function update_vehicle_span(vehicle, attribute) {
     $("#compatibility_check_" + vehicle + "_" + attribute).on("change", function() {
       var optionText = $(this).find("option:selected").text();

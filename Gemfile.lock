@@ -44,14 +44,12 @@ GEM
     ancestry (2.2.2)
       activerecord (>= 3.0.0)
     arel (7.1.4)
-    autoprefixer-rails (6.7.2)
+    autoprefixer-rails (6.7.3)
       execjs
     bcrypt (3.1.11)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
-    bootstrap-typeahead-rails (0.10.5.1)
-      railties (>= 3.0)
     builder (3.2.3)
     bullet (5.5.0)
       activesupport (>= 3.0.0)
@@ -88,8 +86,8 @@ GEM
       railties (>= 4.1.0, < 5.1)
       responders
       warden (~> 1.2.3)
-    devise_invitable (1.7.0)
-      actionmailer (>= 4.0.0)
+    devise_invitable (1.7.1)
+      actionmailer (>= 4.1.0)
       devise (>= 4.0.0)
     dotenv (2.2.0)
     dotenv-rails (2.2.0)
@@ -224,7 +222,7 @@ GEM
     sdoc (0.4.2)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    selenium-webdriver (3.0.8)
+    selenium-webdriver (3.1.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
       websocket (~> 1.0)
@@ -284,7 +282,6 @@ DEPENDENCIES
   acts_as_votable (~> 0.10.0)
   ancestry
   bootstrap-sass (~> 3.3.6)
-  bootstrap-typeahead-rails
   bullet
   byebug
   capybara (~> 2.7.1)

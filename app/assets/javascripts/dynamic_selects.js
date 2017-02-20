@@ -6,6 +6,7 @@ function update_select(url, select) {
       $(select).append($('<option>').text(obj.name).attr('value', obj.id));
     });
     $(select).trigger("chosen:updated");
+    $(select).prop('disabled', false);
   });
 };
 

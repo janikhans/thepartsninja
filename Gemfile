@@ -26,7 +26,6 @@ gem 'httparty'
 gem 'chosen-rails'
 gem 'ancestry'
 gem 'jbuilder'
-gem 'bootstrap-typeahead-rails'
 gem 'scenic'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
