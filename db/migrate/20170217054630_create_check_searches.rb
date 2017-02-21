@@ -6,6 +6,8 @@ class CreateCheckSearches < ActiveRecord::Migration[5.0]
       t.integer :comparing_vehicle_id, foreign_key: true, index: true, null: false
       t.references :category, foreign_key: true, index: true
       t.string :category_name, null: false
+      t.integer :results_count
+      t.references :fitment_note, foreign_key: true, index: true
 
       t.timestamps
     end

@@ -7,6 +7,7 @@ class CheckSearch < ApplicationRecord
 
   belongs_to :category
   belongs_to :user
+  belongs_to :fitment_note
 
   validates :category_name, presence: true
 

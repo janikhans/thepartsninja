@@ -48,10 +48,13 @@ ActiveRecord::Schema.define(version: 20170219010915) do
     t.integer  "comparing_vehicle_id", null: false
     t.integer  "category_id"
     t.string   "category_name",        null: false
+    t.integer  "results_count"
+    t.integer  "fitment_note_id"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.index ["category_id"], name: "index_check_searches_on_category_id", using: :btree
     t.index ["comparing_vehicle_id"], name: "index_check_searches_on_comparing_vehicle_id", using: :btree
+    t.index ["fitment_note_id"], name: "index_check_searches_on_fitment_note_id", using: :btree
     t.index ["user_id"], name: "index_check_searches_on_user_id", using: :btree
     t.index ["vehicle_id"], name: "index_check_searches_on_vehicle_id", using: :btree
   end
@@ -73,12 +76,15 @@ ActiveRecord::Schema.define(version: 20170219010915) do
 
   create_table "compatibility_searches", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "vehicle_id",    null: false
+    t.integer  "vehicle_id",      null: false
     t.integer  "category_id"
-    t.string   "category_name", null: false
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.string   "category_name",   null: false
+    t.integer  "results_count"
+    t.integer  "fitment_note_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.index ["category_id"], name: "index_compatibility_searches_on_category_id", using: :btree
+    t.index ["fitment_note_id"], name: "index_compatibility_searches_on_fitment_note_id", using: :btree
     t.index ["user_id"], name: "index_compatibility_searches_on_user_id", using: :btree
     t.index ["vehicle_id"], name: "index_compatibility_searches_on_vehicle_id", using: :btree
   end
@@ -319,9 +325,11 @@ ActiveRecord::Schema.define(version: 20170219010915) do
   end
 
   add_foreign_key "check_searches", "categories"
+  add_foreign_key "check_searches", "fitment_notes"
   add_foreign_key "check_searches", "users"
   add_foreign_key "check_searches", "vehicles"
   add_foreign_key "compatibility_searches", "categories"
+  add_foreign_key "compatibility_searches", "fitment_notes"
   add_foreign_key "compatibility_searches", "users"
   add_foreign_key "compatibility_searches", "vehicles"
   add_foreign_key "fitment_notations", "fitment_notes"
@@ -342,6 +350,8 @@ ActiveRecord::Schema.define(version: 20170219010915) do
       t.comparing_vehicle_id,
       t.category_id,
       t.category_name,
+      t.fitment_note_id,
+      t.results_count,
       t.created_at,
       t.updated_at
      FROM ( SELECT check_searches.id AS searchable_id,
@@ -351,6 +361,8 @@ ActiveRecord::Schema.define(version: 20170219010915) do
               check_searches.comparing_vehicle_id,
               check_searches.category_id,
               check_searches.category_name,
+              check_searches.fitment_note_id,
+              check_searches.results_count,
               check_searches.created_at,
               check_searches.updated_at
              FROM check_searches
@@ -362,10 +374,12 @@ ActiveRecord::Schema.define(version: 20170219010915) do
               NULL::integer AS comparing_vehicle_id,
               compatibility_searches.category_id,
               compatibility_searches.category_name,
+              compatibility_searches.fitment_note_id,
+              compatibility_searches.results_count,
               compatibility_searches.created_at,
               compatibility_searches.updated_at
              FROM compatibility_searches
-    ORDER BY 8) t;
+    ORDER BY 10) t;
   SQL
 
 end

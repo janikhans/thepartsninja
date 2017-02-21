@@ -18,4 +18,8 @@ class FitmentNote < ApplicationRecord
   belongs_to :parent_note,
     class_name: "FitmentNote",
     foreign_key: "parent_id"
+
+  has_many :check_searches
+  has_many :compatibility_searches
+  has_many :search_records
 end

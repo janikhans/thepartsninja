@@ -2,7 +2,7 @@ class FindCompatibilities
   include ActiveModel::Model
   include ActiveModel::Validations::Callbacks
   # TODO add validations and error callbacks
-  attr_accessor :category_name, :category_id, :vehicle, :fitment_note_id, :fitment_note_name, :part_attributes,
+  attr_accessor :category_name, :category_id, :vehicle, :fitment_note_id, :fitment_note_name, :part_attributes, :user,
     :vehicle_brand, :vehicle_model, :vehicle_submodel, :vehicle_year
 
   attr_reader :compatible_vehicles, :vehicle, :category, :category_name, :part_attributes, :fitment_note
@@ -15,26 +15,40 @@ class FindCompatibilities
     @category = set_category(params)
     @category_name = params[:category_name]
     @fitment_note = set_fitment_note(params)
+    @user = nil
     # FIXME temp hack because rails form sends an empty param through the form
     # @part_attribute_ids = params[:part_attributes].delete_if { |x| x.empty? }
     @part_attributes = PartAttribute.where(id: @part_attribute_ids) if @part_attribute_ids.present?
     @compatible_vehicles = []
   end
 
-  def process(current_user = nil)
+  def process
     return false unless valid?
-    CompatibilitySearch.create(vehicle: @vehicle, user: current_user, category: @category, category_name: @category_name)
-    return false unless @category.present?
-    if @fitment_note.present?
-      @compatible_vehicles = find_compatible_vehicles_with_fitment_note(@vehicle, @category.id, @fitment_note.id)
+    if @category.present?
+      if @fitment_note.present?
+        @compatible_vehicles = find_compatible_vehicles_with_fitment_note(@vehicle, @category.id, @fitment_note.id)
+      else
+        @compatible_vehicles = find_compatible_vehicles(@vehicle, @category.id)
+      end
+      create_search_record
+      ActiveRecord::Associations::Preloader.new.preload(@compatible_vehicles, [:vehicle_year, vehicle_submodel: {vehicle_model: :brand}])
     else
-      @compatible_vehicles = find_compatible_vehicles(@vehicle, @category.id)
+      return false
     end
-    ActiveRecord::Associations::Preloader.new.preload(@compatible_vehicles, [:vehicle_year, vehicle_submodel: {vehicle_model: :brand}])
     return self
   end
 
   private
+
+  def create_search_record
+    CompatibilitySearch.create(vehicle: @vehicle,
+                              category: @category,
+                              category_name: @category_name,
+                              user: @user,
+                              fitment_note: @fitment_note,
+                              results_count: @compatible_vehicles.length
+                              )
+  end
 
     def set_category(params)
       if params[:category_id].present?

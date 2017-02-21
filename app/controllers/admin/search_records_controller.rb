@@ -1,6 +1,6 @@
 class Admin::SearchRecordsController < Admin::ApplicationController
   def index
-    @search_records = SearchRecord.includes(:category, :user,
+    @search_records = SearchRecord.includes(:category, :user, :fitment_note,
       vehicle: [:vehicle_year, vehicle_submodel: {vehicle_model: :brand}],
       comparing_vehicle: [:vehicle_year, vehicle_submodel: {vehicle_model: :brand}])
       .page(params[:page])

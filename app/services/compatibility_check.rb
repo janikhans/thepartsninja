@@ -7,7 +7,7 @@ class CompatibilityCheck
     ActiveModel::Name.new(self, nil, "CompatibilityCheck")
   end
 
-  attr_accessor :category_name, :category_id, :vehicles, :fitment_note_id, :fitment_note_name, :part_attributes,
+  attr_accessor :category_name, :category_id, :vehicles, :fitment_note_id, :fitment_note_name, :part_attributes, :user,
     :vehicle_one_brand, :vehicle_one_model, :vehicle_one_submodel, :vehicle_one_year,
     :vehicle_two_brand, :vehicle_two_model, :vehicle_two_submodel, :vehicle_two_year
   attr_reader :compatible_parts, :vehicles, :category, :category_name, :part_attributes, :fitment_note
@@ -21,17 +21,28 @@ class CompatibilityCheck
     @category = set_category(params)
     @category_name = params[:category_name]
     @fitment_note = set_fitment_note(params)
+    @user = nil
     # FIXME temp hack because rails form sends an empty param through the form
     # @part_attribute_ids = params[:part_attributes].delete_if { |x| x.empty? }
     @part_attributes = PartAttribute.where(id: @part_attribute_ids) unless @part_attribute_ids.blank?
     @compatible_parts = []
   end
 
-  def process(current_user = nil)
+  def process
     return false unless valid?
-    CheckSearch.create(vehicle: @vehicles.first, comparing_vehicle: @vehicles.second, category: @category, category_name: @category_name, user: current_user)
-    return false unless @category.present?
-    @compatible_parts = find_compatible_parts
+    if @category.present?
+      @compatible_parts = find_compatible_parts
+      CheckSearch.create(vehicle: @vehicles.first,
+                        comparing_vehicle: @vehicles.second,
+                        category: @category,
+                        category_name: @category_name,
+                        user: @user,
+                        fitment_note: @fitment_note,
+                        results_count: @compatible_parts.length
+                        )
+    else
+      return false
+    end
   end
 
   private
