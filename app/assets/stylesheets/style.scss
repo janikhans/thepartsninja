@@ -1,27 +1,14 @@
-// Google Fonts
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&lang=en");
+.index-header section .mobile-pic {
+  top: -45px;
+}
 
-// Bootstrap
-@import "bootstrap-sprockets";
-@import "bootstrap";
-
-// Variables, Mixins
-@import "base/variables";
-
-// Base Requirements
-@import "base/typography";
-@import "base/buttons";
-@import "base/badges_labels";
-@import "base/base";
-@import "base/pages";
-
-// Additional styling to override base attributes
-@import "custom";
-@import "vehicles";
-@import "wizard";
-@import "search";
-@import "flash";
-@import "chosen-styling";
-@import "typeahead";
-//@import "dark";
-//@import "flat";
+.footer {
+  margin-top: 0px;
+  .copyright {
+    color: #9DAAC2;
+    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+}

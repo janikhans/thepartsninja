@@ -13,7 +13,7 @@
  *= require_self
  *= require animate.css
  *= require chosen
- *= require style
+ *= require theme
  *= require jquery-ui
  *= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
  *= require font-awesome

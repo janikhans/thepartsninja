@@ -15,4 +15,7 @@
 //= require bootstrap-sprockets
 //= require cocoon
 //= require chosen-jquery
-//= require_directory .
+//= require theme
+//= require flash
+//= require dynamic_selects
+//= require typeahead

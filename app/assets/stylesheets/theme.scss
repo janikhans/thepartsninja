@@ -1,0 +1,77 @@
+// Bootstrap
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "base/bootstrap_overrides";
+
+/* config variables */
+@import "variables";
+
+/* modules */
+@import "base/custom_mixins";
+@import "base/custom_effects";
+
+/* vendor */
+// @import "vendor/assets/stylesheets/animate";
+// @import "vendor/magnific.popup";
+// @import "vendor/pikaday";
+// @import "vendor/simpletextrotator";
+
+/* icons */
+// @import "vendor/ionicons";
+// @import "vendor/font-awesome";
+// @import "vendor/et-line-icons";
+// @import "vendor/entypo";
+
+/* layout */
+@import "base/layout";
+
+/* pages */
+// @import "custom/pages/intro";
+// @import "custom/pages/index";
+@import "base/index_mobile";
+// @import "custom/pages/index_mobile_2";
+// @import "custom/pages/index_mobile_3";
+@import "base/index_mobile_4";
+// @import "custom/pages/index_slider";
+@import "base/index_features";
+// @import "custom/pages/index_photography";
+// @import "custom/pages/index_video";
+@import "base/index_app";
+// @import "custom/pages/index_dark";
+// @import "custom/pages/index_restaurant";
+
+/* general pages */
+// @import "custom/pages/pricing_charts";
+// @import "custom/pages/pricing";
+// @import "custom/pages/coming_soon";
+// @import "custom/pages/timeline";
+// @import "custom/pages/api_docs";
+// @import "custom/pages/support";
+// @import "custom/pages/support_topic";
+// @import "custom/pages/sign_up";
+// @import "custom/pages/sign_in";
+// @import "custom/pages/careers";
+// @import "custom/pages/career_post";
+// @import "custom/pages/customers";
+// @import "custom/pages/customer_story";
+// @import "custom/pages/theme_docs";
+
+/* blogs */
+// @import "custom/pages/blog";
+// @import "custom/pages/blog_grid";
+// @import "custom/pages/blog_masonry";
+// @import "custom/pages/blog_timeline";
+// @import "custom/pages/blog_sidebar";
+// @import "custom/pages/blog_3_cols";
+// @import "custom/pages/blog_post";
+// @import "custom/pages/blog_post_alt";
+// @import "custom/pages/blog_post_3";
+
+
+// Additional styling to override base attributes
+// @import "custom";
+// @import "search";
+@import "flash";
+@import "chosen-styling";
+@import "typeahead";
+@import "style";

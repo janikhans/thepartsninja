@@ -1,170 +1,205 @@
-<% content_for :header do %>
-  <%= render 'layouts/header_partials/splash' %>
-<% end %>
-
-<section id="about" class="features">
-  <div class="container">
+<div class="index-header">
+  <section class="container">
     <div class="row">
-      <div class="col-lg-12 text-center">
-        <div class="navy-line"></div>
-        <h1>Who is...<br/> <span class="navy"> <i>The Parts Ninja?</i></span> </h1>
-        <p>He's the one who's going to help you find whatever part you're looking for. </p>
-      </div>
-    </div>
-    <div class="row m-t-md">
-      <div class="col-md-3 text-center">
-        <i class="fa fa-connectdevelop features-icon fa-5x"></i>
-        <h2>The Compatibility Web</h2>
-        <p>The Parts Ninja uses algorithms to cross-reference thousands of parts so that he can find every potential replacement for common and specialized parts.</p>
-      </div>
-      <div class="col-md-6 text-center">
-        <%= image_tag("landing/ThePartsNinjaMockUp.png", class:"img-responsive margin-auto") %>
-      </div>
-      <div class="col-md-3 text-center">
-        <i class="fa fa-mobile features-icon fa-5x"></i>
-        <h2>Always Available</h2>
-        <p>The Parts Ninja is always there to help you. Your computer at home, your tablet while you're in the store or even on your phone while you're out at the track. The Parts Ninja has you covered.</p>
-      </div>
-    </div>
-  </div>
-</section>
+      <div class="col-sm-7">
+        <h1>
+          Use new filters to enhance your photos with just one click
+        </h1>
+        <p>
+          Spacial has both a web app and an android app to make your website easy and always available. It offers you all the designs in collaboration with some smart people.
+        </p>
 
-<section class="white-section m-t-md p-b-md">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12 text-center">
-        <div class="navy-line"></div>
-        <h1>Why...<br/> <span class="navy"> <i>Does he do it?</i></span> </h1>
-        <p>He's been in the same shoes as you and is tired of not having options.</p>
+        <div class="cta">
+          <a href="#" class="btn btn-primary btn-lg">
+            Sign up free
+          </a>
+          <a class="btn-outline popup-media" href="https://vimeo.com/155404383">
+            <i class="fa fa-play"></i>
+            Learn more
+          </a>
+        </div>
+      </div>
+      <div class="col-sm-5">
+        <%= image_tag("spacial/iphone-13.png", class:"mobile-pic fadeInScale hidden-xs") %>
       </div>
     </div>
-    <div class="row m-t-md align-outer">
-      <div class="col-md-6 text-center align-inner col-md-push-6">
-        <h2>We've all been there</h2>
-        <p>It's the day before the big race and you realize your clutch plates are toast; bummer. What do you do? Call the local shop? Hope they have some? What happens when they don't?</p>
-        <p>What about that spare wheel you've always wanted? You found one for sale but are unsure if it fits. What do you do? You probably hop on Google and search through pages of forum posts.</p>
-        <p><strong>The Parts Ninja is here to help!</strong></p>
-        <p>Find out exactly what fits with one search. Don't waste your money only to find out that the wheel won't fit. Next time the local shop is out of stock, ask if they have clutch plates from another model. You'll be surprised what is compatible.</p>
-      </div>
-      <div class="col-md-6 text-center col-md-pull-6">
-        <%= image_tag("landing/TypicalPartSearch.gif", class:"img-responsive margin-auto") %>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
+</div>
 
-<section class="m-t-md">
+<div class="index-app-news">
   <div class="container">
-    <div class="row p-b-md">
-      <div class="col-lg-12 text-center">
-        <div class="navy-line"></div>
-        <h1>How...<br/> <span class="navy"><i>Does he do it?</i></span> </h1>
-        <p>He's not all smoke and mirrors. There's a finely crafted method to his technique.</p>
-      </div>
-    </div>
-    <hr>
-    <div class="row m-t-md align-outer">
-      <div class="col-md-6 text-center align-inner">
-        <h2>Step 1: Existing Databases</h2>
-        <p>The Parts Ninja begins by searching existing databases. Whenever a part is manufactured, it's designed to fit a specific line of vehicles.</p>
-        <p><i>Wouldn't it be nice to know exactly what those vehicles are?</i>
-          <h3><strong>The Parts Ninja will show you!</strong></h3>
+    <span>New</span>
+    <strong>Download our newest iOS app.</strong> Take your business on the go now with our mobile app.
+    <a href="#">Available in the appstore.</a>
+  </div>
+</div>
+
+<div class="index-intro">
+  <div class="container">
+    <header>
+      <h3>How does it actually work?</h3>
+      <p>
+        Spacial has both a web app and an android app to make your website easy and always available. It offers you all the designs in collaboration with some smart people. Your projects will look great everywhere you go.
+      </p>
+    </header>
+    <section class="row">
+      <div class="col-sm-6">
+        <h4>Take all your photos at all times</h4>
+        <p>
+          Spacial is the perfect solution for web developers and designers. You can get an awesome website for your best projects and clients, and also get support for any questions and matters that you might have.
         </p>
       </div>
-      <div class="col-md-6 text-center">
-        <%= image_tag("landing/Basic_Search.png", class:"img-responsive margin-auto") %>
+      <div class="col-sm-6">
+        <h4>Upgrade your account to get all features</h4>
+        <p>
+          Spacial is designed to make showing off your best projects extremely fast and simple. There are many ways to configure. Just go to the source, make changes and the rest is taken care automatically.
+        </p>
       </div>
-    </div>
-    <hr>
-    <div class="row">
-      <div class="col-md-6 col-sm-12 col-md-push-6 text-center pages-list">
-        <h2>Step 2: Your Discoveries!</h2>
-        <p>That's right, <strong>you</strong>! You know things; you're your own garage McGyver and the Parts Ninja wants to learn from you.</p>
-        <p>Remember that time you were in the shop and discovered that you could replace that burned out radiator fan with a simple computer fan motor? <strong>Show us! - It's easy!</strong></p>
-        <ul>
-          <li>Create your discovery - Show us what parts you're switching.</li>
-          <li>Make any notes - Are they backwards compatible? Are extra modifications required? Are extra parts needed?</li>
-          <li><strong>Finally, submit it!</strong></li>
-        </ul>
-        <p><strong>Congratulations! You've earned some garage karma!</strong></p>
-      </div>
-      <div class="col-md-6 col-sm-12 col-md-pull-6 text-center">
-        <%= image_tag("landing/Discovery_example.png", class:"img-responsive margin-auto") %>
-        </div>
-      </div>
-    <hr>
-    <div class="row align-outer">
-      <div class="col-md-6 text-center align-inner">
-        <h2>Step 3: Magic!</h2>
-        <p>The Parts Ninja uses your new discovery to create a compatibility web of parts. This means that your discovery could be that all-important link that creates thousands of potential new options!</p>
-      </div>
-      <div class="col-md-6">
-        <%= image_tag("landing/Compatibility_Web.png", class:"img-responsive martin-auto") %>
-      </div>
-    </div>
+    </section>
   </div>
-</section>
+</div>
 
-<section class="cta-block white-section m-t-md p-b-md">
+<div class="index-mobile-features">
   <div class="container">
-    <div class="row">
-        <div class="col-lg-12 text-center">
-          <div class="navy-line"></div>
-          <h1>Are you...<br/> <span class="navy"> <i> Ready to become a Ninja?</i></span> </h1>
-          <p>Join the dojo and start discovering. It's easy and totally free!</p>
+    <header>
+      <h3>
+        Improve performance with our analytics
+      </h3>
+      <p>
+        There aren't many settings to configure. Just upload your photos and the rest is taken care of automatically.
+      </p>
+    </header>
+    <div class="features clearfix">
+      <div class="feature">
+        <div class="pic">
+          <%= image_tag("spacial/outline-camera.png", class:"icon-camera") %>
         </div>
-    </div>
-    <div class="row align-outer">
-        <div class="col-lg-3 align-inner pages-list text-center">
-            <h2>Why join?</h2>
-            <ul>
-              <li>Unlimited searching</li>
-              <li>Access to full search results</li>
-              <li>Access to the Parts Ninja Marketplace</li>
-              <li>Motorsports community</li>
-            </ul>
-            <div class="btn btn-primary disabled">Become a Ninja!</div>
+        <p>
+          Take pictures any given time
+        </p>
+      </div>
+      <div class="feature">
+        <div class="pic">
+          <%= image_tag("spacial/outline-user.png", class:"icon-user") %>
         </div>
-        <div class="col-lg-6 text-center">
-            <%= image_tag("ThePartsNinjaDark.png", class:"img-responsive margin-auto") %>
+        <p>
+          Meet new awesome friends
+        </p>
+      </div>
+      <div class="feature">
+        <div class="pic">
+          <%= image_tag("spacial/outline-cloud.png", class:"icon-cloud") %>
         </div>
-        <div class="col-lg-3 align-inner pages-list text-center">
-            <h2>Need more reasons?</h2>
-            <ul>
-              <li>How-To guides</li>
-              <li>Additional tools and services</li>
-              <li>Member only discounts</li>
-              <li>Plus more!</li>
-            </ul>
-            <div class="btn btn-primary disabled">Become a Ninja!</div>
+        <p>
+          Keep all your files in sync
+        </p>
+      </div>
+      <div class="feature">
+        <div class="pic">
+          <%= image_tag("spacial/outline-mail.png", class:"icon-mail") %>
         </div>
+        <p>
+          Contact all your contacts directly
+        </p>
+      </div>
     </div>
   </div>
-</section>
+</div>
 
-<section class="sign-up-banner">
+<div class="index-devices">
+  <section class="clearfix">
+    <%= image_tag("landing/ThePartsNinjaMockUp.png", class:"img-responsive devices") %>
+
+    <h4>Looks great in any device</h4>
+    <p>
+      Spacial has both a web app and an android app to make your website easy and always available. It offers you all the designs in collaboration with some smart people. Your projects will look great everywhere you go. Use new components that come included!
+    </p>
+    <p>
+      Spacial is an advanced theme solution for desktop, tablet, and mobile devices. It works in all browsers and your clients can pay instantly, to improve their experience at all times anywhere they go.
+    </p>
+    <div class="icons">
+      <i class="ion-monitor"></i>
+      <i class="ion-ipad"></i>
+      <i class="ion-iphone"></i>
+    </div>
+  </section>
+</div>
+
+<div class="index-features-files mobile-alt clearfix">
+  <div class="container2">
+    <div class="container1">
+      <div class="col col-left">
+        <div class="features">
+          <div class="feature clearfix">
+            <div class="image">
+              <%= image_tag("spacial/features-icon-upload.png") %>
+            </div>
+            <div class="info">
+              <strong>
+                Improve your workflow today
+              </strong>
+              <p>
+                There are many variations of passages of Lorem Ipsum available, but the majority have suffered.
+              </p>
+            </div>
+          </div>
+          <div class="feature clearfix">
+            <div class="image">
+              <%= image_tag("spacial/features-icon-earth.png") %>
+            </div>
+            <div class="info">
+              <strong>
+                Your data in the cloud
+              </strong>
+              <p>
+                There are many variations of passages of Lorem Ipsum available, but the majority have suffered.
+              </p>
+            </div>
+          </div>
+          <div class="feature clearfix">
+            <div class="image">
+              <%= image_tag("spacial/features-icon-repeat.png") %>
+            </div>
+            <div class="info">
+              <strong>
+                Easy to customize
+              </strong>
+              <p>
+                There are many variations of passages of Lorem Ipsum available, but the majority have suffered.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col col-right">
+        <div class="info">
+          <h3>Sync your contacts now</h3>
+          <h4>
+            Powerful dashboard that lets you control your site and portfolio.
+          </h4>
+          <p>
+            Spacial has both a web app and an android app to make your website easy and always available. It offers you all the designs in collaboration with some smart people. Your projects will look great everywhere you go. Use new components that come included. It works in all browsers and your clients can pay instantly to everyone.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="index-features-cta">
   <div class="container">
-    <div class="row">
-      <div class="col-lg-6">
-        <div class="ibox">
-          <div class="ibox-title">
-            Subscribe!
-          </div>
-          <div id="emailForm" class="ibox-content">
-            <%= render 'leads/form' %>
-          </div>
-        </div>
+    <section>
+      <div class="info">
+        <strong>
+          Ready to get started and be awesome?
+        </strong>
+        <p>
+          Try our 30-day trial no credit card required
+        </p>
       </div>
-      <div class="col-lg-6">
-        <div class="navy-line"></div>
-        <h1>Get Early Access!</h1>
-        <p>Do you want to be the first to have access? Sign-up for the Email list and you'll have preferencial access. We'll be rolling out in waves and you would be at the forefront! Not only will you get
-          early access, you'll also get a special gift from the Parts Ninja. Don't worry, your email is safe with the us, we won't ever spam you or sell your information.</p>
-      </div>
-    </div>
+      <a href="#">
+        Sign Up Now
+      </a>
+    </section>
   </div>
-</section>
-
-<script>
-  $('body').addClass('info-pages');
-</script>
+</div>
