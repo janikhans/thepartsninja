@@ -22,3 +22,6 @@
 //= require admin/vehicles
 //= require chosen-jquery
 //= require dynamic_selects
+//= require Chart.bundle
+//= require highcharts
+//= require chartkick

@@ -33,6 +33,13 @@ Rails.application.routes.draw do
     resources :products do
       get :update_ebay_fitments, on: :member
     end
+    resources :charts, only: [] do
+      collection do
+        get :searches_by_type
+        get :search_records
+        get :vehicles_by_type
+      end
+    end
   end
 
   #Resource routes for public
