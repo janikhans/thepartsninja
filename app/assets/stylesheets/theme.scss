@@ -9,6 +9,7 @@
 /* modules */
 @import "base/custom_mixins";
 @import "base/custom_effects";
+@import "base/buttons";
 
 /* vendor */
 // @import "vendor/assets/stylesheets/animate";
@@ -49,7 +50,7 @@
 // @import "custom/pages/support";
 // @import "custom/pages/support_topic";
 // @import "custom/pages/sign_up";
-// @import "custom/pages/sign_in";
+// @import "base/sign_in";
 // @import "custom/pages/careers";
 // @import "custom/pages/career_post";
 // @import "custom/pages/customers";
@@ -71,7 +72,9 @@
 // Additional styling to override base attributes
 // @import "custom";
 // @import "search";
+@import "devise_pages";
+@import "forms";
+@import "style";
 @import "flash";
 @import "chosen-styling";
 @import "typeahead";
-@import "style";

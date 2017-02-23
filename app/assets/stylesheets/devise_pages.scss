@@ -1,0 +1,27 @@
+.signin, .password-reset, .resend-confirmation, .accept-invitation {
+  text-align: center;
+  .header {
+    margin-top: 100px;
+    color: $background-text;
+    .logo {
+      display: block;
+      margin: 0 auto;
+      max-height: 200px;
+    }
+  }
+}
+
+.signup {
+  .header {
+    text-align: center;
+    margin-top: 100px;
+    .logo {
+      display: block;
+      margin: 0 auto;
+      max-height: 200px;
+    }
+  }
+  .cta {
+    color: $background-text;
+  }
+}

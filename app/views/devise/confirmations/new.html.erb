@@ -1,19 +1,15 @@
-<div class="row">
-  <div class="col-md-4 col-md-offset-4">
-    <div class="logo"><%= image_tag("ThePartsNinjaDark.png", class:"img-responsive") %></div>
-    <div class="card user-card">
-      <div class="card-header">
-        <h3>Resend Confirmation</h3>
-      </div>
-      <div class="card-content">
-        <p class="text-center">Enter your email address and a new confirmation link will be emailed to you.</p>
-        <%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-          <%= f.error_notification %>
-          <%= f.full_error :confirmation_token %>
-          <%= f.input :email, required: true, autofocus: true, class:"form-control" %>
-          <%= f.button :submit, "Resend Confirmation", class:"btn btn-primary full-width m-b" %>
-        <% end %>
-      </div>
-    </div>
+<div class="resend-confirmation">
+  <div class="header">
+    <%= image_tag("ThePartsNinjaDark.png", class:"img-responsive logo") %>
+    <h4>Resend Confirmation</h4>
+    <p class="text-center">Enter your email address and a new confirmation link will be emailed to you.</p>
   </div>
+  <%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, class: "user-form" }) do |f| %>
+    <%= f.error_notification %>
+    <%= f.full_error :confirmation_token %>
+    <%= f.input :email, required: true, autofocus: true, wrapper_html: { class: "form-field" } %>
+    <div class="form-action">
+      <%= f.button :submit, "Resend Confirmation", class:"btn-shadow btn-shadow-primary" %>
+    </div>
+  <% end %>
 </div>

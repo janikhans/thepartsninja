@@ -11,7 +11,7 @@
   <%= render 'layouts/ie_shim' %>
 </head>
 
-<body id="body">
+<body id="body" class="<%= "home-page" if @home_page %>">
     <%= render 'layouts/navbar' %>
     <%= render 'layouts/header' %>
     <%= render 'layouts/flash' %>

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-transparent" role="navigation">
+<nav class="navbar navbar-transparent <%= "clear-bg" unless @home_page %>" role="navigation">
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -17,6 +17,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="navbar-collapse">
       <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "Home", root_path %></li>
         <% if user_signed_in? %>
         <li><%= link_to "Search", search_path %> </li>
         <% if current_user.admin?  %>
