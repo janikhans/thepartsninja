@@ -342,7 +342,7 @@ a {
 
 /* inverse navbar (dark) */
 .navbar-inverse {
-  background: #282F37;
+  background: $dark-main;
   border: none;
   z-index: 9999;
   border-radius: 0;
@@ -427,11 +427,11 @@ a {
         }
 
         @media(min-width: 768px) {
-          padding: 33px 10px 30px;
+          padding: 20px 10px 20px;
         }
 
         @media(min-width: 992px) {
-          padding: 33px 10px 30px;
+          padding: 20px 10px 20px;
           margin: 0 8px;
 
           &.rounded {
@@ -441,7 +441,7 @@ a {
             margin-left: 30px;
             font-size: 13px;
             padding: 8px 20px 9px;
-            margin-top: 22px;
+            margin-top: 10px;
             font-weight: 500;
             text-transform: capitalize;
 
@@ -471,7 +471,7 @@ a {
 /* footer */
 .footer {
   margin-top: 100px;
-  background: #283142;
+  background: $dark-main;
   padding: 55px 0 35px;
 
   .col-sm-4 {
@@ -497,7 +497,7 @@ a {
     margin-top: 30px;
 
     a {
-      color: #CDD6E9;
+      color: $dark-main-text;
       display: inline-block;
       margin-bottom: 9px;
       text-decoration: none;
@@ -521,7 +521,7 @@ a {
 
   .newsletter {
     p {
-      color: #BCC7DF;
+      color: $dark-main-text;
       margin-top: 25px;
       line-height: 20px;
     }
@@ -580,7 +580,7 @@ a {
       }
 
       a {
-        color: #9DAAC2;
+        color: $dark-main-text;
         text-transform: uppercase;
         font-size: 11px;
         font-weight: 600;

@@ -72,9 +72,11 @@
 // Additional styling to override base attributes
 // @import "custom";
 // @import "search";
+@import "base/temp";
 @import "home_page";
 @import "devise_pages";
 @import "forms";
+@import "headers";
 @import "style";
 @import "flash";
 @import "chosen-styling";

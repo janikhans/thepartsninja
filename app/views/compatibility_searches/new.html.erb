@@ -1,9 +1,31 @@
 <% content_for :header_topic do %>
-  Find Compatibilities
+  <h5 class="topic-title">
+    Select Your Vehicle Type
+  </h5>
+  <div class="topics clearfix">
+    <%= link_to "", class: "topic" do %>
+      <%= icon(:motorcycle) %> <span>Motorcycle</span>
+    <% end %>
+    <%= link_to "", class: "topic" do %>
+      <%= icon(:car) %> <span>ATV</span>
+    <% end %>
+    <%= link_to "", class: "topic" do %>
+      <%= icon(:plane) %> <span>PWC</span>
+    <% end %>
+    <%= link_to "", class: "topic" do %>
+      <%= icon(:truck) %> <span>SXS</span>
+    <% end %>
+    <%= link_to "", class: "topic" do %>
+      <%= icon(:paper_plane) %> <span>Snowmobile</span>
+    <% end %>
+    <%= link_to "", class: "topic" do %>
+      <%= icon(:cogs) %> <span>Scooter</span>
+    <% end %>
+  </div>
+  <%= render 'find_compatibilities/form' %>
 <% end %>
 <% content_for :header do %>
-  <%= render 'layouts/header_partials/default' %>
-  <%= render 'layouts/header_partials/quicklinks' %>
+  <%= render 'layouts/header_partials/spacial_default' %>
 <% end %>
 <div class="row">
   <div class="col-md-9">

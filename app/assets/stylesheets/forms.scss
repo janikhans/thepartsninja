@@ -53,3 +53,49 @@
     }
   }
 }
+
+.find-compatibilities-form {
+  .fa-search {
+    position: absolute;
+    font-size: 22px;
+    top: 19px;
+    left: 30px;
+    color: #9cabcc;
+    @media(max-width: 767px) {
+      top: 16px;
+    }
+  }
+  .select-box {
+    border: 1px solid #D4DAE0;
+    width: 100%;
+    padding: 10px 70px;
+    border-radius: 50px;
+    outline: none;
+    font-size: 18px;
+    background-color: #FFF;
+    margin-bottom: 15px;
+    .form-group {
+      margin-bottom: 0px;
+    }
+    .form-control {
+      border-radius: 0px;
+      border: 0;
+      box-shadow: none;
+      font-size: 18px;
+    }
+    .disabled {
+      background-color: transparent;
+    }
+    .cat-n-m {
+      margin-top: 5px;
+    }
+  }
+  .vehicle-select {
+    .col-md-3 {
+      padding: 0px;
+    }
+  }
+  .submit-button {
+    margin-top: 25px;
+  }
+}
