@@ -1,0 +1,51 @@
+<% if @find_compatibilities.errors.any? %>
+  <div class="results-overview card text-center">
+    <%= render 'shared/error_messages', object: @find_compatibilities %>
+  </div>
+<% elsif @find_compatibilities.compatible_vehicles.any? %>
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-success cursor-pointer">
+      <div data-toggle="collapse" data-parent="#accordion" href="#collapse1" class="panel-heading">
+        <h4 class="panel-title">
+          <%= icon(:check) %> Compatible Parts Found
+          <span class="pull-right"><%= icon(:expand) %></span>
+        </h4>
+      </div>
+      <div id="collapse1" class="panel-collapse collapse in">
+        <div class="panel-body">
+          <p>There were some <%= @find_compatibilities.category.name %> compatibilities found between:</p>
+          <%= @find_compatibilities.vehicle.to_label %>
+          <p>There were total of <%= @find_compatibilities.compatible_vehicles.size %> compatible vehicles found</p>
+      </div>
+      </div>
+    </div>
+    <div class="panel panel-warning cursor-pointer">
+      <div data-toggle="collapse" data-parent="#accordion" href="#collapse2" class="panel-heading">
+        <h4 class="panel-title">
+          <%= icon(:exchange) %> Potential Parts Found
+          <span class="pull-right"><%= icon(:expand) %></span>
+        </h4>
+      </div>
+      <div id="collapse2" class="panel-collapse collapse">
+        <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat.</div>
+      </div>
+    </div>
+  </div>
+  <div class="pricing-plans">
+    <div class="plans">
+      <% @find_compatibilities.compatible_vehicles.group_by{ |v| v.vehicle_submodel }.sort_by { |submodel, vehicles| vehicles.length }.reverse.each do |vehicle_submodel, vehicles| %>
+        <%= render partial: "vehicle", locals: {vehicle_submodel: vehicle_submodel, vehicles: vehicles} %>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <div class="results-overview card text-center">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <h2><%= icon(:times, class:"fa-2x") %></h2>
+    <p>It does not appear that there were any compatibilitites found for this vehicle.</p>
+    <p>Try again?</p>
+  </div>
+<% end %>

@@ -1,5 +1,5 @@
 <% vehicles.sort_by!{ |v| v.vehicle_year_id } %>
-<div id="vehicle_submodel_<%= vehicle_submodel.id%>" class="card product">
+<div id="vehicle_submodel_<%= vehicle_submodel.id%>" class="plan clearfix">
   <div data-toggle="collapse" data-target="#vehicle_submodel_<%= vehicle_submodel.id %>_vehicles" class="row product-details">
     <div class="col-md-10">
       <div class="product-image">
@@ -13,17 +13,17 @@
       <div><small>Models</small></div>
     </div>
   </div>
-  <div id="vehicle_submodel_<%= vehicle_submodel.id %>_vehicles" class="row collapse">
-    <div class="row product-parts">
-      <div class="row product-section">
+  <div id="vehicle_submodel_<%= vehicle_submodel.id %>_vehicles" class="collapse">
+    <div class="product-parts">
+      <div class="product-section">
         <div class="col-md-2 section-title">Brand</div>
         <div class="col-md-10">
           <%= link_to vehicle_submodel.vehicle_model.brand.name, brand_path(vehicle_submodel.vehicle_model.brand) %>
         </div>
       </div>
-      <div class="row product-section">
+      <div class="product-section">
         <div class="col-md-2 section-title"><%= pluralize_without_count(vehicles.size, "Year") %></div>
-        <div class="row col-md-10">
+        <div class="col-md-10">
           <% vehicles.each do |vehicle| %>
             <div class="col-md-4"><%= link_to vehicle.year, vehicle_path(vehicle) %> (<%= vehicle.vehicle_compatible_count %>)</div>
           <% end %>
