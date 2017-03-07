@@ -1,0 +1,8 @@
+if ( $('#compatibility-results').length > 0 ) {
+  $('#compatibility-results').append("<%= escape_javascript(render partial: 'results_list') %>");
+}
+<% if @compatibility_search.can_advance_page? %>
+  $('#show-more-link').replaceWith("<%= escape_javascript(link_to 'Show More', find_path(@compatibility_search, page: @compatibility_search.next_page), remote: true, class: 'btn btn-primary', id: 'show-more-link') %>")
+<% else %>
+  $('#show-more-link').remove();
+<% end %>

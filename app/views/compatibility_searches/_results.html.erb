@@ -1,8 +1,8 @@
-<% if @find_compatibilities.errors.any? %>
+<% if @search.errors.any? %>
   <div class="results-overview card text-center">
-    <%= render 'shared/error_messages', object: @find_compatibilities %>
+    <%= render 'shared/error_messages', object: @search %>
   </div>
-<% elsif @find_compatibilities.compatible_vehicles.any? %>
+<% elsif @compatibility_search.compatible_vehicles.any? %>
   <div class="panel-group" id="accordion">
     <div class="panel panel-success card cursor-pointer">
       <div data-toggle="collapse" data-parent="#accordion" href="#collapse1" class="panel-heading">
@@ -13,9 +13,11 @@
       </div>
       <div id="collapse1" class="panel-collapse collapse in">
         <div class="panel-body">
-          <p>There were some <%= @find_compatibilities.category.name %> compatibilities found between:</p>
-          <%= @find_compatibilities.vehicle.to_label %>
-          <p>There were total of <%= @find_compatibilities.compatible_vehicles.size %> compatible vehicles found</p>
+          <p>There were some <%= @compatibility_search.category.name %> compatibilities found between:</p>
+          <%= @compatibility_search.vehicle.to_label %>
+          <p>There were total of <%= @compatibility_search.results_count %> compatible vehicles found</p>
+          <p>Total Pages: <%= @compatibility_search.total_pages %></p>
+          <p>Models found: <%= @compatibility_search.model_count %></p>
       </div>
       </div>
     </div>
@@ -34,11 +36,12 @@
       </div>
     </div>
   </div>
-  <div class="results">
-    <% @find_compatibilities.compatible_vehicles.group_by{ |v| v.vehicle_submodel }.sort_by { |submodel, vehicles| vehicles.length }.reverse.each do |vehicle_submodel, vehicles| %>
-      <%= render partial: "vehicle", locals: {vehicle_submodel: vehicle_submodel, vehicles: vehicles} %>
-    <% end %>
+  <div id="compatibility-results" class="results">
+    <%= render 'results_list' %>
   </div>
+  <% if @compatibility_search.can_advance_page? %>
+    <%= link_to "Show More", find_path(@compatibility_search, page: @compatibility_search.next_page), remote: true, class: "btn btn-primary", id: "show-more-link" %>
+  <% end %>
 <% else %>
   <div class="results-overview card text-center">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>

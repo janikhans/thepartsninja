@@ -67,9 +67,9 @@ Rails.application.routes.draw do
     get :results
   end
 
-  resource :find, controller: :find_compatibilities, only: [] do
-    get :new, as: "/"
-    get :results
+  resources :find, controller: :compatibility_searches, only: [:show] do
+    get :new, as: "/", on: :collection
+    get :results, on: :collection
   end
 
   resources :categories, only: [] do

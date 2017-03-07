@@ -1,0 +1,3 @@
+<% @compatibility_search.compatible_vehicles.group_by{ |v| v.vehicle_submodel }.each do |vehicle_submodel, vehicles| %>
+  <%= render partial: "vehicle", locals: {vehicle_submodel: vehicle_submodel, vehicles: vehicles} %>
+<% end %>

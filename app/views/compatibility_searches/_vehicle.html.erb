@@ -9,7 +9,7 @@
       <div class="product-description">Talk about sports, entertainment, music, movies, your favorite color, talk about enything.</div>
     </div>
     <div class="col-md-2 product-info">
-      <span><%= vehicles.size %></span>
+      <span><%= vehicles.size %> (<%= vehicles.first.submodel_compatibility_count %>)</span>
       <div><small>Models</small></div>
     </div>
   </div>
@@ -25,7 +25,7 @@
         <div class="col-md-2 section-title"><%= pluralize_without_count(vehicles.size, "Year") %></div>
         <div class="row col-md-10">
           <% vehicles.each do |vehicle| %>
-            <div class="col-md-4"><%= link_to vehicle.year, vehicle_path(vehicle) %> (<%= vehicle.compatible_count %>)</div>
+            <div class="col-md-4"><%= link_to vehicle.year, vehicle_path(vehicle) %> (<%= vehicle.vehicle_compatible_count %>)</div>
           <% end %>
         </div>
       </div>
