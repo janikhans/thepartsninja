@@ -1,11 +1,15 @@
-<%= simple_form_for @compatibility_check, url: results_check_path, method: :get, html: { class: "check-form" }, remote: true do |f| %>
+<%= simple_form_for @search, as: "search", url: results_check_index_path, method: :post, html: { class: "check-form" }, remote: true do |f| %>
   <div class="card m-b-md" style="overflow: visible">
     <div class="search-container">
       <div class="search-display">
         <div class="row search-box">
-          <%= f.input :category_name, input_html: {class: "typeahead", autocomplete: "off"}, wrapper_html: {class:"col-md-8"}, label: false, placeholder: "What part are you looking for?" %>
-          <%= f.input :category_id, as: :hidden %>
-          <%= f.input :fitment_note_id, collection: [], wrapper_html: { class:"col-md-4" }, label: false, disabled: true %>
+          <%= f.simple_fields_for :category do |category| %>
+            <%= category.input :name, input_html: {class: "typeahead", autocomplete: "off"}, wrapper_html: {class:"col-md-8"}, label: false, placeholder: "What part are you looking for?" %>
+            <%= category.input :id, as: :hidden %>
+          <% end %>
+          <%= f.simple_fields_for :fitment_note do |fitment_note| %>
+            <%= fitment_note.input :id, collection: [], wrapper_html: { class:"col-md-4" }, label: false, disabled: true %>
+          <% end %>
         </div>
       </div>
     </div>
@@ -13,20 +17,20 @@
   <div class="card" style="overflow: visible">
     <div class="search-tags">
       <div class="col-md-6 query-placeholder">
-        <div id="vehicle_one" class="query-tag">
-          <span id="vehicle_one_year"></span>
-          <span id="vehicle_one_brand"></span>
-          <span id="vehicle_one_model"></span>
-          <span id="vehicle_one_submodel"></span>
+        <div id="vehicle" class="query-tag">
+          <span id="vehicle_year"></span>
+          <span id="vehicle_brand"></span>
+          <span id="vehicle_model"></span>
+          <span id="vehicle_submodel"></span>
           <%= link_to icon(:times), "#", class: "muted" %>
         </div>
       </div>
       <div class="col-md-6 query-placeholder">
-        <div id="vehicle_two" class="query-tag">
-          <span id="vehicle_two_year"></span>
-          <span id="vehicle_two_brand"></span>
-          <span id="vehicle_two_model"></span>
-          <span id="vehicle_two_submodel"></span>
+        <div id="comparing_vehicle" class="query-tag">
+          <span id="comparing_vehicle_year"></span>
+          <span id="comparing_vehicle_brand"></span>
+          <span id="comparing_vehicle_model"></span>
+          <span id="comparing_vehicle_submodel"></span>
           <%= link_to icon(:times), "#", class: "muted" %>
         </div>
       </div>
@@ -37,11 +41,13 @@
           <%= icon(:motorcycle) %> Vehicle One<b class="caret"></b>
         <% end %>
         <div class="popover-select hide">
-          <%= f.input :vehicle_one_brand, collection: @brands, class:"form-control", label: false, prompt: "Make...", input_html: {class: "chosen-select" } %>
-          <%= f.input :vehicle_one_model, collection: [], class: "form-control", label: false, prompt: "Model...", input_html: {class: "chosen-select" }%>
-          <%= f.input :vehicle_one_submodel, collection: [], class:"form-control", label: false, prompt: "Submodel..." %>
-          <%= f.input :vehicle_one_year, collection: [], prompt: "Year...", label: false, class:"form-control" %>
-          <%= hidden_field_tag "compatibility_check[vehicles][][id]", nil, id: "compatibility_check_vehicle_one_id" %>
+          <%= f.simple_fields_for :vehicle do |vehicle| %>
+            <%= vehicle.input :brand, collection: @brands, class:"form-control", label: false, prompt: "Make...", input_html: {class: "chosen-select" } %>
+            <%= vehicle.input :model, collection: [], class: "form-control", label: false, prompt: "Model...", input_html: {class: "chosen-select" }%>
+            <%= vehicle.input :submodel, collection: [], class:"form-control", label: false, prompt: "Submodel..." %>
+            <%= vehicle.input :year, collection: [], prompt: "Year...", label: false, class:"form-control" %>
+            <%= vehicle.input :id, as: :hidden %>
+          <% end %>
         </div>
       </div>
       <div class="col-md-6 input">
@@ -49,11 +55,13 @@
           <%= icon(:motorcycle, class:"fa-flip-horizontal") %> Vehicle Two<b class="caret"></b>
         <% end %>
         <div class="popover-select hide">
-          <%= f.input :vehicle_two_brand, collection: @brands, class:"form-control", label: false, prompt: "Make...", input_html: {class: "chosen-select" } %>
-          <%= f.input :vehicle_two_model, collection: [], class: "form-control", label: false, prompt: "Model...", input_html: {class: "chosen-select" } %>
-          <%= f.input :vehicle_two_submodel, collection: [], class:"form-control", label: false, prompt: "Submodel..." %>
-          <%= f.input :vehicle_two_year, collection: [], prompt: "Year...", label: false, class:"form-control" %>
-          <%= hidden_field_tag "compatibility_check[vehicles][][id]", nil, id: "compatibility_check_vehicle_two_id" %>
+          <%= f.simple_fields_for :comparing_vehicle do |comparing_vehicle| %>
+            <%= comparing_vehicle.input :brand, collection: @brands, class:"form-control", label: false, prompt: "Make...", input_html: {class: "chosen-select" } %>
+            <%= comparing_vehicle.input :model, collection: [], class: "form-control", label: false, prompt: "Model...", input_html: {class: "chosen-select" }%>
+            <%= comparing_vehicle.input :submodel, collection: [], class:"form-control", label: false, prompt: "Submodel..." %>
+            <%= comparing_vehicle.input :year, collection: [], prompt: "Year...", label: false, class:"form-control" %>
+            <%= comparing_vehicle.input :id, as: :hidden %>
+          <% end %>
         </div>
       </div>
     </div>
@@ -85,12 +93,12 @@
     source: categories
   });
   $('.typeahead').bind('typeahead:select', function(ev, suggestion) {
-    $('#compatibility_check_category_id').val(suggestion.id);
-    $('#compatibility_check_category_id').trigger('change');
+    $('#search_category_id').val(suggestion.id);
+    $('#search_category_id').trigger('change');
   });
 
-  $('#compatibility_check_category_id').on("change", function() {
-    var select = $('#compatibility_check_fitment_note_id')
+  $('#search_category_id').on("change", function() {
+    var select = $('#search_fitment_note_id')
     select.empty();
     var categoryId = $(this).val();
     if (categoryId > 0 ) {
@@ -110,22 +118,22 @@
     };
   });
 
-  dynamic_vehicle_form("compatibility_check_vehicle_one");
-  dynamic_vehicle_form("compatibility_check_vehicle_two");
-  update_vehicle_tag("vehicle_one");
-  update_vehicle_tag("vehicle_two");
+  dynamic_vehicle_form("search_vehicle");
+  dynamic_vehicle_form("search_comparing_vehicle");
+  update_vehicle_tag("vehicle");
+  update_vehicle_tag("comparing_vehicle");
   update_part_tag("category_name", "category_name");
   update_part_tag("fitment_note_id", "part_note");
-  $("#compatibility_check_vehicle_one_year").on("change", function() {
+  $("#search_vehicle_year").on("change", function() {
     var vehicleId = $(this).val();
-    $("#compatibility_check_vehicle_one_id").val(vehicleId);
+    $("#search_vehicle_id").val(vehicleId);
   });
-  $("#compatibility_check_vehicle_two_year").on("change", function() {
+  $("#search_comparing_vehicle_year").on("change", function() {
     var vehicleId = $(this).val();
-    $("#compatibility_check_vehicle_two_id").val(vehicleId);
+    $("#search_comparing_vehicle_id").val(vehicleId);
   });
   function update_vehicle_span(vehicle, attribute) {
-    $("#compatibility_check_" + vehicle + "_" + attribute).on("change", function() {
+    $("#search_" + vehicle + "_" + attribute).on("change", function() {
       var optionText = $(this).find("option:selected").text();
       if (optionText !== "-- Base") {
         $("#" + vehicle + "_" + attribute).html(optionText + " ");
@@ -139,7 +147,7 @@
     update_vehicle_span(vehicle, "year");
   };
   function update_part_tag(select, span) {
-    $("#compatibility_check_" + select).on('typeahead:selected', function() {
+    $("#search_" + select).on('typeahead:selected', function() {
       var text = $(this).val();
       // var optionText = $(this).find("option:selected").text();
       $("#" + span).html(text + " ");
