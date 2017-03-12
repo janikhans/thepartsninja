@@ -9,7 +9,7 @@
     </div>
     <div class="col-md-2 product-info">
       <span><%= parts.count %></span>
-      <div><small>Compatibilities</small></div>
+      <div><small><%= pluralize_without_count(parts.count, "Compatibility") %></small></div>
     </div>
   </div>
   <div id="product_<%= product.id %>_parts" class="row collapse">

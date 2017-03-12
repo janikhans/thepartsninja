@@ -29,7 +29,7 @@
       <div class="panel-body">
         <% if @part.oem_vehicles.any? %>
           <div class="row">
-            <% @part.oem_vehicles.includes(:vehicle_year, vehicle_submodel: {vehicle_model: :brand}).each do |v|%>
+            <% @part.oem_vehicles.includes(:vehicle_year, vehicle_submodel: {vehicle_model: :brand}).order(vehicle_submodel_id: :asc, vehicle_year_id: :asc).each do |v|%>
               <div class="col-md-3 col-xs-6 oem-vehicle">
                 <%= v.year %> <%= v.brand.name %> <%= v.model.name %> <%= v.submodel.try(:name) %>
               </div>

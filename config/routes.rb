@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
-  #Users
-  #Change the default devise routes to something more pleasing
-    devise_for :users, controllers: {registrations: :registrations, invitations: :invitations}
+  # Users
+  # Change the default devise routes to something more pleasing
+  devise_for :users, controllers: {registrations: :registrations, invitations: :invitations}
 
   devise_scope :user do
     get "login", to: "devise/sessions#new"
@@ -16,7 +16,8 @@ Rails.application.routes.draw do
       get :edit, on: :collection
     end
   end
-  #Namespace routes for Admins only
+
+  # Admin
   namespace :admin do
     root to: 'statistics#index'
     resources :compatibilities, :vehicles
@@ -62,14 +63,17 @@ Rails.application.routes.draw do
   resources :vehicle_submodels, only: [] do
     get :vehicles, on: :member
   end
-  resource :check, controller: :compatibility_checks, only: [] do
-    get :new, as: "/"
-    get :results
+  resources :check, controller: :check_searches, only: [:show] do
+    collection do
+      get :new, as: ""
+      get :results
+    end
   end
-
-  resource :find, controller: :find_compatibilities, only: [] do
-    get :new, as: "/"
-    get :results
+  resources :find, controller: :compatibility_searches, only: [:show] do
+    collection do
+      get :new, as: ""
+      get :results
+    end
   end
 
   resources :categories, only: [] do
@@ -81,14 +85,19 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'coming-soon' => 'leads#new'
-
-  #Static Pages
+  # Static Pages
   root 'pages#index'   # The Welcome Page!
-  get 'help' => 'pages#help'
-  get 'contact' => 'pages#contact'
-  get 'terms-of-service' => 'pages#terms'
-  get 'about' => 'pages#about'
-  get 'privacy-policy' => 'pages#privacy'
-  get 'search' => 'pages#search'
+  resources :pages, path: "", only: [] do
+    collection do
+      get :help
+      get :contact
+      get :terms_of_service, path: "terms-of-service"
+      get :about
+      get :privacy_policy, path: "privacy-policy"
+      get :search
+    end
+  end
+
+  # Leads / Coming soon
+  get 'coming-soon' => 'leads#new'
 end

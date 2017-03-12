@@ -17,21 +17,21 @@
             <div class="ibox-content padding-fix">
               <p class="text-center">What are you looking for?</p>
               <div class="search-form">
-                <%= simple_form_for :search, url: search_path, method: :get do |f| %>
+                <%= simple_form_for :search, url: search_pages_path, method: :get do |f| %>
                   <div class="row">
                     <%= f.input :year, class:"form-control", collection: 1955..2017, prompt: "Year...", label: false %>
                     <%= f.input :brand, placeholder: "Make...", class:"form-control", label: false %>
                     <%= f.input :model, placeholder: "Model...", class:"form-control", label: false %>
                     <%= f.input :part, placeholder: "What Part...", class:"form-control", label: false %>
                     <div class="text-center">
-                      <%= link_to "Search", search_path, class:"btn btn-default submit-btn" %>
+                      <%= link_to "Search", search_pages_path, class:"btn btn-default submit-btn" %>
                     </div>
                   </div>
                 <% end %>
               </div>
             </div>
             <div class="ibox-footer small-footer">
-              By clicking Search, you agree to our <%= link_to "Terms", terms_of_service_path, :target => "_blank" %>
+              By clicking Search, you agree to our <%= link_to "Terms", terms_of_service_pages_path, :target => "_blank" %>
            </div>
           </div>
         </div>

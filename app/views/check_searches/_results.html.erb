@@ -1,0 +1,48 @@
+<% if @search.errors.any? %>
+  <div class="results-overview card text-center">
+    <%= render 'shared/error_messages', object: @search %>
+  </div>
+<% elsif @check_search.successful? %>
+  <div class="panel panel-success card cursor-pointer">
+    <div data-toggle="collapse" data-parent="#accordion" href="#collapse1" class="panel-heading">
+      <h4 class="panel-title">
+        <%= icon(:check) %> Compatible Parts Found
+        <span class="pull-right"><%= icon(:expand) %></span>
+      </h4>
+    </div>
+    <div id="collapse1" class="panel-collapse collapse in">
+      <div class="panel-body text-center">
+        <h1>Success!</h1>
+        <p>It appears that <%= @check_search.fitment_note.try(:name) %> <%= @check_search.category.name %> are compatible between:</p>
+        <h4><%= @check_search.vehicle.to_label %> and <%= @check_search.comparing_vehicle.to_label %></h4>
+        <p>The Parts Ninja found <%= pluralize(@check_search.grouped_count, "common product") %>.</p>
+      </div>
+    </div>
+  </div>
+  <div id="compatible-results" class="results">
+  </div>
+  <div id="show-more-link" class="text-center">
+    <%= link_to "View Compatible Parts", check_path(@check_search, page: @check_search.current_page), remote: true, class: "btn btn-primary" %>
+  </div>
+<% else %>
+  <div class="panel panel-danger card cursor-pointer">
+    <div data-toggle="collapse" data-parent="#accordion" href="#collapse1" class="panel-heading">
+      <h4 class="panel-title">
+        <%= icon(:times) %> No Compatible Parts Found
+        <span class="pull-right"><%= icon(:expand) %></span>
+      </h4>
+    </div>
+    <div id="collapse1" class="panel-collapse collapse in">
+      <div class="panel-body text-center">
+        <h1>Sorry...</h1>
+        <p>It does not appear that <%= @check_search.fitment_note.try(:name) %> <%= @check_search.category ? @check_search.category.name : @check_search.category_name %> are compatible between:</p>
+        <h4><%= @check_search.vehicle.to_label %> and <%= @check_search.comparing_vehicle.to_label %></h4>
+        <p>There may some a reason for that though...</p>
+          <p>We are constantly updating our datbase and there's a chance we don't yet have the neccessary data
+              to answer your search.</p>
+        <h3>In the mean time...</h3>
+        <p>Try searching for another model that you know shares the part you are wanting to check compatibility for.</p>
+      </div>
+    </div>
+  </div>
+<% end %>
