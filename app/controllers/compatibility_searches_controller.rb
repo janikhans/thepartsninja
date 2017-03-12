@@ -23,21 +23,27 @@ class CompatibilitySearchesController < ApplicationController
           format.js
         end
       else
-        format.html { redirect_to find_path }
+        format.html { redirect_to find_index_path }
       end
     end
   end
 
   def show
-    @page = params[:page].to_i
     @compatibility_search = CompatibilitySearch.find_by(id: params[:id])
-    @compatibility_search.process(page: @page, eager_load: true)
+    @compatibility_search.process(query_params.merge(eager_load: true))
     respond_to :js
   end
 
   private
 
   def search_params
-    params.require(:search).permit(:category_id, :category_name, :fitment_note_id, part_attributes: [], vehicle: [:brand, :model, :year, :id])
+    params.require(:search).permit(category: [:name, :id], fitment_note: :id, vehicle: [:brand, :model, :year, :id])
+  end
+
+  def query_params
+    whitelist = [:page]
+    whitelist.select { |param| params.has_key?(param) }.reduce({}) do |query_params, param|
+      query_params.merge({ param => params[param] })
+    end
   end
 end
