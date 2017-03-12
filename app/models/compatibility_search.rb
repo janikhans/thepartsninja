@@ -1,62 +1,28 @@
 class CompatibilitySearch < ApplicationRecord
+  include SearchableModel
+
   # TODO set defaults for processed? and page
   # rescue errors
   # limit by vehicle_submodel_id
 
-  belongs_to :vehicle
-  validates :vehicle, presence: true
+  attr_accessor :compatible_vehicles, :potential_vehicles, :grouped_count
 
-  validates :category_name, presence: true
-
-  belongs_to :category
-  belongs_to :user
-  belongs_to :fitment_note
-
-  has_one :search_record, as: :searchable
-
-  attr_accessor :compatible_vehicles, :model_count, :potential_vehicles
-
-  def process(params = {})
+  def process(options = {})
     return false unless valid?
-    self.limit = params[:limit] if params[:limit].present?
-    self.current_page = params[:page] if params[:page].present?
-    self.threshold = params[:threshold] if params[:threshold].present?
+    self.limit = options[:limit] if options[:limit].present?
+    self.current_page = options[:page] if options[:page].present?
+    self.threshold = options[:threshold] if options[:threshold].present?
+    self.type = options[:type] if options[:type].present?
     self.compatible_vehicles = nil
     self.potential_vehicles = nil
-    if params[:type] == :potentials
-      self.potential_vehicles = find_potential_compatible_vehicles
-    else
-      self.compatible_vehicles = find_compatibilities
-    end
-    self.model_count = vehicles.first.submodel_count if vehicles.present?
-    eager_load_vehicles if params[:eager_load] == true
+    find_vehicles
+    self.grouped_count = vehicles.first.grouped_count if vehicles.present?
+    eager_load_vehicles if options[:eager_load] == true
     return self
   end
 
-  def total_pages
-    pages = model_count.to_f / limit
-    pages.ceil
-  end
-
-  def can_advance_page?
-    unless successful?
-      raise ArgumentError, "search must be processed first"
-    end
-    current_page < total_pages
-  end
-
-  def next_page
-    if can_advance_page?
-      current_page + 1
-    end
-  end
-
-  def current_page
-    @current_page ||= 1
-  end
-
   def successful?
-    results_count.present? || compatible_parts.present? || potential_parts.present?
+    results_count.present? || compatible_vehicles.present? || potential_vehicles.present?
   end
 
   def vehicles
@@ -65,33 +31,12 @@ class CompatibilitySearch < ApplicationRecord
 
   private
 
-  def threshold=(value)
-    unless (value.is_a? Integer) && value > 0
-      raise ArgumentError, "expects a positive integer as threshold"
+  def find_vehicles
+    if type == "potentials"
+      self.potential_vehicles = find_potential_compatible_vehicles
+    else
+      self.compatible_vehicles = find_compatibilities
     end
-    @threshold = value
-  end
-
-  def threshold
-    @threshold ||= 20
-  end
-
-  def limit=(value)
-    unless (value.is_a? Integer) && value > 0
-      raise ArgumentError, "expects a positive integer as limit"
-    end
-    @limit = value
-  end
-
-  def limit
-    @limit ||= 20
-  end
-
-  def current_page=(value)
-    unless (value.is_a? Integer) && value > 0
-      raise ArgumentError, "expects a positive integer as page number"
-    end
-    @current_page = value
   end
 
   def find_compatibilities
@@ -128,14 +73,14 @@ class CompatibilitySearch < ApplicationRecord
           ORDER BY submodel_compatibility_count DESC, vehicle_submodel_id, vehicle_compatible_count DESC, vehicles.id
         ),
         submodels AS (
-          SELECT vehicle_submodel_id, submodel_compatibility_count, COUNT(*) OVER() AS submodel_count
+          SELECT vehicle_submodel_id, submodel_compatibility_count, COUNT(*) OVER() AS grouped_count
           FROM vehicles
           GROUP BY vehicle_submodel_id, submodel_compatibility_count
           ORDER BY submodel_compatibility_count DESC, vehicle_submodel_id
           OFFSET ?
           LIMIT ?
         )
-        SELECT vehicles.*, submodels.submodel_count
+        SELECT vehicles.*, submodels.grouped_count
         FROM vehicles
         INNER JOIN submodels ON submodels.vehicle_submodel_id = vehicles.vehicle_submodel_id
       ", vehicle_id, category_id, offset, limit])
@@ -164,14 +109,14 @@ class CompatibilitySearch < ApplicationRecord
           ORDER BY submodel_compatibility_count DESC, vehicle_submodel_id, vehicle_compatible_count DESC, vehicles.id
         ),
         paginated_submodels AS (
-          SELECT vehicle_submodel_id, submodel_compatibility_count, COUNT(*) OVER() AS submodel_count
+          SELECT vehicle_submodel_id, submodel_compatibility_count, COUNT(*) OVER() AS grouped_count
           FROM vehicles
           GROUP BY vehicle_submodel_id, submodel_compatibility_count
           ORDER BY submodel_compatibility_count DESC, vehicle_submodel_id
           OFFSET ?
           LIMIT ?
         )
-        SELECT vehicles.*, paginated_submodels.submodel_count
+        SELECT vehicles.*, paginated_submodels.grouped_count
         FROM vehicles
         INNER JOIN paginated_submodels ON paginated_submodels.vehicle_submodel_id = vehicles.vehicle_submodel_id
         ORDER BY submodel_compatibility_count DESC, vehicle_submodel_id, vehicle_compatible_count, vehicles.id
@@ -219,21 +164,17 @@ class CompatibilitySearch < ApplicationRecord
           ORDER BY vehicle_compatible_count DESC, vehicles.id
         ),
         paginated_submodels AS (
-          SELECT vehicle_submodel_id, submodel_compatibility_count, COUNT(*) OVER() AS submodel_count
+          SELECT vehicle_submodel_id, submodel_compatibility_count, COUNT(*) OVER() AS grouped_count
           FROM potential_vehicles
           GROUP BY vehicle_submodel_id, submodel_compatibility_count
           ORDER BY submodel_compatibility_count DESC, vehicle_submodel_id
           OFFSET ?
           LIMIT ?
         )
-        SELECT potential_vehicles.*, paginated_submodels.submodel_count
+        SELECT potential_vehicles.*, paginated_submodels.grouped_count
         FROM potential_vehicles
         INNER JOIN paginated_submodels ON paginated_submodels.vehicle_submodel_id = potential_vehicles.vehicle_submodel_id
         ORDER BY submodel_compatibility_count DESC, vehicle_submodel_id, vehicle_compatible_count, potential_vehicles.id
       ", vehicle_id, category_id, vehicle_id, category_id, threshold, offset, limit])
-  end
-
-  def offset
-    current_page * limit - limit
   end
 end
