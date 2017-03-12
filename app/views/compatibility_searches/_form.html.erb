@@ -1,4 +1,4 @@
-<%= simple_form_for @search, as: "search", url: results_find_index_path, method: :post, remote: true do |f| %>
+<%= simple_form_for @search, as: "search", url: results_find_index_path, method: :get, remote: true do |f| %>
   <div class="row">
     <%= f.simple_fields_for :category do |category| %>
       <%= category.input :name, input_html: { class: "typeahead", autocomplete: "off"}, wrapper_html: {class:"col-md-8"}, label: false, placeholder: "What part are you looking for?" %>

@@ -7,8 +7,8 @@ class CheckSearchesController < ApplicationController
   end
 
   # Example params for testing
-  # http://localhost:3000/check/results?utf8=%E2%9C%93&compatibility_check%5Bcategory_name%5D=brake+pads&compatibility_check%5Bvehicles%5D%5B%5D%5Bid%5D=1&compatibility_check%5Bvehicles%5D%5B%5D%5Bid%5D=10834&compatibility_check%5Bfitment_note_id%5D=&commit=Check
-  # add fitment_note_id &fitment_note_id=4
+  # http://localhost:3000/check/results?utf8=%E2%9C%93&search%5Bcategory%5D%5Bname%5D=Brake+pads&search%5Bvehicle%5D%5Bid%5D=1&search%5Bcomparing_vehicle%5D%5Bid%5D=11
+  # add fitment_note_id &search%5Bfitment_note%5D%5Bid%5D=3
 
   def results
     respond_to do |format|

@@ -66,13 +66,13 @@ Rails.application.routes.draw do
   resources :check, controller: :check_searches, only: [:show] do
     collection do
       get :new, as: ""
-      post :results
+      get :results
     end
   end
   resources :find, controller: :compatibility_searches, only: [:show] do
     collection do
       get :new, as: ""
-      post :results
+      get :results
     end
   end
 

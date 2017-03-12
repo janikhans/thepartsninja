@@ -1,3 +1,52 @@
 <% results.group_by { |s| s.product }.sort_by { |products, parts| parts.size }.reverse.each do |product, parts| %>
-  <%= render partial: "product", locals: { product: product, parts: parts } %>
+  <%#= render partial: "product", locals: { product: product, parts: parts } %>
+  <div id="product_<%= product.id%>" class="card product">
+    <div data-toggle="collapse" data-target="#product_<%= product.id %>_parts" class="row product-details">
+      <div class="col-md-10">
+        <div class="product-image">
+          <%= image_tag("missing-brand-image", class:"img-responsive") %>
+        </div>
+        <div class="product-title"><%= product.brand.name %> - <%= product.name %></div>
+        <div class="product-description">Talk about sports, entertainment, music, movies, your favorite color, talk about enything.</div>
+      </div>
+      <div class="col-md-2 product-info">
+        <span><%= parts.count %></span>
+        <div><small><%= pluralize_without_count(parts.count, "Compatibility") %></small></div>
+      </div>
+    </div>
+    <div id="product_<%= product.id %>_parts" class="row collapse">
+      <div class="row product-parts">
+        <div class="row product-section">
+          <div class="col-md-2 section-title">Brand</div>
+          <div class="col-md-10">
+            <%= link_to product.brand.name, brand_path(product.brand) %>
+          </div>
+        </div>
+        <div class="row product-section">
+          <div class="col-md-2 section-title">Product</div>
+          <div class="col-md-10">
+            <%= link_to product.name, product_path(product) %>
+          </div>
+        </div>
+        <div class="row product-section">
+          <div class="col-md-2 section-title">Description</div>
+          <div class="col-md-10">
+            <% if product.description.present? %>
+              <%= product.description %>
+            <% else %>
+              <i>This product does not have a description yet.</i>
+            <% end %>
+          </div>
+        </div>
+        <div class="row product-section">
+          <div class="col-md-2 section-title"><%= pluralize_without_count(parts.count, "part number") %></div>
+          <div class="row col-md-10">
+            <% parts.each do |p| %>
+              <div class="col-md-4"><%= p.part_number %></div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 <% end %>

@@ -1,3 +1,36 @@
 <% results.group_by{ |v| v.vehicle_submodel }.each do |vehicle_submodel, vehicles| %>
-  <%= render partial: "vehicle", locals: {vehicle_submodel: vehicle_submodel, vehicles: vehicles} %>
+  <% vehicles.sort_by!{ |v| v.vehicle_year_id } %>
+  <div id="vehicle_submodel_<%= vehicle_submodel.id%>" class="card product">
+    <div data-toggle="collapse" data-target="#vehicle_submodel_<%= vehicle_submodel.id %>_vehicles" class="row product-details">
+      <div class="col-md-10">
+        <div class="product-image">
+          <%= image_tag("missing-brand-image", class:"img-responsive") %>
+        </div>
+        <div class="product-title"><%= friendly_years_for(vehicles) %> <%= vehicle_submodel.vehicle_model.brand.name %> <%= vehicle_submodel.vehicle_model.name %> <%= vehicle_submodel.name %></div>
+        <div class="product-description">Talk about sports, entertainment, music, movies, your favorite color, talk about enything.</div>
+      </div>
+      <div class="col-md-2 product-info">
+        <span><%= vehicles.size %> (<%= vehicles.first.submodel_compatibility_count %>)</span>
+        <div><small>Models</small></div>
+      </div>
+    </div>
+    <div id="vehicle_submodel_<%= vehicle_submodel.id %>_vehicles" class="row collapse">
+      <div class="row product-parts">
+        <div class="row product-section">
+          <div class="col-md-2 section-title">Brand</div>
+          <div class="col-md-10">
+            <%= link_to vehicle_submodel.vehicle_model.brand.name, brand_path(vehicle_submodel.vehicle_model.brand) %>
+          </div>
+        </div>
+        <div class="row product-section">
+          <div class="col-md-2 section-title"><%= pluralize_without_count(vehicles.size, "Year") %></div>
+          <div class="row col-md-10">
+            <% vehicles.each do |vehicle| %>
+              <div class="col-md-4"><%= link_to vehicle.year, vehicle_path(vehicle) %> (<%= vehicle.vehicle_compatible_count %>)</div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 <% end %>

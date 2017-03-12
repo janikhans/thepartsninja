@@ -7,8 +7,8 @@ class CompatibilitySearchesController < ApplicationController
   end
 
   # Example params for testing
-  # http://localhost:3000/find/results?utf8=%E2%9C%93&search%5Bcategory_name%5D=brake+pads&search%5Bvehicle%5D%5Bid%5D=35606
-
+  # http://localhost:3000/find/results?utf8=%E2%9C%93&search%5Bcategory%5D%5Bname%5D=Brake+Levers&search%5Bvehicle%5D%5Bid%5D=35606
+  
   def results
     respond_to do |format|
       if params[:search].present?
