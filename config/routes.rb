@@ -72,7 +72,7 @@ Rails.application.routes.draw do
   resources :find, controller: :compatibility_searches, only: [:show] do
     collection do
       get :new, as: ""
-      get :results
+      post :results
     end
   end
 

@@ -15,11 +15,11 @@
         <h1>Success!</h1>
         <p>It appears that <%= @check_search.fitment_note.try(:name) %> <%= @check_search.category.name %> are compatible between:</p>
         <h4><%= @check_search.vehicle.to_label %> and <%= @check_search.comparing_vehicle.to_label %></h4>
-        <p>The Parts Ninja found <%= pluralize(@check_search.results_count, "common product") %>.</p>
+        <p>The Parts Ninja found <%= pluralize(@check_search.grouped_count, "common product") %>.</p>
       </div>
     </div>
   </div>
-  <div id="compatible-products" class="results">
+  <div id="compatible-results" class="results">
   </div>
   <div id="show-more-link" class="text-center">
     <%= link_to "View Compatible Parts", check_path(@check_search, page: @check_search.current_page), remote: true, class: "btn btn-primary" %>
@@ -35,7 +35,7 @@
     <div id="collapse1" class="panel-collapse collapse in">
       <div class="panel-body text-center">
         <h1>Sorry...</h1>
-        <p>It does not appear that <%= @check_search.fitment_note.try(:name) %> <%= @check_search.category.name %> are compatible between:</p>
+        <p>It does not appear that <%= @check_search.fitment_note.try(:name) %> <%= @check_search.category ? @check_search.category.name : @check_search.category_name %> are compatible between:</p>
         <h4><%= @check_search.vehicle.to_label %> and <%= @check_search.comparing_vehicle.to_label %></h4>
         <p>There may some a reason for that though...</p>
           <p>We are constantly updating our datbase and there's a chance we don't yet have the neccessary data

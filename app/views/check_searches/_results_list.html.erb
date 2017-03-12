@@ -1,3 +1,3 @@
-<% @products.each do |product, parts| %>
+<% results.group_by { |s| s.product }.sort_by { |products, parts| parts.size }.reverse.each do |product, parts| %>
   <%= render partial: "product", locals: { product: product, parts: parts } %>
 <% end %>

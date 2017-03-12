@@ -1,4 +1,4 @@
-$('#compatible-products').append("<%= escape_javascript(render partial: 'results_list') %>");
+$('#compatible-results').append("<%= escape_javascript(render 'results_list', results: @check_search.compatible_parts) %>");
 <% if @check_search.can_advance_page? %>
   $('#show-more-link').html("<%= escape_javascript(link_to 'View Compatible Products', check_path(@check_search, page: @check_search.next_page), remote: true, class: 'btn btn-primary') %>")
 <% else %>
