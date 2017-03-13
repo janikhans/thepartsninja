@@ -22,19 +22,13 @@
       <%= icon(:cogs) %> <span>Scooter</span>
     <% end %>
   </div>
-  <%= render 'find_compatibilities/form' %>
+  <%= render 'form' %>
 <% end %>
 <% content_for :header do %>
   <%= render 'layouts/header_partials/spacial_default' %>
 <% end %>
 <div class="row m-t-lg">
   <div class="col-md-9">
-    <div id= "find-compatibilities-form" class="m-b-md">
-      <div class="topic-title">
-        <h3>Find Compatibilities</h3>
-      </div>
-      <%= render 'compatibility_searches/form' %>
-    </div>
     <div id="find-compatibilities-results">
       <div class="results-overview card">
         <h2 class="text-center">Begin your search above!</h2>

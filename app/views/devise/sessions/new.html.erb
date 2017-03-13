@@ -14,8 +14,10 @@
         <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
       <% end %>
     </div>
-    <div class="form-bottom">
-      Don't have an account yet? <a href="">Sign up</a>
-    </div>
+    <% if Rails.env.development? %>
+      <div class="form-bottom">
+        Don't have an account yet? <%= link_to "Sign Up", new_user_registration_path %>
+      </div>
+    <% end %>
   <% end %>
 </div>
