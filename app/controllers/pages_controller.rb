@@ -15,14 +15,14 @@ class PagesController < ApplicationController
   def contact
   end
 
-  def terms
+  def terms_of_service
     prepare_meta_tags title: "Terms of Service"
   end
 
   def about
   end
 
-  def privacy
+  def privacy_policy
     prepare_meta_tags title: "Privacy Policy"
   end
 end

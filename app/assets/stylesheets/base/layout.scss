@@ -526,42 +526,11 @@ a {
       margin-top: 25px;
       line-height: 20px;
     }
-
-    form {
-      margin-top: 27px;
-      position: relative;
-
-      input[type="email"] {
-        height: 45px;
-        padding-left: 17px;
-
-        @include placeholder {
-          color: #9BA1C2;
-        }
-
-        &:focus {
-          box-shadow: none;
-        }
-      }
-
-      button {
-        border: 0;
-        position: absolute;
-        top: 0;
-        right: 0;
-        font-size: 17px;
-        height: 45px;
-        background: #ADBFE0;
-        padding: 0 15px;
-        border-radius: 0 4px 4px 0;
-        color: #fff;
-      }
-    }
   }
 
   .bottom {
     margin-top: 40px;
-    border-top: 1px solid #3A455A;
+    border-top: 1px solid #514f54;
 
     ul {
       list-style-type: none;
