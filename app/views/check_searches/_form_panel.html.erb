@@ -1,0 +1,27 @@
+<div id="compatibility-check-form" class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Search</h3>
+  </div>
+  <div class="panel-body">
+    <h5 class="topic-title">
+      Select Your Vehicle Type
+    </h5>
+    <ul class="nav nav-pills nav-justified">
+      <li><a data-toggle="pill" href="#motorcycle-form"><%= icon(:motorcycle) %> <span>Motorcycle</span></a></li>
+      <li><a data-toggle="pill" href="#unavailable"><%= icon(:car) %> <span>ATV</span></a></li>
+      <li><a data-toggle="pill" href="#unavailable"><%= icon(:truck) %> <span>SXS</span></a></li>
+      <li><a data-toggle="pill" href="#unavailable"><%= icon(:paper_plane) %> <span>Snowmobile</span></a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div id="motorcycle-form" class="tab-pane fade in">
+        <%= render 'form' %>
+      </div>
+      <div id="unavailable" class="tab-pane fade">
+        <div class="well m-t-lg">
+          <h4 class="text-center">Sorry, this vehicle type isn't ready yet for searching. But sign up here...</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

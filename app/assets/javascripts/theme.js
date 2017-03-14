@@ -170,3 +170,7 @@ $(function() {
     width: '100%'
   });
 });
+
+$('.collapse').on('show.bs.collapse', function () {
+    $('.collapse.in').collapse('hide');
+});

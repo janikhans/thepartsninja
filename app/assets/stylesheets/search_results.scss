@@ -1,0 +1,22 @@
+.search-pagination {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  li {
+    display: inline-block;
+  }
+}
+
+.hiddenRow {
+  padding: 0 !important;
+}
+
+#results-table {
+  border-collapse: collapse;
+  tr {
+    padding: 5px;
+    img {
+      max-width: 50px;
+    }
+  }
+}

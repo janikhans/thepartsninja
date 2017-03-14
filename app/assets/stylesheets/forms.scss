@@ -54,7 +54,7 @@
   }
 }
 
-#compatibility-search-form {
+#compatibility-search-form, #compatibility-check-form {
   form {
   }
   .nav-pills {
@@ -71,14 +71,5 @@
     li.active {
       background-color: transparent;
     }
-  }
-}
-
-.search-pagination {
-  margin: 0px;
-  padding: 0px;
-  list-style: none;
-  li {
-    display: inline-block;
   }
 }

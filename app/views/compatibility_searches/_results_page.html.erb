@@ -1,5 +1,5 @@
 <%= paginate_search(search_record) %>
-<div class="cb"></div>
+<div class="clearfix"></div>
 <% search_record.vehicles.group_by{ |v| v.vehicle_submodel }.each do |vehicle_submodel, vehicles| %>
   <% vehicles.sort_by!{ |v| v.vehicle_year_id } %>
   <div id="vehicle_submodel_<%= vehicle_submodel.id%>" class="card product">

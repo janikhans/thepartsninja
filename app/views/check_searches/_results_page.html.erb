@@ -1,5 +1,6 @@
-<% results.group_by { |s| s.product }.sort_by { |products, parts| parts.size }.reverse.each do |product, parts| %>
-  <%#= render partial: "product", locals: { product: product, parts: parts } %>
+<%= paginate_check_search(search_record) %>
+<div class="clearfix"></div>
+<% search_record.parts.group_by { |s| s.product }.sort_by { |products, parts| parts.size }.reverse.each do |product, parts| %>
   <div id="product_<%= product.id%>" class="card product">
     <div data-toggle="collapse" data-target="#product_<%= product.id %>_parts" class="row product-details">
       <div class="col-md-10">

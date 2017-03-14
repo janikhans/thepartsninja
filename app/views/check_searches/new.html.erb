@@ -1,27 +1,19 @@
 <% content_for :header_topic do %>
-  Compatibility Check
+  <h1>Compatibility Check</h1>
+  <p>Check whether parts fit between vehicles</p>
 <% end %>
 <% content_for :header do %>
-  <%= render 'layouts/header_partials/default' %>
-  <%= render 'layouts/header_partials/quicklinks' %>
+  <%= render 'layouts/header_partials/spacial_default' %>
+  <%= render 'layouts/header_partials/stats' %>
 <% end %>
-<div class="row">
-  <div class="col-md-9">
-    <div id= "compatibility-check-form" class="m-b-md">
-      <div class="topic-title">
-        <h3>Check Compatibility</h3>
-      </div>
-      <%= render 'form' %>
-    </div>
-    <div id="compatibility-check-results">
-      <div class="results-overview card">
-        <h2 class="text-center">Begin your search above!</h2>
-        <p class="text-center">Select the vehicles and that part that you want to check compatibility with.</p>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-3">
+
+<div class="row m-t-lg">
+  <div class="col-md-3 col-md-push-9">
     <%= render 'shared/profile' %>
-    <%= render 'shared/ebay_results_sidebar' %>
+  </div>
+  <div class="col-md-9 col-md-pull-3">
+    <%= render 'form_panel' %>
+    <div id="search-stats"></div>
+    <div id="results"></div>
   </div>
 </div>

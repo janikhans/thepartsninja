@@ -1,0 +1,5 @@
+<h1>Success!</h1>
+<p>It appears that <%= search_record.fitment_note.try(:name) %> <%= search_record.category.name %> are compatible between:</p>
+<h4><%= search_record.vehicle.to_label %> and <%= search_record.comparing_vehicle.to_label %></h4>
+<p>The Parts Ninja found <%= pluralize(search_record.grouped_count, "common product") %>.</p>
+<%= link_to "View Compatibilities", check_path(search_record), remote: true, class: "btn btn-primary", id: "show-link" %>

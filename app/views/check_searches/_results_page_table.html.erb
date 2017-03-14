@@ -1,0 +1,34 @@
+<%= paginate_check_search(search_record) %>
+
+<table id="results-table" class="table table-striped">
+  <thead>
+      <tr>
+        <th></th>
+        <th>Brand</th>
+        <th>Product</th>
+        <th>Product Description</th>
+        <th>Compatibilities</th>
+      </tr>
+  </thead>
+  <tbody>
+    <% search_record.parts.group_by { |s| s.product }.sort_by { |products, parts| parts.size }.reverse.each do |product, parts| %>
+      <tr data-toggle="collapse" data-target="#<%= product.id %>">
+        <td><%= image_tag("missing-brand-image", class:"img-responsive") %></td>
+        <td><%= product.brand.name %></td>
+        <td><%= product.name %></td>
+        <td><%= product.description %></td>
+        <td class="text-success"><%= pluralize(parts.count, "Compatibility") %></td>
+      </tr>
+      <tr>
+        <td colspan="5" class="hiddenRow">
+          <div id="<%= product.id %>" class="collapse">
+            <h4>Part Numbers:</h4>
+            <% parts.each do |p| %>
+              <div class="col-md-4"><%= p.part_number %></div>
+            <% end %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
