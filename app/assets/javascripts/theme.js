@@ -169,8 +169,8 @@ $(function() {
     no_results_text: 'No results matched',
     width: '100%'
   });
-});
 
-$('.collapse').on('show.bs.collapse', function () {
-    $('.collapse.in').collapse('hide');
+  $('.collapse').on('show.bs.collapse', function () {
+      $('.collapse.in').collapse('hide');
+  });
 });

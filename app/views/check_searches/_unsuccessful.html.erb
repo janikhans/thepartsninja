@@ -1,8 +1,10 @@
-<h1>Sorry...</h1>
-<p>It does not appear that <%= search_record.fitment_note.try(:name) %> <%= search_record.category ? search_record.category.name : search_record.category_name %> are compatible between:</p>
-<h4><%= search_record.vehicle.to_label %> and <%= search_record.comparing_vehicle.to_label %></h4>
-<p>There may some a reason for that though...</p>
-  <p>We are constantly updating our datbase and there's a chance we don't yet have the neccessary data
-      to answer your search.</p>
-<h3>In the mean time...</h3>
-<p>Try searching for another model that you know shares the part you are wanting to check compatibility for.</p>
+<div class="well">
+  <h1>Sorry...</h1>
+  <p>It does not appear that <%= search_record.fitment_note.try(:name) %> <%= search_record.category ? search_record.category.name : search_record.category_name %> are compatible between:</p>
+  <h4><%= search_record.vehicle.to_label %> and <%= search_record.comparing_vehicle.to_label %></h4>
+  <p>There may some a reason for that though...</p>
+    <p>We are constantly updating our datbase and there's a chance we don't yet have the neccessary data
+        to answer your search.</p>
+  <h3>In the mean time...</h3>
+  <p>Try searching for another model that you know shares the part you are wanting to check compatibility for.</p>
+</div>
