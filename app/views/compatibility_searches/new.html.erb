@@ -10,9 +10,16 @@
 <div class="row m-t-lg">
   <div class="col-md-3 col-md-push-9">
     <%= render 'shared/profile' %>
+    <%= render 'shared/searches/search_tips' %>
   </div>
   <div class="col-md-9 col-md-pull-3">
     <%= render 'form_panel' %>
-    <%= render 'results_panel' %>
+    <div id="search-stats" class="well">
+      <div class="text-center">
+        <h4>Fill out the form above to start</h4>
+      </div>
+    </div>
+    <div id="results">
+    </div>
   </div>
 </div>

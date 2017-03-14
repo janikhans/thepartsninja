@@ -7,32 +7,26 @@
   <%= render 'layouts/header_partials/stats' %>
 <% end %>
 
-<div class="row">
+<div class="row m-t-lg">
   <div class="col-md-3 col-md-push-9">
     <%= render 'shared/profile' %>
+    <%= render 'shared/searches/search_tips' %>
   </div>
   <div class="col-md-9 col-md-pull-3">
     <%= render 'form_panel' %>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Results</h3>
-      </div>
-      <div class="panel-body">
-        <div id="search-notice" class="">
-          <%= if @search.errors.any? %>
-            <%= render partial: 'errors', object: @search %>
-          <%= elsif @compatibility_search.successful? %>
-            <%= render partial: 'successful', search_record: @compatibility_search %>
-          <% else %>
-            <%= render partial: 'unsuccessful', search_record: @compatibility_search %>
-          <% end %>
-        </div>
-        <div id="results" class="">
-          <%= if @compatibility_search.successful? %>
-            <%= render partial: 'results_page', search_record: @compatibility_search %>
-          <% end %>
-        </div>
-      </div>
+    <div id="search-stats" class="well">
+      <% if @search.errors.any? %>
+        <%= render partial: 'errors', object: @search %>
+      <% elsif @compatibility_search.successful? %>
+        <%= render 'successful', search_record: @compatibility_search %>
+      <% else %>
+        <%= render 'unsuccessful', search_record: @compatibility_search %>
+      <% end %>
+    </div>
+    <div id="results">
+      <% if @compatibility_search.successful? %>
+        <%= render 'results_page', search_record: @compatibility_search %>
+      <% end %>
     </div>
   </div>
 </div>

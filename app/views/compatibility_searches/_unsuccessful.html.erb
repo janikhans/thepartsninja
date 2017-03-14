@@ -1,5 +1,8 @@
-<div class="text-center">
-  <h2><%= icon(:times, class:"fa-2x") %></h2>
-  <p>It does not appear that there were any compatibilitites found for this vehicle.</p>
-  <p>Try again?</p>
-</div>
+<h1>Sorry...</h1>
+<p>It does not appear that <%= search_record.fitment_note.try(:name) %> <%= search_record.category ? search_record.category.name : search_record.category_name %> has compatible vehicles with</p>
+<h4><%= search_record.vehicle.to_label %></h4>
+<p>There may some a reason for that though...</p>
+  <p>We are constantly updating our datbase and there's a chance we don't yet have the neccessary data
+      to answer your search.</p>
+<h3>In the mean time...</h3>
+<p>Try searching for another model that you know shares the part you are wanting to check compatibility for.</p>

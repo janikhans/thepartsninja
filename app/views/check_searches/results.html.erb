@@ -14,18 +14,18 @@
   </div>
   <div class="col-md-9 col-md-pull-3">
     <%= render 'form_panel' %>
-    <div id="search-stats">
+    <div id="search-stats" class="well">
       <% if @search.errors.any? %>
         <%= render partial: 'errors', object: @search %>
       <% elsif @check_search.successful? %>
-        <%= render 'search_stats', search_record: @check_search %>
+        <%= render 'successful', search_record: @check_search %>
       <% else %>
         <%= render 'unsuccessful', search_record: @check_search %>
       <% end %>
     </div>
     <div id="results">
       <% if @check_search.successful? %>
-        <%= render 'results_page_table', search_record: @check_search %>
+        <%= render 'results_page', search_record: @check_search %>
       <% end %>
     </div>
   </div>

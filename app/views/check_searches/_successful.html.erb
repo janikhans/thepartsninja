@@ -1,5 +1,12 @@
 <h1>Success!</h1>
-<p>It appears that <%= search_record.fitment_note.try(:name) %> <%= search_record.category.name %> are compatible between:</p>
-<h4><%= search_record.vehicle.to_label %> and <%= search_record.comparing_vehicle.to_label %></h4>
-<p>The Parts Ninja found <%= pluralize(search_record.grouped_count, "common product") %>.</p>
+<p>This part appears to be compatible!</p>
+<ul class="list-unstyled">
+  <li><strong>Vehicle:</strong> <%= search_record.vehicle.to_label %></li>
+  <li><strong>Comparing Vehicle:</strong> <%= search_record.comparing_vehicle.to_label %></li>
+  <li><strong>Part:</strong> <%= search_record.category.name %> <%= "- " + search_record.fitment_note.name if search_record.fitment_note %></li>
+  <li><strong>Pages:</strong> <%= search_record.total_pages %></li>
+  <li><strong>Products:</strong> <%= search_record.grouped_count %></li>
+  <li><strong>Compatibilities:</strong> <%= search_record.results_count %></li>
+  <li><strong>Average Score:</strong> 54</li>
+</ul>
 <%= link_to "View Compatibilities", check_path(search_record), remote: true, class: "btn btn-primary", id: "show-link" %>

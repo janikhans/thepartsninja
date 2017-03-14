@@ -7,6 +7,14 @@
   }
 }
 
+.pager {
+  li {
+    &:first-child {
+      margin-right: 10px;
+    }
+  }
+}
+
 #results-table {
   border-collapse: collapse;
   thead {
@@ -18,9 +26,6 @@
     background-color: #ffffff;
     td {
       vertical-align: middle;
-      .part-numbers {
-        padding-bottom: 30px;
-      }
     }
     img {
       max-width: 50px;
@@ -29,10 +34,13 @@
       background-color: #f3f3f3;
       cursor: pointer;
     }
-    &.parts-row {
+    &.hidden-row {
       background: #ececec;
       td {
         padding: 0 10px;
+      }
+      .details {
+        padding-bottom: 10px;
       }
     }
   }

@@ -2,7 +2,7 @@
   $('#search-stats').html("<%= escape_javascript(render 'shared/error_messages', object: @search) %>");
   $('#results').empty();
 <% elsif @check_search.successful? %>
-  $('#search-stats').html("<%= escape_javascript(render partial: 'search_stats', locals: { search_record: @check_search } ) %>");
+  $('#search-stats').html("<%= escape_javascript(render partial: 'successful', locals: { search_record: @check_search } ) %>");
   $('#results').empty();
 <% else %>
   $('#search-stats').html("<%= escape_javascript(render partial: 'unsuccessful', locals: { search_record: @check_search } ) %>");
