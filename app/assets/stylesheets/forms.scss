@@ -54,48 +54,31 @@
   }
 }
 
-.find-compatibilities-form {
-  .fa-search {
-    position: absolute;
-    font-size: 22px;
-    top: 19px;
-    left: 30px;
-    color: #9cabcc;
-    @media(max-width: 767px) {
-      top: 16px;
-    }
+#compatibility-search-form {
+  form {
   }
-  .select-box {
-    border: 1px solid #D4DAE0;
-    width: 100%;
-    padding: 10px 70px;
-    border-radius: 50px;
-    outline: none;
-    font-size: 18px;
-    background-color: #FFF;
-    margin-bottom: 15px;
-    .form-group {
-      margin-bottom: 0px;
+  .nav-pills {
+    a {
+      border: 1px solid gainsboro;
+      background-color: $gray-lighter;
+      color: $gray-darker;
+      margin-right: 5px;
+      font-size: 16px;
+      &:hover, &:focus {
+        background-color: transparent;
+      }
     }
-    .form-control {
-      border-radius: 0px;
-      border: 0;
-      box-shadow: none;
-      font-size: 18px;
-    }
-    .disabled {
+    li.active {
       background-color: transparent;
     }
-    .cat-n-m {
-      margin-top: 5px;
-    }
   }
-  .vehicle-select {
-    .col-md-3 {
-      padding: 0px;
-    }
-  }
-  .submit-button {
-    margin-top: 25px;
+}
+
+.search-pagination {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  li {
+    display: inline-block;
   }
 }

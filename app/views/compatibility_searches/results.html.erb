@@ -1,23 +1,35 @@
 <% content_for :header_topic do %>
-  Find Compatibilities
+  <h1>Find Compatibilities</h1>
+  <p>Find vehicles that share common parts</p>
 <% end %>
 <% content_for :header do %>
-  <%= render 'layouts/header_partials/default' %>
-  <%= render 'layouts/header_partials/quicklinks' %>
+  <%= render 'layouts/header_partials/spacial_default' %>
+  <%= render 'layouts/header_partials/stats' %>
 <% end %>
+
 <div class="row">
   <div class="col-md-9">
-    <div id= "find-compatibilities-form" class="m-b-md">
-      <div class="topic-title">
-        <h3>Find Compatibilities</h3>
+    <%= render 'form_panel' %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Results</h3>
       </div>
-      <%= render 'form' %>
-    </div>
-    <div class="topic-title">
-      <h3>Results</h3>
-    </div>
-    <div id="find-compatibilities-results">
-      <%= render 'results' %>
+      <div class="panel-body">
+        <div id="search-notice" class="">
+          <%= if @search.errors.any? %>
+            <%= render partial: 'errors', object: @search %>
+          <%= elsif @compatibility_search.successful? %>
+            <%= render partial: 'successful', search_record: @compatibility_search %>
+          <% else %>
+            <%= render partial: 'unsuccessful', search_record: @compatibility_search %>
+          <% end %>
+        </div>
+        <div id="results" class="">
+          <%= if @compatibility_search.successful? %>
+            <%= render partial: 'results_page', search_record: @compatibility_search %>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
   <div class="col-md-3">

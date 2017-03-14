@@ -8,12 +8,13 @@ class CompatibilitySearchesController < ApplicationController
 
   # Example params for testing
   # http://localhost:3000/find/results?utf8=%E2%9C%93&search%5Bcategory%5D%5Bname%5D=Brake+Levers&search%5Bvehicle%5D%5Bid%5D=35606
-  
+
   def results
     respond_to do |format|
       if params[:search].present?
         @search = CompatibilitySearchForm.new(search_params)
         @search.user = current_user
+        @search.search_type = "potential" if params[:commit] == 'Find Potentials'
         if @search.save
           @compatibility_search = @search.compatibility_search
           format.html

@@ -2,6 +2,8 @@ module SearchableModel
   extend ActiveSupport::Concern
 
   included do
+    enum search_type: [:known, :potential]
+
     belongs_to :vehicle
     validates :vehicle, presence: true
 
@@ -36,15 +38,15 @@ module SearchableModel
     end
   end
 
-  def type
-    @type ||= "compatibilities"
-  end
+  # def type
+  #   @type ||= "compatibilities"
+  # end
 
   private
 
-  def type=(value)
-    @type = value
-  end
+  # def type=(value)
+  #   @type = value
+  # end
 
   def threshold=(value)
     unless (value.is_a? Integer) && value > 0

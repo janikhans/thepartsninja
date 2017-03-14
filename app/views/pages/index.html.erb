@@ -1,29 +1,7 @@
-<div id="hero" class="">
-  <section class="container">
-    <div class="row">
-      <div class="col-sm-7">
-        <h1>A Different Parts Search</h1>
-        <p>Whatever you are looking for, the Parts Ninja will help you find it! The Parts Ninja cross references thousands of parts to find you every possible compatible option.</p>
-        <div class="cta">
-          <%= link_to icon(:play) + " Learn More", "#about", class: "btn-outline popup-media" %>
-        </div>
-      </div>
-      <div class="col-sm-5">
-        <%= image_tag("landing/ThePartsNinjaMockUp.png", class:"fadeInScale hidden-xs") %>
-      </div>
-    </div>
-  </section>
-</div>
-
-<div id="stats" class="">
-  <div class="container">
-    <ul class="stats-list">
-      <li class="stat">50,000+ Vehicles</li>
-      <li class="stat">300,000+ Parts</li>
-      <li class="stat">Millions of Possibilities</li>
-    </ul>
-  </div>
-</div>
+<% content_for :header do %>
+  <%= render 'layouts/header_partials/splash' %>
+  <%= render 'layouts/header_partials/stats' %>
+<% end %>
 
 <div id="intro" class="index-intro">
   <div class="container">
@@ -148,23 +126,5 @@
         </div>
       </div>
     </div>
-  </div>
-</div>
-
-<div class="index-features-cta">
-  <div class="container">
-    <section>
-      <div class="info">
-        <strong>
-          Ready to get started and be awesome?
-        </strong>
-        <%= simple_form_for @lead, html: { class: "form-inline"} do |f| %>
-          <%= f.input :email, label: false, placeholder: "Your Email" %>
-          <%= f.button :button, wrapper_html: { class: "input-group-btn"}, class: "btn btn-default" do %>
-            <%= icon(:chevron_right) %>
-          <% end %>
-        <% end %>
-      </div>
-    </section>
   </div>
 </div>

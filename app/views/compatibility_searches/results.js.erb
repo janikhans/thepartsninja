@@ -1,1 +1,10 @@
-$('#find-compatibilities-results').html("<%= escape_javascript(render partial: 'results') %>");
+<% if @search.errors.any? %>
+  $('#search-notice').html("<%= escape_javascript(render 'shared/error_messages', object: @search) %>");
+  $('#results').empty();
+<% elsif @compatibility_search.successful? %>
+  $('#search-notice').html("<%= escape_javascript(render partial: 'successful', locals: { search_record: @compatibility_search } ) %>");
+  $('#results').html("<%= escape_javascript(render partial: 'results_page', locals: { search_record: @compatibility_search } ) %>");
+<% else %>
+  $('#search-notice').html("<%= escape_javascript(render partial: 'unsuccessful', locals: { search_record: @compatibility_search } ) %>");
+  $('#results').empty();
+<% end %>

@@ -1,0 +1,8 @@
+<h4 class="panel-title">
+  <%= icon(:check) %> Compatible Parts Found
+</h4>
+<p>There were some <%= search_record.fitment_note.try(:name) %> <%= search_record.category.name %> compatibilities found for:</p> <strong><%= search_record.vehicle.to_label %></strong>
+<p>There were total of <%= search_record.results_count %> compatible vehicles found</p>
+<p>Total Pages: <%= search_record.total_pages %></p>
+<p>Models found: <%= search_record.grouped_count %></p>
+</div>

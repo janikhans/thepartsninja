@@ -1,4 +1,6 @@
-<% results.group_by{ |v| v.vehicle_submodel }.each do |vehicle_submodel, vehicles| %>
+<%= paginate_search(search_record) %>
+<div class="cb"></div>
+<% search_record.vehicles.group_by{ |v| v.vehicle_submodel }.each do |vehicle_submodel, vehicles| %>
   <% vehicles.sort_by!{ |v| v.vehicle_year_id } %>
   <div id="vehicle_submodel_<%= vehicle_submodel.id%>" class="card product">
     <div data-toggle="collapse" data-target="#vehicle_submodel_<%= vehicle_submodel.id %>_vehicles" class="row product-details">

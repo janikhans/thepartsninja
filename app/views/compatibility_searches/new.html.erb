@@ -1,43 +1,18 @@
 <% content_for :header_topic do %>
-  <h5 class="topic-title">
-    Select Your Vehicle Type
-  </h5>
-  <div class="topics clearfix">
-    <%= link_to "", class: "topic" do %>
-      <%= icon(:motorcycle) %> <span>Motorcycle</span>
-    <% end %>
-    <%= link_to "", class: "topic" do %>
-      <%= icon(:car) %> <span>ATV</span>
-    <% end %>
-    <%= link_to "", class: "topic" do %>
-      <%= icon(:plane) %> <span>PWC</span>
-    <% end %>
-    <%= link_to "", class: "topic" do %>
-      <%= icon(:truck) %> <span>SXS</span>
-    <% end %>
-    <%= link_to "", class: "topic" do %>
-      <%= icon(:paper_plane) %> <span>Snowmobile</span>
-    <% end %>
-    <%= link_to "", class: "topic" do %>
-      <%= icon(:cogs) %> <span>Scooter</span>
-    <% end %>
-  </div>
-  <%= render 'form' %>
+  <h1>Find Compatibilities</h1>
+  <p>Find vehicles that share common parts</p>
 <% end %>
 <% content_for :header do %>
   <%= render 'layouts/header_partials/spacial_default' %>
+  <%= render 'layouts/header_partials/stats' %>
 <% end %>
+
 <div class="row m-t-lg">
   <div class="col-md-9">
-    <div id="find-compatibilities-results">
-      <div class="results-overview card">
-        <h2 class="text-center">Begin your search above!</h2>
-        <p class="text-center">Select the vehicles and that part that you want to check compatibility with.</p>
-      </div>
-    </div>
+    <%= render 'form_panel' %>
+    <%= render 'results_panel' %>
   </div>
   <div class="col-md-3">
     <%= render 'shared/profile' %>
-    <%= render 'shared/ebay_results_sidebar' %>
   </div>
 </div>
