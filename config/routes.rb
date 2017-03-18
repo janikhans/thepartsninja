@@ -36,6 +36,7 @@ Rails.application.routes.draw do
         get :searches_by_type
         get :search_records
         get :vehicles_by_type
+        get :category_searches
       end
     end
   end

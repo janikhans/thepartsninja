@@ -12,4 +12,9 @@ class Admin::ChartsController < Admin::ApplicationController
     result = VehicleModel.group(:vehicle_type).count
     render json: result.transform_keys(&:name)
   end
+
+  def category_searches
+    result = SearchRecord.group(:category).limit(10).order(count: :desc).count
+    render json: result.transform_keys(&:name)
+  end
 end
