@@ -38,15 +38,7 @@ module SearchableModel
     end
   end
 
-  # def type
-  #   @type ||= "compatibilities"
-  # end
-
   private
-
-  # def type=(value)
-  #   @type = value
-  # end
 
   def threshold=(value)
     unless (value.is_a? Integer) && value > 0

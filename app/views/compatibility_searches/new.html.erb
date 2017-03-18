@@ -1,25 +1,33 @@
-<% content_for :header_topic do %>
-  <h1>Find Compatibilities</h1>
-  <p>Find vehicles that share common parts</p>
-<% end %>
-<% content_for :header do %>
-  <%= render 'layouts/header_partials/spacial_default' %>
-  <%= render 'layouts/header_partials/stats' %>
-<% end %>
-
 <div class="row m-t-lg">
-  <div class="col-md-3 col-md-push-9">
+  <div class="col-md-12">
+    <div class="card o-f-h">
+      <div class="card-profile-bg">
+        <div class="hero-text">
+          <h1>Find Compatible Vehicles</h1>
+          <p>Search for cross compatible vehicles</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
     <%= render 'shared/profile' %>
     <%= render 'shared/searches/search_tips' %>
   </div>
-  <div class="col-md-9 col-md-pull-3">
+  <div class="col-md-9">
     <%= render 'form_panel' %>
-    <div id="search-stats" class="well">
-      <div class="text-center">
-        <h4>Fill out the form above to start</h4>
+    <div class="card">
+      <div class="card-heading">
+        <h5>Results</h5>
       </div>
-    </div>
-    <div id="results">
+      <div class="card-body">
+        <div id="search-stats" class="well">
+          <div class="text-center">
+            <h5>Fill out the form above to start</h5>
+          </div>
+        </div>
+      </div>
+      <div id="results" class="card-content">
+      </div>
     </div>
   </div>
 </div>

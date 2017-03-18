@@ -1,31 +1,83 @@
+// .card {
+//   padding: 25px 17px;
+//   border-radius: 5px;
+//   border: 1px solid #E2E7F0;
+//   .card-header {
+//     color: #444;
+//     font-size: 14px;
+//     font-weight: 500;
+//     margin-top: 12px;
+//   }
+//   .card-body {
+//     margin-top: 10px;
+//     color: #555;
+//     margin-bottom: 5px;
+//   }
+//   .card-footer {
+//
+//   }
+// }
+
+// .spacial-header {
+//   padding-top: 110px;
+//   color: #FFF;
+//   text-transform: uppercase;
+//   min-height: 300px;
+//   background: #16111c;
+//   background-image: url("Compatibility_Web_BG.png");
+//   background-image: url("Compatibility_Web_BG.png"), linear-gradient(-45deg, #443952 0%, #231a2b 20%, #0c0b0c 100%);
+//   background-size: auto;
+//   background-position-y: -130%;
+// }
+
 .card {
-  padding: 25px 17px;
+  position: relative;
+  background-color: #fff;
+  border: 1px solid #cbc3d3;
   border-radius: 5px;
-  border: 1px solid #E2E7F0;
-  .card-header {
-    color: #444;
-    font-size: 14px;
-    font-weight: 500;
-    margin-top: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 12px rgba(0,0,0,.15);
+  .card-profile-bg {
+    background: #16111c;
+    background-image: url("Compatibility_Web_BG.png");
+    background-image: url("Compatibility_Web_BG.png"), linear-gradient(-45deg, #443952 0%, #231a2b 20%, #0c0b0c 100%);
+    height: 150px;
+    background-size: cover;
+    overflow: hidden;
+    .hero-text {
+      margin-top: 25px;
+      margin-left: 25px;
+      color: white;
+      font-weight: 800;
+      h1 {
+        text-transform: uppercase;
+        margin-bottom: 0px;
+        font-weight: inherit;
+      }
+    }
+  }
+  .card-heading {
+    padding: 5px 10px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  }
+  .card-content {
   }
   .card-body {
-    margin-top: 10px;
-    color: #555;
-    margin-bottom: 5px;
+    padding: 10px;
+    .card-profile-username {
+    }
+    .card-profile-image > img {
+      background-color: #333;
+      border-radius: 100%;
+      max-width: 100px;
+      margin-top: -70px;
+      margin-bottom: 5px;
+      border: 3px solid #fff;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    }
   }
   .card-footer {
 
   }
-}
-
-.spacial-header {
-  padding-top: 110px;
-  color: #FFF;
-  text-transform: uppercase;
-  min-height: 300px;
-  background: #16111c;
-  background-image: url("Compatibility_Web_BG.png");
-  background-image: url("Compatibility_Web_BG.png"), linear-gradient(-45deg, #443952 0%, #231a2b 20%, #0c0b0c 100%);
-  background-size: auto;
-  background-position-y: -130%;
 }

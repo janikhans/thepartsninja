@@ -10,12 +10,12 @@ module SearchPaginationHelper
     if search_record.current_page <= 2
       page_start = 1
     else
-      page_start = search_record.current_page - 2
+      page_start = search_record.current_page - 1
     end
 
-    page_end = search_record.current_page + 2
+    page_end = search_record.current_page + 1
 
-    nav = '<ul class="search-pagination pagination pull-right">'
+    nav = '<ul class="pagination">'
     nav += first_page(search_record, var_path) unless search_record.current_page == 1
     nav += previous_page(search_record, var_path) unless search_record.current_page == 1
     (page_start..page_end).to_a.each do |page|

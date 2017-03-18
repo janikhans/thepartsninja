@@ -104,12 +104,12 @@ a {
     color: #fff;
     font-size: 21px;
     letter-spacing: .5px;
+    font-weight: 600;
 
     @include transition(color .2s linear);
 
     @media(min-width: 768px) {
       position: relative;
-      top: 10px;
     }
 
     &:hover {
@@ -117,8 +117,7 @@ a {
     }
 
     img {
-      margin-right: 11px;
-      max-width: 38px;
+      max-width: 50px;
       display: inline-block;
 
       @media(max-width: 991px) {
@@ -235,12 +234,12 @@ a {
     color: #333;
     font-size: 21px;
     letter-spacing: .5px;
+    font-weight: 600;
 
     @include transition(color .2s linear);
 
     @media(min-width: 768px) {
       position: relative;
-      top: 10px;
     }
 
     &:hover {
@@ -248,8 +247,7 @@ a {
     }
 
     img {
-      margin-right: 11px;
-      max-width: 38px;
+      max-width: 50px;
       display: inline-block;
 
       @media(max-width: 991px) {
@@ -285,7 +283,7 @@ a {
       }
 
       > a {
-        color: #999;
+        color: #333333;
         font-size: 13px;
         font-weight: 500;
         position: relative;
@@ -353,6 +351,7 @@ a {
     color: #fff;
     font-size: 21px;
     letter-spacing: .5px;
+    font-weight: 600;
 
     @include transition(color .2s linear);
 
@@ -566,5 +565,12 @@ a {
         }
       }
     }
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1230px;
+    max-width: 100%;
   }
 }

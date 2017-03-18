@@ -1,42 +1,57 @@
-<%= paginate_search(search_record) %>
-
-<table id="results-table" class="table">
-  <thead>
-      <tr>
-        <th></th>
-        <th>Brand</th>
-        <th>Model</th>
-        <th>Years</th>
-        <th class="text-center">Compatibilities</th>
-      </tr>
-  </thead>
-  <tbody>
-    <% search_record.vehicles.group_by{ |v| v.vehicle_submodel }.each do |vehicle_submodel, vehicles| %>
+<div class="pull-right" style="margin-right:20px;">
+  <%= paginate_search(search_record) %>
+</div>
+<div class="clearfix"></div>
+<div class="result-headers hidden-xs">
+  <div class="row">
+    <div class="col-md-7">
+      <div class="col-md-2"></div>
+      <div class="col-md-5"><h5>Model</h5></div>
+      <div class="col-md-5"><h5>Years</h5></div>
+    </div>
+    <div class="col-md-5">
+      <div class="col-md-9"><h5>Stats</h5></div>
+      <div class="col-md-3 text-center"><h5>Score</h5></div>
+    </div>
+  </div>
+</div>
+<div class="search-result-group">
+  <% search_record.vehicles.group_by{ |v| v.vehicle_submodel }.each do |vehicle_submodel, vehicles| %>
     <% vehicles.sort_by!{ |v| v.vehicle_year_id } %>
-      <tr data-toggle="collapse" data-target="#submodel_<%= vehicle_submodel.id %>">
-        <td><%= image_tag("missing-brand-image", class:"img-responsive") %></td>
-        <td><%= vehicle_submodel.vehicle_model.brand.name %></td>
-        <td><%= vehicle_submodel.vehicle_model.name %> <%= vehicle_submodel.name %></td>
-        <td><%= friendly_years_for(vehicles) %></td>
-        <td class="text-success text-center"><%= vehicles.size %> (<%= vehicles.first.submodel_compatibility_count %>)</td>
-      </tr>
-      <tr class="hidden-row">
-        <td colspan="5">
-          <div id="submodel_<%= vehicle_submodel.id %>" class="collapse">
-            <div class="details">
-              <h5>Years:</h5>
-              <div class="row">
-                <% vehicles.each do |vehicle| %>
-                  <div class="col-md-4"><%= vehicle.year %> (<%= vehicle.vehicle_compatible_count %>)</div>
-                <% end %>
-              </div>
-            </div>
+    <div class="search-result">
+      <div class="row overview" data-toggle="collapse" data-target="#submodel_<%= vehicle_submodel.id %>" data-parent="#results">
+        <div class="col-xs-12 col-md-7">
+          <div class="col-xs-4 col-md-2 brand-image"><%= image_tag("missing-brand-image", class:"img-responsive") %></div>
+          <div class="col-xs-8 col-md-5 vehicle-model">
+            <span class="visible-xs"><strong>Model:</strong></span>
+            <span class="brand-name"><strong><%= vehicle_submodel.vehicle_model.brand.name %></strong></span>
+            <span class="vehicle-model"><%= vehicle_submodel.vehicle_model.name %> <%= vehicle_submodel.name %></span>
           </div>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+          <div class="col-xs-12 col-md-5 vehicle-years">
+            <span class="visible-xs"><strong>Years:</strong></span> <%= friendly_years_for(vehicles) %>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-5">
+          <div class="col-xs-12 col-md-9 compatibility-stats">
+            <span class="vehicle-count"><%= pluralize(vehicles.size, "Vehicle") %></span>
+            <span class="compatibility-count"><%= pluralize(vehicles.first.vehicle_compatible_count, "Compatibility") %></span>
+          </div>
+          <div class="col-xs-12 col-md-3 compatibility-score"><span class="visible-xs"><strong>Score:</strong></span> <%= Faker::Number.between(1, 100) %></div>
+        </div>
+      </div>
+      <div id="submodel_<%= vehicle_submodel.id %>" class="hidden-row collapse">
+       <div class="details">
+         <h5>Years:</h5>
+         <div class="row">
+           <% vehicles.each do |vehicle| %>
+             <div class="col-xs-6 col-md-4"><%= vehicle.year %> (<%= vehicle.vehicle_compatible_count %>)</div>
+           <% end %>
+         </div>
+       </div>
+      </div>
+    </div>
+  <% end %>
+</div>
 
 <%= pager(search_record) %>
 
