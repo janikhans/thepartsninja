@@ -386,3 +386,145 @@
     }
   }
 }
+
+.index-features-files {
+  padding-top: 90px;
+
+  .container2 {
+    clear: left;
+    float: left;
+    width: 100%;
+    overflow: hidden;
+    border-top: 1px solid #e2e9f0;
+
+    .container1 {
+      float: left;
+      width: 100%;
+      position: relative;
+      right: 50%;
+      background: #f5f7f9;
+      border-right: 1px solid #e2e9f0;
+
+      @media(max-width: 991px) {
+        right: auto;
+      }
+    }
+  }
+
+  .col-left {
+    float: left;
+    width: 50%;
+    position: relative;
+    left: 50%;
+    overflow: hidden;
+    padding: 78px 50px 0;
+
+    @media(max-width: 991px) {
+      width: 100%;
+      left: 0;
+      padding: 60px 70px 0;
+    }
+
+    @media(max-width: 767px) {
+      padding: 50px 30px 0;
+    }
+
+    .features {
+      float: right;
+      width: 400px;
+
+      @media(max-width: 991px) {
+        float: none;
+        width: auto;
+      }
+
+      .feature {
+        margin-bottom: 35px;
+      }
+
+      .image, .info {
+        float: left;
+
+        @media(max-width: 767px) {
+          float: none;
+        }
+      }
+
+      .info {
+        width: 80%;
+        margin-left: 40px;
+
+        @media(max-width: 767px) {
+          width: auto;
+          margin-left: 0;
+          margin-top: 20px;
+        }
+
+        strong {
+          font-size: 14px;
+          text-transform: uppercase;
+          font-weight: 600;
+          color: #444;
+          letter-spacing: .5px;
+        }
+
+        p {
+          color: #657790;
+          margin-top: 12px;
+          line-height: 24px;
+          width: 90%;
+        }
+      }
+    }
+  }
+
+  .col-right {
+    float: left;
+    width: 50%;
+    position: relative;
+    left: 50%;
+    overflow: hidden;
+    padding: 50px 70px 70px;
+
+    @media(max-width: 991px) {
+      width: 100%;
+      left: 0;
+    }
+
+    @media(max-width: 767px) {
+      padding: 30px;
+    }
+
+    .info {
+      width: 340px;
+
+      @media(max-width: 991px) {
+        width: auto;
+      }
+    }
+
+    h3 {
+      font-size: 13px;
+      color: #70A9CD;
+      text-transform: uppercase;
+      line-height: 17px;
+      letter-spacing: 2px;
+      font-weight: 600;
+    }
+
+    h4 {
+      font-size: 27px;
+      color: #4B4B4B;
+      line-height: 37px;
+      font-weight: 300;
+      margin-top: 15px;
+    }
+
+    p {
+      font-size: 15px;
+      color: #7B8398;
+      line-height: 27px;
+      margin-top: 30px;
+    }
+  }
+}
