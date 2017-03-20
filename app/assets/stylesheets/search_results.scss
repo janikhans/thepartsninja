@@ -34,6 +34,7 @@
 
 .search-result {
   border-bottom: 1px solid gainsboro;
+  border-top: 1px solid gainsboro;
   margin: 0px -1px;
   &:hover {
     cursor: pointer;
@@ -44,7 +45,7 @@
     .brand-image > img {
       width: 60px;
     }
-    .vehicle-model {
+    .vehicle-model, .product {
       span {
         display: block;
       }
@@ -52,7 +53,7 @@
     .vehicle-years {
      vertical-align: middle;
     }
-    .compatibility-stats {
+    .compatibility-stats, .description {
       span {
         display: block;
       }
@@ -71,5 +72,8 @@
     .details {
       padding: 10px 25px;
     }
+  }
+  @media (min-width: 962px) {
+    border-top: 0px;
   }
 }

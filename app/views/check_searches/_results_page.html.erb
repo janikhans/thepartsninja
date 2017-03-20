@@ -1,41 +1,48 @@
-<%= paginate_search(search_record) %>
-
-<table id="results-table" class="table">
-  <thead>
-      <tr>
-        <th></th>
-        <th>Brand</th>
-        <th>Product</th>
-        <th>Description</th>
-        <th class="text-center">Compatibilities</th>
-      </tr>
-  </thead>
-  <tbody>
-    <% search_record.parts.group_by { |s| s.product }.sort_by { |products, parts| parts.size }.reverse.each do |product, parts| %>
-      <tr data-toggle="collapse" data-target="#product_<%= product.id %>">
-        <td><%= image_tag("missing-brand-image", class:"img-responsive") %></td>
-        <td><%= product.brand.name %></td>
-        <td><%= product.name %></td>
-        <td><%= product.description %></td>
-        <td class="text-success text-center"><%= parts.count %></td>
-      </tr>
-      <tr class="hidden-row">
-        <td colspan="5">
-          <div id="product_<%= product.id %>" class="collapse">
-            <div class="details">
-              <h5>Part Numbers:</h5>
-              <div class="row">
-                <% parts.each do |p| %>
-                  <div class="col-md-4"><%= p.part_number %></div>
-                <% end %>
-              </div>
-            </div>
+<div class="pull-right" style="margin-right:20px;">
+  <%= paginate_search(search_record) %>
+</div>
+<div class="clearfix"></div>
+<div class="result-headers hidden-xs">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="col-md-2"></div>
+      <div class="col-md-10"><h5>Product</h5></div>
+    </div>
+    <div class="col-md-6">
+      <div class="col-md-9"><h5>Description</h5></div>
+      <div class="col-md-3 text-center"><h5>Score</h5></div>
+    </div>
+  </div>
+</div>
+<div class="search-result-group">
+  <% search_record.parts.group_by { |s| s.product }.sort_by { |products, parts| parts.size }.reverse.each do |product, parts| %>
+    <div class="search-result">
+      <div class="row overview" data-toggle="collapse" data-target="#product_<%= product.id %>" data-parent="#results">
+        <div class="col-xs-12 col-md-6">
+          <div class="col-xs-4 col-md-2 brand-image"><%= image_tag("missing-brand-image", class:"img-responsive") %></div>
+          <div class="col-xs-8 col-md-10 product">
+            <span class="brand-name"><strong><%= product.brand.name %></strong></span>
+            <span class="product-name"><%= product.name %></span>
           </div>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        </div>
+        <div class="col-xs-12 col-md-6">
+          <div class="col-xs-12 col-md-9 description"><span class="visible-xs"><strong>Description:</strong></span> <%= product.description %></div>
+          <div class="col-xs-12 col-md-3 compatibility-score"><span class="visible-xs"><strong>Score:</strong></span> <%= Faker::Number.between(1, 100) %></div>
+        </div>
+      </div>
+      <div id="product_<%= product.id %>" class="hidden-row collapse">
+       <div class="details">
+         <h5>Part Numbers:</h5>
+         <div class="row">
+           <% parts.each do |part| %>
+             <div class="col-xs-6 col-md-4"><%= part.part_number %></div>
+           <% end %>
+         </div>
+       </div>
+      </div>
+    </div>
+  <% end %>
+</div>
 
 <%= pager(search_record) %>
 

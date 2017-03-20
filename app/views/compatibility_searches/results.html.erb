@@ -1,32 +1,40 @@
-<% content_for :header_topic do %>
-  <h1>Find Compatibilities</h1>
-  <p>Find vehicles that share common parts</p>
-<% end %>
-<% content_for :header do %>
-  <%= render 'layouts/header_partials/spacial_default' %>
-  <%= render 'layouts/header_partials/stats' %>
-<% end %>
-
-<div class="row m-t-lg">
-  <div class="col-md-3 col-md-push-9">
+<div class="row">
+  <div class="col-md-12">
+    <div class="card o-f-h">
+      <div class="card-bg">
+        <div class="hero-text">
+          <h1>Find Compatible Vehicles</h1>
+          <p>Search for interchangeable vehicles</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
     <%= render 'shared/profile' %>
     <%= render 'shared/searches/search_tips' %>
   </div>
-  <div class="col-md-9 col-md-pull-3">
+  <div class="col-md-9">
     <%= render 'form_panel' %>
-    <div id="search-stats" class="well">
-      <% if @search.errors.any? %>
-        <%= render partial: 'errors', object: @search %>
-      <% elsif @compatibility_search.successful? %>
-        <%= render 'successful', search_record: @compatibility_search %>
-      <% else %>
-        <%= render 'unsuccessful', search_record: @compatibility_search %>
-      <% end %>
-    </div>
-    <div id="results">
-      <% if @compatibility_search.successful? %>
-        <%= render 'results_page', search_record: @compatibility_search %>
-      <% end %>
+    <div class="card">
+      <div class="card-heading">
+        <h5>Results</h5>
+      </div>
+      <div class="card-body">
+        <div id="search-stats" class="well">
+          <% if @search.errors.any? %>
+            <%= render partial: 'errors', object: @search %>
+          <% elsif @compatibility_search.successful? %>
+            <%= render 'successful', search_record: @compatibility_search %>
+          <% else %>
+            <%= render 'unsuccessful', search_record: @compatibility_search %>
+          <% end %>
+        </div>
+      </div>
+      <div id="results" class="card-content">
+        <% if @compatibility_search.successful? %>
+          <%= render 'results_page', search_record: @compatibility_search %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

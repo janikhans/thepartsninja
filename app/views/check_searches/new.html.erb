@@ -1,24 +1,33 @@
-<% content_for :header_topic do %>
-  <h1>Compatibility Check</h1>
-  <p>Check whether parts fit between vehicles</p>
-<% end %>
-<% content_for :header do %>
-  <%= render 'layouts/header_partials/spacial_default' %>
-  <%= render 'layouts/header_partials/stats' %>
-<% end %>
-
 <div class="row">
-  <div class="col-md-3 col-md-push-9">
+  <div class="col-md-12">
+    <div class="card o-f-h">
+      <div class="card-bg">
+        <div class="hero-text">
+          <h1>Compatibility Check</h1>
+          <p>Check part interchangeability between vehicles</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
     <%= render 'shared/profile' %>
     <%= render 'shared/searches/search_tips' %>
   </div>
-  <div class="col-md-9 col-md-pull-3">
+  <div class="col-md-9">
     <%= render 'form_panel' %>
-    <div id="search-stats" class="well">
-      <div class="text-center">
-        <h4>Fill out the form above to start</h4>
+    <div class="card">
+      <div class="card-heading">
+        <h5>Results</h5>
+      </div>
+      <div class="card-body">
+        <div id="search-stats" class="well">
+          <div class="text-center">
+            <h5>Fill out the form above to start</h5>
+          </div>
+        </div>
+      </div>
+      <div id="results" class="card-content">
       </div>
     </div>
-    <div id="results"></div>
   </div>
 </div>
