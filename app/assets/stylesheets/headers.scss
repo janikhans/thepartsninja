@@ -1,53 +1,8 @@
-// .spacial-header {
-//   min-height: 150px;
-//   background: #f5f7f9;
-//   padding: 20px 0px 20px 0px;
-//   border-bottom: 1px solid #DEE4EA;
-//   .topic-title {
-//     text-transform: uppercase;
-//     color: $background-text;
-//     font-size: 14px;
-//     font-weight: 800;
-//     margin-bottom: 10px;
-//     color: $background-text;
-//   }
-//   .topics {
-//     margin: 10px 0;
-//     .topic {
-//       display: inline-block;
-//       float: left;
-//       text-decoration: none;
-//       width: 16.667%;
-//       text-align: center;
-//       padding: 15px 0;
-//       border: 1px solid #f5f7f9;
-//       border-radius: 14px;
-//       @include transition(all .2s);
-//       @media(max-width: 767px) {
-//         width: 50%;
-//         padding: 35px 0;
-//       }
-//       &:hover {
-//         border-color: #E3E7EC;
-//         background: #EEF2F5;
-//         color: #459CE7;
-//       }
-//       i {
-//         color: #407eb3;
-//         font-size: 40px;
-//         vertical-align: middle;
-//         @media(max-width: 991px) {
-//           font-size: 40px;
-//         }
-//       }
-//       span {
-//         display: inline-block;
-//         margin-left: 10px;
-//         position: relative;
-//         top: 5px;
-//         color: #3d3e46;
-//         text-shadow: 1px 1px rgba(255, 255, 255, 0.85);
-//       }
-//     }
-//   }
-// }
+.default-header {
+  height: 220px;
+  padding-top: 110px;
+  overflow: hidden;
+  position: relative;
+  background: #f5f7f9;
+  border-bottom: 1px solid #DEE4EA;
+}

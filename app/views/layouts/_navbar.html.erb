@@ -1,4 +1,4 @@
-<nav class="navbar <%= @home_page ? 'navbar-transparent' : 'navbar-default' %>" role="navigation">
+<nav class="navbar <%= controller.controller_name == 'pages' ? 'navbar-transparent' : 'navbar-default' %> <%= 'clear-bg' unless @home_page %>" role="navigation">
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">

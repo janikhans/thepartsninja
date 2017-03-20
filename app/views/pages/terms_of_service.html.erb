@@ -4,36 +4,34 @@
 
 <% content_for :header do %>
   <%= render 'layouts/header_partials/default' %>
-  <%= render 'layouts/header_partials/quicklinks' %>
 <% end %>
 
 <div class="row">
-  <div class="col-sm-3">
-    <div class="card card-dashboard-links">
-      <div class="card-content">
-        <ul>
-          <%= link_to "#overview" do %><li>Overview</li><% end %>
-          <%= link_to "#accuracy" do %><li>General Conditions</li><% end %>
-          <%= link_to "#modifications" do %><li>Accuracy, Completeness and Timeliness of Information</li><% end %>
-          <%= link_to "#optional-tools" do %><li>Optional Tools</li><% end %>
-          <%= link_to "#third-party" do %><li>Third Party Links</li><% end %>
-          <%= link_to "#user-comments" do %><li>User Comments, Feedback and Other Submissions</li><% end %>
-          <%= link_to "#personal-info" do %><li>Personal Information</li><% end %>
-          <%= link_to "#errors" do %><li>Errors, Inaccuracies and Omissions</li><% end %>
-          <%= link_to "#prohibited-uses" do %><li>Prohibited Uses</li><% end %>
-          <%= link_to "#warranties" do %><li>Disclaimer of Warranties, Limitation of Liability</li><% end %>
-          <%= link_to "#indemnification" do %><li>Indemnification</li><% end %>
-          <%= link_to "#severability" do %><li>Severability</li><% end %>
-          <%= link_to "#termination" do %><li>Termination</li><% end %>
-          <%= link_to "#agreement" do %><li>Entire Agreement</li><% end %>
-          <%= link_to "#governing-law" do %><li>Governing Law</li><% end %>
-          <%= link_to "#changes-to-terms" do %><li>Changes to Terms of Service</li><% end %>
-          <%= link_to "#contact" do %><li>Contact Information</li><% end %>
-        </ul>
+	<div class="col-md-4" id="left-col">
+  	<ul class="nav nav-stacked" id="sticky-sidebar">
+      <div class="heading">
+        <h5>Jump to Section</h5>
       </div>
-    </div>
-  </div>
-  <div class="col-md-9">
+      <li><%= link_to "Overview", "#overview" %></li>
+      <li><%= link_to "General Conditions", "#accuracy" %></li>
+      <li><%= link_to "Accuracy, Completeness and Timeliness of Information", "#modifications" %></li>
+      <li><%= link_to "Optional Tools", "#optional-tools" %></li>
+      <li><%= link_to "Third Party Links", "#third-party" %></li>
+      <li><%= link_to "User Comments, Feedback and Other Submissions", "#user-comments" %></li>
+      <li><%= link_to "Personal Information", "#personal-info" %>
+      <li><%= link_to "Errors, Inaccuracies and Omissions", "#errors" %></li>
+      <li><%= link_to "Prohibited Uses", "#prohibited-uses" %></li>
+      <li><%= link_to "Disclaimer of Warranties, Limitation of Liability", "#warranties" %></li>
+      <li><%= link_to "Indemnification", "#indemnification" %></li>
+      <li><%= link_to "Severability", "#severability" %></li>
+      <li><%= link_to "Termination", "#termination" %></li>
+      <li><%= link_to "Entire Agreement", "#agreement" %></li>
+      <li><%= link_to "Governing Law", "#governing-law" %></li>
+      <li><%= link_to "Changes to Terms of Service", "#changes-to-terms" %></li>
+      <li><%= link_to "Contact Information", "#contact" %></li>
+  	</ul>
+	</div>
+	<div class="col-md-8" id="main-col">
     <div id="overview">
       <h2>OVERVIEW</h2>
       <p>Last updated: May 04, 2016</p>
@@ -44,7 +42,7 @@
       <hr>
     </div>
     <div id="general-conditions">
-      <h3>SECTION 1 - GENERAL CONDITIONS</h3>
+      <h3>GENERAL CONDITIONS</h3>
       <p>By agreeing to these Terms of Service, you represent that you are at least the age of majority in your state or province of residence, or that you are the age of majority in your state or province of residence and you have given us your consent to allow any of your minor dependents to use this site.</p>
       <p>You may not use our products for any illegal or unauthorized purpose nor may you, in the use of the Service, violate any laws in your jurisdiction (including but not limited to copyright laws).</p>
       <p>You must not transmit any worms or viruses or any code of a destructive nature.</p>
@@ -56,19 +54,19 @@
       <hr>
     </div>
     <div id="accuracy">
-      <h3>SECTION 2 - ACCURACY, COMPLETENESS AND TIMELINESS OF INFORMATION</h3>
+      <h3>ACCURACY, COMPLETENESS AND TIMELINESS OF INFORMATION</h3>
       <p>We are not responsible if information made available on this site is not accurate, complete or current. The material on this site is provided for general information only and should not be relied upon or used as the sole basis for making decisions without consulting primary, more accurate, more complete or more timely sources of information. Any reliance on the material on this site is at your own risk.</p>
       <p>This site may contain certain historical information. Historical information, necessarily, is not current and is provided for your reference only. We reserve the right to modify the contents of this site at any time, but we have no obligation to update any information on our site. You agree that it is your responsibility to monitor changes to our site.</p>
       <hr>
     </div>
     <div id="modifications">
-      <h3>SECTION 3 - MODIFICATIONS TO THE SERVICE</h3>
+      <h3>MODIFICATIONS TO THE SERVICE</h3>
       <p>We reserve the right at any time to modify or discontinue the Service (or any part or content thereof) without notice at any time.</p>
       <p>We shall not be liable to you or to any third-party for any modification, price change, suspension or discontinuance of the Service.</p>
       <hr>
     </div>
     <div id="optional-tools">
-      <h3>SECTION 4 - OPTIONAL TOOLS</h3>
+      <h3>OPTIONAL TOOLS</h3>
       <p>We may provide you with access to third-party tools over which we neither monitor nor have any control nor input.</p>
       <p>You acknowledge and agree that we provide access to such tools ”as is” and “as available” without any warranties, representations or conditions of any kind and without any endorsement. We shall have no liability whatsoever arising from or relating to your use of optional third-party tools.</p>
       <p>Any use by you of optional tools offered through the site is entirely at your own risk and discretion and you should ensure that you are familiar with and approve of the terms on which tools are provided by the relevant third-party provider(s).</p>
@@ -76,28 +74,28 @@
       <hr>
     </div>
     <div id="third-party"></div>
-      <h3>SECTION 5 - THIRD-PARTY LINKS</h3>
+      <h3>THIRD-PARTY LINKS</h3>
       <p>Certain content, products and services available via our Service may include materials from third-parties.</p>
       <p>Third-party links on this site may direct you to third-party websites that are not affiliated with us. We are not responsible for examining or evaluating the content or accuracy and we do not warrant and will not have any liability or responsibility for any third-party materials or websites, or for any other materials, products, or services of third-parties.</p>
       <p>We are not liable for any harm or damages related to the purchase or use of goods, services, resources, content, or any other transactions made in connection with any third-party websites. Please review carefully the third-party's policies and practices and make sure you understand them before you engage in any transaction. Complaints, claims, concerns, or questions regarding third-party products should be directed to the third-party.</p>
       <hr>
     <div id="user-comments"></div>
-      <h3>SECTION 6 - USER COMMENTS, FEEDBACK AND OTHER SUBMISSIONS</h3>
+      <h3>USER COMMENTS, FEEDBACK AND OTHER SUBMISSIONS</h3>
       <p>If, at our request, you send certain specific submissions (for example contest entries) or without a request from us you send creative ideas, suggestions, proposals, plans, or other materials, whether online, by email, by postal mail, or otherwise (collectively, 'comments'), you agree that we may, at any time, without restriction, edit, copy, publish, distribute, translate and otherwise use in any medium any comments that you forward to us. We are and shall be under no obligation (1) to maintain any comments in confidence; (2) to pay compensation for any comments; or (3) to respond to any comments.</p>
       <p>We may, but have no obligation to, monitor, edit or remove content that we determine in our sole discretion are unlawful, offensive, threatening, libelous, defamatory, pornographic, obscene or otherwise objectionable or violates any party’s intellectual property or these Terms of Service.</p>
       <p>You agree that your comments will not violate any right of any third-party, including copyright, trademark, privacy, personality or other personal or proprietary right. You further agree that your comments will not contain libelous or otherwise unlawful, abusive or obscene material, or contain any computer virus or other malware that could in any way affect the operation of the Service or any related website. You may not use a false e-mail address, pretend to be someone other than yourself, or otherwise mislead us or third-parties as to the origin of any comments. You are solely responsible for any comments you make and their accuracy. We take no responsibility and assume no liability for any comments posted by you or any third-party.</p>
       <hr>
     <div id="personal-info"></div>
-      <h3>SECTION 7 - PERSONAL INFORMATION</h3>
+      <h3>PERSONAL INFORMATION</h3>
       <p>Your submission of personal information through the store is governed by our Privacy Policy. To view our <%= link_to "Privacy Policy", privacy_policy_pages_path %>.</p>
       <hr>
     <div id="errors"></div>
-      <h3>SECTION 8 - ERRORS, INACCURACIES AND OMISSIONS</h3>
+      <h3>ERRORS, INACCURACIES AND OMISSIONS</h3>
       <p>Occasionally there may be information on our site or in the Service that contains typographical errors, inaccuracies or omissions. We reserve the right to correct any errors, inaccuracies or omissions, and to change or update information if any information in the Service or on any related website is inaccurate at any time without prior notice.</p>
       <p>We undertake no obligation to update, amend or clarify information in the Service or on any related website, including without limitation, pricing information, except as required by law. No specified update or refresh date applied in the Service or on any related website, should be taken to indicate that all information in the Service or on any related website has been modified or updated.</p>
       <hr>
     <div id="prohibited-uses">
-      <h3>SECTION 9 - PROHIBITED USES</h3>
+      <h3>PROHIBITED USES</h3>
       <p>In addition to other prohibitions as set forth in the Terms of Service, you are prohibited from using the site or its content:
         <ol type="A">
           <li>for any unlawful purpose</li>
@@ -115,7 +113,7 @@
       <hr>
     </div>
     <div id="warranties">
-      <h3>SECTION 10 - DISCLAIMER OF WARRANTIES; LIMITATION OF LIABILITY</h3>
+      <h3>DISCLAIMER OF WARRANTIES; LIMITATION OF LIABILITY</h3>
       <p>We do not guarantee, represent or warrant that your use of our service will be uninterrupted, timely, secure or error-free.</p>
       <p>We do not warrant that the results that may be obtained from the use of the service will be accurate or reliable.</p>
       <p>You agree that from time to time we may remove the service for indefinite periods of time or cancel the service at any time, without notice to you.</p>
@@ -124,42 +122,42 @@
       <hr>
     </div>
     <div id="indemnification">
-      <h3>SECTION 11 - INDEMNIFICATION</h3>
+      <h3>INDEMNIFICATION</h3>
       <p>You agree to indemnify, defend and hold harmless The Parts Ninja and our parent, subsidiaries, affiliates, partners, officers, directors, agents, contractors, licensors, service providers, subcontractors, suppliers, interns and employees, harmless from any claim or demand, including reasonable attorneys’ fees, made by any third-party due to or arising out of your breach of these Terms of Service or the documents they incorporate by reference, or your violation of any law or the rights of a third-party.</p>
       <hr>
     </div>
     <div id="severability">
-      <h3>SECTION 12 - SEVERABILITY</h3>
+      <h3>SEVERABILITY</h3>
       <p>In the event that any provision of these Terms of Service is determined to be unlawful, void or unenforceable, such provision shall nonetheless be enforceable to the fullest extent permitted by applicable law, and the unenforceable portion shall be deemed to be severed from these Terms of Service, such determination shall not affect the validity and enforceability of any other remaining provisions.</p>
       <hr>
     </div>
     <div id="termination">
-      <h3>SECTION 13 - TERMINATION</h3>
+      <h3>TERMINATION</h3>
       <p>The obligations and liabilities of the parties incurred prior to the termination date shall survive the termination of this agreement for all purposes.</p>
       <p>These Terms of Service are effective unless and until terminated by either you or us. You may terminate these Terms of Service at any time by notifying us that you no longer wish to use our Services, or when you cease using our site.</p>
       <p>If in our sole judgment you fail, or we suspect that you have failed, to comply with any term or provision of these Terms of Service, we also may terminate this agreement at any time without notice and you will remain liable for all amounts due up to and including the date of termination; and/or accordingly may deny you access to our Services (or any part thereof).</p></p>
       <hr>
     </div>
     <div id="agreement">
-      <h3>SECTION 14 - ENTIRE AGREEMENT</h3>
+      <h3>ENTIRE AGREEMENT</h3>
       <p>The failure of us to exercise or enforce any right or provision of these Terms of Service shall not constitute a waiver of such right or provision.</p>
       <p>These Terms of Service and any policies or operating rules posted by us on this site or in respect to The Service constitutes the entire agreement and understanding between you and us and govern your use of the Service, superseding any prior or contemporaneous agreements, communications and proposals, whether oral or written, between you and us (including, but not limited to, any prior versions of the Terms of Service).</p>
       <p>Any ambiguities in the interpretation of these Terms of Service shall not be construed against the drafting party.</p>
       <hr>
     </div>
     <div id="governing-law">
-      <h3>SECTION 15 - GOVERNING LAW</h3>
+      <h3>GOVERNING LAW</h3>
       <p>These Terms of Service and any separate agreements whereby we provide you Services shall be governed by and construed in accordance with the laws of Oregon, United States, without regard to its conflict of law provisions.</p>
       <hr>
     </div>
     <div id="changes-to-terms">
-      <h3>SECTION 16 - CHANGES TO TERMS OF SERVICE</h3>
+      <h3>CHANGES TO TERMS OF SERVICE</h3>
       <p>You can review the most current version of the Terms of Service at any time at this page.</p>
       <p>We reserve the right, at our sole discretion, to update, change or replace any part of these Terms of Service by posting updates and changes to our website. It is your responsibility to check our website periodically for changes. Your continued use of or access to our website or the Service following the posting of any changes to these Terms of Service constitutes acceptance of those changes.</p>
       <hr>
     </div>
     <div id="contact">
-      <h3>SECTION 17 - CONTACT INFORMATION</h3>
+      <h3>CONTACT INFORMATION</h3>
       <p>Questions about the Terms of Service should be sent to us at <%= mail_to "contact@theparts.ninja", "contact@theparts.ninja" %></p>
     </div>
   </div>

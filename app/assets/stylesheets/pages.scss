@@ -1,0 +1,57 @@
+@media(min-width: 979px) {
+	#sticky-sidebar {
+		&.affix-top {
+			position: static;
+			margin-top: 30px;
+			width: 335px;
+		}
+		&.affix {
+			position: fixed;
+			top: 25px;
+			width: 335px;
+		}
+	}
+}
+#sticky-sidebar {
+  background: #f5f7f9;
+  border-radius: 4px;
+  .heading {
+    padding: 5px;
+    margin: 0px 10px;
+    border-bottom: 1px solid gainsboro;
+  }
+  li {
+    a {
+      color: #424242;
+      display: block;
+      line-height: 15px;
+      font-size: 13px;
+    }
+  	&.active {
+  		border: 0 #424242 solid;
+  		border-right-width: 4px;
+  	}
+  	li.active {
+  		border: 0 #424242 solid;
+  		border-right-width: 3px;
+  	}
+  }
+}
+
+p {
+  line-height: 22px;
+  color: #454545;
+}
+
+
+.affix-top {
+  position: static;
+}
+
+@media(max-width: 979px) {
+	#sticky-sidebar {
+		&.affix {
+			position: static;
+		}
+	}
+}

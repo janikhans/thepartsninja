@@ -8,6 +8,20 @@ $(function () {
 
   retina.initialize();
 
+  $('#sticky-sidebar').affix({
+      offset: {
+        top: 260
+      }
+  });
+
+  var $body   = $(document.body);
+  var navHeight = $('.navbar').outerHeight(true) + 10;
+
+  $body.scrollspy({
+    target: '#left-col',
+    offset: navHeight
+  });
+
 });
 
 var navbar = {
