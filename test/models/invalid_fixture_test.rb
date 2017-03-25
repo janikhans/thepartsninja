@@ -1,18 +1,6 @@
 require 'test_helper'
 
-class ApplicationTest < ActiveSupport::TestCase
-
-  test "all models should inherit from ApplicationRecord" do
-    application_records = ApplicationRecord.descendants
-    active_records = ActiveRecord::Base.descendants
-
-    blacklist = [ApplicationRecord, ActiveRecord::SchemaMigration, ActsAsVotable::Vote]
-    uninherited = active_records - application_records - blacklist
-
-    assert uninherited.empty?,
-      "The following models do not inherit from ApplicationRecord:\n\t#{uninherited.join("\n\t")}"
-  end
-
+class InvalidFixtureTest < ActiveSupport::TestCase
   test "all fixtures should be valid" do
     invalids = find_all_invalid_fixtures
     assert invalids.empty?, "The following fixtures are invalid:\n\t#{invalids.join("\n\t")}"
