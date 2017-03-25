@@ -19,3 +19,4 @@
 //= require flash
 //= require dynamic_selects
 //= require typeahead
+//= require text_rotator

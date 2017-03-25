@@ -17,6 +17,14 @@ $(function () {
     offset: navHeight
   });
 
+  $(".rotate").textrotator({
+    animation: "dissolve", // dissolve (default), fade, flip, flipUp, flipCube, flipCubeUp and spin.
+    separator: ",",
+    speed: 2500,
+    text: $(".rotate").data('text'),
+    repeat: false
+  });
+
 });
 
 var navbar = {
