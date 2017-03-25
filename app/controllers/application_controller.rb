@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_action :set_raven_context
   before_action :prepare_meta_tags, if: "request.get?"
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -50,6 +51,11 @@ class ApplicationController < ActionController::Base
     set_meta_tags options
   end
 
+  private
+
+  def set_raven_context
+    Raven.user_context(id: current_user.id)
+  end
 
   protected
 
