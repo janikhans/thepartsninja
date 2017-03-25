@@ -54,7 +54,7 @@ class ApplicationController < ActionController::Base
   private
 
   def set_raven_context
-    Raven.user_context(user: current_user)
+    Raven.user_context(id: current_user.try(:id))
   end
 
   protected
