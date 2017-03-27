@@ -51,6 +51,11 @@ class ApplicationController < ActionController::Base
   end
 
 
+  def coming_soon
+    redirect_to coming_soon_path unless current_user
+  end
+
+
   protected
 
   def configure_permitted_parameters
