@@ -1,5 +1,7 @@
 .user-session {
-  background-color: #f7f7f7;
+  // background-color: #f7f7f7;
+  // background-image: url("parts-ninja-icon-bg.png");
+  // background-repeat: repeat;
 }
 
 .signin, .password-reset, .resend-confirmation, .accept-invitation {
@@ -28,4 +30,17 @@
   .cta {
     color: $background-text;
   }
+}
+
+
+.pattern-bg {
+  background: #f7f7f7 url("parts-ninja-icon-bg.png");
+  background-size: 280px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  opacity: .08;
 }
