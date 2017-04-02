@@ -1,13 +1,7 @@
-.user-session {
-  // background-color: #f7f7f7;
-  // background-image: url("parts-ninja-icon-bg.png");
-  // background-repeat: repeat;
-}
-
-.signin, .password-reset, .resend-confirmation, .accept-invitation {
+.signin, .signup, .password-reset, .resend-confirmation, .accept-invitation {
   text-align: center;
   .header {
-    margin-top: 100px;
+    margin: 50px auto;
     color: $background-text;
     .logo {
       display: block;
@@ -15,23 +9,16 @@
       max-height: 200px;
     }
   }
-}
-
-.signup {
-  .header {
-    text-align: center;
-    margin-top: 100px;
-    .logo {
-      display: block;
-      margin: 0 auto;
-      max-height: 200px;
-    }
+  h2 {
+    margin-top: 10px;
+    font-weight: 600;
+    color: #333;
   }
   .cta {
-    color: $background-text;
+    text-align: left;
+    margin-top: 20px;
   }
 }
-
 
 .pattern-bg {
   background: #f7f7f7 url("parts-ninja-icon-bg.png");

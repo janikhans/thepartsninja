@@ -79,7 +79,7 @@
   font-weight: 600;
   color: #fff;
   display: inline-block;
-  box-shadow: rgba(23, 43, 99, 0.24) 0 7px 28px;
+  box-shadow: rgba(23, 43, 99, 0.15) 0 7px 28px;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-size: 13px;
@@ -120,7 +120,11 @@
   }
 
   &.btn-shadow-primary {
-    background: linear-gradient(#2083fe, #1d7bf0);
+    background: #0aba0b;
+    transition: all 1s ease;
+    &:hover {
+      background: #13a414;
+    }
   }
 
   &.btn-shadow-dark {
