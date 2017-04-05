@@ -10,26 +10,6 @@
     text-align: center;
     color: gray;
   }
-  h1 {
-    color: #FFF;
-    margin-bottom: 12px;
-    padding: 0;
-    font-size: 38px;
-  }
-  hr {
-    border: solid #2fa530;
-    border-width: 5px 0 0;
-    margin: 19px auto 12px;
-    height: 0;
-    width: 100px;
-  }
-  p {
-    color: #dcdcdc;
-    margin: 15px 0 15px 0;
-    margin-bottom: 18px;
-    padding: 0;
-    font-size: 17px;
-  }
   .site-header {
     display: block;
     .logo {
@@ -46,6 +26,31 @@
       }
     }
   }
+  footer {
+    margin-top: 20px;
+    ul {
+      margin: 0px;
+      padding: 0px;
+      text-align: left;
+      li {
+        list-style: none;
+        display: inline-block;
+        padding: 10px;
+        a {
+          color: #FFF;
+          &:hover {
+            color: #2fa530;
+          }
+        }
+        &:last-child {
+          float: right;
+        }
+      }
+    }
+  }
+}
+
+.lead-form, .coming-soon {
   input[type="email"] {
     height: 54px;
     color: rgba(0, 0, 0, 0.7);
@@ -71,26 +76,29 @@
       background: transparent;
     }
   }
-  footer {
-    margin-top: 20px;
-    ul {
-      margin: 0px;
-      padding: 0px;
-      text-align: left;
-      li {
-        list-style: none;
-        display: inline-block;
-        padding: 10px;
-        a {
-          color: #FFF;
-          &:hover {
-            color: #2fa530;
-          }
-        }
-        &:last-child {
-          float: right;
-        }
-      }
-    }
+  h1 {
+    color: #FFF;
+    margin-bottom: 12px;
+    padding: 0;
+    font-size: 38px;
   }
+  hr {
+    border: solid #2fa530;
+    border-width: 5px 0 0;
+    margin: 19px auto 12px;
+    height: 0;
+    width: 100px;
+  }
+  p {
+    color: #dcdcdc;
+    margin: 15px 0 15px 0;
+    margin-bottom: 18px;
+    padding: 0;
+    font-size: 17px;
+  }
+}
+
+.lead-form {
+  background: #232125;
+  padding: 50px 0px;
 }
