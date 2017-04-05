@@ -6,7 +6,7 @@ module Authentication
     include Test::Unit::Assertions
 
     def sign_in(user, options = {})
-      visit login_path
+      visit new_user_session_path
       fill_in "user_login", with: user.email
       fill_in "user_password", with: options[:password] || "password"
       click_button "Log In"

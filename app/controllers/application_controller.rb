@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
     redirect_to (request.referer.present? ? :back : default), options
   end
 
+  def coming_soon
+    redirect_to coming_soon_path unless current_user
+  end
+
   def after_sign_in_path_for(resource)
     account_root_path
   end

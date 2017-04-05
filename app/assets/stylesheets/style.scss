@@ -1,27 +1,29 @@
-// Google Fonts
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&lang=en");
-
 // Bootstrap
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "base/bootstrap_overrides";
 
-// Variables, Mixins
-@import "base/variables";
+/* variables */
+@import "variables";
 
-// Base Requirements
-@import "base/typography";
+/* modules */
+@import "base/custom_mixins";
+@import "base/custom_effects";
 @import "base/buttons";
-@import "base/badges_labels";
-@import "base/base";
-@import "base/pages";
 
-// Additional styling to override base attributes
-@import "custom";
-@import "vehicles";
-@import "wizard";
-@import "search";
+/* layout */
+@import "base/layout";
+
+/* general */
+@import "index";
+@import "devise_pages";
+@import "pages";
+@import "forms";
+@import "search_results";
+@import "headers";
+@import "elements";
 @import "flash";
 @import "chosen-styling";
 @import "typeahead";
-//@import "dark";
-//@import "flat";
+@import "custom";
+@import "coming_soon";

@@ -11,7 +11,7 @@
   <%= render 'layouts/ie_shim' %>
 </head>
 
-<body id="body">
+<body id="body" class="<%= 'pages' if controller.controller_name == 'pages' %>">
     <%= render 'layouts/navbar' %>
     <%= render 'layouts/header' %>
     <%= render 'layouts/flash' %>
@@ -19,7 +19,7 @@
     <% if @home_page %>
         <%= yield %>
     <% else %>
-      <div id="content" class="container content-wrapper">
+      <div id="content" class="container content-wrapper m-t-lg">
         <%= yield %>
       </div>
     <% end %>

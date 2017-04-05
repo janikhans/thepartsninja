@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170219010915) do
+ActiveRecord::Schema.define(version: 20170314080627) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20170219010915) do
     t.integer  "fitment_note_id"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+    t.integer  "search_type"
     t.index ["category_id"], name: "index_check_searches_on_category_id", using: :btree
     t.index ["comparing_vehicle_id"], name: "index_check_searches_on_comparing_vehicle_id", using: :btree
     t.index ["fitment_note_id"], name: "index_check_searches_on_fitment_note_id", using: :btree
@@ -83,6 +84,7 @@ ActiveRecord::Schema.define(version: 20170219010915) do
     t.integer  "fitment_note_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.integer  "search_type"
     t.index ["category_id"], name: "index_compatibility_searches_on_category_id", using: :btree
     t.index ["fitment_note_id"], name: "index_compatibility_searches_on_fitment_note_id", using: :btree
     t.index ["user_id"], name: "index_compatibility_searches_on_user_id", using: :btree
@@ -345,6 +347,7 @@ ActiveRecord::Schema.define(version: 20170219010915) do
       SELECT row_number() OVER () AS id,
       t.searchable_id,
       t.searchable_type,
+      t.search_type,
       t.user_id,
       t.vehicle_id,
       t.comparing_vehicle_id,
@@ -356,6 +359,7 @@ ActiveRecord::Schema.define(version: 20170219010915) do
       t.updated_at
      FROM ( SELECT check_searches.id AS searchable_id,
               'CheckSearch'::text AS searchable_type,
+              check_searches.search_type,
               check_searches.user_id,
               check_searches.vehicle_id,
               check_searches.comparing_vehicle_id,
@@ -369,6 +373,7 @@ ActiveRecord::Schema.define(version: 20170219010915) do
           UNION
            SELECT compatibility_searches.id AS searchable_id,
               'CompatibilitySearch'::text AS searchable_type,
+              compatibility_searches.search_type,
               compatibility_searches.user_id,
               compatibility_searches.vehicle_id,
               NULL::integer AS comparing_vehicle_id,
@@ -379,7 +384,7 @@ ActiveRecord::Schema.define(version: 20170219010915) do
               compatibility_searches.created_at,
               compatibility_searches.updated_at
              FROM compatibility_searches
-    ORDER BY 10) t;
+    ORDER BY 11) t;
   SQL
 
 end

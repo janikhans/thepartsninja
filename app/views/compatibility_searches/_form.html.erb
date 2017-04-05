@@ -1,21 +1,30 @@
 <%= simple_form_for @search, as: "search", url: results_find_index_path, method: :get, remote: true do |f| %>
-  <div class="row">
-    <%= f.simple_fields_for :category do |category| %>
-      <%= category.input :name, input_html: { class: "typeahead", autocomplete: "off"}, wrapper_html: {class:"col-md-8"}, label: false, placeholder: "What part are you looking for?" %>
-      <%= category.input :id, as: :hidden %>
-    <% end %>
-    <%= f.simple_fields_for :fitment_note do |fitment_note| %>
-      <%= fitment_note.input :id, collection: [], wrapper_html: { class:"col-md-4" }, label: false, disabled: true %>
-    <% end %>
-  </div>
+  <h5 class="topic-title">
+    What Part Are You Looking For?
+  </h5>
+  <%= f.simple_fields_for :category do |category| %>
+    <%= category.input :name, input_html: { class: "typeahead", autocomplete: "off"}, label: false, placeholder: "Part...", wrapper_html: { class: "col-md-8" } %>
+    <%= category.input :id, as: :hidden %>
+  <% end %>
+  <%= f.simple_fields_for :fitment_note do |fitment_note| %>
+    <%= fitment_note.input :id, collection: [], label: false, disabled: true, wrapper_html: { class: "col-md-4" } %>
+  <% end %>
+  <h5 class="topic-title">
+    Select Your Vehicle
+  </h5>
   <%= f.simple_fields_for :vehicle do |vehicle| %>
-    <%= vehicle.input :brand, collection: @brands, class:"form-control", label: false, prompt: "Make...", input_html: {class: "chosen-select" } %>
-    <%= vehicle.input :model, collection: [], class: "form-control", label: false, prompt: "Model...", input_html: {class: "chosen-select" }%>
-    <%= vehicle.input :submodel, collection: [], class:"form-control", label: false, prompt: "Submodel..." %>
-    <%= vehicle.input :year, collection: [], prompt: "Year...", label: false, class:"form-control" %>
+    <%= vehicle.input :brand, collection: @brands, class:"form-control", prompt: "Make", label: false, input_html: { class: "chosen-select" }, wrapper_html: { class: "col-md-3" } %>
+    <%= vehicle.input :model, collection: [], class: "form-control", prompt: "Model", label: false, input_html: { class: "chosen-select" }, wrapper_html: { class: "col-md-3" } %>
+    <%= vehicle.input :submodel, collection: [], class:"form-control", prompt: "Submodel", label: false, wrapper_html: { class: "col-md-3" } %>
+    <%= vehicle.input :year, collection: [], prompt: "Year", label: false, wrapper_html: { class: "col-md-3" } %>
     <%= vehicle.input :id, as: :hidden %>
   <% end %>
-  <%= f.submit "Find", class: "btn btn-default" %>
+  <div class="text-center">
+    <div class="btn-group">
+      <%= f.submit "Find Compatibilities", class: "btn btn-default" %>
+      <%= f.submit "Find Potentials", class: "btn btn-default" %>
+    </div>
+  </div>
 <% end %>
 
 <script type="text/javascript">

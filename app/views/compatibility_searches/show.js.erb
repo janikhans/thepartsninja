@@ -1,6 +1,1 @@
-$('#compatible-results').append("<%= escape_javascript(render 'results_list', results: @compatibility_search.vehicles) %>");
-<% if @compatibility_search.can_advance_page? %>
-  $('#show-more-link').html("<%= escape_javascript(link_to 'Show More', find_path(@compatibility_search, page: @compatibility_search.next_page), remote: true, class: 'btn btn-primary') %>")
-<% else %>
-  $('#show-more-link').remove();
-<% end %>
+$('#results').html("<%= escape_javascript(render 'results_page', search_record: @compatibility_search) %>");

@@ -5,7 +5,7 @@ class CompatibilitySearchForm
 
   # TODO add error messages
 
-  attr_accessor :category_name, :category, :vehicle, :fitment_note, :user, :compatibility_search
+  attr_accessor :category_name, :category, :vehicle, :fitment_note, :user, :compatibility_search, :search_type
 
   validates :category_name, presence: true
   validates :vehicle, presence: true
@@ -15,6 +15,7 @@ class CompatibilitySearchForm
     @category = set_category(params[:category])
     @category_name = params[:category].try(:[], :name)
     @fitment_note = set_fitment_note(params[:fitment_note])
+    @search_type = "known"
     @user = nil
   end
 
@@ -30,10 +31,11 @@ class CompatibilitySearchForm
                               category: @category,
                               category_name: @category_name,
                               user: @user,
-                              fitment_note: @fitment_note)
+                              fitment_note: @fitment_note,
+                              search_type: @search_type)
     search_record.process(eager_load: true)
     if search_record.successful?
-      search_record.results_count = search_record.compatible_vehicles.first.results_count
+      search_record.results_count = search_record.vehicles.first.results_count
     end
     search_record.save
     search_record

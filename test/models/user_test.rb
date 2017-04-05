@@ -14,7 +14,7 @@ class UserTest < UnitTest
   should have_many(:fitments)
   should have_many(:compatibilities).through(:discoveries)
   should have_many(:check_searches)
-  should have_many(:compatiblity_searches)
+  should have_many(:compatibility_searches)
 
   setup do
     @new_user = User.new(username: "Test", email: "test@test.com", password: "password", password_confirmation: "password")

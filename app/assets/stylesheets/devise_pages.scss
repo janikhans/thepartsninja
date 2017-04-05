@@ -1,0 +1,33 @@
+.signin, .signup, .password-reset, .resend-confirmation, .accept-invitation {
+  text-align: center;
+  .header {
+    margin: 50px auto;
+    color: $background-text;
+    .logo {
+      display: block;
+      margin: 0 auto;
+      max-height: 200px;
+    }
+  }
+  h2 {
+    margin-top: 10px;
+    font-weight: 600;
+    color: #333;
+  }
+  .cta {
+    text-align: left;
+    margin-top: 20px;
+  }
+}
+
+.pattern-bg {
+  background: #f7f7f7 url("parts-ninja-icon-bg.png");
+  background-size: 280px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  opacity: .08;
+}

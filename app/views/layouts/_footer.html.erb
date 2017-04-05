@@ -1,53 +1,71 @@
-<footer>
+<footer class="footer">
   <div class="container">
     <div class="row">
-      <div class="col-md-5 col-sm-12">
-        <h3>About</h3>
-        <p>The ultimate motorsports parts service. The Parts Ninja helps you find replacement parts with one simple search. Using secret ninja magic to cross reference thousands of parts, The Parts Ninja will find you all known and potential part compatibilities. </p>
+      <div class="col-md-2 col-xs-12 text-center">
+        <div class="title">
+          The Parts Ninja
+        </div>
+        <%= image_tag("parts_ninja_dark_logo", style:"max-width: 130px; margin-top: 10px;") %>
       </div>
-      <div class="col-md-4 col-sm-12">
-        <h3>Links</h3>
+      <div class="col-md-4 col-xs-12 newsletter">
+        <div class="title">About Us</div>
+        <p>The only community built; data driven; parts database. The Parts Ninja utilizes
+        existing data and combines it with your own discoveries. These discoveries allow The Parts Ninja
+        to "connect the dots" and form a Compatibility Web, giving you access to thousands of
+        previously unaccessable parts! </p>
+      </div>
+      <div class="col-md-4 col-xs-12">
+        <div class="title">
+          Links
+        </div>
         <div class="row">
           <div class="col-md-6 col-xs-6">
-            <ul>
+            <ul class="menu">
               <li><%= link_to "Home", root_path %></li>
-              <li><%= link_to "Terms & Conditions", terms_of_service_pages_path %></li>
-              <li><%= link_to "Privacy Policy", privacy_policy_pages_path %></li>
-              <li><%= mail_to "contact@theparts.ninja", "Contact Us" %></li>
+              <% if current_user %>
+                <li><%= link_to "About", about_pages_path %></li>
+                <li><%= link_to "Help", help_pages_path %></li>
+                <li><%= link_to "FAQ", help_pages_path %></li>
+              <% end %>
             </ul>
           </div>
-          <% if user_signed_in? %>
           <div class="col-md-6 col-xs-6">
+            <ul class="menu">
+              <% if user_signed_in? %>
+                <li><%= link_to "Dashboard", account_root_path %></li>
+                <li><%= link_to "Check", check_index_path %></li>
+                <li><%= link_to "Find", find_index_path %></li>
+                <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+              <% else %>
+                <li><%= link_to "Login", new_user_session_path %></li>
+                <% if Rails.env.development? %>
+                  <li><%= link_to "Signup", new_user_registration_path %></li>
+                <% end %>
+              <% end %>
             <ul>
-              <li><%= link_to "Dashboard", account_root_path %></li>
-              <li><%= link_to "New Discovery", new_discovery_path %></li>
-              <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete, data: {confirm: "Are you sure?"} %></li>
-            </ul>
           </div>
-          <% else %>
-          <div class="col-md-6 col-xs-6">
-            <ul>
-              <li><%= link_to "Login", login_path %></li>
-            </ul>
-          </div>
-          <% end %>
         </div>
       </div>
-      <div class="col-md-3 col-sm-12">
-          <h3>Follow the Sensei</h3>
-          <ul class="p-m social-icons">
-            <li><%= link_to '<i class="fa fa-facebook fa-fw fa-2x"></i>'.html_safe, 'https://facebook.com/thepartsninja', target: "_blank", alt: "The Parts Ninja Facebook" %></li>
-            <li><%= link_to '<i class="fa fa-instagram fa-fw fa-2x"></i>'.html_safe, 'https://instagram.com/theparts.ninja', target: "_blank", alt: "The Parts Ninja Instagram" %></li>
-            <li><%= link_to '<i class="fa fa-twitter fa-fw fa-2x"></i>'.html_safe, 'https://twitter.com/thepartsninja', target: "_blank", alt: "The Parts Ninja Twitter" %></li>
-          </ul>
+      <div class="col-md-2 col-xs-12">
+        <div class="title">
+          Connect with us
+        </div>
+        <ul class="menu">
+          <li><%= link_to icon(:facebook) + " Facebook", 'https://facebook.com/thepartsninja', target: "_blank", alt: "The Parts Ninja Facebook" %></li>
+          <li><%= link_to icon(:instagram) + " Instagram", 'https://instagram.com/theparts.ninja', target: "_blank", alt: "The Parts Ninja Instagram" %></li>
+          <li><%= link_to icon(:twitter) + " Twitter", 'https://twitter.com/thepartsninja', target: "_blank", alt: "The Parts Ninja Twitter" %></li>
+        </ul>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <div class="copyright">
-          &copy; <%= copyright_notice_year_range(2015) %> THE PARTS NINJA - All Rights Reserved.
-        </div>
-      </div>
+    <div class="bottom">
+      <ul>
+        <li><%= mail_to "contact@theparts.ninja", "Contact" %></li>
+        <li><%= link_to "Privacy", privacy_policy_pages_path %></li>
+        <li><%= link_to "Legal", terms_of_service_pages_path %></li>
+      </ul>
+    </div>
+    <div class="copyright text-center">
+      &copy; <%= copyright_notice_year_range(2016) %> THE PARTS NINJA - All Rights Reserved.
     </div>
   </div>
 </footer>

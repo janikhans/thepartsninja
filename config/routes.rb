@@ -2,12 +2,9 @@ Rails.application.routes.draw do
 
   # Users
   # Change the default devise routes to something more pleasing
-  devise_for :users, controllers: {registrations: :registrations, invitations: :invitations}
-
-  devise_scope :user do
-    get "login", to: "devise/sessions#new"
-    get "sign_up", to: "devise/registrations#new" if Rails.env.development?
-  end
+  devise_for :users, path: '',
+    path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'signup' },
+    controllers: { registrations: :registrations, invitations: :invitations }
 
   namespace :account do
     root to: "activity#index"
@@ -39,6 +36,7 @@ Rails.application.routes.draw do
         get :searches_by_type
         get :search_records
         get :vehicles_by_type
+        get :category_searches
       end
     end
   end

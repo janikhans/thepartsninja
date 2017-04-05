@@ -1,0 +1,10 @@
+<h1>Success!</h1>
+<p>There appears to be compatible parts!</p>
+<ul class="list-unstyled">
+  <li><strong>Vehicle:</strong> <%= search_record.vehicle.to_label %></li>
+  <li><strong>Part:</strong> <%= search_record.category.name %> <%= "- " + search_record.fitment_note.name if search_record.fitment_note %></li>
+  <li><strong>Pages:</strong> <%= search_record.total_pages %></li>
+  <li><strong>Models:</strong> <%= search_record.grouped_count %></li>
+  <li><strong>Compatibilities:</strong> <%= search_record.results_count %></li>
+  <li><strong>Average Score:</strong> 54</li>
+</ul>

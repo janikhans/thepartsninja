@@ -12,8 +12,8 @@ class LayoutFlowsTest < IntegrationTest
     visit root_url
 
     within "footer" do
-      assert has_link? "Privacy Policy"
-      assert has_link? "Terms & Conditions"
+      assert has_link? "Privacy"
+      assert has_link? "Legal"
       assert has_link? "Home"
       assert has_link? "Contact Us"
     end

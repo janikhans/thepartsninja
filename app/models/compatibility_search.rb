@@ -12,7 +12,7 @@ class CompatibilitySearch < ApplicationRecord
     self.limit = options[:limit] if options[:limit].present?
     self.current_page = options[:page] if options[:page].present?
     self.threshold = options[:threshold] if options[:threshold].present?
-    self.type = options[:type] if options[:type].present?
+    # self.type = options[:type] if options[:type].present?
     self.compatible_vehicles = nil
     self.potential_vehicles = nil
     find_vehicles
@@ -32,7 +32,7 @@ class CompatibilitySearch < ApplicationRecord
   private
 
   def find_vehicles
-    if type == "potentials"
+    if search_type == "potential"
       self.potential_vehicles = find_potential_compatible_vehicles
     else
       self.compatible_vehicles = find_compatibilities

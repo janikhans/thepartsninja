@@ -1,170 +1,149 @@
 <% content_for :header do %>
   <%= render 'layouts/header_partials/splash' %>
+  <%= render 'layouts/header_partials/stats' %>
 <% end %>
 
-<section id="about" class="features">
+<div id="about" class="index-intro">
   <div class="container">
-    <div class="row">
-      <div class="col-lg-12 text-center">
-        <div class="navy-line"></div>
-        <h1>Who is...<br/> <span class="navy"> <i>The Parts Ninja?</i></span> </h1>
-        <p>He's the one who's going to help you find whatever part you're looking for. </p>
-      </div>
-    </div>
-    <div class="row m-t-md">
-      <div class="col-md-3 text-center">
-        <i class="fa fa-connectdevelop features-icon fa-5x"></i>
-        <h2>The Compatibility Web</h2>
-        <p>The Parts Ninja uses algorithms to cross-reference thousands of parts so that he can find every potential replacement for common and specialized parts.</p>
-      </div>
-      <div class="col-md-6 text-center">
-        <%= image_tag("landing/ThePartsNinjaMockUp.png", class:"img-responsive margin-auto") %>
-      </div>
-      <div class="col-md-3 text-center">
-        <i class="fa fa-mobile features-icon fa-5x"></i>
-        <h2>Always Available</h2>
-        <p>The Parts Ninja is always there to help you. Your computer at home, your tablet while you're in the store or even on your phone while you're out at the track. The Parts Ninja has you covered.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="white-section m-t-md p-b-md">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12 text-center">
-        <div class="navy-line"></div>
-        <h1>Why...<br/> <span class="navy"> <i>Does he do it?</i></span> </h1>
-        <p>He's been in the same shoes as you and is tired of not having options.</p>
-      </div>
-    </div>
-    <div class="row m-t-md align-outer">
-      <div class="col-md-6 text-center align-inner col-md-push-6">
-        <h2>We've all been there</h2>
-        <p>It's the day before the big race and you realize your clutch plates are toast; bummer. What do you do? Call the local shop? Hope they have some? What happens when they don't?</p>
-        <p>What about that spare wheel you've always wanted? You found one for sale but are unsure if it fits. What do you do? You probably hop on Google and search through pages of forum posts.</p>
-        <p><strong>The Parts Ninja is here to help!</strong></p>
-        <p>Find out exactly what fits with one search. Don't waste your money only to find out that the wheel won't fit. Next time the local shop is out of stock, ask if they have clutch plates from another model. You'll be surprised what is compatible.</p>
-      </div>
-      <div class="col-md-6 text-center col-md-pull-6">
-        <%= image_tag("landing/TypicalPartSearch.gif", class:"img-responsive margin-auto") %>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="m-t-md">
-  <div class="container">
-    <div class="row p-b-md">
-      <div class="col-lg-12 text-center">
-        <div class="navy-line"></div>
-        <h1>How...<br/> <span class="navy"><i>Does he do it?</i></span> </h1>
-        <p>He's not all smoke and mirrors. There's a finely crafted method to his technique.</p>
-      </div>
-    </div>
-    <hr>
-    <div class="row m-t-md align-outer">
-      <div class="col-md-6 text-center align-inner">
-        <h2>Step 1: Existing Databases</h2>
-        <p>The Parts Ninja begins by searching existing databases. Whenever a part is manufactured, it's designed to fit a specific line of vehicles.</p>
-        <p><i>Wouldn't it be nice to know exactly what those vehicles are?</i>
-          <h3><strong>The Parts Ninja will show you!</strong></h3>
+    <header>
+      <h2>How does it actually work?</h2>
+      <div class="text-center"><%= image_tag("landing/Compatibility_Web.png") %></div>
+      <p>
+        The Parts Ninja takes the tips, tricks and lessons learned by you in the garage,
+        and combines them with existing data to build a virtual parts compatiblity web.
+        By helping build the compatibility web, you help enable access to thousands of
+        potential part options to everyeone else turning wrenches.
+      </p>
+    </header>
+    <section class="row">
+      <div class="col-sm-6">
+        <h4>Search For Parts</h4>
+        <p>
+          Search for parts using The Parts Ninja proprietary search algorithims. Multiple
+          search types, access to 50,000+ vehicles and over 300,000 parts will help you
+          find the part you're looking for.
         </p>
       </div>
-      <div class="col-md-6 text-center">
-        <%= image_tag("landing/Basic_Search.png", class:"img-responsive margin-auto") %>
+      <div class="col-sm-6">
+        <h4>Add Your Discoveries <small>BETA!</small></h4>
+        <p>
+          Submit your discoveries to contribute to the community developed compatibility web.
+          Simply select the vehicle and part you found are compatible and
+          The Parts Ninja will create the missing links for all future users.
+        </p>
       </div>
+    </section>
+  </div>
+</div>
+
+<div id="banner">
+  <div class="container">
+    <h4>You have options...</h4>
+    <h1>Let the Parts Ninja find them</h1>
+  </div>
+</div>
+
+<div id="search-types" class="index-search-types">
+  <div class="container">
+    <div class="title">
+      <h2>Two unique ways of searching</h2>
+      <p>
+        Other websites will show you information about a part but they stop there.
+        The Parts Ninja takes it a step further and will give you detailed analysis on compatibilities and fitment.
+      </p>
     </div>
-    <hr>
-    <div class="row">
-      <div class="col-md-6 col-sm-12 col-md-push-6 text-center pages-list">
-        <h2>Step 2: Your Discoveries!</h2>
-        <p>That's right, <strong>you</strong>! You know things; you're your own garage McGyver and the Parts Ninja wants to learn from you.</p>
-        <p>Remember that time you were in the shop and discovered that you could replace that burned out radiator fan with a simple computer fan motor? <strong>Show us! - It's easy!</strong></p>
-        <ul>
-          <li>Create your discovery - Show us what parts you're switching.</li>
-          <li>Make any notes - Are they backwards compatible? Are extra modifications required? Are extra parts needed?</li>
-          <li><strong>Finally, submit it!</strong></li>
-        </ul>
-        <p><strong>Congratulations! You've earned some garage karma!</strong></p>
-      </div>
-      <div class="col-md-6 col-sm-12 col-md-pull-6 text-center">
-        <%= image_tag("landing/Discovery_example.png", class:"img-responsive margin-auto") %>
-        </div>
-      </div>
-    <hr>
-    <div class="row align-outer">
-      <div class="col-md-6 text-center align-inner">
-        <h2>Step 3: Magic!</h2>
-        <p>The Parts Ninja uses your new discovery to create a compatibility web of parts. This means that your discovery could be that all-important link that creates thousands of potential new options!</p>
-      </div>
+    <div class="row search-type">
       <div class="col-md-6">
-        <%= image_tag("landing/Compatibility_Web.png", class:"img-responsive martin-auto") %>
+        <%= image_tag("landing/Basic_Search.png", class:"img-responsive") %>
+      </div>
+      <div class="col-sm-6">
+        <h3>
+          Find Compatibilities
+        </h3>
+        <p>
+          Developed to find compatibile vehicles that share a specfic part. Perfect for when the part you need is unavailable,
+          and all your other options have been exhausted.
+        </p>
+        <%= link_to icon(:chevron_right) + " Find Compatibilities", find_index_path, class: "btn-rounded" %>
+      </div>
+    </div>
+    <div class="row search-type">
+      <div class="col-md-6 col-md-push-6 col-xs-12">
+        <%= image_tag("landing/Discovery_example.png", class:"img-responsive devices") %>
+      </div>
+      <div class="col-md-6 col-md-pull-6 col-xs-12 column-right">
+        <h3>Check Compatibility
+        </h3>
+        <p>
+          Need to know if the part you grabbed will fit? Perfect for those times you see a great deal but are unsure
+          if it'll work for your vehicle.
+        </p>
+        <%= link_to icon(:chevron_right) + " Check Compatibility", check_index_path, class: "btn-rounded" %>
       </div>
     </div>
   </div>
-</section>
+</div>
 
-<section class="cta-block white-section m-t-md p-b-md">
-  <div class="container">
-    <div class="row">
-        <div class="col-lg-12 text-center">
-          <div class="navy-line"></div>
-          <h1>Are you...<br/> <span class="navy"> <i> Ready to become a Ninja?</i></span> </h1>
-          <p>Join the dojo and start discovering. It's easy and totally free!</p>
-        </div>
-    </div>
-    <div class="row align-outer">
-        <div class="col-lg-3 align-inner pages-list text-center">
-            <h2>Why join?</h2>
-            <ul>
-              <li>Unlimited searching</li>
-              <li>Access to full search results</li>
-              <li>Access to the Parts Ninja Marketplace</li>
-              <li>Motorsports community</li>
-            </ul>
-            <div class="btn btn-primary disabled">Become a Ninja!</div>
-        </div>
-        <div class="col-lg-6 text-center">
-            <%= image_tag("ThePartsNinjaDark.png", class:"img-responsive margin-auto") %>
-        </div>
-        <div class="col-lg-3 align-inner pages-list text-center">
-            <h2>Need more reasons?</h2>
-            <ul>
-              <li>How-To guides</li>
-              <li>Additional tools and services</li>
-              <li>Member only discounts</li>
-              <li>Plus more!</li>
-            </ul>
-            <div class="btn btn-primary disabled">Become a Ninja!</div>
-        </div>
-    </div>
-  </div>
-</section>
-
-<section class="sign-up-banner">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-6">
-        <div class="ibox">
-          <div class="ibox-title">
-            Subscribe!
+<div class="index-features-files mobile-alt clearfix">
+  <div class="container2">
+    <div class="container1">
+      <div class="col col-left">
+        <div class="features">
+          <div class="feature clearfix">
+            <div class="image">
+              <%= icon(:earth) %>
+            </div>
+            <div class="info">
+              <strong>
+                Save Money
+              </strong>
+              <p>
+                Many times there are alternative parts that are fractions the cost of OEM or main brands. In some cases these
+                parts are even rebranded and sold for more!
+              </p>
+            </div>
           </div>
-          <div id="emailForm" class="ibox-content">
-            <%= render 'leads/form' %>
+          <div class="feature clearfix">
+            <div class="image">
+              <%= icon(:earth) %>
+            </div>
+            <div class="info">
+              <strong>
+                Save Time
+              </strong>
+              <p>
+                Finding used and specialty parts can be time consuming. Unless your Google-foo skills are up to stuff,
+                it can take hours to find alternative parts and/or fitment information.
+              </p>
+            </div>
           </div>
         </div>
+
       </div>
-      <div class="col-lg-6">
-        <div class="navy-line"></div>
-        <h1>Get Early Access!</h1>
-        <p>Do you want to be the first to have access? Sign-up for the Email list and you'll have preferencial access. We'll be rolling out in waves and you would be at the forefront! Not only will you get
-          early access, you'll also get a special gift from the Parts Ninja. Don't worry, your email is safe with the us, we won't ever spam you or sell your information.</p>
+      <div class="col col-right">
+        <div class="info">
+          <h3>Get Updates</h3>
+          <h4>
+            Open registration isn't open yet, but will be soon!
+          </h4>
+          <p>
+            The Parts Ninja will not soley rely on existing data, we want to know your discoveries! Your input will build
+            out the compatibility web for future users. Sign up for the email list and you'll receive early user invitation
+            and special offers.
+          </p>
+        </div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
-<script>
-  $('body').addClass('info-pages');
-</script>
+<div id="lead-form" class="lead-form">
+  <div class="container text-center">
+    <div class="col-md-6 col-md-offset-3">
+      <h1>Stay updated!</h1>
+      <p>Want to join the community? Enter your email and we will let you know as soon as registration is open!</p>
+      <hr>
+      <%= render 'leads/form' %>
+    </div>
+  </div>
+</div>

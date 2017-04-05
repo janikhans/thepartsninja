@@ -1,0 +1,79 @@
+.pager {
+  li {
+    &:first-child {
+      margin-right: 10px;
+    }
+  }
+}
+
+
+#results {
+  .result-headers {
+    background: #f4f4f4;
+    padding: 10px 40px;
+    border-bottom: solid 2px #e6e6e6;
+    border-top: solid 2px #e0e0e0;
+  }
+  .result-filters {
+    margin-left: 20px;
+    margin-bottom: 10px;
+    ul {
+      margin: 0px;
+      padding: 0px;
+      list-style: none;
+      li {
+        display: inline-block;
+      }
+    }
+  }
+  .search-result-group {
+    border: 1px solid transparent;
+  }
+}
+
+
+.search-result {
+  border-bottom: 1px solid gainsboro;
+  border-top: 1px solid gainsboro;
+  margin: 0px -1px;
+  &:hover {
+    cursor: pointer;
+    background-color: darken(#f9f9f9, .30);
+  }
+  .overview {
+    padding: 10px 5px;
+    .brand-image > img {
+      width: 60px;
+    }
+    .vehicle-model, .product {
+      span {
+        display: block;
+      }
+    }
+    .vehicle-years {
+     vertical-align: middle;
+    }
+    .compatibility-stats, .description {
+      span {
+        display: block;
+      }
+    }
+    .compatibility-score {
+     vertical-align: middle;
+    }
+    @media (max-width: 767px) {
+      .visible-xs {
+        display: inline-block !important;
+      }
+    }
+  }
+  .hidden-row {
+    border-top: 1px dotted gainsboro;
+    .details {
+      padding: 10px 25px;
+    }
+  }
+  @media (min-width: 962px) {
+    border-top: 0px;
+  }
+}

@@ -1,28 +1,25 @@
-<div class="coming-soon-bg"></div>
-<div id="comingSoon">
-  <div class="col-md-6 col-md-offset-3 animated fadeInDown">
-    <div class="ibox">
-      <div class="ibox-title text-center">
-          <h1 class="text-center"><strong>COMING SOON!</strong></h1>
-            <div class=""><%= image_tag("ThePartsNinjaLight.png", class:"img-responsive margin-auto") %></div>
-            <small class="font-bold">We're not quite ready! Only registered users have access.</small>
-      </div>
-      <div id="emailForm" class="ibox-content">
-          <p class="text-center">
-              <strong>Want to know when we're ready?</strong> Sign-up for our mailing list and we will notify you when The Parts Ninja is up and running. You'll have access to the early beta and get
-              a special gift only available to our mailing list users! Of course we promise we won't sell your email to anyone. We'd never do such a thing!
-          </p>
-          </br>
-          <%= render 'leads/form' %>
-      </div>
-      <div class="ibox-footer">
-          <ul>
-            <li><%= link_to '<i class="fa fa-facebook fa-fw fa-2x"></i>'.html_safe, 'https://facebook.com/thepartsninja', :target => "_blank" %></li>
-            <li><%= link_to '<i class="fa fa-instagram fa-fw fa-2x"></i>'.html_safe, 'https://instagram.com/theparts.ninja', :target => "_blank" %></li>
-            <li><%= link_to '<i class="fa fa-twitter fa-fw fa-2x"></i>'.html_safe, 'https://twitter.com/thepartsninja', :target => "_blank" %></li>
-          </ul>
-          Already have an account? Sign in <%= link_to "here", login_path %>
-      </div>
-    </div>
+<div class="col-md-6 col-md-offset-3">
+  <header class="site-header">
+     <div class="logo">
+       <%= link_to root_path do %>
+         <%= image_tag("parts_ninja_dark_logo") %>
+       <% end %>
+       <h2>The Parts Ninja</h2>
+     </div>
+  </header>
+  <h1>Soon.... Very soon...</h1>
+  <p><strong>In the mean time...</strong> Sign-up for our mailing list and we will notify you when The Parts Ninja is up and running. You'll have access to the early beta and
+    other special offers only available to our beta users. Of course we promise we won't sell your email to anyone. We'd never do such a thing!</p>
+  <hr>
+  <div id="email-form">
+    <%= render 'leads/form' %>
   </div>
+  <footer>
+    <ul class="list-unstyled">
+      <li><%= link_to '<i class="fa fa-facebook fa-fw fa-2x"></i>'.html_safe, 'https://facebook.com/thepartsninja', :target => "_blank" %></li>
+      <li><%= link_to '<i class="fa fa-instagram fa-fw fa-2x"></i>'.html_safe, 'https://instagram.com/theparts.ninja', :target => "_blank" %></li>
+      <li><%= link_to '<i class="fa fa-twitter fa-fw fa-2x"></i>'.html_safe, 'https://twitter.com/thepartsninja', :target => "_blank" %></li>
+      <li><%= link_to "Sign In", new_user_session_path %></li>
+    </ul>
+  </footer>
 </div>
