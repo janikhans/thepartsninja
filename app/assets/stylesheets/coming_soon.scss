@@ -1,7 +1,7 @@
 .coming-soon {
   background: #232125;
-  background-image: url("Compatibility_Web_BG.png");
-  // background-image: url("Compatibility_Web_BG.png"), linear-gradient(-45deg, #443952 0%, #231a2b 20%, #0c0b0c 100%);
+  background-image: image-url("Compatibility_Web_BG.png");
+  // background-image: image-url("Compatibility_Web_BG.png"), linear-gradient(-45deg, #443952 0%, #231a2b 20%, #0c0b0c 100%);
   -webkit-background-size: cover !important;
   -moz-background-size: cover !important;
   background-size: cover !important;

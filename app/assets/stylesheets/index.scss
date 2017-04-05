@@ -1,8 +1,8 @@
 #hero {
   min-height: 580px;
   background: #16111c;
-  background-image: url("Compatibility_Web_BG.png");
-  background-image: url("Compatibility_Web_BG.png"), linear-gradient(-45deg, #443952 0%, #231a2b 20%, #0c0b0c 100%);
+  background-image: image-url("Compatibility_Web_BG.png");
+  background-image: image-url("Compatibility_Web_BG.png"), linear-gradient(-45deg, #443952 0%, #231a2b 20%, #0c0b0c 100%);
   background-size: auto;
   background-position-y: -130%;
 
@@ -313,8 +313,8 @@
   padding: 50px 0px;
   text-align: center;
   background-color: #16111c;
-  background-image: url("Compatibility_Web_BG.png");
-  background-image: url("Compatibility_Web_BG.png"), linear-gradient(-45deg, #443952 0%, #231a2b 20%, #0c0b0c 100%);
+  background-image: image-url("Compatibility_Web_BG.png");
+  background-image: image-url("Compatibility_Web_BG.png"), linear-gradient(-45deg, #443952 0%, #231a2b 20%, #0c0b0c 100%);
   h1 {
     font-weight: 800;
     color: #FFF;
