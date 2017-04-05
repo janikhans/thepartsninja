@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  # before_action :set_raven_context
   before_action :prepare_meta_tags, if: "request.get?"
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -8,6 +9,10 @@ class ApplicationController < ActionController::Base
 
   def redirect_back_or_default(default = root_path, options = {})
     redirect_to (request.referer.present? ? :back : default), options
+  end
+
+  def coming_soon
+    redirect_to coming_soon_path unless current_user
   end
 
   def after_sign_in_path_for(resource)
@@ -50,12 +55,6 @@ class ApplicationController < ActionController::Base
     set_meta_tags options
   end
 
-
-  def coming_soon
-    redirect_to coming_soon_path unless current_user
-  end
-
-
   protected
 
   def configure_permitted_parameters
@@ -72,4 +71,10 @@ class ApplicationController < ActionController::Base
       user_params.permit(:username, :password, :password_confirmation, :invitation_token)
     end
   end
+
+  private
+
+  # def set_raven_context
+  #   Raven.user_context(id: current_user.id) if current_user
+  # end
 end
