@@ -1,10 +1,14 @@
+# Controller to handle searching for compatibile vehicles using the
+# CompatibilitySearch model
 class CompatibilitySearchesController < ApplicationController
   before_action :coming_soon
-  # before_action :authenticate_user!
 
   def new
     @search = CompatibilitySearchForm.new
-    @brands = Brand.joins(:vehicle_models).where("vehicle_models.vehicle_type_id = 1").select("DISTINCT brands.*").order(name: :asc)
+    @brands = Brand.joins(:vehicle_models)
+                   .where('vehicle_models.vehicle_type_id = 1')
+                   .select('DISTINCT brands.*')
+                   .order(name: :asc)
   end
 
   # Example params for testing
@@ -15,7 +19,6 @@ class CompatibilitySearchesController < ApplicationController
       if params[:search].present?
         @search = CompatibilitySearchForm.new(search_params)
         @search.user = current_user
-        @search.search_type = "potential" if params[:commit] == 'Find Potentials'
         if @search.save
           @compatibility_search = @search.compatibility_search
           format.html
@@ -39,13 +42,15 @@ class CompatibilitySearchesController < ApplicationController
   private
 
   def search_params
-    params.require(:search).permit(category: [:name, :id], fitment_note: :id, vehicle: [:brand, :model, :year, :id])
+    params.require(:search).permit(category: [:name, :id],
+                                   fitment_note: :id,
+                                   vehicle: [:brand, :model, :year, :id])
   end
 
   def query_params
     whitelist = [:page]
-    whitelist.select { |param| params.has_key?(param) }.reduce({}) do |query_params, param|
-      query_params.merge({ param => params[param] })
+    whitelist.select { |param| params.key?(param) }.reduce({}) do |query_params, param|
+      query_params.merge(param => params[param])
     end
   end
 end

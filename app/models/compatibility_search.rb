@@ -1,9 +1,9 @@
+# Search type where results are a listing of vehicles that are related based
+# on shared common parts
 class CompatibilitySearch < ApplicationRecord
   include SearchableModel
 
-  # TODO set defaults for processed? and page
-  # rescue errors
-  # limit by vehicle_submodel_id
+  # TODO: rescue errors
 
   attr_accessor :compatible_vehicles, :potential_vehicles, :grouped_count
 
@@ -12,13 +12,9 @@ class CompatibilitySearch < ApplicationRecord
     self.limit = options[:limit] if options[:limit].present?
     self.current_page = options[:page] if options[:page].present?
     self.threshold = options[:threshold] if options[:threshold].present?
-    # self.type = options[:type] if options[:type].present?
-    self.compatible_vehicles = nil
-    self.potential_vehicles = nil
-    find_vehicles
-    self.grouped_count = vehicles.first.grouped_count if vehicles.present?
-    eager_load_vehicles if options[:eager_load] == true
-    return self
+    @eager_load = options[:eager_load] ||= false
+    perform_search
+    self
   end
 
   def successful?
@@ -31,9 +27,16 @@ class CompatibilitySearch < ApplicationRecord
 
   private
 
+  def perform_search
+    return nil unless category
+    find_vehicles
+    self.grouped_count = vehicles.first.grouped_count if successful?
+    eager_load_vehicles if @eager_load
+  end
+
   def find_vehicles
-    if search_type == "potential"
-      self.potential_vehicles = find_potential_compatible_vehicles
+    if search_type == 'potential'
+      self.potential_vehicles = find_potentials
     else
       self.compatible_vehicles = find_compatibilities
     end
@@ -48,7 +51,7 @@ class CompatibilitySearch < ApplicationRecord
   end
 
   def eager_load_vehicles
-    ActiveRecord::Associations::Preloader.new.preload(vehicles, [:vehicle_year, vehicle_submodel: {vehicle_model: :brand}])
+    ActiveRecord::Associations::Preloader.new.preload(vehicles, [:vehicle_year, vehicle_submodel: { vehicle_model: :brand }])
   end
 
   def find_compatible_vehicles
@@ -123,7 +126,7 @@ class CompatibilitySearch < ApplicationRecord
       ", vehicle_id, category_id, fitment_note_id, offset, limit])
   end
 
-  def find_potential_compatible_vehicles
+  def find_potentials
     Vehicle.find_by_sql(["
       WITH
         compatible_parts AS (

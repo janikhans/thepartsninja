@@ -1,13 +1,12 @@
+# Common methods for searcable forms
 module SearchableForm
   extend ActiveSupport::Concern
 
   private
 
-  def set_category(params)
+  def find_category(params)
     return nil if params.blank?
-    if params[:id].present?
-      Category.find_by(id: params[:id])
-    elsif params[:name].present?
+    if params[:name].present?
       # Currently set so we're only using the Motrycycle Parts category Category.id => 1
       Category.first.descendants.leaves.where('lower(name) = ?', params[:name].downcase).first
     else
@@ -15,7 +14,7 @@ module SearchableForm
     end
   end
 
-  def set_fitment_note(params)
+  def find_fitment_note(params)
     return nil if params.blank?
     if params[:id].present?
       FitmentNote.find_by(id: params[:id])
@@ -26,12 +25,12 @@ module SearchableForm
     end
   end
 
-  def set_vehicle(params)
+  def find_vehicle(params)
     return nil if params.blank?
     if params[:id].present?
-      vehicle = Vehicle.find_by(id: params[:id])
+      Vehicle.find_by(id: params[:id])
     elsif params[:brand].present? && params[:model].present? && params[:year].present?
-      vehicle = Vehicle.find_with_specs(params[:brand],params[:model],params[:year])
+      Vehicle.find_with_specs(params[:brand], params[:model], params[:year])
     else
       # return error
     end

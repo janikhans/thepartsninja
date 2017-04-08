@@ -1,7 +1,8 @@
+# Endpoints for chart data used in admin area
 class Admin::ChartsController < Admin::ApplicationController
   def searches_by_type
     result = SearchRecord.group(:searchable_type).count
-    render json: [{name: 'Count', data: result}]
+    render json: [{ name: 'Count', data: result }]
   end
 
   def search_records
@@ -14,7 +15,7 @@ class Admin::ChartsController < Admin::ApplicationController
   end
 
   def category_searches
-    result = SearchRecord.group(:category).limit(10).order(count: :desc).count
-    render json: result.transform_keys(&:name)
+    result = SearchRecord.group(:category_name).limit(10).order(count: :desc).count
+    render json: result
   end
 end

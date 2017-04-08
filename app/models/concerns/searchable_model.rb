@@ -1,3 +1,4 @@
+# common shared methods/associations for search model types
 module SearchableModel
   extend ActiveSupport::Concern
 
@@ -26,23 +27,19 @@ module SearchableModel
   end
 
   def can_advance_page?
-    unless successful?
-      raise ArgumentError, "search must be processed first"
-    end
+    raise ArgumentError, 'search must be processed first' unless successful?
     current_page < total_pages
   end
 
   def next_page
-    if can_advance_page?
-      current_page + 1
-    end
+    current_page + 1 if can_advance_page?
   end
 
   private
 
   def threshold=(value)
-    unless (value.is_a? Integer) && value > 0
-      raise ArgumentError, "expects a positive integer as threshold"
+    unless (value.is_a? Integer) && value.positive?
+      raise ArgumentError, 'expects a positive integer as threshold'
     end
     @threshold = value
   end
@@ -52,8 +49,8 @@ module SearchableModel
   end
 
   def limit=(value)
-    unless (value.is_a? Integer) && value > 0
-      raise ArgumentError, "expects a positive integer as limit"
+    unless (value.is_a? Integer) && value.positive?
+      raise ArgumentError, 'expects a positive integer as limit'
     end
     @limit = value
   end
@@ -64,8 +61,8 @@ module SearchableModel
 
   def current_page=(value)
     value = value.to_i
-    unless value > 0
-      raise ArgumentError, "expects a positive integer as page number"
+    unless value.positive?
+      raise ArgumentError, 'expects a positive integer as page number'
     end
     @current_page = value
   end
