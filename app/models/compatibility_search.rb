@@ -47,7 +47,7 @@ class CompatibilitySearch < ApplicationRecord
     if fitment_note_id.present?
       find_compatible_vehicles_with_fitment_note
     else
-      find_compatible_vehicles_two
+      find_compatible_vehicles
     end
   end
 
@@ -67,31 +67,40 @@ class CompatibilitySearch < ApplicationRecord
         ),
         vehicles AS (
           SELECT vehicles.*,
-            COUNT(vehicles.id) AS vehicle_compatible_count,
-            SUM(COUNT(vehicles.id)) OVER (PARTITION BY vehicles.vehicle_submodel_id) AS submodel_compatibility_count,
-            COUNT(*) OVER() AS results_count
+             COUNT(vehicles.id) AS vehicle_compatible_count
           FROM parts
           INNER JOIN fitments ON fitments.part_id = parts.id
           INNER JOIN vehicles ON vehicles.id = fitments.vehicle_id
           GROUP BY vehicles.id
-          ORDER BY submodel_compatibility_count DESC, vehicle_submodel_id, vehicle_compatible_count DESC, vehicles.id
+        ),
+        vehicle_stats AS (
+          SELECT id AS vehicle_id,
+            (vehicle_compatible_count::FLOAT / MAX(vehicle_compatible_count) OVER ()) AS vehicle_score,
+            COUNT(*) OVER() AS results_count
+          FROM vehicles
+          GROUP BY vehicle_id, vehicle_compatible_count
         ),
         submodels AS (
-          SELECT vehicle_submodel_id, submodel_compatibility_count, COUNT(*) OVER() AS grouped_count
+          SELECT vehicle_submodel_id,
+            COUNT(*) OVER() AS grouped_count,
+            SUM(vehicle_score) AS submodel_score,
+            COUNT(vehicles.id) AS submodel_vehicle_count
           FROM vehicles
-          GROUP BY vehicle_submodel_id, submodel_compatibility_count
-          ORDER BY submodel_compatibility_count DESC, vehicle_submodel_id
+          INNER JOIN vehicle_stats ON vehicle_stats.vehicle_id = vehicles.id
+          GROUP BY vehicle_submodel_id
+          ORDER BY submodel_score DESC, vehicle_submodel_id
           OFFSET ?
           LIMIT ?
         )
-        SELECT vehicles.*, submodels.grouped_count, submodels.submodel_compatibility_count
+        SELECT vehicles.*, grouped_count, submodel_vehicle_count, vehicle_score, submodel_score, results_count
         FROM vehicles
         INNER JOIN submodels ON submodels.vehicle_submodel_id = vehicles.vehicle_submodel_id
-        ORDER BY submodels.submodel_compatibility_count DESC
+        INNER JOIN vehicle_stats ON vehicle_stats.vehicle_id = vehicles.id
+        ORDER BY submodel_score DESC, vehicle_score DESC
       ", vehicle_id, category_id, offset, limit])
   end
 
-  def find_compatible_vehicles_two
+  def find_compatible_vehicles_with_fitment_note
     Vehicle.find_by_sql(["
       WITH
         parts AS (
@@ -99,7 +108,8 @@ class CompatibilitySearch < ApplicationRecord
           FROM parts
           INNER JOIN fitments ON fitments.part_id = parts.id
           INNER JOIN products ON products.id = parts.product_id
-          WHERE fitments.vehicle_id = ? AND products.category_id = ?
+          INNER JOIN fitment_notations ON fitment_notations.fitment_id = fitments.id
+          WHERE fitments.vehicle_id = ? AND products.category_id = ? AND fitment_notations.fitment_note_id = ?
         ),
         vehicles AS (
           SELECT vehicles.*,
@@ -133,43 +143,6 @@ class CompatibilitySearch < ApplicationRecord
         INNER JOIN submodels ON submodels.vehicle_submodel_id = vehicles.vehicle_submodel_id
         INNER JOIN vehicle_stats ON vehicle_stats.vehicle_id = vehicles.id
         ORDER BY submodel_score DESC, vehicle_score DESC
-      ", vehicle_id, category_id, offset, limit])
-  end
-
-  def find_compatible_vehicles_with_fitment_note
-    Vehicle.find_by_sql(["
-      WITH
-        parts AS (
-          SELECT parts.*
-          FROM parts
-          INNER JOIN fitments ON fitments.part_id = parts.id
-          INNER JOIN products ON products.id = parts.product_id
-          INNER JOIN fitment_notations ON fitment_notations.fitment_id = fitments.id
-          WHERE fitments.vehicle_id = ? AND products.category_id = ? AND fitment_notations.fitment_note_id = ?
-        ),
-        vehicles AS (
-          SELECT vehicles.*,
-            COUNT(vehicles.id) AS vehicle_compatible_count,
-            SUM(COUNT(vehicles.id)) OVER (PARTITION BY vehicles.vehicle_submodel_id) AS submodel_compatibility_count,
-            COUNT(*) OVER() AS results_count
-          FROM parts
-          INNER JOIN fitments ON fitments.part_id = parts.id
-          INNER JOIN vehicles ON vehicles.id = fitments.vehicle_id
-          GROUP BY vehicles.id
-          ORDER BY submodel_compatibility_count DESC, vehicle_submodel_id, vehicle_compatible_count DESC, vehicles.id
-        ),
-        paginated_submodels AS (
-          SELECT vehicle_submodel_id, submodel_compatibility_count, COUNT(*) OVER() AS grouped_count
-          FROM vehicles
-          GROUP BY vehicle_submodel_id, submodel_compatibility_count
-          ORDER BY submodel_compatibility_count DESC, vehicle_submodel_id
-          OFFSET ?
-          LIMIT ?
-        )
-        SELECT vehicles.*, paginated_submodels.grouped_count
-        FROM vehicles
-        INNER JOIN paginated_submodels ON paginated_submodels.vehicle_submodel_id = vehicles.vehicle_submodel_id
-        ORDER BY submodel_compatibility_count DESC, vehicle_submodel_id, vehicle_compatible_count, vehicles.id
       ", vehicle_id, category_id, fitment_note_id, offset, limit])
   end
 
