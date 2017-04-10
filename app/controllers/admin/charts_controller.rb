@@ -15,7 +15,7 @@ class Admin::ChartsController < Admin::ApplicationController
   end
 
   def category_searches
-    result = SearchRecord.group(:category_name).limit(10).order(count: :desc).count
+    result = SearchRecord.group('lower(category_name)').limit(10).order(count: :desc).count
     render json: result
   end
 end

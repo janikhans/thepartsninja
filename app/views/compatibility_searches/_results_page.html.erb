@@ -16,7 +16,7 @@
   </div>
 </div>
 <div class="search-result-group">
-  <% search_record.vehicles.group_by{ |v| v.vehicle_submodel }.each do |vehicle_submodel, vehicles| %>
+  <% search_record.vehicles.group_by{ |v| v.vehicle_submodel }.sort_by {|submodel,vehicles| vehicles.first.submodel_score}.reverse.each do |vehicle_submodel, vehicles| %>
     <% vehicles.sort_by!{ |v| v.vehicle_year_id } %>
     <div class="search-result">
       <div class="row overview" data-toggle="collapse" data-target="#submodel_<%= vehicle_submodel.id %>" data-parent="#results">
@@ -36,18 +36,24 @@
             <span class="vehicle-count"><%= pluralize(vehicles.size, "Vehicle") %></span>
             <span class="compatibility-count"><%= pluralize(vehicles.first.vehicle_compatible_count, "Compatibility") %></span>
           </div>
-          <div class="col-xs-12 col-md-3 compatibility-score"><span class="visible-xs"><strong>Score:</strong></span> <%= Faker::Number.between(1, 100) %></div>
+          <div class="col-xs-12 col-md-3 compatibility-score">
+            <span class="visible-xs"><strong>Score:</strong></span> <div class="badge"><%= icon(:signal, class: compatibility_score_color(vehicles.first.try(:submodel_score))) %></div> <%= number_with_precision(vehicles.first.try(:submodel_score), precision: 2) %>
+          </div>
         </div>
       </div>
       <div id="submodel_<%= vehicle_submodel.id %>" class="hidden-row collapse">
        <div class="details">
-         <h5>Years:</h5>
-         <div class="row">
-           <% vehicles.each do |vehicle| %>
-             <div class="col-xs-6 col-md-4"><%= vehicle.year %> (<%= vehicle.vehicle_compatible_count %>)</div>
-           <% end %>
-         </div>
-       </div>
+          <h5>Years:</h5>
+          <div class="row">
+            <% vehicles.each do |vehicle| %>
+              <div class="col-xs-3 col-md-2">
+                 <a href="#" data-toggle="popover" title: "Compatibility Stats" data-content="Score: <%= number_with_precision(vehicle.try(:vehicle_score), precision: 2) %>, Count: <%= vehicle.vehicle_compatible_count %>">
+                   <div class="badge"><%= icon(:signal, class: compatibility_score_color(vehicle.vehicle_score)) %> <%= vehicle.year %></div> <%#  (<%= vehicle.vehicle_compatible_count )[<%= number_with_precision(vehicle.try(:vehicle_score), precision: 2)] %>
+                </a>
+              </div>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
   <% end %>
@@ -58,5 +64,9 @@
 <script type="text/javascript">
   $('.collapse').on('show.bs.collapse', function () {
       $('.collapse.in').collapse('hide');
+  });
+  $('[data-toggle="popover"]').popover({
+    placement : 'top',
+    trigger : 'hover'
   });
 </script>

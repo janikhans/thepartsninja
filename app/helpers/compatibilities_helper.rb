@@ -1,6 +1,5 @@
 module CompatibilitiesHelper
-
-  #Changes the link color if current_user has voted on this compatibility
+  # Changes the link color if current_user has voted on this compatibility
   def upvoted_compatibility(compatibility)
     if current_user
       'upvoted' if current_user.voted_up_on? compatibility
@@ -13,18 +12,20 @@ module CompatibilitiesHelper
     end
   end
 
-  #Changes color of the score based on its over score
-  def compatibility_score_color(compatibility)
-    if compatibility.cached_votes_score > 0
+  # Changes color of the score based on its over score
+  def compatibility_score_color(score)
+    if score > 0.75
       'green'
-    elsif compatibility.cached_votes_score < 0
-      'red'
+    elsif score > 0.50
+      'yellow'
+    elsif score > 0.25
+      'orange'
     else
-      nil
+      'white'
     end
   end
 
-  #Removes links if user isn't signed in. Otherwise we can get server hits when they're not neccessary
+  # Removes links if user isn't signed in. Otherwise we can get server hits when they're not neccessary
   def vote_actions(compatibility)
     if current_user
       capture do
