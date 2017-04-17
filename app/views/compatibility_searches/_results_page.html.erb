@@ -19,7 +19,7 @@
   <% search_record.vehicles.group_by{ |v| v.vehicle_submodel }.sort_by {|submodel,vehicles| vehicles.first.submodel_score}.reverse.each do |vehicle_submodel, vehicles| %>
     <% vehicles.sort_by!{ |v| v.vehicle_year_id } %>
     <div class="search-result">
-      <div class="row overview" data-toggle="collapse" data-target="#submodel_<%= vehicle_submodel.id %>" data-parent="#results" style="<%= "opacity: .2;" if vehicles.first.try(:submodel_score) <= 0.1 %>">
+      <div class="row overview" data-toggle="collapse" data-target="#submodel_<%= vehicle_submodel.id %>" data-parent="#results">
         <div class="col-xs-12 col-md-7">
           <div class="col-xs-4 col-md-2 brand-image"><%= image_tag("missing-brand-image", class:"img-responsive") %></div>
           <div class="col-xs-8 col-md-5 vehicle-model">
@@ -48,7 +48,7 @@
             <% vehicles.each do |vehicle| %>
               <div class="col-xs-3 col-md-2">
                  <a href="#" data-toggle="popover" title: "Compatibility Stats" data-content="Score: <%= number_with_precision(vehicle.try(:vehicle_score), precision: 2) %>, Count: <%= vehicle.vehicle_compatible_count %>">
-                   <div class="badge" style="<%= "opacity: .2;" if vehicle.vehicle_compatible_count == 1 %>"><%= icon(:signal, class: compatibility_score_color(vehicle.vehicle_score)) %> <%= vehicle.year %></div> <%#  (<%= vehicle.vehicle_compatible_count )[<%= number_with_precision(vehicle.try(:vehicle_score), precision: 2)] %>
+                   <div class="badge" style="<%= "opacity: .2;" if vehicle.under_threshold? %>"><%= icon(:signal, class: compatibility_score_color(vehicle.vehicle_score)) %> <%= vehicle.year %></div> <%#  (<%= vehicle.vehicle_compatible_count )[<%= number_with_precision(vehicle.try(:vehicle_score), precision: 2)] %>
                 </a>
               </div>
             <% end %>

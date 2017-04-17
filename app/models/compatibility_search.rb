@@ -76,6 +76,9 @@ class CompatibilitySearch < ApplicationRecord
         vehicle_stats AS (
           SELECT id AS vehicle_id,
             (vehicle_compatible_count::FLOAT / MAX(vehicle_compatible_count) OVER ()) AS vehicle_score,
+            CASE WHEN vehicle_compatible_count <= ? THEN true
+                 ELSE false
+                 END AS under_threshold
             COUNT(*) OVER() AS results_count
           FROM vehicles
           GROUP BY vehicle_id, vehicle_compatible_count
@@ -83,21 +86,22 @@ class CompatibilitySearch < ApplicationRecord
         submodels AS (
           SELECT vehicle_submodel_id,
             COUNT(*) OVER() AS grouped_count,
-            SUM(vehicle_score) AS submodel_score,
+            MAX(vehicle_score) AS submodel_score,
             COUNT(vehicles.id) AS submodel_vehicle_count
           FROM vehicles
           INNER JOIN vehicle_stats ON vehicle_stats.vehicle_id = vehicles.id
           GROUP BY vehicle_submodel_id
+          HAVING MAX(vehicle_score) > (max_score * ?)
           ORDER BY submodel_score DESC, vehicle_submodel_id
           OFFSET ?
           LIMIT ?
         )
-        SELECT vehicles.*, grouped_count, submodel_vehicle_count, vehicle_score, submodel_score, results_count
+        SELECT vehicles.*, grouped_count, submodel_vehicle_count, vehicle_score, submodel_score, results_count, under_threshold
         FROM vehicles
         INNER JOIN submodels ON submodels.vehicle_submodel_id = vehicles.vehicle_submodel_id
         INNER JOIN vehicle_stats ON vehicle_stats.vehicle_id = vehicles.id
         ORDER BY submodel_score DESC, vehicle_score DESC
-      ", vehicle_id, category_id, offset, limit])
+      ", vehicle_id, category_id, threshold, threshold, offset, limit])
   end
 
   def find_compatible_vehicles_with_fitment_note

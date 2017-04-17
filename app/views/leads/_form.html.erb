@@ -1,4 +1,4 @@
-<%= simple_form_for @lead, remote: true do |f| %>
+<%= simple_form_for @lead || Lead.new, remote: true do |f| %>
   <%= f.input :email, as: :email, placeholder: "you@example.com", label: false %>
   <%= f.button :submit, "Submit", class: "btn btn-primary" %>
 <% end %>

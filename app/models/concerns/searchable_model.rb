@@ -45,7 +45,7 @@ module SearchableModel
   end
 
   def threshold
-    @threshold ||= 20
+    @threshold ||= 1
   end
 
   def limit=(value)
