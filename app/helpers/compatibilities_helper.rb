@@ -16,10 +16,8 @@ module CompatibilitiesHelper
   def compatibility_score_color(score)
     if score > 0.75
       'green'
-    elsif score > 0.50
-      'yellow'
     elsif score > 0.25
-      'orange'
+      'yellow'
     else
       'white'
     end

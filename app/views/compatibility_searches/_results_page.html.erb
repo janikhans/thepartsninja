@@ -48,7 +48,7 @@
             <% vehicles.each do |vehicle| %>
               <div class="col-xs-3 col-md-2">
                  <a href="#" data-toggle="popover" title: "Compatibility Stats" data-content="Score: <%= number_with_precision(vehicle.try(:vehicle_score), precision: 2) %>, Count: <%= vehicle.vehicle_compatible_count %>">
-                   <div class="badge" style="<%= "opacity: .2;" if vehicle.under_threshold? %>"><%= icon(:signal, class: compatibility_score_color(vehicle.vehicle_score)) %> <%= vehicle.year %></div> <%#  (<%= vehicle.vehicle_compatible_count )[<%= number_with_precision(vehicle.try(:vehicle_score), precision: 2)] %>
+                   <div class="badge" style="<%= "opacity: .2;" unless vehicle.above_threshold? %>"><%= icon(:signal, class: compatibility_score_color(vehicle.vehicle_score)) %> <%= vehicle.year %></div> <%#  (<%= vehicle.vehicle_compatible_count )[<%= number_with_precision(vehicle.try(:vehicle_score), precision: 2)] %>
                 </a>
               </div>
             <% end %>
