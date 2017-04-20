@@ -1,4 +1,4 @@
-<h1 style="text-transform: uppercase; font-weight: 800;"><%= pluralize(search_record.vehicles.first.count_above_threshold, 'compatible model') %> found</h1>
+<h1 style="text-transform: uppercase; font-weight: 800;"><%= pluralize(search_record.vehicles.first.count_above_threshold, 'vehicle') %> found</h1>
 <hr>
 <ul class="list-unstyled">
   <li><strong>Vehicle:</strong> <%= search_record.vehicle.to_label %></li>
@@ -7,4 +7,12 @@
   <li><strong>Models:</strong> <%= search_record.grouped_count %></li>
   <li><strong>Max Score:</strong> <%= search_record.vehicles.first.max_score %></li>
   <li><strong>Threshold:</strong> <%= search_record.vehicles.first.count_above_threshold %>/<%= search_record.results_count %></li>
+</ul>
+
+<h4>Legend:</h4>
+<ul class="list-unstyled search-result">
+  <li><div class="badge"><%= icon(:signal, class: "green") %> ****</div>&mdash; Strong compatibility rating</li>
+  <li><div class="badge"><%= icon(:signal, class: "yellow") %> ****</div>&mdash; Medium compatibility rating</li>
+  <li><div class="badge"><%= icon(:signal, class: "white") %> ****</div>&mdash; Low compatibility rating</li>
+  <li><div class="badge" style="opacity: .2;"><%= icon(:signal, class: "white") %> ****</div>&mdash; Compatibility connection exists but is under threshold</li>
 </ul>

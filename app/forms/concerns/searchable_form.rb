@@ -1,4 +1,4 @@
-# Common methods for searcable forms
+# Common methods for searchable forms
 module SearchableForm
   extend ActiveSupport::Concern
 
