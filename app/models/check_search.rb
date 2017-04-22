@@ -1,7 +1,7 @@
 class CheckSearch < ApplicationRecord
   include SearchableModel
 
-  belongs_to :comparing_vehicle, class_name: "Vehicle"
+  belongs_to :comparing_vehicle, class_name: 'Vehicle'
   validates :comparing_vehicle, presence: true
 
   attr_accessor :compatible_parts, :potential_parts, :grouped_count
@@ -13,11 +13,15 @@ class CheckSearch < ApplicationRecord
     self.compatible_parts = find_compatibilities
     self.grouped_count = parts.first.grouped_count if parts.present?
     eager_load_parts if options[:eager_load] == true
-    return self
+    self
   end
 
   def successful?
-    results_count.present? || compatible_parts.any?
+    if persisted?
+      results_count.positive?
+    else
+      compatible_parts.present?
+    end
   end
 
   def parts
