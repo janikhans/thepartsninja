@@ -3,14 +3,16 @@
 <ul class="list-unstyled">
   <li><strong>Vehicle:</strong> <%= search_record.vehicle.to_label %></li>
   <li><strong>Part:</strong> <%= search_record.fitment_note.name + " -" if search_record.fitment_note %> <%= search_record.category.name %></li>
-  <li><strong>Pages:</strong> <%= search_record.total_pages %></li>
-  <li><strong>Models:</strong> <%= search_record.grouped_count %></li>
-  <li><strong>Max Score:</strong> <%= search_record.vehicles.first.max_score %></li>
-  <li><strong>Threshold:</strong> <%= search_record.vehicles.first.count_above_threshold %>/<%= search_record.results_count %></li>
+  <% if Rails.env.development? %>
+    <li><strong>Pages:</strong> <%= search_record.total_pages %></li>
+    <li><strong>Models:</strong> <%= search_record.grouped_count %></li>
+    <li><strong>Max Score:</strong> <%= search_record.vehicles.first.max_score %></li>
+    <li><strong>Threshold:</strong> <%= search_record.vehicles.first.count_above_threshold %>/<%= search_record.results_count %></li>
+  <% end %>
 </ul>
 
 <h4>Legend:</h4>
-<ul class="list-unstyled search-result">
+<ul class="list-unstyled">
   <li><div class="badge"><%= icon(:signal, class: "green") %> ****</div>&mdash; Strong compatibility rating</li>
   <li><div class="badge"><%= icon(:signal, class: "yellow") %> ****</div>&mdash; Medium compatibility rating</li>
   <li><div class="badge"><%= icon(:signal, class: "white") %> ****</div>&mdash; Low compatibility rating</li>

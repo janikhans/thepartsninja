@@ -18,7 +18,7 @@ class CheckSearch < ApplicationRecord
 
   def successful?
     if persisted?
-      results_count.positive?
+      results_count.present? && results_count.positive?
     else
       compatible_parts.present?
     end

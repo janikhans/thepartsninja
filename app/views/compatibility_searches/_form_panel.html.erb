@@ -16,9 +16,13 @@
         <%= render 'form' %>
       </div>
       <div id="unavailable" class="tab-pane fade">
-        <div class="well m-t-lg">
-          <h4 class="text-center">Sorry, this vehicle type isn't ready yet for searching. But sign up here...</h4>
-          <div class="text-center"><%= render 'leads/form' %></div>
+        <div class="well m-t-lg text-center">
+          <h4>Sorry, this vehicle type isn't ready yet for searching. But we'll notify you when it is...</h4>
+          <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+              <%= render 'leads/form' %>
+            </div>
+          </div>
         </div>
       </div>
     </div>

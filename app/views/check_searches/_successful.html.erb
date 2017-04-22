@@ -1,12 +1,13 @@
-<h1>Success!</h1>
-<p>This part appears to be compatible!</p>
+<h1 style="text-transform: uppercase; font-weight: 800;"><%= pluralize(search_record.grouped_count, 'compatibility connection') %> found</h1>
+<hr>
 <ul class="list-unstyled">
   <li><strong>Vehicle:</strong> <%= search_record.vehicle.to_label %></li>
   <li><strong>Comparing Vehicle:</strong> <%= search_record.comparing_vehicle.to_label %></li>
-  <li><strong>Part:</strong> <%= search_record.category.name %> <%= "- " + search_record.fitment_note.name if search_record.fitment_note %></li>
-  <li><strong>Pages:</strong> <%= search_record.total_pages %></li>
-  <li><strong>Products:</strong> <%= search_record.grouped_count %></li>
-  <li><strong>Compatibilities:</strong> <%= search_record.results_count %></li>
-  <li><strong>Average Score:</strong> 54</li>
+  <li><strong>Part:</strong> <%= search_record.fitment_note.name + " -" if search_record.fitment_note %> <%= search_record.category.name %></li>
+  <% if Rails.env.development? %>
+    <li><strong>Pages:</strong> <%= search_record.total_pages %></li>
+    <li><strong>Products:</strong> <%= search_record.grouped_count %></li>
+    <li><strong>Compatibilities:</strong> <%= search_record.results_count %></li>
+  <% end %>
 </ul>
 <%= link_to "View Compatibilities", check_path(search_record), remote: true, class: "btn btn-primary", id: "show-link" %>

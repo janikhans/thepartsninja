@@ -31,7 +31,7 @@
   <% end %>
   <div class="text-center">
     <div class="btn-group">
-      <%= f.submit "Check Compatibility", class: "btn btn-default" %>
+      <%= f.submit "Check Compatibility", class: "btn-shadow btn-shadow-primary" %>
     </div>
   </div>
 <% end %>
@@ -55,11 +55,15 @@
     limit: 10,
     source: categories
   });
-  $('.typeahead').bind('typeahead:select', function(ev, suggestion) {
+  $('.typeahead').bind('typeahead:select typeahead:autocompleted', function(ev, suggestion) {
     $('#search_category_id').val(suggestion.id);
     $('#search_category_id').trigger('change');
   });
-
+  $('#search_category_name').keyup(function() {
+    var select = $('#search_fitment_note_id')
+    select.empty();
+    select.prop('disabled', true);
+  });
   $('#search_category_id').on("change", function() {
     var select = $('#search_fitment_note_id')
     select.empty();

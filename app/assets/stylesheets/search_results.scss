@@ -76,11 +76,12 @@
   @media (min-width: 962px) {
     border-top: 0px;
   }
-  .badge {
-    background-color: #5d5d5d;
-    .yellow { color: #ffe400 }
-    .orange { color: #ff9304 }
-    .green { color: #6bff01 }
-    .white { color: #FFF }
-  }
+}
+
+.badge {
+  background-color: #5d5d5d;
+  .yellow { color: #ffe400 }
+  .orange { color: #ff9304 }
+  .green { color: #6bff01 }
+  .white { color: #FFF }
 }

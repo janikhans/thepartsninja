@@ -1,8 +1,26 @@
-<h1>Sorry...</h1>
-<p>It does not appear that <%= search_record.fitment_note.try(:name) %> <%= search_record.category ? search_record.category.name : search_record.category_name %> are compatible between:</p>
-<h4><%= search_record.vehicle.to_label %> and <%= search_record.comparing_vehicle.to_label %></h4>
-<p>There may some a reason for that though...</p>
-  <p>We are constantly updating our datbase and there's a chance we don't yet have the neccessary data
-      to answer your search.</p>
-<h3>In the mean time...</h3>
-<p>Try searching for another model that you know shares the part you are wanting to check compatibility for.</p>
+<h2 style="text-transform: uppercase; font-weight: 800;">No results found</h2>
+<hr>
+<p>We were unable to find <strong><%= search_record.fitment_note.try(:name) %>
+<%= search_record.category ? search_record.category.name : search_record.category_name %>
+</strong> compatibilities between <strong><%= search_record.comparing_vehicle.to_label %></strong>
+  and <strong><%= search_record.vehicle.to_label %></strong></p>
+<h4>However this does not mean that they don't exist ...</h4>
+<ul>
+  <li>Try searching for a different part. i.e. Brake Shoes vs. Brake Pads</li>
+  <li>Search for a different year/model that you know fits your vehicle</li>
+  <li>Our database is constantly being updated and there's a chance we don't yet have
+    the neccessary data to answer your search</li>
+  <li>Older and/or rarer vehicles will have less available parts for our
+    system to search through</li>
+</ul>
+<hr>
+<div class="text-center">
+  <h3>Get Notified</h3>
+  <p>We want to help you find whatever you're looking for. Give us your email
+  and we'll update you when we have answers you're looking for.</p>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <%= render 'leads/form' %>
+    </div>
+  </div>
+</div>
