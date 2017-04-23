@@ -10,8 +10,7 @@ module SearchableModel
     belongs_to :vehicle
     validates :vehicle, presence: true
 
-    validates :category_name,
-      presence: true
+    validates :category_name, presence: true
 
     belongs_to :category
     belongs_to :user
@@ -40,7 +39,7 @@ module SearchableModel
 
   def successful?
     if persisted?
-      results_count.present? && results_count.positive?
+      results_count.present?
     else
       results.present?
     end

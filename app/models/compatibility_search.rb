@@ -39,7 +39,9 @@ class CompatibilitySearch < ApplicationRecord
   end
 
   def eager_load_results
-    ActiveRecord::Associations::Preloader.new.preload(results, [:vehicle_year, vehicle_submodel: { vehicle_model: :brand }])
+    ActiveRecord::Associations::Preloader
+      .new.preload(results, [:vehicle_year,
+                             vehicle_submodel: [vehicle_model: :brand]])
   end
 
   def find_compatible_vehicles

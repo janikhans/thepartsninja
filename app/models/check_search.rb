@@ -1,3 +1,4 @@
+# Search that checks if a certain part is compatible between 2 vehicles
 class CheckSearch < ApplicationRecord
   include SearchableModel
 
