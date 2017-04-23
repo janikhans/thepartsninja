@@ -34,9 +34,6 @@ class CompatibilitySearchForm
                                             user: @user,
                                             fitment_note: @fitment_note)
     search_record.process(eager_load: true)
-    if search_record.successful?
-      search_record.results_count = search_record.vehicles.first.results_count
-    end
     search_record.save
     search_record
   end

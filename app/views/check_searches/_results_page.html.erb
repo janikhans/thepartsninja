@@ -14,7 +14,7 @@
   </div>
 </div>
 <div class="search-result-group">
-  <% search_record.parts.group_by { |s| s.product }.sort_by { |products, parts| parts.size }.reverse.each do |product, parts| %>
+  <% search_record.results.group_by { |s| s.product }.sort_by { |products, parts| parts.size }.reverse.each do |product, parts| %>
     <div class="search-result">
       <div class="row overview" data-toggle="collapse" data-target="#product_<%= product.id %>" data-parent="#results">
         <div class="col-xs-12 col-md-6">

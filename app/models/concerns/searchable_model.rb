@@ -3,6 +3,9 @@ module SearchableModel
   extend ActiveSupport::Concern
 
   included do
+    attr_accessor :compatible_results, :potential_results, :grouped_count,
+      :eager_load
+
     enum search_type: [:known, :potential]
 
     belongs_to :vehicle
@@ -28,7 +31,7 @@ module SearchableModel
   end
 
   def can_advance_page?
-    raise ArgumentError, 'search must be processed first' unless successful?
+    raise ArgumentError, 'search must be processed first' unless results.any?
     current_page < total_pages
   end
 
@@ -36,7 +39,27 @@ module SearchableModel
     current_page + 1 if can_advance_page?
   end
 
+  def successful?
+    if persisted?
+      results_count.present? && results_count.positive?
+    else
+      results.present?
+    end
+  end
+
+  def results
+    compatible_results || potential_results
+  end
+
   private
+
+  def find_results
+    if search_type == 'potential'
+      self.potential_results = find_potentials
+    else
+      self.compatible_results = find_compatibilities
+    end
+  end
 
   def threshold=(value)
     unless (value.is_a? Integer) && value.positive?

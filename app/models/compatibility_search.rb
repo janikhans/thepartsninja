@@ -5,42 +5,27 @@ class CompatibilitySearch < ApplicationRecord
 
   # TODO: rescue errors
 
-  attr_accessor :compatible_vehicles, :potential_vehicles, :grouped_count
-
   def process(options = {})
     return false unless valid?
     self.limit = options[:limit] if options[:limit].present?
     self.current_page = options[:page] if options[:page].present?
     self.threshold = options[:threshold] if options[:threshold].present?
-    @eager_load = options[:eager_load] ||= false
+    self.eager_load = options[:eager_load] ||= false
+    self.search_type = options[:search_type] ||= 'known'
     perform_search
     self
-  end
-
-  def successful?
-    results_count.present? || compatible_vehicles.present? ||
-      potential_vehicles.present?
-  end
-
-  def vehicles
-    compatible_vehicles || potential_vehicles
   end
 
   private
 
   def perform_search
     return nil unless category
-    find_vehicles
-    self.grouped_count = vehicles.first.grouped_count if successful?
-    eager_load_vehicles if @eager_load
-  end
-
-  def find_vehicles
-    if search_type == 'potential'
-      self.potential_vehicles = find_potentials
-    else
-      self.compatible_vehicles = find_compatibilities
+    find_results
+    if successful?
+      self.results_count = results.first.results_count
+      self.grouped_count = results.first.grouped_count
     end
+    eager_load_results if eager_load
   end
 
   def find_compatibilities
@@ -51,8 +36,8 @@ class CompatibilitySearch < ApplicationRecord
     end
   end
 
-  def eager_load_vehicles
-    ActiveRecord::Associations::Preloader.new.preload(vehicles, [:vehicle_year, vehicle_submodel: { vehicle_model: :brand }])
+  def eager_load_results
+    ActiveRecord::Associations::Preloader.new.preload(results, [:vehicle_year, vehicle_submodel: { vehicle_model: :brand }])
   end
 
   def find_compatible_vehicles

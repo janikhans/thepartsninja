@@ -4,31 +4,28 @@ class CheckSearch < ApplicationRecord
   belongs_to :comparing_vehicle, class_name: 'Vehicle'
   validates :comparing_vehicle, presence: true
 
-  attr_accessor :compatible_parts, :potential_parts, :grouped_count
-
   def process(options = {})
     return false unless valid?
     self.limit = options[:limit] if options[:limit].present?
     self.current_page = options[:page] if options[:page].present?
-    self.compatible_parts = find_compatibilities
-    self.grouped_count = parts.first.grouped_count if parts.present?
-    eager_load_parts if options[:eager_load] == true
+    self.threshold = options[:threshold] if options[:threshold].present?
+    self.eager_load = options[:eager_load] ||= false
+    self.search_type = options[:search_type] ||= 'known'
+    perform_search
     self
   end
 
-  def successful?
-    if persisted?
-      results_count.present? && results_count.positive?
-    else
-      compatible_parts.present?
-    end
-  end
-
-  def parts
-    compatible_parts || potential_parts
-  end
-
   private
+
+  def perform_search
+    return nil unless category
+    find_results
+    if successful?
+      self.results_count = results.first.results_count
+      self.grouped_count = results.first.grouped_count
+    end
+    eager_load_results if eager_load
+  end
 
   def find_compatibilities
     if fitment_note_id.present?
@@ -38,8 +35,11 @@ class CheckSearch < ApplicationRecord
     end
   end
 
-  def eager_load_parts
-    ActiveRecord::Associations::Preloader.new.preload(compatible_parts, product: :brand)
+  def find_potentials
+  end
+
+  def eager_load_results
+    ActiveRecord::Associations::Preloader.new.preload(results, product: :brand)
   end
 
   def find_compatible_parts_with_fitment_note
