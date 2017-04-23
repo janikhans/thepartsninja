@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   # before_action :set_raven_context
-  before_action :prepare_meta_tags, if: "request.get?"
+  before_action :prepare_meta_tags, if: 'request.get?'
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -15,15 +15,17 @@ class ApplicationController < ActionController::Base
     redirect_to coming_soon_path unless current_user
   end
 
-  def after_sign_in_path_for(resource)
+  def after_sign_in_path_for(*)
     account_root_path
   end
 
   def prepare_meta_tags(options={})
-    site_name   = "The Parts Ninja"
-    title       = "The Ultimate Motorsports Parts App"
-    description = "The Parts Ninja is the master at searching for parts. He'll cross reference thousands of parts to find you every compatibility possible. Spend less time searching and more time riding."
-    image       = options[:image] || "http://www.theparts.ninja/assets/ThePartsNinjaDefault-821b4f404fcff3d74ebc59e30987846ce15385b2784b620a12bf40fbbd4e0d4b.jpg"
+    site_name   = 'The Parts Ninja'
+    title       = 'The Community Built Motorsports Parts Project'
+    description = 'By utilizing the Parts Compatibility Web formed with
+      exisiting data and user contributions, The Parts Ninja helps you spend
+      less time searching and more time riding.'
+    image       = options[:image] || 'http://www.thepartsninja.com/assets/parts_ninja_dark_logo-4e0681bbd6019db9fbbf9122ee2d97adc45ff0118b9087ad47cce11fa8588452.png'
     current_url = request.url
 
     # Let's prepare a nice set of defaults
@@ -62,7 +64,7 @@ class ApplicationController < ActionController::Base
       user_params.permit(:login, :username, :email, :password, :remember_me)
     end
     devise_parameter_sanitizer.permit(:sign_up) do |user_params|
-      user_params.permit(:username, :email, :password, :password_confirmation, :remember_me)
+      user_params.permit(:username, :email, :password, :password_confirmation, :remember_me, :terms_of_service)
     end
     devise_parameter_sanitizer.permit(:account_update) do |user_params|
       user_params.permit(:username, :email, :password, :password_confirmation, :current_password)

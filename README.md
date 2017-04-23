@@ -3,8 +3,8 @@
 ![alt tag](https://raw.githubusercontent.com/janikhans/thepartsninja/master/app/assets/images/ThePartsNinjaDark.png?token=APaPoMBWgJJwwZd84rj1ictpW17PH_CUks5XSSw3wA%3D%3D)
 
 The Parts Ninja is totally built using [Ruby on Rails](http://rubyonrails.org/)
-and can be accessed at [http://www.theparts.ninja](http://www.theparts.ninja) or
-[http://www.thepartsninja.com](http://www.thepartsninja.com) for those who don't
+and can be accessed at [http://www.thepartsninja.com](http://www.thepartsninja.com) or
+[http://www.theparts.ninja](http://www.theparts.ninja) for those who
 appreciate cool/fun/ridiculous TLDs.
 
 ## About

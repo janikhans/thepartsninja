@@ -161,3 +161,33 @@
 //     color: #FFFFFF;
 //   }
 // }
+
+.btn-rounded {
+  color: #141017;
+  border: 1px solid #141017;
+  border-radius: 25px;
+  padding: 10px 16px 9px;
+  margin-top: 17px;
+  display: inline-block;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  background-color: #FFF;
+
+  @include transition(all .2s linear);
+
+  &:hover {
+    background-color: #141017;
+    color: white;
+    i {
+      margin-left: 15px;
+    }
+  }
+
+  i {
+    margin: 0px 7px;
+    @include transition(all .2s linear);
+  }
+}

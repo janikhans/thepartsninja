@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'noreply@theparts.ninja'
+  default from: 'noreply@thepartsninja.com'
   layout 'mailer'
 end

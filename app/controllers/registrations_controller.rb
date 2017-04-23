@@ -1,5 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
-  before_action :production_redirect, only: [:new, :create]
+  # before_action :production_redirect, only: [:new, :create]
   layout "devise"
   layout "account/application", only: [:edit, :update]
 

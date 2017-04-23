@@ -1,7 +1,8 @@
 # Controller to handle searching for compatibile vehicles using the
 # CompatibilitySearch model
 class CompatibilitySearchesController < ApplicationController
-  before_action :coming_soon
+  # before_action :coming_soon\
+  before_action :authenticate_user!
 
   def new
     @search = CompatibilitySearchForm.new

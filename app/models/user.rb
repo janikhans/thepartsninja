@@ -11,6 +11,10 @@ class User < ApplicationRecord
   enum role: [:user, :admin]  #Basic permissions setup
   after_initialize :set_default_role, if: :new_record?
 
+  validates :terms_of_service,
+    acceptance: true,
+    on: :create
+
   #Associations
   has_one :profile, dependent: :destroy
   accepts_nested_attributes_for :profile

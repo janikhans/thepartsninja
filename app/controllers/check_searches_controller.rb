@@ -1,6 +1,6 @@
 class CheckSearchesController < ApplicationController
-  before_action :coming_soon
-  # before_action :authenticate_user!
+  # before_action :coming_soon
+  before_action :authenticate_user!
 
   def new
     @search = CheckSearchForm.new
