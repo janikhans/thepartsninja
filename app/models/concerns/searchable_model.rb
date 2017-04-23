@@ -4,6 +4,7 @@ module SearchableModel
 
   included do
     attr_accessor :compatible_results, :potential_results, :eager_load
+    acts_as_hashids
 
     enum search_type: [:known, :potential]
 

@@ -34,7 +34,7 @@ class CompatibilitySearchesController < ApplicationController
   end
 
   def show
-    @compatibility_search = CompatibilitySearch.find_by(id: params[:id])
+    @compatibility_search = CompatibilitySearch.find(params[:id])
     @compatibility_search.process(query_params.merge(eager_load: true))
     respond_to :js
   end

@@ -31,6 +31,7 @@ gem 'chartkick'
 gem 'groupdate'
 gem 'skylight'
 gem 'sentry-raven'
+gem "acts_as_hashids"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]

@@ -4,7 +4,10 @@ class CheckSearchesController < ApplicationController
 
   def new
     @search = CheckSearchForm.new
-    @brands = Brand.joins(:vehicle_models).where("vehicle_models.vehicle_type_id = 1").select("DISTINCT brands.*").order(name: :asc)
+    @brands = Brand.joins(:vehicle_models)
+                   .where('vehicle_models.vehicle_type_id = 1')
+                   .select('DISTINCT brands.*')
+                   .order(name: :asc)
   end
 
   # Example params for testing
@@ -31,7 +34,7 @@ class CheckSearchesController < ApplicationController
   end
 
   def show
-    @check_search = CheckSearch.find_by(id: params[:id])
+    @check_search = CheckSearch.find(params[:id])
     @check_search.process(query_params.merge(eager_load: true))
     respond_to :js
   end
@@ -39,13 +42,16 @@ class CheckSearchesController < ApplicationController
   private
 
   def search_params
-    params.require(:search).permit(category: [:name, :id], fitment_note: :id, vehicle: [:brand, :model, :year, :id], comparing_vehicle: [:brand, :model, :year, :id])
+    params.require(:search).permit(category: [:name, :id],
+                                   fitment_note: :id,
+                                   vehicle: [:brand, :model, :year, :id],
+                                   comparing_vehicle: [:brand, :model, :year, :id])
   end
 
   def query_params
     whitelist = [:page]
-    whitelist.select { |param| params.has_key?(param) }.reduce({}) do |query_params, param|
-      query_params.merge({ param => params[param] })
+    whitelist.select { |param| params.key?(param) }.reduce({}) do |query_params, param|
+      query_params.merge(param => params[param])
     end
   end
 end
