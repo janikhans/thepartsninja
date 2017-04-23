@@ -3,8 +3,7 @@ module SearchableModel
   extend ActiveSupport::Concern
 
   included do
-    attr_accessor :compatible_results, :potential_results, :grouped_count,
-      :eager_load
+    attr_accessor :compatible_results, :potential_results, :eager_load
 
     enum search_type: [:known, :potential]
 

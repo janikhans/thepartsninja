@@ -24,6 +24,8 @@ class CompatibilitySearch < ApplicationRecord
     if successful?
       self.results_count = results.first.results_count
       self.grouped_count = results.first.grouped_count
+      self.max_score = results.first.max_score
+      self.above_threshold_count = results.first.above_threshold_count
     end
     eager_load_results if eager_load
   end
@@ -66,7 +68,7 @@ class CompatibilitySearch < ApplicationRecord
                  END AS above_threshold,
             COUNT(*) OVER () AS results_count,
             MAX(vehicle_compatible_count) OVER () AS max_score,
-            COUNT(*) FILTER ( WHERE vehicle_compatible_count > ? ) OVER () AS count_above_threshold
+            COUNT(*) FILTER ( WHERE vehicle_compatible_count > ? ) OVER () AS above_threshold_count
           FROM vehicles
           GROUP BY vehicle_id, vehicle_compatible_count
         ),
@@ -85,7 +87,7 @@ class CompatibilitySearch < ApplicationRecord
         )
         SELECT vehicles.*, grouped_count, submodel_vehicle_count,
           vehicle_score, submodel_score, results_count, above_threshold,
-          max_score, count_above_threshold
+          max_score, above_threshold_count
         FROM vehicles
         INNER JOIN submodels ON submodels.vehicle_submodel_id = vehicles.vehicle_submodel_id
         INNER JOIN vehicle_stats ON vehicle_stats.vehicle_id = vehicles.id
@@ -120,7 +122,7 @@ class CompatibilitySearch < ApplicationRecord
                  END AS above_threshold,
             COUNT(*) OVER () AS results_count,
             MAX(vehicle_compatible_count) OVER () AS max_score,
-            COUNT(*) FILTER ( WHERE vehicle_compatible_count > ? ) OVER () AS count_above_threshold
+            COUNT(*) FILTER ( WHERE vehicle_compatible_count > ? ) OVER () AS above_threshold_count
           FROM vehicles
           GROUP BY vehicle_id, vehicle_compatible_count
         ),
@@ -139,7 +141,7 @@ class CompatibilitySearch < ApplicationRecord
         )
         SELECT vehicles.*, grouped_count, submodel_vehicle_count,
           vehicle_score, submodel_score, results_count, above_threshold,
-          max_score, count_above_threshold
+          max_score, above_threshold_count
         FROM vehicles
         INNER JOIN submodels ON submodels.vehicle_submodel_id = vehicles.vehicle_submodel_id
         INNER JOIN vehicle_stats ON vehicle_stats.vehicle_id = vehicles.id

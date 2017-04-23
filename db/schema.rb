@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170314080627) do
+ActiveRecord::Schema.define(version: 20170423010031) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,15 +44,18 @@ ActiveRecord::Schema.define(version: 20170314080627) do
 
   create_table "check_searches", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "vehicle_id",           null: false
-    t.integer  "comparing_vehicle_id", null: false
+    t.integer  "vehicle_id",            null: false
+    t.integer  "comparing_vehicle_id",  null: false
     t.integer  "category_id"
-    t.string   "category_name",        null: false
+    t.string   "category_name",         null: false
     t.integer  "results_count"
     t.integer  "fitment_note_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
     t.integer  "search_type"
+    t.integer  "max_score"
+    t.integer  "grouped_count"
+    t.integer  "above_threshold_count"
     t.index ["category_id"], name: "index_check_searches_on_category_id", using: :btree
     t.index ["comparing_vehicle_id"], name: "index_check_searches_on_comparing_vehicle_id", using: :btree
     t.index ["fitment_note_id"], name: "index_check_searches_on_fitment_note_id", using: :btree
@@ -77,14 +80,17 @@ ActiveRecord::Schema.define(version: 20170314080627) do
 
   create_table "compatibility_searches", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "vehicle_id",      null: false
+    t.integer  "vehicle_id",            null: false
     t.integer  "category_id"
-    t.string   "category_name",   null: false
+    t.string   "category_name",         null: false
     t.integer  "results_count"
     t.integer  "fitment_note_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
     t.integer  "search_type"
+    t.integer  "max_score"
+    t.integer  "grouped_count"
+    t.integer  "above_threshold_count"
     t.index ["category_id"], name: "index_compatibility_searches_on_category_id", using: :btree
     t.index ["fitment_note_id"], name: "index_compatibility_searches_on_fitment_note_id", using: :btree
     t.index ["user_id"], name: "index_compatibility_searches_on_user_id", using: :btree
@@ -355,6 +361,9 @@ ActiveRecord::Schema.define(version: 20170314080627) do
       t.category_name,
       t.fitment_note_id,
       t.results_count,
+      t.grouped_count,
+      t.max_score,
+      t.above_threshold_count,
       t.created_at,
       t.updated_at
      FROM ( SELECT check_searches.id AS searchable_id,
@@ -367,6 +376,9 @@ ActiveRecord::Schema.define(version: 20170314080627) do
               check_searches.category_name,
               check_searches.fitment_note_id,
               check_searches.results_count,
+              check_searches.grouped_count,
+              NULL::integer AS max_score,
+              NULL::integer AS above_threshold_count,
               check_searches.created_at,
               check_searches.updated_at
              FROM check_searches
@@ -381,10 +393,13 @@ ActiveRecord::Schema.define(version: 20170314080627) do
               compatibility_searches.category_name,
               compatibility_searches.fitment_note_id,
               compatibility_searches.results_count,
+              compatibility_searches.grouped_count,
+              compatibility_searches.max_score,
+              compatibility_searches.above_threshold_count,
               compatibility_searches.created_at,
               compatibility_searches.updated_at
              FROM compatibility_searches
-    ORDER BY 11) t;
+    ORDER BY 14) t;
   SQL
 
 end

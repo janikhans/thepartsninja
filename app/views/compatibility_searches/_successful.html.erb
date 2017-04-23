@@ -1,4 +1,4 @@
-<h1 style="text-transform: uppercase; font-weight: 800;"><%= pluralize(search_record.results.first.count_above_threshold, 'vehicle') %> found</h1>
+<h1 style="text-transform: uppercase; font-weight: 800;"><%= pluralize(search_record.above_threshold_count, 'vehicle') %> found</h1>
 <hr>
 <ul class="list-unstyled">
   <li><strong>Vehicle:</strong> <%= search_record.vehicle.to_label %></li>
@@ -6,8 +6,8 @@
   <% if Rails.env.development? %>
     <li><strong>Pages:</strong> <%= search_record.total_pages %></li>
     <li><strong>Models:</strong> <%= search_record.grouped_count %></li>
-    <li><strong>Max Score:</strong> <%= search_record.results.first.max_score %></li>
-    <li><strong>Threshold:</strong> <%= search_record.results.first.count_above_threshold %>/<%= search_record.results_count %></li>
+    <li><strong>Max Score:</strong> <%= search_record.max_score %></li>
+    <li><strong>Threshold:</strong> <%= search_record.above_threshold_count %>/<%= search_record.results_count %></li>
   <% end %>
 </ul>
 
