@@ -11,33 +11,39 @@
     <div class="card-content">
       <div class="col-md-6">
         <div class="cta">
-          <h4>Free</h4>
-          <p></p>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-          <p>When an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-          <p><small>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</small></p>
+          <h3>Ready to start?</h3>
+          <hr>
+          <p>As a member of The Parts Ninja community you'll have access to every aspect of the parts project.</p>
+          <p>Since we are currently building this system and community, you'll be an integral part in developing this resource
+          for yourself and everyone else.</p>
+          <p>What you get...</p>
+          <ul>
+            <li>Special deals and offers</li>
+            <li>Full Access</li>
+            <li>Totally <strong>FREE</strong></li>
+          </ul>
+          <p><small>What do you have to lose?</small></p>
         </div>
       </div>
       <div class="col-md-6 text-center">
         <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "user-form" }) do |f| %>
-          <%= f.error_notification %>
-            <%= f.input :email, required: true, autofocus: true, placeholder: 'Email - example@example.com', label: false, wrapper_html: { class: "form-field" } %>
-            <%= f.input :username, required: true, placeholder: 'Username', label: false, wrapper_html: { class: "form-field" } %>
-            <%= f.input :password, required: true, placeholder: 'Password', label: false, wrapper_html: { class: "form-field" } %>
-            <%= f.input :password_confirmation, required: true, placeholder: 'Password Confirmation', label: false, wrapper_html: { class: "form-field" } %>
-            <%= content_for(:the_links) do %>
-                Accept <%= link_to "Terms of Service", terms_of_service_pages_path, target: :_blank%>
-                and <%=link_to "Privacy Policy", privacy_policy_pages_path, target: :_blank%>
-            <% end %>
-            <div class="checkbox special-action">
-              <%= f.input :terms_of_service, as: :boolean, label: content_for(:the_links) %>
-            </div>
-            <div class="form-action">
-              <%= f.button :submit, "Sign Up", class:"btn-shadow btn-shadow-primary" %>
-            </div>
-            <div class="form-bottom">
-              Already have an account? <%= link_to "Sign In", new_user_session_path %>
-            </div>
+          <%= f.input :email, required: true, autofocus: true, placeholder: 'Email - example@example.com', label: false, wrapper_html: { class: "form-field" } %>
+          <%= f.input :username, required: true, placeholder: 'Username', label: false, wrapper_html: { class: "form-field" } %>
+          <%= f.input :password, required: true, placeholder: 'Password', label: false, wrapper_html: { class: "form-field" } %>
+          <%= f.input :password_confirmation, required: true, placeholder: 'Password Confirmation', label: false, wrapper_html: { class: "form-field" } %>
+          <%= content_for(:the_links) do %>
+              Accept <%= link_to "Terms of Service", terms_of_service_pages_path, target: :_blank%>
+              and <%=link_to "Privacy Policy", privacy_policy_pages_path, target: :_blank%>
+          <% end %>
+          <div class="checkbox special-action">
+            <%= f.input :terms_of_service, as: :boolean, label: content_for(:the_links) %>
+          </div>
+          <div class="form-action">
+            <%= f.button :submit, "Sign Up", class:"btn-shadow btn-shadow-primary" %>
+          </div>
+          <div class="form-bottom">
+            Already have an account? <%= link_to "Sign In", new_user_session_path %>
+          </div>
         <% end %>
       </div>
     </div>

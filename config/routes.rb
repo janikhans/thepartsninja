@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
-
   # Users
   # Change the default devise routes to something more pleasing
-  devise_for :users, path: '',
+  devise_for :users,
+    path: '',
     path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'signup' },
     controllers: { registrations: :registrations, invitations: :invitations }
 
   namespace :account do
-    root to: "activity#index"
+    root to: 'activity#index'
     resources :settings, only: [:index]
     resources :profile, only: [:update] do
       get :edit, on: :collection
@@ -18,7 +18,8 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'statistics#index'
     resources :compatibilities, :vehicles
-    resources :fitments, :brands, :fitment_notes, :categories, :ebay_categories, :part_attributes, :vehicle_types, :users, except: [:new]
+    resources :fitments, :brands, :fitment_notes, :categories, :ebay_categories,
+      :part_attributes, :vehicle_types, :users, except: [:new]
     resources :search_records, only: [:index, :destroy]
     resources :leads, only: [:index, :create, :destroy]
     resources :discoveries, except: [:new, :create]
@@ -41,15 +42,15 @@ Rails.application.routes.draw do
     end
   end
 
-  #Resource routes for public
+  # Resource routes for public
   resources :leads, only: [:create]
   resources :discoveries, except: [:index]
   resources :products, :vehicles, :users, only: [:show, :index]
   resources :parts, only: [:show]
   resources :compatibilities, only: [:show] do
     member do
-      get 'upvote'
-      get 'downvote'
+      get :upvote
+      get :downvote
     end
   end
   resources :brands, only: [:index, :show] do
@@ -63,13 +64,13 @@ Rails.application.routes.draw do
   end
   resources :check, controller: :check_searches, only: [:show] do
     collection do
-      get :new, as: ""
+      get :new, as: ''
       get :results
     end
   end
   resources :find, controller: :compatibility_searches, only: [:show] do
     collection do
-      get :new, as: ""
+      get :new, as: ''
       get :results
     end
   end
@@ -84,14 +85,14 @@ Rails.application.routes.draw do
   end
 
   # Static Pages
-  root 'pages#index'   # The Welcome Page!
-  resources :pages, path: "", only: [] do
+  root 'pages#index' # The Welcome Page!
+  resources :pages, path: '', only: [] do
     collection do
       get :help
       get :contact
-      get :terms_of_service, path: "terms-of-service"
+      get :terms_of_service, path: 'terms-of-service'
       get :about
-      get :privacy_policy, path: "privacy-policy"
+      get :privacy_policy, path: 'privacy-policy'
       get :search
     end
   end
