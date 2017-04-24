@@ -7,7 +7,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def production_redirect
     if Rails.env.production?
-      flash[:notice] = 'Registrations are not open yet, please check back soon'
+      flash[:notice] = 'Registration is not open yet, please check back soon'
       redirect_to root_path
     end
   end
