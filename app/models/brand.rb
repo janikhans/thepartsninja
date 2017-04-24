@@ -1,5 +1,5 @@
 class Brand < ApplicationRecord
-  # TODO brand will eventually need some attribute to show if it's a
+  # TODO: brand will eventually need some attribute to show if it's a
   # vehicle manufacturer, part manufacturer and/or both
   # Potentially an ebay ID
   # potentially a user_id if it's added by a user
@@ -22,15 +22,13 @@ class Brand < ApplicationRecord
   before_validation :sanitize_name
   validates :name,
     presence: true,
-    uniqueness: { case_sensitive: false, message: "brand already exists" }
+    uniqueness: { case_sensitive: false, message: 'brand already exists' }
 
   private
 
-    def sanitize_name
-      unless self.name.blank?
-        self.name = self.name.strip
-        self.name = self.name[0].upcase + self.name[1..-1]
-      end
-    end
-
+  def sanitize_name
+    return if name.blank?
+    n = name.strip
+    self.name = n[0].upcase + n[1..-1]
+  end
 end

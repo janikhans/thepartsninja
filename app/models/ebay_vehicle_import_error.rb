@@ -1,0 +1,2 @@
+class EbayVehicleImportError < ImportError
+end

@@ -31,7 +31,8 @@ gem 'chartkick'
 gem 'groupdate'
 gem 'skylight'
 gem 'sentry-raven'
-gem "acts_as_hashids"
+gem 'acts_as_hashids'
+gem 'csv_party', git: 'https://github.com/toasterlovin/csv_party.git'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
@@ -64,4 +65,4 @@ group :production do
   gem 'rails_12factor'
 end
 
-ruby "2.3.1"
+ruby '2.3.1'

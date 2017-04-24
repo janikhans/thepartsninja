@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/toasterlovin/csv_party.git
+  revision: 2a09f9c8c8ea5889b03aad461ee67d228597db34
+  specs:
+    csv_party (0.0.1.pre)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -304,6 +310,7 @@ DEPENDENCIES
   chosen-rails
   cocoon
   coffee-rails (~> 4.1.0)
+  csv_party!
   devise
   devise_invitable
   dotenv-rails
