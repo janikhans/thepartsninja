@@ -1,4 +1,4 @@
-module Authentication
+module AuthenticationMethods
   DSL_METHODS = [:sign_in, :sign_out]
 
   class ::Capybara::Session
