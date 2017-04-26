@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/toasterlovin/csv_party.git
-  revision: 2a09f9c8c8ea5889b03aad461ee67d228597db34
+  revision: f05ed37e029ecc9ff27ebf5bac672e61a82bcd93
   specs:
     csv_party (0.0.1.pre)
 

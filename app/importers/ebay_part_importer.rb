@@ -53,12 +53,9 @@ class EbayPartImporter < CSVParty
     end
   end
 
-  def import!
-    super
-  rescue CSV::MalformedCSVError => e
-    row_num = $INPUT_LINE_NUMBER
-    error_row = IO.readlines(@csv.path)[row_num - 1]
-    EbayPartImportError.create(row: error_row, import_errors: e.message)
+  error do |error, line_number|
+    row = IO.readlines(@csv.path)[line_number]
+    EbayPartImportError.create(row: row, import_errors: error.message)
   end
 
   def pretty_string_parser(value)
