@@ -54,7 +54,7 @@ class EbayPartImporter < CSVParty
   end
 
   error do |error, line_number|
-    row = IO.readlines(@csv.path)[line_number]
+    row = IO.readlines(@csv.path)[line_number - 1]
     EbayPartImportError.create(row: row, import_errors: error.message)
   end
 
