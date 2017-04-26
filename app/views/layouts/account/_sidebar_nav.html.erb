@@ -5,8 +5,9 @@
       <%= gravatar_for(current_user) %>
     </div>
     <div class="card-profile-username">
-      <strong><%= current_user.username %></strong>!
+      Hello <strong><%= current_user.username %></strong>!
     </div>
+    You last visited <%= time_ago_in_words(current_user.last_sign_in_at) %> ago.
   </div>
   <div class="sidebar-menu">
     <ul class="nav">
