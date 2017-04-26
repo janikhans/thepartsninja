@@ -1,4 +1,9 @@
 module ApplicationHelper
+  def nav_item(text, path)
+    content_tag :li, class: active_page?(path) do
+      link_to text, path
+    end
+  end
 
   def pluralize_without_count(count, noun, text = nil)
     if count != 0
@@ -32,4 +37,22 @@ module ApplicationHelper
     content_tag :i, nil, class: icon_class
   end
 
+  def active_page?(url)
+    return '' if url == :none
+    'active' if path_only(url) == current_path
+  end
+
+  def current_path?(url)
+    path_only(url) == current_path
+  end
+
+  private
+
+  def current_path
+    path_only(request.original_url)
+  end
+
+  def path_only(url)
+    URI.parse(url).path
+  end
 end
