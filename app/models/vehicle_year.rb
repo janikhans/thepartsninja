@@ -7,6 +7,7 @@ class VehicleYear < ApplicationRecord
 
   validates :year,
     presence: true,
+    numericality: true,
     inclusion: { in: 1900..Date.current.year + 1,
                  message: "needs to be between 1900-#{Date.current.year + 1}" },
     uniqueness: true
