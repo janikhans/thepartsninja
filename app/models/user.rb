@@ -28,6 +28,10 @@ class User < ApplicationRecord
   has_many :compatibility_searches
   has_many :search_records
 
+  has_many :discussions,
+    foreign_key: 'author_id',
+    dependent: :destroy
+
   devise :invitable, :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   validates :username, uniqueness: { case_sensitive: false }, presence: true, length: { in: 4..20 }

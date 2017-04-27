@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :profile, only: [:update] do
       get :edit, on: :collection
     end
+    resources :discussions
   end
 
   # Admin
