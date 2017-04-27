@@ -12,7 +12,11 @@ class EbayPartImporter < CSVParty
 
     begin
       ActiveRecord::Base.transaction do
-        categories = row.category_breadcrumb.split(':')
+        colon_sep = row.category_breadcrumb.split(':')
+        g_than_sep = row.category_breadcrumb.split(' > ')
+
+        categories = colon_sep.size > g_than_sep.size ? colon_sep : g_than_sep
+
         root_category = categories[2]
         category = categories[3]
         subcategory = categories[4]
