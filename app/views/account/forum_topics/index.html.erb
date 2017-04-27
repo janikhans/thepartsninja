@@ -1,0 +1,19 @@
+<h1>Forum Topics</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @forum_topics.each do |forum_topic| %>
+      <tr>
+        <td><%= forum_topic.title %></td>
+        <td><%= link_to 'Show', forum_topic %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

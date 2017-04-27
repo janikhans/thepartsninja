@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170427041030) do
+ActiveRecord::Schema.define(version: 20170427064857) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -105,13 +105,6 @@ ActiveRecord::Schema.define(version: 20170427041030) do
     t.index ["user_id"], name: "index_discoveries_on_user_id", using: :btree
   end
 
-  create_table "discussions", force: :cascade do |t|
-    t.integer  "author_id",  null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["author_id"], name: "index_discussions_on_author_id", using: :btree
-  end
-
   create_table "ebay_categories", force: :cascade do |t|
     t.string   "name",       null: false
     t.integer  "parent_id"
@@ -155,6 +148,36 @@ ActiveRecord::Schema.define(version: 20170427041030) do
     t.index ["part_id"], name: "index_fitments_on_part_id", using: :btree
     t.index ["user_id"], name: "index_fitments_on_user_id", using: :btree
     t.index ["vehicle_id"], name: "index_fitments_on_vehicle_id", using: :btree
+  end
+
+  create_table "forum_posts", force: :cascade do |t|
+    t.integer  "forum_thread_id", null: false
+    t.integer  "user_id",         null: false
+    t.text     "body",            null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["forum_thread_id"], name: "index_forum_posts_on_forum_thread_id", using: :btree
+    t.index ["user_id"], name: "index_forum_posts_on_user_id", using: :btree
+  end
+
+  create_table "forum_threads", force: :cascade do |t|
+    t.integer  "forum_topic_id", null: false
+    t.integer  "author_id",      null: false
+    t.string   "subject",        null: false
+    t.string   "slug"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["author_id"], name: "index_forum_threads_on_author_id", using: :btree
+    t.index ["forum_topic_id"], name: "index_forum_threads_on_forum_topic_id", using: :btree
+    t.index ["slug"], name: "index_forum_threads_on_slug", unique: true, using: :btree
+  end
+
+  create_table "forum_topics", force: :cascade do |t|
+    t.string   "title",      null: false
+    t.string   "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_forum_topics_on_slug", unique: true, using: :btree
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -357,6 +380,9 @@ ActiveRecord::Schema.define(version: 20170427041030) do
   add_foreign_key "compatibility_searches", "vehicles"
   add_foreign_key "fitment_notations", "fitment_notes"
   add_foreign_key "fitment_notations", "fitments"
+  add_foreign_key "forum_posts", "forum_threads"
+  add_foreign_key "forum_posts", "users"
+  add_foreign_key "forum_threads", "forum_topics"
   add_foreign_key "products", "categories"
   add_foreign_key "vehicle_models", "brands"
   add_foreign_key "vehicle_models", "vehicle_types"

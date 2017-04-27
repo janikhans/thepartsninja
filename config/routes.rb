@@ -12,13 +12,16 @@ Rails.application.routes.draw do
     resources :profile, only: [:update] do
       get :edit, on: :collection
     end
-    resources :discussions
+    resources :forum_topics
+    resources :forum_threads do
+      resources :forum_posts, only: [:create, :update, :destroy]
+    end
   end
 
   # Admin
   namespace :admin do
     root to: 'statistics#index'
-    resources :compatibilities, :vehicles
+    resources :compatibilities, :vehicles, :forum_topics
     resources :fitments, :brands, :fitment_notes, :categories, :ebay_categories,
       :part_attributes, :vehicle_types, :users, except: [:new]
     resources :search_records, only: [:index, :destroy]

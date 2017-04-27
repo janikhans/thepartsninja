@@ -1,0 +1,23 @@
+<div class="card">
+  <div class="card-heading">
+    <h5>Forum</h5>
+  </div>
+  <div class="card-body">
+    <div class="forum">
+      <ul class="media-list">
+        <%= render @forum_posts %>
+      </ul>
+    </div>
+    <%= render 'account/forum_posts/form' %>
+    <div class="current-chat-footer">
+      <div class="panel-footer">
+         <div class="input-group">
+           <input type="text" class="form-control">
+           <span class="input-group-btn">
+             <button class="btn btn-default" type="button">Send</button>
+          </span>
+         </div>
+       </div>
+    </div>
+  </div>
+</div>

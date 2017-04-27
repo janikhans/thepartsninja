@@ -1,0 +1,17 @@
+<div class="card">
+  <div class="card-heading m-b-none">
+    <h5>Discussion Threads</h5>
+  </div>
+  <ul class="forum-list">
+    <% if @forum_threads.any? %>
+      <%= render @forum_threads %>
+    <% else %>
+      <li class="forum">
+        <div class="forum-body text-center">
+            No forums yet. But you could start one...
+            <%= render 'form' %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>
