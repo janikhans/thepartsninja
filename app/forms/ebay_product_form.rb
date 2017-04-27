@@ -1,4 +1,4 @@
-class ProductForm
+class EbayProductForm
   include ActiveModel::Model
   include ActiveModel::Validations::Callbacks
 
@@ -7,7 +7,7 @@ class ProductForm
   end
 
   attr_accessor :brand, :product_name, :root_category, :category, :subcategory,
-    :user, :product
+    :product
 
   before_validation :sanitize_fields
 
@@ -21,7 +21,7 @@ class ProductForm
     root_cat = find_or_create_root_category
     cat = find_or_create_category(root_cat)
     subcat = find_or_create_subcategory(cat)
-    self.product = find_or_create_product(subcat, product_brand, user)
+    self.product = find_or_create_product(subcat, product_brand)
   end
 
   private
@@ -45,8 +45,8 @@ class ProductForm
   end
 
   def find_or_create_root_category
-    Category.roots.where('lower(name) = ?', root_category.downcase)
-            .first_or_create!(name: root_category)
+    EbayCategory.roots.where('lower(name) = ?', root_category.downcase)
+                .first_or_create!(name: root_category)
   end
 
   def find_or_create_category(root_category)
@@ -63,9 +63,9 @@ class ProductForm
     end
   end
 
-  def find_or_create_product(category, brand, user)
-    brand.products.where('lower(name) = ? AND category_id = ?',
+  def find_or_create_product(category, brand)
+    brand.products.where('lower(name) = ? AND ebay_category_id = ?',
       product_name.downcase, category.id)
-         .first_or_create!(name: product_name, category: category, user: user)
+         .first_or_create!(name: product_name, ebay_category: category)
   end
 end

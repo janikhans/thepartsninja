@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
-  # TODO potentially fix/remove these getter/setter methods.
+  # TODO: potentially fix/remove these getter/setter methods.
   # Maybe the PartForm will replace all of this
   # slug should not include the brand in the future since the url will include it
   # when nested routes are used
@@ -15,35 +15,28 @@ class Product < ApplicationRecord
   has_many :part_attributes, -> { distinct }, through: :parts
   has_many :fitment_notes, -> { distinct }, through: :parts
 
-  validates :name, :brand, :category, presence: true
+  validates :name, :brand, presence: true
 
-  def brand_name
-    brand.try(:name)
-  end
+  validates :category,
+    presence: true,
+    if: 'ebay_category_id.nil?'
 
-  #This works but could create a duplicate in the case of TM Racing and TM racing
-  def brand_name=(name)
-    name = name.strip
-    self.brand = Brand.where('lower(name) = ?', name.downcase).first_or_create(name: name)
-  end
-
-  def category_name
-    brand.try(:name)
-  end
-
-  def category_name=(name)
-    name = name.strip
-    self.category = Category.where('lower(name) = ?', name.downcase).first_or_create(name: name)
-  end
+  validates :ebay_category,
+    presence: true,
+    if: 'category_id.nil?'
 
   def to_label
     "#{brand.name} - #{category.name} #{name}"
   end
 
+  def brand_name
+    brand.name
+  end
+
   def slug_candidates
-   [
-    [:brand_name, :name],
-   ]
+    [
+      [:brand_name, :name]
+    ]
   end
 
 end

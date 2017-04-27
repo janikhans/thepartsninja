@@ -1,0 +1,2 @@
+class EbayPartImportError < ImportError
+end

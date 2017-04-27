@@ -12,7 +12,7 @@ end
 class IntegrationTest < ActionDispatch::IntegrationTest
   include Capybara::DSL
   include Warden::Test::Helpers
-  include Authentication
+  include AuthenticationMethods
 
   setup do
     Capybara.reset_sessions!
