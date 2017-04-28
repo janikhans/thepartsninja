@@ -1,7 +1,30 @@
-feedback:
-  title: Feedback
-  description: string
+support:
+  title: Support
 
 general:
   title: General
   description: string
+
+admin:
+  title: Admin Forum
+  private: true
+  icon: house
+
+issues:
+  title: Issues
+  private: true
+  description: A place for admin to talk about issues
+  icon: house
+  ancestry: <%= ActiveRecord::FixtureSet.identify(:admin) %>
+
+feedback:
+  title: Feedback
+  description: string
+  icon: house
+  ancestry: <%= ActiveRecord::FixtureSet.identify(:support) %>
+
+random:
+  title: Random
+  description: Talk about anything
+  icon: house
+  ancestry: <%= ActiveRecord::FixtureSet.identify(:general) %>

@@ -2,10 +2,10 @@
 
 one:
   forum_thread: one
-  user: one
+  user: janik
   body: MyText
 
 two:
   forum_thread: two
-  user: two
+  user: hans
   body: MyText

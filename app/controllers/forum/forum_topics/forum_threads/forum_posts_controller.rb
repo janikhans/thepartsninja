@@ -33,7 +33,7 @@ class Forum::ForumTopics::ForumThreads::ForumPostsController < Forum::Applicatio
         format.js
       else
         format.html { render :edit }
-        format.js { }
+        format.js
       end
     end
   end
@@ -41,9 +41,10 @@ class Forum::ForumTopics::ForumThreads::ForumPostsController < Forum::Applicatio
   def destroy
     @post.destroy
     respond_to do |format|
-      format.html { redirect_to forum_topic_thread_path(@topic, @thread),
+      format.html {
+        redirect_to forum_topic_thread_path(@topic, @thread),
           notice: 'Post was successfully deleted.' }
-      format.js { }
+      format.js
     end
   end
 
