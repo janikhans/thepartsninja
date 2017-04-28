@@ -1,0 +1,5 @@
+<% if @post.errors.any? %>
+  $('#edit_forum_post_<%= @post.id %>').replaceWith("<%= j(render partial: 'edit_form') %>");
+<% else %>
+  $('#post-body').html("<%= simple_format @post.body %>");
+<% end %>

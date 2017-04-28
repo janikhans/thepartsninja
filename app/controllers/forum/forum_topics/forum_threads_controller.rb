@@ -1,6 +1,6 @@
 class Forum::ForumTopics::ForumThreadsController < Forum::ApplicationController
   before_action :set_topic
-  before_action :set_forum_thread, only: [:show, :destroy]
+  before_action :set_forum_thread, only: [:show, :edit, :update, :destroy]
   before_action :redirect_unless_root_topic, only: [:new, :create]
   before_action :require_owner, only: [:edit, :update, :destroy]
 
@@ -11,6 +11,9 @@ class Forum::ForumTopics::ForumThreadsController < Forum::ApplicationController
   def show
     @post = @thread.forum_posts.build
     @posts = @thread.forum_posts.includes(:user)
+  end
+
+  def edit
   end
 
   def create
@@ -27,6 +30,12 @@ class Forum::ForumTopics::ForumThreadsController < Forum::ApplicationController
   end
 
   def update
+    if @thread.update(thread_params)
+      redirect_to forum_topic_thread_path(@topic, @thread),
+        notice: 'Thread was successfully updated.'
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -34,7 +43,7 @@ class Forum::ForumTopics::ForumThreadsController < Forum::ApplicationController
       redirect_to forum_topic_path(@topic),
         notice: 'Thread was successfully destroyed.'
     else
-      redirect_to :back, alert: 'Forum Thread could not be destroyed'
+      redirect_to :back, alert: 'Thread could not be destroyed'
     end
   end
 

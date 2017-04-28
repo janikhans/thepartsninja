@@ -1,0 +1,4 @@
+<%= simple_form_for @post, url: forum_topic_thread_post_path(@topic, @thread), method: :patch, remote: true do |f| %>
+  <%= f.input :body, label: false, rows: 10 %>
+  <%= f.button :submit, "Update", class: "btn btn-default" %>
+<% end %>

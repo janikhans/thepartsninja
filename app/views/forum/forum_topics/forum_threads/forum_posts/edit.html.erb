@@ -1,0 +1,14 @@
+<div class="card breadcrumb forum-breadcrumb">
+  <div class="card-body">
+    <%= link_to 'Forums', forum_root_path %> / <%= link_to @topic.title, forum_topic_path(@topic) %> / <%= link_to @thread.title, forum_topic_thread_path(@topic, @thread) %> / Edit Post
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-heading">
+    <h5>Edit Your Post</h5>
+  </div>
+  <div class="card-body">
+    <%= render 'edit_form' %>
+  </div>
+</div>

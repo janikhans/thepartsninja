@@ -20,7 +20,7 @@ Rails.application.routes.draw do
       scope module: :forum_topics do
         resources :forum_threads, as: :threads, path: '', except: :index do
           scope module: :forum_threads do
-            resources :forum_posts, as: :posts, only: [:create, :update, :destroy]
+            resources :forum_posts, path: 'posts', as: :posts, except: [:index, :new, :show]
           end
         end
       end
