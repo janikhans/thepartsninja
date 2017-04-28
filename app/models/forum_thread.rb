@@ -10,6 +10,10 @@ class ForumThread < ApplicationRecord
 
   has_many :forum_posts, dependent: :destroy
 
+  has_one :last_forum_post,
+    -> { order created_at: :desc },
+    class_name: 'ForumPost'
+
   validates :title, presence: true
   validates :body, presence: true
 end

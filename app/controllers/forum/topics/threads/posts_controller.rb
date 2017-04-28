@@ -2,16 +2,23 @@ class Forum::Topics::Threads::PostsController < Forum::ApplicationController
   before_action :set_topic
   before_action :set_thread
   before_action :set_post, only: [:update, :destroy]
+  before_action :require_owner, only: [:update, :destroy]
 
   def create
     @post = @thread.forum_posts.build(post_params)
     @post.user = current_user
 
-    if @post.save
-      redirect_to forum_topic_thread_path(@topic, @thread),
-        notice: 'Post was successfully created.'
-    else
-      redirect_to :back, notice: 'Could not save post'
+    respond_to do |format|
+      if @post.save
+        format.html {
+          redirect_to forum_topic_thread_path(@topic, @thread),
+            notice: 'Post was successfully created.'
+        }
+        format.js
+      else
+        format.html { redirect_to :back, alert: 'Could not save post' }
+        format.js
+      end
     end
   end
 
@@ -47,6 +54,12 @@ class Forum::Topics::Threads::PostsController < Forum::ApplicationController
 
   def set_forum_post
     @post = @thread.forum_posts.find(params[:id])
+  end
+
+  def require_owner
+    unless @post.user == current_user
+      redirect_to :back, alert: 'You do not have permission to edit this post'
+    end
   end
 
   def post_params

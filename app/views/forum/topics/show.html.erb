@@ -1,20 +1,22 @@
 <div class="card breadcrumb forum-breadcrumb">
   <div class="card-body">
-    <%= link_to 'Forums', forum_root_path %> > <%= @topic.title %>
+    <%= link_to 'Forums', forum_root_path %> / <%= @topic.title %>
   </div>
 </div>
 
 <div class="card">
-  <div class="card-heading m-b-none">
-    <h5><%= @topic.description %></h5>
-    <h3 class="lead"><%= @topic.title %></h3>
+  <div class="card-heading m-b-0">
+    <div class="pull-right"><%= link_to "New Thread", new_forum_topic_thread_path(@topic), class: "btn btn-default" %></div>
+    <h3><%= @topic.title %></h3>
+    <p><%= @topic.description %></p>
   </div>
-  <ul class="forum-list">
-    <%= render @threads %>
-    <li class="thread">
-      <div class="forum-body text-center">
-          <%= link_to "New Thread", new_forum_topic_thread_path(@topic), class: "btn btn-default" %>
+  <div class="thread-list">
+    <% if @threads.present? %>
+      <%= render @threads %>
+    <% else %>
+      <div class="thread text-center">
+        No threads to show
       </div>
-    </li>
-  </ul>
+    <% end %>
+  </div>
 </div>

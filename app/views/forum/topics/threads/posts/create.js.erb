@@ -1,0 +1,7 @@
+<% if @post.errors.any? %>
+  $('#new_forum_post').html("<%= j(render partial: 'form') %>");
+<% else %>
+  $('#thread-replies').show();
+  $('#forum_post_body').val('');
+  $('#post-list').append("<%= j(render @post) %>");
+<% end %>

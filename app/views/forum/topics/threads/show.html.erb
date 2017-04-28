@@ -1,30 +1,46 @@
 <div class="card breadcrumb forum-breadcrumb">
   <div class="card-body">
-    <%= link_to 'Forums', forum_root_path %> > <%= link_to @topic.title, forum_topic_path(@topic) %> > <%= @thread.title %>
+    <%= link_to 'Forums', forum_root_path %> / <%= link_to @topic.title, forum_topic_path(@topic) %> / <%= @thread.title %>
   </div>
 </div>
-<div class="card">
+
+<div class="card forum-thread">
   <div class="card-heading">
-    <h2><%= @thread.title %></h2>
+    <h3><%= @thread.title %></h3>
   </div>
   <div class="card-body">
-    <%= gravatar_for(@thread.user, class: "img-circle") %>
-    <%= @thread.body %>
-  </div>
-  <div class="card-body">
-    <div class="forum">
-      <ul class="media-list">
-        <%= render @posts %>
-      </ul>
+    <div class="row">
+      <div class="col-md-2 user">
+        <div class="text-center">
+          <h5><strong><%= @thread.user.username %></strong></h5>
+          <%= gravatar_for(@thread.user, class: "img-circle") %> <br>
+          <strong>Posts: </strong> <%= @thread.user.forum_posts.count %> <br>
+          <strong>Joined: </strong> <%= @thread.user.created_at.strftime('%b %d, %Y') %>
+        </div>
+      </div>
+      <div class="col-md-10 body">
+         <small><%= time_ago_in_words(@thread.created_at) %> ago</small> <br>
+         <br>
+        <%= simple_format @thread.body %>
+      </div>
     </div>
+  </div>
+</div>
+
+<div id="thread-replies" class="card" style="<%= 'display: none;' if @posts.blank? %>">
+  <div class="card-heading m-b-0">
+    <h5>Replies</h5>
+  </div>
+  <div id="post-list">
+    <%= render @posts %>
   </div>
 </div>
 
 <div class="card">
   <div class="card-heading">
-    <h5>Post a reply to: <strong><% @thread.title %></strong></h5>
+    <h5>Post reply to: <strong><%= @thread.title %></strong></h5>
   </div>
   <div class="card-body">
-    <%= render 'forum/topics/forum_posts/form' %>
+    <%= render 'forum/topics/threads/posts/form' %>
   </div>
 </div>

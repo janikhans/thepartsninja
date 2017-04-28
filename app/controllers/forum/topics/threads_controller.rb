@@ -2,6 +2,7 @@ class Forum::Topics::ThreadsController < Forum::ApplicationController
   before_action :set_topic
   before_action :set_forum_thread, only: [:show, :destroy]
   before_action :redirect_unless_root_topic, only: [:new, :create]
+  before_action :require_owner, only: [:edit, :update, :destroy]
 
   def new
     @thread = @topic.forum_threads.build
@@ -9,8 +10,7 @@ class Forum::Topics::ThreadsController < Forum::ApplicationController
 
   def show
     @post = @thread.forum_posts.build
-    @post.user = current_user
-    @posts = @thread.forum_posts.all
+    @posts = @thread.forum_posts.includes(:user)
   end
 
   def create
@@ -21,14 +21,18 @@ class Forum::Topics::ThreadsController < Forum::ApplicationController
       redirect_to forum_topic_thread_path(@topic, @thread),
         notice: 'Thread was successfully created.'
     else
-      redirect_to :back,
+      render :new,
         alert: "Thread could not be started. #{@thread.errors.full_messages.join(' ')}"
     end
   end
 
+  def update
+  end
+
   def destroy
     if @thread.destroy
-      redirect_to forum_topic_path(@topic), notice: 'Thread was successfully destroyed.'
+      redirect_to forum_topic_path(@topic),
+        notice: 'Thread was successfully destroyed.'
     else
       redirect_to :back, alert: 'Forum Thread could not be destroyed'
     end
@@ -47,6 +51,12 @@ class Forum::Topics::ThreadsController < Forum::ApplicationController
   def redirect_unless_root_topic
     if @topic.root?
       redirect_to :back, alert: 'Threads cannot be created for this topic'
+    end
+  end
+
+  def require_owner
+    unless @thread.user == current_user
+      redirect_to :back, alert: 'You do not have permission to edit this thread'
     end
   end
 

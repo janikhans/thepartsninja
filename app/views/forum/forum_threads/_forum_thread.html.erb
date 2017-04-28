@@ -1,10 +1,31 @@
-<%= link_to forum_topic_thread_path(forum_thread.forum_topic, forum_thread) do %>
-  <li class="thread">
-    <div class="thread-body">
-        <%= forum_thread.title %>
-        <%= forum_thread.body %>
-      <br>
-      <small class="text-muted">Started By: <%= forum_thread.user.username %> | <%= time_ago_in_words(forum_thread.created_at) %> ago | Posts: <%= forum_thread.forum_posts.size %></small>
+<div class="row thread">
+  <div class="col-xs-12 col-md-7">
+    <h3><%= link_to forum_thread.title, forum_topic_thread_path(forum_thread.forum_topic, forum_thread) %></h3>
+    <%= truncate(forum_thread.body, length: 75) %>
+  </div>
+  <div class="row post-info">
+    <div class="col-xs-4 col-md-2 text-center">
+      <strong><%= forum_thread.forum_posts.size %></strong> <br>
+      Posts
     </div>
-  </li>
-<% end %>
+    <div class="col-xs-8 col-md-3 last-post">
+      <% if forum_thread.last_forum_post.present? %>
+        <div class="poster-avatar">
+          <%= gravatar_for(forum_thread.last_forum_post.user) %>
+        </div>
+        <div class="poster-info">
+          by <strong><%= forum_thread.last_forum_post.user.username %></strong> <br>
+          <%= icon(:clock_o) %> <%= time_ago_in_words(forum_thread.last_forum_post.created_at) %> ago
+        </div>
+      <% else %>
+        <div class="poster-avatar">
+          <%= gravatar_for(forum_thread.user) %>
+        </div>
+        <div class="poster-info">
+          by <strong><%= forum_thread.user.username %></strong> <br>
+          <%= icon(:clock_o) %> <%= time_ago_in_words(forum_thread.created_at) %> ago
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

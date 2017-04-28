@@ -22,7 +22,6 @@
 .forum-breadcrumb {
   a {
     color: #616161;
-    font-weight: 600;
     &:hover {
       color: blue;
     }
@@ -42,8 +41,7 @@
   .topic {
     padding: 15px;
     border-bottom: 1px solid gainsboro;
-    margin-left: 0px;
-    margin-right: 0px;
+    margin: 0px;
     .topic-body {
       h5 {
         color: #a7a7a7;
@@ -54,12 +52,105 @@
       border-bottom: 0;
     }
     h3, h5 { margin: 0; }
-    a { color: #2388bb; }
     .topic-icon {
       vertical-align: middle;
     }
     &:hover {
       background-color: #fbfbfb;
+    }
+    .topic-stats  {
+      margin-left: 0;
+      margin-right: 0;
+      .last-post {
+        .poster-avatar {
+          display: inline-block;
+          img {
+            border-radius: 50%;
+            height: 40px;
+          }
+        }
+        .poster-info {
+          padding-left: 10px;
+          display: inline-block;
+          vertical-align: middle;
+        }
+      }
+      @media(max-width: 991px) {
+        margin-top: 85px;
+      }
+    }
+  }
+}
+
+.thread-list {
+  .thread-header {
+    margin-left: 0px;
+    margin-right: 0px;
+    padding: 15px;
+  }
+  .thread {
+    padding: 15px;
+    border-bottom: 1px solid gainsboro;
+    margin-left: 0px;
+    margin-right: 0px;
+    h3 {
+      margin: 0px auto;
+    }
+    &:last-child {
+      border-bottom: 0;
+    }
+    &:hover {
+      background-color: #fbfbfb;
+    }
+    .post-info {
+      .last-post {
+        .poster-avatar {
+          display: inline-block;
+          img {
+            border-radius: 50%;
+            height: 40px;
+          }
+        }
+        .poster-info {
+          padding-left: 10px;
+          display: inline-block;
+          vertical-align: middle;
+        }
+      }
+      @media(max-width: 991px) {
+        margin-top: 85px;
+      }
+    }
+  }
+}
+
+.forum-thread {
+  .user {
+    padding: 10px 0px;
+    border-right: solid 1px gainsboro;
+  }
+}
+
+.post {
+  padding: 15px 0px;
+  border-bottom: 1px solid gainsboro;
+  margin-left: 0px;
+  margin-right: 0px;
+  &:last-child {
+    border-bottom: 0;
+  }
+  .user {
+    padding: 10px 0px;
+    border-right: solid 1px gainsboro;
+    h5 { margin-bottom: 0px; }
+    .avatar {
+      img {
+        height: 50px;
+      }
+    }
+    @media(min-width: 991px) {
+      text-align: center;
+      h5 { margin-bottom: 10px; }
     }
   }
 }

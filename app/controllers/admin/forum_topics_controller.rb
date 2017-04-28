@@ -49,6 +49,6 @@ class Admin::ForumTopicsController < Admin::ApplicationController
   end
 
   def forum_topic_params
-    params.require(:forum_topic).permit(:title, :description, :private, :icon, :parent_id)
+    params.require(:forum_topic).permit(:title, :description, :private, :icon, :parent_id, :slug)
   end
 end
