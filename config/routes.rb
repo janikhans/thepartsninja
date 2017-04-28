@@ -12,9 +12,18 @@ Rails.application.routes.draw do
     resources :profile, only: [:update] do
       get :edit, on: :collection
     end
-    resources :forum_topics
-    resources :forum_threads do
-      resources :forum_posts, only: [:create, :update, :destroy]
+  end
+
+  namespace :forum, path: 'forums' do
+    root to: 'topics#index'
+    resources :topics, path: '', only: :show do
+      scope module: :topics do
+        resources :threads, path: '', except: :index do
+          scope module: :threads do
+            resources :posts, only: [:create, :update, :destroy]
+          end
+        end
+      end
     end
   end
 

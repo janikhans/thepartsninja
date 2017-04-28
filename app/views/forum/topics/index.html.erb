@@ -1,0 +1,7 @@
+<div class="card">
+  <div class="topic-list">
+    <% @topics.each do |root_topic| %>
+      <%= render partial: 'root_topic', locals: { root_topic: root_topic.first, sub_topics: root_topic[1] } %>
+    <% end %>
+  </div>
+</div>

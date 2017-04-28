@@ -28,10 +28,7 @@ class User < ApplicationRecord
   has_many :compatibility_searches
   has_many :search_records
 
-  has_many :forum_threads,
-    foreign_key: 'author_id',
-    dependent: :destroy
-
+  has_many :forum_threads, dependent: :destroy
   has_many :forum_posts, dependent: :destroy
 
   devise :invitable, :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable

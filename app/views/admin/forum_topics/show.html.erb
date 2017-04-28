@@ -3,6 +3,9 @@
 <p>
   <strong>Title:</strong>
   <%= @forum_topic.title %>
+  <%= @forum_topic.description %>
+  <%= @forum_topic.icon %>
+  <%= @forum_topic.private %>
 </p>
 
 <%= link_to 'Edit', edit_admin_forum_topic_path(@forum_topic) %> |

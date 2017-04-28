@@ -19,7 +19,7 @@ class Admin::ForumTopicsController < Admin::ApplicationController
     @forum_topic = ForumTopic.new(forum_topic_params)
 
     if @forum_topic.save
-      redirect_to admin_forum_topics_path(@forum_topic), notice: 'Forum topic was successfully created.'
+      redirect_to admin_forum_topic_path(@forum_topic), notice: 'Forum topic was successfully created.'
     else
       render :new
     end
@@ -45,10 +45,10 @@ class Admin::ForumTopicsController < Admin::ApplicationController
   private
 
   def set_forum_topic
-    @forum_topic = ForumTopic.find(params[:id])
+    @forum_topic = ForumTopic.friendly.find(params[:id])
   end
 
   def forum_topic_params
-    params.require(:forum_topic).permit(:title)
+    params.require(:forum_topic).permit(:title, :description, :private, :icon, :parent_id)
   end
 end

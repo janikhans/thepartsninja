@@ -1,0 +1,27 @@
+<div class="row topic-section">
+  <div class="col-md-1"></div>
+  <div class="col-md-6 topic-title"><%= root_topic.title %></div>
+  <div class="col-md-1 text-center topic-threads">Threads</div>
+  <div class="col-md-1 text-center topic-posts">Posts</div>
+  <div class="col-md-3 last-post">Last Post</div>
+</div>
+<% sub_topics.each do |sub_topic| %>
+  <% sub_topic = sub_topic.first %>
+  <div class="row topic">
+    <div class="col-md-1 text-center topic-icon"><%= icon(sub_topic.icon.to_sym, class: "fa-2x") %></div>
+    <div class="col-md-6 topic-body">
+      <h3><%= link_to sub_topic.title, forum_topic_path(sub_topic) %></h3>
+      <h5><%= sub_topic.description %></h5>
+    </div>
+    <div class="col-md-1 text-center topic-threads"><%= sub_topic.forum_threads.size %></div>
+    <div class="col-md-1 text-center topic-posts"><%= sub_topic.forum_posts.size %></div>
+    <div class="col-md-3 last-post">
+      <% if sub_topic.last_forum_post.present? %>
+        by <%= sub_topic.last_forum_post.user.username %> <br>
+        <%= icon(:clock_o) %> <%= time_ago_in_words(sub_topic.last_forum_post.created_at) %> ago
+      <% else %>
+        No Posts Yet
+      <% end %>
+    </div>
+  </div>
+<% end %>

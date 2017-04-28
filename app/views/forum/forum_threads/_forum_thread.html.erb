@@ -1,0 +1,10 @@
+<%= link_to forum_topic_thread_path(forum_thread.forum_topic, forum_thread) do %>
+  <li class="thread">
+    <div class="thread-body">
+        <%= forum_thread.title %>
+        <%= forum_thread.body %>
+      <br>
+      <small class="text-muted">Started By: <%= forum_thread.user.username %> | <%= time_ago_in_words(forum_thread.created_at) %> ago | Posts: <%= forum_thread.forum_posts.size %></small>
+    </div>
+  </li>
+<% end %>

@@ -1,0 +1,30 @@
+<div class="card breadcrumb forum-breadcrumb">
+  <div class="card-body">
+    <%= link_to 'Forums', forum_root_path %> > <%= link_to @topic.title, forum_topic_path(@topic) %> > <%= @thread.title %>
+  </div>
+</div>
+<div class="card">
+  <div class="card-heading">
+    <h2><%= @thread.title %></h2>
+  </div>
+  <div class="card-body">
+    <%= gravatar_for(@thread.user, class: "img-circle") %>
+    <%= @thread.body %>
+  </div>
+  <div class="card-body">
+    <div class="forum">
+      <ul class="media-list">
+        <%= render @posts %>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-heading">
+    <h5>Post a reply to: <strong><% @thread.title %></strong></h5>
+  </div>
+  <div class="card-body">
+    <%= render 'forum/topics/forum_posts/form' %>
+  </div>
+</div>

@@ -161,22 +161,33 @@ ActiveRecord::Schema.define(version: 20170427064857) do
   end
 
   create_table "forum_threads", force: :cascade do |t|
-    t.integer  "forum_topic_id", null: false
-    t.integer  "author_id",      null: false
-    t.string   "subject",        null: false
+    t.integer  "forum_topic_id",                    null: false
+    t.integer  "user_id",                           null: false
+    t.string   "title",                             null: false
+    t.text     "body",                              null: false
     t.string   "slug"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.index ["author_id"], name: "index_forum_threads_on_author_id", using: :btree
+    t.boolean  "sticky",            default: false
+    t.boolean  "locked",            default: false
+    t.integer  "forum_posts_count", default: 0
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.index ["forum_topic_id"], name: "index_forum_threads_on_forum_topic_id", using: :btree
     t.index ["slug"], name: "index_forum_threads_on_slug", unique: true, using: :btree
+    t.index ["user_id"], name: "index_forum_threads_on_user_id", using: :btree
   end
 
   create_table "forum_topics", force: :cascade do |t|
-    t.string   "title",      null: false
+    t.string   "title",                               null: false
+    t.text     "description"
+    t.string   "icon"
+    t.integer  "forum_threads_count", default: 0
+    t.integer  "forum_posts_count",   default: 0
+    t.boolean  "private",             default: false
     t.string   "slug"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "ancestry"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.index ["ancestry"], name: "index_forum_topics_on_ancestry", using: :btree
     t.index ["slug"], name: "index_forum_topics_on_slug", unique: true, using: :btree
   end
 
@@ -383,6 +394,7 @@ ActiveRecord::Schema.define(version: 20170427064857) do
   add_foreign_key "forum_posts", "forum_threads"
   add_foreign_key "forum_posts", "users"
   add_foreign_key "forum_threads", "forum_topics"
+  add_foreign_key "forum_threads", "users"
   add_foreign_key "products", "categories"
   add_foreign_key "vehicle_models", "brands"
   add_foreign_key "vehicle_models", "vehicle_types"

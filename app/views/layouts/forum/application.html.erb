@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>thePartsNinja | The Community Parts Project</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body id="body">
+  <%= render 'layouts/navbar' %>
+  <%= render 'layouts/header' %>
+  <%= render 'layouts/flash' %>
+
+  <div id="content" class="container content-wrapper m-t-lg">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card o-f-h">
+          <div class="card-bg">
+            <div class="hero-text">
+              <h1>The Parts Ninja Forum</h1>
+              <p>Hang out in the dojo</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+
+  <%= debug(params) if Rails.env.development? %>
+  <%= render 'layouts/footer' %>
+
+</body>
+</html>

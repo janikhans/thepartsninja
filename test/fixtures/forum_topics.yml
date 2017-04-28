@@ -1,5 +1,7 @@
 feedback:
   title: Feedback
+  description: string
 
 general:
   title: General
+  description: string

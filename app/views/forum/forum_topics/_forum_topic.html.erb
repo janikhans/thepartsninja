@@ -1,0 +1,21 @@
+<div class="row topic-headers m-b-0">
+  <div class="col-md-1"></div>
+  <div class="col-md-6 topic-body"><%= forum_topic.title %></div>
+  <div class="col-md-1 text-center topic-threads">Threads</div>
+  <div class="col-md-1 text-center topic-posts">Posts</div>
+  <div class="col-md-3 last-post">Last Post</div>
+</div>
+<% forum_topic.children.available.each do |sub_topic| %>
+  <div class="row topic">
+    <div class="col-md-1 text-center topic-icon"><%= icon(sub_topic.icon.to_sym, class: "fa-2x") %></div>
+    <div class="col-md-6 topic-body">
+      <h3><%= link_to sub_topic.title, forum_topic_path(sub_topic) %></h3>
+      <h5><%= sub_topic.description %></h5>
+    </div>
+    <div class="col-md-1 text-center topic-threads"><%= sub_topic.forum_threads.size %></div>
+    <div class="col-md-1 text-center topic-posts"><%= sub_topic.forum_posts.size %></div>
+    <div class="col-md-3 last-post">
+    
+    </div>
+  </div>
+<% end %>

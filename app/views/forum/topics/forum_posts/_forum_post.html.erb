@@ -1,7 +1,7 @@
 <li class="forum-post">
   <div class="forum-post-body">
     <div class="media">
-      <a class="pull-left" href="#"><img class="media-object img-circle " src="https://app.teamsupport.com/dc/1078/UserAvatar/1839999/48/1470773165634"></a>
+      <%= gravatar_for(forum_post.user, class: "img-circle") %>
       <div class="media-body">
         <%= forum_post.body %>
         <br>
