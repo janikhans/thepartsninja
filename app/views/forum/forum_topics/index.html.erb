@@ -1,7 +1,26 @@
 <div class="card">
-  <div class="topic-list">
-    <% @topics.each do |root_topic| %>
-      <%= render partial: 'root_topic', locals: { root_topic: root_topic.first, sub_topics: root_topic[1] } %>
-    <% end %>
+  <div class="card-body">
+    Thanks for checking out the forums for The Parts Ninja. Please respect the following rules:
+    <ol>
+      <li>Stay classy!</li>
+      <li>No spam. All automated messages, advertisements, and links to competitor websites will be deleted immediately.</li>
+      <li>Post in relevant sub-forums only. Messages posted in the wrong topic area will be removed and placed in the correct sub-forum by moderators.</li>
+      <li>See something you don't like? Let us know!</li>
+    </ol>
   </div>
 </div>
+<% if @topics.present? %>
+  <div class="card">
+    <div class="topic-list">
+      <% @topics.each do |root_topic| %>
+        <%= render partial: 'root_topic', locals: { root_topic: root_topic.first, sub_topics: root_topic[1] } %>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <div class="card">
+    <div class="card-body text-center">
+      No topics yet... but that'll change soon!
+    </div>
+  </div>
+<% end %>
