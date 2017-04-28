@@ -1,7 +1,7 @@
 <div class="row thread">
   <div class="col-xs-12 col-md-7">
     <h3><%= link_to forum_thread.title, forum_topic_thread_path(forum_thread.forum_topic, forum_thread) %></h3>
-    <%= truncate(forum_thread.body, length: 75) %>
+    <small>Started by: <%= forum_thread.user.username %> | <%= forum_thread.created_at.strftime('%a %e, %Y') %></small>
   </div>
   <div class="row post-info">
     <div class="col-xs-4 col-md-2 text-center">
