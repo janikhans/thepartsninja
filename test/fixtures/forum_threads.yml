@@ -1,9 +1,11 @@
 one:
   forum_topic: general
   title: how do I
+  body: some string
   user: janik
 
 two:
   forum_topic: feedback
   title: works great
+  body: some string
   user: janik
