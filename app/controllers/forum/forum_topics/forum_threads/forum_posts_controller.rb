@@ -2,7 +2,7 @@ class Forum::ForumTopics::ForumThreads::ForumPostsController < Forum::Applicatio
   before_action :set_topic
   before_action :set_thread
   before_action :set_post, only: [:edit, :update, :destroy]
-  before_action :require_owner, only: [:edit, :update, :destroy]
+  before_action :can_edit, only: [:edit, :update, :destroy]
 
   def edit
   end
@@ -61,8 +61,8 @@ class Forum::ForumTopics::ForumThreads::ForumPostsController < Forum::Applicatio
     @post = @thread.forum_posts.find(params[:id])
   end
 
-  def require_owner
-    unless @post.user == current_user
+  def can_edit
+    unless current_user.admin? || @post.user == current_user
       respond_to do |format|
         format.html { redirect_to :back, alert: 'You do not have permission to edit this post' }
         format.js { head :no_content }

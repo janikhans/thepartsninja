@@ -19,7 +19,7 @@
         </div>
       </div>
       <div class="col-md-10 body">
-        <% if @thread.user == current_user %>
+        <% if current_user.admin? || @thread.user == current_user %>
           <div class="btn-group pull-right">
               <%= link_to "Edit", edit_forum_topic_thread_path(@topic, @thread), class: "btn btn-xs btn-default" %>
               <%= link_to "Delete", forum_topic_thread_path(@topic, @thread), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-xs btn-default" %>

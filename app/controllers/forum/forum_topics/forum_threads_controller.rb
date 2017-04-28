@@ -2,7 +2,7 @@ class Forum::ForumTopics::ForumThreadsController < Forum::ApplicationController
   before_action :set_topic
   before_action :set_forum_thread, only: [:show, :edit, :update, :destroy]
   before_action :redirect_unless_root_topic, only: [:new, :create]
-  before_action :require_owner, only: [:edit, :update, :destroy]
+  before_action :can_edit, only: [:edit, :update, :destroy]
 
   def new
     @thread = @topic.forum_threads.build
@@ -63,8 +63,8 @@ class Forum::ForumTopics::ForumThreadsController < Forum::ApplicationController
     end
   end
 
-  def require_owner
-    unless @thread.user == current_user
+  def can_edit
+    unless current_user.admin? || @thread.user == current_user
       redirect_to :back, alert: 'You do not have permission to edit this thread'
     end
   end
