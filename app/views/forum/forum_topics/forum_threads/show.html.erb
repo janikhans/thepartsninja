@@ -32,7 +32,7 @@
     <h5>Replies</h5>
   </div>
   <div id="post-list">
-    <%= render @posts %>
+    <%= render partial: 'forum/forum_topics/forum_threads/forum_posts/forum_post', collection: @posts %>
   </div>
 </div>
 
@@ -41,6 +41,6 @@
     <h5>Post reply to: <strong><%= @thread.title %></strong></h5>
   </div>
   <div class="card-body">
-    <%= render 'forum/topics/threads/posts/form' %>
+    <%= render 'forum/forum_topics/forum_threads/forum_posts/form' %>
   </div>
 </div>

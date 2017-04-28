@@ -12,7 +12,7 @@
   </div>
   <div class="thread-list">
     <% if @threads.present? %>
-      <%= render @threads %>
+      <%= render partial: "forum/forum_topics/forum_threads/forum_thread", collection: @threads %>
     <% else %>
       <div class="thread text-center">
         No threads to show

@@ -1,4 +1,4 @@
-class Forum::Topics::ThreadsController < Forum::ApplicationController
+class Forum::ForumTopics::ForumThreadsController < Forum::ApplicationController
   before_action :set_topic
   before_action :set_forum_thread, only: [:show, :destroy]
   before_action :redirect_unless_root_topic, only: [:new, :create]

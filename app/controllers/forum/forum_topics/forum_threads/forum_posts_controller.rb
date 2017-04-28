@@ -1,4 +1,4 @@
-class Forum::Topics::Threads::PostsController < Forum::ApplicationController
+class Forum::ForumTopics::ForumThreads::ForumPostsController < Forum::ApplicationController
   before_action :set_topic
   before_action :set_thread
   before_action :set_post, only: [:update, :destroy]

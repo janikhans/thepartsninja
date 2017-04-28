@@ -15,12 +15,12 @@ Rails.application.routes.draw do
   end
 
   namespace :forum, path: 'forums' do
-    root to: 'topics#index'
-    resources :topics, path: '', only: :show do
-      scope module: :topics do
-        resources :threads, path: '', except: :index do
-          scope module: :threads do
-            resources :posts, only: [:create, :update, :destroy]
+    root to: 'forum_topics#index'
+    resources :forum_topics, as: :topics, path: '', only: :show do
+      scope module: :forum_topics do
+        resources :forum_threads, as: :threads, path: '', except: :index do
+          scope module: :forum_threads do
+            resources :forum_posts, as: :posts, only: [:create, :update, :destroy]
           end
         end
       end

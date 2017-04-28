@@ -1,4 +1,4 @@
-class Forum::TopicsController < Forum::ApplicationController
+class Forum::ForumTopicsController < Forum::ApplicationController
   def index
     @topics = ForumTopic.available.includes(forum_posts: :user).arrange
   end
