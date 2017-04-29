@@ -15,6 +15,7 @@
 //= require bootstrap-sprockets
 //= require cocoon
 //= require chosen-jquery
+//= require particles
 //= require theme
 //= require flash
 //= require dynamic_selects

@@ -1,8 +1,8 @@
 #hero {
   min-height: 580px;
   background: #16111c;
-  background-image: image-url("Compatibility_Web_BG.png");
-  background-image: image-url("Compatibility_Web_BG.png"), linear-gradient(-45deg, #443952 0%, #231a2b 20%, #0c0b0c 100%);
+  // background-image: image-url("Compatibility_Web_BG.png");
+  background-image: linear-gradient(-45deg, #443952 0%, #231a2b 20%, #0c0b0c 100%);
   background-size: auto;
   background-position-y: -130%;
 
@@ -47,7 +47,7 @@
     p {
       color: #f1f1f1;
       margin-top: 35px;
-      font-size: 15px;
+      font-size: 18px;
       width: 80%;
       line-height: 24px;
 
@@ -107,14 +107,14 @@
       position: absolute;
       right: -150px;
       top: 15px;
-      max-width: 800px;
+      max-width: 1000px;
 
       @include animationDelay(.4s);
 
       @media(max-width: 991px) {
-        right: 10px;
-        top: 0;
-        width: 70%;
+        right: -125px;
+        top: 25px;
+        width: 200%;
       }
     }
   }

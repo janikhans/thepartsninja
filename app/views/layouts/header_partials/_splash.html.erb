@@ -1,11 +1,12 @@
-<div id="hero" class="">
+<div id="hero">
+  <div id="particles-js" style="position:absolute;top:0; width:100%; height:100%;"></div>
   <section class="container">
     <div class="row">
       <div class="col-sm-7">
-        <h1>The <span class="rotate" data-text="Parts Ninja, Data Driven, Community Built, Parts Database"></span></h1>
-        <p>The Parts Ninja adds the missing element of all existing parts database... <strong>You!</strong>
-          Ask anyone who's ever wrenched before and they'll tell you they've learned a thing or two. It's
-          time to put that to good use!
+        <h1><span class="rotate" data-text="The Parts Ninja, Community Built, Data Inspired, The Parts Project"></span></h1>
+        <p>Search for motorsport parts in a different way, one based on data and the discoveries by others like you!
+          Every gearhead has a story about how they've saved the day by McGyvering a non-oem part.
+          Now it's time to put that story to use!
         </p>
         <div class="cta">
           <%= link_to icon(:play) + " Learn More", "#about", class: "btn-shadow btn-shadow-primary" %>
@@ -17,3 +18,7 @@
     </div>
   </section>
 </div>
+
+<script>
+  particlesJS.load('particles-js', "<%= asset_path 'particles.json' %>");
+</script>
