@@ -13,8 +13,8 @@
 
 <h4>Legend:</h4>
 <ul class="list-unstyled">
-  <li><div class="badge"><%= icon(:signal, class: "green") %> ****</div>&mdash; Strong compatibility rating</li>
-  <li><div class="badge"><%= icon(:signal, class: "yellow") %> ****</div>&mdash; Medium compatibility rating</li>
-  <li><div class="badge"><%= icon(:signal, class: "white") %> ****</div>&mdash; Low compatibility rating</li>
-  <li><div class="badge" style="opacity: .2;"><%= icon(:signal, class: "white") %> ****</div>&mdash; Compatibility connection exists but is under threshold</li>
+  <li><div class="badge"><%= icon(:signal, class: "green") %> ****</div>&mdash; Compatibility score greater than 10x</li>
+  <li><div class="badge"><%= icon(:signal, class: "yellow") %> ****</div>&mdash; Compatibility score between 5x-10x</li>
+  <li><div class="badge"><%= icon(:signal, class: "white") %> ****</div>&mdash; Compatibility score below 5x</li>
+  <li><div class="badge" style="opacity: .2;"><%= icon(:signal, class: "white") %> ****</div>&mdash; Compatibility connection exists but is under threshold (score of 1x)</li>
 </ul>

@@ -105,17 +105,27 @@
 
     img {
       position: absolute;
-      right: -150px;
-      top: 15px;
-      max-width: 1000px;
-
-      @include animationDelay(.4s);
-
-      @media(max-width: 991px) {
-        right: -125px;
-        top: 25px;
-        width: 200%;
+      @media only screen and (min-width : 768px) {
+        right: -75px;
+        top: 65px;
+        max-width: 550px;
       }
+      @media only screen and (min-width : 992px) {
+        right: -20px;
+        top: 35px;
+        max-width: 620px;
+      }
+      @media only screen and (min-width : 1200px) {
+        right: 0px;
+        top: 15px;
+        max-width: 750px;
+      }
+      @media only screen and (min-width : 1500px) {
+        right: -200px;
+        top: 15px;
+        max-width: 1000px;
+      }
+      @include animationDelay(.4s);
     }
   }
 }

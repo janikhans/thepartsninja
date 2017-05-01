@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
 
   def prepare_meta_tags(options={})
     site_name   = 'The Parts Ninja'
-    title       = 'The Community Built Motorsports Parts Project'
+    title       = 'The Community Motorsports Parts Project'
     description = 'By utilizing the Parts Compatibility Web formed with
       exisiting data and user contributions, The Parts Ninja helps you spend
       less time searching and more time riding.'

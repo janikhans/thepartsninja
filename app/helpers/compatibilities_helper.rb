@@ -23,6 +23,16 @@ module CompatibilitiesHelper
     end
   end
 
+  def compatibility_count_color(count)
+    if count >= 10
+      'green'
+    elsif count >= 5 && count < 10
+      'yellow'
+    else
+      'white'
+    end
+  end
+
   # Removes links if user isn't signed in. Otherwise we can get server hits when they're not neccessary
   def vote_actions(compatibility)
     if current_user

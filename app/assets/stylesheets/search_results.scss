@@ -10,7 +10,6 @@
 #results {
   .result-headers {
     background: #f4f4f4;
-    padding: 10px 40px;
     border-bottom: solid 2px #e6e6e6;
     border-top: solid 2px #e0e0e0;
   }
@@ -45,25 +44,27 @@
     .brand-image > img {
       width: 60px;
     }
-    .vehicle-model, .product {
+    .product {
       span {
         display: block;
       }
-    }
-    .vehicle-years {
-     vertical-align: middle;
-    }
-    .compatibility-stats, .description {
-      span {
-        display: block;
-      }
-    }
-    .compatibility-score {
-     vertical-align: middle;
     }
     @media (max-width: 767px) {
       .visible-xs {
         display: inline-block !important;
+      }
+    }
+    @media (max-width: 991px) and (min-width: 768px) {
+      .visible-sm {
+        display: inline-block !important;
+      }
+    }
+    .info-link {
+      margin-top: 5px;
+      .icon {
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
   }

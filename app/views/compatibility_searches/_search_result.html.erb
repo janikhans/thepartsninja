@@ -1,0 +1,35 @@
+<% vehicles.sort_by!{ |v| v.vehicle_year_id } %>
+<div class="search-result">
+  <div class="row overview" data-toggle="collapse" data-target="#submodel_<%= vehicle_submodel.id %>" data-parent="#results">
+    <div class="col-xs-3 col-md-2 brand-image"><%= image_tag("missing-brand-image", class:"img-responsive") %></div>
+    <div class="col-xs-9 col-md-10 model">
+      <div class="col-md-3 vehicle-brand"><strong class="visible-sm visible-xs">Brand:</strong> <%= vehicle_submodel.vehicle_model.brand.name %></div>
+      <div class="col-md-3 vehicle-model"><strong class="visible-sm visible-xs">Model:</strong> <%= vehicle_submodel.vehicle_model.name %> <%= vehicle_submodel.name %></div>
+      <div class="col-md-4 vehicle-years"><strong class="visible-sm visible-xs">Years:</strong> <%= friendly_years_for(vehicles) %></div>
+      <div class="col-md-2 info-link"><%= icon(:angle_double_down, class: "icon") %> Show Info</div>
+    </div>
+  </div>
+  <div id="submodel_<%= vehicle_submodel.id %>" class="hidden-row collapse">
+   <div class="details">
+     <% if Rails.env.development? %>
+       <h5>Stats:</h5>
+       <div class="row">
+         <div class="col-md-12">
+           <span class="vehicle-count"><strong>Vehcile Count:</strong><%= pluralize(vehicles.size, "Vehicle") %></span><br>
+           <span class="submode-score"><strong>Score:</strong></span> <div class="badge"> <%= icon(:signal, class: compatibility_score_color(vehicles.first.try(:submodel_score))) %></div> <%= number_with_precision(vehicles.first.try(:submodel_score), precision: 2) %>
+         </div>
+       </div>
+     <% end %>
+      <h5>Years:</h5>
+      <div class="row">
+        <% vehicles.each do |vehicle| %>
+          <div class="col-xs-3 col-md-2">
+             <a href="#" data-toggle="popover" title: "Compatibility Stats" data-content="Connection Count: <%= vehicle.vehicle_compatible_count %>">
+               <div class="badge" style="<%= "opacity: .2;" unless vehicle.above_threshold? %>"><%= icon(:signal, class: compatibility_count_color(vehicle.vehicle_compatible_count)) %> <%= vehicle.year %></div> <%#  (<%= vehicle.vehicle_compatible_count )[<%= number_with_precision(vehicle.try(:vehicle_score), precision: 2)] %>
+            </a>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
