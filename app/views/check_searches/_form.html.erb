@@ -30,9 +30,8 @@
     <%= comparing_vehicle.input :id, as: :hidden %>
   <% end %>
   <div class="text-center">
-    <div class="btn-group">
-      <%= f.submit "Check Compatibility", class: "btn-rounded" %>
-    </div>
+    <span id="spinner"><%= icon(:spinner, class: "fa-pulse fa-1x fa-fw") %></span>
+    <%= f.submit "Check Compatibility", class: "btn-rounded" %>
   </div>
 <% end %>
 

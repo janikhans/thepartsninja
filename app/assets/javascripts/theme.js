@@ -106,3 +106,18 @@ $(function() {
       $('.collapse.in').collapse('hide');
   });
 });
+
+$( document ).ready(function() {
+  // hide spinner
+  $("#spinner").css('visibility', 'hidden');
+
+  // show spinner on AJAX start
+  $(document).ajaxStart(function(){
+    $("#spinner").css('visibility', 'visible');
+  });
+
+  // hide spinner on AJAX stop
+  $(document).ajaxStop(function(){
+    $("#spinner").css('visibility', 'hidden');
+  });
+});

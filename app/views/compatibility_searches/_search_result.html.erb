@@ -1,7 +1,7 @@
 <% vehicles.sort_by!{ |v| v.vehicle_year_id } %>
 <div class="search-result">
   <div class="row overview" data-toggle="collapse" data-target="#submodel_<%= vehicle_submodel.id %>" data-parent="#results">
-    <div class="col-xs-3 col-md-2 brand-image"><%= image_tag("missing-brand-image", class:"img-responsive") %></div>
+    <div class="col-xs-3 col-md-2 brand-image"><%= image_tag("missing-brand-image.jpg", class:"img-responsive") %></div>
     <div class="col-xs-9 col-md-10 model">
       <div class="col-md-3 vehicle-brand"><strong class="visible-sm visible-xs">Brand:</strong> <%= vehicle_submodel.vehicle_model.brand.name %></div>
       <div class="col-md-3 vehicle-model"><strong class="visible-sm visible-xs">Model:</strong> <%= vehicle_submodel.vehicle_model.name %> <%= vehicle_submodel.name %></div>
