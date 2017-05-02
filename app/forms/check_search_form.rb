@@ -6,11 +6,15 @@ class CheckSearchForm
   # TODO: add error callbacks
 
   attr_accessor :category, :category_name, :vehicle, :comparing_vehicle,
-    :user, :check_search, :fitment_note
+    :user, :check_search, :fitment_note, :terms_of_service
 
   validates :category_name, presence: true
-  validates :vehicle, presence: true
-  validates :comparing_vehicle, presence: true
+  validates_presence_of :vehicle, message: 'must be selected'
+  validates_presence_of :comparing_vehicle, message: 'must be selected'
+
+  validates :terms_of_service,
+    acceptance: true,
+    if: 'user.nil?'
 
   def initialize(params = {})
     @vehicle = find_vehicle(params[:vehicle])
@@ -19,6 +23,7 @@ class CheckSearchForm
     @category_name = params[:category].try(:[], :name)
     @fitment_note = find_fitment_note(params[:fitment_note]) if @category
     @user = nil
+    @terms_of_service = false || (params[:terms_of_service] == '1')
   end
 
   def save

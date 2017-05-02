@@ -7,10 +7,14 @@ class CompatibilitySearchForm
   # TODO: add error messages
 
   attr_accessor :category_name, :category, :vehicle, :fitment_note, :user,
-    :compatibility_search, :search_type
+    :compatibility_search, :search_type, :terms_of_service
 
   validates :category_name, presence: true
-  validates :vehicle, presence: true
+  validates_presence_of :vehicle, message: 'must be selected'
+
+  validates :terms_of_service,
+    acceptance: true,
+    if: 'user.nil?'
 
   def initialize(params = {})
     @vehicle = find_vehicle(params[:vehicle])
@@ -18,6 +22,7 @@ class CompatibilitySearchForm
     @category_name = params[:category].try(:[], :name)
     @fitment_note = find_fitment_note(params[:fitment_note]) if @category
     @user = nil
+    @terms_of_service = false || (params[:terms_of_service] == '1')
   end
 
   def save

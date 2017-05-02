@@ -29,7 +29,13 @@
     <%= comparing_vehicle.input :year, collection: [], prompt: "Year...", label: false, class:"form-control", wrapper_html: { class: "col-md-3" } %>
     <%= comparing_vehicle.input :id, as: :hidden %>
   <% end %>
-  <div class="text-center">
+  <div class="text-center cb">
+    <% unless current_user %>
+      <%= content_for(:the_links) do %>
+          Accept the <%= link_to "Terms of Service", terms_of_service_pages_path, target: :_blank %>
+      <% end %>
+      <%= f.input :terms_of_service, as: :boolean, label: content_for(:the_links) %>
+    <% end %>
     <span id="spinner"><%= icon(:spinner, class: "fa-pulse fa-1x fa-fw") %></span>
     <%= f.submit "Check Compatibility", class: "btn-rounded" %>
   </div>

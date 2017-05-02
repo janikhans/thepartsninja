@@ -1,9 +1,6 @@
 # Controller to handle searching for compatibile vehicles using the
 # CompatibilitySearch model
 class CompatibilitySearchesController < ApplicationController
-  # before_action :coming_soon\
-  before_action :authenticate_user!
-
   def new
     @search = CompatibilitySearchForm.new
     @brands = Brand.joins(:vehicle_models)
@@ -43,9 +40,10 @@ class CompatibilitySearchesController < ApplicationController
   private
 
   def search_params
-    params.require(:search).permit(category: [:name, :id],
-                                   fitment_note: :id,
-                                   vehicle: [:brand, :model, :year, :id])
+    params.require(:search).permit(:terms_of_service,
+      category: [:name, :id],
+      fitment_note: :id,
+      vehicle: [:brand, :model, :year, :id])
   end
 
   def query_params
