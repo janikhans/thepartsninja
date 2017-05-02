@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170427064857) do
+ActiveRecord::Schema.define(version: 20170502055545) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -453,6 +453,20 @@ ActiveRecord::Schema.define(version: 20170427064857) do
               compatibility_searches.updated_at
              FROM compatibility_searches
     ORDER BY 14) t;
+  SQL
+
+  create_view :available_fitment_notes, materialized: true,  sql_definition: <<-SQL
+      SELECT row_number() OVER () AS id,
+      categories.id AS category_id,
+      fitment_notes.id AS fitment_note_id
+     FROM (((((categories
+       JOIN products ON ((products.category_id = categories.id)))
+       JOIN parts ON ((parts.product_id = products.id)))
+       JOIN fitments ON ((fitments.part_id = parts.id)))
+       JOIN fitment_notations ON ((fitment_notations.fitment_id = fitments.id)))
+       JOIN fitment_notes ON ((fitment_notes.id = fitment_notations.fitment_note_id)))
+    WHERE (fitment_notes.used_for_search IS TRUE)
+    GROUP BY fitment_notes.id, categories.id;
   SQL
 
 end

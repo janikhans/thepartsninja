@@ -12,7 +12,8 @@ class Category < ApplicationRecord
 
   has_many :products, dependent: :restrict_with_error
   has_many :part_attributes, -> { distinct }, through: :products
-  has_many :fitment_notes, -> { distinct }, through: :products
+  has_many :available_fitment_notes
+  has_many :fitment_notes, through: :available_fitment_notes
 
   has_many :check_searches
   has_many :compatibility_searches

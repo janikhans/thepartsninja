@@ -22,4 +22,5 @@ class FitmentNote < ApplicationRecord
   has_many :check_searches
   has_many :compatibility_searches
   has_many :search_records
+  has_many :available_fitment_notes
 end
