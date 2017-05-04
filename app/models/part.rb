@@ -40,25 +40,42 @@ class Part < ApplicationRecord
     "#{product.brand.name} #{product.category.name} #{product.name} #{part_number}"
   end
 
-  def update_fitments_from_ebay
+  def update_ebay_fitments
     return unless epid
-    ebay_detail = Yaber::Product.fitments_for(epid)
+    ebay_detail = Yaber::YaberProduct.fitments_for(epid)
 
     ebay_detail.fitments.each do |f|
       submodel = f[:submodel] unless f[:submodel] == '--'
       vehicle = Vehicle.find_with_specs(f[:make], f[:model], f[:year], submodel)
-      if vehicle
-        fitment = Fitment.where(vehicle_id: vehicle.id, part_id: id, source: 'ebay').first_or_initialize
-        fitment.update_attribute(:note, f[:note])
-      else
-        vehicle = VehicleForm.new(brand: f[:make], model: f[:model], year: f[:year], submodel:  submodel, type: 'Motorcycle')
-        if vehicle.valid?
-          vehicle.save
-          Fitment.create(vehicle_id: vehicle.vehicle.id, part_id: id, source: 'ebay')
+      ActiveRecord::Base.transaction do
+        unless vehicle
+          vehicle_form = VehicleForm.new(vehicle_brand: f[:make],
+                                         vehicle_model: f[:model],
+                                         vehicle_year: f[:year],
+                                         vehicle_submodel: submodel,
+                                         vehicle_type: 'TBD')
+          next unless vehicle_form.find_or_create
+          vehicle = vehicle_form.vehicle
+        end
+        fitment = Fitment.where(vehicle_id: vehicle.id,
+                                part_id: id,
+                                source: 'ebay')
+                         .first_or_initialize
+        fitment.note = f[:note]
+        fitment.save
+
+        if fitment.note.present?
+          fitment_notes = fitment.note.split('; ').map(&:strip)
+          notes = FitmentNote.individual_notes
+                             .where(name: fitment_notes)
+          notes.each do |note|
+            note.fitment_notations.where(fitment: fitment).first_or_create
+          end
         end
       end
     end
-    update_attributes(ebay_fitments_imported: true,
-                      ebay_fitments_updated_at: Time.now)
+    self.ebay_fitments_imported = true
+    self.ebay_fitments_updated_at = Time.current
+    save
   end
 end

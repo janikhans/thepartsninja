@@ -51,7 +51,7 @@ class Admin::ProductsController < Admin::ApplicationController
     parts = @product.parts
 
     parts.each do |p|
-      p.update_fitments_from_ebay
+      p.update_ebay_fitments
     end
 
     redirect_to admin_product_path(@product), notice: 'Fitments were updated.'

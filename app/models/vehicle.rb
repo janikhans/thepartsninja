@@ -67,17 +67,17 @@ class Vehicle < ApplicationRecord
   # No brand? No vehicle_model? submodel?
   def self.find_with_specs(brand, model, year, submodel = nil)
     brand = Brand.where('lower(name) = ?', brand.downcase).first
-    return nil unless brand
+    return unless brand
     model = brand.vehicle_models.where('lower(name) = ?', model.downcase).first
-    return nil unless model
+    return unless model
     if submodel
       submodel = model.vehicle_submodels.where('lower(name) = ?', submodel.downcase).first
     else
       submodel = model.vehicle_submodels.where(name: nil).first
     end
-    return nil unless submodel
+    return unless submodel
     year = VehicleYear.find_by(year: year)
-    return nil unless year
+    return unless year
     submodel.vehicles.where(vehicle_year_id: year.id).first
   end
 
