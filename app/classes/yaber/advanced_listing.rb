@@ -1,4 +1,4 @@
-class YaberAdvancedListing < Yaber
+class Yaber::AdvancedListing < Yaber
   attr_accessor :keywords, :results, :error
 
   def initialize(keywords, results, error)

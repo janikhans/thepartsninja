@@ -1,4 +1,4 @@
-class YaberProduct < Yaber
+class Yaber::Product < Yaber
   attr_accessor :epid, :fitments
 
   def initialize(epid, fitments)
@@ -35,6 +35,6 @@ class YaberProduct < Yaber
       end
     end
 
-    YaberProduct.new(epid, fitments)
+    Yaber::Product.new(epid, fitments)
   end
 end

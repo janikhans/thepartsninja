@@ -18,94 +18,47 @@ class Part < ApplicationRecord
 
   belongs_to :user
   has_many :fitments, dependent: :destroy
-  has_many :oem_vehicles, through: :fitments, source: :vehicle
-  has_many :part_attributions, dependent: :destroy
-  has_many :part_attributes, through: :part_attributions, source: :part_attribute
-  has_many :fitment_notes, -> { distinct }, through: :fitments
-  has_many :compatibilities, dependent: :destroy
+  has_many :oem_vehicles,
+    through: :fitments,
+    source: :vehicle
 
-  accepts_nested_attributes_for :part_attributions, reject_if: :all_blank, allow_destroy: true
+  has_many :part_attributions, dependent: :destroy
+  has_many :part_attributes,
+    through: :part_attributions,
+    source: :part_attribute
+  accepts_nested_attributes_for :part_attributions,
+    reject_if: :all_blank,
+    allow_destroy: true
+
+  has_many :fitment_notes,
+    -> { distinct },
+    through: :fitments
+
+  has_many :compatibilities, dependent: :destroy
 
   def to_label
     "#{product.brand.name} #{product.category.name} #{product.name} #{part_number}"
   end
 
-  def compatible_parts #Finds just the compatible parts to the part being searched
-    compatible_parts = []
-    self.compatibilities.each do |c|
-      compatible_parts << c.compatible_part #if c.cached_votes_score >= 0 #if c.modifications == false
-    end
-    return compatible_parts
-  end
-
-  def find_potentials
-    potentials = []
-
-    #First level is what is directly known to be compatible with this part. Distance = 1
-    compatibles = self.compatible_parts
-    compatibles.uniq!
-
-    #Second level represents the first level of potentials to the original part. Distance = 2
-    second_level = next_level(compatibles)
-    second_level.reject! { |f| compatibles.include?(f) || f == self }
-    potentials += second_level.map{|part| {part: part, score: 0.5}}
-    second_level.uniq!
-
-    #Third level is Distance = 3 from the original part
-    third_level = next_level(second_level)
-    third_level.reject! { |f| compatibles.include?(f) || second_level.include?(f) || f == self}
-    potentials += third_level.map{|part| {part: part, score: 0.25}}
-    third_level.uniq!
-
-    #Third level is Distance = 4 from the original part
-    fourth_level = next_level(third_level)
-    fourth_level.reject! { |f| compatibles.include?(f) || second_level.include?(f) || third_level.include?(f) || f == self}
-    potentials += fourth_level.map{|part| {part: part, score: 0.1}}
-
-    #Now we need to go through our array and combine the scores of hashes that share the same part
-    temp_potentials = Hash.new(0)
-    potentials.each do |potential|
-      temp_potentials[potential[:part]] += potential[:score]
-    end
-
-    #Because this last step changed our format away from the format we need key: value, we're changing it back!
-    final = temp_potentials.collect{ |key, value| {part: key, score: value}}
-
-    return final
-  end
-
   def update_fitments_from_ebay
-    return if self.epid.nil?
-    ebay_detail = YaberProduct.fitments_for(self.epid)
+    return unless epid
+    ebay_detail = Yaber::Product.fitments_for(epid)
 
     ebay_detail.fitments.each do |f|
-      submodel = f[:submodel] unless f[:submodel] == "--"
+      submodel = f[:submodel] unless f[:submodel] == '--'
       vehicle = Vehicle.find_with_specs(f[:make], f[:model], f[:year], submodel)
       if vehicle
-        fitment = Fitment.where(vehicle_id: vehicle.id, part_id: self.id, source: "ebay").first_or_initialize
+        fitment = Fitment.where(vehicle_id: vehicle.id, part_id: id, source: 'ebay').first_or_initialize
         fitment.update_attribute(:note, f[:note])
       else
-        vehicle = VehicleForm.new(brand: f[:make], model: f[:model], year: f[:year], submodel:  submodel, type: "Motorcycle")
+        vehicle = VehicleForm.new(brand: f[:make], model: f[:model], year: f[:year], submodel:  submodel, type: 'Motorcycle')
         if vehicle.valid?
           vehicle.save
-          Fitment.create(vehicle_id: vehicle.vehicle.id, part_id: self.id, source: "ebay")
+          Fitment.create(vehicle_id: vehicle.vehicle.id, part_id: id, source: 'ebay')
         end
       end
     end
-    self.update_attributes(ebay_fitments_imported: true, ebay_fitments_updated_at: Time.now)
+    update_attributes(ebay_fitments_imported: true,
+                      ebay_fitments_updated_at: Time.now)
   end
-
-  private
-
-    def next_level (parent_level) # Finds all parts from the next level down based on their compatibles.
-      compatibles = []
-
-      parent_level.each do |p|
-        compatibles << p.compatible_parts
-      end
-
-      compatibles.flatten!
-      return compatibles
-    end
-
 end
