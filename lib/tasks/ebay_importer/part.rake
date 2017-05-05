@@ -1,6 +1,6 @@
 require 'csv'
 
-namespace :ebay_import do
+namespace :ebay_importer do
 
   desc "Import parts from Ebay Parts CSV"
   task :parts, [:file_path] => [:environment] do |t, args|

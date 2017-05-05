@@ -1,6 +1,6 @@
 require 'csv'
 
-namespace :ebay_import do
+namespace :ebay_importer do
 
   desc "Import vehicles from Ebay Vehicles CSV"
   task :vehicles, [:file_path] => [:environment] do |t, args|
@@ -10,7 +10,7 @@ namespace :ebay_import do
     start_time = Time.now
     CSV.foreach(filepath, headers: true) do |row|
       submodel = row["Submodel"] unless row["Submodel"] == "--"
-      vehicle = VehicleForm.new(brand: row["Make"], model: row["Model"], 
+      vehicle = VehicleForm.new(brand: row["Make"], model: row["Model"],
                                 submodel: submodel, year: row["Year"],
                                 type: row["Vehicle Type"], epid: row["ePID"])
       if vehicle.valid?

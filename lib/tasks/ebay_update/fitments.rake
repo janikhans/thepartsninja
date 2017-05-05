@@ -21,7 +21,7 @@ namespace :ebay_update do
 
 
     parts.each do |part|
-      part.update_fitments_from_ebay
+      part.update_ebay_fitments
       counter += 1
 
       if counter % 10 == 0
