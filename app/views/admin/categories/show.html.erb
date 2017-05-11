@@ -10,6 +10,8 @@
           </div>
           <p><%= category_breadcrumb @category %></p>
           <h2>Stats</h2>
+          <p><strong>Searchable:</strong> <%= @category.searchable %></p>
+          <p><strong>Fitment Notable:</strong> <%= @category.fitment_notable %></p>
           <p><strong>Products:</strong> <%= @category.products.count %></p>
           <p><strong>Parts:</strong> <%= @category_parts_count %></p>
           <p><strong>Total Imported:</strong> <%= @imported_parts_count %></p>

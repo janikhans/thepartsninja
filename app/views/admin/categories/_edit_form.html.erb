@@ -4,6 +4,7 @@
   <div class="form-inputs">
     <%= f.input :name %>
     <%= f.input :parent_id, collection: Category.first.children, as: :grouped_select, group_method: :subtree %>
+    <%= f.input :searchable %>
     <div class="cb"></div>
   </div>
 

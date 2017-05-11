@@ -47,6 +47,7 @@ class Admin::CategoriesController < Admin::ApplicationController
     end
 
     def category_params
-      params.require(:category).permit(:name, :description, :parent_id)
+      params.require(:category).permit(:name, :description, :parent_id,
+        :searchable, :fitment_notable)
     end
 end

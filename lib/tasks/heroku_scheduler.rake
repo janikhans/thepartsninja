@@ -4,8 +4,9 @@ namespace :heroku_scheduler do
     AvailableFitmentNote.refresh
   end
 
-  desc 'Updates Category#leaves attributes'
-  task update_category_leaves: :environment do
+  desc 'Updates Category bool attributes'
+  task update_category_bools: :environment do
     Category.refresh_leaves
+    Category.refresh_fitment_notables
   end
 end

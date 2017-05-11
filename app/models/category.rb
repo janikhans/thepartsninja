@@ -9,6 +9,7 @@ class Category < ApplicationRecord
   has_ancestry
 
   scope :leaves, -> { where(leaf: true) }
+  scope :searchable, -> { where(searchable: true) }
 
   has_many :products, dependent: :restrict_with_error
   has_many :part_attributes, -> { distinct }, through: :products
@@ -35,5 +36,21 @@ class Category < ApplicationRecord
 
   def self.refresh_leaves
     all.map(&:refresh_leaf)
+  end
+
+  def fitment_notable?
+    fitment_notable
+  end
+
+  def refresh_fitment_notable
+    if available_fitment_notes.any?
+      update_attribute(:fitment_notable, true)
+    else
+      update_attribute(:fitment_notable, false)
+    end
+  end
+
+  def self.refresh_fitment_notables
+    all.map(&:refresh_fitment_notable)
   end
 end
