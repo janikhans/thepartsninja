@@ -20,7 +20,7 @@
             <p><strong>Subcategories:</strong></p>
             <ul>
               <% @category.children.each do |subcategory| %>
-                <li><%= subcategory.name %> <%= link_to "show", admin_category_path(subcategory), class: "hover-link" %></li>
+                <li><%= subcategory.name %> <%= icon(:search) if subcategory.searchable? %> <%= link_to "show", admin_category_path(subcategory), class: "hover-link" %></li>
               <% end %>
             </ul>
           <% else %>
