@@ -20,7 +20,7 @@
       </div>
     </div>
     <% if @search %>
-    <div class="panel panel-default">
+      <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">
             Results for <i><%= @search[:keyword] %> </i>
@@ -47,9 +47,10 @@
                 </ul>
               </li>
             <% end %>
+            Product Ids: <%= @products.map(&:id).join(' ') %>
           </ul>
         </div>
-    </div>
+      </div>
     <% end %>
     <div class="panel panel-default">
         <div class="panel-heading">
