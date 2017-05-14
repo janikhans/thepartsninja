@@ -14,6 +14,7 @@
           <%= f.input :keyword, input_html: {value: params[:search].try(:[], :keyword)}, placeholder: "Keyword", label: false %>
           <%= f.input :category_status, collection: [['Empty',1], ['Set',2]], selected: params[:search].try(:[], :category_status), prompt: "Category Status", label: false, include_blank: true %>
           <%= f.input :exclude, input_html: {value: params[:search].try(:[], :exclude)}, placeholder: "Exclude Word", label: false %>
+          <%= f.input :brands, input_html: {value: params[:search].try(:[], :brands)}, placeholder: "Specific Brands", label: false %>
           <%= f.submit "Search", class: "btn btn-primary" %>
         <% end %>
       </div>
@@ -27,12 +28,21 @@
         </div>
         <div class="panel-body">
           <ul style="list-style:none;">
-            <li>Results Found: <%= @products_count %><br></li>
+            <li>Results Found: <%= @products.total_count %><br></li>
             <% if @excluded_terms.present? %>
               <li>Exluded Terms:
                 <ul>
                   <% @excluded_terms.each do |term| %>
                     <li><%= term %></li>
+                  <% end %>
+                </ul>
+              </li>
+            <% end %>
+            <% if @brands.present? %>
+              <li>Brands:
+                <ul>
+                  <% @brands.each do |brand| %>
+                    <li><%= brand.name %></li>
                   <% end %>
                 </ul>
               </li>

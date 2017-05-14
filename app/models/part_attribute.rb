@@ -18,4 +18,6 @@ class PartAttribute < ApplicationRecord
     foreign_key: "parent_id"
 
   validates :name, presence: true
+
+  has_many :parts, through: :part_attributions
 end

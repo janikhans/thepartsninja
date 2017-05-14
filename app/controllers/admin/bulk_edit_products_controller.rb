@@ -1,7 +1,7 @@
 class Admin::BulkEditProductsController < Admin::ApplicationController
 
   def index
-    products = Product.all
+    products = Product.includes(:brand, :category, :ebay_category).order("name ASC").page(params[:page]).per(100)
     @search = params[:search]
     if @search
       if @search[:ebay_category_id].present?
@@ -19,9 +19,13 @@ class Admin::BulkEditProductsController < Admin::ApplicationController
         products = products.where(category_id: nil) if @search[:category_status] == "1"
         products = products.where.not(category_id: nil) if @search[:category_status] == "2"
       end
+      if @search[:brands].present?
+        brand_keywords = @search[:brands].split(",").map(&:strip)
+        @brands = Brand.where(name: brand_keywords)
+        products = products.where(brand: @brands)
+      end
     end
-    @products = products.includes(:brand, :category, :ebay_category).order("name ASC").page(params[:page]).per(100)
-    @products_count = products.count
+    @products = products
   end
 
   def new
