@@ -39,7 +39,7 @@ namespace :fitment_notes do
                       .distinct
 
     fitments.each do |fitment|
-      fitment.fitment_notations.create(fitment_note: fitment_note)
+      FitmentNotation.create(fitment_id: fitment.id, fitment_note_id: fitment_note.id)
     end
 
     finish_notations = FitmentNotation.count
@@ -60,7 +60,7 @@ namespace :fitment_notes do
                       .distinct
 
     fitments.each do |fitment|
-      fitment.fitment_notations.create(fitment_note: fitment_note)
+      FitmentNotation.create(fitment_id: fitment.id, fitment_note_id: fitment_note.id)
     end
 
     finish_notations = FitmentNotation.count
