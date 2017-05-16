@@ -37,6 +37,7 @@
             <!-- /input-group -->
         </li>
         <%= nav_item(icon(:dashboard, class: "fa-fw") + " Dashboard", admin_root_path) %>
+        <%= nav_item(icon(:line_chart, class: "fa-fw") + " Statistics", admin_statistics_path) %>
         <li>
           <a href="#"><i class="fa fa-bolt fa-fw"></i> General<span class="fa arrow"></span></a>
           <ul class="nav nav-second-level collapse" aria-expanded="true">
@@ -48,7 +49,7 @@
             <%= nav_item("Forum Topics", admin_forum_topics_path) %>
           </ul>
         </li>
-        <%= nav_item(icon(:user, class: "fa-fw") + " Searches", admin_search_records_path) %>
+        <%= nav_item(icon(:search, class: "fa-fw") + " Searches", admin_search_records_path) %>
         <%= nav_item(icon(:user, class: "fa-fw") + " Users", admin_users_path) %>
         <%= nav_item(icon(:exclamation, class: "fa-fw") + " Discoveries", admin_discoveries_path) %>
         <%= nav_item(icon(:bullhorn, class: "fa-fw") + " Leads", admin_leads_path) %>

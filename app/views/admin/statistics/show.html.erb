@@ -1,0 +1,74 @@
+<% provide(:header, "DB stats") %>
+<div class="row">
+  <div class="col-lg-12">
+      <div class="panel panel-default">
+          <div class="panel-heading">
+              <i class="fa fa-bell fa-fw"></i> Current Stats
+          </div>
+          <div class="panel-body">
+              <div class="list-group">
+                  <div class="list-group-item">
+                      <i class="fa fa-database fa-fw"></i> Total Records
+                      <span class="pull-right text-muted small"><em><%= @total_records %></em>
+                      </span>
+                  </div>
+                  <div class="list-group-item">
+                      <i class="fa fa-search fa-fw"></i> Searches
+                      <span class="pull-right text-muted small"><em><%= @search_record_count %></em>
+                      </span>
+                  </div>
+                  <div class="list-group-item">
+                      <i class="fa fa-user fa-fw"></i> Users
+                      <span class="pull-right text-muted small"><em><%= @user_count %></em>
+                      </span>
+                  </div>
+                  <div class="list-group-item">
+                      <i class="fa fa-gears fa-fw"></i> Parts
+                      <span class="pull-right text-muted small"><em><%= @part_count %></em>
+                      </span>
+                  </div>
+                  <div class="list-group-item">
+                      <i class="fa fa-upload fa-fw"></i> Brands
+                      <span class="pull-right text-muted small"><em><%= @brand_count %></em>
+                      </span>
+                  </div>
+                  <div class="list-group-item">
+                      <i class="fa fa-bolt fa-fw"></i> Products
+                      <span class="pull-right text-muted small"><em><%= @product_count %></em>
+                      </span>
+                  </div>
+                  <div class="list-group-item">
+                      <i class="fa fa-motorcycle fa-fw"></i> Vehicles
+                      <span class="pull-right text-muted small"><em><%= @vehicle_count %></em>
+                      </span>
+                  </div>
+                  <div class="list-group-item">
+                      <i class="fa fa-envelope fa-fw"></i> Part Attributions
+                      <span class="pull-right text-muted small"><em><%= @part_attribution_count %></em>
+                      </span>
+                  </div>
+                  <div class="list-group-item">
+                      <i class="fa fa-warning fa-fw"></i> Fitment Notations
+                      <span class="pull-right text-muted small"><em><%= @fitment_notation_count %></em>
+                      </span>
+                  </div>
+                  <div class="list-group-item">
+                      <i class="fa fa-shopping-cart fa-fw"></i> Fitments
+                      <span class="pull-right text-muted small"><em><%= @fitment_count %></em>
+                      </span>
+                  </div>
+                  <div class="list-group-item">
+                      <i class="fa fa-gears fa-fw"></i> Average Fitments/Part
+                      <span class="pull-right text-muted small"><em><%= @average_fitment_count %></em>
+                      </span>
+                  </div>
+                  <div class="list-group-item">
+                      <i class="fa fa-money fa-fw"></i> Parts Imported
+                      <span class="pull-right text-muted small"><em><%= @parts_with_imported_fitments %>/<%= @part_count %> (<%= number_to_percentage(@percentage_imported, precision: 2) %>)</em>
+                      </span>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
