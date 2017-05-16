@@ -1,0 +1,31 @@
+<div class="panel with-nav-tabs panel-default">
+  <div class="panel-heading">
+    <ul class="nav nav-pills">
+      <li class="active"><a href="#recent-forum-posts" data-toggle="tab">Posts <span class="badge"><%= @recent_forum_posts.size %></span></a></li>
+      <li><a href="#recent-forum-threads" data-toggle="tab">Threads <span class="badge"><%= @recent_forum_threads.size %></span></a></li>
+    </ul>
+  </div>
+  <div class="panel-body">
+    <div class="tab-content">
+      <div class="tab-pane fade in active" id="recent-forum-posts">
+        <ul class="chat">
+          <% if @recent_forum_posts.present? %>
+            <%= render partial: "forum_post", collection: @recent_forum_posts %>
+          <% else %>
+            <li class="text-center">No new forum posts in the last 24hrs</li>
+          <% end %>
+        </ul>
+      </div>
+      <% reset_cycle('position') %>
+      <div class="tab-pane fade" id="recent-forum-threads">
+        <ul class="chat">
+          <% if @recent_forum_threads.present? %>
+            <%= render partial: "forum_thread", collection: @recent_forum_threads %>
+          <% else %>
+            <li class="text-center">No new forum threads in the last 24hrs</li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

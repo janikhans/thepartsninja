@@ -29,7 +29,8 @@ Rails.application.routes.draw do
 
   # Admin
   namespace :admin do
-    root to: 'statistics#index'
+    root to: 'dashboards#show'
+    resource :statistics, only: [:show]
     resources :compatibilities, :vehicles, :forum_topics
     resources :fitments, :brands, :fitment_notes, :categories, :ebay_categories,
       :part_attributes, :vehicle_types, :users, except: [:new]

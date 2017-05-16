@@ -1,0 +1,17 @@
+<% position = cycle("left", "right", name: 'position') %>
+<% push_right = position == 'left' ? 'pull-right' : nil %>
+<% pull_right = position == 'right' ? 'pull-right' : nil %>
+<li id="forum-post-<%= forum_post.id %>" class="forum-post <%= position %> clearfix">
+  <span class="chat-img pull-<%= position %>">
+    <%= gravatar_for forum_post.user, class: "img-circle recent-post-avatar" %>
+  </span>
+  <div class="chat-body clearfix">
+    <div class="header">
+      <strong class="<%= pull_right %> primary-font"><%= forum_post.user.username %></strong>
+      <small class="text-muted <%= push_right %>">
+          <%= icon(:clock_o, class: "fa-fw") %> <%= time_ago_in_words(forum_post.created_at) %> ago
+      </small>
+    </div>
+    <p><%= link_to truncate(forum_post.body, length: 150, omission: '...'), forum_topic_thread_path(forum_post.forum_thread.forum_topic, forum_post.forum_thread, forum_post), target: :_blank %></p>
+  </div>
+</li>
