@@ -12,6 +12,7 @@ class CompatibilitySearch < ApplicationRecord
     self.threshold = options[:threshold] if options[:threshold].present?
     self.eager_load = options[:eager_load] ||= false
     self.search_type = options[:search_type] ||= 'known'
+    validate_category
     perform_search
     self
   end
@@ -19,7 +20,7 @@ class CompatibilitySearch < ApplicationRecord
   private
 
   def perform_search
-    return nil unless category
+    return nil unless category_valid?
     find_results
     if successful?
       self.results_count = results.first.results_count
@@ -48,15 +49,17 @@ class CompatibilitySearch < ApplicationRecord
     Vehicle.find_by_sql(["
       WITH
         parts AS (
-          SELECT parts.*
+          SELECT parts.id
           FROM parts
           INNER JOIN fitments ON fitments.part_id = parts.id
           INNER JOIN products ON products.id = parts.product_id
           WHERE fitments.vehicle_id = ? AND products.category_id = ?
         ),
         vehicles AS (
-          SELECT vehicles.*,
-             COUNT(vehicles.id) AS vehicle_compatible_count
+          SELECT vehicles.id,
+            vehicles.vehicle_year_id,
+            vehicles.vehicle_submodel_id,
+            COUNT(vehicles.id) AS vehicle_compatible_count
           FROM parts
           INNER JOIN fitments ON fitments.part_id = parts.id
           INNER JOIN vehicles ON vehicles.id = fitments.vehicle_id
@@ -101,7 +104,7 @@ class CompatibilitySearch < ApplicationRecord
     Vehicle.find_by_sql(["
       WITH
         parts AS (
-          SELECT parts.*
+          SELECT parts.id
           FROM parts
           INNER JOIN fitments ON fitments.part_id = parts.id
           INNER JOIN products ON products.id = parts.product_id
@@ -109,8 +112,10 @@ class CompatibilitySearch < ApplicationRecord
           WHERE fitments.vehicle_id = ? AND products.category_id = ? AND fitment_notations.fitment_note_id = ?
         ),
         vehicles AS (
-          SELECT vehicles.*,
-             COUNT(vehicles.id) AS vehicle_compatible_count
+          SELECT vehicles.id,
+            vehicles.vehicle_year_id,
+            vehicles.vehicle_submodel_id,
+            COUNT(vehicles.id) AS vehicle_compatible_count
           FROM parts
           INNER JOIN fitments ON fitments.part_id = parts.id
           INNER JOIN vehicles ON vehicles.id = fitments.vehicle_id

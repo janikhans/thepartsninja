@@ -12,6 +12,7 @@ class CheckSearch < ApplicationRecord
     self.threshold = options[:threshold] if options[:threshold].present?
     self.eager_load = options[:eager_load] ||= false
     self.search_type = options[:search_type] ||= 'known'
+    validate_category
     perform_search
     self
   end
@@ -19,7 +20,7 @@ class CheckSearch < ApplicationRecord
   private
 
   def perform_search
-    return nil unless category
+    return nil unless category_valid?
     find_results
     if successful?
       self.results_count = results.first.results_count

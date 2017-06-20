@@ -20,6 +20,18 @@ module SearchableModel
     has_one :search_record, as: :searchable
   end
 
+  def validate_category
+    self.category_valid = true if category.present?
+  end
+
+  def category_valid?
+    @category_valid ||= false
+  end
+
+  def category_invalid?
+    !category_valid?
+  end
+
   def current_page
     @current_page ||= 1
   end
@@ -51,6 +63,10 @@ module SearchableModel
   end
 
   private
+
+  def category_valid=(value)
+    @category_valid = value
+  end
 
   def find_results
     if search_type == 'potential'

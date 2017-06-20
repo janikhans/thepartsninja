@@ -1,6 +1,9 @@
 <% if @search.errors.any? %>
   $('#search-stats').html("<%= escape_javascript(render 'shared/error_messages', object: @search) %>");
   $('#results').empty();
+<% elsif @compatibility_search.category_invalid? %>
+  $('#search-stats').html("<%= escape_javascript(render 'category_invalid', search_record: @compatibility_search ) %>");
+  $('#results').empty();
 <% elsif @compatibility_search.successful? %>
   $('#search-stats').html("<%= escape_javascript(render 'successful', search_record: @compatibility_search ) %>");
   $('#results').html("<%= escape_javascript(render 'results_page', search_record: @compatibility_search ) %>");
