@@ -10,9 +10,11 @@ class ProductTest < UnitTest
   should have_many(:parts)
 
   setup do
-    @new_product = Product.new(name: 'Forever Roll',
-                               category: categories(:wheel_bearings),
-                               brand: brands(:tusk))
+    @new_product = Product.new(
+      name: 'Forever Roll',
+      category: categories(:wheel_bearings),
+      brand: brands(:tusk)
+    )
     @wheel = products(:wheel)
     @brake_pads = products(:brake_pads)
     @wheel_bearings = products(:wheel_bearings)
@@ -20,11 +22,9 @@ class ProductTest < UnitTest
   end
 
   test 'slug for url should be friendly' do
-    product = @new_product
+    assert @new_product.valid?
+    @new_product.save
 
-    assert product.valid?
-    product.save
-
-    assert_equal product.slug, 'tusk-racing-forever-roll'
+    assert_equal @new_product.slug, 'tusk-racing-forever-roll'
   end
 end

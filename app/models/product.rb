@@ -30,6 +30,7 @@ class Product < ApplicationRecord
   end
 
   def brand_name
+    binding.pry
     brand.name
   end
 
