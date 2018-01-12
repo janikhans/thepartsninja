@@ -20,7 +20,7 @@ sensei.skip_confirmation!
 sensei.confirmed_at = DateTime.now
 sensei.save
 
-30.times do |n|
+30.times do
   username  = Faker::Internet.user_name(5)
   email = Faker::Internet.free_email
   password = "password"
@@ -43,7 +43,7 @@ end
 #----------------------------#
 #Build those brands
 
-brands = ["Acerbis", "Hinson", "Tusk Racing", "ARC", "Barnett", "Yamaha", "Kawasaki", "KTM", "Beta", "FORD", "Chevrolet", "Husqvarna", "Honda"]
+brands = ["Acerbis", "Hinson", "Tusk Racing", "ARC", "Barnett", "Yamaha", "Kawasaki", "KTM", "Beta", "FORD", "Chevrolet", "Husqvarna", "Honda", "Rekluse"]
 brands.each do |name|
   Brand.create(name: name)
 end
@@ -67,45 +67,56 @@ end
 #----------------------------#
 #Categories
 
+Category.create(
+  [
+    { name: 'Motorcycle' },
+    { name: 'ATV' }
+  ]
+)
+
+root_motorcycle = Category.find_by(name: 'Motorcycle')
+
 categories = ["Bearings", "Body", "Brakes", "Cooling Systems", "Drive", "Electrical", "Engine", "Exhaust", "Filters", "Fuel System", "Air Intake System", "Controls", "Suspension", "Wheels"]
 categories.each do |name|
-  Category.create(name: name)
+  root_motorcycle.children.create(name: name)
 end
 
 bearings_sub = ["Crankshaft Bearings", "Shock Bearings", "Shock Linkage Bearings", "Steering Stem Beerings", "Swing Arm Bearings", "Wheel Bearings"]
 engine_sub = ["Clutch", "Camshafts", "Pistons", "Cluch Cover"]
-wheel_sub = ["Complete Wheel Assembly", "Rims", "Hubs", "Spokes", "Wheel Spacers"]
+wheel_sub = ["Complete Wheel", "Rims", "Hubs", "Spokes", "Wheel Spacers"]
 
-bearing = Category.first
-engine = Category.find(7)
-wheel = Category.last
+bearing = Category.find_by(name: 'Bearings')
+engine = Category.find_by(name: 'Engine')
+wheel = Category.find_by(name: 'Wheels')
 
 bearings_sub.each do |name|
-  Category.create(name: name, parent_category: bearing)
+  bearing.children.create(name: name, searchable: true)
 end
 engine_sub.each do |name|
-  Category.create(name: name, parent_category: engine)
+  engine.children.create(name: name, searchable: true)
 end
 wheel_sub.each do |name|
-  Category.create(name: name, parent_category: wheel)
+  wheel.children.create(name: name, searchable: true)
 end
+
+Category.refresh_leaves
 
 #----------------------------#
 #Part attributes
 
-part_attributes = ["Location", "Rim Size"]
+part_attributes = ["Color", "Rim Size"]
 part_attributes.each do |name|
   PartAttribute.create(name: name)
 end
 
-location_variation = ["Front", "Rear"]
+color_variation = ["Black", "Silver"]
 rim_size_variation = ["19", "21", "18"]
 
-location = PartAttribute.first
-size = PartAttribute.find(2)
+color = PartAttribute.find_by(name: 'Color')
+size = PartAttribute.find_by(name: 'Rim Size')
 
-location_variation.each do |name|
-  PartAttribute.create(name: name, parent_attribute: location)
+color_variation.each do |name|
+  PartAttribute.create(name: name, parent_attribute: color)
 end
 rim_size_variation.each do |name|
   PartAttribute.create(name: name, parent_attribute: size)
@@ -114,28 +125,28 @@ end
 #----------------------------#
 #Vehicles
 
-yz250 = VehicleForm.new(model: "YZ250", year: 2006, brand: "Yamaha", type: "Motorcycle").save
-yz25004 = VehicleForm.new(model: "YZ250", year: 2004, brand: "Yamaha", type: "Motorcycle").save
-yz25008 = VehicleForm.new(model: "YZ250", year: 2008, brand: "Yamaha", type: "Motorcycle").save
-yz125 = VehicleForm.new(model: "YZ125", year: 2005, brand: "Yamaha", type: "Motorcycle").save
-wr450 = VehicleForm.new(model: "WR450", year: 2012, brand: "Yamaha", type: "Motorcycle").save
-wr426 = VehicleForm.new(model: "WR426", year: 2002, brand: "Yamaha", type: "Motorcycle").save
-yz250f = VehicleForm.new(model: "YZ250F", year: 2011, brand: "Yamaha", type: "Motorcycle").save
-wr250 = VehicleForm.new(model: "WR250", year: 2009, brand: "Yamaha", type: "Motorcycle").save
-rmz450 = VehicleForm.new(model: "RMZ450", year: 2008, brand: "Suzuki", type: "Motorcycle").save
-tm250 = VehicleForm.new(model: "250MX", year: 2011, brand: "TM Racing", type: "Motorcycle").save
-yz450f = VehicleForm.new(model: "YZ450F", year: 2006, brand: "Yamaha", type: "Motorcycle").save
-yz25005 = VehicleForm.new(model: "YZ250", year: 2005, brand: "Yamaha", type: "Motorcycle").save
-yz450f11 = VehicleForm.new(model: "YZ450F", year: 2011, brand: "Yamaha", type: "Motorcycle").save
-f150 = VehicleForm.new(model: "F150", year: 1994, brand: "ford", submodel: "lariat", type: "Truck").save
-silverado = VehicleForm.new(model: "2500", year: 2000, brand: "chevroLET", submodel: "King Ranch", type: "Truck").save
+yz250 = VehicleForm.new(vehicle_model: "YZ250", vehicle_year: 2006, vehicle_brand: "Yamaha", vehicle_type: "Motorcycle").find_or_create
+yz25004 = VehicleForm.new(vehicle_model: "YZ250", vehicle_year: 2004, vehicle_brand: "Yamaha", vehicle_type: "Motorcycle").find_or_create
+yz25008 = VehicleForm.new(vehicle_model: "YZ250", vehicle_year: 2008, vehicle_brand: "Yamaha", vehicle_type: "Motorcycle").find_or_create
+yz125 = VehicleForm.new(vehicle_model: "YZ125", vehicle_year: 2005, vehicle_brand: "Yamaha", vehicle_type: "Motorcycle").find_or_create
+wr450 = VehicleForm.new(vehicle_model: "WR450", vehicle_year: 2012, vehicle_brand: "Yamaha", vehicle_type: "Motorcycle").find_or_create
+wr426 = VehicleForm.new(vehicle_model: "WR426", vehicle_year: 2002, vehicle_brand: "Yamaha", vehicle_type: "Motorcycle").find_or_create
+yz250f = VehicleForm.new(vehicle_model: "YZ250F", vehicle_year: 2011, vehicle_brand: "Yamaha", vehicle_type: "Motorcycle").find_or_create
+wr250 = VehicleForm.new(vehicle_model: "WR250", vehicle_year: 2009, vehicle_brand: "Yamaha", vehicle_type: "Motorcycle").find_or_create
+rmz450 = VehicleForm.new(vehicle_model: "RMZ450", vehicle_year: 2008, vehicle_brand: "Suzuki", vehicle_type: "Motorcycle").find_or_create
+tm250 = VehicleForm.new(vehicle_model: "250MX", vehicle_year: 2011, vehicle_brand: "TM Racing", vehicle_type: "Motorcycle").find_or_create
+yz450f = VehicleForm.new(vehicle_model: "YZ450F", vehicle_year: 2006, vehicle_brand: "Yamaha", vehicle_type: "Motorcycle").find_or_create
+yz25005 = VehicleForm.new(vehicle_model: "YZ250", vehicle_year: 2005, vehicle_brand: "Yamaha", vehicle_type: "Motorcycle").find_or_create
+yz450f11 = VehicleForm.new(vehicle_model: "YZ450F", vehicle_year: 2011, vehicle_brand: "Yamaha", vehicle_type: "Motorcycle").find_or_create
+f150 = VehicleForm.new(vehicle_model: "F150", vehicle_year: 1994, vehicle_brand: "ford", vehicle_submodel: "lariat", vehicle_type: "Truck").find_or_create
+silverado = VehicleForm.new(vehicle_model: "2500", vehicle_year: 2000, vehicle_brand: "chevroLET", vehicle_submodel: "King Ranch", vehicle_type: "Truck").find_or_create
 
 #----------------------------#
 #Parts
 
-front_wheel = Product.create name: "OEM Wheel Kit", description: "Complete front wheel assembly. Includes the hubs, spokes and bearings", brand_name: "Yamaha", category_name: "Complete Wheel Assembly"
-rekluse = Product.create name: "Core3.0", description: "Autoclutch that nearly gets rid of all possibility of stalling", brand_name: "Rekluse", category_name: "Clutch"
-chain_guide = Product.create name: "Chain Guide v1.0", description: "Plastic 2 part chain guide block that replaces the stock unit", brand_name: "Acerbis", category_name: "Body"
+front_wheel = Product.create name: "OEM Wheel Kit", description: "Complete front wheel assembly. Includes the hubs, spokes and bearings", brand: Brand.find_by(name: "Yamaha"), category: Category.find_by(name: "Complete Wheel")
+rekluse = Product.create name: "Core3.0", description: "Autoclutch that nearly gets rid of all possibility of stalling", brand: Brand.find_by(name: "Rekluse"), category: Category.find_by(name: "Clutch")
+chain_guide = Product.create name: "Chain Guide v1.0", description: "Plastic 2 part chain guide block that replaces the stock unit", brand: Brand.find_by(name: "Acerbis"), category: Category.find_by(name: "Body")
 
 part1 = front_wheel.parts.build(part_number: "fwyz25006").save
 part2 = front_wheel.parts.build(part_number: "fwyz25004").save
@@ -160,12 +171,33 @@ part9 = Part.find_by(id: 9)
 #----------------------------#
 #Part Traits
 
-front = PartAttribute.where(name: 'Front').first
-wheels = Part.first(8)
+parts = Part.all.sample(5)
 
-wheels.each do |wheel|
-  PartAttribution.create(part: wheel, part_attribute: front)
+parts.each do |part|
+  PartAttribution.create(part: part, part_attribute: PartAttribute.all.sample)
 end
+
+#----------------------------#
+#Fiment Notes
+
+notes = ['Location', 'Quantity']
+notes.each do |name|
+  FitmentNote.create(name: name)
+end
+
+location_variations = ['Front', 'Rear']
+
+location_variations.each do |variation|
+  FitmentNote.find_by(name: 'Location').note_variations.create(name: variation, used_for_search: true)
+end
+
+
+quantity_variations = ['1', '2', '3']
+quantity_variations.each do |variation|
+  FitmentNote.find_by(name: 'Quantity').note_variations.create(name: variation, used_for_search: true)
+end
+
+front = FitmentNote.find_by(name: 'Front')
 
 #----------------------------#
 #Fitments
@@ -182,6 +214,15 @@ fitment9 = part9.fitments.build(vehicle: rmz450).save
 fitment10 = part1.fitments.build(vehicle: yz450f).save
 fitment11 = part4.fitments.build(vehicle: yz25005).save
 fitment12 = part7.fitments.build(vehicle: yz450f11).save
+
+front_wheel.parts.each do |part|
+  part.fitments.each do |fitment|
+    fitment.fitment_notations.create(fitment_note: front)
+  end
+end
+
+AvailableFitmentNote.refresh
+Category.refresh_fitment_notables
 
 #----------------------------#
 #Discoveries and Compatibilities
@@ -224,4 +265,31 @@ users.each do |u|
     v.upvote_by u
   end
   badcompat.downvote_by u
+end
+
+#----------------------------#
+# Forum stuff
+['Support', 'Features'].each do |root_topic|
+  ForumTopic.create(title: root_topic)
+end
+
+5.times do
+  ForumTopic.where(ancestry: nil).sample.children.create(title: Faker::Hipster.sentence(3, true), icon: 'bug')
+end
+
+10.times do
+  ForumThread.create(
+    user: User.all.sample,
+    title: Faker::Hipster.sentence(3, true),
+    body: Faker::Hipster.paragraph(2),
+    forum_topic: ForumTopic.all.where.not(ancestry: nil).sample
+  )
+end
+
+25.times do
+  ForumPost.create(
+    forum_thread: ForumThread.all.sample,
+    user: User.all.sample,
+    body: Faker::Hipster.paragraph(1)
+  )
 end
