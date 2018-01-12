@@ -77,14 +77,14 @@ module SearchableModel
   end
 
   def threshold=(value)
-    unless (value.is_a? Integer) && value.positive?
-      raise ArgumentError, 'expects a positive integer as threshold'
-    end
+    # unless (value.is_a? Integer) && value.positive?
+    #   raise ArgumentError, 'expects a positive integer as threshold'
+    # end
     @threshold = value
   end
 
   def threshold
-    @threshold ||= 1
+    @threshold ||= 0
   end
 
   def limit=(value)
