@@ -1,6 +1,5 @@
 # The Parts Ninja
-
-![alt tag](https://raw.githubusercontent.com/janikhans/thepartsninja/master/app/assets/images/ThePartsNinjaDark.png?token=APaPoMBWgJJwwZd84rj1ictpW17PH_CUks5XSSw3wA%3D%3D)
+![logo](app/assets/images/parts_ninja_dark_logo.png)
 
 The Parts Ninja is totally built using [Ruby on Rails](http://rubyonrails.org/)
 and can be accessed at [http://www.thepartsninja.com](http://www.thepartsninja.com) or
@@ -36,6 +35,12 @@ A few things to note...
 ## Moar Setup
 ### Rolling deep in the data
 
+Option 1 (demo database):
+    rake db:create
+    rake db:migrate
+    rake db:seed
+
+Option 2 (with full database):
 To get yo'self rolling in the data, contact Janik for the latest dumpfile. Make sure you save this .dumpfile in the app root directory. From there...
 
     rake db:drop
